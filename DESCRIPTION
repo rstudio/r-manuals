@@ -1,0 +1,33 @@
+Package: rmanuals
+Title: Converts the R-Extensions manual to Quarto format
+Version: 0.1.0
+Authors@R:
+    c(
+    person("Andrie", "de Vries", email = "apdevries@gmail.com", role = c("aut", "cre")),
+    person("Christophe", "Dervieux", email = "cderv@rstudio.com", role = c("aut"))
+    )
+Description: Converts the R-Extensions manual to Quarto format.
+License: MIT + file LICENSE
+Suggests: 
+    covr,
+    knitr,
+    testthat,
+    withr
+VignetteBuilder: 
+    rmarkdown
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+Imports: 
+    brio,
+    magrittr,
+    glue,
+    rmarkdown,
+    dplyr,
+    purrr,
+    fs,
+    cli (>= 3.1.0),
+    quarto,
+    xml2,
+    readr,
+    stringr

@@ -1,0 +1,79 @@
+---
+title: "The R Manuals"
+subtitle: "A re-styled version of the original R manuals"
+format:
+  html:
+    toc: false
+execute:
+  echo: false
+---
+
+```{r, message = FALSE}
+library(htmltools)
+library(fs)
+devtools::load_all(here::here())
+```
+
+
+
+
+```{r}
+
+extract_title_from_index <- function(filename) {
+    xml2::read_html(filename) %>%
+    xml_find_all("//h1") %>%
+    xml_text() %>%
+    .[1]
+}
+
+manual_info = c(
+  `r-intro` = "Based on the former 'Notes on R', gives an introduction to the language and how to use R for doing statistical analysis and graphics.",
+  `r-data` = "Describes the import and export facilities available either in R itself or via packages which are available from CRAN.",
+  `r-admin` = "A guide to installation and administration for R",
+  `r-exts` = "Covers how to create your own packages, write R help files, and the foreign language (C, C++, Fortran, ...) interfaces.",
+  `r-lang` = "Documents the language per se. That is, the objects that it works on, and the details of the expression evaluation process, which are useful to know when programming R functions.",
+  `r-ints` = "A guide to the internal structures of R and coding standards for the core team working on R itself."
+)
+
+manuals <- data.frame(
+  short_name = names(manual_info),
+  title = names(manual_info), 
+  path = paste0("../manuals/", names(manual_info)),
+  desc = unname(manual_info)
+)
+manuals$title <- 
+  purrr::map_chr(manuals$path, ~extract_title_from_index(fs::path(.x, "prep", "index.html")))
+
+links <- purrr::map(seq_along(manual_info), function(i) {
+  href <- paste0(fs::path_file(manuals$path[i]), "/index.html")
+  title = manuals$title[i]
+  tagList(
+    tags$li(
+      tags$a(href = href, title),
+      tags$p(manuals$desc[i])
+    )
+  )
+}
+)
+```
+
+This is a restyled version of the R manuals, originally provided by the *R Development Core team*.
+
+```{R}
+tags$ul(links)
+```
+
+
+---
+
+The primary aim of this site is to provide a re-styled and searchable version of the manuals, but we try very hard to keep the actual content as close to the original as possible.  The r-styling consists mainly of:
+
+* Splitting chapters into separate pages
+* Add code formatting
+
+Original R Manuals can be found at <https://cran.r-project.org/manuals.html>. The manuals in this website are built automatically from the originals using [Quarto](https://quarto.org). Code can be found at <https://github.com/rstudio/r-manuals>.
+
+The original license from the R Core development team explicitly allows modified versions of the original manual, under these terms:
+
+> Permission is granted to make and distribute verbatim copies of this manual provided the copyright notice and this permission notice are preserved on all copies.
+> Permission is granted to copy and distribute modified versions of this manual under the conditions for verbatim copying, provided that the entire resulting derived work is distributed under the terms of a permission notice identical to this one.

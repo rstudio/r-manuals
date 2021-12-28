@@ -1,0 +1,14 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+data/*
+book/*
+!book/_quarto.yml
+!book/custom.scss
+temp/*
+docs/*
+
+/.quarto/
+manuals/*
+books/*

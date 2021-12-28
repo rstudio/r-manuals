@@ -1,0 +1,5 @@
+---
+title: "About this website"
+---
+
+Original R Manuals can be found at <https://cran.r-project.org/manuals.html>. The manuals in this website are built automatically from the originals using [Quarto](https://quarto.org). Code can be found at <https://github.com/rstudio/rstudio/r-manuals>.

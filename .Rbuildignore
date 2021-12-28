@@ -1,0 +1,17 @@
+^renv$
+^renv\.lock$
+^.*\.Rproj$
+^\.Rproj\.user$
+^\.github$
+.Rprofile
+
+^manuals
+^website/_site
+^website/.quarto
+.quarto
+
+^scripts$
+^book_template$
+^website$
+
+^LICENSE\.md$
