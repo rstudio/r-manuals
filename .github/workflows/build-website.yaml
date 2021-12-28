@@ -12,7 +12,7 @@ on:
 name: Build Site
 
 jobs:
-  pkgdown:
+  build-website:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -33,7 +33,7 @@ jobs:
 
       - uses: r-lib/actions/setup-renv@v2
 
-      - name: Build Book 🔧
+      - name: Build site 🔧
         run: Rscript scripts/build_website.R
 
       - name: Deploy 🚀
