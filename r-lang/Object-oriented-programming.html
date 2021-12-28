@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.2.405">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>R Manuals :: R Language Definition - 5&nbsp; Object-oriented programming</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+  <script src="site_libs/quarto-nav/headroom.min.js"></script>
+  <script src="site_libs/clipboard/clipboard.min.js"></script>
+  <meta name="quarto:offset" content="./">
+  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+  <script src="site_libs/quarto-search/fuse.min.js"></script>
+  <script src="site_libs/quarto-search/quarto-search.js"></script>
+  <link href="./Computing-on-the-language.html" rel="next">
+  <link href="./Functions.html" rel="prev">
+  <script src="site_libs/quarto-html/quarto.js"></script>
+  <script src="site_libs/quarto-html/popper.min.js"></script>
+  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="site_libs/quarto-html/anchor.min.js"></script>
+  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
+  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <script id="quarto-search-options" type="application/json">{
+    "location": "navbar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "end",
+    "type": "overlay",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script>
+</head>
+<body class="floating">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">R Manuals :: R Language Definition</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./../index.html">Home</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
+        <li>
+    <a class="dropdown-item" href="./../r-admin/index.html">R Installation and Administration</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-data/index.html">R Data Import/Export</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-exts/index.html">Writing R Extensions</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-intro/index.html">An Introduction to R</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-ints/index.html">R Internals</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./index.html">R Language Definition</a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./../about.html">About</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Object-oriented programming</span></h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <div class="sidebar-menu-container"> 
+  <ul class="list-unstyled mt-1">
+      <li class="sidebar-item">
+  <a href="./index.html" class="">R Language Definition</a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Introduction.html" class=""><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Objects.html" class=""><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Objects</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Evaluation-of-expressions.html" class=""><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Evaluation of expressions</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Functions.html" class=""><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Functions</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Object-oriented-programming.html" class="active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Object-oriented programming</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Computing-on-the-language.html" class=""><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Computing on the language</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./System-and-foreign-language-interfaces.html" class=""><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">System and foreign language interfaces</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Exception-handling.html" class=""><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Exception handling</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Debugging.html" class=""><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Debugging</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Parser.html" class=""><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Parser</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Function-and-Variable-Index.html" class="">Function and Variable Index</a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Concept-Index.html" class="">Concept Index</a>
+</li>
+      <li class="sidebar-item">
+  <a href="./References.html" class=""><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">References</span></a>
+</li>
+  </ul>
+  </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+      <nav id="TOC" role="doc-toc">
+<h2 id="toc-title">On this page</h2>
+<ul>
+<li><a href="#definition" class="nav-link active" data-scroll-target="#definition"> <span class="header-section-number">5.1</span> Definition</a></li>
+<li><a href="#inheritance" class="nav-link" data-scroll-target="#inheritance"> <span class="header-section-number">5.2</span> Inheritance</a></li>
+<li><a href="#method-dispatching" class="nav-link" data-scroll-target="#method-dispatching"> <span class="header-section-number">5.3</span> Method dispatching</a></li>
+<li><a href="#usemethod" class="nav-link" data-scroll-target="#usemethod"> <span class="header-section-number">5.4</span> UseMethod</a></li>
+<li><a href="#nextmethod" class="nav-link" data-scroll-target="#nextmethod"> <span class="header-section-number">5.5</span> NextMethod</a></li>
+<li><a href="#group-methods" class="nav-link" data-scroll-target="#group-methods"> <span class="header-section-number">5.6</span> Group methods</a></li>
+<li><a href="#writing-methods" class="nav-link" data-scroll-target="#writing-methods"> <span class="header-section-number">5.7</span> Writing methods</a></li>
+</ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content">
+<header id="title-block-header">
+<h1 class="title display-7"><span id="object-oriented-programming" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Object-oriented programming</span></span></h1>
+</header>
+
+<p>Object-oriented programming is a style of programming that has become popular in recent years. Much of the popularity comes from the fact that it makes it easier to write and maintain complicated systems. It does this through several different mechanisms.</p>
+<p>Central to any object-oriented language are the concepts of class and of methods. A <em>class</em> is a definition of an object. Typically a class contains several <em>slots</em> that are used to hold class-specific information. An object in the language must be an instance of some class. Programming is based on objects or instances of classes.</p>
+<p>Computations are carried out via <em>methods</em>. Methods are basically functions that are specialized to carry out specific calculations on objects, usually of a specific class. This is what makes the language object oriented. In R, <em>generic functions</em> are used to determine the appropriate method. The generic function is responsible for determining the class of its argument(s) and uses that information to select the appropriate method.</p>
+<p>Another feature of most object-oriented languages is the concept of inheritance. In most programming problems there are usually many objects that are related to one another. The programming is considerably simplified if some components can be reused.</p>
+<p>If a class inherits from another class then generally it gets all the slots in the parent class and can extend it by adding new slots. On method dispatching (via the generic functions) if a method for the class does not exist then a method for the parent is sought.</p>
+<p>In this chapter we discuss how this general strategy has been implemented in R and discuss some of the limitations within the current design. One of the advantages that most object systems impart is greater consistency. This is achieved via the rules that are checked by the compiler or interpreter. Unfortunately because of the way that the object system is incorporated into R this advantage does not obtain. Users are cautioned to use the object system in a straightforward manner. While it is possible to perform some rather interesting feats these tend to lead to obfuscated code and may depend on implementation details that will not be carried forward.</p>
+<p>The greatest use of object oriented programming in R is through <code>print</code> methods, <code>summary</code> methods and <code>plot</code> methods. These methods allow us to have one generic function call, <code>plot</code> say, that dispatches on the type of its argument and calls a plotting function that is specific to the data supplied.</p>
+<p>In order to make the concepts clear we will consider the implementation of a small system designed to teach students about probability. In this system the objects are probability functions and the methods we will consider are methods for finding moments and for plotting. Probabilities can always be represented in terms of the cumulative distribution function but can often be represented in other ways. For example as a density, when it exists or as a moment generating function when it exists.</p>
+<section id="definition" class="level2 section" data-number="5.1">
+<h2 class="section anchored" data-number="5.1" data-anchor-id="definition"><span class="header-section-number">5.1</span> Definition</h2>
+<p>Rather than having a full-fledged object-oriented system R has a class system and a mechanism for dispatching based on the class of an object. The dispatch mechanism for interpreted code relies on four special objects that are stored in the evaluation frame. These special objects are <code>.Generic</code>, <code>.Class</code>, <code>.Method</code> and <code>.Group</code>. There is a separate dispatch mechanism used for internal functions and types that will be discussed elsewhere.</p>
+<p>The class system is facilitated through the <code>class</code> attribute. This attribute is a character vector of class names. So to create an object of class <code>"foo"</code> one simply attaches a class attribute with the string <code>"foo"</code> in it. Thus, virtually anything can be turned in to an object of class <code>"foo"</code>.</p>
+<p>The object system makes use of <em>generic functions</em> via two dispatching functions, <code>UseMethod</code> and <code>NextMethod</code>. The typical use of the object system is to begin by calling a generic function. This is typically a very simple function and consists of a single line of code. The system function <code>mean</code> is just such a function,</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> mean</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span> (x, ...)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">UseMethod</span>(<span class="st">"mean"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When <code>mean</code> is called it can have any number of arguments but its first argument is special and the class of that first argument is used to determine which method should be called. The variable <code>.Class</code> is set to the class attribute of <code>x</code>, <code>.Generic</code> is set to the string <code>"mean"</code> and a search is made for the correct method to invoke. The class attributes of any other arguments to <code>mean</code> are ignored.</p>
+<p>Suppose that <code>x</code> had a class attribute that contained <code>"foo"</code> and <code>"bar"</code>, in that order. Then R would first search for a function called <code>mean.foo</code> and if it did not find one it would then search for a function <code>mean.bar</code> and if that search was also unsuccessful then a final search for <code>mean.default</code> would be made. If the last search is unsuccessful R reports an error. It is a good idea to always write a default method. Note that the functions <code>mean.foo</code> etc. are referred to, in this context, as methods.</p>
+<p><code>NextMethod</code> provides another mechanism for dispatching. A function may have a call to <code>NextMethod</code> anywhere in it. The determination of which method should then be invoked is based primarily on the current values of <code>.Class</code> and <code>.Generic</code>. This is somewhat problematic since the method is really an ordinary function and users may call it directly. If they do so then there will be no values for <code>.Generic</code> or <code>.Class</code>.</p>
+<p>If a method is invoked directly and it contains a call to <code>NextMethod</code> then the first argument to <code>NextMethod</code> is used to determine the generic function. An error is signalled if this argument has not been supplied; it is therefore a good idea to always supply this argument.</p>
+<p>In the case that a method is invoked directly the class attribute of the first argument to the method is used as the value of <code>.Class</code>.</p>
+<p>Methods themselves employ <code>NextMethod</code> to provide a form of inheritance. Commonly a specific method performs a few operations to set up the data and then it calls the next appropriate method through a call to <code>NextMethod</code>.</p>
+<p>Consider the following simple example. A point in two-dimensional Euclidean space can be specified by its Cartesian (x-y) or polar (r-theta) coordinates. Hence, to store information about the location of the point, we could define two classes, <code>"xypoint"</code> and <code>"rthetapoint"</code>. All the ‘xypoint’ data structures are lists with an x-component and a y-component. All ‘rthetapoint’ objects are lists with an r-component and a theta-component.</p>
+<p>Now, suppose we want to get the x-position from either type of object. This can easily be achieved through generic functions. We define the generic function <code>xpos</code> as follows.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>xpos <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ...)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">UseMethod</span>(<span class="st">"xpos"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now we can define methods:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>xpos<span class="op">.</span>xypoint <span class="op">&lt;-</span> function<span class="op">(</span>x<span class="op">)</span> x$x</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>xpos<span class="op">.</span>rthetapoint <span class="op">&lt;-</span> function<span class="op">(</span>x<span class="op">)</span> x$r <span class="op">*</span> cos<span class="op">(</span>x$theta<span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The user simply calls the function <code>xpos</code> with either representation as the argument. The internal dispatching method finds the class of the object and calls the appropriate methods.</p>
+<p>It is pretty easy to add other representations. One need not write a new generic function only the methods. This makes it easy to add to existing systems since the user is only responsible for dealing with the new representation and not with any of the existing representations.</p>
+<p>The bulk of the uses of this methodology are to provide specialized printing for objects of different types; there are about 40 methods for <code>print</code>.</p>
+</section>
+<section id="inheritance" class="level2 section" data-number="5.2">
+<h2 class="section anchored" data-number="5.2" data-anchor-id="inheritance"><span class="header-section-number">5.2</span> Inheritance</h2>
+<p>The class attribute of an object can have several elements. When a generic function is called the first inheritance is mainly handled through <code>NextMethod</code>. <code>NextMethod</code> determines the method currently being evaluated, finds the next class from th</p>
+<p>FIXME: something is missing here</p>
+</section>
+<section id="method-dispatching" class="level2 section" data-number="5.3">
+<h2 class="section anchored" data-number="5.3" data-anchor-id="method-dispatching"><span class="header-section-number">5.3</span> Method dispatching</h2>
+<p>Generic functions should consist of a single statement. They should usually be of the form <code>foo &lt;- function(x, ...) UseMethod("foo", x)</code>. When <code>UseMethod</code> is called, it determines the appropriate method and then that method is invoked with the same arguments, in the same order as the call to the generic, as if the call had been made directly to the method.</p>
+<p>In order to determine the correct method the class attribute of the first argument to the generic is obtained and used to find the correct method. The name of the generic function is combined with the first element of the class attribute into the form, <code>generic.class</code> and a function with that name is sought. If the function is found then it is used. If no such function is found then the second element of the class attribute is used, and so on until all the elements of the class attribute have been exhausted. If no method has been found at that point then the method <code>generic.default</code> is used. If the first argument to the generic function has no class attribute then <code>generic.default</code> is used. Since the introduction of namespaces the methods may not be accessible by their names (i.e.&nbsp;<code>get("generic.class")</code> may fail), but they will be accessible by <code>getS3method("generic","class")</code>.</p>
+<p>Any object can have a <code>class</code> attribute. This attribute can have any number of elements. Each of these is a string that defines a class. When a generic function is invoked the class of its first argument is examined.</p>
+</section>
+<section id="usemethod" class="level2 section" data-number="5.4">
+<h2 class="section anchored" data-number="5.4" data-anchor-id="usemethod"><span class="header-section-number">5.4</span> UseMethod</h2>
+<p><code>UseMethod</code> is a special function and it behaves differently from other function calls. The syntax of a call to it is <code>UseMethod(generic, object)</code>, where <var>generic</var> is the name of the generic function, <var>object</var> is the object used to determine which method should be chosen. <code>UseMethod</code> can only be called from the body of a function.</p>
+<p><code>UseMethod</code> changes the evaluation model in two ways. First, when it is invoked it determines the next method (function) to be called. It then invokes that function using the current evaluation environment; this process will be described shortly. The second way in which <code>UseMethod</code> changes the evaluation environment is that it does not return control to the calling function. This means, that any statements after a call to <code>UseMethod</code> are guaranteed not to be executed.</p>
+<p>When <code>UseMethod</code> is invoked the generic function is the specified value in the call to <code>UseMethod</code>. The object to dispatch on is either the supplied second argument or the first argument to the current function. The class of the argument is determined and the first element of it is combined with the name of the generic to determine the appropriate method. So, if the generic had name <code>foo</code> and the class of the object is <code>"bar"</code>, then R will search for a method named <code>foo.bar</code>. If no such method exists then the inheritance mechanism described above is used to locate an appropriate method.</p>
+<p>Once a method has been determined R invokes it in a special way. Rather than creating a new evaluation environment R uses the environment of the current function call (the call to the generic). Any assignments or evaluations that were made before the call to <code>UseMethod</code> will be in effect. The arguments that were used in the call to the generic are rematched to the formal arguments of the selected method.</p>
+<p>When the method is invoked it is called with arguments that are the same in number and have the same names as in the call to the generic. They are matched to the arguments of the method according to the standard R rules for argument matching. However the object, i.e.&nbsp;the first argument has been evaluated.</p>
+<p>The call to <code>UseMethod</code> has the effect of placing some special objects in the evaluation frame. They are <code>.Class</code>, <code>.Generic</code> and <code>.Method</code>. These special objects are used to by R to handle the method dispatch and inheritance. <code>.Class</code> is the class of the object, <code>.Generic</code> is the name of the generic function and <code>.Method</code> is the name of the method currently being invoked. If the method was invoked through one of the internal interfaces then there may also be an object called <code>.Group</code>. This will be described in Section <a href="#group-methods">Group methods</a>. After the initial call to <code>UseMethod</code> these special variables, not the object itself, control the selection of subsequent methods.</p>
+<p>The body of the method is then evaluated in the standard fashion. In particular variable look-up in the body follows the rules for the method. So if the method has an associated environment then that is used. In effect we have replaced the call to the generic by a call to the method. Any local assignments in the frame of the generic will be carried forward into the call to the method. Use of this <em>feature</em> is discouraged. It is important to realize that control will never return to the generic and hence any expressions after a call to <code>UseMethod</code> will never be executed.</p>
+<p>Any arguments to the generic that were evaluated prior to the call to <code>UseMethod</code> remain evaluated.</p>
+<p>If the first argument to <code>UseMethod</code> is not supplied it is assumed to be the name of the current function. If two arguments are supplied to <code>UseMethod</code> then the first is the name of the method and the second is assumed to be the object that will be dispatched on. It is evaluated so that the required method can be determined. In this case the first argument in the call to the generic is not evaluated and is discarded. There is no way to change the other arguments in the call to the method; these remain as they were in the call to the generic. This is in contrast to <code>NextMethod</code> where the arguments in the call to the next method can be altered.</p>
+</section>
+<section id="nextmethod" class="level2 section" data-number="5.5">
+<h2 class="section anchored" data-number="5.5" data-anchor-id="nextmethod"><span class="header-section-number">5.5</span> NextMethod</h2>
+<p><code>NextMethod</code> is used to provide a simple inheritance mechanism.</p>
+<p>Methods invoked as a result of a call to <code>NextMethod</code> behave as if they had been invoked from the previous method. The arguments to the inherited method are in the same order and have the same names as the call to the current method. This means that they are the same as for the call to the generic. However, the expressions for the arguments are the names of the corresponding formal arguments of the current method. Thus the arguments will have values that correspond to their value at the time NextMethod was invoked.</p>
+<p>Unevaluated arguments remain unevaluated. Missing arguments remain missing.</p>
+<p>The syntax for a call to <code>NextMethod</code> is <code>NextMethod(generic, object, ...)</code>. If the <code>generic</code> is not supplied the value of <code>.Generic</code> is used. If the <code>object</code> is not supplied the first argument in the call to the current method is used. Values in the <code>...</code> argument are used to modify the arguments of the next method.</p>
+<p>It is important to realize that the choice of the next method depends on the current values of <code>.Generic</code> and <code>.Class</code> and not on the object. So changing the object in a call to <code>NextMethod</code> affects the arguments received by the next method but does not affect the choice of the next method.</p>
+<p>Methods can be called directly. If they are then there will be no <code>.Generic</code>, <code>.Class</code> or <code>.Method</code>. In this case the <code>generic</code> argument of <code>NextMethod</code> must be specified. The value of <code>.Class</code> is taken to be the class attribute of the object which is the first argument to the current function. The value of <code>.Method</code> is the name of the current function. These choices for default values ensure that the behaviour of a method doesn’t change depending on whether it is called directly or via a call to a generic.</p>
+<p>An issue for discussion is the behaviour of the <code>...</code> argument to <code>NextMethod</code>. The White Book describes the behaviour as follows:</p>
+<p>- named arguments replace the corresponding arguments in the call to the current method. Unnamed arguments go at the start of the argument list.</p>
+<p>What I would like to do is:</p>
+<p>-first do the argument matching for NextMethod; -if the object or generic are changed fine -first if a named list element matches an argument (named or not) the list value replaces the argument value. - the first unnamed list element</p>
+<p>Values for lookup: Class: comes first from .Class, second from the first argument to the method and last from the object specified in the call to NextMethod</p>
+<p>Generic: comes first from .Generic, if nothing then from the first argument to the method and if it’s still missing from the call to NextMethod</p>
+<p>Method: this should just be the current function name.</p>
+</section>
+<section id="group-methods" class="level2 section" data-number="5.6">
+<h2 class="section anchored" data-number="5.6" data-anchor-id="group-methods"><span class="header-section-number">5.6</span> Group methods</h2>
+<p>For several types of internal functions R provides a dispatching mechanism for operators. This means that operators such as <code>==</code> or <code>&lt;</code> can have their behaviour modified for members of special classes. The functions and operators have been grouped into three categories and group methods can be written for each of these categories. There is currently no mechanism to add groups. It is possible to write methods specific to any function within a group.</p>
+<p>The following table lists the functions for the different Groups.</p>
+<dl>
+<dt><code>Math</code></dt>
+<dd><p>abs, acos, acosh, asin, asinh, atan, atanh, ceiling, cos, cosh, cospi, cumsum, exp, floor, gamma, lgamma, log, log10, round, signif, sin, sinh, sinpi, tan, tanh, tanpi, trunc</p>
+</dd>
+<dt><code>Summary</code></dt>
+<dd><p>all, any, max, min, prod, range, sum</p>
+</dd>
+<dt><code>Ops</code></dt>
+<dd><p><code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>^</code>, <code>&lt;</code> , <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>, <code>!=</code>, <code>==</code>, <code>%%</code>, <code>%/%</code>, <code>&amp;</code>, <code>|</code>, <code>!</code></p>
+</dd>
+</dl>
+<p>For operators in the Ops group a special method is invoked if the two operands taken together suggest a single method. Specifically, if both operands correspond to the same method or if one operand corresponds to a method that takes precedence over that of the other operand. If they do not suggest a single method then the default method is used. Either a group method or a class method dominates if the other operand has no corresponding method. A class method dominates a group method.</p>
+<p>When the group is Ops the special variable <code>.Method</code> is a string vector with two elements. The elements of <code>.Method</code> are set to the name of the method if the corresponding argument is a member of the class that was used to determine the method. Otherwise the corresponding element of <code>.Method</code> is set to the zero length string, <code>""</code>.</p>
+</section>
+<section id="writing-methods" class="level2 section" data-number="5.7">
+<h2 class="section anchored" data-number="5.7" data-anchor-id="writing-methods"><span class="header-section-number">5.7</span> Writing methods</h2>
+<p>Users can easily write their own methods and generic functions. A generic function is simply a function with a call to <code>UseMethod</code>. A method is simply a function that has been invoked via method dispatch. This can be as a result of a call to either <code>UseMethod</code> or <code>NextMethod</code>.</p>
+<p>It is worth remembering that methods can be called directly. That means that they can be entered without a call to <code>UseMethod</code> having been made and hence the special variables <code>.Generic</code>, <code>.Class</code> and <code>.Method</code> will not have been instantiated. In that case the default rules detailed above will be used to determine these.</p>
+<p>The most common use of generic functions is to provide <code>print</code> and <code>summary</code> methods for statistical objects, generally the output of some model fitting process. To do this, each model attaches a class attribute to its output and then provides a special method that takes that output and provides a nice readable version of it. The user then needs only remember that <code>print</code> or <code>summary</code> will provide nice output for the results of any analysis.</p>
+
+
+</section>
+</main> <!-- /main -->
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.toc-action)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Functions.html">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Functions</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Computing-on-the-language.html">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Computing on the language</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+  </div>
+</footer>
+
+
+</body></html>

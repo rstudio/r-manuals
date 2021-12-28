@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.2.405">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>R Manuals :: R Installation and Administration - 7&nbsp; Internationalization and Localization</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+  <script src="site_libs/quarto-nav/headroom.min.js"></script>
+  <script src="site_libs/clipboard/clipboard.min.js"></script>
+  <meta name="quarto:offset" content="./">
+  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+  <script src="site_libs/quarto-search/fuse.min.js"></script>
+  <script src="site_libs/quarto-search/quarto-search.js"></script>
+  <link href="./Choosing-between-32--and-64-bit-builds.html" rel="next">
+  <link href="./Add-on-packages.html" rel="prev">
+  <script src="site_libs/quarto-html/quarto.js"></script>
+  <script src="site_libs/quarto-html/popper.min.js"></script>
+  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="site_libs/quarto-html/anchor.min.js"></script>
+  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
+  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <script id="quarto-search-options" type="application/json">{
+    "location": "navbar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "end",
+    "type": "overlay",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script>
+</head>
+<body class="floating slimcontent">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">R Manuals :: R Installation and Administration</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./../index.html">Home</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
+        <li>
+    <a class="dropdown-item" href="./index.html">R Installation and Administration</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-data/index.html">R Data Import/Export</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-exts/index.html">Writing R Extensions</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-intro/index.html">An Introduction to R</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-ints/index.html">R Internals</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-lang/index.html">R Language Definition</a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./../about.html">About</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Internationalization and Localization</span></h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <div class="sidebar-menu-container"> 
+  <ul class="list-unstyled mt-1">
+      <li class="sidebar-item">
+  <a href="./index.html" class="">R Installation and Administration</a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Obtaining-R.html" class=""><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Obtaining R</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Installing-R-under-Unix-alikes.html" class=""><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Installing R under Unix-alikes</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Installing-R-under-Windows.html" class=""><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Installing R under Windows</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Installing-R-under-macOS.html" class=""><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Installing R under macOS</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Running-R.html" class=""><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Running R</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Add-on-packages.html" class=""><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Add-on packages</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Internationalization.html" class="active"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Internationalization and Localization</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Choosing-between-32--and-64-bit-builds.html" class=""><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Choosing between 32- and 64-bit builds</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./The-standalone-Rmath-library.html" class=""><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The standalone Rmath library</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Essential-and-useful-other-programs-under-a-Unix-alike.html" class=""><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Essential and useful other programs under a Unix-alike</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Configuration-on-a-Unix-alike.html" class=""><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Configuration on a Unix-alike</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Platform-notes.html" class=""><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Platform notes</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Function-and-variable-index.html" class="">Function and variable index</a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Concept-index.html" class="">Concept index</a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Environment-variable-index.html" class="">Environment variable index</a>
+</li>
+  </ul>
+  </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+      <nav id="TOC" role="doc-toc">
+<h2 id="toc-title">On this page</h2>
+<ul>
+<li><a href="#locales" class="nav-link active" data-scroll-target="#locales"> <span class="header-section-number">7.1</span> Locales</a>
+<ul class="collapse">
+<li><a href="#locales-under-unix-alikes" class="nav-link" data-scroll-target="#locales-under-unix-alikes"> <span class="header-section-number">7.1.1</span> Locales under Unix-alikes</a></li>
+<li><a href="#locales-under-windows" class="nav-link" data-scroll-target="#locales-under-windows"> <span class="header-section-number">7.1.2</span> Locales under Windows</a></li>
+<li><a href="#locales-under-macos" class="nav-link" data-scroll-target="#locales-under-macos"> <span class="header-section-number">7.1.3</span> Locales under macOS</a></li>
+</ul></li>
+<li><a href="#localization-of-messages" class="nav-link" data-scroll-target="#localization-of-messages"> <span class="header-section-number">7.2</span> Localization of messages</a></li>
+</ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full">
+<header id="title-block-header">
+<h1 class="title display-7"><span id="internationalization-and-localization" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Internationalization and Localization</span></span></h1>
+</header>
+
+<p><em>Internationalization</em> refers to the process of enabling support for many human languages, and <em>localization</em> to adapting to a specific country and language.</p>
+<p>Current builds of R support all the character sets that the underlying OS can handle. These are interpreted according to the current <code>locale</code>, a sufficiently complicated topic to merit a separate section. Note though that R has no built-in support for right-to-left languages and bidirectional output, relying on the OS services. For example, how character vectors in UTF-8 containing both English digits and Hebrew characters are printed is OS-dependent (and perhaps locale-dependent).</p>
+<p>The other aspect of the internationalization is support for the translation of messages. This is enabled in almost all builds of R.</p>
+<section id="locales" class="level2 section page-columns page-full" data-number="7.1">
+<h2 class="section anchored" data-number="7.1" data-anchor-id="locales"><span class="header-section-number">7.1</span> Locales</h2>
+<p>A <em>locale</em> is a description of the local environment of the user, including the preferred language, the encoding of characters, the currency used and its conventions, and so on. Aspects of the locale are accessed by the R functions <code>Sys.getlocale</code> and <code>Sys.localeconv</code>.</p>
+<p>The system of naming locales is OS-specific. There is quite wide agreement on schemes, but not on the details of their implementation. A locale needs to specify</p>
+<ul>
+<li>A human language. These are generally specified by a lower-case two-character abbreviation following ISO 639 (see e.g. <a href="https://en.wikipedia.org/wiki/ISO_639-1" class="uri">https://en.wikipedia.org/wiki/ISO_639-1</a>).</li>
+<li>A ‘territory’, used mainly to specify the currency. These are generally specified by an upper-case two-character abbreviation following ISO 3166 (see e.g. <a href="https://en.wikipedia.org/wiki/ISO_3166" class="uri">https://en.wikipedia.org/wiki/ISO_3166</a>).</li>
+<li>A charset encoding, which determines both how a byte stream should be divided into characters, and which characters the subsequences of bytes represent. Sometimes the combination of language and territory is used to specify the encoding, for example to distinguish between traditional and simplified Chinese.</li>
+<li>Optionally, a modifier, for example to indicate that Austria is to be considered pre- or post-Euro. The modifier is also used to indicate the script (<code>@latin</code>, <code>@cyrillic</code> for Serbian, <code>@iqtelif</code>) or language dialect (e.g.&nbsp;<code>@saaho</code>, a dialect of Afar, and <code>@bokmal</code> and <code>@nynorsk</code>, dialects of Norwegian regarded by some OSes as separate languages, <code>no</code> and <code>nn</code>).</li>
+</ul>
+<p>R is principally concerned with the first (for translations) and third. Note that the charset may be deducible from the language, as some OSes offer only one charset per language.</p>
+<section id="locales-under-unix-alikes" class="level3 subsection page-columns page-full" data-number="7.1.1">
+<h3 class="subsection anchored" data-number="7.1.1" data-anchor-id="locales-under-unix-alikes"><span class="header-section-number">7.1.1</span> Locales under Unix-alikes</h3>
+<div class="page-columns page-full"><p>Modern Linux uses the XPG<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> locale specifications which have the form <code>en_GB</code>, <code>en_GB.UTF-8</code>, <code>aa_ER.UTF-8@saaho</code>, <code>de_AT.iso885915@euro</code>, the components being in the order listed above. (See <code>man locale</code> and <code>locale -a</code> for more details.) Similar schemes are used by most Unix-alikes: some (including some distributions of Linux) use <code>.utf8</code> rather than <code>.UTF-8</code>.</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;‘X/Open Portability Guide’, which has had several versions.</p></li></div></div>
+<p>Note that whereas UTF-8 locales are nowadays almost universally used, locales such as <code>en_GB</code> use 8-bit encodings for backwards compatibility.</p>
+</section>
+<section id="locales-under-windows" class="level3 subsection" data-number="7.1.2">
+<h3 class="subsection anchored" data-number="7.1.2" data-anchor-id="locales-under-windows"><span class="header-section-number">7.1.2</span> Locales under Windows</h3>
+<p>Windows also uses locales, but specified in a rather less concise way. Most users will encounter locales only via drop-down menus, but more information and lists can be found by searching for <code>Windows language country strings</code>).</p>
+<p>It offers only one encoding per language.</p>
+<p>Some care is needed with Windows’ locale names. For example, <code>chinese</code> is Traditional Chinese and not Simplified Chinese as used in most of the Chinese-speaking world.</p>
+</section>
+<section id="locales-under-macos" class="level3 subsection" data-number="7.1.3">
+<h3 class="subsection anchored" data-number="7.1.3" data-anchor-id="locales-under-macos"><span class="header-section-number">7.1.3</span> Locales under macOS</h3>
+<p>macOS supports locales in its own particular way, but the R GUI tries to make this easier for users. See <a href="https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPInternational/" class="uri">https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPInternational/</a> for how users can set their locales. As with Windows, end users will generally only see lists of languages/territories. Users of R in a terminal may need to set the locale to something like <code>en_GB.UTF-8</code> if it defaults to <code>C</code> (as it sometimes does when logging in remotely and for batch jobs: note whether <code>Terminal</code> sets the <code>LANG</code> environment variable is an (advanced) preference, but does so by default).</p>
+<p>Internally macOS uses a form similar to Linux: the main difference from other Unix-alikes is that where a character set is not specified it is assumed to be <code>UTF-8</code>.</p>
+</section>
+</section>
+<section id="localization-of-messages" class="level2 section page-columns page-full" data-number="7.2">
+<h2 class="section anchored" data-number="7.2" data-anchor-id="localization-of-messages"><span class="header-section-number">7.2</span> Localization of messages</h2>
+<div class="page-columns page-full"><p>The preferred language for messages is by default taken from the locale. This can be overridden first by the setting of the environment variable <code>LANGUAGE</code> and then<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> by the environment variables <code>LC_ALL</code>, <code>LC_MESSAGES</code> and <code>LANG</code>. (The last three are normally used to set the locale and so should not be needed, but the first is only used to select the language for messages.) The code tries hard to map locales to languages, but on some systems (notably Windows) the locale names needed for the environment variable <code>LC_ALL</code> do not all correspond to XPG language names and so <code>LANGUAGE</code> may need to be set. (One example is <code>LC_ALL=es</code> on Windows which sets the locale to Estonian and the language to Spanish.)</p><div class="no-row-height column-margin column-container"><li id="fn2" role="doc-endnote"><p><sup>2</sup>&nbsp;On some systems setting <code>LC_ALL</code> or <code>LC_MESSAGES</code> to <code>C</code> disables <code>LANGUAGE</code>.</p></li></div></div>
+<div class="page-columns page-full"><p>It is usually possible to change the language once R is running <em>via</em> (not Windows) <code>Sys.setlocale("LC_MESSAGES", "new_locale")</code>, or by setting an environment variable such as <code>LANGUAGE</code>, <em>provided</em><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> the language you are changing to can be output in the current character set. But this is OS-specific, and has been known to stop working on an OS upgrade. Note that translated messages may be cached, so attempting to change the language of an error that has already been output in another language may not work.</p><div class="no-row-height column-margin column-container"><li id="fn3" role="doc-endnote"><p><sup>3</sup>&nbsp;If you try changing from French to Russian except in a UTF-8 locale, you may find messages change to English.</p></li></div></div>
+<p>Messages are divided into <em>domains</em>, and translations may be available for some or all messages in a domain. R makes use of the following domains.</p>
+<ul>
+<li>Domain <code>R</code> for the C-level error and warning messages from the R interpreter.</li>
+<li>Domain <code>R-pkg</code> for the R <code>stop</code>, <code>warning</code> and <code>message</code> messages in each package, including <code>R-base</code> for the <strong>base</strong> package.</li>
+<li>Domain <code>pkg</code> for the C-level messages in each package.</li>
+<li>Domain <code>RGui</code> for the menus etc of the R for Windows GUI front-end.</li>
+</ul>
+<p>Dividing up the messages in this way allows R to be extensible: as packages are loaded, their message translation catalogues can be loaded too.</p>
+<p>R can be built without support for translations, but it is enabled by default.</p>
+<p>R-level and C-level domains are subtly different, for example in the way strings are canonicalized before being passed for translation.</p>
+<div class="page-columns page-full"><p>Translations are looked for by domain according to the currently specified language, as specifically as possible, so for example an Austrian (<code>de_AT</code>) translation catalogue will be used in preference to a generic German one (<code>de</code>) for an Austrian user. However, if a specific translation catalogue exists but does not contain a translation, the less specific catalogues are consulted. For example, R has catalogues for <code>en_GB</code> that translate the Americanisms (e.g., <code>gray</code>) in the standard messages into English.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> Two other examples: there are catalogues for <code>es</code>, which is Spanish as written in Spain and these will by default also be used in Spanish-speaking Latin American countries, and also for <code>pt_BR</code>, which are used for Brazilian locales but not for locales specifying Portugal.</p><div class="no-row-height column-margin column-container"><li id="fn4" role="doc-endnote"><p><sup>4</sup>&nbsp;the language written in England: some people living in the USA appropriate this name for their language.</p></li></div></div>
+<p>Translations in the right language but the wrong charset are made use of by on-the-fly re-encoding. The <code>LANGUAGE</code> variable (only) can be a colon-separated list, for example <code>se:de</code>, giving a set of languages in decreasing order of preference. One special value is <code>en@quot</code>, which can be used in a UTF-8 locale to have American error messages with pairs of single quotes translated to Unicode directional quotes.</p>
+<div class="page-columns page-full"><p>If no suitable translation catalogue is found or a particular message is not translated in any suitable catalogue, ‘English’<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> is used.</p><div class="no-row-height column-margin column-container"><li id="fn5" role="doc-endnote"><p><sup>5</sup>&nbsp;with Americanisms.</p></li></div></div>
+<p>See <a href="https://developer.r-project.org/Translations30.html" class="uri">https://developer.r-project.org/Translations30.html</a> for how to prepare and install translation catalogues.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.toc-action)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Add-on-packages.html">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Add-on packages</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Choosing-between-32--and-64-bit-builds.html">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Choosing between 32- and 64-bit builds</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+  </div>
+</footer>
+
+
+</body></html>

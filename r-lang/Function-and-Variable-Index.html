@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.2.405">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>R Manuals :: R Language Definition - Function and Variable Index</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+  <script src="site_libs/quarto-nav/headroom.min.js"></script>
+  <script src="site_libs/clipboard/clipboard.min.js"></script>
+  <meta name="quarto:offset" content="./">
+  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+  <script src="site_libs/quarto-search/fuse.min.js"></script>
+  <script src="site_libs/quarto-search/quarto-search.js"></script>
+  <link href="./Concept-Index.html" rel="next">
+  <link href="./Parser.html" rel="prev">
+  <script src="site_libs/quarto-html/quarto.js"></script>
+  <script src="site_libs/quarto-html/popper.min.js"></script>
+  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="site_libs/quarto-html/anchor.min.js"></script>
+  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
+  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <script id="quarto-search-options" type="application/json">{
+    "location": "navbar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "end",
+    "type": "overlay",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script>
+</head>
+<body class="floating">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">R Manuals :: R Language Definition</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./../index.html">Home</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
+        <li>
+    <a class="dropdown-item" href="./../r-admin/index.html">R Installation and Administration</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-data/index.html">R Data Import/Export</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-exts/index.html">Writing R Extensions</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-intro/index.html">An Introduction to R</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-ints/index.html">R Internals</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./index.html">R Language Definition</a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./../about.html">About</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Function and Variable Index</h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <div class="sidebar-menu-container"> 
+  <ul class="list-unstyled mt-1">
+      <li class="sidebar-item">
+  <a href="./index.html" class="">R Language Definition</a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Introduction.html" class=""><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Objects.html" class=""><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Objects</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Evaluation-of-expressions.html" class=""><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Evaluation of expressions</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Functions.html" class=""><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Functions</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Object-oriented-programming.html" class=""><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Object-oriented programming</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Computing-on-the-language.html" class=""><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Computing on the language</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./System-and-foreign-language-interfaces.html" class=""><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">System and foreign language interfaces</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Exception-handling.html" class=""><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Exception handling</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Debugging.html" class=""><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Debugging</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Parser.html" class=""><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Parser</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Function-and-Variable-Index.html" class="active">Function and Variable Index</a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Concept-Index.html" class="">Concept Index</a>
+</li>
+      <li class="sidebar-item">
+  <a href="./References.html" class=""><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">References</span></a>
+</li>
+  </ul>
+  </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+      <div id="quarto-toc-target"></div>
+    </div>
+<!-- main -->
+<main class="content">
+<header id="title-block-header">
+<h1 class="title display-7"><span id="function-and-variable-index" class="quarto-section-identifier d-none d-lg-block">Function and Variable Index</span></h1>
+</header>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 64%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Jump to: &nbsp;</td>
+<td><a href="#function-and-variable-index_vr_symbol-1" class="summary-letter"><strong>#</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-2" class="summary-letter"><strong>$</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-3" class="summary-letter"><strong>.</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-4" class="summary-letter"><strong>[</strong></a> &nbsp;<br>
+<a href="#function-and-variable-index_vr_letter-a" class="summary-letter"><strong>A</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-b" class="summary-letter"><strong>B</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-d" class="summary-letter"><strong>D</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-e" class="summary-letter"><strong>E</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-f" class="summary-letter"><strong>F</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-g" class="summary-letter"><strong>G</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-i" class="summary-letter"><strong>I</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-m" class="summary-letter"><strong>M</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-n" class="summary-letter"><strong>N</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-o" class="summary-letter"><strong>O</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-p" class="summary-letter"><strong>P</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-q" class="summary-letter"><strong>Q</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-r" class="summary-letter"><strong>R</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-s" class="summary-letter"><strong>S</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-t" class="summary-letter"><strong>T</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-u" class="summary-letter"><strong>U</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-w" class="summary-letter"><strong>W</strong></a> &nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 41%">
+<col style="width: 8%">
+<col style="width: 40%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;">Index Entry</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;">Section</td>
+</tr>
+<tr class="even">
+<td>#</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Parser.html#index-_0023"><code>#</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Parser.html#comments">Comments</a></td>
+</tr>
+<tr class="even">
+<td>$</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-_0024"><code>$</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#indexing">Indexing</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Parser.html#index-_0024-1"><code>$</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Parser.html#index-constructions">Index constructions</a></td>
+</tr>
+<tr class="odd">
+<td>.</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-.c"><code>.C</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#foreign-language-interfaces">Foreign language interfaces</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-.call"><code>.Call</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#foreign-language-interfaces">Foreign language interfaces</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-.external"><code>.External</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#foreign-language-interfaces">Foreign language interfaces</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-.fortran"><code>.Fortran</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#foreign-language-interfaces">Foreign language interfaces</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-.internal-1"><code>.Internal</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#g_t.internal-and-.primitive">.Internal and .Primitive</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-.primitive-1"><code>.Primitive</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#g_t.internal-and-.primitive">.Internal and .Primitive</a></td>
+</tr>
+<tr class="even">
+<td>[</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-_005b"><code>[</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#indexing">Indexing</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Parser.html#index-_005b-1"><code>[</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Parser.html#index-constructions">Index constructions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-_005b_005b"><code>[[</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#indexing">Indexing</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Parser.html#index-_005b_005b-1"><code>[[</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Parser.html#index-constructions">Index constructions</a></td>
+</tr>
+<tr class="odd">
+<td>A</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-as.call"><code>as.call</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#language-objects">Language objects</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-as.character"><code>as.character</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#symbol-objects">Symbol objects</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-as.function"><code>as.function</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#function-objects">Function objects</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-as.list"><code>as.list</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#language-objects">Language objects</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-as.name"><code>as.name</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#symbol-objects">Symbol objects</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-assign"><code>assign</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#environment-objects">Environment objects</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Parser.html#index-assign-1"><code>assign</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Parser.html#identifiers">Identifiers</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-attr"><code>attr</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#attributes">Attributes</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-attr_003c-"><code>attr&lt;-</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#attributes">Attributes</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-attributes-1"><code>attributes</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#attributes">Attributes</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-attributes_003c-"><code>attributes&lt;-</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#attributes">Attributes</a></td>
+</tr>
+<tr class="odd">
+<td>B</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-baseenv"><code>baseenv</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#environment-objects">Environment objects</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-basename"><code>basename</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#operating-system-access">Operating system access</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-body"><code>body</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#function-objects">Function objects</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#index-body-1"><code>body</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#manipulation-of-functions">Manipulation of functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#index-body_003c-"><code>body&lt;-</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#manipulation-of-functions">Manipulation of functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-break"><code>break</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#looping">Looping</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Debugging.html#index-browser"><code>browser</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Debugging.html#browser">browser</a></td>
+</tr>
+<tr class="odd">
+<td>D</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Debugging.html#index-debug"><code>debug</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Debugging.html#debug_002fundebug">debug/undebug</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-dirname"><code>dirname</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#operating-system-access">Operating system access</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#index-do.call"><code>do.call</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#manipulation-of-function-calls">Manipulation of function calls</a></td>
+</tr>
+<tr class="odd">
+<td>E</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-emptyenv"><code>emptyenv</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#environment-objects">Environment objects</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-environment-20"><code>environment</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#function-objects">Function objects</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#index-environment-21"><code>environment</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#manipulation-of-functions">Manipulation of functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#index-environment_003c-"><code>environment&lt;-</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#manipulation-of-functions">Manipulation of functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#index-eval"><code>eval</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#more-on-evaluation">More on evaluation</a></td>
+</tr>
+<tr class="odd">
+<td>F</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-file.access"><code>file.access</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#operating-system-access">Operating system access</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-file.append"><code>file.append</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#operating-system-access">Operating system access</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-file.choose"><code>file.choose</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#operating-system-access">Operating system access</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-file.copy"><code>file.copy</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#operating-system-access">Operating system access</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-file.create"><code>file.create</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#operating-system-access">Operating system access</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-file.exists"><code>file.exists</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#operating-system-access">Operating system access</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-file.info"><code>file.info</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#operating-system-access">Operating system access</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-file.path"><code>file.path</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#operating-system-access">Operating system access</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-file.remove"><code>file.remove</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#operating-system-access">Operating system access</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-file.rename"><code>file.rename</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#operating-system-access">Operating system access</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-file.show"><code>file.show</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#operating-system-access">Operating system access</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-for"><code>for</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#for">for</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-formals"><code>formals</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#function-objects">Function objects</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#index-formals-1"><code>formals</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#manipulation-of-functions">Manipulation of functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#index-formals_003c-"><code>formals&lt;-</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#manipulation-of-functions">Manipulation of functions</a></td>
+</tr>
+<tr class="odd">
+<td>G</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-get"><code>get</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#environment-objects">Environment objects</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Parser.html#index-get-1"><code>get</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Parser.html#identifiers">Identifiers</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-get0"><code>get0</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#environment-objects">Environment objects</a></td>
+</tr>
+<tr class="odd">
+<td>I</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-is.na"><code>is.na</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#na-handling">NA handling</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-is.nan"><code>is.nan</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#na-handling">NA handling</a></td>
+</tr>
+<tr class="even">
+<td>M</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-match.arg"><code>match.arg</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#argument-matching">Argument matching</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-match.call"><code>match.call</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#argument-matching">Argument matching</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#index-match.call-1"><code>match.call</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#manipulation-of-function-calls">Manipulation of function calls</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-match.fun"><code>match.fun</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#argument-matching">Argument matching</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-missing"><code>missing</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#na-handling">NA handling</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-mode-3"><code>mode</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#objects">Objects</a></td>
+</tr>
+<tr class="odd">
+<td>N</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-na"><code>NA</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#na-handling">NA handling</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-na-1"><code>NA</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#indexing-by-vectors">Indexing by vectors</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-names"><code>names</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#names">Names</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-names_003c-"><code>names&lt;-</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#names">Names</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-nan"><code>NaN</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#na-handling">NA handling</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-new.env"><code>new.env</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#environment-objects">Environment objects</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-next"><code>next</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#looping">Looping</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#index-nextmethod"><code>NextMethod</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#nextmethod">NextMethod</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-null"><code>NULL</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#null-object">NULL object</a></td>
+</tr>
+<tr class="odd">
+<td>O</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Exception-handling.html#index-on.exit"><code>on.exit</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Exception-handling.html#on.exit">on.exit</a></td>
+</tr>
+<tr class="odd">
+<td>P</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-pairlist-1"><code>pairlist</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#pairlist-objects">Pairlist objects</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-path.expand"><code>path.expand</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#operating-system-access">Operating system access</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-proc.time"><code>proc.time</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#operating-system-access">Operating system access</a></td>
+</tr>
+<tr class="odd">
+<td>Q</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-quote"><code>quote</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#language-objects">Language objects</a></td>
+</tr>
+<tr class="odd">
+<td>R</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-repeat"><code>repeat</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#repeat">repeat</a></td>
+</tr>
+<tr class="odd">
+<td>S</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Exception-handling.html#index-stop"><code>stop</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Exception-handling.html#stop">stop</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-storage.mode"><code>storage.mode</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#objects">Objects</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#index-substitute"><code>substitute</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#substitutions">Substitutions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-switch"><code>switch</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#switch">switch</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-sys.getenv"><code>Sys.getenv</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#operating-system-access">Operating system access</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-sys.getlocale"><code>Sys.getlocale</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#operating-system-access">Operating system access</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-sys.localeconv"><code>Sys.localeconv</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#operating-system-access">Operating system access</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-sys.putenv"><code>Sys.putenv</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#operating-system-access">Operating system access</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-sys.putlocale"><code>Sys.putlocale</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#operating-system-access">Operating system access</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-sys.time"><code>Sys.time</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#operating-system-access">Operating system access</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-sys.timezone"><code>Sys.timezone</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#operating-system-access">Operating system access</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-system"><code>system</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#operating-system-access">Operating system access</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-system.time"><code>system.time</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#operating-system-access">Operating system access</a></td>
+</tr>
+<tr class="odd">
+<td>T</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Debugging.html#index-trace"><code>trace</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Debugging.html#trace_002funtrace">trace/untrace</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Debugging.html#index-traceback"><code>traceback</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Debugging.html#traceback">traceback</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-typeof"><code>typeof</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#objects">Objects</a></td>
+</tr>
+<tr class="odd">
+<td>U</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Debugging.html#index-undebug"><code>undebug</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Debugging.html#debug_002fundebug">debug/undebug</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-unlink"><code>unlink</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#operating-system-access">Operating system access</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Debugging.html#index-untrace"><code>untrace</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Debugging.html#trace_002funtrace">trace/untrace</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#index-usemethod"><code>UseMethod</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#usemethod">UseMethod</a></td>
+</tr>
+<tr class="even">
+<td>W</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Exception-handling.html#index-warning"><code>warning</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Exception-handling.html#warning">warning</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Exception-handling.html#index-warnings"><code>warnings</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Exception-handling.html#warning">warning</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-while"><code>while</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#while">while</a></td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 64%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Jump to: &nbsp;</td>
+<td><a href="#function-and-variable-index_vr_symbol-1" class="summary-letter"><strong>#</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-2" class="summary-letter"><strong>$</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-3" class="summary-letter"><strong>.</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-4" class="summary-letter"><strong>[</strong></a> &nbsp;<br>
+<a href="#function-and-variable-index_vr_letter-a" class="summary-letter"><strong>A</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-b" class="summary-letter"><strong>B</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-d" class="summary-letter"><strong>D</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-e" class="summary-letter"><strong>E</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-f" class="summary-letter"><strong>F</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-g" class="summary-letter"><strong>G</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-i" class="summary-letter"><strong>I</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-m" class="summary-letter"><strong>M</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-n" class="summary-letter"><strong>N</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-o" class="summary-letter"><strong>O</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-p" class="summary-letter"><strong>P</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-q" class="summary-letter"><strong>Q</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-r" class="summary-letter"><strong>R</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-s" class="summary-letter"><strong>S</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-t" class="summary-letter"><strong>T</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-u" class="summary-letter"><strong>U</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-w" class="summary-letter"><strong>W</strong></a> &nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+
+</main> <!-- /main -->
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.toc-action)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Parser.html">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Parser</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Concept-Index.html">
+        <span class="nav-page-text">Concept Index</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+  </div>
+</footer>
+
+
+</body></html>

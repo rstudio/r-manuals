@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.2.405">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>R Manuals :: Writing R Extensions - 8&nbsp; Linking GUIs and other front-ends to R</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+  <script src="site_libs/quarto-nav/headroom.min.js"></script>
+  <script src="site_libs/clipboard/clipboard.min.js"></script>
+  <meta name="quarto:offset" content="./">
+  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+  <script src="site_libs/quarto-search/fuse.min.js"></script>
+  <script src="site_libs/quarto-search/quarto-search.js"></script>
+  <link href="./Function-and-variable-index.html" rel="next">
+  <link href="./Generic-functions-and-methods.html" rel="prev">
+  <script src="site_libs/quarto-html/quarto.js"></script>
+  <script src="site_libs/quarto-html/popper.min.js"></script>
+  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="site_libs/quarto-html/anchor.min.js"></script>
+  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
+  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <script id="quarto-search-options" type="application/json">{
+    "location": "navbar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "end",
+    "type": "overlay",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script>
+</head>
+<body class="floating slimcontent">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">R Manuals :: Writing R Extensions</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./../index.html">Home</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
+        <li>
+    <a class="dropdown-item" href="./../r-admin/index.html">R Installation and Administration</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-data/index.html">R Data Import/Export</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./index.html">Writing R Extensions</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-intro/index.html">An Introduction to R</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-ints/index.html">R Internals</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-lang/index.html">R Language Definition</a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./../about.html">About</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linking GUIs and other front-ends to R</span></h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <div class="sidebar-menu-container"> 
+  <ul class="list-unstyled mt-1">
+      <li class="sidebar-item">
+  <a href="./index.html" class="">Writing R Extensions</a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Acknowledgements.html" class="">Acknowledgements</a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Creating-R-packages.html" class=""><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Creating R packages</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Writing-R-documentation-files.html" class=""><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Writing R documentation files</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Tidying-and-profiling-R-code.html" class=""><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Tidying and profiling R code</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Debugging.html" class=""><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./System-and-foreign-language-interfaces.html" class=""><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">System and foreign language interfaces</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./The-R-API.html" class=""><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The R API: entry points for C code</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Generic-functions-and-methods.html" class=""><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Generic functions and methods</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Linking-GUIs-and-other-front-ends-to-R.html" class="active"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linking GUIs and other front-ends to R</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Function-and-variable-index.html" class="">Function and variable index</a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Concept-index.html" class="">Concept index</a>
+</li>
+  </ul>
+  </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+      <nav id="TOC" role="doc-toc">
+<h2 id="toc-title">On this page</h2>
+<ul>
+<li><a href="#embedding-r-under-unix-alikes" class="nav-link active" data-scroll-target="#embedding-r-under-unix-alikes"> <span class="header-section-number">8.1</span> Embedding R under Unix-alikes</a>
+<ul class="collapse">
+<li><a href="#compiling-against-the-r-library" class="nav-link" data-scroll-target="#compiling-against-the-r-library"> <span class="header-section-number">8.1.1</span> Compiling against the R library</a></li>
+<li><a href="#setting-r-callbacks" class="nav-link" data-scroll-target="#setting-r-callbacks"> <span class="header-section-number">8.1.2</span> Setting R callbacks</a></li>
+<li><a href="#registering-symbols" class="nav-link" data-scroll-target="#registering-symbols"> <span class="header-section-number">8.1.3</span> Registering symbols</a></li>
+<li><a href="#meshing-event-loops" class="nav-link" data-scroll-target="#meshing-event-loops"> <span class="header-section-number">8.1.4</span> Meshing event loops</a></li>
+<li><a href="#threading-issues" class="nav-link" data-scroll-target="#threading-issues"> <span class="header-section-number">8.1.5</span> Threading issues</a></li>
+</ul></li>
+<li><a href="#embedding-r-under-windows" class="nav-link" data-scroll-target="#embedding-r-under-windows"> <span class="header-section-number">8.2</span> Embedding R under Windows</a>
+<ul class="collapse">
+<li><a href="#using-dcom" class="nav-link" data-scroll-target="#using-dcom"> <span class="header-section-number">8.2.1</span> Using (D)COM</a></li>
+<li><a href="#calling-r.dll-directly" class="nav-link" data-scroll-target="#calling-r.dll-directly"> <span class="header-section-number">8.2.2</span> Calling R.dll directly</a></li>
+<li><a href="#finding-r_home" class="nav-link" data-scroll-target="#finding-r_home"> <span class="header-section-number">8.2.3</span> Finding R_HOME</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full">
+<header id="title-block-header">
+<h1 class="title display-7"><span id="linking-guis-and-other-front-ends-to-r" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linking GUIs and other front-ends to R</span></span></h1>
+</header>
+
+<p>There are a number of ways to build front-ends to R: we take this to mean a GUI or other application that has the ability to submit commands to R and perhaps to receive results back (not necessarily in a text format). There are other routes besides those described here, for example the package <a href="https://CRAN.R-project.org/package=Rserve"><strong>Rserve</strong></a> (from CRAN, see also <a href="https://www.rforge.net/Rserve/" class="uri">https://www.rforge.net/Rserve/</a>) and connections to Java in <code>JRI</code> (part of the <a href="https://CRAN.R-project.org/package=rJava"><strong>rJava</strong></a> package on CRAN).</p>
+<p>Note that the APIs described in this chapter are only intended to be used in an alternative front-end: they are not part of the API made available for R packages and can be dangerous to use in a conventional package (although packages may contain alternative front-ends). Conversely some of the functions from the API (such as <code>R_alloc</code>) should not be used in front-ends.</p>
+<section id="embedding-r-under-unix-alikes" class="level2 section page-columns page-full" data-number="8.1">
+<h2 class="section anchored" data-number="8.1" data-anchor-id="embedding-r-under-unix-alikes"><span class="header-section-number">8.1</span> Embedding R under Unix-alikes</h2>
+<div class="page-columns page-full"><p>R can be built as a shared library<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> if configured with <code>--enable-R-shlib</code>. This shared library can be used to run R from alternative front-end programs. We will assume this has been done for the rest of this section. Also, it can be built as a static library if configured with <code>--enable-R-static-lib</code>, and that can be used in a very similar way (at least on Linux: on other platforms one needs to ensure that all the symbols exported by <code>libR.a</code> are linked into the front-end).</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;In the parlance of macOS this is a <em>dynamic</em> library, and is the normal way to build R on that platform.</p></li></div></div>
+<p>The command-line R front-end, <code>R_HOME/bin/exec/R</code>, is one such example, and the former GNOME (see package <strong>gnomeGUI</strong> on CRAN’s <code>Archive</code> area) and macOS consoles are others. The source for <code>R_HOME/bin/exec/R</code> is in file <code>src/main/Rmain.c</code> and is very simple</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> Rf_initialize_R<span class="op">(</span><span class="dt">int</span> ac<span class="op">,</span> <span class="dt">char</span> <span class="op">**</span>av<span class="op">);</span> <span class="co">/* in ../unix/system.c */</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> Rf_mainloop<span class="op">();</span>                     <span class="co">/* in main.c */</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="dt">int</span> R_running_as_main_program<span class="op">;</span>   <span class="co">/* in ../unix/system.c */</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> ac<span class="op">,</span> <span class="dt">char</span> <span class="op">**</span>av<span class="op">)</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    R_running_as_main_program <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    Rf_initialize_R<span class="op">(</span>ac<span class="op">,</span> av<span class="op">);</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    Rf_mainloop<span class="op">();</span> <span class="co">/* does not return */</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>indeed, misleadingly simple. Remember that <code>R_HOME/bin/exec/R</code> is run from a shell script <code>R_HOME/bin/R</code> which sets up the environment for the executable, and this is used for</p>
+<ul>
+<li>Setting <code>R_HOME</code> and checking it is valid, as well as the path <code>R_SHARE_DIR</code> and <code>R_DOC_DIR</code> to the installed <code>share</code> and <code>doc</code> directory trees. Also setting <code>R_ARCH</code> if needed.</li>
+<li>Setting <code>LD_LIBRARY_PATH</code> to include the directories used in linking R. This is recorded as the default setting of <code>R_LD_LIBRARY_PATH</code> in the shell script <code>R_HOME/etcR_ARCH/ldpaths</code>.</li>
+<li>Processing some of the arguments, for example to run R under a debugger and to launch alternative front-ends to provide GUIs.</li>
+</ul>
+<p>The first two of these can be achieved for your front-end by running it <em>via</em> <code>R CMD</code>. So, for example</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> CMD /usr/local/lib/R/bin/exec/R</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> CMD exec/R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>will both work in a standard R installation. (<code>R CMD</code> looks first for executables in <code>R_HOME/bin</code>. These command-lines need modification if a sub-architecture is in use.) If you do not want to run your front-end in this way, you need to ensure that <code>R_HOME</code> is set and <code>LD_LIBRARY_PATH</code> is suitable. (The latter might well be, but modern Unix/Linux systems do not normally include <code>/usr/local/lib</code> (<code>/usr/local/lib64</code> on some architectures), and R does look there for system components.)</p>
+<div class="page-columns page-full"><p>The other senses in which this example is too simple are that all the internal defaults are used and that control is handed over to the R main loop. There are a number of small examples<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> in the <code>tests/Embedding</code> directory. These make use of <code>Rf_initEmbeddedR</code> in <code>src/main/Rembedded.c</code>, and essentially use</p><div class="no-row-height column-margin column-container"><li id="fn2" role="doc-endnote"><p><sup>2</sup>&nbsp;but these are not part of the automated test procedures and so little tested.</p></li></div></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Rembedded.h&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> ac<span class="op">,</span> <span class="dt">char</span> <span class="op">**</span>av<span class="op">)</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* do some setup */</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    Rf_initEmbeddedR<span class="op">(</span>argc<span class="op">,</span> argv<span class="op">);</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* do some more setup */</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* submit some code to R, which is done interactively via</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">        run_Rmainloop();</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">        A possible substitute for a pseudo-console is</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">        R_ReplDLLinit();</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">        while(R_ReplDLLdo1() &gt; 0) {</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">        /* add user actions here if desired */</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>       <span class="op">}</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>     <span class="op">*/</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    Rf_endEmbeddedR<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* final tidying up after R is shutdown */</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you do not want to pass R arguments, you can fake an <code>argv</code> array, for example by</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> <span class="op">*</span>argv<span class="op">[]=</span> <span class="op">{</span><span class="st">"REmbeddedPostgres"</span><span class="op">,</span> <span class="st">"--silent"</span><span class="op">};</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    Rf_initEmbeddedR<span class="op">(</span><span class="kw">sizeof</span><span class="op">(</span>argv<span class="op">)/</span><span class="kw">sizeof</span><span class="op">(</span>argv<span class="op">[</span><span class="dv">0</span><span class="op">]),</span> argv<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>However, to make a GUI we usually do want to run <code>run_Rmainloop</code> after setting up various parts of R to talk to our GUI, and arranging for our GUI callbacks to be called during the R mainloop.</p>
+<p>One issue to watch is that on some platforms <code>Rf_initEmbeddedR</code> and <code>Rf_endEmbeddedR</code> change the settings of the FPU (e.g.&nbsp;to allow errors to be trapped and to make use of extended precision registers).</p>
+<p>The standard code sets up a session temporary directory in the usual way, <em>unless</em> <code>R_TempDir</code> is set to a non-NULL value before <code>Rf_initEmbeddedR</code> is called. In that case the value is assumed to contain an existing writable directory, and it is not cleaned up when R is shut down.</p>
+<p><code>Rf_initEmbeddedR</code> sets R to be in interactive mode: you can set <code>R_Interactive</code> (defined in <code>Rinterface.h</code>) subsequently to change this.</p>
+<p>Note that R expects to be run with the locale category <code>LC_NUMERIC</code> set to its default value of <code>C</code>, and so should not be embedded into an application which changes that.</p>
+<p>It is the user’s responsibility to attempt to initialize only once. To protect the R interpreter, <code>Rf_initialize_R</code> will exit the process if re-initialization is attempted.</p>
+<section id="compiling-against-the-r-library" class="level3 subsection" data-number="8.1.1">
+<h3 class="subsection anchored" data-number="8.1.1" data-anchor-id="compiling-against-the-r-library"><span class="header-section-number">8.1.1</span> Compiling against the R library</h3>
+<p>Suitable flags to compile and link against the R (shared or static) library can be found by</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> CMD config <span class="at">--cppflags</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> CMD config <span class="at">--ldflags</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>(These apply only to an uninstalled copy or a standard install.)</p>
+<p>If R is installed, <code>pkg-config</code> is available and neither sub-architectures nor a macOS framework have been used, alternatives for a shared R library are</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pkg<span class="sc">-</span>config <span class="sc">--</span>cflags libR</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>pkg<span class="sc">-</span>config <span class="sc">--</span>libs libR</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and for a static R library</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pkg<span class="op">-</span>config <span class="op">--</span>cflags libR</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>pkg<span class="op">-</span>config <span class="op">--</span><span class="dt">static</span> <span class="op">--</span>libs libR</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>(This may work for an installed OS framework if <code>pkg-config</code> is taught where to look for <code>libR.pc</code>: it is installed inside the framework.)</p>
+<p>However, a more comprehensive way is to set up a <code>Makefile</code> to compile the front-end. Suppose file <code>myfe.c</code> is to be compiled to <code>myfe</code>. A suitable <code>Makefile</code> might be</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="er">## WARNING: does not work when ${R_HOME} contains spaces</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>include $<span class="op">{</span>R_HOME<span class="op">}/</span>etc$<span class="op">{</span>R_ARCH<span class="op">}/</span>Makeconf</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>all<span class="op">:</span> myfe</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="er">## The following is not needed, but avoids PIC flags.</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>myfe<span class="op">.</span>o<span class="op">:</span> myfe<span class="op">.</span>c</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        $<span class="op">(</span>CC<span class="op">)</span> $<span class="op">(</span>ALL_CPPFLAGS<span class="op">)</span> $<span class="op">(</span>CFLAGS<span class="op">)</span> <span class="op">-</span>c myfe<span class="op">.</span>c <span class="op">-</span>o $@</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="er">## replace $(LIBR) $(LIBS) by $(STATIC_LIBR) if R was build with a static libR</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>myfe<span class="op">:</span> myfe<span class="op">.</span>o</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        $<span class="op">(</span>MAIN_LINK<span class="op">)</span> <span class="op">-</span>o $@ myfe<span class="op">.</span>o $<span class="op">(</span>LIBR<span class="op">)</span> $<span class="op">(</span>LIBS<span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>invoked as</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> CMD make</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> CMD myfe</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Even though not recommended, <code>${R_HOME}</code> may contain spaces. In that case, it cannot be passed as an argument to <code>include</code> in the makefile. Instead, one can instruct <code>make</code> using the <code>-f</code> option to include <code>Makeconf</code>, for example <em>via</em> recursive invocation of <code>make</code>, see <a href="Creating-R-packages.html#writing-portable-packages">Writing portable packages</a>.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dv">all:</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>      <span class="ch">$(</span><span class="dt">MAKE</span><span class="ch">)</span> -f <span class="st">"</span><span class="ch">${</span><span class="dt">R_HOME</span><span class="ch">}</span><span class="st">/etc</span><span class="ch">${</span><span class="dt">R_ARCH</span><span class="ch">}</span><span class="st">/Makeconf"</span> -f Makefile.inner</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Additional flags which <code>$(MAIN_LINK)</code> includes are, amongst others, those to select OpenMP and <code>--export-dynamic</code> for the GNU linker on some platforms. In principle <code>$(LIBS)</code> is not needed when using a shared R library as <code>libR</code> is linked against those libraries, but some platforms need the executable also linked against them.</p>
+</section>
+<section id="setting-r-callbacks" class="level3 subsection" data-number="8.1.2">
+<h3 class="subsection anchored" data-number="8.1.2" data-anchor-id="setting-r-callbacks"><span class="header-section-number">8.1.2</span> Setting R callbacks</h3>
+<p>For Unix-alikes there is a public header file <code>Rinterface.h</code> that makes it possible to change the standard callbacks used by R in a documented way. This defines pointers (if <code>R_INTERFACE_PTRS</code> is defined)</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="dt">void</span> <span class="op">(*</span>ptr_R_Suicide<span class="op">)(</span><span class="dt">const</span> <span class="dt">char</span> <span class="op">*);</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="dt">void</span> <span class="op">(*</span>ptr_R_ShowMessage<span class="op">)(</span><span class="dt">const</span> <span class="dt">char</span> <span class="op">*);</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="dt">int</span>  <span class="op">(*</span>ptr_R_ReadConsole<span class="op">)(</span><span class="dt">const</span> <span class="dt">char</span> <span class="op">*,</span> <span class="dt">unsigned</span> <span class="dt">char</span> <span class="op">*,</span> <span class="dt">int</span><span class="op">,</span> <span class="dt">int</span><span class="op">);</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="dt">void</span> <span class="op">(*</span>ptr_R_WriteConsole<span class="op">)(</span><span class="dt">const</span> <span class="dt">char</span> <span class="op">*,</span> <span class="dt">int</span><span class="op">);</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="dt">void</span> <span class="op">(*</span>ptr_R_WriteConsoleEx<span class="op">)(</span><span class="dt">const</span> <span class="dt">char</span> <span class="op">*,</span> <span class="dt">int</span><span class="op">,</span> <span class="dt">int</span><span class="op">);</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="dt">void</span> <span class="op">(*</span>ptr_R_ResetConsole<span class="op">)();</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="dt">void</span> <span class="op">(*</span>ptr_R_FlushConsole<span class="op">)();</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="dt">void</span> <span class="op">(*</span>ptr_R_ClearerrConsole<span class="op">)();</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="dt">void</span> <span class="op">(*</span>ptr_R_Busy<span class="op">)(</span><span class="dt">int</span><span class="op">);</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="dt">void</span> <span class="op">(*</span>ptr_R_CleanUp<span class="op">)(</span>SA_TYPE<span class="op">,</span> <span class="dt">int</span><span class="op">,</span> <span class="dt">int</span><span class="op">);</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="dt">int</span>  <span class="op">(*</span>ptr_R_ShowFiles<span class="op">)(</span><span class="dt">int</span><span class="op">,</span> <span class="dt">const</span> <span class="dt">char</span> <span class="op">**,</span> <span class="dt">const</span> <span class="dt">char</span> <span class="op">**,</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>                               <span class="dt">const</span> <span class="dt">char</span> <span class="op">*,</span> Rboolean<span class="op">,</span> <span class="dt">const</span> <span class="dt">char</span> <span class="op">*);</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="dt">int</span>  <span class="op">(*</span>ptr_R_ChooseFile<span class="op">)(</span><span class="dt">int</span><span class="op">,</span> <span class="dt">char</span> <span class="op">*,</span> <span class="dt">int</span><span class="op">);</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="dt">int</span>  <span class="op">(*</span>ptr_R_EditFile<span class="op">)(</span><span class="dt">const</span> <span class="dt">char</span> <span class="op">*);</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="dt">void</span> <span class="op">(*</span>ptr_R_loadhistory<span class="op">)(</span>SEXP<span class="op">,</span> SEXP<span class="op">,</span> SEXP<span class="op">,</span> SEXP<span class="op">);</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="dt">void</span> <span class="op">(*</span>ptr_R_savehistory<span class="op">)(</span>SEXP<span class="op">,</span> SEXP<span class="op">,</span> SEXP<span class="op">,</span> SEXP<span class="op">);</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="dt">void</span> <span class="op">(*</span>ptr_R_addhistory<span class="op">)(</span>SEXP<span class="op">,</span> SEXP<span class="op">,</span> SEXP<span class="op">,</span> SEXP<span class="op">);</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="dt">int</span>  <span class="op">(*</span>ptr_R_EditFiles<span class="op">)(</span><span class="dt">int</span><span class="op">,</span> <span class="dt">const</span> <span class="dt">char</span> <span class="op">**,</span> <span class="dt">const</span> <span class="dt">char</span> <span class="op">**,</span> <span class="dt">const</span> <span class="dt">char</span> <span class="op">*);</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> SEXP <span class="op">(*</span>ptr_do_selectlist<span class="op">)(</span>SEXP<span class="op">,</span> SEXP<span class="op">,</span> SEXP<span class="op">,</span> SEXP<span class="op">);</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> SEXP <span class="op">(*</span>ptr_do_dataentry<span class="op">)(</span>SEXP<span class="op">,</span> SEXP<span class="op">,</span> SEXP<span class="op">,</span> SEXP<span class="op">);</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> SEXP <span class="op">(*</span>ptr_do_dataviewer<span class="op">)(</span>SEXP<span class="op">,</span> SEXP<span class="op">,</span> SEXP<span class="op">,</span> SEXP<span class="op">);</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="dt">void</span> <span class="op">(*</span>ptr_R_ProcessEvents<span class="op">)();</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>which allow standard R callbacks to be redirected to your GUI. What these do is generally documented in the file <code>src/unix/system.txt</code>.</p>
+<dl>
+<dt>Function: <em>void</em> <strong>R_ShowMessage</strong> <em>(char *<var>message</var>)</em></dt>
+<dd><p>This should display the message, which may have multiple lines: it should be brought to the user’s attention immediately.</p>
+</dd>
+</dl>
+<!-- -->
+<dl>
+<dt>Function: <em>void</em> <strong>R_Busy</strong> <em>(int <var>which</var>)</em></dt>
+<dd><p>This function invokes actions (such as change of cursor) when R embarks on an extended computation (<code>which=1</code>) and when such a state terminates (<code>which=0</code>).</p>
+</dd>
+</dl>
+<!-- -->
+<dl>
+<dt>Function: <em>int</em> <strong>R_ReadConsole</strong> <em>(const char *<var>prompt</var>, unsigned char *<var>buf</var>, int <var>buflen</var>, int <var>hist</var>)</em></dt>
+<dd>
+</dd>
+<dt>Function: <em>void</em> <strong>R_WriteConsole</strong> <em>(const char *<var>buf</var>, int <var>buflen</var>)</em></dt>
+<dd>
+</dd>
+<dt>Function: <em>void</em> <strong>R_WriteConsoleEx</strong> <em>(const char *<var>buf</var>, int <var>buflen</var>, int <var>otype</var>)</em></dt>
+<dd>
+</dd>
+<dt>Function: <em>void</em> <strong>R_ResetConsole</strong> <em>()</em></dt>
+<dd>
+</dd>
+<dt>Function: <em>void</em> <strong>R_FlushConsole</strong> <em>()</em></dt>
+<dd>
+</dd>
+<dt>Function: <em>void</em> <strong>R_ClearerrConsole</strong> <em>()</em></dt>
+<dd><p>These functions interact with a console.</p>
+<p><code>R_ReadConsole</code> prints the given prompt at the console and then does a <code>fgets(3)</code>–like operation, transferring up to <var>buflen</var> characters into the buffer <var>buf</var>. The last two bytes should be set to <code>"\n\0"</code> to preserve sanity. If <var>hist</var> is non-zero, then the line should be added to any command history which is being maintained. The return value is 0 is no input is available and &gt;0 otherwise.</p>
+<p><code>R_WriteConsoleEx</code> writes the given buffer to the console, <var>otype</var> specifies the output type (regular output or warning/error). Call to <code>R_WriteConsole(buf, buflen)</code> is equivalent to <code>R_WriteConsoleEx(buf, buflen, 0)</code>. To ensure backward compatibility of the callbacks, <code>ptr_R_WriteConsoleEx</code> is used only if <code>ptr_R_WriteConsole</code> is set to <code>NULL</code>. To ensure that <code>stdout()</code> and <code>stderr()</code> connections point to the console, set the corresponding files to <code>NULL</code> <em>via</em></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>      R_Outputfile <span class="ot">=</span> <span class="cn">NULL</span>;</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>      R_Consolefile <span class="ot">=</span> <span class="cn">NULL</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>R_ResetConsole</code> is called when the system is reset after an error. <code>R_FlushConsole</code> is called to flush any pending output to the system console. <code>R_ClearerrConsole</code> clears any errors associated with reading from the console.</p>
+</dd>
+</dl>
+<!-- -->
+<dl>
+<dt>Function: <em>int</em> <strong>R_ShowFiles</strong> <em>(int <var>nfile</var>, const char **<var>file</var>, const char **<var>headers</var>, const char *<var>wtitle</var>, Rboolean <var>del</var>, const char *<var>pager</var>)</em></dt>
+<dd><p>This function is used to display the contents of files.</p>
+</dd>
+</dl>
+<!-- -->
+<dl>
+<dt>Function: <em>int</em> <strong>R_ChooseFile</strong> <em>(int <var>new</var>, char *<var>buf</var>, int <var>len</var>)</em></dt>
+<dd><p>Choose a file and return its name in <var>buf</var> of length <var>len</var>. Return value is 0 for success, &gt; 0 otherwise.</p>
+</dd>
+</dl>
+<!-- -->
+<dl>
+<dt>Function: <em>int</em> <strong>R_EditFile</strong> <em>(const char *<var>buf</var>)</em></dt>
+<dd><p>Send a file to an editor window.</p>
+</dd>
+</dl>
+<!-- -->
+<dl>
+<dt>Function: <em>int</em> <strong>R_EditFiles</strong> <em>(int <var>nfile</var>, const char **<var>file</var>, const char **<var>title</var>, const char *<var>editor</var>)</em></dt>
+<dd><p>Send <var>nfile</var> files to an editor, with titles possibly to be used for the editor window(s).</p>
+</dd>
+</dl>
+<!-- -->
+<dl>
+<dt>Function: <em>SEXP</em> <strong>R_loadhistory</strong> <em>(SEXP, SEXP, SEXP, SEXP);</em></dt>
+<dd>
+</dd>
+<dt>Function: <em>SEXP</em> <strong>R_savehistory</strong> <em>(SEXP, SEXP, SEXP, SEXP);</em></dt>
+<dd>
+</dd>
+<dt>Function: <em>SEXP</em> <strong>R_addhistory</strong> <em>(SEXP, SEXP, SEXP, SEXP);</em></dt>
+<dd><p><code>.Internal</code> functions for <code>loadhistory</code>, <code>savehistory</code> and <code>timestamp</code>.</p>
+<p>If the console has no history mechanism these can be as simple as</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>SEXP R_loadhistory <span class="op">(</span>SEXP call<span class="op">,</span> SEXP op<span class="op">,</span> SEXP args<span class="op">,</span> SEXP env<span class="op">)</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    errorcall<span class="op">(</span>call<span class="op">,</span> <span class="st">"loadhistory is not implemented"</span><span class="op">);</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> R_NilValue<span class="op">;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>SEXP R_savehistory <span class="op">(</span>SEXP call<span class="op">,</span> SEXP op <span class="op">,</span> SEXP args<span class="op">,</span> SEXP env<span class="op">)</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    errorcall<span class="op">(</span>call<span class="op">,</span> <span class="st">"savehistory is not implemented"</span><span class="op">);</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> R_NilValue<span class="op">;</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>SEXP R_addhistory <span class="op">(</span>SEXP call<span class="op">,</span> SEXP op <span class="op">,</span> SEXP args<span class="op">,</span> SEXP env<span class="op">)</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> R_NilValue<span class="op">;</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>R_addhistory</code> function should return silently if no history mechanism is present, as a user may be calling <code>timestamp</code> purely to write the time stamp to the console.</p>
+</dd>
+</dl>
+<!-- -->
+<dl>
+<dt>Function: <em>void</em> <strong>R_Suicide</strong> <em>(const char *<var>message</var>)</em></dt>
+<dd><p>This should abort R as rapidly as possible, displaying the message. A possible implementation is</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> R_Suicide <span class="op">(</span><span class="dt">const</span> <span class="dt">char</span> <span class="op">*</span>message<span class="op">)</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span>  pp<span class="op">[</span><span class="dv">1024</span><span class="op">];</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    snprintf<span class="op">(</span>pp<span class="op">,</span> <span class="dv">1024</span><span class="op">,</span> <span class="st">"Fatal error: %s</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span> message<span class="op">);</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    R_ShowMessage<span class="op">(</span>pp<span class="op">);</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    R_CleanUp<span class="op">(</span>SA_SUICIDE<span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</dd>
+</dl>
+<!-- -->
+<dl>
+<dt>Function: <em>void</em> <strong>R_CleanUp</strong> <em>(SA_TYPE <var>saveact</var>, int <var>status</var>, int <var>RunLast</var>)</em></dt>
+<dd><p>This function invokes any actions which occur at system termination. It needs to be quite complex:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Rinterface.h&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Rembedded.h&gt;</span><span class="pp">    </span><span class="co">/* for Rf_KillAllDevices */</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> R_CleanUp <span class="op">(</span>SA_TYPE saveact<span class="op">,</span> <span class="dt">int</span> status<span class="op">,</span> <span class="dt">int</span> RunLast<span class="op">)</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>saveact <span class="op">==</span> SA_DEFAULT<span class="op">)</span> saveact <span class="op">=</span> SaveAction<span class="op">;</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>saveact <span class="op">==</span> SA_SAVEASK<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>       <span class="co">/* ask what to do and set saveact */</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">switch</span> <span class="op">(</span>saveact<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> SA_SAVE<span class="op">:</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span><span class="op">(</span>runLast<span class="op">)</span> R_dot_Last<span class="op">();</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span><span class="op">(</span>R_DirtyImage<span class="op">)</span> R_SaveGlobalEnv<span class="op">();</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>        <span class="co">/* save the console history in R_HistoryFile */</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> SA_NOSAVE<span class="op">:</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span><span class="op">(</span>runLast<span class="op">)</span> R_dot_Last<span class="op">();</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> SA_SUICIDE<span class="op">:</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">default</span><span class="op">:</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>    R_RunExitFinalizers<span class="op">();</span></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* clean up after the editor e.g. CleanEd() */</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>    R_CleanTempDir<span class="op">();</span></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* close all the graphics devices */</span></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>saveact <span class="op">!=</span> SA_SUICIDE<span class="op">)</span> Rf_KillAllDevices<span class="op">();</span></span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>    fpu_setup<span class="op">(</span>FALSE<span class="op">);</span></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>    exit<span class="op">(</span>status<span class="op">);</span></span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</dd>
+</dl>
+<p>These callbacks should never be changed in a running R session (and hence cannot be called from an extension package).</p>
+<dl>
+<dt>Function: <em>SEXP</em> <strong>R_dataentry</strong> <em>(SEXP, SEXP, SEXP, SEXP);</em></dt>
+<dd>
+</dd>
+<dt>Function: <em>SEXP</em> <strong>R_dataviewer</strong> <em>(SEXP, SEXP, SEXP, SEXP);</em></dt>
+<dd>
+</dd>
+<dt>Function: <em>SEXP</em> <strong>R_selectlist</strong> <em>(SEXP, SEXP, SEXP, SEXP);</em></dt>
+<dd><p><code>.External</code> functions for <code>dataentry</code> (and <code>edit</code> on matrices and data frames), <code>View</code> and <code>select.list</code>. These can be changed if they are not currently in use.</p>
+</dd>
+</dl>
+</section>
+<section id="registering-symbols" class="level3 subsection" data-number="8.1.3">
+<h3 class="subsection anchored" data-number="8.1.3" data-anchor-id="registering-symbols"><span class="header-section-number">8.1.3</span> Registering symbols</h3>
+<p>An application embedding R needs a different way of registering symbols because it is not a dynamic library loaded by R as would be the case with a package. Therefore R reserves a special <code>DllInfo</code> entry for the embedding application such that it can register symbols to be used with <code>.C</code>, <code>.Call</code> etc. This entry can be obtained by calling <code>getEmbeddingDllInfo</code>, so a typical use is</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>DllInfo <span class="sc">*</span>info <span class="ot">=</span> <span class="fu">R_getEmbeddingDllInfo</span>();</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">R_registerRoutines</span>(info, cMethods, callMethods, <span class="cn">NULL</span>, <span class="cn">NULL</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The native routines defined by <code>cMethods</code> and <code>callMethods</code> should be present in the embedding application. See <a href="System-and-foreign-language-interfaces.html#registering-native-routines">Registering native routines</a> for details on registering symbols in general.</p>
+</section>
+<section id="meshing-event-loops" class="level3 subsection page-columns page-full" data-number="8.1.4">
+<h3 class="subsection anchored" data-number="8.1.4" data-anchor-id="meshing-event-loops"><span class="header-section-number">8.1.4</span> Meshing event loops</h3>
+<p>One of the most difficult issues in interfacing R to a front-end is the handling of event loops, at least if a single thread is used. R uses events and timers for</p>
+<ul>
+<li>Running X11 windows such as the graphics device and data editor, and interacting with them (e.g., using <code>locator()</code>).</li>
+<li>Supporting Tcl/Tk events for the <strong>tcltk</strong> package (for at least the X11 version of Tk).</li>
+<li>Preparing input.</li>
+<li>Timing operations, for example for profiling R code and <code>Sys.sleep()</code>.</li>
+<li>Interrupts, where permitted.</li>
+</ul>
+<p>Specifically, the Unix-alike command-line version of R runs separate event loops for</p>
+<ul>
+<li>Preparing input at the console command-line, in file <code>src/unix/sys-unix.c</code>.</li>
+<li>Waiting for a response from a socket in the internal functions for direct socket access in file <code>src/modules/internet/Rsock.c</code> and for the interface to <code>libcurl</code>.</li>
+<li>Mouse and window events when displaying the X11-based dataentry window, in file <code>src/modules/X11/dataentry.c</code>. This is regarded as <em>modal</em>, and no other events are serviced whilst it is active.</li>
+</ul>
+<p>There is a protocol for adding event handlers to the first two types of event loops, using types and functions declared in the header <code>R_ext/eventloop.h</code> and described in comments in file <code>src/unix/sys-std.c</code>. It is possible to add (or remove) an input handler for events on a particular file descriptor, or to set a polling interval (<em>via</em> <code>R_wait_usec</code>) and a function to be called periodically <em>via</em> <code>R_PolledEvents</code>: the polling mechanism is used by the <strong>tcltk</strong> package.</p>
+<div class="page-columns page-full"><p>It is not intended that these facilities are used by packages, but if they are needed exceptionally, the package should ensure that it cleans up and removes its handlers when its namespace is unloaded. Note that the header <code>sys/select.h</code> is needed<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>: users should check this is available and define <code>HAVE_SYS_SELECT_H</code> before including <code>R_ext/eventloop.h</code>. (It is often the case that another header will include <code>sys/select.h</code> before <code>eventloop.h</code> is processed, but this should not be relied on.)</p><div class="no-row-height column-margin column-container"><li id="fn3" role="doc-endnote"><p><sup>3</sup>&nbsp;At least according to POSIX 2004 and later. Earlier standards prescribed <code>sys/time.h</code>: <code>R_ext/eventloop.h</code> will include it if <code>HAVE_SYS_TIME_H</code> is defined.</p></li></div></div>
+<p>An alternative front-end needs both to make provision for other R events whilst waiting for input, and to ensure that it is not frozen out during events of the second type. The ability to add a polled handler as <code>R_timeout_handler</code> is used by the <strong>tcltk</strong> package.</p>
+</section>
+<section id="threading-issues" class="level3 subsection page-columns page-full" data-number="8.1.5">
+<h3 class="subsection anchored" data-number="8.1.5" data-anchor-id="threading-issues"><span class="header-section-number">8.1.5</span> Threading issues</h3>
+<p>Embedded R is designed to be run in the main thread, and all the testing is done in that context. There is a potential issue with the stack-checking mechanism where threads are involved. This uses two variables declared in <code>Rinterface.h</code> (if <code>CSTACK_DEFNS</code> is defined) as</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="dt">uintptr_t</span> R_CStackLimit<span class="op">;</span> <span class="co">/* C stack limit */</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="dt">uintptr_t</span> R_CStackStart<span class="op">;</span> <span class="co">/* Initial stack address */</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that <code>uintptr_t</code> is an optional C99 type for which a substitute is defined in R, so your code needs to define <code>HAVE_UINTPTR_T</code> appropriately. To do so, test if the type is defined in C header <code>stdint.h</code> or C++ header <code>cstdint</code> and if so include the header and define <code>HAVE_UINTPTR_T</code> before including <code>Rinterface.h</code>. (For C code one can simply include <code>Rconfig.h</code>, possibly <em>via</em> <code>R.h</code>, and for C++11 code <code>Rinterface.h</code> will include the header <code>cstdint</code>.)</p>
+<div class="page-columns page-full"><p>These will be set<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> when <code>Rf_initialize_R</code> is called, to values appropriate to the main thread. Stack-checking can be disabled by setting <code>R_CStackLimit = (uintptr_t)-1</code> immediately after <code>Rf_initialize_R</code> is called, but it is better to if possible set appropriate values. (What these are and how to determine them are OS-specific, and the stack size limit may differ for secondary threads. If you have a choice of stack size, at least 10Mb is recommended.)</p><div class="no-row-height column-margin column-container"><li id="fn4" role="doc-endnote"><p><sup>4</sup>&nbsp;at least on platforms where the values are available, that is having <code>getrlimit</code> and on Linux or having <code>sysctl</code> supporting <code>KERN_USRSTACK</code>, including FreeBSD and macOS.</p></li></div></div>
+<p>You may also want to consider how signals are handled: R sets signal handlers for several signals, including <code>SIGINT</code>, <code>SIGSEGV</code>, <code>SIGPIPE</code>, <code>SIGUSR1</code> and <code>SIGUSR2</code>, but these can all be suppressed by setting the variable <code>R_SignalHandlers</code> (declared in <code>Rinterface.h</code>) to <code>0</code>.</p>
+<p>Note that these variables must not be changed by an R <strong>package</strong>: a package should not call R internals which makes use of the stack-checking mechanism on a secondary thread.</p>
+</section>
+</section>
+<section id="embedding-r-under-windows" class="level2 section page-columns page-full" data-number="8.2">
+<h2 class="section anchored" data-number="8.2" data-anchor-id="embedding-r-under-windows"><span class="header-section-number">8.2</span> Embedding R under Windows</h2>
+<p>All Windows interfaces to R call entry points in the DLL <code>R.dll</code>, directly or indirectly. Simpler applications may find it easier to use the indirect route <em>via</em> (D)COM.</p>
+<section id="using-dcom" class="level3 subsection" data-number="8.2.1">
+<h3 class="subsection anchored" data-number="8.2.1" data-anchor-id="using-dcom"><span class="header-section-number">8.2.1</span> Using (D)COM</h3>
+<p>(D)COM is a standard Windows mechanism used for communication between Windows applications. One application (here R) is run as COM server which offers services to clients, here the front-end calling application. The services are described in a ‘Type Library’ and are (more or less) language-independent, so the calling application can be written in C or C++ or Visual Basic or Perl or Python and so on. The ‘D’ in (D)COM refers to ‘distributed’, as the client and server can be running on different machines.</p>
+<p>The basic R distribution is not a (D)COM server, but two addons are currently available that interface directly with R and provide a (D)COM server:</p>
+<ul>
+<li><p>There is a (D)COM server called <code>StatConnector</code> written by Thomas Baier available <em>via</em> <a href="https://www.autstat.com/" class="uri">https://www.autstat.com/</a>, which works with R packages to support transfer of data to and from R and remote execution of R commands, as well as embedding of an R graphics window.</p>
+<p>Recent versions have usage restrictions.</p></li>
+</ul>
+</section>
+<section id="calling-r.dll-directly" class="level3 subsection page-columns page-full" data-number="8.2.2">
+<h3 class="subsection anchored" data-number="8.2.2" data-anchor-id="calling-r.dll-directly"><span class="header-section-number">8.2.2</span> Calling R.dll directly</h3>
+<p>The <code>R</code> DLL is mainly written in C and has <code>_cdecl</code> entry points. Calling it directly will be tricky except from C code (or C++ with a little care).</p>
+<p>There is a version of the Unix-alike interface calling</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> Rf_initEmbeddedR<span class="op">(</span><span class="dt">int</span> ac<span class="op">,</span> <span class="dt">char</span> <span class="op">**</span>av<span class="op">);</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> Rf_endEmbeddedR<span class="op">(</span><span class="dt">int</span> fatal<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>which is an entry point in <code>R.dll</code>. Examples of its use (and a suitable <code>Makefile.win</code>) can be found in the <code>tests/Embedding</code> directory of the sources. You may need to ensure that <code>R_HOME/bin</code> is in your <code>PATH</code> so the R DLLs are found.</p>
+<p>Examples of calling <code>R.dll</code> directly are provided in the directory <code>src/gnuwin32/front-ends</code>, including a simple command-line front end <code>rtest.c</code> whose code is</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define Win32</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;windows.h&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Rversion.h&gt;</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LibExtern __declspec(dllimport) extern</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Rembedded.h&gt;</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;R_ext/RStartup.h&gt;</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co">/* for askok and askyesnocancel */</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;graphapp.h&gt;</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co">/* for signal-handling code */</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;psignal.h&gt;</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="co">/* simple input, simple output */</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="co">/* This version blocks all events: a real one needs to call ProcessEvents</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="co">   frequently. See rterm.c and ../system.c for one approach using</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="co">   a separate thread for input.</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="co">*/</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> myReadConsole<span class="op">(</span><span class="dt">const</span> <span class="dt">char</span> <span class="op">*</span>prompt<span class="op">,</span> <span class="dt">char</span> <span class="op">*</span>buf<span class="op">,</span> <span class="dt">int</span> len<span class="op">,</span> <span class="dt">int</span> addtohistory<span class="op">)</span></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>    fputs<span class="op">(</span>prompt<span class="op">,</span> stdout<span class="op">);</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>    fflush<span class="op">(</span>stdout<span class="op">);</span></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>fgets<span class="op">(</span>buf<span class="op">,</span> len<span class="op">,</span> stdin<span class="op">))</span> <span class="cf">return</span> <span class="dv">1</span><span class="op">;</span> <span class="cf">else</span> <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> myWriteConsole<span class="op">(</span><span class="dt">const</span> <span class="dt">char</span> <span class="op">*</span>buf<span class="op">,</span> <span class="dt">int</span> len<span class="op">)</span></span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">"%s"</span><span class="op">,</span> buf<span class="op">);</span></span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> myCallBack<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* called during i/o, eval, graphics in ProcessEvents */</span></span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> myBusy<span class="op">(</span><span class="dt">int</span> which<span class="op">)</span></span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* set a busy cursor ... if which = 1, unset if which = 0 */</span></span>
+<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a><span class="dt">static</span> <span class="dt">void</span> my_onintr<span class="op">(</span><span class="dt">int</span> sig<span class="op">)</span> <span class="op">{</span> UserBreak <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> <span class="op">}</span></span>
+<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main <span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">**</span>argv<span class="op">)</span></span>
+<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a>    structRstart rp<span class="op">;</span></span>
+<span id="cb19-47"><a href="#cb19-47" aria-hidden="true" tabindex="-1"></a>    Rstart Rp <span class="op">=</span> <span class="op">&amp;</span>rp<span class="op">;</span></span>
+<span id="cb19-48"><a href="#cb19-48" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> Rversion<span class="op">[</span><span class="dv">25</span><span class="op">],</span> <span class="op">*</span>RHome<span class="op">;</span></span>
+<span id="cb19-49"><a href="#cb19-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-50"><a href="#cb19-50" aria-hidden="true" tabindex="-1"></a>    sprintf<span class="op">(</span>Rversion<span class="op">,</span> <span class="st">"%s.%s"</span><span class="op">,</span> R_MAJOR<span class="op">,</span> R_MINOR<span class="op">);</span></span>
+<span id="cb19-51"><a href="#cb19-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>strcmp<span class="op">(</span>getDLLVersion<span class="op">(),</span> Rversion<span class="op">)</span> <span class="op">!=</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb19-52"><a href="#cb19-52" aria-hidden="true" tabindex="-1"></a>        fprintf<span class="op">(</span>stderr<span class="op">,</span> <span class="st">"Error: R.DLL version does not match</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb19-53"><a href="#cb19-53" aria-hidden="true" tabindex="-1"></a>        exit<span class="op">(</span><span class="dv">1</span><span class="op">);</span></span>
+<span id="cb19-54"><a href="#cb19-54" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb19-55"><a href="#cb19-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-56"><a href="#cb19-56" aria-hidden="true" tabindex="-1"></a>    R_setStartTime<span class="op">();</span></span>
+<span id="cb19-57"><a href="#cb19-57" aria-hidden="true" tabindex="-1"></a>    R_DefParams<span class="op">(</span>Rp<span class="op">);</span></span>
+<span id="cb19-58"><a href="#cb19-58" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">((</span>RHome <span class="op">=</span> get_R_HOME<span class="op">())</span> <span class="op">==</span> NULL<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb19-59"><a href="#cb19-59" aria-hidden="true" tabindex="-1"></a>        fprintf<span class="op">(</span>stderr<span class="op">,</span> <span class="st">"R_HOME must be set in the environment or Registry</span><span class="sc">\n</span><span class="st">"</span><span class="op">);</span></span>
+<span id="cb19-60"><a href="#cb19-60" aria-hidden="true" tabindex="-1"></a>        exit<span class="op">(</span><span class="dv">1</span><span class="op">);</span></span>
+<span id="cb19-61"><a href="#cb19-61" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb19-62"><a href="#cb19-62" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>rhome <span class="op">=</span> RHome<span class="op">;</span></span>
+<span id="cb19-63"><a href="#cb19-63" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>home <span class="op">=</span> getRUser<span class="op">();</span></span>
+<span id="cb19-64"><a href="#cb19-64" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>CharacterMode <span class="op">=</span> LinkDLL<span class="op">;</span></span>
+<span id="cb19-65"><a href="#cb19-65" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>ReadConsole <span class="op">=</span> myReadConsole<span class="op">;</span></span>
+<span id="cb19-66"><a href="#cb19-66" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>WriteConsole <span class="op">=</span> myWriteConsole<span class="op">;</span></span>
+<span id="cb19-67"><a href="#cb19-67" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>CallBack <span class="op">=</span> myCallBack<span class="op">;</span></span>
+<span id="cb19-68"><a href="#cb19-68" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>ShowMessage <span class="op">=</span> askok<span class="op">;</span></span>
+<span id="cb19-69"><a href="#cb19-69" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>YesNoCancel <span class="op">=</span> askyesnocancel<span class="op">;</span></span>
+<span id="cb19-70"><a href="#cb19-70" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>Busy <span class="op">=</span> myBusy<span class="op">;</span></span>
+<span id="cb19-71"><a href="#cb19-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-72"><a href="#cb19-72" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>R_Quiet <span class="op">=</span> TRUE<span class="op">;</span>        <span class="co">/* Default is FALSE */</span></span>
+<span id="cb19-73"><a href="#cb19-73" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>R_Interactive <span class="op">=</span> FALSE<span class="op">;</span> <span class="co">/* Default is TRUE */</span></span>
+<span id="cb19-74"><a href="#cb19-74" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>RestoreAction <span class="op">=</span> SA_RESTORE<span class="op">;</span></span>
+<span id="cb19-75"><a href="#cb19-75" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>SaveAction <span class="op">=</span> SA_NOSAVE<span class="op">;</span></span>
+<span id="cb19-76"><a href="#cb19-76" aria-hidden="true" tabindex="-1"></a>    R_SetParams<span class="op">(</span>Rp<span class="op">);</span></span>
+<span id="cb19-77"><a href="#cb19-77" aria-hidden="true" tabindex="-1"></a>    R_set_command_line_arguments<span class="op">(</span>argc<span class="op">,</span> argv<span class="op">);</span></span>
+<span id="cb19-78"><a href="#cb19-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-79"><a href="#cb19-79" aria-hidden="true" tabindex="-1"></a>    FlushConsoleInputBuffer<span class="op">(</span>GetStdHandle<span class="op">(</span>STD_INPUT_HANDLE<span class="op">));</span></span>
+<span id="cb19-80"><a href="#cb19-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-81"><a href="#cb19-81" aria-hidden="true" tabindex="-1"></a>    signal<span class="op">(</span>SIGBREAK<span class="op">,</span> my_onintr<span class="op">);</span></span>
+<span id="cb19-82"><a href="#cb19-82" aria-hidden="true" tabindex="-1"></a>    GA_initapp<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb19-83"><a href="#cb19-83" aria-hidden="true" tabindex="-1"></a>    readconsolecfg<span class="op">();</span></span>
+<span id="cb19-84"><a href="#cb19-84" aria-hidden="true" tabindex="-1"></a>    setup_Rmainloop<span class="op">();</span></span>
+<span id="cb19-85"><a href="#cb19-85" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifdef SIMPLE_CASE</span></span>
+<span id="cb19-86"><a href="#cb19-86" aria-hidden="true" tabindex="-1"></a>    run_Rmainloop<span class="op">();</span></span>
+<span id="cb19-87"><a href="#cb19-87" aria-hidden="true" tabindex="-1"></a><span class="pp">#else</span></span>
+<span id="cb19-88"><a href="#cb19-88" aria-hidden="true" tabindex="-1"></a>    R_ReplDLLinit<span class="op">();</span></span>
+<span id="cb19-89"><a href="#cb19-89" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span><span class="op">(</span>R_ReplDLLdo1<span class="op">()</span> <span class="op">&gt;</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb19-90"><a href="#cb19-90" aria-hidden="true" tabindex="-1"></a><span class="co">/* add user actions here if desired */</span></span>
+<span id="cb19-91"><a href="#cb19-91" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb19-92"><a href="#cb19-92" aria-hidden="true" tabindex="-1"></a><span class="co">/* only get here on EOF (not q()) */</span></span>
+<span id="cb19-93"><a href="#cb19-93" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span>
+<span id="cb19-94"><a href="#cb19-94" aria-hidden="true" tabindex="-1"></a>    Rf_endEmbeddedR<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb19-95"><a href="#cb19-95" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb19-96"><a href="#cb19-96" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The ideas are</p>
+<ul>
+<li>Check that the front-end and the linked <code>R.dll</code> match – other front-ends may allow a looser match.</li>
+<li>Find and set the R home directory and the user’s home directory. The former may be available from the Windows Registry: it will be in <code>HKEY_LOCAL_MACHINE\Software\R-core\R\InstallPath</code> from an administrative install and <code>HKEY_CURRENT_USER\Software\R-core\R\InstallPath</code> otherwise, if selected during installation (as it is by default).</li>
+<li><span id="index-R_005fDefParams"></span> Define startup conditions and callbacks <em>via</em> the <code>Rstart</code> structure. <code>R_DefParams</code> sets the defaults, and <code>R_SetParams</code> sets updated values.</li>
+<li>Record the command-line arguments used by <code>R_set_command_line_arguments</code> for use by the R function <code>commandArgs()</code>.</li>
+<li>Set up the signal handler and the basic user interface.</li>
+<li>Run the main R loop, possibly with our actions intermeshed.</li>
+<li>Arrange to clean up.</li>
+</ul>
+<p>An underlying theme is the need to keep the GUI ‘alive’, and this has not been done in this example. The R callback <code>R_ProcessEvents</code> needs to be called frequently to ensure that Windows events in R windows are handled expeditiously. Conversely, R needs to allow the GUI code (which is running in the same process) to update itself as needed – two ways are provided to allow this:</p>
+<ul>
+<li><p><code>R_ProcessEvents</code> calls the callback registered by <code>Rp-&gt;callback</code>. A version of this is used to run package Tcl/Tk for <strong>tcltk</strong> under Windows, for the code is</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> R_ProcessEvents<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>peekevent<span class="op">())</span> doevent<span class="op">();</span> <span class="co">/* Windows events for GraphApp */</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>UserBreak<span class="op">)</span> <span class="op">{</span> UserBreak <span class="op">=</span> FALSE<span class="op">;</span> onintr<span class="op">();</span> <span class="op">}</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    R_CallBackHook<span class="op">();</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>R_tcldo<span class="op">)</span> R_tcldo<span class="op">();</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>The mainloop can be split up to allow the calling application to take some action after each line of input has been dealt with: see the alternative code below <code>#ifdef SIMPLE_CASE</code>.</p></li>
+</ul>
+<p>It may be that no R GraphApp windows need to be considered, although these include pagers, the <code>windows()</code> graphics device, the R data and script editors and various popups such as <code>choose.file()</code> and <code>select.list()</code>. It would be possible to replace all of these, but it seems easier to allow GraphApp to handle most of them.</p>
+<div class="page-columns page-full"><p>It is possible to run R in a GUI in a single thread (as <code>RGui.exe</code> shows) but it will normally be easier<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> to use multiple threads.</p><div class="no-row-height column-margin column-container"><li id="fn5" role="doc-endnote"><p><sup>5</sup>&nbsp;An attempt to use only threads in the late 1990s failed to work correctly under Windows 95, the predominant version of Windows at that time.</p></li></div></div>
+<p>Note that R’s own front ends use a stack size of 10Mb, whereas MinGW executables default to 2Mb, and Visual C++ ones to 1Mb. The latter stack sizes are too small for a number of R applications, so general-purpose front-ends should use a larger stack size.</p>
+</section>
+<section id="finding-r_home" class="level3 subsection" data-number="8.2.3">
+<h3 class="subsection anchored" data-number="8.2.3" data-anchor-id="finding-r_home"><span class="header-section-number">8.2.3</span> Finding R_HOME</h3>
+<p>Both applications which embed R and those which use a <code>system</code> call to invoke R (as <code>Rscript.exe</code>, <code>Rterm.exe</code> or <code>R.exe</code>) need to be able to find the R <code>bin</code> directory. The simplest way to do so is the ask the user to set an environment variable <code>R_HOME</code> and use that, but naive users may be flummoxed as to how to do so or what value to use.</p>
+<p>The R for Windows installers have for a long time allowed the value of <code>R_HOME</code> to be recorded in the Windows Registry: this is optional but selected by default. <em>Where</em> it is recorded has changed over the years to allow for multiple versions of R to be installed at once, and to allow 32- and 64-bit versions of R to be installed on the same machine.</p>
+<p>The basic Registry location is <code>Software\R-core\R</code>. For an administrative install this is under <code>HKEY_LOCAL_MACHINE</code> and on a 64-bit OS <code>HKEY_LOCAL_MACHINE\Software\R-core\R</code> is by default redirected for a 32-bit application, so a 32-bit application will see the information for the last 32-bit install, and a 64-bit application that for the last 64-bit install. For a personal install, the information is under <code>HKEY_CURRENT_USER\Software\R-core\R</code> which is seen by both 32-bit and 64-bit applications and so records the last install of either architecture. To circumvent this, there are locations <code>Software\R-core\R32</code> and <code>Software\R-core\R64</code> which always refer to one architecture.</p>
+<p>When R is installed and recording is not disabled then two string values are written at that location for keys <code>InstallPath</code> and <code>Current Version</code>, and these keys are removed when R is uninstalled. To allow information about other installed versions to be retained, there is also a key named something like <code>3.0.0</code> or <code>3.0.0 patched</code> or <code>3.1.0 Pre-release</code> with a value for <code>InstallPath</code>.</p>
+<p>So a comprehensive algorithm to search for <code>R_HOME</code> is something like</p>
+<ul>
+<li>Decide which of personal or administrative installs should have precedence. There are arguments both ways: we find that with roaming profiles that <code>HKEY_CURRENT_USER\Software</code> often gets reverted to an earlier version. Do the following for one or both of <code>HKEY_CURRENT_USER</code> and <code>HKEY_LOCAL_MACHINE</code>.</li>
+<li>If the desired architecture is known, look in <code>Software\R-core\R32</code> or <code>Software\R-core\R64</code>, and if that does not exist or the architecture is immaterial, in <code>Software\R-core\R</code>.</li>
+<li>If key <code>InstallPath</code> exists then this is <code>R_HOME</code> (recorded using backslashes). If it does not, look for version-specific keys like <code>2.11.0 alpha</code>, pick the latest (which is of itself a complicated algorithm as <code>2.11.0 patched &gt; 2.11.0 &gt; 2.11.0 alpha &gt; 2.8.1</code>) and use its value for <code>InstallPath</code>.</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.toc-action)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Generic-functions-and-methods.html">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Generic functions and methods</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Function-and-variable-index.html">
+        <span class="nav-page-text">Function and variable index</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+  </div>
+</footer>
+
+
+</body></html>

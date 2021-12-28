@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.2.405">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>R Manuals :: Writing R Extensions - 3&nbsp; Tidying and profiling R code</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+  <script src="site_libs/quarto-nav/headroom.min.js"></script>
+  <script src="site_libs/clipboard/clipboard.min.js"></script>
+  <meta name="quarto:offset" content="./">
+  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+  <script src="site_libs/quarto-search/fuse.min.js"></script>
+  <script src="site_libs/quarto-search/quarto-search.js"></script>
+  <link href="./Debugging.html" rel="next">
+  <link href="./Writing-R-documentation-files.html" rel="prev">
+  <script src="site_libs/quarto-html/quarto.js"></script>
+  <script src="site_libs/quarto-html/popper.min.js"></script>
+  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="site_libs/quarto-html/anchor.min.js"></script>
+  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
+  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <script id="quarto-search-options" type="application/json">{
+    "location": "navbar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "end",
+    "type": "overlay",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script>
+</head>
+<body class="floating slimcontent">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">R Manuals :: Writing R Extensions</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./../index.html">Home</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
+        <li>
+    <a class="dropdown-item" href="./../r-admin/index.html">R Installation and Administration</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-data/index.html">R Data Import/Export</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./index.html">Writing R Extensions</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-intro/index.html">An Introduction to R</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-ints/index.html">R Internals</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-lang/index.html">R Language Definition</a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./../about.html">About</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Tidying and profiling R code</span></h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <div class="sidebar-menu-container"> 
+  <ul class="list-unstyled mt-1">
+      <li class="sidebar-item">
+  <a href="./index.html" class="">Writing R Extensions</a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Acknowledgements.html" class="">Acknowledgements</a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Creating-R-packages.html" class=""><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Creating R packages</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Writing-R-documentation-files.html" class=""><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Writing R documentation files</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Tidying-and-profiling-R-code.html" class="active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Tidying and profiling R code</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Debugging.html" class=""><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./System-and-foreign-language-interfaces.html" class=""><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">System and foreign language interfaces</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./The-R-API.html" class=""><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The R API: entry points for C code</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Generic-functions-and-methods.html" class=""><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Generic functions and methods</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Linking-GUIs-and-other-front-ends-to-R.html" class=""><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linking GUIs and other front-ends to R</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Function-and-variable-index.html" class="">Function and variable index</a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Concept-index.html" class="">Concept index</a>
+</li>
+  </ul>
+  </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+      <nav id="TOC" role="doc-toc">
+<h2 id="toc-title">On this page</h2>
+<ul>
+<li><a href="#tidying-r-code" class="nav-link active" data-scroll-target="#tidying-r-code"> <span class="header-section-number">3.1</span> Tidying R code</a></li>
+<li><a href="#profiling-r-code-for-speed" class="nav-link" data-scroll-target="#profiling-r-code-for-speed"> <span class="header-section-number">3.2</span> Profiling R code for speed</a></li>
+<li><a href="#profiling-r-code-for-memory-use" class="nav-link" data-scroll-target="#profiling-r-code-for-memory-use"> <span class="header-section-number">3.3</span> Profiling R code for memory use</a>
+<ul class="collapse">
+<li><a href="#memory-statistics-from-rprof" class="nav-link" data-scroll-target="#memory-statistics-from-rprof"> <span class="header-section-number">3.3.1</span> Memory statistics from <code>Rprof</code></a></li>
+<li><a href="#tracking-memory-allocations" class="nav-link" data-scroll-target="#tracking-memory-allocations"> <span class="header-section-number">3.3.2</span> Tracking memory allocations</a></li>
+<li><a href="#tracing-copies-of-an-object" class="nav-link" data-scroll-target="#tracing-copies-of-an-object"> <span class="header-section-number">3.3.3</span> Tracing copies of an object</a></li>
+</ul></li>
+<li><a href="#profiling-compiled-code" class="nav-link" data-scroll-target="#profiling-compiled-code"> <span class="header-section-number">3.4</span> Profiling compiled code</a>
+<ul class="collapse">
+<li><a href="#linux" class="nav-link" data-scroll-target="#linux"> <span class="header-section-number">3.4.1</span> Linux</a></li>
+<li><a href="#sprof" class="nav-link" data-scroll-target="#sprof"> <span class="header-section-number">3.4.2</span> sprof</a></li>
+<li><a href="#oprofile-and-operf" class="nav-link" data-scroll-target="#oprofile-and-operf"> <span class="header-section-number">3.4.3</span> oprofile and operf</a></li>
+<li><a href="#macos" class="nav-link" data-scroll-target="#macos"> <span class="header-section-number">3.4.4</span> macOS</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full">
+<header id="title-block-header">
+<h1 class="title display-7"><span id="tidying-and-profiling-r-code" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Tidying and profiling R code</span></span></h1>
+</header>
+
+<p>R code which is worth preserving in a package and perhaps making available for others to use is worth documenting, tidying up and perhaps optimizing. The last two of these activities are the subject of this chapter.</p>
+<section id="tidying-r-code" class="level2 section" data-number="3.1">
+<h2 class="section anchored" data-number="3.1" data-anchor-id="tidying-r-code"><span class="header-section-number">3.1</span> Tidying R code</h2>
+<p>R treats function code loaded from packages and code entered by users differently. By default code entered by users has the source code stored internally, and when the function is listed, the original source is reproduced. Loading code from a package (by default) discards the source code, and the function listing is re-created from the parse tree of the function.</p>
+<p>Normally keeping the source code is a good idea, and in particular it avoids comments being removed from the source. However, we can make use of the ability to re-create a function listing from its parse tree to produce a tidy version of the function, for example with consistent indentation and spaces around operators. If the original source does not follow the standard format this tidied version can be much easier to read.</p>
+<p>We can subvert the keeping of source in two ways.</p>
+<ol type="1">
+<li>The option <code>keep.source</code> can be set to <code>FALSE</code> before the code is loaded into R.</li>
+<li>The stored source code can be removed by calling the <code>removeSource()</code> function, for example by <code>r     myfun &lt;- removeSource(myfun)</code></li>
+</ol>
+<p>In each case if we then list the function we will get the standard layout.</p>
+<p>Suppose we have a file of functions <code>myfuns.R</code> that we want to tidy up. Create a file <code>tidy.R</code> containing</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"myfuns.R"</span>, <span class="at">keep.source =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dump</span>(<span class="fu">ls</span>(<span class="at">all.names =</span> <span class="cn">TRUE</span>), <span class="at">file =</span> <span class="st">"new.myfuns.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and run R with this as the source file, for example by <kbd>R --vanilla &lt; tidy.R</kbd> or by pasting into an R session. Then the file <code>new.myfuns.R</code> will contain the functions in alphabetical order in the standard layout. Warning: comments in your functions will be lost.</p>
+<p>The standard format provides a good starting point for further tidying. Although the deparsing cannot do so, we recommend the consistent use of the preferred assignment operator <code>&lt;-</code> (rather than <code>=</code>) for assignment. Many package authors use a version of Emacs (on a Unix-alike or Windows) to edit R code, using the ESS[S] mode of the ESS Emacs package. See <a href="https://cran.r-project.org/doc/manuals/R-ints.html#R-coding-standards">R coding standards</a> in R Internals for style options within the ESS[S] mode recommended for the source code of R itself.</p>
+</section>
+<section id="profiling-r-code-for-speed" class="level2 section page-columns page-full" data-number="3.2">
+<h2 class="section anchored" data-number="3.2" data-anchor-id="profiling-r-code-for-speed"><span class="header-section-number">3.2</span> Profiling R code for speed</h2>
+<div class="page-columns page-full"><p>It is possible to profile R code on Windows and most<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Unix-alike versions of R.</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;R has to be built to enable this, but the option <code>--enable-R-profiling</code> is the default.</p></li></div></div>
+<div class="page-columns page-full"><p>The command <code>Rprof</code> is used to control profiling, and its help page can be consulted for full details. Profiling works by recording at fixed intervals<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> (by default every 20 msecs) which line in which R function is being used, and recording the results in a file (default <code>Rprof.out</code> in the working directory). Then the function <code>summaryRprof</code> or the command-line utility <code>R CMD Rprof Rprof.out</code> can be used to summarize the activity.</p><div class="no-row-height column-margin column-container"><li id="fn2" role="doc-endnote"><p><sup>2</sup>&nbsp;For Unix-alikes these are intervals of CPU time, and for Windows of elapsed time.</p></li></div></div>
+<p>As an example, consider the following code (from Venables &amp; Ripley, 2002, pp.&nbsp;225–6).</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS); <span class="fu">library</span>(boot)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>storm.fm <span class="ot">&lt;-</span> <span class="fu">nls</span>(Time <span class="sc">~</span> b<span class="sc">*</span>Viscosity<span class="sc">/</span>(Wt <span class="sc">-</span> c), stormer,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">start =</span> <span class="fu">c</span>(<span class="at">b=</span><span class="fl">30.401</span>, <span class="at">c=</span><span class="fl">2.2183</span>))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>st <span class="ot">&lt;-</span> <span class="fu">cbind</span>(stormer, <span class="at">fit=</span><span class="fu">fitted</span>(storm.fm))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>storm.bf <span class="ot">&lt;-</span> <span class="cf">function</span>(rs, i) {</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    st<span class="sc">$</span>Time <span class="ot">&lt;-</span>  st<span class="sc">$</span>fit <span class="sc">+</span> rs[i]</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    tmp <span class="ot">&lt;-</span> <span class="fu">nls</span>(Time <span class="sc">~</span> (b <span class="sc">*</span> Viscosity)<span class="sc">/</span>(Wt <span class="sc">-</span> c), st,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">start =</span> <span class="fu">coef</span>(storm.fm))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    tmp<span class="sc">$</span>m<span class="sc">$</span><span class="fu">getAllPars</span>()</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>rs <span class="ot">&lt;-</span> <span class="fu">scale</span>(<span class="fu">resid</span>(storm.fm), <span class="at">scale =</span> <span class="cn">FALSE</span>) <span class="co"># remove the mean</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">Rprof</span>(<span class="st">"boot.out"</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>storm.boot <span class="ot">&lt;-</span> <span class="fu">boot</span>(rs, storm.bf, <span class="at">R =</span> <span class="dv">4999</span>) <span class="co"># slow enough to profile</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">Rprof</span>(<span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Having run this we can summarize the results by</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>R CMD Rprof boot.out</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Each sample represents <span class="fl">0.02</span> seconds.</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>Total run time<span class="sc">:</span> <span class="fl">22.52</span> seconds.</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>Total seconds<span class="sc">:</span> time spent <span class="cf">in</span> <span class="cf">function</span> and callees.</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>Self seconds<span class="sc">:</span> time spent <span class="cf">in</span> <span class="cf">function</span> alone.</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>   <span class="sc">%       total       %</span>        self</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a> total    seconds     self    seconds    name</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a> <span class="fl">100.0</span>     <span class="fl">25.22</span>       <span class="fl">0.2</span>      <span class="fl">0.04</span>     <span class="st">"boot"</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fl">99.8</span>     <span class="fl">25.18</span>       <span class="fl">0.6</span>      <span class="fl">0.16</span>     <span class="st">"statistic"</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fl">96.3</span>     <span class="fl">24.30</span>       <span class="fl">4.0</span>      <span class="fl">1.02</span>     <span class="st">"nls"</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fl">33.9</span>      <span class="fl">8.56</span>       <span class="fl">2.2</span>      <span class="fl">0.56</span>     <span class="st">"&lt;Anonymous&gt;"</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fl">32.4</span>      <span class="fl">8.18</span>       <span class="fl">1.4</span>      <span class="fl">0.36</span>     <span class="st">"eval"</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="fl">31.8</span>      <span class="fl">8.02</span>       <span class="fl">1.4</span>      <span class="fl">0.34</span>     <span class="st">".Call"</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="fl">28.6</span>      <span class="fl">7.22</span>       <span class="fl">0.0</span>      <span class="fl">0.00</span>     <span class="st">"eval.parent"</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fl">28.5</span>      <span class="fl">7.18</span>       <span class="fl">0.3</span>      <span class="fl">0.08</span>     <span class="st">"model.frame"</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fl">28.1</span>      <span class="fl">7.10</span>       <span class="fl">3.5</span>      <span class="fl">0.88</span>     <span class="st">"model.frame.default"</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fl">17.4</span>      <span class="fl">4.38</span>       <span class="fl">0.7</span>      <span class="fl">0.18</span>     <span class="st">"sapply"</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="fl">15.0</span>      <span class="fl">3.78</span>       <span class="fl">3.2</span>      <span class="fl">0.80</span>     <span class="st">"nlsModel"</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="fl">12.5</span>      <span class="fl">3.16</span>       <span class="fl">1.8</span>      <span class="fl">0.46</span>     <span class="st">"lapply"</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fl">12.3</span>      <span class="fl">3.10</span>       <span class="fl">2.7</span>      <span class="fl">0.68</span>     <span class="st">"assign"</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a> ...</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>   <span class="sc">%        self        %</span>      total</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  self    seconds     total   seconds    name</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>   <span class="fl">5.7</span>      <span class="fl">1.44</span>       <span class="fl">7.5</span>      <span class="fl">1.88</span>     <span class="st">"inherits"</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>   <span class="fl">4.0</span>      <span class="fl">1.02</span>      <span class="fl">96.3</span>     <span class="fl">24.30</span>     <span class="st">"nls"</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>   <span class="fl">3.6</span>      <span class="fl">0.92</span>       <span class="fl">3.6</span>      <span class="fl">0.92</span>     <span class="st">"$"</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>   <span class="fl">3.5</span>      <span class="fl">0.88</span>      <span class="fl">28.1</span>      <span class="fl">7.10</span>     <span class="st">"model.frame.default"</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>   <span class="fl">3.2</span>      <span class="fl">0.80</span>      <span class="fl">15.0</span>      <span class="fl">3.78</span>     <span class="st">"nlsModel"</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>   <span class="fl">2.8</span>      <span class="fl">0.70</span>       <span class="fl">9.8</span>      <span class="fl">2.46</span>     <span class="st">"qr.coef"</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>   <span class="fl">2.7</span>      <span class="fl">0.68</span>      <span class="fl">12.3</span>      <span class="fl">3.10</span>     <span class="st">"assign"</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>   <span class="fl">2.5</span>      <span class="fl">0.64</span>       <span class="fl">2.5</span>      <span class="fl">0.64</span>     <span class="st">".Fortran"</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>   <span class="fl">2.5</span>      <span class="fl">0.62</span>       <span class="fl">7.1</span>      <span class="fl">1.80</span>     <span class="st">"qr.default"</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>   <span class="fl">2.2</span>      <span class="fl">0.56</span>      <span class="fl">33.9</span>      <span class="fl">8.56</span>     <span class="st">"&lt;Anonymous&gt;"</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>   <span class="fl">2.1</span>      <span class="fl">0.54</span>       <span class="fl">5.9</span>      <span class="fl">1.48</span>     <span class="st">"unlist"</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>   <span class="fl">2.1</span>      <span class="fl">0.52</span>       <span class="fl">7.9</span>      <span class="fl">2.00</span>     <span class="st">"FUN"</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>  ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This often produces surprising results and can be used to identify bottlenecks or pieces of R code that could benefit from being replaced by compiled code.</p>
+<p>Two warnings: profiling does impose a small performance penalty, and the output files can be very large if long runs are profiled at the default sampling interval.</p>
+<p>Profiling short runs can sometimes give misleading results. R from time to time performs <em>garbage collection</em> to reclaim unused memory, and this takes an appreciable amount of time which profiling will charge to whichever function happens to provoke it. It may be useful to compare profiling code immediately after a call to <code>gc()</code> with a profiling run without a preceding call to <code>gc</code>.</p>
+<p>More detailed analysis of the output can be achieved by the tools in the CRAN packages <a href="https://CRAN.R-project.org/package=proftools"><strong>proftools</strong></a> and <a href="https://CRAN.R-project.org/package=profr"><strong>profr</strong></a>: in particular these allow call graphs to be studied.</p>
+</section>
+<section id="profiling-r-code-for-memory-use" class="level2 section" data-number="3.3">
+<h2 class="section anchored" data-number="3.3" data-anchor-id="profiling-r-code-for-memory-use"><span class="header-section-number">3.3</span> Profiling R code for memory use</h2>
+<p>Measuring memory use in R code is useful either when the code takes more memory than is conveniently available or when memory allocation and copying of objects is responsible for slow code. There are three ways to profile memory use over time in R code. The second and third require R to have been compiled with <code>--enable-memory-profiling</code>, which is not the default, but is currently used for the macOS and Windows binary distributions. All can be misleading, for different reasons.</p>
+<p>In understanding the memory profiles it is useful to know a little more about R’s memory allocation. Looking at the results of <code>gc()</code> shows a division of memory into <code>Vcells</code> used to store the contents of vectors and <code>Ncells</code> used to store everything else, including all the administrative overhead for vectors such as type and length information. In fact the vector contents are divided into two pools. Memory for small vectors (by default 128 bytes or less) is obtained in large chunks and then parcelled out by R; memory for larger vectors is obtained directly from the operating system.</p>
+<p>Some memory allocation is obvious in interpreted code, for example,</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>allocates memory for a new vector <code>y</code>. Other memory allocation is less obvious and occurs because <code>R</code> is forced to make good on its promise of ‘call-by-value’ argument passing. When an argument is passed to a function it is not immediately copied. Copying occurs (if necessary) only when the argument is modified. This can lead to surprising memory use. For example, in the ‘survey’ package we have</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>print<span class="op">.</span>svycoxph <span class="op">&lt;-</span> function <span class="op">(</span>x<span class="op">,</span> <span class="op">...)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    print<span class="op">(</span>x$survey<span class="op">.</span>design<span class="op">,</span> varnames <span class="op">=</span> FALSE<span class="op">,</span> design<span class="op">.</span>summaries <span class="op">=</span> FALSE<span class="op">,</span> <span class="op">...)</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    x$call <span class="op">&lt;-</span> x$printcall</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    NextMethod<span class="op">()</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>It may not be obvious that the assignment to <code>x$call</code> will cause the entire object <code>x</code> to be copied. This copying to preserve the call-by-value illusion is usually done by the internal C function <code>duplicate</code>.</p>
+<p>The main reason that memory-use profiling is difficult is garbage collection. Memory is allocated at well-defined times in an R program, but is freed whenever the garbage collector happens to run.</p>
+<section id="memory-statistics-from-rprof" class="level3 subsection" data-number="3.3.1">
+<h3 class="subsection anchored" data-number="3.3.1" data-anchor-id="memory-statistics-from-rprof"><span class="header-section-number">3.3.1</span> Memory statistics from <code>Rprof</code></h3>
+<p>The sampling profiler <code>Rprof</code> described in the previous section can be given the option <code>memory.profiling=TRUE</code>. It then writes out the total R memory allocation in small vectors, large vectors, and cons cells or nodes at each sampling interval. It also writes out the number of calls to the internal function <code>duplicate</code>, which is called to copy R objects. <code>summaryRprof</code> provides summaries of this information. The main reason that this can be misleading is that the memory use is attributed to the function running at the end of the sampling interval. A second reason is that garbage collection can make the amount of memory in use decrease, so a function appears to use little memory. Running under <code>gctorture</code> helps with both problems: it slows down the code to effectively increase the sampling frequency and it makes each garbage collection release a smaller amount of memory.</p>
+</section>
+<section id="tracking-memory-allocations" class="level3 subsection" data-number="3.3.2">
+<h3 class="subsection anchored" data-number="3.3.2" data-anchor-id="tracking-memory-allocations"><span class="header-section-number">3.3.2</span> Tracking memory allocations</h3>
+<p>The second method of memory profiling uses a memory-allocation profiler, <code>Rprofmem()</code>, which writes out a stack trace to an output file every time a large vector is allocated (with a user-specified threshold for ‘large’) or a new page of memory is allocated for the R heap. Summary functions for this output are still being designed.</p>
+<p>Running the example from the previous section with</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">Rprofmem</span>(<span class="st">"boot.memprof"</span>,<span class="at">threshold=</span><span class="dv">1000</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> storm.boot <span class="ot">&lt;-</span> <span class="fu">boot</span>(rs, storm.bf, <span class="at">R =</span> <span class="dv">4999</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">Rprofmem</span>(<span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>shows that apart from some initial and final work in <code>boot</code> there are no vector allocations over 1000 bytes.</p>
+</section>
+<section id="tracing-copies-of-an-object" class="level3 subsection" data-number="3.3.3">
+<h3 class="subsection anchored" data-number="3.3.3" data-anchor-id="tracing-copies-of-an-object"><span class="header-section-number">3.3.3</span> Tracing copies of an object</h3>
+<p>The third method of memory profiling involves tracing copies made of a specific (presumably large) R object. Calling <code>tracemem</code> on an object marks it so that a message is printed to standard output when the object is copied <em>via</em> <code>duplicate</code> or coercion to another type, or when a new object of the same size is created in arithmetic operations. The main reason that this can be misleading is that copying of subsets or components of an object is not tracked. It may be helpful to use <code>tracemem</code> on these components.</p>
+<p>In the example above we can run <code>tracemem</code> on the data frame <code>st</code></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">tracemem</span>(st)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"&lt;0x9abd5e0&gt;"</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> storm.boot <span class="ot">&lt;-</span> <span class="fu">boot</span>(rs, storm.bf, <span class="at">R =</span> <span class="dv">4</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>memtrace[<span class="dv">0x9abd5e0</span><span class="ot">-&gt;</span><span class="dv">0x92a6d08</span>]<span class="sc">:</span> statistic boot</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>memtrace[<span class="dv">0x92a6d08</span><span class="ot">-&gt;</span><span class="dv">0x92a6d80</span>]<span class="sc">:</span> <span class="er">$&lt;</span><span class="sc">-</span>.data.frame <span class="sc">$</span><span class="er">&lt;</span><span class="sc">-</span> statistic boot</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>memtrace[<span class="dv">0x92a6d80</span><span class="ot">-&gt;</span><span class="dv">0x92a6df8</span>]<span class="sc">:</span> <span class="er">$&lt;</span><span class="sc">-</span>.data.frame <span class="sc">$</span><span class="er">&lt;</span><span class="sc">-</span> statistic boot</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>memtrace[<span class="dv">0x9abd5e0</span><span class="ot">-&gt;</span><span class="dv">0x9271318</span>]<span class="sc">:</span> statistic boot</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>memtrace[<span class="dv">0x9271318</span><span class="ot">-&gt;</span><span class="dv">0x9271390</span>]<span class="sc">:</span> <span class="er">$&lt;</span><span class="sc">-</span>.data.frame <span class="sc">$</span><span class="er">&lt;</span><span class="sc">-</span> statistic boot</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>memtrace[<span class="dv">0x9271390</span><span class="ot">-&gt;</span><span class="dv">0x9271408</span>]<span class="sc">:</span> <span class="er">$&lt;</span><span class="sc">-</span>.data.frame <span class="sc">$</span><span class="er">&lt;</span><span class="sc">-</span> statistic boot</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>memtrace[<span class="dv">0x9abd5e0</span><span class="ot">-&gt;</span><span class="dv">0x914f558</span>]<span class="sc">:</span> statistic boot</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>memtrace[<span class="dv">0x914f558</span><span class="ot">-&gt;</span><span class="dv">0x914f5f8</span>]<span class="sc">:</span> <span class="er">$&lt;</span><span class="sc">-</span>.data.frame <span class="sc">$</span><span class="er">&lt;</span><span class="sc">-</span> statistic boot</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>memtrace[<span class="dv">0x914f5f8</span><span class="ot">-&gt;</span><span class="dv">0x914f670</span>]<span class="sc">:</span> <span class="er">$&lt;</span><span class="sc">-</span>.data.frame <span class="sc">$</span><span class="er">&lt;</span><span class="sc">-</span> statistic boot</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>memtrace[<span class="dv">0x9abd5e0</span><span class="ot">-&gt;</span><span class="dv">0x972cbf0</span>]<span class="sc">:</span> statistic boot</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>memtrace[<span class="dv">0x972cbf0</span><span class="ot">-&gt;</span><span class="dv">0x972cc68</span>]<span class="sc">:</span> <span class="er">$&lt;</span><span class="sc">-</span>.data.frame <span class="sc">$</span><span class="er">&lt;</span><span class="sc">-</span> statistic boot</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>memtrace[<span class="dv">0x972cc68</span><span class="ot">-&gt;</span><span class="dv">0x972cd08</span>]<span class="sc">:</span> <span class="er">$&lt;</span><span class="sc">-</span>.data.frame <span class="sc">$</span><span class="er">&lt;</span><span class="sc">-</span> statistic boot</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>memtrace[<span class="dv">0x9abd5e0</span><span class="ot">-&gt;</span><span class="dv">0x98ead98</span>]<span class="sc">:</span> statistic boot</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>memtrace[<span class="dv">0x98ead98</span><span class="ot">-&gt;</span><span class="dv">0x98eae10</span>]<span class="sc">:</span> <span class="er">$&lt;</span><span class="sc">-</span>.data.frame <span class="sc">$</span><span class="er">&lt;</span><span class="sc">-</span> statistic boot</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>memtrace[<span class="dv">0x98eae10</span><span class="ot">-&gt;</span><span class="dv">0x98eae88</span>]<span class="sc">:</span> <span class="er">$&lt;</span><span class="sc">-</span>.data.frame <span class="sc">$</span><span class="er">&lt;</span><span class="sc">-</span> statistic boot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The object is duplicated fifteen times, three times for each of the <code>R+1</code> calls to <code>storm.bf</code>. This is surprising, since none of the duplications happen inside <code>nls</code>. Stepping through <code>storm.bf</code> in the debugger shows that all three happen in the line</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>st<span class="sc">$</span>Time <span class="ot">&lt;-</span> st<span class="sc">$</span>fit <span class="sc">+</span> rs[i]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Data frames are slower than matrices and this is an example of why. Using <code>tracemem(st$Viscosity)</code> does not reveal any additional copying.</p>
+</section>
+</section>
+<section id="profiling-compiled-code" class="level2 section" data-number="3.4">
+<h2 class="section anchored" data-number="3.4" data-anchor-id="profiling-compiled-code"><span class="header-section-number">3.4</span> Profiling compiled code</h2>
+<p>Profiling compiled code is highly system-specific, but this section contains some hints gleaned from various R users. Some methods need to be different for a compiled executable and for dynamic/shared libraries/objects as used by R packages. We know of no good way to profile DLLs on Windows.</p>
+<p>This chapter is based on reports from users and the information may not be current.</p>
+<section id="linux" class="level3 subsection" data-number="3.4.1">
+<h3 class="subsection anchored" data-number="3.4.1" data-anchor-id="linux"><span class="header-section-number">3.4.1</span> Linux</h3>
+<p>Options include using <code>sprof</code> for a shared object, and <code>oprofile</code> (see <a href="https://oprofile.sourceforge.io/news/" class="uri">https://oprofile.sourceforge.io/news/</a>) and <code>perf</code> (see <a href="https://perf.wiki.kernel.org/index.php/Tutorial" class="uri">https://perf.wiki.kernel.org/index.php/Tutorial</a>) for any executable or shared object.</p>
+</section>
+<section id="sprof" class="level3 subsubsection" data-number="3.4.2">
+<h3 class="subsubsection anchored" data-number="3.4.2" data-anchor-id="sprof"><span class="header-section-number">3.4.2</span> sprof</h3>
+<p>You can select shared objects to be profiled with <code>sprof</code> by setting the environment variable <code>LD_PROFILE</code>. For example</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>% setenv LD_PROFILE <span class="sc">/</span>path<span class="sc">/</span>to<span class="sc">/</span>R_HOME<span class="sc">/</span>library<span class="sc">/</span>stats<span class="sc">/</span>libs<span class="sc">/</span>stats.so</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>R</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>... run the boot example</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>% sprof <span class="sc">/</span>path<span class="sc">/</span>to<span class="sc">/</span>R_HOME<span class="sc">/</span>library<span class="sc">/</span>stats<span class="sc">/</span>libs<span class="sc">/</span>stats.so \</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="sc">/</span>var<span class="sc">/</span>tmp<span class="sc">/</span>path<span class="sc">/</span>to<span class="sc">/</span>R_HOME<span class="sc">/</span>library<span class="sc">/</span>stats<span class="sc">/</span>libs<span class="sc">/</span>stats.so.profile</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>Flat profile<span class="sc">:</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>Each sample counts as <span class="fl">0.01</span> seconds.</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  %   cumulative   self              self     total</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a> time   seconds   seconds    calls  us<span class="sc">/</span>call  us<span class="sc">/</span>call  name</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a> <span class="fl">76.19</span>      <span class="fl">0.32</span>     <span class="fl">0.32</span>        <span class="dv">0</span>     <span class="fl">0.00</span>           numeric_deriv</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a> <span class="fl">16.67</span>      <span class="fl">0.39</span>     <span class="fl">0.07</span>        <span class="dv">0</span>     <span class="fl">0.00</span>           nls_iter</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="fl">7.14</span>      <span class="fl">0.42</span>     <span class="fl">0.03</span>        <span class="dv">0</span>     <span class="fl">0.00</span>           getListElement</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>rm <span class="sc">/</span>var<span class="sc">/</span>tmp<span class="sc">/</span>path<span class="sc">/</span>to<span class="sc">/</span>R_HOME<span class="sc">/</span>library<span class="sc">/</span>stats<span class="sc">/</span>libs<span class="sc">/</span>stats.so.profile</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>... to clean up ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>It is possible that root access is needed to create the directories used for the profile data.</p>
+</section>
+<section id="oprofile-and-operf" class="level3 subsubsection" data-number="3.4.3">
+<h3 class="subsubsection anchored" data-number="3.4.3" data-anchor-id="oprofile-and-operf"><span class="header-section-number">3.4.3</span> oprofile and operf</h3>
+<p>The <code>oprofile</code> project has two modes of operation. In what is now called ‘legacy’ mode, it is uses a daemon to collect information on a process (see below). Since version 0.9.8 (August 2012), the preferred mode is to use <code>operf</code>, so we discuss that first. The modes differ in how the profiling data is collected: it is analysed by tools such as <code>opreport</code> and <code>oppannote</code> in both.</p>
+<p>Here is an example on <code>x86_64</code> Linux using R 3.0.2. File <code>pvec.R</code> contains the part of the examples from <code>pvec</code> in package <strong>parallel</strong>:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>library<span class="op">(</span>parallel<span class="op">)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>N <span class="op">&lt;-</span> <span class="fl">1e6</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>dates <span class="op">&lt;-</span> sprintf<span class="op">(</span>'<span class="op">%</span><span class="bn">04</span><span class="er">d</span><span class="op">-%</span><span class="bn">02</span><span class="er">d</span><span class="op">-%</span><span class="bn">02</span><span class="er">d</span>'<span class="op">,</span> as<span class="op">.</span>integer<span class="op">(</span><span class="dv">2000</span><span class="op">+</span>rnorm<span class="op">(</span>N<span class="op">)),</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                 as<span class="op">.</span>integer<span class="op">(</span>runif<span class="op">(</span>N<span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">12</span><span class="op">)),</span> as<span class="op">.</span>integer<span class="op">(</span>runif<span class="op">(</span>N<span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">28</span><span class="op">)))</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>system<span class="op">.</span>time<span class="op">(</span>a <span class="op">&lt;-</span> as<span class="op">.</span>POSIXct<span class="op">(</span>dates<span class="op">,</span> format <span class="op">=</span> <span class="st">"%Y-%m-%d"</span><span class="op">))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>with timings from the final step</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>   user  system elapsed</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.371</span>   <span class="fl">0.237</span>   <span class="fl">0.612</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>R-level profiling by <code>Rprof</code> shows</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>                     self<span class="op">.</span>time self<span class="op">.</span>pct total<span class="op">.</span>time total<span class="op">.</span>pct</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="st">"strptime"</span>                <span class="fl">1.70</span>    <span class="fl">41.06</span>       <span class="fl">1.70</span>     <span class="fl">41.06</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="st">"as.POSIXct.POSIXlt"</span>      <span class="fl">1.40</span>    <span class="fl">33.82</span>       <span class="fl">1.42</span>     <span class="fl">34.30</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="st">"sprintf"</span>                 <span class="fl">0.74</span>    <span class="fl">17.87</span>       <span class="fl">0.98</span>     <span class="fl">23.67</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="op">...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>so the conversion from character to <code>POSIXlt</code> takes most of the time.</p>
+<p>This can be run under <code>operf</code> and analysed by</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>operf R <span class="sc">-</span>f pvec.R</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>opreport</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>opreport <span class="sc">-</span>l <span class="sc">/</span>path<span class="sc">/</span>to<span class="sc">/</span>R_HOME<span class="sc">/</span>bin<span class="sc">/</span>exec<span class="sc">/</span>R</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>opannotate <span class="sc">--</span>source <span class="sc">/</span>path<span class="sc">/</span>to<span class="sc">/</span>R_HOME<span class="sc">/</span>bin<span class="sc">/</span>exec<span class="sc">/</span>R</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="do">## And for the system time</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>opreport <span class="sc">-</span>l <span class="sc">/</span>lib64<span class="sc">/</span>libc.so<span class="fl">.6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The first report shows where (which library etc) the time was spent:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>CPU_CLK_UNHALT...<span class="sc">|</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  samples<span class="sc">|</span>      %<span class="sc">|</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="sc">------------------</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>   <span class="dv">166761</span> <span class="fl">99.9161</span> Rdev</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        CPU_CLK_UNHALT...<span class="sc">|</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>          samples<span class="sc">|</span>      %<span class="sc">|</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        <span class="sc">------------------</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>            <span class="dv">70586</span> <span class="fl">42.3276</span> no<span class="sc">-</span>vmlinux</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>            <span class="dv">56963</span> <span class="fl">34.1585</span> libc<span class="dv">-2</span>.<span class="fl">16.</span>so</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>            <span class="dv">36922</span> <span class="fl">22.1407</span> R</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>             <span class="dv">1584</span>  <span class="fl">0.9499</span> stats.so</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>              <span class="dv">624</span>  <span class="fl">0.3742</span> libm<span class="dv">-2</span>.<span class="fl">16.</span>so</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The rest of the output is voluminous, and only extracts are shown below.</p>
+<p>Most of the time within R is spent in</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>samples  <span class="op">%</span>        image name symbol name</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="dv">10397</span>    <span class="fl">28.5123</span>  R           R_gc_internal</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="dv">5683</span>     <span class="fl">15.5848</span>  R           do_sprintf</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="dv">3036</span>      <span class="fl">8.3258</span>  R           do_asPOSIXct</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2427</span>      <span class="fl">6.6557</span>  R           do_strptime</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="dv">2421</span>      <span class="fl">6.6392</span>  R           Rf_mkCharLenCE</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1480</span>      <span class="fl">4.0587</span>  R           w_strptime_internal</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="dv">1202</span>      <span class="fl">3.2963</span>  R           Rf_qnorm5</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="dv">1165</span>      <span class="fl">3.1948</span>  R           unif_rand</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="dv">675</span>       <span class="fl">1.8511</span>  R           mktime0</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="dv">617</span>       <span class="fl">1.6920</span>  R           makelt</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="dv">617</span>       <span class="fl">1.6920</span>  R           validate_tm</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="dv">584</span>       <span class="fl">1.6015</span>  R           day_of_the_week</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="op">...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>opannotate</code> shows that 31% of the time in R is spent in <code>memory.c</code>, 21% in <code>datetime.c</code> and 7% in <code>Rstrptime.h</code>. The analysis for <code>libc</code> showed that calls to <code>wcsftime</code> dominated, so those calls were cached for R 3.0.3: the time spent in <code>no-vmlinux</code> (the kernel) was reduced dramatically.</p>
+<p>On platforms which support it, call graphs can be produced by <code>opcontrol --callgraph</code> if collected <em>via</em> <code>operf --callgraph</code>.</p>
+<p>The profiling data is by default stored in sub-directory <code>oprofile_data</code> of the current directory, which can be removed at the end of the session.</p>
+<p>Another example, from <a href="https://CRAN.R-project.org/package=sm"><strong>sm</strong></a> version 2.2-5.4. The example for <code>sm.variogram</code> took a long time:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(<span class="fu">example</span>(sm.variogram))</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>   user  system elapsed</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fl">5.543</span>   <span class="fl">3.202</span>   <span class="fl">8.785</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>including a lot of system time. Profiling just the slow part, the second plot, showed</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>  samples<span class="sc">|</span>      %<span class="sc">|</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="sc">------------------</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>   <span class="dv">381845</span> <span class="fl">99.9885</span> R</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>        CPU_CLK_UNHALT...<span class="sc">|</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>          samples<span class="sc">|</span>      %<span class="sc">|</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        <span class="sc">------------------</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>           <span class="dv">187484</span> <span class="fl">49.0995</span> sm.so</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>           <span class="dv">169627</span> <span class="fl">44.4230</span> no<span class="sc">-</span>vmlinux</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>            <span class="dv">12636</span>  <span class="fl">3.3092</span> libgfortran.so.<span class="dv">3</span>.<span class="fl">0.0</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>             <span class="dv">6455</span>  <span class="fl">1.6905</span> R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>so the system time was almost all in the Linux kernel. It is possible to dig deeper if you have a matching uncompressed kernel with debug symbols to specify <em>via</em> <code>--vmlinux</code>: we did not.</p>
+<p>In ‘legacy’ mode <code>oprofile</code> works by running a daemon which collects information. The daemon must be started as root, e.g.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>% su</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>% opcontrol <span class="sc">--</span>no<span class="sc">-</span>vmlinux</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>% (optional, some platforms) opcontrol <span class="sc">--</span>callgraph<span class="ot">=</span><span class="dv">5</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>% opcontrol <span class="sc">--</span>start</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>% exit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then as a user</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span> R</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="op">...</span> run the boot example</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span> opcontrol <span class="op">--</span>dump</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="op">%</span> opreport <span class="op">-</span>l <span class="op">/</span>path<span class="op">/</span>to<span class="op">/</span>R_HOME<span class="op">/</span>library<span class="op">/</span>stats<span class="op">/</span>libs<span class="op">/</span>stats<span class="op">.</span>so</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="op">...</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>samples  <span class="op">%</span>        symbol name</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1623</span>     <span class="fl">75.5939</span>  anonymous symbol from section <span class="op">.</span>plt</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="dv">349</span>      <span class="fl">16.2552</span>  numeric_deriv</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="dv">113</span>       <span class="fl">5.2632</span>  nls_iter</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="dv">62</span>        <span class="fl">2.8878</span>  getListElement</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="op">%</span> opreport <span class="op">-</span>l <span class="op">/</span>path<span class="op">/</span>to<span class="op">/</span>R_HOME<span class="op">/</span>bin<span class="op">/</span>exec<span class="op">/</span>R</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="op">...</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>samples  <span class="op">%</span>        symbol name</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="dv">76052</span>    <span class="fl">11.9912</span>  Rf_eval</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="dv">54670</span>     <span class="fl">8.6198</span>  Rf_findVarInFrame3</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="dv">37814</span>     <span class="fl">5.9622</span>  Rf_allocVector</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="dv">31489</span>     <span class="fl">4.9649</span>  Rf_duplicate</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="dv">28221</span>     <span class="fl">4.4496</span>  Rf_protect</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="dv">26485</span>     <span class="fl">4.1759</span>  Rf_cons</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="dv">23650</span>     <span class="fl">3.7289</span>  Rf_matchArgs</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a><span class="dv">21088</span>     <span class="fl">3.3250</span>  Rf_findFun</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a><span class="dv">19995</span>     <span class="fl">3.1526</span>  findVarLocInFrame</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a><span class="dv">14871</span>     <span class="fl">2.3447</span>  Rf_evalList</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a><span class="dv">13794</span>     <span class="fl">2.1749</span>  R_Newhashpjw</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a><span class="dv">13522</span>     <span class="fl">2.1320</span>  R_gc_internal</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a><span class="op">...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Shutting down the profiler and clearing the records needs to be done as root.</p>
+</section>
+<section id="macos" class="level3 subsection" data-number="3.4.4">
+<h3 class="subsection anchored" data-number="3.4.4" data-anchor-id="macos"><span class="header-section-number">3.4.4</span> macOS</h3>
+<p>Developers have recommended <code>sample</code> (or <code>Sampler.app</code>, which is a GUI version), <code>Shark</code> (in version of <code>Xcode</code> up to those for Snow Leopard), and <code>Instruments</code> (part of <code>Xcode</code>, see <a href="https://help.apple.com/instruments/mac/current/" class="uri">https://help.apple.com/instruments/mac/current/</a>).</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.toc-action)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Writing-R-documentation-files.html">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Writing R documentation files</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Debugging.html">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+  </div>
+</footer>
+
+
+</body></html>

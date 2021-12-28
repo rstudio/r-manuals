@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.2.405">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>R Manuals :: R Data Import/Export - 3&nbsp; Importing from other statistical systems</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+  <script src="site_libs/quarto-nav/headroom.min.js"></script>
+  <script src="site_libs/clipboard/clipboard.min.js"></script>
+  <meta name="quarto:offset" content="./">
+  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+  <script src="site_libs/quarto-search/fuse.min.js"></script>
+  <script src="site_libs/quarto-search/quarto-search.js"></script>
+  <link href="./Relational-databases.html" rel="next">
+  <link href="./Spreadsheet-like-data.html" rel="prev">
+  <script src="site_libs/quarto-html/quarto.js"></script>
+  <script src="site_libs/quarto-html/popper.min.js"></script>
+  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="site_libs/quarto-html/anchor.min.js"></script>
+  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
+  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <script id="quarto-search-options" type="application/json">{
+    "location": "navbar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "end",
+    "type": "overlay",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script>
+</head>
+<body class="floating">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">R Manuals :: R Data Import/Export</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./../index.html">Home</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
+        <li>
+    <a class="dropdown-item" href="./../r-admin/index.html">R Installation and Administration</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./index.html">R Data Import/Export</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-exts/index.html">Writing R Extensions</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-intro/index.html">An Introduction to R</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-ints/index.html">R Internals</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-lang/index.html">R Language Definition</a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./../about.html">About</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Importing from other statistical systems</span></h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <div class="sidebar-menu-container"> 
+  <ul class="list-unstyled mt-1">
+      <li class="sidebar-item">
+  <a href="./index.html" class="">R Data Import/Export</a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Acknowledgements.html" class="">Acknowledgements</a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Introduction.html" class=""><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Spreadsheet-like-data.html" class=""><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Spreadsheet-like data</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Importing-from-other-statistical-systems.html" class="active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Importing from other statistical systems</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Relational-databases.html" class=""><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Relational databases</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Binary-files.html" class=""><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Binary files</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Image-files.html" class=""><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Image files</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Connections.html" class=""><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Connections</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Network-interfaces.html" class=""><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Network interfaces</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Reading-Excel-spreadsheets.html" class=""><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Reading Excel spreadsheets</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./References.html" class=""><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">References</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Function-and-variable-index.html" class="">Function and variable index</a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Concept-index.html" class="">Concept index</a>
+</li>
+  </ul>
+  </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+      <nav id="TOC" role="doc-toc">
+<h2 id="toc-title">On this page</h2>
+<ul>
+<li><a href="#epiinfo-minitab-s-plus-sas-spss-stata-systat" class="nav-link active" data-scroll-target="#epiinfo-minitab-s-plus-sas-spss-stata-systat"> <span class="header-section-number">3.1</span> EpiInfo, Minitab, S-PLUS, SAS, SPSS, Stata, Systat</a></li>
+<li><a href="#octave" class="nav-link" data-scroll-target="#octave"> <span class="header-section-number">3.2</span> Octave</a></li>
+</ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content">
+<header id="title-block-header">
+<h1 class="title display-7"><span id="importing-from-other-statistical-systems" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Importing from other statistical systems</span></span></h1>
+</header>
+
+<p>In this chapter we consider the problem of reading a binary data file written by another statistical system. This is often best avoided, but may be unavoidable if the originating system is not available.</p>
+<p>In all cases the facilities described were written for data files from specific versions of the other system (often in the early 2000s), and have not necessarily been updated for the most recent versions of the other system.</p>
+<section id="epiinfo-minitab-s-plus-sas-spss-stata-systat" class="level2 section" data-number="3.1">
+<h2 class="section anchored" data-number="3.1" data-anchor-id="epiinfo-minitab-s-plus-sas-spss-stata-systat"><span class="header-section-number">3.1</span> EpiInfo, Minitab, S-PLUS, SAS, SPSS, Stata, Systat</h2>
+<p>The recommended package <a href="https://CRAN.R-project.org/package=foreign"><strong>foreign</strong></a> provides import facilities for files produced by these statistical systems, and for export to Stata. In some cases these functions may require substantially less memory than <code>read.table</code> would. <code>write.foreign</code> (See <a href="Introduction.html#export-to-text-files">Export to text files</a>) provides an export mechanism with support currently for <code>SAS</code>, <code>SPSS</code> and <code>Stata</code>.</p>
+<p>EpiInfo versions 5 and 6 stored data in a self-describing fixed-width text format. <code>read.epiinfo</code> will read these <code>.REC</code> files into an R data frame. EpiData also produces data in this format.</p>
+<p>Function <code>read.mtp</code> imports a ‘Minitab Portable Worksheet’. This returns the components of the worksheet as an R list.</p>
+<p>Function <code>read.xport</code> reads a file in SAS Transport (XPORT) format and return a list of data frames. If SAS is available on your system, function <code>read.ssd</code> can be used to create and run a SAS script that saves a SAS permanent dataset (<code>.ssd</code> or <code>.sas7bdat</code>) in Transport format. It then calls <code>read.xport</code> to read the resulting file. (Package <a href="https://CRAN.R-project.org/package=Hmisc"><strong>Hmisc</strong></a> has a similar function <code>sas.get</code>, also running SAS.) For those without access to SAS but running on Windows, the SAS System Viewer (a zero-cost download) can be used to open SAS datasets and export them to e.g. <code>.csv</code> format.</p>
+<p>Function <code>read.S</code> which can read binary objects produced by S-PLUS 3.x, 4.x or 2000 on (32-bit) Unix or Windows (and can read them on a different OS). This is able to read many but not all S objects: in particular it can read vectors, matrices and data frames and lists containing those.</p>
+<p>Function <code>data.restore</code> reads S-PLUS data dumps (created by <code>data.dump</code>) with the same restrictions (except that dumps from the Alpha platform can also be read). It should be possible to read data dumps from S-PLUS 5.x and later written with <code>data.dump(oldStyle=T)</code>.</p>
+<p>If you have access to S-PLUS, it is usually more reliable to <code>dump</code> the object(s) in S-PLUS and <code>source</code> the dump file in R. For S-PLUS 5.x and later you may need to use <code>dump(..., oldStyle=T)</code>, and to read in very large objects it may be preferable to use the dump file as a batch script rather than use the <code>source</code> function.</p>
+<p>Function <code>read.spss</code> can read files created by the ‘save’ and ‘export’ commands in SPSS. It returns a list with one component for each variable in the saved data set. SPSS variables with value labels are optionally converted to R factors.</p>
+<p>SPSS Data Entry is an application for creating data entry forms. By default it creates data files with extra formatting information that <code>read.spss</code> cannot handle, but it is possible to export the data in an ordinary SPSS format.</p>
+<p>Some third-party applications claim to produce data ‘in SPSS format’ but with differences in the formats: <code>read.spss</code> may or may not be able to handle these.</p>
+<p>Stata <code>.dta</code> files are a binary file format. Files from versions 5 up to 12 of Stata can be read and written by functions <code>read.dta</code> and <code>write.dta</code>. Stata variables with value labels are optionally converted to (and from) R factors. For Stata versions 13 and later see CRAN packages <a href="https://CRAN.R-project.org/package=readstata13"><strong>readstata13</strong></a> and <a href="https://CRAN.R-project.org/package=haven"><strong>haven</strong></a>.</p>
+<p><code>read.systat</code> reads those Systat <code>SAVE</code> files that are rectangular data files (<code>mtype = 1</code>) written on little-endian machines (such as from Windows). These have extension <code>.sys</code> or (more recently) <code>.syd</code>.</p>
+</section>
+<section id="octave" class="level2 section" data-number="3.2">
+<h2 class="section anchored" data-number="3.2" data-anchor-id="octave"><span class="header-section-number">3.2</span> Octave</h2>
+<p>Octave is a numerical linear algebra system (<a href="https://www.gnu.org/software/octave/" class="uri">https://www.gnu.org/software/octave/</a>), and function <code>read.octave</code> in package <a href="https://CRAN.R-project.org/package=foreign"><strong>foreign</strong></a> can read in files in Octave text data format created using the Octave command <code>save -ascii</code>, with support for most of the common types of variables, including the standard atomic (real and complex scalars, matrices, and <em>N</em>-d arrays, strings, ranges, and boolean scalars and matrices) and recursive (structs, cells, and lists) ones.</p>
+
+
+</section>
+</main> <!-- /main -->
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.toc-action)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Spreadsheet-like-data.html">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Spreadsheet-like data</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Relational-databases.html">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Relational databases</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+  </div>
+</footer>
+
+
+</body></html>

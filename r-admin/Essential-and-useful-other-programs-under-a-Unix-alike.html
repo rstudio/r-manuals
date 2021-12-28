@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.2.405">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>R Manuals :: R Installation and Administration - 10&nbsp; Essential and useful other programs under a Unix-alike</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+  <script src="site_libs/quarto-nav/headroom.min.js"></script>
+  <script src="site_libs/clipboard/clipboard.min.js"></script>
+  <meta name="quarto:offset" content="./">
+  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+  <script src="site_libs/quarto-search/fuse.min.js"></script>
+  <script src="site_libs/quarto-search/quarto-search.js"></script>
+  <link href="./Configuration-on-a-Unix-alike.html" rel="next">
+  <link href="./The-standalone-Rmath-library.html" rel="prev">
+  <script src="site_libs/quarto-html/quarto.js"></script>
+  <script src="site_libs/quarto-html/popper.min.js"></script>
+  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="site_libs/quarto-html/anchor.min.js"></script>
+  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
+  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <script id="quarto-search-options" type="application/json">{
+    "location": "navbar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "end",
+    "type": "overlay",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script>
+</head>
+<body class="floating slimcontent">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">R Manuals :: R Installation and Administration</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./../index.html">Home</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
+        <li>
+    <a class="dropdown-item" href="./index.html">R Installation and Administration</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-data/index.html">R Data Import/Export</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-exts/index.html">Writing R Extensions</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-intro/index.html">An Introduction to R</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-ints/index.html">R Internals</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-lang/index.html">R Language Definition</a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./../about.html">About</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Essential and useful other programs under a Unix-alike</span></h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <div class="sidebar-menu-container"> 
+  <ul class="list-unstyled mt-1">
+      <li class="sidebar-item">
+  <a href="./index.html" class="">R Installation and Administration</a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Obtaining-R.html" class=""><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Obtaining R</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Installing-R-under-Unix-alikes.html" class=""><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Installing R under Unix-alikes</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Installing-R-under-Windows.html" class=""><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Installing R under Windows</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Installing-R-under-macOS.html" class=""><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Installing R under macOS</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Running-R.html" class=""><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Running R</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Add-on-packages.html" class=""><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Add-on packages</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Internationalization.html" class=""><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Internationalization and Localization</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Choosing-between-32--and-64-bit-builds.html" class=""><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Choosing between 32- and 64-bit builds</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./The-standalone-Rmath-library.html" class=""><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The standalone Rmath library</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Essential-and-useful-other-programs-under-a-Unix-alike.html" class="active"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Essential and useful other programs under a Unix-alike</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Configuration-on-a-Unix-alike.html" class=""><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Configuration on a Unix-alike</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Platform-notes.html" class=""><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Platform notes</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Function-and-variable-index.html" class="">Function and variable index</a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Concept-index.html" class="">Concept index</a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Environment-variable-index.html" class="">Environment variable index</a>
+</li>
+  </ul>
+  </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+      <nav id="TOC" role="doc-toc">
+<h2 id="toc-title">On this page</h2>
+<ul>
+<li><a href="#essential-programs-and-libraries" class="nav-link active" data-scroll-target="#essential-programs-and-libraries"> <span class="header-section-number">10.1</span> Essential programs and libraries</a></li>
+<li><a href="#useful-libraries-and-programs" class="nav-link" data-scroll-target="#useful-libraries-and-programs"> <span class="header-section-number">10.2</span> Useful libraries and programs</a>
+<ul class="collapse">
+<li><a href="#tcltk" class="nav-link" data-scroll-target="#tcltk"> <span class="header-section-number">10.2.1</span> Tcl/Tk</a></li>
+<li><a href="#java-support" class="nav-link" data-scroll-target="#java-support"> <span class="header-section-number">10.2.2</span> Java support</a></li>
+<li><a href="#other-compiled-languages" class="nav-link" data-scroll-target="#other-compiled-languages"> <span class="header-section-number">10.2.3</span> Other compiled languages</a></li>
+</ul></li>
+<li><a href="#linear-algebra" class="nav-link" data-scroll-target="#linear-algebra"> <span class="header-section-number">10.3</span> Linear algebra</a>
+<ul class="collapse">
+<li><a href="#blas" class="nav-link" data-scroll-target="#blas"> <span class="header-section-number">10.3.1</span> BLAS</a></li>
+<li><a href="#atlas" class="nav-link" data-scroll-target="#atlas"> <span class="header-section-number">10.3.2</span> ATLAS</a></li>
+<li><a href="#openblas" class="nav-link" data-scroll-target="#openblas"> <span class="header-section-number">10.3.3</span> OpenBLAS</a></li>
+<li><a href="#intel-mkl" class="nav-link" data-scroll-target="#intel-mkl"> <span class="header-section-number">10.3.4</span> Intel MKL</a></li>
+<li><a href="#shared-blas" class="nav-link" data-scroll-target="#shared-blas"> <span class="header-section-number">10.3.5</span> Shared BLAS</a></li>
+<li><a href="#lapack" class="nav-link" data-scroll-target="#lapack"> <span class="header-section-number">10.3.6</span> LAPACK</a></li>
+<li><a href="#caveats" class="nav-link" data-scroll-target="#caveats"> <span class="header-section-number">10.3.7</span> Caveats</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full">
+<header id="title-block-header">
+<h1 class="title display-7"><span id="essential-and-useful-other-programs-under-a-unix-alike" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Essential and useful other programs under a Unix-alike</span></span></h1>
+</header>
+
+<p>This appendix gives details of programs you will need to build R on Unix-like platforms, or which will be used by R if found by <code>configure</code>.</p>
+<p>Remember that some package management systems (such as RPM and Debian/Ubuntu’s) make a distinction between the user version of a package and the development version. The latter usually has the same name but with the extension <code>-devel</code> or <code>-dev</code>: you need both versions installed.</p>
+<section id="essential-programs-and-libraries" class="level2 section page-columns page-full" data-number="10.1">
+<h2 class="section anchored" data-number="10.1" data-anchor-id="essential-programs-and-libraries"><span class="header-section-number">10.1</span> Essential programs and libraries</h2>
+<div class="page-columns page-full"><p>You need a means of compiling C and Fortran 90 (see <a href="Configuration-on-a-Unix_002dalike.html#using-fortran">Using Fortran</a>). Your C compiler should be ISO/IEC&nbsp;60059<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, POSIX 1003.1 and C99-compliant.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> R tries to choose suitable flags<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> for the C compilers it knows about, but you may have to set <code>CC</code> or <code>CFLAGS</code> suitably. For versions of <code>gcc</code> prior to 5.1 with <code>glibc</code>-based Linux this means including <code>-std=gnu99</code><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. (Note that options essential to run the compiler even for linking, such as those to set the architecture, should be specified as part of <code>CC</code> rather than in <code>CFLAGS</code>.)</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;also known as IEEE&nbsp;754</p></li><li id="fn2" role="doc-endnote"><p><sup>2</sup>&nbsp;Note that C11 compilers need not be C99-compliant: R requires support for <code>double complex</code> and variable-length arrays which are optional in C11 but are mandatory in C99. C18 (also known as C17) is a ‘bugfix release’ of C11, clarifying the standard.</p></li><li id="fn3" role="doc-endnote"><p><sup>3</sup>&nbsp;Examples are <code>-std=gnu99</code>, <code>-std=c99</code> and <code>-c99</code>.</p></li><li id="fn4" role="doc-endnote"><p><sup>4</sup>&nbsp;<code>-std=c99</code> excludes POSIX functionality, but <code>config.h</code> will turn on all GNU extensions to include the POSIX functionality for R itself: this does not apply to badly-written packages. The default mode for GCC 5.1 and later is <code>-std=gnu11</code>, which currently includes the optional features R needs.</p></li></div></div>
+<p>Unless you do not want to view graphs on-screen (or use macOS) you need <code>X11</code> installed, including its headers and client libraries. For recent Fedora/RedHat distributions it means (at least) RPMs <code>libX11</code>, <code>libX11-devel</code>, <code>libXt</code> and <code>libXt-devel</code>. On Debian/Ubuntu we recommend the meta-package <code>xorg-dev</code>. If you really do not want these you will need to explicitly configure R without X11, using <code>--with-x=no</code>.</p>
+<p>The command-line editing (and command completion) depends on the GNU <code>readline</code> library (including its headers): version 6.0 or later is needed for all the features to be enabled. Otherwise you will need to configure with <code>--with-readline=no</code> (or equivalent).</p>
+<div class="page-columns page-full"><p>A suitably comprehensive <code>iconv</code> function is essential. The R usage requires <code>iconv</code> to be able to translate between <code>"latin1"</code> and <code>"UTF-8"</code>, to recognize <code>""</code> (as the current encoding) and <code>"ASCII"</code>, and to translate to and from the Unicode wide-character formats <code>"UCS-[24][BL]E"</code> — this is true by default for <code>glibc</code><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> but not of most commercial Unixes. However, you can make use of GNU <code>libiconv</code> (as used on macOS: see <a href="https://www.gnu.org/software/libiconv/" class="uri">https://www.gnu.org/software/libiconv/</a>).</p><div class="no-row-height column-margin column-container"><li id="fn5" role="doc-endnote"><p><sup>5</sup>&nbsp;However, it is possible to break the default behaviour of <code>glibc</code> by re-specifying the <code>gconv</code> modules to be loaded.</p></li></div></div>
+<div class="page-columns page-full"><p>The OS needs to have enough support<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> for wide-character types: this is checked at configuration. Some C99 functions<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> are required and checked for at configuration. A small number of POSIX functions<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> are essential, and others<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> will be used if available.</p><div class="no-row-height column-margin column-container"><li id="fn6" role="doc-endnote"><p><sup>6</sup>&nbsp;specifically, the C99 functionality of headers <code>wchar.h</code> and <code>wctype.h</code>, types <code>wctans_t</code> and <code>mbstate_t</code> and functions <code>mbrtowc</code>, <code>mbstowcs</code>, <code>wcrtomb</code>, <code>wcscoll</code>, <code>wcstombs</code>, <code>wctrans</code>, <code>wctype</code>, and <code>iswctype</code>.</p></li><li id="fn7" role="doc-endnote"><p><sup>7</sup>&nbsp;including <code>expm1</code>, <code>hypot</code>, <code>log1p</code>, <code>nearbyint</code> and <code>va_copy</code>.</p></li><li id="fn8" role="doc-endnote"><p><sup>8</sup>&nbsp;including <code>opendir</code>, <code>readdir</code>, <code>closedir</code>, <code>popen</code>, <code>stat</code>, <code>glob</code>, <code>access</code>, <code>getcwd</code> and <code>chdir</code> system calls, <code>select</code> on a Unix-alike, and either <code>putenv</code> or <code>setenv</code>.</p></li><li id="fn9" role="doc-endnote"><p><sup>9</sup>&nbsp;such as <code>realpath</code>, <code>symlink</code>.</p></li></div></div>
+<div class="page-columns page-full"><p>Installations of <code>zlib</code> (version 1.2.5 or later), <code>libbz2</code> (version 1.0.6 or later: called <strong>bzip2-libs</strong>/<strong>bzip2-devel</strong> or <strong>libbz2-1.0</strong>/<strong>libbz2-dev</strong> by some Linux distributions) and <code>liblzma</code><a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> version 5.0.3 or later are required.</p><div class="no-row-height column-margin column-container"><li id="fn10" role="doc-endnote"><p><sup>10</sup>&nbsp;most often distributed as part of <code>xz</code>: possible names in Linux distributions include <code>xz-devel</code>/<code>xz-libs</code> and <code>liblzma-dev</code>.</p></li></div></div>
+<p>Either PCRE1 (version 8.32 or later, formerly known as just PCRE) or PCRE2 is required: PCRE2 is preferred and using PCRE1 requires <code>configure</code> option <code>--with-pcre1</code>. Only the 8-bit library and headers are needed if these are packaged separately. JIT support (optional) is desirable for the best performance. For PCRE2 &gt;= 10.30 (which is desirable as matching has been re-written not to use recursion and the Unicode tables were updated to version 10)</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>.<span class="sc">/</span>configure <span class="sc">--</span>enable<span class="sc">-</span>jit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>suffices. If building PCRE1 for use with R a suitable <code>configure</code> command might be</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>.<span class="sc">/</span>configure <span class="sc">--</span>enable<span class="sc">-</span>utf <span class="sc">--</span>enable<span class="sc">-</span>unicode<span class="sc">-</span>properties <span class="sc">--</span>enable<span class="sc">-</span>jit <span class="sc">--</span>disable<span class="sc">-</span>cpp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>--enable-jit</code> flag is supported for most common CPUs but does not work (well or at all) for <code>arm64</code> macOS.</p>
+<p>Some packages require the ‘Unicode properties’ which are optional for PCRE1: support for this and JIT can be checked at run-time by calling <code>pcre_config()</code>.</p>
+<div class="page-columns page-full"><p>Library <code>libcurl</code> (version 7.28.0 or later<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>) is required. Information on <code>libcurl</code> is found from the <code>curl-config</code> script: if that is missing or needs to be overridden<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> there are macros to do so described in file <code>config.site</code>.</p><div class="no-row-height column-margin column-container"><li id="fn11" role="doc-endnote"><p><sup>11</sup>&nbsp;but not a major version greater than 7 should there ever be one: the major version has been 7 since 2000.</p></li><li id="fn12" role="doc-endnote"><p><sup>12</sup>&nbsp;for example to specify static linking with a build which has both shared and static libraries.</p></li></div></div>
+<div class="page-columns page-full"><p>A <code>tar</code> program is needed to unpack the sources and packages (including the recommended packages). A version<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a> that can automagically detect compressed archives is preferred for use with <code>untar()</code>: the configure script looks for <code>gtar</code> and <code>gnutar</code> before <code>tar</code> – use environment variable <code>TAR</code> to override this. (On NetBSD/OpenBSD systems set this to <code>bsdtar</code> if that is installed.)</p><div class="no-row-height column-margin column-container"><li id="fn13" role="doc-endnote"><p><sup>13</sup>&nbsp;Such as GNU <code>tar</code> 1.15 or later, <code>bsdtar</code> (from <a href="https://github.com/libarchive/libarchive/" class="uri">https://github.com/libarchive/libarchive/</a>, used as <code>tar</code> by FreeBSD and macOS 10.6 and later) or <code>tar</code> from the Heirloom Toolchest (<a href="http://heirloom.sourceforge.net/tools.html" class="uri">http://heirloom.sourceforge.net/tools.html</a>), although the latter does not support <code>xz</code> compression.</p></li></div></div>
+<p>There need to be suitable versions of the tools <code>grep</code> and <code>sed</code>: the problems are usually with old AT&amp;T and BSD variants. <code>configure</code> will try to find suitable versions (including looking in <code>/usr/xpg4/bin</code> which is used on some commercial Unixes).</p>
+<div class="page-columns page-full"><p>You will not be able to build most of the manuals unless you have <code>texi2any</code> version 5.1 or later installed (which requires <code>perl</code>), and if not most of the HTML manuals will be linked to a version on CRAN. To make PDF versions of the manuals you will also need file <code>texinfo.tex</code> installed (which is part of the GNU <strong>texinfo</strong> distribution but is often made part of the TeX package in re-distributions) as well as <code>texi2dvi</code>.<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> Further, the versions of <code>texi2dvi</code> and <code>texinfo.tex</code> need to be compatible: we have seen problems with older TeX distributions.</p><div class="no-row-height column-margin column-container"><li id="fn14" role="doc-endnote"><p><sup>14</sup>&nbsp;<code>texi2dvi</code> is normally a shell script. Some of the issues which have been observed with broken versions of <code>texi2dvi</code> can be circumvented by setting the environment variable <code>R_TEXI2DVICMD</code> to the value <code>emulation</code>.</p></li></div></div>
+<p>If you want to build from the R Subversion repository then <code>texi2any</code> is highly recommended as it is used to create files which are in the tarball but not stored in the Subversion repository.</p>
+<p>The PDF documentation (including <code>doc/NEWS.pdf</code>) and building vignettes needs <code>pdftex</code> and <code>pdflatex</code>. We require LaTeX version <code>2005/12/01</code> or later (for UTF-8 support). Building PDF package manuals (including the R reference manual) and vignettes is sensitive to the version of the LaTeX package <strong>hyperref</strong> and we recommend that the TeX distribution used is kept up-to-date. A number of standard LaTeX packages are required (including <strong>url</strong> and some of the font packages such as <strong>times</strong>, <strong>helvetic</strong>, <strong>ec</strong> and <strong>cm-super</strong>) and others such as <strong>hyperref</strong> and <strong>inconsolata</strong> are desirable (and without them you may need to change R’s defaults: see <a href="Installing-R-under-Unix_002dalikes.html#making-the-manuals">Making the manuals</a>). Note that package <strong>hyperref</strong> (currently) requires packages <strong>kvoptions</strong>, <strong>ltxcmds</strong> and <strong>refcount</strong>. For distributions based on TeX Live the simplest approach may be to install collections <strong>collection-latex</strong>, <strong>collection-fontsrecommended</strong>, <strong>collection-latexrecommended</strong>, <strong>collection-fontsextra</strong> and <strong>collection-latexextra</strong> (assuming they are not installed by default): Fedora uses names like <strong>texlive-collection-fontsextra</strong> and Debian/Ubuntu like <strong>texlive-fonts-extra</strong>.</p>
+<p>The essential programs should be in your <code>PATH</code> at the time <code>configure</code> is run: this will capture the full paths.</p>
+<p>Those distributing binary versions of R may need to be aware of the licences of the external libraries it is linked to (including ‘useful’ libraries from the next section). The <code>liblzma</code> library is in the public domain and X11, <code>libbzip2</code>, <code>libcurl</code> and <code>zlib</code> have MIT-style licences. PCRE and PCRE2 have a BSD-style licence which requires distribution of the licence (included in R’s <code>COPYRIGHTS</code> file) in binary distributions. GNU <code>readline</code> is licensed under GPL (which version(s) of GPL depends on the <code>readline</code> version).</p>
+</section>
+<section id="useful-libraries-and-programs" class="level2 section page-columns page-full" data-number="10.2">
+<h2 class="section anchored" data-number="10.2" data-anchor-id="useful-libraries-and-programs"><span class="header-section-number">10.2</span> Useful libraries and programs</h2>
+<p>The ability to use translated messages makes use of <code>gettext</code> and most likely needs GNU <code>gettext</code>: you do need this to work with new translations, but otherwise the version of the <code>gettext</code> runtime contained in the R sources will be used if no suitable external <code>gettext</code> is found.</p>
+<div class="page-columns page-full"><p>The ‘modern’ version of the <code>X11()</code>, <code>jpeg()</code>, <code>png()</code> and <code>tiff()</code> graphics devices uses the Cairo and Pango libraries. Cairo version 1.2.0 or later and Pango version 1.10 or later are required (but much later versions are current). R checks for <code>pkg-config</code>, and uses that to check first that the <code>pangocairo</code> package is installed (and if not, <code>cairo</code>) then if suitable code can be compiled. These tests will fail if <code>pkg-config</code> is not installed<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a>, and might fail if <code>cairo</code> was built statically unless <code>configure</code> option <code>--with-static-cairo</code> is used. Most systems with <code>Gtk+</code> 2.8 or later installed will have suitable libraries: for Fedora users the <code>pango-devel</code> RPM and its dependencies suffice. It is possible (but very unusual on a platform with X11) to build Cairo without its <code>cairo-xlib</code> module in which case <code>X11(type = "cairo")</code> will not be available. Pango is optional but highly desirable as it is likely to give much better text rendering, including kerning.</p><div class="no-row-height column-margin column-container"><li id="fn15" role="doc-endnote"><p><sup>15</sup>&nbsp;If necessary the path to <code>pkg-config</code> can be specified by setting <code>PKG_CONFIG</code> in <code>config.site</code>, on the <code>configure</code> command line or in the environment. There is a compatible re-implementation of <code>pkg-config</code> called <code>pkgconf</code> which can be used in the unlikely event that is installed but not linked to <code>pkg-config</code>.</p></li></div></div>
+<div class="page-columns page-full"><p>For the best font experience with these devices you need suitable fonts installed: Linux users will want the <code>urw-fonts</code> package. On platforms which have it available, the <code>msttcorefonts</code> package<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a> provides TrueType versions of Monotype fonts such as Arial and Times New Roman. Another useful set of fonts is the ‘liberation’ TrueType fonts available at <a href="https://pagure.io/liberation-fonts" class="uri">https://pagure.io/liberation-fonts</a>,<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a> which cover the Latin, Greek and Cyrillic alphabets plus a fair range of signs. These share metrics with Arial, Times New Roman and Courier New, and contain fonts rather similar to the first two (<a href="https://en.wikipedia.org/wiki/Liberation_fonts" class="uri">https://en.wikipedia.org/wiki/Liberation_fonts</a>). Then there is the ‘Free UCS Outline Fonts’ project (<a href="https://www.gnu.org/software/freefont/" class="uri">https://www.gnu.org/software/freefont/</a>) which are OpenType/TrueType fonts based on the URW fonts but with extended Unicode coverage. See the R help on <code>X11</code> on selecting such fonts.</p><div class="no-row-height column-margin column-container"><li id="fn16" role="doc-endnote"><p><sup>16</sup>&nbsp;also known as <code>ttf-mscorefonts-installer</code> in the Debian/Ubuntu world: see also <a href="https://en.wikipedia.org/wiki/Core_fonts_for_the_Web" class="uri">https://en.wikipedia.org/wiki/Core_fonts_for_the_Web</a>.</p></li><li id="fn17" role="doc-endnote"><p><sup>17</sup>&nbsp;<code>ttf-liberation</code> in Debian/Ubuntu.</p></li></div></div>
+<p>The bitmapped graphics devices <code>jpeg()</code>, <code>png()</code> and <code>tiff()</code> need the appropriate headers and libraries installed: <code>jpeg</code> (version 6b or later, or <code>libjpeg-turbo</code>) or <code>libpng</code> (version 1.2.7 or later) and <code>zlib</code> or <code>libtiff</code> (versions 4.0.[5-10] and 4.[123].0 have been tested) respectively. <code>pkg-config</code> is used if available and so needs the appropriate <code>.pc</code> file (which requires <code>libtiff</code> version 4.x and is not available on all platforms for <code>jpeg</code> before version 9c). They also need support for either <code>X11</code> or <code>cairo</code> (see above). Should support for these devices <strong>not</strong> be required or broken system libraries need to be avoided there are <code>configure</code> options <code>--without-libpng</code>, <code>--without-jpeglib</code> and <code>--without-libtiff</code>. The TIFF library has many optional features such as <code>jpeg</code>, <code>libz</code>, <code>zstd</code>, <code>lzma</code>, <code>webp</code>, <code>jbig</code> and <code>jpeg12</code>, none of which is required for the <code>tiff()</code> devices but may need to be present to link the library (usually only an issue for static linking). <code>pkg-config</code> can tell you what other libraries are required for linking, for example by <code>pkg-config libtiff-4 --static --libs</code>.</p>
+<p>Option <code>--with-system-tre</code> is also available: it needs a recent version of TRE. (The latest sources are in the <code>git</code> repository at <a href="https://github.com/laurikari/tre/" class="uri">https://github.com/laurikari/tre/</a>, but at the time of writing (2016) the resulting build did not pass its checks.).</p>
+<div class="page-columns page-full"><p>An implementation of XDR is required, and the R sources contain one which is likely to suffice (although a system version may have higher performance). XDR is part of RPC and historically has been part of <code>libc</code> on a Unix-alike. (In principle <code>man xdr_string</code> should tell you which library is needed, but it often does not: on some OSes it is provided by <code>libnsl</code>.) However some builds<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a> of <code>glibc</code> omit or hide it with the intention that the TI-RPC library be used, in which case <code>libtirpc</code> (and its development version) should be installed, and its headers<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a> need to be on the C include path or under <code>/usr/include/tirpc</code>.</p><div class="no-row-height column-margin column-container"><li id="fn18" role="doc-endnote"><p><sup>18</sup>&nbsp;Including that used by Fedora.</p></li><li id="fn19" role="doc-endnote"><p><sup>19</sup>&nbsp;R uses <code>rpc/xdr.h</code> but that includes <code>netconfig.h</code> from the top <code>tirpc</code> directory.</p></li></div></div>
+<p>Use of the X11 clipboard selection requires the <code>Xmu</code> headers and libraries. These are normally part of an X11 installation (e.g.&nbsp;the Debian meta-package <code>xorg-dev</code>), but some distributions have split this into smaller parts, so for example recent versions of Fedora require the <code>libXmu</code> and <code>libXmu-devel</code> RPMs.</p>
+<p>Some systems (notably macOS and at least some FreeBSD systems) have inadequate support for collation in multibyte locales. It is possible to replace the OS’s collation support by that from ICU (International Components for Unicode, <a href="https://icu.unicode.org/" class="uri">https://icu.unicode.org/</a>), and this provides much more precise control over collation on all systems. ICU is available as sources and as binary distributions for (at least) most Linux distributions, FreeBSD, macOS and AIX, usually as <code>libicu</code> or <code>icu4c</code>. It will be used by default where available: should a very old or broken version of ICU be found this can be suppressed by <code>--without-ICU</code>.</p>
+<p>The <code>bitmap</code> and <code>dev2bitmap</code> devices and function <code>embedFonts()</code> use ghostscript (<a href="https://www.ghostscript.com/" class="uri">https://www.ghostscript.com/</a>). This should either be in your path when the command is run, or its full path specified by the environment variable <code>R_GSCMD</code> at that time.</p>
+<p>At the time of writing a full installation on Fedora Linux used the following packages and their development versions, and this may provide a useful checklist for other systems:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>bzip2 cairo fontconfig freetype fribidi glib2 harfbuzz libX11 libXext</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>libXt libcurl libicu libjpeg libpng libtiff libtirpc libxcrypt ncurses</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>pango pkgconf<span class="sc">-</span>pkg<span class="sc">-</span>config pcre2 readline tcl tk xz zlib</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="tcltk" class="level3 subsection page-columns page-full" data-number="10.2.1">
+<h3 class="subsection anchored" data-number="10.2.1" data-anchor-id="tcltk"><span class="header-section-number">10.2.1</span> Tcl/Tk</h3>
+<p>The <strong>tcltk</strong> package needs Tcl/Tk ≥ 8.4 installed: the sources are available at <a href="https://www.tcl.tk/" class="uri">https://www.tcl.tk/</a>. To specify the locations of the Tcl/Tk files you may need the configuration options</p>
+<dl>
+<dt><code>--with-tcltk</code></dt>
+<dd><p>use Tcl/Tk, or specify its library directory</p>
+</dd>
+<dt><code>--with-tcl-config=TCL_CONFIG</code></dt>
+<dd><p>specify location of <code>tclConfig.sh</code></p>
+</dd>
+<dt><code>--with-tk-config=TK_CONFIG</code></dt>
+<dd><p>specify location of <code>tkConfig.sh</code></p>
+</dd>
+</dl>
+<p>or use the configure variables <code>TCLTK_LIBS</code> and <code>TCLTK_CPPFLAGS</code> to specify the flags needed for linking against the Tcl and Tk libraries and for finding the <code>tcl.h</code> and <code>tk.h</code> headers, respectively. If you have both 32- and 64-bit versions of Tcl/Tk installed, specifying the paths to the correct config files may be necessary to avoid confusion between them.</p>
+<p>Versions of Tcl/Tk up to 8.5.19 and 8.6.11 have been tested (including most versions of 8.4.x, but not recently).</p>
+<div class="page-columns page-full"><p>Note that the <code>tk.h</code> header includes<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a> X11 headers, so you will need X11 and its development files installed.</p><div class="no-row-height column-margin column-container"><li id="fn20" role="doc-endnote"><p><sup>20</sup>&nbsp;This is true even for the ‘Aqua’ version of Tk on macOS, but distributions of that include a copy of the X11 files needed.</p></li></div></div>
+</section>
+<section id="java-support" class="level3 subsection" data-number="10.2.2">
+<h3 class="subsection anchored" data-number="10.2.2" data-anchor-id="java-support"><span class="header-section-number">10.2.2</span> Java support</h3>
+<p>The build process looks for Java support on the host system, and if it finds it sets some settings which are useful for Java-using packages (such as <a href="https://CRAN.R-project.org/package=rJava"><strong>rJava</strong></a> and <a href="https://CRAN.R-project.org/package=JavaGD"><strong>JavaGD</strong></a>: these require a full JDK). This check can be suppressed by configure option <code>--disable-java</code>. Configure variable <code>JAVA_HOME</code> can be set to point to a specific JRE/JDK, on the <code>configure</code> command line or in the environment.</p>
+<p>Principal amongst these settings are some paths to the Java libraries and JVM, which are stored in environment variable <code>R_JAVA_LD_LIBRARY_PATH</code> in file <code>R_HOME/etc/ldpaths</code> (or a sub-architecture-specific version). A typical setting for <code>x86_64</code> Linux is</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>JAVA_HOME<span class="op">=/</span>usr<span class="op">/</span>lib<span class="op">/</span>jvm<span class="op">/</span>java<span class="op">-</span><span class="fl">1.8</span><span class="er">.0</span><span class="op">-</span>openjdk<span class="op">-</span><span class="fl">1.8</span><span class="er">.0</span><span class="fl">.265</span><span class="er">.b01</span><span class="op">-</span><span class="fl">1.</span><span class="bu">f</span><span class="er">c32</span><span class="op">.</span>x86_64<span class="op">/</span>jre</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>R_JAVA_LD_LIBRARY_PATH<span class="op">=</span>$<span class="op">{</span>JAVA_HOME<span class="op">}/</span>lib<span class="op">/</span>amd64<span class="op">/</span>server</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Unfortunately this depends on the exact version of the JRE/JDK installed, and so may need updating if the Java installation is updated. This can be done by running <code>R CMD javareconf</code> which updates settings in both <code>R_HOME/etc/Makeconf</code> and <code>R_HOME/etc/ldpaths</code>. See <code>R CMD javareconf --help</code> for details: note that this needs to be done by the account owning the R installation.</p>
+<p>Another way of overriding those settings is to set the environment variable <code>R_JAVA_LD_LIBRARY_PATH</code> (before R is started, hence not in <code>~/.Renviron</code>), which suffices to run already-installed Java-using packages. For example</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>R_JAVA_LD_LIBRARY_PATH<span class="op">=/</span>usr<span class="op">/</span>lib<span class="op">/</span>jvm<span class="op">/</span>java<span class="op">-</span><span class="fl">1.8</span><span class="er">.0</span><span class="op">/</span>jre<span class="op">/</span>lib<span class="op">/</span>amd64<span class="op">/</span>server</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>It may be possible to avoid this by specifying an invariant link as the path when configuring. For example, on that system any of</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>JAVA_HOME<span class="ot">=</span><span class="er">/</span>usr<span class="sc">/</span>lib<span class="sc">/</span>jvm<span class="sc">/</span>java</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>JAVA_HOME<span class="ot">=</span><span class="er">/</span>usr<span class="sc">/</span>lib<span class="sc">/</span>jvm<span class="sc">/</span>java<span class="dv">-1</span>.<span class="fl">8.0</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>JAVA_HOME<span class="ot">=</span><span class="er">/</span>usr<span class="sc">/</span>lib<span class="sc">/</span>jvm<span class="sc">/</span>java<span class="dv">-1</span>.<span class="fl">8.0</span><span class="sc">/</span>jre</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>JAVA_HOME<span class="ot">=</span><span class="er">/</span>usr<span class="sc">/</span>lib<span class="sc">/</span>jvm<span class="sc">/</span>jre<span class="dv">-1</span>.<span class="fl">8.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>worked (since the ‘auto’ setting of <code>/etc/alternatives</code> chose Java 8 aka 1.8.0).</p>
+<p>‘Non-server’ Oracle distributions of Java as from version 11 are of a full JDK. However, Linux distributions can be confusing: for example Fedora 32 had</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>java<span class="dv">-1</span>.<span class="fl">8.0</span><span class="sc">-</span>openjdk</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>java<span class="dv">-1</span>.<span class="fl">8.0</span><span class="sc">-</span>openjdk<span class="sc">-</span>devel</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>java<span class="sc">-</span>openjdk</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>java<span class="sc">-</span>openjdk<span class="sc">-</span>devel</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>java<span class="dv">-11</span><span class="sc">-</span>openjdk</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>java<span class="dv">-11</span><span class="sc">-</span>openjdk<span class="sc">-</span>devel</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>java<span class="sc">-</span>latest<span class="sc">-</span>openjdk</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>java<span class="sc">-</span>latest<span class="sc">-</span>openjdk<span class="sc">-</span>devel</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>where the <code>-devel</code> RPMs are needed to complete the JDK. (At the time of writing <code>java-openjdk</code> was Java 14.) Debian/Ubuntu use <code>-jre</code> and <code>-jdk</code>, e.g.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install default-jdk</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="other-compiled-languages" class="level3 subsection" data-number="10.2.3">
+<h3 class="subsection anchored" data-number="10.2.3" data-anchor-id="other-compiled-languages"><span class="header-section-number">10.2.3</span> Other compiled languages</h3>
+<p>Some add-on packages need a C++ compiler. This is specified by the configure variables <code>CXX</code>, <code>CXXFLAGS</code> and similar. <code>configure</code> will normally find a suitable compiler. It is possible to specify an alternative C++17 compiler by the configure variables <code>CXX17</code>, <code>CXX17STD</code>, <code>CXX17FLAGS</code> and similar (see <a href="Installing-R-under-Unix_002dalikes.html#c-support">C++ Support</a>). Again, <code>configure</code> will normally find a suitable value for <code>CXX17STD</code> if the compiler given by <code>CXX</code> is capable of compiling C++17 code, but it is possible that a completely different compiler will be needed. (Similar macros are provided for C++20.)</p>
+<p>For source files with extension <code>.f90</code> or <code>.f95</code> containing free-form Fortran, the compiler defined by the macro <code>FC</code> is used by <code>R CMD INSTALL</code>. Note that it is detected by the name of the command without a test that it can actually compile Fortran 90 code. Set the configure variable <code>FC</code> to override this if necessary: variables <code>FCFLAGS</code> and <code>FCLIBS_XTRA</code> might also need to be set.</p>
+<p>See file <code>config.site</code> in the R source for more details about these variables.</p>
+</section>
+</section>
+<section id="linear-algebra" class="level2 section page-columns page-full" data-number="10.3">
+<h2 class="section anchored" data-number="10.3" data-anchor-id="linear-algebra"><span class="header-section-number">10.3</span> Linear algebra</h2>
+<section id="blas" class="level3 subsection page-columns page-full" data-number="10.3.1">
+<h3 class="subsection anchored" data-number="10.3.1" data-anchor-id="blas"><span class="header-section-number">10.3.1</span> BLAS</h3>
+<p>The linear algebra routines in R can make use of enhanced BLAS (Basic Linear Algebra Subprograms, <a href="https://www.netlib.org/blas/faq.html" class="uri">https://www.netlib.org/blas/faq.html</a>) routines. However, these have to be explicitly requested at configure time: R provides an internal BLAS which is well-tested and will be adequate for most uses of R.</p>
+<div class="page-columns page-full"><p>You can specify a particular BLAS library <em>via</em> a value for the configuration option <code>--with-blas</code> and not to use an external BLAS library by <code>--without-blas</code> (the default). If <code>--with-blas</code> is given with no <code>=</code>, its value is taken from the environment variable <code>BLAS_LIBS</code>, set for example in <code>config.site</code>. If neither the option nor the environment variable supply a value, a search is made for a suitable<a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a> BLAS. If the value is not obviously a linker command (starting with a dash or giving the path to a library), it is prefixed by <code>-l</code>, so</p><div class="no-row-height column-margin column-container"><li id="fn21" role="doc-endnote"><p><sup>21</sup>&nbsp;The search includes OpenBLAS, ATLAS and a generic <code>libblas</code>, plus some platform-specific choices (see below).</p></li></div></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">--</span>with<span class="sc">-</span>blas<span class="ot">=</span><span class="st">"foo"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>is an instruction to link against <code>-lfoo</code> to find an external BLAS (which needs to be found both at link time and run time).</p>
+<p>The configure code checks that the external BLAS is complete (it must include all double precision and double complex routines, as well as <code>LSAME</code>), and appears to be usable. However, an external BLAS has to be usable from a shared object (so must contain position-independent code), and that is not checked.</p>
+<div class="page-columns page-full"><p>Some enhanced BLASes are compiler-system-specific (<code>sunperf</code> on Solaris<a href="#fn22" class="footnote-ref" id="fnref22" role="doc-noteref"><sup>22</sup></a>, <code>libessl</code> on IBM, <code>Accelerate</code> on macOS). The correct incantation for these is often found <em>via</em> <code>--with-blas</code> with no value on the appropriate platforms.</p><div class="no-row-height column-margin column-container"><li id="fn22" role="doc-endnote"><p><sup>22</sup>&nbsp;Using the Oracle Developer Studio <code>cc</code> and <code>f95</code> compilers</p></li></div></div>
+<p>Some of the external BLASes are multi-threaded. One issue is that R profiling (which uses the <code>SIGPROF</code> signal) may cause problems, and you may want to disable profiling if you use a multi-threaded BLAS. Note that using a multi-threaded BLAS can result in taking more CPU time and even more elapsed time (occasionally dramatically so) than using a similar single-threaded BLAS. On a machine running other tasks, there can be contention for CPU caches that reduces the effectiveness of the optimization of cache use by a BLAS implementation: some people warn that this is especially problematic for hyperthreaded CPUs.</p>
+<p>Note that under Unix (but not under Windows) if R is compiled against a non-default BLAS and <code>--enable-BLAS-shlib</code> is <strong>not</strong> used (it is the default on all platforms except AIX), then all BLAS-using packages must also be. So if R is re-built to use an enhanced BLAS then packages such as <a href="https://CRAN.R-project.org/package=quantreg"><strong>quantreg</strong></a> will need to be re-installed; they may be under other circumstances.</p>
+<p>R relies on ISO/IEC&nbsp;60559 compliance of an external BLAS. This can be broken if for example the code assumes that terms with a zero factor are always zero and do not need to be computed—whereas <code>x*0</code> can be <code>NaN</code>. This is checked in the test suite.</p>
+<p>External BLAS implementations often make less use of extended-precision floating-point registers (where available) and will almost certainly re-order computations. This can result in less accuracy than using a reference BLAS, and may result in different solutions, e.g.&nbsp;different signs in SVD and eigendecompositions.</p>
+<p>Debian/Ubuntu systems provide a system-specific way to switch the BLAS in use. Build R with <code>-with-blas</code> to select the OS version of the reference BLAS, and then use <code>update-alternatives</code> to switch between the available BLAS libraries. See <a href="https://wiki.debian.org/DebianScience/LinearAlgebraLibraries" class="uri">https://wiki.debian.org/DebianScience/LinearAlgebraLibraries</a>.</p>
+<p>The URIs for several of these BLAS have been subject to frequent gratuitous changes, so you will need to search for their current locations.</p>
+<p>BLAS (and LAPACK) routines may be used inside threaded code, for example in OpenMP sections in packages such as <strong>mgcv</strong>. The reference implementations are thread-safe but external ones may not be (even single-threaded ones): this can lead to hard-to-track-down incorrect results or segfaults.</p>
+<p><strong>NOTE:</strong> BLAS libraries built with <code>gfortran</code>&nbsp;9 (and later and versions 8.4, 7.5 and later in those series) require calls from C/C++ to handle ‘hidden’ character lengths — R itself does so but many packages do not and some segfault. (This applies also to external LAPACK libraries.)</p>
+</section>
+<section id="atlas" class="level3 subsubsection page-columns page-full" data-number="10.3.2">
+<h3 class="subsubsection anchored" data-number="10.3.2" data-anchor-id="atlas"><span class="header-section-number">10.3.2</span> ATLAS</h3>
+<p>ATLAS (<a href="http://math-atlas.sourceforge.net/" class="uri">http://math-atlas.sourceforge.net/</a>) is a “tuned” BLAS that runs on a wide range of Unix-alike platforms. Unfortunately it is built by default as a static library that on some platforms may not be able to be used with shared objects such as are used in R packages. Be careful when using pre-built versions of ATLAS static libraries (they seem to work on <code>ix86</code> platforms, but not always on <code>x86_64</code> ones).</p>
+<p>ATLAS contains replacements for a small number of LAPACK routines, but can be built to merge these with LAPACK sources to include a full LAPACK library.</p>
+<p>Recent versions of ATLAS can be built as a single shared library, either <code>libsatlas</code> or <code>libtatlas</code> (serial or threaded respectively): these may even contain a full LAPACK. Such builds can be used by one of</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="sc">--</span>with<span class="sc">-</span>blas<span class="ot">=</span>satlas</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="sc">--</span>with<span class="sc">-</span>blas<span class="ot">=</span>tatlas</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>or, as on <code>x86_64</code> Fedora where a path needs to be specified,</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">--</span>with<span class="sc">-</span>blas<span class="ot">=</span><span class="st">"-L/usr/lib64/atlas -lsatlas"</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="sc">--</span>with<span class="sc">-</span>blas<span class="ot">=</span><span class="st">"-L/usr/lib64/atlas -ltatlas"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="page-columns page-full"><p>Distributed ATLAS libraries cannot be tuned to your machine and so are a compromise: for example Fedora tunes <code>x86_64</code> for CPUs with SSE3 extensions, and separate <code>atlas-sse2</code> and <code>atlas-sse3</code> <code>i686</code> RPMs are available.<a href="#fn23" class="footnote-ref" id="fnref23" role="doc-noteref"><sup>23</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn23" role="doc-endnote"><p><sup>23</sup>&nbsp;There were others for earlier versions of ATLAS, and are for non-Intel architectures. The only way to see exactly which CPUs the distributed libraries have been tuned for is to read the <code>atlas.spec</code> file: at the time of writing <code>HAMMER64SSE3</code> and <code>Corei264AVX</code> for <code>x86_64</code> Fedora.</p></li></div></div>
+<p>Note that building R on Linux against distributed shared libraries may need <code>-devel</code> or <code>-dev</code> packages installed.</p>
+<p>Linking against multiple static libraries requires one of</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">--</span>with<span class="sc">-</span>blas<span class="ot">=</span><span class="st">"-lf77blas -latlas"</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="sc">--</span>with<span class="sc">-</span>blas<span class="ot">=</span><span class="st">"-lptf77blas -lpthread -latlas"</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="sc">--</span>with<span class="sc">-</span>blas<span class="ot">=</span><span class="st">"-L/path/to/ATLAS/libs -lf77blas -latlas"</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="sc">--</span>with<span class="sc">-</span>blas<span class="ot">=</span><span class="st">"-L/path/to/ATLAS/libs -lptf77blas -lpthread -latlas"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="page-columns page-full"><p>Consult its installation guide<a href="#fn24" class="footnote-ref" id="fnref24" role="doc-noteref"><sup>24</sup></a> for how to build ATLAS as a shared library or as a static library with position-independent code (on platforms where that matters).</p><div class="no-row-height column-margin column-container"><li id="fn24" role="doc-endnote"><p><sup>24</sup>&nbsp;<a href="http://math-atlas.sourceforge.net/atlas_install/" class="uri">http://math-atlas.sourceforge.net/atlas_install/</a></p></li></div></div>
+<div class="page-columns page-full"><p>According to the ATLAS FAQ<a href="#fn25" class="footnote-ref" id="fnref25" role="doc-noteref"><sup>25</sup></a> the maximum number of threads used by multi-threaded ATLAS is set at compile time. Also, the author advises against using multi-threaded ATLAS on hyperthreaded CPUs without restricting affinities at compile-time to one virtual core per physical CPU. (For the Fedora libraries the compile-time flag specifies 4 threads.)</p><div class="no-row-height column-margin column-container"><li id="fn25" role="doc-endnote"><p><sup>25</sup>&nbsp;<a href="http://math-atlas.sourceforge.net/faq.html#tnum" class="uri">http://math-atlas.sourceforge.net/faq.html#tnum</a></p></li></div></div>
+</section>
+<section id="openblas" class="level3 subsubsection page-columns page-full" data-number="10.3.3">
+<h3 class="subsubsection anchored" data-number="10.3.3" data-anchor-id="openblas"><span class="header-section-number">10.3.3</span> OpenBLAS</h3>
+<p>Dr Kazushige Goto wrote a tuned BLAS for several processors and OSes, which was frozen in mid-2010. OpenBLAS (<a href="https://www.openblas.net/" class="uri">https://www.openblas.net/</a>) is a descendant project with support for some later CPUs.</p>
+<p>This can be used by configuring R with something like</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">--</span>with<span class="sc">-</span>blas<span class="ot">=</span><span class="st">"-lopenblas"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>See see <a href="#shared-blas">Shared BLAS</a> for an alternative (and in many ways preferable) way to use them.</p>
+<div class="page-columns page-full"><p>Some platforms provide multiple builds of OpenBLAS: for example Fedora 32 has RPMs<a href="#fn26" class="footnote-ref" id="fnref26" role="doc-noteref"><sup>26</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn26" role="doc-endnote"><p><sup>26</sup>&nbsp;(and more, e.g.&nbsp;for 64-bit ints and static versions).</p></li></div></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>openblas</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>openblas<span class="sc">-</span>threads</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>openblas<span class="sc">-</span>openmp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>providing shared libraries</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>libopenblas.so</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>libopenblasp.so</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>libopenblaso.so</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>respectively, each of which can be used as a shared BLAS. For the second and third the number of threads is controlled by <code>OPENBLAS_NUM_THREADS</code> and <code>OMP_NUM_THREADS</code> (as usual for OpenMP) respectively. There is also a Fedora RPM <code>openblas-Rblas</code> to replace <code>libRblas.so</code> in their distribution of R.</p>
+<p>Note that building R on Linux against distributed libraries may need <code>-devel</code> or <code>-dev</code> packages installed.</p>
+<p>For <code>ix86</code> and <code>x86_64</code> most distributed libraries contain several alternatives for different CPU microarchitectures with the choice being made at run time.</p>
+</section>
+<section id="intel-mkl" class="level3 subsubsection page-columns page-full" data-number="10.3.4">
+<h3 class="subsubsection anchored" data-number="10.3.4" data-anchor-id="intel-mkl"><span class="header-section-number">10.3.4</span> Intel MKL</h3>
+<p>For Intel processors (and perhaps others) and some distributions of Linux, there is Intel’s Math Kernel Library. You are strongly encouraged to read the MKL User’s Guide, which is installed with the library, before attempting to link to MKL. This includes a ‘link line advisor’ which will suggest appropriate incantations: its use is recommended. Or see <a href="https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onemkl/link-line-advisor.html" class="uri">https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onemkl/link-line-advisor.html</a>.</p>
+<div class="page-columns page-full"><p>There are also versions of MKL for macOS<a href="#fn27" class="footnote-ref" id="fnref27" role="doc-noteref"><sup>27</sup></a> and Windows, but when these have been tried they did not work with the default compilers used for R on those platforms.</p><div class="no-row-height column-margin column-container"><li id="fn27" role="doc-endnote"><p><sup>27</sup>&nbsp;The issue for macOS has been the use of double-complex routines.</p></li></div></div>
+<p>The MKL interface has changed several times but has been stable in recent years: the following examples have been used with versions 10.3 to 2020.2, for GCC compilers on <code>x86_64</code>.</p>
+<p>To use a sequential version of MKL we used</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>MKL_LIB_PATH<span class="op">=/</span>path<span class="op">/</span>to<span class="op">/</span>intel_mkl<span class="op">/</span>mkl<span class="op">/</span>lib<span class="op">/</span>intel64</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>export LD_LIBRARY_PATH<span class="op">=</span>$MKL_LIB_PATH</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>MKL<span class="op">=</span><span class="st">"-L${MKL_LIB_PATH} -lmkl_gf_lp64 -lmkl_core -lmkl_sequential"</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="op">./</span>configure <span class="op">--</span>with<span class="op">-</span>blas<span class="op">=</span><span class="st">"$MKL"</span> <span class="op">--</span>with<span class="op">-</span>lapack</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The option <code>--with-lapack</code> is used since MKL contains a tuned copy of LAPACK (often older than the current version) as well as BLAS (see <a href="#lapack">LAPACK</a>), although this can be omitted.</p>
+<p>Threaded MKL may be used by replacing the line defining the variable <code>MKL</code> by</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>MKL<span class="ot">=</span><span class="st">"-L${MKL_LIB_PATH} -lmkl_gf_lp64 -lmkl_core \</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="st">     -lmkl_gnu_thread -dl -fopenmp"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>R can also be linked against a single shared library, <code>libmkl_rt.so</code>, for both BLAS and LAPACK, but the correct OpenMP and MKL interface layer then has to be selected via environment variables. With 64-bit builds and the GCC compilers, we used</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>export MKL_INTERFACE_LAYER<span class="ot">=</span>GNU,LP64 </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>export MKL_THREADING_LAYER<span class="ot">=</span>GNU</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>On Debian/Ubuntu, MKL is provided by package <code>intel-mkl-full</code> and one can set <code>libmkl_rt.so</code> as the system-wide implementation of both BLAS and LAPACK during installation of the package, so that also R installed from Debian/Ubuntu package <code>r-base</code> would use it. It is, however, still essential to set <code>MKL_INTERFACE_LAYER</code> and <code>MKL_THREADING_LAYER</code> before running R, otherwise MKL computations will produce incorrect results. R does not have to be rebuilt to use MKL, but <code>configure</code> include tests which may discover some errors such as a failure to set the correct OpenMP and MKL interface layer.</p>
+<p>The default number of threads will be chosen by the OpenMP software, but can be controlled by setting <code>OMP_NUM_THREADS</code> or <code>MKL_NUM_THREADS</code>, and in recent versions seems to default to a sensible value for sole use of the machine. (Parallel MKL has not always passed <code>make check-all</code>, but did with MKL 2019.4 and later.)</p>
+<p>MKL includes a partial implementation of FFTW3, which causes trouble for applications that require some of the FFTW3 functionality unsupported in MKL. Please see the MKL manuals for description of these limitations and for instructions on how to create a custom version of MKL which excludes the FFTW3 wrappers.</p>
+<p>It was reported in 2015 that</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="sc">--</span>with<span class="sc">-</span>blas<span class="ot">=</span><span class="st">'-mkl=parallel'</span> <span class="sc">--</span>with<span class="sc">-</span>lapack</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>worked with the Intel 2015.3 compilers on Centos 6.</p>
+</section>
+<section id="shared-blas" class="level3 subsubsection" data-number="10.3.5">
+<h3 class="subsubsection anchored" data-number="10.3.5" data-anchor-id="shared-blas"><span class="header-section-number">10.3.5</span> Shared BLAS</h3>
+<p>The BLAS library will be used for many of the add-on packages as well as for R itself. This means that it is better to use a shared/dynamic BLAS library, as most of a static library will be compiled into the R executable and each BLAS-using package.</p>
+<p>R offers the option of compiling the BLAS into a dynamic library <code>libRblas</code> stored in <code>R_HOME/lib</code> and linking both R itself and all the add-on packages against that library.</p>
+<p>This is the default on all platforms except AIX unless an external BLAS is specified and found: for the latter it can be used by specifying the option <code>--enable-BLAS-shlib</code>, and it can always be disabled via <code>--disable-BLAS-shlib</code>.</p>
+<p>This has both advantages and disadvantages.</p>
+<ul>
+<li>It saves space by having only a single copy of the BLAS routines, which is helpful if there is an external static BLAS (as used to be standard for ATLAS).</li>
+<li>There may be performance disadvantages in using a shared BLAS. Probably the most likely is when R’s internal BLAS is used and R is <em>not</em> built as a shared library, when it is possible to build the BLAS into <code>R.bin</code> (and <code>libR.a</code>) without using position-independent code. However, experiments showed that in many cases using a shared BLAS was as fast, provided high levels of compiler optimization are used.</li>
+<li>It is easy to change the BLAS without needing to re-install R and all the add-on packages, since all references to the BLAS go through <code>libRblas</code>, and that can be replaced. Note though that any dynamic libraries the replacement links to will need to be found by the linker: this may need the library path to be changed in <code>R_HOME/etc/ldpaths</code>.</li>
+</ul>
+<p>Another option to change the BLAS in use is to symlink a single dynamic BLAS library to <code>R_HOME/lib/libRblas.so</code>. For example, just</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>mv R_HOME<span class="sc">/</span>lib<span class="sc">/</span>libRblas.so R_HOME<span class="sc">/</span>lib<span class="sc">/</span>libRblas.so.keep</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>ln <span class="sc">-</span>s <span class="sc">/</span>usr<span class="sc">/</span>lib64<span class="sc">/</span>libopenblasp.so<span class="fl">.0</span> R_HOME<span class="sc">/</span>lib<span class="sc">/</span>libRblas.so</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>on <code>x86_64</code> Fedora will change the BLAS used to multithreaded OpenBLAS. A similar link works for most versions of the OpenBLAS (provided the appropriate <code>lib</code> directory is in the run-time library path or <code>ld.so</code> cache). It can also be used for a single-library ATLAS, so on <code>x86_64</code> Fedora</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ln <span class="sc">-</span>s <span class="sc">/</span>usr<span class="sc">/</span>lib64<span class="sc">/</span>atlas<span class="sc">/</span>libsatlas.so<span class="fl">.3</span> R_HOME<span class="sc">/</span>lib<span class="sc">/</span>libRblas.so</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>ln <span class="sc">-</span>s <span class="sc">/</span>usr<span class="sc">/</span>lib64<span class="sc">/</span>atlas<span class="sc">/</span>libtatlas.so<span class="fl">.3</span> R_HOME<span class="sc">/</span>lib<span class="sc">/</span>libRblas.so</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>can be used with its distributed ATLAS libraries. (If you have the <code>-devel</code> RPMS installed you can omit the <code>.0</code>/<code>.3</code>.)</p>
+<p>Note that rebuilding or symlinking <code>libRblas.so</code> may not suffice if the intention is to use a modified LAPACK contained in an external BLAS: the latter could even cause conflicts. However, on Fedora where the OpenBLAS distribution contains a copy of LAPACK, it is the latter which is used.</p>
+</section>
+<section id="lapack" class="level3 subsection" data-number="10.3.6">
+<h3 class="subsection anchored" data-number="10.3.6" data-anchor-id="lapack"><span class="header-section-number">10.3.6</span> LAPACK</h3>
+<p>Provision is made for using an external LAPACK library, principally to cope with BLAS libraries which contain a copy of LAPACK (such as <code>sunperf</code> on Solaris, <code>Accelerate</code> on macOS and ATLAS and MKL on <code>ix86</code>/<code>x86_64</code> Linux). At least LAPACK version 3.2 is required. This can only be done if <code>--with-blas</code> has been used.</p>
+<p>However, the likely performance gains are thought to be small (and may be negative). The default is not to search for a suitable LAPACK library, and this is definitely <strong>not</strong> recommended. You can specify a specific LAPACK library or a search for a generic library by the configuration option <code>--with-lapack</code>. The default for <code>--with-lapack</code> is to check the BLAS library and then look for an external library <code>-llapack</code>. Sites searching for the fastest possible linear algebra may want to build a LAPACK library using the ATLAS-optimized subset of LAPACK: this is simplest with a dynamic ATLAS library which contains a full LAPACK, when <code>--with-lapack</code> suffices.</p>
+<p>A value for <code>--with-lapack</code> can be set <em>via</em> the environment variable <code>LAPACK_LIBS</code>, but this will only be used if <code>--with-lapack</code> is specified (as the default value is <code>no</code>) and the BLAS library does not contain LAPACK.</p>
+<p>If you do use <code>--with-lapack</code>, be aware of potential problems with bugs in the LAPACK sources (or in the posted corrections to those sources). In particular, bugs in <code>DGEEV</code> and <code>DGESDD</code> have resulted in error messages such as</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>DGEBRD gave error code <span class="sc">-</span><span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>. Other potential problems are incomplete versions of the libraries, seen several times in Linux distributions over the years.</p>
+<p>Please <strong>do</strong> bear in mind that using <code>--with-lapack</code> is ‘definitely <strong>not</strong> recommended’: it is provided <strong>only</strong> because it is necessary on some platforms and because some users want to experiment with claimed performance improvements. Reporting problems where it is used unnecessarily will simply irritate the R helpers.</p>
+<p>Note too the comments about ISO/IEC&nbsp;60559 compliance in the section of external BLAS: these apply equally to an external LAPACK, and for example the Intel MKL documentation has said</p>
+<blockquote class="blockquote">
+<p>LAPACK routines assume that input matrices do not contain IEEE 754 special values such as INF or NaN values. Using these special values may cause LAPACK to return unexpected results or become unstable.</p>
+</blockquote>
+<p>We rely on limited support in LAPACK for matrices with <em>2^{31}</em> or more elements: it is possible that an external LAPACK will not have that support.</p>
+</section>
+<section id="caveats" class="level3 subsection" data-number="10.3.7">
+<h3 class="subsection anchored" data-number="10.3.7" data-anchor-id="caveats"><span class="header-section-number">10.3.7</span> Caveats</h3>
+<p>As with all libraries, you need to ensure that they and R were compiled with compatible compilers and flags. For example, this has meant that on Sun Sparc using the Oracle compilers the flag <code>-dalign</code> is needed if <code>sunperf</code> is to be used.</p>
+<p>On some systems it has been necessary that an external BLAS/LAPACK was built with the same Fortran compiler used to build R.</p>
+<p>LAPACK 3.9.0 has a bug in which the DCOMBSSQ subroutine has a bug that may cause NA to be interpreted as zero. This is fixed in the R 3.6.3 and later sources, but if you use an external LAPACK, you may need to fix it there.</p>
+<p>The code (in <code>dlapack.f</code>) should read</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="sc">*</span>     ..</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="sc">*</span>     .. Executable Statements ..</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="sc">*</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">IF</span>( <span class="fu">V1</span>( <span class="dv">1</span> )<span class="fu">.GE.V2</span>( <span class="dv">1</span> ) ) THEN</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>         <span class="fu">IF</span>( <span class="fu">V1</span>( <span class="dv">1</span> ).NE.ZERO ) THEN</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>            <span class="fu">V1</span>( <span class="dv">2</span> ) <span class="ot">=</span> <span class="fu">V1</span>( <span class="dv">2</span> ) <span class="sc">+</span> ( <span class="fu">V2</span>( <span class="dv">1</span> ) <span class="sc">/</span> <span class="fu">V1</span>( <span class="dv">1</span> ) )<span class="sc">**</span><span class="dv">2</span> <span class="sc">*</span> <span class="fu">V2</span>( <span class="dv">2</span> )</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>         ELSE</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>            <span class="fu">V1</span>( <span class="dv">2</span> ) <span class="ot">=</span> <span class="fu">V1</span>( <span class="dv">2</span> ) <span class="sc">+</span> <span class="fu">V2</span>( <span class="dv">2</span> )</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>         END IF</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>      ELSE</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>         <span class="fu">V1</span>( <span class="dv">2</span> ) <span class="ot">=</span> <span class="fu">V2</span>( <span class="dv">2</span> ) <span class="sc">+</span> ( <span class="fu">V1</span>( <span class="dv">1</span> ) <span class="sc">/</span> <span class="fu">V2</span>( <span class="dv">1</span> ) )<span class="sc">**</span><span class="dv">2</span> <span class="sc">*</span> <span class="fu">V1</span>( <span class="dv">2</span> )</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>         <span class="fu">V1</span>( <span class="dv">1</span> ) <span class="ot">=</span> <span class="fu">V2</span>( <span class="dv">1</span> )</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>      END IF</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>      RETURN</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>(The inner ELSE clause was missing in LAPACK 3.9.0.)</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.toc-action)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./The-standalone-Rmath-library.html">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The standalone Rmath library</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Configuration-on-a-Unix-alike.html">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Configuration on a Unix-alike</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+  </div>
+</footer>
+
+
+</body></html>

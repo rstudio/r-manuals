@@ -1,0 +1,1909 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.2.405">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>R Manuals :: An Introduction to R - 18&nbsp; Function and variable index</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+  <script src="site_libs/quarto-nav/headroom.min.js"></script>
+  <script src="site_libs/clipboard/clipboard.min.js"></script>
+  <meta name="quarto:offset" content="./">
+  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+  <script src="site_libs/quarto-search/fuse.min.js"></script>
+  <script src="site_libs/quarto-search/quarto-search.js"></script>
+  <link href="./Concept-index.html" rel="next">
+  <link href="./The-command-line-editor.html" rel="prev">
+  <script src="site_libs/quarto-html/quarto.js"></script>
+  <script src="site_libs/quarto-html/popper.min.js"></script>
+  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="site_libs/quarto-html/anchor.min.js"></script>
+  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
+  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <script id="quarto-search-options" type="application/json">{
+    "location": "navbar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "end",
+    "type": "overlay",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script>
+</head>
+<body class="floating">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">R Manuals :: An Introduction to R</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./../index.html">Home</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
+        <li>
+    <a class="dropdown-item" href="./../r-admin/index.html">R Installation and Administration</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-data/index.html">R Data Import/Export</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-exts/index.html">Writing R Extensions</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./index.html">An Introduction to R</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-ints/index.html">R Internals</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-lang/index.html">R Language Definition</a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./../about.html">About</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Function and variable index</span></h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <div class="sidebar-menu-container"> 
+  <ul class="list-unstyled mt-1">
+      <li class="sidebar-item">
+  <a href="./index.html" class="">An Introduction to R</a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Preface.html" class="">Preface</a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Introduction-and-preliminaries.html" class=""><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction and preliminaries</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Simple-manipulations-numbers-and-vectors.html" class=""><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Simple manipulations; numbers and vectors</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Objects.html" class=""><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Objects, their modes and attributes</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Factors.html" class=""><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Ordered and unordered factors</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Arrays-and-matrices.html" class=""><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Arrays and matrices</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Lists-and-data-frames.html" class=""><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lists and data frames</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Reading-data-from-files.html" class=""><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Reading data from files</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Probability-distributions.html" class=""><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Probability distributions</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Loops-and-conditional-execution.html" class=""><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Grouping, loops and conditional execution</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Writing-your-own-functions.html" class=""><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Writing your own functions</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Statistical-models-in-R.html" class=""><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Statistical models in R</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Graphics.html" class=""><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Graphical procedures</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Packages.html" class=""><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Packages</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./OS-facilities.html" class=""><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">OS facilities</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./A-sample-session.html" class=""><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">A sample session</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Invoking-R.html" class=""><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Invoking R</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./The-command-line-editor.html" class=""><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">The command-line editor</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Function-and-variable-index.html" class="active"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Function and variable index</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Concept-index.html" class=""><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Concept index</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./References.html" class=""><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">References</span></a>
+</li>
+  </ul>
+  </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+      <div id="quarto-toc-target"></div>
+    </div>
+<!-- main -->
+<main class="content">
+<header id="title-block-header">
+<h1 class="title display-7"><span id="function-and-variable-index" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Function and variable index</span></span></h1>
+</header>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 65%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Jump to: &nbsp;</td>
+<td style="text-align: left;"><a href="#function-and-variable-index_vr_symbol-1" class="summary-letter"><strong>!</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-2" class="summary-letter"><strong>%</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-3" class="summary-letter"><strong>&amp;</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-4" class="summary-letter"><strong>*</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-5" class="summary-letter"><strong>+</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-6" class="summary-letter"><strong>-</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-7" class="summary-letter"><strong>.</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-8" class="summary-letter"><strong>/</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-9" class="summary-letter"><strong>:</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-10" class="summary-letter"><strong>&lt;</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-11" class="summary-letter"><strong>=</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-12" class="summary-letter"><strong>&gt;</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-13" class="summary-letter"><strong>?</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-14" class="summary-letter"><strong>^</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-15" class="summary-letter"><strong>|</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-16" class="summary-letter"><strong>~</strong></a> &nbsp;<br>
+<a href="#function-and-variable-index_vr_letter-a" class="summary-letter"><strong>A</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-b" class="summary-letter"><strong>B</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-c" class="summary-letter"><strong>C</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-d" class="summary-letter"><strong>D</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-e" class="summary-letter"><strong>E</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-f" class="summary-letter"><strong>F</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-g" class="summary-letter"><strong>G</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-h" class="summary-letter"><strong>H</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-i" class="summary-letter"><strong>I</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-j" class="summary-letter"><strong>J</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-k" class="summary-letter"><strong>K</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-l" class="summary-letter"><strong>L</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-m" class="summary-letter"><strong>M</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-n" class="summary-letter"><strong>N</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-o" class="summary-letter"><strong>O</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-p" class="summary-letter"><strong>P</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-q" class="summary-letter"><strong>Q</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-r" class="summary-letter"><strong>R</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-s" class="summary-letter"><strong>S</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-t" class="summary-letter"><strong>T</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-u" class="summary-letter"><strong>U</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-v" class="summary-letter"><strong>V</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-w" class="summary-letter"><strong>W</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-x" class="summary-letter"><strong>X</strong></a> &nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 35%">
+<col style="width: 8%">
+<col style="width: 46%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;">Index Entry</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;">Section</td>
+</tr>
+<tr class="even">
+<td>!</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-_0021"><code>!</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#logical-vectors">Logical vectors</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-_0021_003d"><code>!=</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#logical-vectors">Logical vectors</a></td>
+</tr>
+<tr class="odd">
+<td>%</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#index-_0025_002a_0025"><code>%*%</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#multiplication">Multiplication</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#index-_0025o_0025"><code>%o%</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#the-outer-product-of-two-arrays">The outer product of two arrays</a></td>
+</tr>
+<tr class="even">
+<td>&amp;</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-_0026"><code>&amp;</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#logical-vectors">Logical vectors</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Loops-and-conditional-execution.html#index-_0026_0026"><code>&amp;&amp;</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Loops-and-conditional-execution.html#conditional-execution">Conditional execution</a></td>
+</tr>
+<tr class="odd">
+<td>*</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-_002a"><code>*</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#vector-arithmetic">Vector arithmetic</a></td>
+</tr>
+<tr class="odd">
+<td>+</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-"><code>+</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#vector-arithmetic">Vector arithmetic</a></td>
+</tr>
+<tr class="odd">
+<td>-</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index--"><code>-</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#vector-arithmetic">Vector arithmetic</a></td>
+</tr>
+<tr class="odd">
+<td>.</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-."><code>.</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#updating-fitted-models">Updating fitted models</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Writing-your-own-functions.html#index-.first"><code>.First</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Writing-your-own-functions.html#customizing-the-environment">Customizing the environment</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Writing-your-own-functions.html#index-.last"><code>.Last</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Writing-your-own-functions.html#customizing-the-environment">Customizing the environment</a></td>
+</tr>
+<tr class="odd">
+<td>/</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-_002f"><code>/</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#vector-arithmetic">Vector arithmetic</a></td>
+</tr>
+<tr class="odd">
+<td>:</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-_003a"><code>:</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#generating-regular-sequences">Generating regular sequences</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Packages.html#index-_003a_003a"><code>::</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Packages.html#namespaces">Namespaces</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Packages.html#index-_003a_003a_003a"><code>:::</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Packages.html#namespaces">Namespaces</a></td>
+</tr>
+<tr class="odd">
+<td>&lt;</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-_003c"><code>&lt;</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#logical-vectors">Logical vectors</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Writing-your-own-functions.html#index-_003c_003c-"><code>&lt;&lt;-</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Writing-your-own-functions.html#scope">Scope</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-_003c_003d"><code>&lt;=</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#logical-vectors">Logical vectors</a></td>
+</tr>
+<tr class="odd">
+<td>=</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-_003d_003d"><code>==</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#logical-vectors">Logical vectors</a></td>
+</tr>
+<tr class="odd">
+<td>&gt;</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-_003e"><code>&gt;</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#logical-vectors">Logical vectors</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-_003e_003d"><code>&gt;=</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#logical-vectors">Logical vectors</a></td>
+</tr>
+<tr class="even">
+<td>?</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Introduction-and-preliminaries.html#index-_003f"><code>?</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Introduction-and-preliminaries.html#getting-help">Getting help</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Introduction-and-preliminaries.html#index-_003f_003f"><code>??</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Introduction-and-preliminaries.html#getting-help">Getting help</a></td>
+</tr>
+<tr class="odd">
+<td>^</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-_005e"><code>^</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#vector-arithmetic">Vector arithmetic</a></td>
+</tr>
+<tr class="odd">
+<td>|</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-_007c"><code>|</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#logical-vectors">Logical vectors</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Loops-and-conditional-execution.html#index-_007c_007c"><code>||</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Loops-and-conditional-execution.html#conditional-execution">Conditional execution</a></td>
+</tr>
+<tr class="even">
+<td>~</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-_007e"><code>~</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#formulae-for-statistical-models">Formulae for statistical models</a></td>
+</tr>
+<tr class="even">
+<td>A</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-abline"><code>abline</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#low-level-plotting-commands">Low-level plotting commands</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-ace"><code>ace</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#some-non-standard-models">Some non-standard models</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-add1"><code>add1</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#updating-fitted-models">Updating fitted models</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-anova"><code>anova</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#generic-functions-for-extracting-model-information">Generic functions for extracting model information</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-anova-1"><code>anova</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#anova-tables">ANOVA tables</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-aov"><code>aov</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#analysis-of-variance-and-model-comparison">Analysis of variance and model comparison</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#index-aperm"><code>aperm</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#generalized-transpose-of-an-array">Generalized transpose of an array</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#index-array"><code>array</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#the-array_0028_0029-function">The array() function</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Lists-and-data-frames.html#index-as.data.frame"><code>as.data.frame</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Lists-and-data-frames.html#making-data-frames">Making data frames</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#index-as.vector"><code>as.vector</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#the-concatenation-function-c_0028_0029-with-arrays">The concatenation function c() with arrays</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Lists-and-data-frames.html#index-attach"><code>attach</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Lists-and-data-frames.html#attach_0028_0029-and-detach_0028_0029">attach() and detach()</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-attr"><code>attr</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#getting-and-setting-attributes">Getting and setting attributes</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-attr-1"><code>attr</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#getting-and-setting-attributes">Getting and setting attributes</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-attributes"><code>attributes</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#getting-and-setting-attributes">Getting and setting attributes</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-attributes-1"><code>attributes</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#getting-and-setting-attributes">Getting and setting attributes</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-avas"><code>avas</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#some-non-standard-models">Some non-standard models</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-axis"><code>axis</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#low-level-plotting-commands">Low-level plotting commands</a></td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Probability-distributions.html#index-boxplot"><code>boxplot</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Probability-distributions.html#one--and-two-sample-tests">One- and two-sample tests</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Loops-and-conditional-execution.html#index-break"><code>break</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Loops-and-conditional-execution.html#repetitive-execution">Repetitive execution</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-bruto"><code>bruto</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#some-non-standard-models">Some non-standard models</a></td>
+</tr>
+<tr class="even">
+<td>C</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-c"><code>c</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#vectors-and-assignment">Vectors and assignment</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-c-1"><code>c</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#character-vectors">Character vectors</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#index-c-2"><code>c</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#the-concatenation-function-c_0028_0029-with-arrays">The concatenation function c() with arrays</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Lists-and-data-frames.html#index-c-3"><code>c</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Lists-and-data-frames.html#concatenating-lists">Concatenating lists</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-c"><code>C</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#contrasts">Contrasts</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#index-cbind"><code>cbind</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#forming-partitioned-matrices">Forming partitioned matrices</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-coef"><code>coef</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#generic-functions-for-extracting-model-information">Generic functions for extracting model information</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-coefficients"><code>coefficients</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#generic-functions-for-extracting-model-information">Generic functions for extracting model information</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-contour"><code>contour</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#display-graphics">Display graphics</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-contrasts"><code>contrasts</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#contrasts">Contrasts</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-coplot"><code>coplot</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#displaying-multivariate-data">Displaying multivariate data</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-cos"><code>cos</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#vector-arithmetic">Vector arithmetic</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#index-crossprod"><code>crossprod</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#index-matrices">Index matrices</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#index-crossprod-1"><code>crossprod</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#multiplication">Multiplication</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#index-cut"><code>cut</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#frequency-tables-from-factors">Frequency tables from factors</a></td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Reading-data-from-files.html#index-data"><code>data</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Reading-data-from-files.html#accessing-builtin-datasets">Accessing builtin datasets</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Lists-and-data-frames.html#index-data.frame"><code>data.frame</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Lists-and-data-frames.html#making-data-frames">Making data frames</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Probability-distributions.html#index-density"><code>density</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Probability-distributions.html#examining-the-distribution-of-a-set-of-data">Examining the distribution of a set of data</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#index-det"><code>det</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#singular-value-decomposition-and-determinants">Singular value decomposition and determinants</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Lists-and-data-frames.html#index-detach"><code>detach</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Lists-and-data-frames.html#attach_0028_0029-and-detach_0028_0029">attach() and detach()</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#index-determinant"><code>determinant</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#singular-value-decomposition-and-determinants">Singular value decomposition and determinants</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-dev.list"><code>dev.list</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#multiple-graphics-devices">Multiple graphics devices</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-dev.next"><code>dev.next</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#multiple-graphics-devices">Multiple graphics devices</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-dev.off"><code>dev.off</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#multiple-graphics-devices">Multiple graphics devices</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-dev.prev"><code>dev.prev</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#multiple-graphics-devices">Multiple graphics devices</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-dev.set"><code>dev.set</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#multiple-graphics-devices">Multiple graphics devices</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-deviance"><code>deviance</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#generic-functions-for-extracting-model-information">Generic functions for extracting model information</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#index-diag"><code>diag</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#multiplication">Multiplication</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#index-dim"><code>dim</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#arrays">Arrays</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-dotchart"><code>dotchart</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#display-graphics">Display graphics</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-drop1"><code>drop1</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#updating-fitted-models">Updating fitted models</a></td>
+</tr>
+<tr class="odd">
+<td>E</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Probability-distributions.html#index-ecdf"><code>ecdf</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Probability-distributions.html#examining-the-distribution-of-a-set-of-data">Examining the distribution of a set of data</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Reading-data-from-files.html#index-edit"><code>edit</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Reading-data-from-files.html#editing-data">Editing data</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#index-eigen"><code>eigen</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#eigenvalues-and-eigenvectors">Eigenvalues and eigenvectors</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Loops-and-conditional-execution.html#index-else"><code>else</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Loops-and-conditional-execution.html#conditional-execution">Conditional execution</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-error"><code>Error</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#analysis-of-variance-and-model-comparison">Analysis of variance and model comparison</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Introduction-and-preliminaries.html#index-example"><code>example</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Introduction-and-preliminaries.html#getting-help">Getting help</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-exp"><code>exp</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#vector-arithmetic">Vector arithmetic</a></td>
+</tr>
+<tr class="odd">
+<td>F</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-f"><code>F</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#logical-vectors">Logical vectors</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Factors.html#index-factor"><code>factor</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Factors.html#factors">Factors</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-false"><code>FALSE</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#logical-vectors">Logical vectors</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Probability-distributions.html#index-fivenum"><code>fivenum</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Probability-distributions.html#examining-the-distribution-of-a-set-of-data">Examining the distribution of a set of data</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Loops-and-conditional-execution.html#index-for"><code>for</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Loops-and-conditional-execution.html#repetitive-execution">Repetitive execution</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-formula"><code>formula</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#generic-functions-for-extracting-model-information">Generic functions for extracting model information</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Writing-your-own-functions.html#index-function"><code>function</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Writing-your-own-functions.html#writing-your-own-functions">Writing your own functions</a></td>
+</tr>
+<tr class="odd">
+<td>G</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Writing-your-own-functions.html#index-getanywhere"><code>getAnywhere</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Writing-your-own-functions.html#object-orientation">Object orientation</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Writing-your-own-functions.html#index-gets3method"><code>getS3method</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Writing-your-own-functions.html#object-orientation">Object orientation</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-glm"><code>glm</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#the-glm_0028_0029-function">The glm() function</a></td>
+</tr>
+<tr class="odd">
+<td>H</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Introduction-and-preliminaries.html#index-help"><code>help</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Introduction-and-preliminaries.html#getting-help">Getting help</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Introduction-and-preliminaries.html#index-help-1"><code>help</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Introduction-and-preliminaries.html#getting-help">Getting help</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Introduction-and-preliminaries.html#index-help.search"><code>help.search</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Introduction-and-preliminaries.html#getting-help">Getting help</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Introduction-and-preliminaries.html#index-help.start"><code>help.start</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Introduction-and-preliminaries.html#getting-help">Getting help</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Probability-distributions.html#index-hist"><code>hist</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Probability-distributions.html#examining-the-distribution-of-a-set-of-data">Examining the distribution of a set of data</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-hist-1"><code>hist</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#display-graphics">Display graphics</a></td>
+</tr>
+<tr class="even">
+<td>I</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-identify"><code>identify</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#interacting-with-graphics">Interacting with graphics</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Loops-and-conditional-execution.html#index-if"><code>if</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Loops-and-conditional-execution.html#conditional-execution">Conditional execution</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Loops-and-conditional-execution.html#index-if-1"><code>if</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Loops-and-conditional-execution.html#conditional-execution">Conditional execution</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Loops-and-conditional-execution.html#index-ifelse"><code>ifelse</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Loops-and-conditional-execution.html#conditional-execution">Conditional execution</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-image"><code>image</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#display-graphics">Display graphics</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-is.na"><code>is.na</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#missing-values">Missing values</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-is.nan"><code>is.nan</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#missing-values">Missing values</a></td>
+</tr>
+<tr class="even">
+<td>J</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-jpeg"><code>jpeg</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#device-drivers">Device drivers</a></td>
+</tr>
+<tr class="even">
+<td>K</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Probability-distributions.html#index-ks.test"><code>ks.test</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Probability-distributions.html#examining-the-distribution-of-a-set-of-data">Examining the distribution of a set of data</a></td>
+</tr>
+<tr class="even">
+<td>L</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-legend"><code>legend</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#low-level-plotting-commands">Low-level plotting commands</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-length"><code>length</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#vector-arithmetic">Vector arithmetic</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-length-1"><code>length</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#the-intrinsic-attributes-mode-and-length">The intrinsic attributes mode and length</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Factors.html#index-levels"><code>levels</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Factors.html#factors">Factors</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-lines"><code>lines</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#low-level-plotting-commands">Low-level plotting commands</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Lists-and-data-frames.html#index-list"><code>list</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Lists-and-data-frames.html#lists">Lists</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-lm"><code>lm</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#linear-models">Linear models</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-lme"><code>lme</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#some-non-standard-models">Some non-standard models</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-locator"><code>locator</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#interacting-with-graphics">Interacting with graphics</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-loess"><code>loess</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#some-non-standard-models">Some non-standard models</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-loess-1"><code>loess</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#some-non-standard-models">Some non-standard models</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-log"><code>log</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#vector-arithmetic">Vector arithmetic</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-lqs"><code>lqs</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#some-non-standard-models">Some non-standard models</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#index-lsfit"><code>lsfit</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#least-squares-fitting-and-the-qr-decomposition">Least squares fitting and the QR decomposition</a></td>
+</tr>
+<tr class="odd">
+<td>M</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-mars"><code>mars</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#some-non-standard-models">Some non-standard models</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-max"><code>max</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#vector-arithmetic">Vector arithmetic</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-mean"><code>mean</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#vector-arithmetic">Vector arithmetic</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Writing-your-own-functions.html#index-methods"><code>methods</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Writing-your-own-functions.html#object-orientation">Object orientation</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-min"><code>min</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#vector-arithmetic">Vector arithmetic</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-mode"><code>mode</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#the-intrinsic-attributes-mode-and-length">The intrinsic attributes mode and length</a></td>
+</tr>
+<tr class="even">
+<td>N</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-na"><code>NA</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#missing-values">Missing values</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-nan"><code>NaN</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#missing-values">Missing values</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#index-ncol"><code>ncol</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#matrix-facilities">Matrix facilities</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Loops-and-conditional-execution.html#index-next"><code>next</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Loops-and-conditional-execution.html#repetitive-execution">Repetitive execution</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-nlm"><code>nlm</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#nonlinear-least-squares-and-maximum-likelihood-models">Nonlinear least squares and maximum likelihood models</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-nlm-1"><code>nlm</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#least-squares">Least squares</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-nlm-2"><code>nlm</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#maximum-likelihood">Maximum likelihood</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-nlme"><code>nlme</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#some-non-standard-models">Some non-standard models</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-nlminb"><code>nlminb</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#nonlinear-least-squares-and-maximum-likelihood-models">Nonlinear least squares and maximum likelihood models</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#index-nrow"><code>nrow</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#matrix-facilities">Matrix facilities</a></td>
+</tr>
+<tr class="odd">
+<td>O</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-optim"><code>optim</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#nonlinear-least-squares-and-maximum-likelihood-models">Nonlinear least squares and maximum likelihood models</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-order"><code>order</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#vector-arithmetic">Vector arithmetic</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Factors.html#index-ordered"><code>ordered</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Factors.html#ordered-factors">Ordered factors</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Factors.html#index-ordered-1"><code>ordered</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Factors.html#ordered-factors">Ordered factors</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#index-outer"><code>outer</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#the-outer-product-of-two-arrays">The outer product of two arrays</a></td>
+</tr>
+<tr class="odd">
+<td>P</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-pairs"><code>pairs</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#displaying-multivariate-data">Displaying multivariate data</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-par"><code>par</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#the-par_0028_0029-function">The par() function</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-paste"><code>paste</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#character-vectors">Character vectors</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-pdf"><code>pdf</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#device-drivers">Device drivers</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-persp"><code>persp</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#display-graphics">Display graphics</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-plot"><code>plot</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#generic-functions-for-extracting-model-information">Generic functions for extracting model information</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-plot-1"><code>plot</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#the-plot_0028_0029-function">The plot() function</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-pmax"><code>pmax</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#vector-arithmetic">Vector arithmetic</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-pmin"><code>pmin</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#vector-arithmetic">Vector arithmetic</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-png"><code>png</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#device-drivers">Device drivers</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-points"><code>points</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#low-level-plotting-commands">Low-level plotting commands</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-polygon"><code>polygon</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#low-level-plotting-commands">Low-level plotting commands</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-postscript"><code>postscript</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#device-drivers">Device drivers</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-predict"><code>predict</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#generic-functions-for-extracting-model-information">Generic functions for extracting model information</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-print"><code>print</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#generic-functions-for-extracting-model-information">Generic functions for extracting model information</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-prod"><code>prod</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#vector-arithmetic">Vector arithmetic</a></td>
+</tr>
+<tr class="even">
+<td>Q</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Probability-distributions.html#index-qqline"><code>qqline</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Probability-distributions.html#examining-the-distribution-of-a-set-of-data">Examining the distribution of a set of data</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-qqline-1"><code>qqline</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#display-graphics">Display graphics</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Probability-distributions.html#index-qqnorm"><code>qqnorm</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Probability-distributions.html#examining-the-distribution-of-a-set-of-data">Examining the distribution of a set of data</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-qqnorm-1"><code>qqnorm</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#display-graphics">Display graphics</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-qqplot"><code>qqplot</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#display-graphics">Display graphics</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#index-qr"><code>qr</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#least-squares-fitting-and-the-qr-decomposition">Least squares fitting and the QR decomposition</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-quartz"><code>quartz</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#device-drivers">Device drivers</a></td>
+</tr>
+<tr class="even">
+<td>R</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-range"><code>range</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#vector-arithmetic">Vector arithmetic</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#index-rbind"><code>rbind</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#forming-partitioned-matrices">Forming partitioned matrices</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Reading-data-from-files.html#index-read.table"><code>read.table</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Reading-data-from-files.html#the-read.table_0028_0029-function">The read.table() function</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-rep"><code>rep</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#generating-regular-sequences">Generating regular sequences</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Loops-and-conditional-execution.html#index-repeat"><code>repeat</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Loops-and-conditional-execution.html#repetitive-execution">Repetitive execution</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-resid"><code>resid</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#generic-functions-for-extracting-model-information">Generic functions for extracting model information</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-residuals"><code>residuals</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#generic-functions-for-extracting-model-information">Generic functions for extracting model information</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-rlm"><code>rlm</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#some-non-standard-models">Some non-standard models</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Introduction-and-preliminaries.html#index-rm"><code>rm</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Introduction-and-preliminaries.html#data-permanency-and-removing-objects">Data permanency and removing objects</a></td>
+</tr>
+<tr class="even">
+<td>S</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Reading-data-from-files.html#index-scan"><code>scan</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Reading-data-from-files.html#the-scan_0028_0029-function">The scan() function</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Factors.html#index-sd"><code>sd</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Factors.html#the-function-tapply_0028_0029-and-ragged-arrays">The function tapply() and ragged arrays</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Lists-and-data-frames.html#index-search"><code>search</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Lists-and-data-frames.html#managing-the-search-path">Managing the search path</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-seq"><code>seq</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#generating-regular-sequences">Generating regular sequences</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Probability-distributions.html#index-shapiro.test"><code>shapiro.test</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Probability-distributions.html#examining-the-distribution-of-a-set-of-data">Examining the distribution of a set of data</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-sin"><code>sin</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#vector-arithmetic">Vector arithmetic</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Introduction-and-preliminaries.html#index-sink"><code>sink</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Introduction-and-preliminaries.html#executing-commands-from-or-diverting-output-to-a-file">Executing commands from or diverting output to a file</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#index-solve"><code>solve</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#linear-equations-and-inversion">Linear equations and inversion</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-sort"><code>sort</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#vector-arithmetic">Vector arithmetic</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Introduction-and-preliminaries.html#index-source"><code>source</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Introduction-and-preliminaries.html#executing-commands-from-or-diverting-output-to-a-file">Executing commands from or diverting output to a file</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Loops-and-conditional-execution.html#index-split"><code>split</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Loops-and-conditional-execution.html#repetitive-execution">Repetitive execution</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-sqrt"><code>sqrt</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#vector-arithmetic">Vector arithmetic</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Probability-distributions.html#index-stem"><code>stem</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Probability-distributions.html#examining-the-distribution-of-a-set-of-data">Examining the distribution of a set of data</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-step"><code>step</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#generic-functions-for-extracting-model-information">Generic functions for extracting model information</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-step-1"><code>step</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#updating-fitted-models">Updating fitted models</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-sum"><code>sum</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#vector-arithmetic">Vector arithmetic</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Probability-distributions.html#index-summary"><code>summary</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Probability-distributions.html#examining-the-distribution-of-a-set-of-data">Examining the distribution of a set of data</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-summary-1"><code>summary</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#generic-functions-for-extracting-model-information">Generic functions for extracting model information</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#index-svd"><code>svd</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#singular-value-decomposition-and-determinants">Singular value decomposition and determinants</a></td>
+</tr>
+<tr class="even">
+<td>T</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-t"><code>T</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#logical-vectors">Logical vectors</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#index-t"><code>t</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#generalized-transpose-of-an-array">Generalized transpose of an array</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Probability-distributions.html#index-t.test"><code>t.test</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Probability-distributions.html#one--and-two-sample-tests">One- and two-sample tests</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#index-table"><code>table</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#index-matrices">Index matrices</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#index-table-1"><code>table</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Arrays-and-matrices.html#frequency-tables-from-factors">Frequency tables from factors</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-tan"><code>tan</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#vector-arithmetic">Vector arithmetic</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Factors.html#index-tapply"><code>tapply</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Factors.html#the-function-tapply_0028_0029-and-ragged-arrays">The function tapply() and ragged arrays</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-text"><code>text</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#low-level-plotting-commands">Low-level plotting commands</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-title"><code>title</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#low-level-plotting-commands">Low-level plotting commands</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-tree"><code>tree</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#some-non-standard-models">Some non-standard models</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-true"><code>TRUE</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#logical-vectors">Logical vectors</a></td>
+</tr>
+<tr class="even">
+<td>U</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-unclass"><code>unclass</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#the-class-of-an-object">The class of an object</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-update"><code>update</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#updating-fitted-models">Updating fitted models</a></td>
+</tr>
+<tr class="odd">
+<td>V</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-var"><code>var</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#vector-arithmetic">Vector arithmetic</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Factors.html#index-var-1"><code>var</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Factors.html#the-function-tapply_0028_0029-and-ragged-arrays">The function tapply() and ragged arrays</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Probability-distributions.html#index-var.test"><code>var.test</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Probability-distributions.html#one--and-two-sample-tests">One- and two-sample tests</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#index-vcov"><code>vcov</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Statistical-models-in-R.html#generic-functions-for-extracting-model-information">Generic functions for extracting model information</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#index-vector"><code>vector</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Simple-manipulations-numbers-and-vectors.html#vectors-and-assignment">Vectors and assignment</a></td>
+</tr>
+<tr class="odd">
+<td>W</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Loops-and-conditional-execution.html#index-while"><code>while</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Loops-and-conditional-execution.html#repetitive-execution">Repetitive execution</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Probability-distributions.html#index-wilcox.test"><code>wilcox.test</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Probability-distributions.html#one--and-two-sample-tests">One- and two-sample tests</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-windows"><code>windows</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#device-drivers">Device drivers</a></td>
+</tr>
+<tr class="odd">
+<td>X</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Graphics.html#index-x11"><code>X11</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Graphics.html#device-drivers">Device drivers</a></td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 65%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Jump to: &nbsp;</td>
+<td style="text-align: left;"><a href="#function-and-variable-index_vr_symbol-1" class="summary-letter"><strong>!</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-2" class="summary-letter"><strong>%</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-3" class="summary-letter"><strong>&amp;</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-4" class="summary-letter"><strong>*</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-5" class="summary-letter"><strong>+</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-6" class="summary-letter"><strong>-</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-7" class="summary-letter"><strong>.</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-8" class="summary-letter"><strong>/</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-9" class="summary-letter"><strong>:</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-10" class="summary-letter"><strong>&lt;</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-11" class="summary-letter"><strong>=</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-12" class="summary-letter"><strong>&gt;</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-13" class="summary-letter"><strong>?</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-14" class="summary-letter"><strong>^</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-15" class="summary-letter"><strong>|</strong></a> &nbsp; <a href="#function-and-variable-index_vr_symbol-16" class="summary-letter"><strong>~</strong></a> &nbsp;<br>
+<a href="#function-and-variable-index_vr_letter-a" class="summary-letter"><strong>A</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-b" class="summary-letter"><strong>B</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-c" class="summary-letter"><strong>C</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-d" class="summary-letter"><strong>D</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-e" class="summary-letter"><strong>E</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-f" class="summary-letter"><strong>F</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-g" class="summary-letter"><strong>G</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-h" class="summary-letter"><strong>H</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-i" class="summary-letter"><strong>I</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-j" class="summary-letter"><strong>J</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-k" class="summary-letter"><strong>K</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-l" class="summary-letter"><strong>L</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-m" class="summary-letter"><strong>M</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-n" class="summary-letter"><strong>N</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-o" class="summary-letter"><strong>O</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-p" class="summary-letter"><strong>P</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-q" class="summary-letter"><strong>Q</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-r" class="summary-letter"><strong>R</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-s" class="summary-letter"><strong>S</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-t" class="summary-letter"><strong>T</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-u" class="summary-letter"><strong>U</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-v" class="summary-letter"><strong>V</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-w" class="summary-letter"><strong>W</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-x" class="summary-letter"><strong>X</strong></a> &nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+
+</main> <!-- /main -->
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.toc-action)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./The-command-line-editor.html">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">The command-line editor</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Concept-index.html">
+        <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Concept index</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+  </div>
+</footer>
+
+
+</body></html>

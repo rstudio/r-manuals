@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.2.405">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>R Manuals :: An Introduction to R - 7&nbsp; Reading data from files</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+  <script src="site_libs/quarto-nav/headroom.min.js"></script>
+  <script src="site_libs/clipboard/clipboard.min.js"></script>
+  <meta name="quarto:offset" content="./">
+  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+  <script src="site_libs/quarto-search/fuse.min.js"></script>
+  <script src="site_libs/quarto-search/quarto-search.js"></script>
+  <link href="./Probability-distributions.html" rel="next">
+  <link href="./Lists-and-data-frames.html" rel="prev">
+  <script src="site_libs/quarto-html/quarto.js"></script>
+  <script src="site_libs/quarto-html/popper.min.js"></script>
+  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="site_libs/quarto-html/anchor.min.js"></script>
+  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
+  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <script id="quarto-search-options" type="application/json">{
+    "location": "navbar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "end",
+    "type": "overlay",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script>
+</head>
+<body class="floating slimcontent">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">R Manuals :: An Introduction to R</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./../index.html">Home</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
+        <li>
+    <a class="dropdown-item" href="./../r-admin/index.html">R Installation and Administration</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-data/index.html">R Data Import/Export</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-exts/index.html">Writing R Extensions</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./index.html">An Introduction to R</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-ints/index.html">R Internals</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-lang/index.html">R Language Definition</a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./../about.html">About</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Reading data from files</span></h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <div class="sidebar-menu-container"> 
+  <ul class="list-unstyled mt-1">
+      <li class="sidebar-item">
+  <a href="./index.html" class="">An Introduction to R</a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Preface.html" class="">Preface</a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Introduction-and-preliminaries.html" class=""><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction and preliminaries</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Simple-manipulations-numbers-and-vectors.html" class=""><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Simple manipulations; numbers and vectors</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Objects.html" class=""><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Objects, their modes and attributes</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Factors.html" class=""><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Ordered and unordered factors</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Arrays-and-matrices.html" class=""><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Arrays and matrices</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Lists-and-data-frames.html" class=""><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lists and data frames</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Reading-data-from-files.html" class="active"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Reading data from files</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Probability-distributions.html" class=""><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Probability distributions</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Loops-and-conditional-execution.html" class=""><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Grouping, loops and conditional execution</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Writing-your-own-functions.html" class=""><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Writing your own functions</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Statistical-models-in-R.html" class=""><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Statistical models in R</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Graphics.html" class=""><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Graphical procedures</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Packages.html" class=""><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Packages</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./OS-facilities.html" class=""><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">OS facilities</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./A-sample-session.html" class=""><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">A sample session</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Invoking-R.html" class=""><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Invoking R</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./The-command-line-editor.html" class=""><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">The command-line editor</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Function-and-variable-index.html" class=""><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Function and variable index</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Concept-index.html" class=""><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Concept index</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./References.html" class=""><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">References</span></a>
+</li>
+  </ul>
+  </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+      <nav id="TOC" role="doc-toc">
+<h2 id="toc-title">On this page</h2>
+<ul>
+<li><a href="#the-read.table-function" class="nav-link active" data-scroll-target="#the-read.table-function"> <span class="header-section-number">7.1</span> The <code>read.table()</code> function</a></li>
+<li><a href="#the-scan-function" class="nav-link" data-scroll-target="#the-scan-function"> <span class="header-section-number">7.2</span> The <code>scan()</code> function</a></li>
+<li><a href="#accessing-builtin-datasets" class="nav-link" data-scroll-target="#accessing-builtin-datasets"> <span class="header-section-number">7.3</span> Accessing builtin datasets</a>
+<ul class="collapse">
+<li><a href="#loading-data-from-other-r-packages" class="nav-link" data-scroll-target="#loading-data-from-other-r-packages"> <span class="header-section-number">7.3.1</span> Loading data from other R packages</a></li>
+</ul></li>
+<li><a href="#editing-data" class="nav-link" data-scroll-target="#editing-data"> <span class="header-section-number">7.4</span> Editing data</a></li>
+</ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full">
+<header id="title-block-header">
+<h1 class="title display-7"><span id="reading-data-from-files" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Reading data from files</span></span></h1>
+</header>
+
+<div class="page-columns page-full"><p>Large data objects will usually be read as values from external files rather than entered during an R session at the keyboard. R input facilities are simple and their requirements are fairly strict and even rather inflexible. There is a clear presumption by the designers of R that you will be able to modify your input files using other tools, such as file editors or Perl<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> to fit in with the requirements of R. Generally this is very simple.</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;Under UNIX, the utilities <code>sed</code> or<code>awk</code> can be used.</p></li></div></div>
+<p>If variables are to be held mainly in data frames, as we strongly suggest they should be, an entire data frame can be read directly with the <code>read.table()</code> function. There is also a more primitive input function, <code>scan()</code>, that can be called directly.</p>
+<p>For more details on importing data into R and also exporting data, see the <em>R Data Import/Export</em> manual.</p>
+<section id="the-read.table-function" class="level2 section" data-number="7.1">
+<h2 class="section anchored" data-number="7.1" data-anchor-id="the-read.table-function"><span class="header-section-number">7.1</span> The <code>read.table()</code> function</h2>
+<p>To read an entire data frame directly, the external file will normally have a special form.</p>
+<ul>
+<li>The first line of the file should have a <em>name</em> for each variable in the data frame.</li>
+<li>Each additional line of the file has as its first item a <em>row label</em> and the values for each variable.</li>
+</ul>
+<p>If the file has one fewer item in its first line than in its second, this arrangement is presumed to be in force. So the first few lines of a file to be read as a data frame might look as follows.</p>
+<div class="blockquotes-block">
+<blockquote class="blockquote">
+<table class="table">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Input file form with names and row labels<span class="sc">:</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>     Price    Floor     Area   Rooms     Age  Cent.heat</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dv">01</span>   <span class="fl">52.00</span>    <span class="fl">111.0</span>      <span class="dv">830</span>     <span class="dv">5</span>       <span class="fl">6.2</span>      no</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="dv">02</span>   <span class="fl">54.75</span>    <span class="fl">128.0</span>      <span class="dv">710</span>     <span class="dv">5</span>       <span class="fl">7.5</span>      no</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="dv">03</span>   <span class="fl">57.50</span>    <span class="fl">101.0</span>     <span class="dv">1000</span>     <span class="dv">5</span>       <span class="fl">4.2</span>      no</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="dv">04</span>   <span class="fl">57.50</span>    <span class="fl">131.0</span>      <span class="dv">690</span>     <span class="dv">6</span>       <span class="fl">8.8</span>      no</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="dv">05</span>   <span class="fl">59.75</span>     <span class="fl">93.0</span>      <span class="dv">900</span>     <span class="dv">5</span>       <span class="fl">1.9</span>     yes</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<p>By default numeric items (except row labels) are read as numeric variables and non-numeric variables, such as <code>Cent.heat</code> in the example, as character variables. This can be changed if necessary.</p>
+<p>The function <code>read.table()</code> can then be used to read the data frame directly</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> HousePrice <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"houses.data"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Often you will want to omit including the row labels directly and use the default labels. In this case the file may omit the row label column as in the following.</p>
+<div class="blockquotes-block">
+<blockquote class="blockquote">
+<table class="table">
+<colgroup>
+<col style="width: 100%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Input file form without row labels<span class="sc">:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Price    Floor     Area   Rooms     Age  Cent.heat</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fl">52.00</span>    <span class="fl">111.0</span>      <span class="dv">830</span>     <span class="dv">5</span>       <span class="fl">6.2</span>      no</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fl">54.75</span>    <span class="fl">128.0</span>      <span class="dv">710</span>     <span class="dv">5</span>       <span class="fl">7.5</span>      no</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fl">57.50</span>    <span class="fl">101.0</span>     <span class="dv">1000</span>     <span class="dv">5</span>       <span class="fl">4.2</span>      no</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fl">57.50</span>    <span class="fl">131.0</span>      <span class="dv">690</span>     <span class="dv">6</span>       <span class="fl">8.8</span>      no</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fl">59.75</span>     <span class="fl">93.0</span>      <span class="dv">900</span>     <span class="dv">5</span>       <span class="fl">1.9</span>     yes</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<p>The data frame may then be read as</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> HousePrice <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"houses.data"</span>, <span class="at">header=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>where the <code>header=TRUE</code> option specifies that the first line is a line of headings, and hence, by implication from the form of the file, that no explicit row labels are given.</p>
+</section>
+<section id="the-scan-function" class="level2 section" data-number="7.2">
+<h2 class="section anchored" data-number="7.2" data-anchor-id="the-scan-function"><span class="header-section-number">7.2</span> The <code>scan()</code> function</h2>
+<p>Suppose the data vectors are of equal length and are to be read in parallel. Further suppose that there are three vectors, the first of mode character and the remaining two of mode numeric, and the file is <code>input.dat</code>. The first step is to use <code>scan()</code> to read in the three vectors as a list, as follows</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> inp <span class="ot">&lt;-</span> <span class="fu">scan</span>(<span class="st">"input.dat"</span>, <span class="fu">list</span>(<span class="st">""</span>,<span class="dv">0</span>,<span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The second argument is a dummy list structure that establishes the mode of the three vectors to be read. The result, held in <code>inp</code>, is a list whose components are the three vectors read in. To separate the data items into three separate vectors, use assignments like</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> label <span class="ot">&lt;-</span> inp[[<span class="dv">1</span>]]; x <span class="ot">&lt;-</span> inp[[<span class="dv">2</span>]]; y <span class="ot">&lt;-</span> inp[[<span class="dv">3</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>More conveniently, the dummy list can have named components, in which case the names can be used to access the vectors read in. For example</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> inp <span class="ot">&lt;-</span> <span class="fu">scan</span>(<span class="st">"input.dat"</span>, <span class="fu">list</span>(<span class="at">id=</span><span class="st">""</span>, <span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span><span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If you wish to access the variables separately they may either be re-assigned to variables in the working frame:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> label <span class="ot">&lt;-</span> inp<span class="sc">$</span>id; x <span class="ot">&lt;-</span> inp<span class="sc">$</span>x; y <span class="ot">&lt;-</span> inp<span class="sc">$</span>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>or the list may be attached at position&nbsp;2 of the search path (see <a href="Lists-and-data-frames.html#attaching-arbitrary-lists">Attaching arbitrary lists</a>).</p>
+<p>If the second argument is a single value and not a list, a single vector is read in, all components of which must be of the same mode as the dummy value.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> X <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">scan</span>(<span class="st">"light.dat"</span>, <span class="dv">0</span>), <span class="at">ncol=</span><span class="dv">5</span>, <span class="at">byrow=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>There are more elaborate input facilities available and these are detailed in the manuals.</p>
+</section>
+<section id="accessing-builtin-datasets" class="level2 section" data-number="7.3">
+<h2 class="section anchored" data-number="7.3" data-anchor-id="accessing-builtin-datasets"><span class="header-section-number">7.3</span> Accessing builtin datasets</h2>
+<p>Around 100 datasets are supplied with R (in package <strong>datasets</strong>), and others are available in packages (including the recommended packages supplied with R). To see the list of datasets currently available use</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>All the datasets supplied with R are available directly by name. However, many packages still use the obsolete convention in which <code>data</code> was also used to load datasets into R, for example</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(infert)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and this can still be used with the standard packages (as in this example). In most cases this will load an R object of the same name. However, in a few cases it loads several objects, so see the on-line help for the object to see what to expect.</p>
+<section id="loading-data-from-other-r-packages" class="level3 subsection" data-number="7.3.1">
+<h3 class="subsection anchored" data-number="7.3.1" data-anchor-id="loading-data-from-other-r-packages"><span class="header-section-number">7.3.1</span> Loading data from other R packages</h3>
+<p>To access data from a particular package, use the <code>package</code> argument, for example</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="at">package=</span><span class="st">"rpart"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Puromycin, <span class="at">package=</span><span class="st">"datasets"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If a package has been attached by <code>library</code>, its datasets are automatically included in the search.</p>
+<p>User-contributed packages can be a rich source of datasets.</p>
+</section>
+</section>
+<section id="editing-data" class="level2 section" data-number="7.4">
+<h2 class="section anchored" data-number="7.4" data-anchor-id="editing-data"><span class="header-section-number">7.4</span> Editing data</h2>
+<p>When invoked on a data frame or matrix, <code>edit</code> brings up a separate spreadsheet-like environment for editing. This is useful for making small changes once a data set has been read. The command</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> xnew <span class="ot">&lt;-</span> <span class="fu">edit</span>(xold)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>will allow you to edit your data set <code>xold</code>, and on completion the changed object is assigned to <code>xnew</code>. If you want to alter the original dataset <code>xold</code>, the simplest way is to use <code>fix(xold)</code>, which is equivalent to <code>xold &lt;- edit(xold)</code>.</p>
+<p>Use</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> xnew <span class="ot">&lt;-</span> <span class="fu">edit</span>(<span class="fu">data.frame</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>to enter new data via the spreadsheet interface.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.toc-action)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Lists-and-data-frames.html">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lists and data frames</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Probability-distributions.html">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Probability distributions</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+  </div>
+</footer>
+
+
+</body></html>

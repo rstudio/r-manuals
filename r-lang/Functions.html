@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.2.405">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>R Manuals :: R Language Definition - 4&nbsp; Functions</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+  <script src="site_libs/quarto-nav/headroom.min.js"></script>
+  <script src="site_libs/clipboard/clipboard.min.js"></script>
+  <meta name="quarto:offset" content="./">
+  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+  <script src="site_libs/quarto-search/fuse.min.js"></script>
+  <script src="site_libs/quarto-search/quarto-search.js"></script>
+  <link href="./Object-oriented-programming.html" rel="next">
+  <link href="./Evaluation-of-expressions.html" rel="prev">
+  <script src="site_libs/quarto-html/quarto.js"></script>
+  <script src="site_libs/quarto-html/popper.min.js"></script>
+  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="site_libs/quarto-html/anchor.min.js"></script>
+  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
+  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <script id="quarto-search-options" type="application/json">{
+    "location": "navbar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "end",
+    "type": "overlay",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script>
+</head>
+<body class="floating">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">R Manuals :: R Language Definition</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./../index.html">Home</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
+        <li>
+    <a class="dropdown-item" href="./../r-admin/index.html">R Installation and Administration</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-data/index.html">R Data Import/Export</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-exts/index.html">Writing R Extensions</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-intro/index.html">An Introduction to R</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-ints/index.html">R Internals</a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./index.html">R Language Definition</a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./../about.html">About</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Functions</span></h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <div class="sidebar-menu-container"> 
+  <ul class="list-unstyled mt-1">
+      <li class="sidebar-item">
+  <a href="./index.html" class="">R Language Definition</a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Introduction.html" class=""><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Objects.html" class=""><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Objects</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Evaluation-of-expressions.html" class=""><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Evaluation of expressions</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Functions.html" class="active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Functions</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Object-oriented-programming.html" class=""><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Object-oriented programming</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Computing-on-the-language.html" class=""><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Computing on the language</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./System-and-foreign-language-interfaces.html" class=""><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">System and foreign language interfaces</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Exception-handling.html" class=""><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Exception handling</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Debugging.html" class=""><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Debugging</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Parser.html" class=""><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Parser</span></a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Function-and-Variable-Index.html" class="">Function and Variable Index</a>
+</li>
+      <li class="sidebar-item">
+  <a href="./Concept-Index.html" class="">Concept Index</a>
+</li>
+      <li class="sidebar-item">
+  <a href="./References.html" class=""><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">References</span></a>
+</li>
+  </ul>
+  </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+      <nav id="TOC" role="doc-toc">
+<h2 id="toc-title">On this page</h2>
+<ul>
+<li><a href="#writing-functions" class="nav-link active" data-scroll-target="#writing-functions"> <span class="header-section-number">4.1</span> Writing functions</a>
+<ul class="collapse">
+<li><a href="#syntax-and-examples" class="nav-link" data-scroll-target="#syntax-and-examples"> <span class="header-section-number">4.1.1</span> Syntax and examples</a></li>
+<li><a href="#arguments" class="nav-link" data-scroll-target="#arguments"> <span class="header-section-number">4.1.2</span> Arguments</a></li>
+</ul></li>
+<li><a href="#functions-as-objects" class="nav-link" data-scroll-target="#functions-as-objects"> <span class="header-section-number">4.2</span> Functions as objects</a></li>
+<li><a href="#evaluation" class="nav-link" data-scroll-target="#evaluation"> <span class="header-section-number">4.3</span> Evaluation</a>
+<ul class="collapse">
+<li><a href="#evaluation-environment" class="nav-link" data-scroll-target="#evaluation-environment"> <span class="header-section-number">4.3.1</span> Evaluation environment</a></li>
+<li><a href="#argument-matching" class="nav-link" data-scroll-target="#argument-matching"> <span class="header-section-number">4.3.2</span> Argument matching</a></li>
+<li><a href="#argument-evaluation" class="nav-link" data-scroll-target="#argument-evaluation"> <span class="header-section-number">4.3.3</span> Argument evaluation</a></li>
+<li><a href="#scope" class="nav-link" data-scroll-target="#scope"> <span class="header-section-number">4.3.4</span> Scope</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content">
+<header id="title-block-header">
+<h1 class="title display-7"><span id="functions" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Functions</span></span></h1>
+</header>
+
+<section id="writing-functions" class="level2 section" data-number="4.1">
+<h2 class="section anchored" data-number="4.1" data-anchor-id="writing-functions"><span class="header-section-number">4.1</span> Writing functions</h2>
+<p>While R can be very useful as a data analysis tool most users very quickly find themselves wanting to write their own functions. This is one of the real advantages of R. Users can program it and they can, if they want to, change the system level functions to functions that they find more appropriate.</p>
+<p>R also provides facilities that make it easy to document any functions that you have created. See <a href="https://cran.r-project.org/doc/manuals/R-exts.html#Writing-R-documentation">Writing R documentation</a> in Writing R Extensions.</p>
+<section id="syntax-and-examples" class="level3 subsection" data-number="4.1.1">
+<h3 class="subsection anchored" data-number="4.1.1" data-anchor-id="syntax-and-examples"><span class="header-section-number">4.1.1</span> Syntax and examples</h3>
+<p>The syntax for writing a function is</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span> ( arglist ) body</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The first component of the function declaration is the keyword <code>function</code> which indicates to R that you want to create a function.</p>
+<p>An argument list is a comma separated list of formal arguments. A formal argument can be a symbol, a statement of the form <code>symbol = expression</code>, or the special formal argument <code>...</code>.</p>
+<p>The <em>body</em> can be any valid R expression. Generally, the body is a group of expressions contained in curly braces (<code>{</code> and <code>}</code>).</p>
+<p>Generally functions are assigned to symbols but they don’t need to be. The value returned by the call to <code>function</code> is a function. If this is not given a name it is referred to as an anonymous function. Anonymous functions are most frequently used as arguments to other functions such as the <code>apply</code> family or <code>outer</code>.</p>
+<p>Here is a simple function: <code>echo &lt;- function(x) print(x)</code>. So <code>echo</code> is a function that takes a single argument and when <code>echo</code> is invoked it prints its argument.</p>
+</section>
+<section id="arguments" class="level3 subsection" data-number="4.1.2">
+<h3 class="subsection anchored" data-number="4.1.2" data-anchor-id="arguments"><span class="header-section-number">4.1.2</span> Arguments</h3>
+<p>The formal arguments to the function define the variables whose values will be supplied at the time the function is invoked. The names of these arguments can be used within the function body where they obtain the value supplied at the time of function invocation.</p>
+<p>Default values for arguments can be specified using the special form <code>name = expression</code>. In this case, if the user does not specify a value for the argument when the function is invoked the expression will be associated with the corresponding symbol. When a value is needed the <var>expression</var> is evaluated in the evaluation frame of the function.</p>
+<p>Default behaviours can also be specified by using the function <code>missing</code>. When <code>missing</code> is called with the name of a formal argument it returns <code>TRUE</code> if the formal argument was not matched with any actual argument and has not been subsequently modified in the body of the function. An argument that is <code>missing</code> will thus have its default value, if any. The <code>missing</code> function does not force evaluation of the argument.</p>
+<p>The special type of argument <code>...</code> can contain any number of supplied arguments. It is used for a variety of purposes. It allows you to write a function that takes an arbitrary number of arguments. It can be used to absorb some arguments into an intermediate function which can then be extracted by functions called subsequently.</p>
+</section>
+</section>
+<section id="functions-as-objects" class="level2 section" data-number="4.2">
+<h2 class="section anchored" data-number="4.2" data-anchor-id="functions-as-objects"><span class="header-section-number">4.2</span> Functions as objects</h2>
+<p>Functions are first class objects in R. They can be used anywhere that an R object is required. In particular they can be passed as arguments to functions and returned as values from functions. See <a href="Objects.html#function-objects">Function objects</a> for the details.</p>
+</section>
+<section id="evaluation" class="level2 section" data-number="4.3">
+<h2 class="section anchored" data-number="4.3" data-anchor-id="evaluation"><span class="header-section-number">4.3</span> Evaluation</h2>
+<section id="evaluation-environment" class="level3 subsection" data-number="4.3.1">
+<h3 class="subsection anchored" data-number="4.3.1" data-anchor-id="evaluation-environment"><span class="header-section-number">4.3.1</span> Evaluation environment</h3>
+<p>When a function is called or invoked a new evaluation frame is created. In this frame the formal arguments are matched with the supplied arguments according to the rules given in <a href="#argument-matching">Argument matching</a>. The statements in the body of the function are evaluated sequentially in this environment frame.</p>
+<p>The enclosing frame of the evaluation frame is the environment frame associated with the function being invoked. This may be different from S. While many functions have <code>.GlobalEnv</code> as their environment this does not have to be true and functions defined in packages with namespaces (normally) have the package namespace as their environment.</p>
+</section>
+<section id="argument-matching" class="level3 subsection" data-number="4.3.2">
+<h3 class="subsection anchored" data-number="4.3.2" data-anchor-id="argument-matching"><span class="header-section-number">4.3.2</span> Argument matching</h3>
+<p>This subsection applies to closures but not to primitive functions. The latter typically ignore tags and do positional matching, but their help pages should be consulted for exceptions, which include <code>log</code>, <code>round</code>, <code>signif</code>, <code>rep</code> and <code>seq.int</code>.</p>
+<p>The first thing that occurs in a function evaluation is the matching of formal to the actual or supplied arguments. This is done by a three-pass process:</p>
+<ol type="1">
+<li><strong>Exact matching on tags</strong>. For each named supplied argument the list of formal arguments is searched for an item whose name matches exactly. It is an error to have the same formal argument match several actuals or vice versa.</li>
+<li><strong>Partial matching on tags</strong>. Each remaining named supplied argument is compared to the remaining formal arguments using partial matching. If the name of the supplied argument matches exactly with the first part of a formal argument then the two arguments are considered to be matched. It is an error to have multiple partial matches. Notice that if <code>f &lt;- function(fumble, fooey) fbody</code>, then <code>f(f = 1, fo = 2)</code> is illegal, even though the 2nd actual argument only matches <code>fooey</code>. <code>f(f = 1, fooey = 2)</code> <em>is</em> legal though since the second argument matches exactly and is removed from consideration for partial matching. If the formal arguments contain <code>...</code> then partial matching is only applied to arguments that precede it.</li>
+<li><strong>Positional matching</strong>. Any unmatched formal arguments are bound to <em>unnamed</em> supplied arguments, in order. If there is a <code>...</code> argument, it will take up the remaining arguments, tagged or not.</li>
+</ol>
+<p>If any arguments remain unmatched an error is declared.</p>
+<p>Argument matching is augmented by the functions <code>match.arg</code>, <code>match.call</code> and <code>match.fun</code>. Access to the partial matching algorithm used by R is via <code>pmatch</code>.</p>
+</section>
+<section id="argument-evaluation" class="level3 subsection" data-number="4.3.3">
+<h3 class="subsection anchored" data-number="4.3.3" data-anchor-id="argument-evaluation"><span class="header-section-number">4.3.3</span> Argument evaluation</h3>
+<p>One of the most important things to know about the evaluation of arguments to a function is that supplied arguments and default arguments are treated differently. The supplied arguments to a function are evaluated in the evaluation frame of the calling function. The default arguments to a function are evaluated in the evaluation frame of the function.</p>
+<p>The semantics of invoking a function in R argument are <em>call-by-value</em>. In general, supplied arguments behave as if they are local variables initialized with the value supplied and the name of the corresponding formal argument. Changing the value of a supplied argument within a function will not affect the value of the variable in the calling frame.</p>
+<p>R has a form of lazy evaluation of function arguments. Arguments are not evaluated until needed. It is important to realize that in some cases the argument will never be evaluated. Thus, it is bad style to use arguments to functions to cause side-effects. While in <strong>C</strong> it is common to use the form, <code>foo(x = y)</code> to invoke <code>foo</code> with the value of <code>y</code> and simultaneously to assign the value of <code>y</code> to <code>x</code> this same style should not be used in R. There is no guarantee that the argument will ever be evaluated and hence the assignment may not take place.</p>
+<p>It is also worth noting that the effect of <code>foo(x &lt;- y)</code> if the argument is evaluated is to change the value of <code>x</code> in the calling environment and not in the evaluation environment of <code>foo</code>.</p>
+<p>It is possible to access the actual (not default) expressions used as arguments inside the function. The mechanism is implemented via promises. When a function is being evaluated the actual expression used as an argument is stored in the promise together with a pointer to the environment the function was called from. When (if) the argument is evaluated the stored expression is evaluated in the environment that the function was called from. Since only a pointer to the environment is used any changes made to that environment will be in effect during this evaluation. The resulting value is then also stored in a separate spot in the promise. Subsequent evaluations retrieve this stored value (a second evaluation is not carried out). Access to the unevaluated expression is also available using <code>substitute</code>.</p>
+<p>When a function is called, each formal argument is assigned a promise in the local environment of the call with the expression slot containing the actual argument (if it exists) and the environment slot containing the environment of the caller. If no actual argument for a formal argument is given in the call and there is a default expression, it is similarly assigned to the expression slot of the formal argument, but with the environment set to the local environment.</p>
+<p>The process of filling the value slot of a promise by evaluating the contents of the expression slot in the promise’s environment is called <em>forcing</em> the promise. A promise will only be forced once, the value slot content being used directly later on.</p>
+<p>A promise is forced when its value is needed. This usually happens inside internal functions, but a promise can also be forced by direct evaluation of the promise itself. This is occasionally useful when a default expression depends on the value of another formal argument or other variable in the local environment. This is seen in the following example where the lone <code>label</code> ensures that the label is based on the value of <code>x</code> before it is changed in the next line.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>function<span class="op">(</span>x<span class="op">,</span> label <span class="op">=</span> deparse<span class="op">(</span>x<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    label</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    x <span class="op">&lt;-</span> x <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    print<span class="op">(</span>label<span class="op">)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The expression slot of a promise can itself involve other promises. This happens whenever an unevaluated argument is passed as an argument to another function. When forcing a promise, other promises in its expression will also be forced recursively as they are evaluated.</p>
+</section>
+<section id="scope" class="level3 subsection" data-number="4.3.4">
+<h3 class="subsection anchored" data-number="4.3.4" data-anchor-id="scope"><span class="header-section-number">4.3.4</span> Scope</h3>
+<p>Scope or the scoping rules are simply the set of rules used by the evaluator to find a value for a symbol. Every computer language has a set of such rules. In R the rules are fairly simple but there do exist mechanisms for subverting the usual, or default rules.</p>
+<p>R adheres to a set of rules that are called <em>lexical scope</em>. This means the variable bindings in effect at the time the expression was created are used to provide values for any unbound symbols in the expression.</p>
+<p>Most of the interesting properties of scope are involved with evaluating functions and we concentrate on this issue. A symbol can be either bound or unbound. All of the formal arguments to a function provide bound symbols in the body of the function. Any other symbols in the body of the function are either local variables or unbound variables. A local variable is one that is defined within the function. Because R has no formal definition of variables, they are simply used as needed, it can be difficult to determine whether a variable is local or not. Local variables must first be defined, this is typically done by having them on the left-hand side of an assignment.</p>
+<p>During the evaluation process if an unbound symbol is detected then R attempts to find a value for it. The scoping rules determine how this process proceeds. In R the environment of the function is searched first, then its enclosure and so on until the global environment is reached.</p>
+<p>The global environment heads a search list of environments that are searched sequentially for a matching symbol. The value of the first match is then used.</p>
+<p>When this set of rules is combined with the fact that functions can be returned as values from other functions then some rather nice, but at first glance peculiar, properties obtain.</p>
+<p>A simple example:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    g <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x <span class="sc">+</span> y</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(g)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">f</span>()</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">h</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A rather interesting question is what happens when <code>h</code> is evaluated. When a function body is evaluated there is no problem determining values for local variables or for bound variables. Scoping rules determine how the language will find values for the unbound variables.</p>
+<p>When <code>h(3)</code> is evaluated we see that its body is that of <code>g</code>. Within that body <code>x</code> is bound to the formal argument and <code>y</code> is unbound. In a language with lexical scope <code>x</code> will be associated with the value 3 and <code>y</code> with the value 10 local to <code>f</code> so <code>h(3)</code> should return the value 13. In R this is indeed what happens.</p>
+<p>In S, because of the different scoping rules one will get an error indicating that <code>y</code> is not found, unless there is a variable <code>y</code> in your workspace in which case its value will be used.</p>
+
+
+</section>
+</section>
+</main> <!-- /main -->
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.toc-action)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Evaluation-of-expressions.html">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Evaluation of expressions</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Object-oriented-programming.html">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Object-oriented programming</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+  </div>
+</footer>
+
+
+</body></html>
