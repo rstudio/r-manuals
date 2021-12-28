@@ -4,7 +4,7 @@
     "href": "about.html",
     "title": "About this website",
     "section": "",
-    "text": "Original R Manuals can be found at https://cran.r-project.org/manuals.html. The manuals in this website are built automatically from the originals using Quarto. Code can be found at https://github.com/rstudio/rstudio/r-manuals."
+    "text": "Original R Manuals can be found at https://cran.r-project.org/manuals.html. The manuals in this website are built automatically from the originals using Quarto. You can find the scripts that do the conversion at https://github.com/rstudio/r-manuals."
   },
   {
     "objectID": "index.html",
