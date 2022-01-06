@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.2.411">
+  <meta name="generator" content="quarto-0.2.442">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: Writing R Extensions - 1&nbsp; Creating R packages</title>
   <style>
@@ -120,7 +120,7 @@
 <body class="floating slimcontent">
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-light ">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: Writing R Extensions</span>
@@ -137,22 +137,22 @@
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
         <li>
-    <a class="dropdown-item" href="./../r-admin/index.html">R Installation and Administration</a>
+    <a class="dropdown-item" href="./r-intro">An Introduction to R</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-data/index.html">R Data Import/Export</a>
+    <a class="dropdown-item" href="./r-data">R Data Import/Export</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./index.html">Writing R Extensions</a>
+    <a class="dropdown-item" href="./r-admin">R Installation and Administration</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-intro/index.html">An Introduction to R</a>
+    <a class="dropdown-item" href="./r-exts">Writing R Extensions</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-ints/index.html">R Internals</a>
+    <a class="dropdown-item" href="./r-lang">R Language Definition</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-lang/index.html">R Language Definition</a>
+    <a class="dropdown-item" href="./r-ints">R Internals</a>
   </li>  
     </ul>
   </li>
@@ -221,7 +221,7 @@
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
       <nav id="TOC" role="doc-toc">
-<h2 id="toc-title">On this page</h2>
+<h2 id="toc-title">Table of contents</h2>
 <ul>
 <li><a href="#package-structure" class="nav-link active" data-scroll-target="#package-structure"> <span class="header-section-number">1.1</span> Package structure</a>
 <ul class="collapse">
@@ -1652,7 +1652,7 @@
 <p>Note that the ‘TR1’ C++ extensions are not part of any of these standards and the <code>&lt;tr1/name&gt;</code> headers are not supplied by some of the compilers used for R, including on macOS. (Use the C++11 versions instead.)</p>
 <p>As noted elsewhere, the C++17 standard was finalized only recently (Dec 2017) and support for it is patchy or absent on several platforms used for R. So portable code should not require C++17 (let alone C++20).</p>
 <div class="page-columns page-full"><p>A common error is to assume recent versions of compilers or OSes. In production environments ‘long term support’ versions of OSes may be in use for many years,<a href="#fn93" class="footnote-ref" id="fnref93" role="doc-noteref"><sup>93</sup></a> and their compilers may not be updated during that time. For example, GCC 4.8 was still in use in 2021 and could be (in RHEL 7) until 2028: that supports neither C++14 nor C++17.</p><div class="no-row-height column-margin column-container"><li id="fn93" role="doc-endnote"><p><sup>93</sup>&nbsp;Ubuntu provides 5 years of support (but people were running 14.04 after 7 years) and RHEL provides 10 years full support and up to 14 with extended support.</p></li></div></div>
-<div class="page-columns page-full"><p>The POSIX standards only require recently-defined functions to be declared if certain macros are defined with large enough values, and on some compiler/OS combinations<a href="#fn94" class="footnote-ref" id="fnref94" role="doc-noteref"><sup>94</sup></a> they are not declared otherwise. So you may need to include something like one of <a href="#fn95" class="footnote-ref" id="fnref95" role="doc-noteref"><sup>95</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn94" role="doc-endnote"><p><sup>94</sup>&nbsp;This is seen on Linux, Solaris and FreeBSD, although each has other ways to turn on all extensions, e.g.&nbsp;defining <code>_GNU_SOURCE</code>, <code>__EXTENSIONS__</code> or <code>_BSD_SOURCE</code>: the GCC compilers by default define <code>_GNU_SOURCE</code> unless a strict standard such as <code>-std=c99</code> is used. On macOS extensions are declared unless one of these macros is given too small a value.</p></li><li id="fn95" role="doc-endnote"><p><sup>95</sup>&nbsp;Solaris 10 does not recognize this value of <code>_POSIX_C_SOURCE</code>, nor values of <code>_XOPEN_SOURCE</code> beyond 600 (700 corresponds to POSIX 2008). Further, the value of 500 is not allowed in C99 mode, R’s default for C code.</p></li></div></div>
+<div class="page-columns page-full"><p>The POSIX standards only require recently-defined functions to be declared if certain macros are defined with large enough values, and on some compiler/OS combinations<a href="#fn94" class="footnote-ref" id="fnref94" role="doc-noteref"><sup>94</sup></a> they are not declared otherwise. So you may need to include something like one of <a href="#fn95" class="footnote-ref" id="fnref95" role="doc-noteref"><sup>95</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn94" role="doc-endnote"><p><sup>94</sup>&nbsp;This is seen on Linux, Solaris and FreeBSD, although each has other ways to turn on all extensions, e.g.&nbsp;defining <code>_GNU_SOURCE</code>, <code>__EXTENSIONS__</code> or <code>_BSD_SOURCE</code>: the GCC compilers by default define <code>_GNU_SOURCE</code> unless a strict standard such as <code>-std=c99</code> is used. On macOS extensions are declared unless one of these macros is given too small a value.</p></li><li id="fn95" role="doc-endnote"><p><sup>95</sup>&nbsp;Solaris 10 does not recognize this value of <code>_POSIX_C_SOURCE</code>, nor values of <code>_XOPEN_SOURCE</code> beyond 600 (700 corresponds to POSIX 2008). Further, the value of 500 is not allowed in C99 mode, R’s default for C code.</p></li></div></div>
 <div class="sourceCode" id="cb121"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define _XOPEN_SOURCE 600</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>or</p>
 <div class="sourceCode" id="cb122"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifdef __GLIBC__</span></span>

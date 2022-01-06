@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.2.411">
+  <meta name="generator" content="quarto-0.2.442">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: R Internals - 8&nbsp; Tools</title>
   <style>
@@ -120,7 +120,7 @@
 <body class="floating slimcontent">
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-light ">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: R Internals</span>
@@ -137,22 +137,22 @@
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
         <li>
-    <a class="dropdown-item" href="./../r-admin/index.html">R Installation and Administration</a>
+    <a class="dropdown-item" href="./r-intro">An Introduction to R</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-data/index.html">R Data Import/Export</a>
+    <a class="dropdown-item" href="./r-data">R Data Import/Export</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-exts/index.html">Writing R Extensions</a>
+    <a class="dropdown-item" href="./r-admin">R Installation and Administration</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-intro/index.html">An Introduction to R</a>
+    <a class="dropdown-item" href="./r-exts">Writing R Extensions</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./index.html">R Internals</a>
+    <a class="dropdown-item" href="./r-lang">R Language Definition</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-lang/index.html">R Language Definition</a>
+    <a class="dropdown-item" href="./r-ints">R Internals</a>
   </li>  
     </ul>
   </li>
@@ -559,12 +559,15 @@
 <dt><code>_R_CHECK_DEPENDS_ONLY_DATA_</code></dt>
 <dd><p>Apply <code>_R_CHECK_DEPENDS_ONLY_</code> only to the check of loading from the <code>data</code> directory, so checks if any dataset depends on packages which are in Suggests or undeclared. Default: false (but true for CRAN submission checks)</p>
 </dd>
-</dl>
-<p><code>_R_CHECK_DEPENDS_ONLY_EXAMPLES_</code><br>
-<code>_R_CHECK_DEPENDS_ONLY_TESTS_</code><br>
-<code>_R_CHECK_DEPENDS_ONLY_VIGNETTES_</code></p>
-<p>: Apply <code>_R_CHECK_DEPENDS_ONLY_</code> only to the checking of examples, tests or vignettes. These can be used on their own, or with a false value to override <code>_R_CHECK_DEPENDS_ONLY_</code>. Default: the value of <code>_R_CHECK_DEPENDS_ONLY_</code> or false if that is unset..</p>
-<dl>
+<dt><code>_R_CHECK_DEPENDS_ONLY_EXAMPLES_</code></dt>
+<dd>
+</dd>
+<dt><code>_R_CHECK_DEPENDS_ONLY_TESTS_</code></dt>
+<dd>
+</dd>
+<dt><code>_R_CHECK_DEPENDS_ONLY_VIGNETTES_</code></dt>
+<dd><p>Apply <code>_R_CHECK_DEPENDS_ONLY_</code> only to the checking of examples, tests or vignettes. These can be used on their own, or with a false value to override <code>_R_CHECK_DEPENDS_ONLY_</code>. Default: the value of <code>_R_CHECK_DEPENDS_ONLY_</code> or false if that is unset..</p>
+</dd>
 <dt><code>_R_CHECK_NO_RECOMMENDED_</code></dt>
 <dd><p>If set to a true value, augment the previous checks to make recommended packages unavailable unless declared (even if installed in <code>.library</code>). Default: false (but true for CRAN submission checks).</p>
 <p>This may give false positives on code which uses <code>grDevices::densCols</code> and <code>stats:::.asSparse</code> / <code>stats:::.Diag</code> as these invoke <a href="https://CRAN.R-project.org/package=KernSmooth"><strong>KernSmooth</strong></a> and <a href="https://CRAN.R-project.org/package=Matrix"><strong>Matrix</strong></a> respectively. (Those in <strong>stats</strong> are called from various contrasts functions if <code>sparse = TRUE</code> is used.)</p>

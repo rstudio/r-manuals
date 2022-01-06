@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.2.411">
+  <meta name="generator" content="quarto-0.2.442">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: An Introduction to R - 2&nbsp; Simple manipulations; numbers and vectors</title>
   <style>
@@ -120,7 +120,7 @@
 <body class="floating slimcontent">
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-light ">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: An Introduction to R</span>
@@ -137,22 +137,22 @@
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
         <li>
-    <a class="dropdown-item" href="./../r-admin/index.html">R Installation and Administration</a>
+    <a class="dropdown-item" href="./r-intro">An Introduction to R</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-data/index.html">R Data Import/Export</a>
+    <a class="dropdown-item" href="./r-data">R Data Import/Export</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-exts/index.html">Writing R Extensions</a>
+    <a class="dropdown-item" href="./r-admin">R Installation and Administration</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./index.html">An Introduction to R</a>
+    <a class="dropdown-item" href="./r-exts">Writing R Extensions</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-ints/index.html">R Internals</a>
+    <a class="dropdown-item" href="./r-lang">R Language Definition</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-lang/index.html">R Language Definition</a>
+    <a class="dropdown-item" href="./r-ints">R Internals</a>
   </li>  
     </ul>
   </li>
@@ -251,7 +251,7 @@
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
       <nav id="TOC" role="doc-toc">
-<h2 id="toc-title">On this page</h2>
+<h2 id="toc-title">Table of contents</h2>
 <ul>
 <li><a href="#vectors-and-assignment" class="nav-link active" data-scroll-target="#vectors-and-assignment"> <span class="header-section-number">2.1</span> Vectors and assignment</a></li>
 <li><a href="#vector-arithmetic" class="nav-link" data-scroll-target="#vector-arithmetic"> <span class="header-section-number">2.2</span> Vector arithmetic</a></li>
@@ -358,7 +358,7 @@
 <div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> labs <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">c</span>(<span class="st">"X"</span>,<span class="st">"Y"</span>), <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">sep=</span><span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>makes <code>labs</code> into the character vector</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"X1"</span>, <span class="st">"Y2"</span>, <span class="st">"X3"</span>, <span class="st">"Y4"</span>, <span class="st">"X5"</span>, <span class="st">"Y6"</span>, <span class="st">"X7"</span>, <span class="st">"Y8"</span>, <span class="st">"X9"</span>, <span class="st">"Y10"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="page-columns page-full"><p>Note particularly that recycling of short lists takes place here too; thus <code>c("X", "Y")</code> is repeated 5 times to match the sequence <code>1:10</code>. <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn3" role="doc-endnote"><p><sup>3</sup>&nbsp;<code>paste(..., collapse=ss)</code> joins the arguments into a single character string putting <var>ss</var> in between, e.g., <code>ss &lt;- "|"</code>. There are more tools for character manipulation, see the help for <code>sub</code> and <code>substring</code>.</p></li></div></div>
+<div class="page-columns page-full"><p>Note particularly that recycling of short lists takes place here too; thus <code>c("X", "Y")</code> is repeated 5 times to match the sequence <code>1:10</code>. <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn3" role="doc-endnote"><p><sup>3</sup>&nbsp;<code>paste(..., collapse=ss)</code> joins the arguments into a single character string putting <var>ss</var> in between, e.g., <code>ss &lt;- "|"</code>. There are more tools for character manipulation, see the help for <code>sub</code> and <code>substring</code>.</p></li></div></div>
 </section>
 <section id="index-vectors-selecting-and-modifying-subsets-of-a-data-set" class="level2 section" data-number="2.7">
 <h2 class="section anchored" data-number="2.7" data-anchor-id="index-vectors-selecting-and-modifying-subsets-of-a-data-set"><span class="header-section-number">2.7</span> Index vectors; selecting and modifying subsets of a data set</h2>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.2.411">
+  <meta name="generator" content="quarto-0.2.442">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: An Introduction to R - 11&nbsp; Statistical models in R</title>
   <style>
@@ -120,7 +120,7 @@
 <body class="floating">
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-light ">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: An Introduction to R</span>
@@ -137,22 +137,22 @@
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
         <li>
-    <a class="dropdown-item" href="./../r-admin/index.html">R Installation and Administration</a>
+    <a class="dropdown-item" href="./r-intro">An Introduction to R</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-data/index.html">R Data Import/Export</a>
+    <a class="dropdown-item" href="./r-data">R Data Import/Export</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-exts/index.html">Writing R Extensions</a>
+    <a class="dropdown-item" href="./r-admin">R Installation and Administration</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./index.html">An Introduction to R</a>
+    <a class="dropdown-item" href="./r-exts">Writing R Extensions</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-ints/index.html">R Internals</a>
+    <a class="dropdown-item" href="./r-lang">R Language Definition</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-lang/index.html">R Language Definition</a>
+    <a class="dropdown-item" href="./r-ints">R Internals</a>
   </li>  
     </ul>
   </li>
@@ -251,7 +251,7 @@
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
       <nav id="TOC" role="doc-toc">
-<h2 id="toc-title">On this page</h2>
+<h2 id="toc-title">Table of contents</h2>
 <ul>
 <li><a href="#defining-statistical-models-formulae" class="nav-link active" data-scroll-target="#defining-statistical-models-formulae"> <span class="header-section-number">11.1</span> Defining statistical models; formulae</a>
 <ul class="collapse">
@@ -307,22 +307,31 @@
 <h3 class="subsubheading anchored" data-number="11.1.1" data-anchor-id="examples"><span class="header-section-number">11.1.1</span> Examples</h3>
 <p>Before giving a formal specification, a few examples may usefully set the picture.</p>
 <p>Suppose <code>y</code>, <code>x</code>, <code>x0</code>, <code>x1</code>, <code>x2</code>, … are numeric variables, <code>X</code> is a matrix and <code>A</code>, <code>B</code>, <code>C</code>, … are factors. The following formulae on the left side below specify statistical models as described on the right.</p>
-<p><code>y ~ x</code><br>
-<code>y ~ 1 + x</code></p>
-<p>: Both imply the same simple linear regression model of <em>y</em> on <em>x</em>. The first has an implicit intercept term, and the second an explicit one.</p>
-<p><code>y ~ 0 + x</code><br>
-<code>y ~ -1 + x</code><br>
-<code>y ~ x - 1</code></p>
-<p>: Simple linear regression of <em>y</em> on <em>x</em> through the origin (that is, without an intercept term).</p>
 <dl>
+<dt><code>y ~ x</code></dt>
+<dd>
+</dd>
+<dt><code>y ~ 1 + x</code></dt>
+<dd><p>Both imply the same simple linear regression model of <em>y</em> on <em>x</em>. The first has an implicit intercept term, and the second an explicit one.</p>
+</dd>
+<dt><code>y ~ 0 + x</code></dt>
+<dd>
+</dd>
+<dt><code>y ~ -1 + x</code></dt>
+<dd>
+</dd>
+<dt><code>y ~ x - 1</code></dt>
+<dd><p>Simple linear regression of <em>y</em> on <em>x</em> through the origin (that is, without an intercept term).</p>
+</dd>
 <dt><code>log(y) ~ x1 + x2</code></dt>
 <dd><p>Multiple regression of the transformed variable, log(y), on <em>x1</em> and <em>x2</em> (with an implicit intercept term).</p>
 </dd>
-</dl>
-<p><code>y ~ poly(x,2)</code><br>
-<code>y ~ 1 + x + I(x^2)</code></p>
-<p>: Polynomial regression of <em>y</em> on <em>x</em> of degree 2. The first form uses orthogonal polynomials, and the second uses explicit powers, as basis.</p>
-<dl>
+<dt><code>y ~ poly(x,2)</code></dt>
+<dd>
+</dd>
+<dt><code>y ~ 1 + x + I(x^2)</code></dt>
+<dd><p>Polynomial regression of <em>y</em> on <em>x</em> of degree 2. The first form uses orthogonal polynomials, and the second uses explicit powers, as basis.</p>
+</dd>
 <dt><code>y ~ X + poly(x,2)</code></dt>
 <dd><p>Multiple regression <em>y</em> with model matrix consisting of the matrix <em>X</em> as well as polynomial terms in <em>x</em> to degree 2.</p>
 </dd>
@@ -332,20 +341,33 @@
 <dt><code>y ~ A + x</code></dt>
 <dd><p>Single classification analysis of covariance model of <em>y</em>, with classes determined by <em>A</em>, and with covariate <em>x</em>.</p>
 </dd>
-</dl>
-<p><code>y ~ A*B</code><br>
-<code>y ~ A + B + A:B</code><br>
-<code>y ~ B %in% A</code><br>
-<code>y ~ A/B</code></p>
-<p>: Two factor non-additive model of <em>y</em> on <em>A</em> and <em>B</em>. The first two specify the same crossed classification and the second two specify the same nested classification. In abstract terms all four specify the same model subspace.</p>
-<p><code>y ~ (A + B + C)^2</code><br>
-<code>y ~ A*B*C - A:B:C</code></p>
-<p>: Three factor experiment but with a model containing main effects and two factor interactions only. Both formulae specify the same model.</p>
-<p><code>y ~ A * x</code><br>
-<code>y ~ A/x</code><br>
-<code>y ~ A/(1 + x) - 1</code></p>
-<p>: Separate simple linear regression models of <em>y</em> on <em>x</em> within the levels of <em>A</em>, with different codings. The last form produces explicit estimates of as many different intercepts and slopes as there are levels in <em>A</em>.</p>
-<dl>
+<dt><code>y ~ A*B</code></dt>
+<dd>
+</dd>
+<dt><code>y ~ A + B + A:B</code></dt>
+<dd>
+</dd>
+<dt><code>y ~ B %in% A</code></dt>
+<dd>
+</dd>
+<dt><code>y ~ A/B</code></dt>
+<dd><p>Two factor non-additive model of <em>y</em> on <em>A</em> and <em>B</em>. The first two specify the same crossed classification and the second two specify the same nested classification. In abstract terms all four specify the same model subspace.</p>
+</dd>
+<dt><code>y ~ (A + B + C)^2</code></dt>
+<dd>
+</dd>
+<dt><code>y ~ A*B*C - A:B:C</code></dt>
+<dd><p>Three factor experiment but with a model containing main effects and two factor interactions only. Both formulae specify the same model.</p>
+</dd>
+<dt><code>y ~ A * x</code></dt>
+<dd>
+</dd>
+<dt><code>y ~ A/x</code></dt>
+<dd>
+</dd>
+<dt><code>y ~ A/(1 + x) - 1</code></dt>
+<dd><p>Separate simple linear regression models of <em>y</em> on <em>x</em> within the levels of <em>A</em>, with different codings. The last form produces explicit estimates of as many different intercepts and slopes as there are levels in <em>A</em>.</p>
+</dd>
 <dt><code>y ~ A*B + Error(C)</code></dt>
 <dd><p>An experiment with two treatment factors, <em>A</em> and <em>B</em>, and error strata determined by factor <em>C</em>. For example a split plot experiment, with whole plots (and hence also subplots), determined by factor <em>C</em>.</p>
 </dd>

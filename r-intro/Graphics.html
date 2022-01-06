@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.2.411">
+  <meta name="generator" content="quarto-0.2.442">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: An Introduction to R - 12&nbsp; Graphical procedures</title>
   <style>
@@ -120,7 +120,7 @@
 <body class="floating slimcontent">
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-light ">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: An Introduction to R</span>
@@ -137,22 +137,22 @@
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
         <li>
-    <a class="dropdown-item" href="./../r-admin/index.html">R Installation and Administration</a>
+    <a class="dropdown-item" href="./r-intro">An Introduction to R</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-data/index.html">R Data Import/Export</a>
+    <a class="dropdown-item" href="./r-data">R Data Import/Export</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-exts/index.html">Writing R Extensions</a>
+    <a class="dropdown-item" href="./r-admin">R Installation and Administration</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./index.html">An Introduction to R</a>
+    <a class="dropdown-item" href="./r-exts">Writing R Extensions</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-ints/index.html">R Internals</a>
+    <a class="dropdown-item" href="./r-lang">R Language Definition</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-lang/index.html">R Language Definition</a>
+    <a class="dropdown-item" href="./r-ints">R Internals</a>
   </li>  
     </ul>
   </li>
@@ -251,7 +251,7 @@
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
       <nav id="TOC" role="doc-toc">
-<h2 id="toc-title">On this page</h2>
+<h2 id="toc-title">Table of contents</h2>
 <ul>
 <li><a href="#high-level-plotting-commands" class="nav-link active" data-scroll-target="#high-level-plotting-commands"> <span class="header-section-number">12.1</span> High-level plotting commands</a>
 <ul class="collapse">
@@ -310,21 +310,32 @@
 <section id="the-plot-function" class="level3 subsection" data-number="12.1.1">
 <h3 class="subsection anchored" data-number="12.1.1" data-anchor-id="the-plot-function"><span class="header-section-number">12.1.1</span> The <code>plot()</code> function</h3>
 <p>One of the most frequently used plotting functions in R is the <code>plot()</code> function. This is a <em>generic</em> function: the type of plot produced is dependent on the type or <em>class</em> of the first argument.</p>
-<p><code>plot(x, y)</code><br>
-<code>plot(xy)</code></p>
-<p>: If <var>x</var> and <var>y</var> are vectors, <code>plot(x, y)</code> produces a scatterplot of <var>y</var> against <var>x</var>. The same effect can be produced by supplying one argument (second form) as either a list containing two elements <var>x</var> and <var>y</var> or a two-column matrix.</p>
 <dl>
+<dt><code>plot(x, y)</code></dt>
+<dd>
+</dd>
+<dt><code>plot(xy)</code></dt>
+<dd><p>If <var>x</var> and <var>y</var> are vectors, <code>plot(x, y)</code> produces a scatterplot of <var>y</var> against <var>x</var>. The same effect can be produced by supplying one argument (second form) as either a list containing two elements <var>x</var> and <var>y</var> or a two-column matrix.</p>
+</dd>
 <dt><code>plot(x)</code></dt>
 <dd><p>If <var>x</var> is a time series, this produces a time-series plot. If <var>x</var> is a numeric vector, it produces a plot of the values in the vector against their index in the vector. If <var>x</var> is a complex vector, it produces a plot of imaginary versus real parts of the vector elements.</p>
 </dd>
+<dt><code>plot(f)</code></dt>
+<dd>
+</dd>
+<dt><code>plot(f, y)</code></dt>
+<dd><p><var>f</var> is a factor object, <var>y</var> is a numeric vector. The first form generates a bar plot of <var>f</var>; the second form produces boxplots of <var>y</var> for each level of <var>f</var>.</p>
+</dd>
+<dt><code>plot(df)</code></dt>
+<dd>
+</dd>
+<dt><code>plot(~ expr)</code></dt>
+<dd>
+</dd>
+<dt><code>plot(y ~ expr)</code></dt>
+<dd><p><var>df</var> is a data frame, <var>y</var> is any object, <var>expr</var> is a list of object names separated by <code>+</code> (e.g., <code>a + b + c</code>). The first two forms produce distributional plots of the variables in a data frame (first form) or of a number of named objects (second form). The third form plots <var>y</var> against every object named in <var>expr</var>.</p>
+</dd>
 </dl>
-<p><code>plot(f)</code><br>
-<code>plot(f, y)</code></p>
-<p>: <var>f</var> is a factor object, <var>y</var> is a numeric vector. The first form generates a bar plot of <var>f</var>; the second form produces boxplots of <var>y</var> for each level of <var>f</var>.</p>
-<p><code>plot(df)</code><br>
-<code>plot(~ expr)</code><br>
-<code>plot(y ~ expr)</code></p>
-<p>: <var>df</var> is a data frame, <var>y</var> is any object, <var>expr</var> is a list of object names separated by <code>+</code> (e.g., <code>a + b + c</code>). The first two forms produce distributional plots of the variables in a data frame (first form) or of a number of named objects (second form). The third form plots <var>y</var> against every object named in <var>expr</var>.</p>
 </section>
 <section id="displaying-multivariate-data" class="level3 subsection" data-number="12.1.2">
 <h3 class="subsection anchored" data-number="12.1.2" data-anchor-id="displaying-multivariate-data"><span class="header-section-number">12.1.2</span> Displaying multivariate data</h3>
@@ -341,40 +352,42 @@
 <section id="display-graphics" class="level3 subsection" data-number="12.1.3">
 <h3 class="subsection anchored" data-number="12.1.3" data-anchor-id="display-graphics"><span class="header-section-number">12.1.3</span> Display graphics</h3>
 <p>Other high-level graphics functions produce different types of plots. Some examples are:</p>
-<p><code>qqnorm(x)</code><br>
-<code>qqline(x)</code><br>
-<code>qqplot(x, y)</code></p>
-<p>: <span id="index-qqnorm-1"></span></p>
-<pre><code>Distribution-comparison plots. The first form plots the numeric
-vector `x` against the expected Normal order scores (a normal scores
-plot) and the second adds a straight line to such a plot by drawing
-a line through the distribution and data quartiles. The third form
-plots the quantiles of `x` against those of `y` to compare their
-respective distributions.</code></pre>
-<p><code>hist(x)</code><br>
-<code>hist(x, nclass=n)</code><br>
-<code>hist(x, breaks=b, …)</code></p>
-<p>: <span id="index-hist-1"></span></p>
-<pre><code>Produces a histogram of the numeric vector `x`. A sensible number of
-classes is usually chosen, but a recommendation can be given with
-the `nclass=` argument. Alternatively, the breakpoints can be
-specified exactly with the `breaks=` argument. If the
-`probability=TRUE` argument is given, the bars represent relative
-frequencies divided by bin width instead of counts.</code></pre>
 <dl>
+<dt><code>qqnorm(x)</code></dt>
+<dd>
+</dd>
+<dt><code>qqline(x)</code></dt>
+<dd>
+</dd>
+<dt><code>qqplot(x, y)</code></dt>
+<dd><p><span id="index-qqnorm-1"></span></p>
+<p>Distribution-comparison plots. The first form plots the numeric vector <code>x</code> against the expected Normal order scores (a normal scores plot) and the second adds a straight line to such a plot by drawing a line through the distribution and data quartiles. The third form plots the quantiles of <code>x</code> against those of <code>y</code> to compare their respective distributions.</p>
+</dd>
+<dt><code>hist(x)</code></dt>
+<dd>
+</dd>
+<dt><code>hist(x, nclass=n)</code></dt>
+<dd>
+</dd>
+<dt><code>hist(x, breaks=b, …)</code></dt>
+<dd><p><span id="index-hist-1"></span></p>
+<p>Produces a histogram of the numeric vector <code>x</code>. A sensible number of classes is usually chosen, but a recommendation can be given with the <code>nclass=</code> argument. Alternatively, the breakpoints can be specified exactly with the <code>breaks=</code> argument. If the <code>probability=TRUE</code> argument is given, the bars represent relative frequencies divided by bin width instead of counts.</p>
+</dd>
 <dt><code>dotchart(x, …)</code></dt>
 <dd><p><span id="index-dotchart"></span></p>
 <p>Constructs a dotchart of the data in <code>x</code>. In a dotchart the <em>y</em>-axis gives a labelling of the data in <code>x</code> and the <em>x</em>-axis gives its value. For example it allows easy visual selection of all data entries with values lying in specified ranges.</p>
 </dd>
+<dt><code>image(x, y, z, …)</code></dt>
+<dd>
+</dd>
+<dt><code>contour(x, y, z, …)</code></dt>
+<dd>
+</dd>
+<dt><code>persp(x, y, z, …)</code></dt>
+<dd><p><span id="index-image"></span></p>
+<p>Plots of three variables. The <code>image</code> plot draws a grid of rectangles using different colours to represent the value of <code>z</code>, the <code>contour</code> plot draws contour lines to represent the value of <code>z</code>, and the <code>persp</code> plot draws a 3D surface.</p>
+</dd>
 </dl>
-<p><code>image(x, y, z, …)</code><br>
-<code>contour(x, y, z, …)</code><br>
-<code>persp(x, y, z, …)</code></p>
-<p>: <span id="index-image"></span></p>
-<pre><code>Plots of three variables. The `image` plot draws a grid of
-rectangles using different colours to represent the value of `z`,
-the `contour` plot draws contour lines to represent the value of
-`z`, and the `persp` plot draws a 3D surface.</code></pre>
 </section>
 <section id="arguments-to-high-level-plotting-functions" class="level3 subsection" data-number="12.1.4">
 <h3 class="subsection anchored" data-number="12.1.4" data-anchor-id="arguments-to-high-level-plotting-functions"><span class="header-section-number">12.1.4</span> Arguments to high-level plotting functions</h3>
@@ -386,12 +399,15 @@ the `contour` plot draws contour lines to represent the value of
 <dt><code>axes=FALSE</code></dt>
 <dd><p>Suppresses generation of axes—useful for adding your own custom axes with the <code>axis()</code> function. The default, <code>axes=TRUE</code>, means include axes.</p>
 </dd>
-</dl>
-<p><code>log="x"</code><br>
-<code>log="y"</code><br>
-<code>log="xy"</code></p>
-<p>: Causes the <em>x</em>, <em>y</em> or both axes to be logarithmic. This will work for many, but not all, types of plot.</p>
-<dl>
+<dt><code>log="x"</code></dt>
+<dd>
+</dd>
+<dt><code>log="y"</code></dt>
+<dd>
+</dd>
+<dt><code>log="xy"</code></dt>
+<dd><p>Causes the <em>x</em>, <em>y</em> or both axes to be logarithmic. This will work for many, but not all, types of plot.</p>
+</dd>
 <dt><code>type=</code></dt>
 <dd><p>The <code>type=</code> argument controls the type of plot produced, as follows:</p>
 <dl>
@@ -420,11 +436,12 @@ the `contour` plot draws contour lines to represent the value of
 </dd>
 </dl>
 </dd>
-</dl>
-<p><code>xlab=string</code><br>
-<code>ylab=string</code></p>
-<p>: Axis labels for the <em>x</em> and <em>y</em> axes. Use these arguments to change the default labels, usually the names of the objects used in the call to the high-level plotting function.</p>
-<dl>
+<dt><code>xlab=string</code></dt>
+<dd>
+</dd>
+<dt><code>ylab=string</code></dt>
+<dd><p>Axis labels for the <em>x</em> and <em>y</em> axes. Use these arguments to change the default labels, usually the names of the objects used in the call to the high-level plotting function.</p>
+</dd>
 <dt><code>main=string</code></dt>
 <dd><p>Figure title, placed at the top of the plot in a large font.</p>
 </dd>
@@ -438,34 +455,34 @@ the `contour` plot draws contour lines to represent the value of
 <h2 class="section anchored" data-number="12.2" data-anchor-id="low-level-plotting-commands"><span class="header-section-number">12.2</span> Low-level plotting commands</h2>
 <p>Sometimes the high-level plotting functions don’t produce exactly the kind of plot you desire. In this case, low-level plotting commands can be used to add extra information (such as points, lines or text) to the current plot.</p>
 <p>Some of the more useful low-level plotting functions are:</p>
-<p><code>points(x, y)</code><br>
-<code>lines(x, y)</code></p>
-<p>: <span id="index-points"></span></p>
-<pre><code>Adds points or connected lines to the current plot. `plot()`s
-`type=` argument can also be passed to these functions (and defaults
-to `"p"` for `points()` and `"l"` for `lines()`.)</code></pre>
 <dl>
+<dt><code>points(x, y)</code></dt>
+<dd>
+</dd>
+<dt><code>lines(x, y)</code></dt>
+<dd><p><span id="index-points"></span></p>
+<p>Adds points or connected lines to the current plot. <code>plot()</code>s <code>type=</code> argument can also be passed to these functions (and defaults to <code>"p"</code> for <code>points()</code> and <code>"l"</code> for <code>lines()</code>.)</p>
+</dd>
 <dt><code>text(x, y, labels, …)</code></dt>
 <dd><p><span id="index-text"></span></p>
 <p>Add text to a plot at points given by <code>x, y</code>. Normally <code>labels</code> is an integer or character vector in which case <code>labels[i]</code> is plotted at point <code>(x[i], y[i])</code>. The default is <code>1:length(x)</code>.</p>
 <p><strong>Note</strong>: This function is often used in the sequence</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">plot</span>(x, y, <span class="at">type=</span><span class="st">"n"</span>); <span class="fu">text</span>(x, y, names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">plot</span>(x, y, <span class="at">type=</span><span class="st">"n"</span>); <span class="fu">text</span>(x, y, names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The graphics parameter <code>type="n"</code> suppresses the points but sets up the axes, and the <code>text()</code> function supplies special characters, as specified by the character vector <code>names</code> for the points.</p>
 </dd>
-</dl>
-<p><code>abline(a, b)</code><br>
-<code>abline(h=y)</code><br>
-<code>abline(v=x)</code><br>
-<code>abline(lm.obj)</code></p>
-<p>: <span id="index-abline"></span></p>
-<pre><code>Adds a line of slope `b` and intercept `a` to the current plot.
-`h=y` may be used to specify *y*-coordinates for the heights of
-horizontal lines to go across a plot, and `v=x` similarly for the
-*x*-coordinates for vertical lines. Also `lm.obj`{.variable} may be
-list with a `coefficients` component of length 2 (such as the result
-of model-fitting functions,) which are taken as an intercept and
-slope, in that order.</code></pre>
-<dl>
+<dt><code>abline(a, b)</code></dt>
+<dd>
+</dd>
+<dt><code>abline(h=y)</code></dt>
+<dd>
+</dd>
+<dt><code>abline(v=x)</code></dt>
+<dd>
+</dd>
+<dt><code>abline(lm.obj)</code></dt>
+<dd><p><span id="index-abline"></span></p>
+<p>Adds a line of slope <code>b</code> and intercept <code>a</code> to the current plot. <code>h=y</code> may be used to specify <em>y</em>-coordinates for the heights of horizontal lines to go across a plot, and <code>v=x</code> similarly for the <em>x</em>-coordinates for vertical lines. Also <var>lm.obj</var> may be list with a <code>coefficients</code> component of length 2 (such as the result of model-fitting functions,) which are taken as an intercept and slope, in that order.</p>
+</dd>
 <dt><code>polygon(x, y, …)</code></dt>
 <dd><p><span id="index-polygon"></span></p>
 <p>Draws a polygon defined by the ordered vertices in (<code>x</code>, <code>y</code>) and (optionally) shade it in with hatch lines, or fill it if the graphics device allows the filling of figures.</p>
@@ -505,11 +522,11 @@ slope, in that order.</code></pre>
 <section id="mathematical-annotation" class="level3 subsection" data-number="12.2.1">
 <h3 class="subsection anchored" data-number="12.2.1" data-anchor-id="mathematical-annotation"><span class="header-section-number">12.2.1</span> Mathematical annotation</h3>
 <p>In some cases, it is useful to add mathematical symbols and formulae to a plot. This can be achieved in R by specifying an <em>expression</em> rather than a character string in any one of <code>text</code>, <code>mtext</code>, <code>axis</code>, or <code>title</code>. For example, the following code draws the formula for the Binomial probability function:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">text</span>(x, y, <span class="fu">expression</span>(<span class="fu">paste</span>(<span class="fu">bgroup</span>(<span class="st">"("</span>, <span class="fu">atop</span>(n, x), <span class="st">")"</span>), p<span class="sc">^</span>x, q<span class="sc">^</span>{n<span class="sc">-</span>x})))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">text</span>(x, y, <span class="fu">expression</span>(<span class="fu">paste</span>(<span class="fu">bgroup</span>(<span class="st">"("</span>, <span class="fu">atop</span>(n, x), <span class="st">")"</span>), p<span class="sc">^</span>x, q<span class="sc">^</span>{n<span class="sc">-</span>x})))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>More information, including a full listing of the features available can obtained from within R using the commands:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">help</span>(plotmath)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">example</span>(plotmath)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">demo</span>(plotmath)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">help</span>(plotmath)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">example</span>(plotmath)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">demo</span>(plotmath)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="hershey-vector-fonts" class="level3 subsection" data-number="12.2.2">
 <h3 class="subsection anchored" data-number="12.2.2" data-anchor-id="hershey-vector-fonts"><span class="header-section-number">12.2.2</span> Hershey vector fonts</h3>
@@ -520,10 +537,10 @@ slope, in that order.</code></pre>
 <li>Hershey fonts provide cyrillic and japanese (Kana and Kanji) characters.</li>
 </ul>
 <p>More information, including tables of Hershey characters can be obtained from within R using the commands:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">help</span>(Hershey)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">demo</span>(Hershey)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">help</span>(Japanese)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">demo</span>(Japanese)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">help</span>(Hershey)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">demo</span>(Hershey)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">help</span>(Japanese)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">demo</span>(Japanese)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="interacting-with-graphics" class="level2 section" data-number="12.3">
@@ -536,7 +553,7 @@ slope, in that order.</code></pre>
 </dd>
 </dl>
 <p><code>locator()</code> is usually called with no arguments. It is particularly useful for interactively selecting positions for graphic elements such as legends or labels when it is difficult to calculate in advance where the graphic should be placed. For example, to place some informative text near an outlying point, the command</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">text</span>(<span class="fu">locator</span>(<span class="dv">1</span>), <span class="st">"Outlier"</span>, <span class="at">adj=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">text</span>(<span class="fu">locator</span>(<span class="dv">1</span>), <span class="st">"Outlier"</span>, <span class="at">adj=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>may be useful. (<code>locator()</code> will be ignored if the current device, such as <code>postscript</code> does not support interactive pointing.)</p>
 <dl>
 <dt><code>identify(x, y, labels)</code></dt>
@@ -545,8 +562,8 @@ slope, in that order.</code></pre>
 </dd>
 </dl>
 <p>Sometimes we want to identify particular <em>points</em> on a plot, rather than their positions. For example, we may wish the user to select some observation of interest from a graphical display and then manipulate that observation in some way. Given a number of <em>(x, y)</em> coordinates in two numeric vectors <code>x</code> and <code>y</code>, we could use the <code>identify()</code> function as follows:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">plot</span>(x, y)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">identify</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">plot</span>(x, y)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">identify</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The <code>identify()</code> functions performs no plotting itself, but simply allows the user to move the mouse pointer and click the left mouse button near a point. If there is a point near the mouse pointer it will be marked with its index number (that is, its position in the <code>x</code>/<code>y</code> vectors) plotted nearby. Alternatively, you could use some informative string (such as a case name) as a highlight by using the <code>labels</code> argument to <code>identify()</code>, or disable marking altogether with the <code>plot = FALSE</code> argument. When the process is terminated (see above), <code>identify()</code> returns the indices of the selected points; you can use these indices to extract the selected points from the original vectors <code>x</code> and <code>y</code>.</p>
 </section>
 <section id="using-graphics-parameters" class="level2 section page-columns page-full" data-number="12.4">
@@ -569,18 +586,18 @@ slope, in that order.</code></pre>
 </dl>
 <p>Setting graphics parameters with the <code>par()</code> function changes the value of the parameters <em>permanently</em>, in the sense that all future calls to graphics functions (on the current device) will be affected by the new value. You can think of setting graphics parameters in this way as setting “default” values for the parameters, which will be used by all graphics functions unless an alternative value is given.</p>
 <p>Note that calls to <code>par()</code> <em>always</em> affect the global values of graphics parameters, even when <code>par()</code> is called from within a function. This is often undesirable behavior—usually we want to set some graphics parameters, do some plotting, and then restore the original values so as not to affect the user’s R session. You can restore the initial values by saving the result of <code>par()</code> when making changes, and restoring the initial values when plotting is complete.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> oldpar <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">col=</span><span class="dv">4</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  … plotting commands …</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">par</span>(oldpar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> oldpar <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">col=</span><span class="dv">4</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  … plotting commands …</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">par</span>(oldpar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="page-columns page-full"><p>To save and restore <em>all</em> settable<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> graphical parameters use</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;Some graphics parameters such as the size of the current device are for information only.</p></li></div></div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> oldpar <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">no.readonly=</span><span class="cn">TRUE</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  … plotting commands …</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">par</span>(oldpar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> oldpar <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">no.readonly=</span><span class="cn">TRUE</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  … plotting commands …</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">par</span>(oldpar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="temporary-changes-arguments-to-graphics-functions" class="level3 subsection" data-number="12.4.2">
 <h3 class="subsection anchored" data-number="12.4.2" data-anchor-id="temporary-changes-arguments-to-graphics-functions"><span class="header-section-number">12.4.2</span> Temporary changes: Arguments to graphics functions</h3>
 <p>Graphics parameters may also be passed to (almost) any graphics function as named arguments. This has the same effect as passing the arguments to the <code>par()</code> function, except that the changes only last for the duration of the function call. For example:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">plot</span>(x, y, <span class="at">pch=</span><span class="st">"+"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">plot</span>(x, y, <span class="at">pch=</span><span class="st">"+"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>produces a scatterplot using a plus sign as the plotting character, without changing the default plotting character for future plots.</p>
 <p>Unfortunately, this is not implemented entirely consistently and it is sometimes necessary to set and reset graphics parameters using <code>par()</code>.</p>
 </section>
@@ -604,7 +621,7 @@ slope, in that order.</code></pre>
 </dd>
 <dt><code>pch=4</code></dt>
 <dd><p>When <code>pch</code> is given as an integer between 0 and 25 inclusive, a specialized plotting symbol is produced. To see what the symbols are, use the command</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">legend</span>(<span class="fu">locator</span>(<span class="dv">1</span>), <span class="fu">as.character</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">25</span>), <span class="at">pch =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">legend</span>(<span class="fu">locator</span>(<span class="dv">1</span>), <span class="fu">as.character</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">25</span>), <span class="at">pch =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Those from 21 to 25 may appear to duplicate earlier symbols, but can be coloured in different ways: see the help on <code>points</code> and its examples.</p>
 <p>In addition, <code>pch</code> can be a character or a number in the range <code>32:255</code> representing a character in the current font.</p>
 </dd>
@@ -617,35 +634,52 @@ slope, in that order.</code></pre>
 <dt><code>col=2</code></dt>
 <dd><p>Colors to be used for points, lines, text, filled regions and images. A number from the current palette (see <code>?palette</code>) or a named colour.</p>
 </dd>
-</dl>
-<p><code>col.axis</code><br>
-<code>col.lab</code><br>
-<code>col.main</code><br>
-<code>col.sub</code></p>
-<p>: The color to be used for axis annotation, <em>x</em> and <em>y</em> labels, main and sub-titles, respectively.</p>
-<dl>
+<dt><code>col.axis</code></dt>
+<dd>
+</dd>
+<dt><code>col.lab</code></dt>
+<dd>
+</dd>
+<dt><code>col.main</code></dt>
+<dd>
+</dd>
+<dt><code>col.sub</code></dt>
+<dd><p>The color to be used for axis annotation, <em>x</em> and <em>y</em> labels, main and sub-titles, respectively.</p>
+</dd>
 <dt><code>font=2</code></dt>
 <dd><p>An integer which specifies which font to use for text. If possible, device drivers arrange so that <code>1</code> corresponds to plain text, <code>2</code> to bold face, <code>3</code> to italic, <code>4</code> to bold italic and <code>5</code> to a symbol font (which include Greek letters).</p>
 </dd>
-</dl>
-<p><code>font.axis</code><br>
-<code>font.lab</code><br>
-<code>font.main</code><br>
-<code>font.sub</code></p>
-<p>: The font to be used for axis annotation, <em>x</em> and <em>y</em> labels, main and sub-titles, respectively.</p>
-<dl>
+<dt><code>font.axis</code></dt>
+<dd>
+</dd>
+<dt><code>font.lab</code></dt>
+<dd>
+</dd>
+<dt><code>font.main</code></dt>
+<dd>
+</dd>
+<dt><code>font.sub</code></dt>
+<dd><p>The font to be used for axis annotation, <em>x</em> and <em>y</em> labels, main and sub-titles, respectively.</p>
+</dd>
 <dt><code>adj=-0.1</code></dt>
 <dd><p>Justification of text relative to the plotting position. <code>0</code> means left justify, <code>1</code> means right justify and <code>0.5</code> means to center horizontally about the plotting position. The actual value is the proportion of text that appears to the left of the plotting position, so a value of <code>-0.1</code> leaves a gap of 10% of the text width between the text and the plotting position.</p>
 </dd>
 <dt><code>cex=1.5</code></dt>
 <dd><p>Character expansion. The value is the desired size of text characters (including plotting characters) relative to the default text size.</p>
 </dd>
+<dt><code>cex.axis</code></dt>
+<dd>
+</dd>
+<dt><code>cex.lab</code></dt>
+<dd>
+</dd>
+<dt><code>cex.main</code></dt>
+<dd>
+</dd>
+<dt><code>cex.sub</code></dt>
+<dd><p>The character expansion to be used for axis annotation, <em>x</em> and <em>y</em> labels, main and sub-titles, respectively.</p>
+</dd>
 </dl>
-<p><code>cex.axis</code><br>
-<code>cex.lab</code><br>
-<code>cex.main</code><br>
-<code>cex.sub</code></p>
-<p>: The character expansion to be used for axis annotation, <em>x</em> and <em>y</em> labels, main and sub-titles, respectively.</p>
 </section>
 <section id="axes-and-tick-marks" class="level3 subsection" data-number="12.5.2">
 <h3 class="subsection anchored" data-number="12.5.2" data-anchor-id="axes-and-tick-marks"><span class="header-section-number">12.5.2</span> Axes and tick marks</h3>
@@ -663,10 +697,13 @@ slope, in that order.</code></pre>
 <dt><code>tck=0.01</code></dt>
 <dd><p>Length of tick marks, as a fraction of the size of the plotting region. When <code>tck</code> is small (less than 0.5) the tick marks on the <em>x</em> and <em>y</em> axes are forced to be the same size. A value of 1 gives grid lines. Negative values give tick marks outside the plotting region. Use <code>tck=0.01</code> and <code>mgp=c(1,-1.5,0)</code> for internal tick marks.</p>
 </dd>
+<dt><code>xaxs="r"</code></dt>
+<dd>
+</dd>
+<dt><code>yaxs="i"</code></dt>
+<dd><p>Axis styles for the <em>x</em> and <em>y</em> axes, respectively. With styles <code>"i"</code> (internal) and <code>"r"</code> (the default) tick marks always fall within the range of the data, however style <code>"r"</code> leaves a small amount of space at the edges. (S has other styles not implemented in R.)</p>
+</dd>
 </dl>
-<p><code>xaxs="r"</code><br>
-<code>yaxs="i"</code></p>
-<p>: Axis styles for the <em>x</em> and <em>y</em> axes, respectively. With styles <code>"i"</code> (internal) and <code>"r"</code> (the default) tick marks always fall within the range of the data, however style <code>"r"</code> leaves a small amount of space at the edges. (S has other styles not implemented in R.)</p>
 </section>
 <section id="figure-margins" class="level3 subsection" data-number="12.5.3">
 <h3 class="subsection anchored" data-number="12.5.3" data-anchor-id="figure-margins"><span class="header-section-number">12.5.3</span> Figure margins</h3>
@@ -699,29 +736,28 @@ slope, in that order.</code></pre>
 </figure>
 </div>
 <p>The graphical parameters relating to multiple figures are as follows:</p>
-<p><code>mfcol=c(3, 2)</code><br>
-<code>mfrow=c(2, 4)</code></p>
-<p>: Set the size of a multiple figure array. The first value is the number of rows; the second is the number of columns. The only difference between these two parameters is that setting <code>mfcol</code> causes figures to be filled by column; <code>mfrow</code> fills by rows.</p>
-<pre><code>The layout in the Figure could have been created by setting
-`mfrow=c(3,2)`; the figure shows the page after four plots have been
-drawn.
-
-Setting either of these can reduce the base size of symbols and text
-(controlled by `par("cex")` and the pointsize of the device). In a
-layout with exactly two rows and columns the base size is reduced by
-a factor of 0.83: if there are three or more of either rows or
-columns, the reduction factor is 0.66.</code></pre>
 <dl>
+<dt><code>mfcol=c(3, 2)</code></dt>
+<dd>
+</dd>
+<dt><code>mfrow=c(2, 4)</code></dt>
+<dd><p>Set the size of a multiple figure array. The first value is the number of rows; the second is the number of columns. The only difference between these two parameters is that setting <code>mfcol</code> causes figures to be filled by column; <code>mfrow</code> fills by rows.</p>
+<p>The layout in the Figure could have been created by setting <code>mfrow=c(3,2)</code>; the figure shows the page after four plots have been drawn.</p>
+<p>Setting either of these can reduce the base size of symbols and text (controlled by <code>par("cex")</code> and the pointsize of the device). In a layout with exactly two rows and columns the base size is reduced by a factor of 0.83: if there are three or more of either rows or columns, the reduction factor is 0.66.</p>
+</dd>
 <dt><code>mfg=c(2, 2, 3, 2)</code></dt>
 <dd><p>Position of the current figure in a multiple figure environment. The first two numbers are the row and column of the current figure; the last two are the number of rows and columns in the multiple figure array. Set this parameter to jump between figures in the array. You can even use different values for the last two numbers than the <em>true</em> values for unequally-sized figures on the same page.</p>
 </dd>
 <dt><code>fig=c(4, 9, 1, 4)/10</code></dt>
 <dd><p>Position of the current figure on the page. Values are the positions of the left, right, bottom and top edges respectively, as a percentage of the page measured from the bottom left corner. The example value would be for a figure in the bottom right of the page. Set this parameter for arbitrary positioning of figures within a page. If you want to add a figure to a current page, use <code>new=TRUE</code> as well (unlike S).</p>
 </dd>
+<dt><code>oma=c(2, 0, 3, 0)</code></dt>
+<dd>
+</dd>
+<dt><code>omi=c(0, 0, 0.8, 0)</code></dt>
+<dd><p>Size of outer margins. Like <code>mar</code> and <code>mai</code>, the first measures in text lines and the second in inches, starting with the bottom margin and working clockwise.</p>
+</dd>
 </dl>
-<p><code>oma=c(2, 0, 3, 0)</code><br>
-<code>omi=c(0, 0, 0.8, 0)</code></p>
-<p>: Size of outer margins. Like <code>mar</code> and <code>mai</code>, the first measures in text lines and the second in inches, starting with the bottom margin and working clockwise.</p>
 <p>Outer margins are particularly useful for page-wise titles, etc. Text can be added to the outer margins with the <code>mtext()</code> function with argument <code>outer=TRUE</code>. There are no outer margins by default, however, so you must create them explicitly using <code>oma</code> or <code>omi</code>.</p>
 <p>More complicated arrangements of multiple figures can be produced by the <code>split.screen()</code> and <code>layout()</code> functions, as well as by the <strong>grid</strong> and <a href="https://CRAN.R-project.org/package=lattice"><strong>lattice</strong></a> packages.</p>
 </section>
@@ -730,7 +766,7 @@ columns, the reduction factor is 0.66.</code></pre>
 <h2 class="section anchored" data-number="12.6" data-anchor-id="device-drivers"><span class="header-section-number">12.6</span> Device drivers</h2>
 <p>R can generate graphics (of varying levels of quality) on almost any type of display or printing device. Before this can begin, however, R needs to be informed what type of device it is dealing with. This is done by starting a <em>device driver</em>. The purpose of a device driver is to convert graphical instructions from R (“draw a line,” for example) into a form that the particular device can understand.</p>
 <p>Device drivers are started by calling a device driver function. There is one such function for every device driver: type <code>help(Devices)</code> for a list of them all. For example, issuing the command</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">postscript</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">postscript</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>causes all future graphics output to be sent to the printer in PostScript format. Some commonly-used device drivers are:</p>
 <dl>
 <dt><code>X11()</code></dt>
@@ -763,16 +799,16 @@ columns, the reduction factor is 0.66.</code></pre>
 </dd>
 </dl>
 <p>When you have finished with a device, be sure to terminate the device driver by issuing the command</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">dev.off</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">dev.off</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This ensures that the device finishes cleanly; for example in the case of hardcopy devices this ensures that every page is completed and has been sent to the printer. (This will happen automatically at the normal end of a session.)</p>
 <section id="postscript-diagrams-for-typeset-documents" class="level3 subsection" data-number="12.6.1">
 <h3 class="subsection anchored" data-number="12.6.1" data-anchor-id="postscript-diagrams-for-typeset-documents"><span class="header-section-number">12.6.1</span> PostScript diagrams for typeset documents</h3>
 <p>By passing the <code>file</code> argument to the <code>postscript()</code> device driver function, you may store the graphics in PostScript format in a file of your choice. The plot will be in landscape orientation unless the <code>horizontal=FALSE</code> argument is given, and you can control the size of the graphic with the <code>width</code> and <code>height</code> arguments (the plot will be scaled as appropriate to fit these dimensions.) For example, the command</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> postscript<span class="op">(</span><span class="st">"file.ps"</span><span class="op">,</span> horizontal<span class="op">=</span>FALSE<span class="op">,</span> height<span class="op">=</span><span class="dv">5</span><span class="op">,</span> pointsize<span class="op">=</span><span class="dv">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> postscript<span class="op">(</span><span class="st">"file.ps"</span><span class="op">,</span> horizontal<span class="op">=</span>FALSE<span class="op">,</span> height<span class="op">=</span><span class="dv">5</span><span class="op">,</span> pointsize<span class="op">=</span><span class="dv">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>will produce a file containing PostScript code for a figure five inches high, perhaps for inclusion in a document. It is important to note that if the file named in the command already exists, it will be overwritten. This is the case even if the file was only created earlier in the same R session.</p>
 <p>Many usages of PostScript output will be to incorporate the figure in another document. This works best when <em>encapsulated</em> PostScript is produced: R always produces conformant output, but only marks the output as such when the <code>onefile=FALSE</code> argument is supplied. This unusual notation stems from S-compatibility: it really means that the output will be a single page (which is part of the EPSF specification). Thus to produce a plot for inclusion use something like</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> postscript<span class="op">(</span><span class="st">"plot1.eps"</span><span class="op">,</span> horizontal<span class="op">=</span>FALSE<span class="op">,</span> onefile<span class="op">=</span>FALSE<span class="op">,</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>             height<span class="op">=</span><span class="dv">8</span><span class="op">,</span> width<span class="op">=</span><span class="dv">6</span><span class="op">,</span> pointsize<span class="op">=</span><span class="dv">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> postscript<span class="op">(</span><span class="st">"plot1.eps"</span><span class="op">,</span> horizontal<span class="op">=</span>FALSE<span class="op">,</span> onefile<span class="op">=</span>FALSE<span class="op">,</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>             height<span class="op">=</span><span class="dv">8</span><span class="op">,</span> width<span class="op">=</span><span class="dv">6</span><span class="op">,</span> pointsize<span class="op">=</span><span class="dv">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="multiple-graphics-devices" class="level3 subsection" data-number="12.6.2">
 <h3 class="subsection anchored" data-number="12.6.2" data-anchor-id="multiple-graphics-devices"><span class="header-section-number">12.6.2</span> Multiple graphics devices</h3>
@@ -782,36 +818,50 @@ columns, the reduction factor is 0.66.</code></pre>
 <dt><code>X11()</code></dt>
 <dd><p>[UNIX]</p>
 </dd>
-</dl>
-<p><code>windows()</code><br>
-<code>win.printer()</code><br>
-<code>win.metafile()</code></p>
-<p>: [Windows]</p>
-<dl>
+<dt><code>windows()</code></dt>
+<dd>
+</dd>
+<dt><code>win.printer()</code></dt>
+<dd>
+</dd>
+<dt><code>win.metafile()</code></dt>
+<dd><p>[Windows]</p>
+</dd>
 <dt><code>quartz()</code></dt>
 <dd><p>[macOS]</p>
 </dd>
-</dl>
-<p><code>postscript()</code><br>
-<code>pdf()</code><br>
-<code>png()</code><br>
-<code>jpeg()</code><br>
-<code>tiff()</code><br>
-<code>bitmap()</code><br>
-<code>…</code></p>
-<p>: Each new call to a device driver function opens a new graphics device, thus extending by one the device list. This device becomes the current device, to which graphics output will be sent.</p>
-<dl>
+<dt><code>postscript()</code></dt>
+<dd>
+</dd>
+<dt><code>pdf()</code></dt>
+<dd>
+</dd>
+<dt><code>png()</code></dt>
+<dd>
+</dd>
+<dt><code>jpeg()</code></dt>
+<dd>
+</dd>
+<dt><code>tiff()</code></dt>
+<dd>
+</dd>
+<dt><code>bitmap()</code></dt>
+<dd>
+</dd>
+<dt><code>…</code></dt>
+<dd><p>Each new call to a device driver function opens a new graphics device, thus extending by one the device list. This device becomes the current device, to which graphics output will be sent.</p>
+</dd>
 <dt><code>dev.list()</code></dt>
 <dd><p><span id="index-dev_002elist"></span></p>
 <p>Returns the number and name of all active devices. The device at position 1 on the list is always the <em>null device</em> which does not accept graphics commands at all.</p>
 </dd>
-</dl>
-<p><code>dev.next()</code><br>
-<code>dev.prev()</code></p>
-<p>: <span id="index-dev_002enext"></span></p>
-<pre><code>Returns the number and name of the graphics device next to, or
-previous to the current device, respectively.</code></pre>
-<dl>
+<dt><code>dev.next()</code></dt>
+<dd>
+</dd>
+<dt><code>dev.prev()</code></dt>
+<dd><p><span id="index-dev_002enext"></span></p>
+<p>Returns the number and name of the graphics device next to, or previous to the current device, respectively.</p>
+</dd>
 <dt><code>dev.set(which=k)</code></dt>
 <dd><p><span id="index-dev_002eset"></span></p>
 <p>Can be used to change the current graphics device to the one at position <var>k</var> of the device list. Returns the number and label of the device.</p>
@@ -820,11 +870,12 @@ previous to the current device, respectively.</code></pre>
 <dd><p><span id="index-dev_002eoff"></span></p>
 <p>Terminate the graphics device at point <var>k</var> of the device list. For some devices, such as <code>postscript</code> devices, this will either print the file immediately or correctly complete the file for later printing, depending on how the device was initiated.</p>
 </dd>
-</dl>
-<p><code>dev.copy(device, …, which=k)</code><br>
-<code>dev.print(device, …, which=k)</code></p>
-<p>: Make a copy of the device <var>k</var>. Here <code>device</code> is a device function, such as <code>postscript</code>, with extra arguments, if needed, specified by <code>…</code>. <code>dev.print</code> is similar, but the copied device is immediately closed, so that end actions, such as printing hardcopies, are immediately performed.</p>
-<dl>
+<dt><code>dev.copy(device, …, which=k)</code></dt>
+<dd>
+</dd>
+<dt><code>dev.print(device, …, which=k)</code></dt>
+<dd><p>Make a copy of the device <var>k</var>. Here <code>device</code> is a device function, such as <code>postscript</code>, with extra arguments, if needed, specified by <code>…</code>. <code>dev.print</code> is similar, but the copied device is immediately closed, so that end actions, such as printing hardcopies, are immediately performed.</p>
+</dd>
 <dt><code>graphics.off()</code></dt>
 <dd><p>Terminate all graphics devices on the list, except the null device.</p>
 </dd>

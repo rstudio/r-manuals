@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.2.411">
+  <meta name="generator" content="quarto-0.2.442">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: An Introduction to R - 16&nbsp; Invoking R</title>
   <style>
@@ -120,7 +120,7 @@
 <body class="floating">
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-light ">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: An Introduction to R</span>
@@ -137,22 +137,22 @@
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
         <li>
-    <a class="dropdown-item" href="./../r-admin/index.html">R Installation and Administration</a>
+    <a class="dropdown-item" href="./r-intro">An Introduction to R</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-data/index.html">R Data Import/Export</a>
+    <a class="dropdown-item" href="./r-data">R Data Import/Export</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-exts/index.html">Writing R Extensions</a>
+    <a class="dropdown-item" href="./r-admin">R Installation and Administration</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./index.html">An Introduction to R</a>
+    <a class="dropdown-item" href="./r-exts">Writing R Extensions</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-ints/index.html">R Internals</a>
+    <a class="dropdown-item" href="./r-lang">R Language Definition</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-lang/index.html">R Language Definition</a>
+    <a class="dropdown-item" href="./r-ints">R Internals</a>
   </li>  
     </ul>
   </li>
@@ -251,7 +251,7 @@
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
       <nav id="TOC" role="doc-toc">
-<h2 id="toc-title">On this page</h2>
+<h2 id="toc-title">Table of contents</h2>
 <ul>
 <li><a href="#invoking-r-from-the-command-line" class="nav-link active" data-scroll-target="#invoking-r-from-the-command-line"> <span class="header-section-number">16.1</span> Invoking R from the command line</a></li>
 <li><a href="#invoking-r-under-windows" class="nav-link" data-scroll-target="#invoking-r-under-windows"> <span class="header-section-number">16.2</span> Invoking R under Windows</a></li>
@@ -286,10 +286,13 @@
 </ul>
 <p>In addition, there are options for controlling the memory available to the R process (see the on-line help for topic <code>Memory</code> for more information). Users will not normally need to use these unless they are trying to limit the amount of memory used by R.</p>
 <p>R accepts the following command-line options.</p>
-<p><code>--help</code><br>
-<code>-h</code></p>
-<p>: Print short help message to standard output and exit successfully.</p>
 <dl>
+<dt><code>--help</code></dt>
+<dd>
+</dd>
+<dt><code>-h</code></dt>
+<dd><p>Print short help message to standard output and exit successfully.</p>
+</dd>
 <dt><code>--version</code></dt>
 <dd><p>Print version information to standard output and exit successfully.</p>
 </dd>
@@ -299,11 +302,12 @@
 <dt><code>RHOME</code></dt>
 <dd><p>Print the path to the R “home directory” to standard output and exit successfully. Apart from the front-end shell script and the man page, R installation puts everything (executables, packages, etc.) into this directory.</p>
 </dd>
-</dl>
-<p><code>--save</code><br>
-<code>--no-save</code></p>
-<p>: Control whether data sets should be saved or not at the end of the R session. If neither is given in an interactive session, the user is asked for the desired behavior when ending the session with <kbd>q()</kbd>; in non-interactive use one of these must be specified or implied by some other option (see below).</p>
-<dl>
+<dt><code>--save</code></dt>
+<dd>
+</dd>
+<dt><code>--no-save</code></dt>
+<dd><p>Control whether data sets should be saved or not at the end of the R session. If neither is given in an interactive session, the user is asked for the desired behavior when ending the session with <kbd>q()</kbd>; in non-interactive use one of these must be specified or implied by some other option (see below).</p>
+</dd>
 <dt><code>--no-environ</code></dt>
 <dd><p>Do not read any user file to set environment variables.</p>
 </dd>
@@ -313,12 +317,15 @@
 <dt><code>--no-init-file</code></dt>
 <dd><p>Do not read the user’s profile at startup.</p>
 </dd>
-</dl>
-<p><code>--restore</code><br>
-<code>--no-restore</code><br>
-<code>--no-restore-data</code></p>
-<p>: Control whether saved images (file <code>.RData</code> in the directory where R was started) should be restored at startup or not. The default is to restore. (<code>--no-restore</code> implies all the specific <code>--no-restore-*</code> options.)</p>
-<dl>
+<dt><code>--restore</code></dt>
+<dd>
+</dd>
+<dt><code>--no-restore</code></dt>
+<dd>
+</dd>
+<dt><code>--no-restore-data</code></dt>
+<dd><p>Control whether saved images (file <code>.RData</code> in the directory where R was started) should be restored at startup or not. The default is to restore. (<code>--no-restore</code> implies all the specific <code>--no-restore-*</code> options.)</p>
+</dd>
 <dt><code>--no-restore-history</code></dt>
 <dd><p>Control whether the history file (normally file <code>.Rhistory</code> in the directory where R was started, but can be set by the environment variable <code>R_HISTFILE</code>) should be restored at startup or not. The default is to restore.</p>
 </dd>
@@ -328,31 +335,36 @@
 <dt><code>--vanilla</code></dt>
 <dd><p>Combine <code>--no-save</code>, <code>--no-environ</code>, <code>--no-site-file</code>, <code>--no-init-file</code> and <code>--no-restore</code>. Under Windows, this also includes <code>--no-Rconsole</code>.</p>
 </dd>
-</dl>
-<p><code>-f file</code><br>
-<code>--file=file</code></p>
-<p>: (not <code>Rgui.exe</code>) Take input from <var>file</var>: <code>-</code> means <code>stdin</code>. Implies <code>--no-save</code> unless <code>--save</code> has been set. On a Unix-alike, shell metacharacters should be avoided in <var>file</var> (but spaces are allowed).</p>
-<dl>
+<dt><code>-f file</code></dt>
+<dd>
+</dd>
+<dt><code>--file=file</code></dt>
+<dd><p>(not <code>Rgui.exe</code>) Take input from <var>file</var>: <code>-</code> means <code>stdin</code>. Implies <code>--no-save</code> unless <code>--save</code> has been set. On a Unix-alike, shell metacharacters should be avoided in <var>file</var> (but spaces are allowed).</p>
+</dd>
 <dt><code>-e expression</code></dt>
 <dd><p>(not <code>Rgui.exe</code>) Use <var>expression</var> as an input line. One or more <code>-e</code> options can be used, but not together with <code>-f</code> or <code>--file</code>. Implies <code>--no-save</code> unless <code>--save</code> has been set. (There is a limit of 10,000 bytes on the total length of expressions used in this way. Expressions containing spaces or shell metacharacters will need to be quoted.)</p>
 </dd>
 <dt><code>--no-readline</code></dt>
 <dd><p>(UNIX only) Turn off command-line editing via <strong>readline</strong>. This is useful when running R from within Emacs using the ESS (“Emacs Speaks Statistics”) package. See <a href="The-command_002dline-editor.html">The command-line editor</a>, for more information. Command-line editing is enabled for default interactive use (see <code>--interactive</code>). This option also affects tilde-expansion: see the help for <code>path.expand</code>.</p>
 </dd>
-</dl>
-<p><code>--min-vsize=N</code><br>
-<code>--min-nsize=N</code></p>
-<p>: For expert use only: set the initial trigger sizes for garbage collection of vector heap (in bytes) and <em>cons cells</em> (number) respectively. Suffix <code>M</code> specifies megabytes or millions of cells respectively. The defaults are 6Mb and 350k respectively and can also be set by environment variables <code>R_NSIZE</code> and <code>R_VSIZE</code>.</p>
-<dl>
+<dt><code>--min-vsize=N</code></dt>
+<dd>
+</dd>
+<dt><code>--min-nsize=N</code></dt>
+<dd><p>For expert use only: set the initial trigger sizes for garbage collection of vector heap (in bytes) and <em>cons cells</em> (number) respectively. Suffix <code>M</code> specifies megabytes or millions of cells respectively. The defaults are 6Mb and 350k respectively and can also be set by environment variables <code>R_NSIZE</code> and <code>R_VSIZE</code>.</p>
+</dd>
 <dt><code>--max-ppsize=N</code></dt>
 <dd><p>Specify the maximum size of the pointer protection stack as <var>N</var> locations. This defaults to 10000, but can be increased to allow large and complicated calculations to be done. Currently the maximum value accepted is 100000.</p>
 </dd>
-</dl>
-<p><code>--quiet</code><br>
-<code>--silent</code><br>
-<code>-q</code></p>
-<p>: Do not print out the initial copyright and welcome messages.</p>
-<dl>
+<dt><code>--quiet</code></dt>
+<dd>
+</dd>
+<dt><code>--silent</code></dt>
+<dd>
+</dd>
+<dt><code>-q</code></dt>
+<dd><p>Do not print out the initial copyright and welcome messages.</p>
+</dd>
 <dt><code>--no-echo</code></dt>
 <dd><p>Make R run as quietly as possible. This option is intended to support programs which use R to compute results for them. It implies <code>--quiet</code> and <code>--no-save</code>.</p>
 </dd>
@@ -366,14 +378,18 @@
 <dt><code>--verbose</code></dt>
 <dd><p>Print more information about progress, and in particular set R’s option <code>verbose</code> to <code>TRUE</code>. R code uses this option to control the printing of diagnostic messages.</p>
 </dd>
-</dl>
-<p><code>--debugger=name</code><br>
-<code>-d name</code></p>
-<p>: (UNIX only) Run R through debugger <var>name</var>. For most debuggers (the exceptions are <code>valgrind</code> and recent versions of <code>gdb</code>), further command line options are disregarded, and should instead be given when starting the R executable from inside the debugger.</p>
-<p><code>--gui=type</code><br>
-<code>-g type</code></p>
-<p>: (UNIX only) Use <var>type</var> as graphical user interface (note that this also includes interactive graphics). Currently, possible values for <var>type</var> are <code>X11</code> (the default) and, provided that <code>Tcl/Tk</code> support is available, <code>Tk</code>. (For back-compatibility, <code>x11</code> and <code>tk</code> are accepted.)</p>
-<dl>
+<dt><code>--debugger=name</code></dt>
+<dd>
+</dd>
+<dt><code>-d name</code></dt>
+<dd><p>(UNIX only) Run R through debugger <var>name</var>. For most debuggers (the exceptions are <code>valgrind</code> and recent versions of <code>gdb</code>), further command line options are disregarded, and should instead be given when starting the R executable from inside the debugger.</p>
+</dd>
+<dt><code>--gui=type</code></dt>
+<dd>
+</dd>
+<dt><code>-g type</code></dt>
+<dd><p>(UNIX only) Use <var>type</var> as graphical user interface (note that this also includes interactive graphics). Currently, possible values for <var>type</var> are <code>X11</code> (the default) and, provided that <code>Tcl/Tk</code> support is available, <code>Tk</code>. (For back-compatibility, <code>x11</code> and <code>tk</code> are accepted.)</p>
+</dd>
 <dt><code>--arch=name</code></dt>
 <dd><p>(UNIX only) Run the specified sub-architecture.</p>
 </dd>
@@ -414,11 +430,12 @@
 <dt><code>Rprof</code></dt>
 <dd><p>Post-process R profiling files.</p>
 </dd>
-</dl>
-<p><code>Rdconv</code><br>
-<code>Rd2txt</code></p>
-<p>: Convert Rd format to various other formats, including HTML, LaTeX, plain text, and extracting the examples. <code>Rd2txt</code> can be used as shorthand for <code>Rd2conv -t txt</code>.</p>
-<dl>
+<dt><code>Rdconv</code></dt>
+<dd>
+</dd>
+<dt><code>Rd2txt</code></dt>
+<dd><p>Convert Rd format to various other formats, including HTML, LaTeX, plain text, and extracting the examples. <code>Rd2txt</code> can be used as shorthand for <code>Rd2conv -t txt</code>.</p>
+</dd>
 <dt><code>Rd2pdf</code></dt>
 <dd><p>Convert Rd format to PDF.</p>
 </dd>
@@ -462,11 +479,16 @@
 <p>Environment variables can be supplied as <code>name=value</code> pairs on the command line.</p>
 <p>If there is an argument ending <code>.RData</code> (in any case) it is interpreted as the path to the workspace to be restored: it implies <code>--restore</code> and sets the working directory to the parent of the named file. (This mechanism is used for drag-and-drop and file association with <code>RGui.exe</code>, but also works for <code>Rterm.exe</code>. If the named file does not exist it sets the working directory if the parent directory exists.)</p>
 <p>The following additional command-line options are available when invoking <code>RGui.exe</code>.</p>
-<p><code>--mdi</code><br>
-<code>--sdi</code><br>
-<code>--no-mdi</code></p>
-<p>: Control whether <code>Rgui</code> will operate as an MDI program (with multiple child windows within one main window) or an SDI application (with multiple top-level windows for the console, graphics and pager). The command-line setting overrides the setting in the user’s <code>Rconsole</code> file.</p>
 <dl>
+<dt><code>--mdi</code></dt>
+<dd>
+</dd>
+<dt><code>--sdi</code></dt>
+<dd>
+</dd>
+<dt><code>--no-mdi</code></dt>
+<dd><p>Control whether <code>Rgui</code> will operate as an MDI program (with multiple child windows within one main window) or an SDI application (with multiple top-level windows for the console, graphics and pager). The command-line setting overrides the setting in the user’s <code>Rconsole</code> file.</p>
+</dd>
 <dt><code>--debug</code></dt>
 <dd><p>Enable the “Break to debugger” menu item in <code>Rgui</code>, and trigger a break to the debugger during command line processing.</p>
 </dd>

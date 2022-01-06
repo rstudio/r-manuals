@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang=""><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.2.411">
+  <meta name="generator" content="quarto-0.2.442">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: An Introduction to R - 15&nbsp; A sample session</title>
   <style>
@@ -57,7 +57,7 @@
 <body class="floating">
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-light ">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: An Introduction to R</span>
@@ -74,22 +74,22 @@
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
         <li>
-    <a class="dropdown-item" href="./../r-admin/index.html">R Installation and Administration</a>
+    <a class="dropdown-item" href="./r-intro">An Introduction to R</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-data/index.html">R Data Import/Export</a>
+    <a class="dropdown-item" href="./r-data">R Data Import/Export</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-exts/index.html">Writing R Extensions</a>
+    <a class="dropdown-item" href="./r-admin">R Installation and Administration</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./index.html">An Introduction to R</a>
+    <a class="dropdown-item" href="./r-exts">Writing R Extensions</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-ints/index.html">R Internals</a>
+    <a class="dropdown-item" href="./r-lang">R Language Definition</a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-lang/index.html">R Language Definition</a>
+    <a class="dropdown-item" href="./r-ints">R Internals</a>
   </li>  
     </ul>
   </li>
@@ -204,11 +204,12 @@
 <dd><p>Start the HTML interface to on-line help (using a web browser available at your machine). You should briefly explore the features of this facility with the mouse.</p>
 <p>Iconify the help window and move on to the next part.</p>
 </dd>
-</dl>
-<p><code>x &lt;- rnorm(50)</code><br>
-<code>y &lt;- rnorm(x)</code></p>
-<p>: Generate two pseudo-random normal vectors of <em>x</em>- and <em>y</em>-coordinates.</p>
-<dl>
+<dt><code>x &lt;- rnorm(50)</code></dt>
+<dd>
+</dd>
+<dt><code>y &lt;- rnorm(x)</code></dt>
+<dd><p>Generate two pseudo-random normal vectors of <em>x</em>- and <em>y</em>-coordinates.</p>
+</dd>
 <dt><code>plot(x, y)</code></dt>
 <dd><p>Plot the points in the plane. A graphics window will appear automatically.</p>
 </dd>
@@ -224,17 +225,24 @@
 <dt><code>w &lt;- 1 + sqrt(x)/2</code></dt>
 <dd><p>A ‘weight’ vector of standard deviations.</p>
 </dd>
-</dl>
-<p><code>dummy &lt;- data.frame(x=x, y= x + rnorm(x)*w)</code><br>
-<code>dummy</code></p>
-<p>: Make a <em>data frame</em> of two columns, <em>x</em> and <em>y</em>, and look at it.</p>
-<p><code>fm &lt;- lm(y ~ x, data=dummy)</code><br>
-<code>summary(fm)</code></p>
-<p>: Fit a simple linear regression and look at the analysis. With <code>y</code> to the left of the tilde, we are modelling <em>y</em> dependent on <em>x</em>.</p>
-<p><code>fm1 &lt;- lm(y ~ x, data=dummy, weight=1/w^2)</code><br>
-<code>summary(fm1)</code></p>
-<p>: Since we know the standard deviations, we can do a weighted regression.</p>
-<dl>
+<dt><code>dummy &lt;- data.frame(x=x, y= x + rnorm(x)*w)</code></dt>
+<dd>
+</dd>
+<dt><code>dummy</code></dt>
+<dd><p>Make a <em>data frame</em> of two columns, <em>x</em> and <em>y</em>, and look at it.</p>
+</dd>
+<dt><code>fm &lt;- lm(y ~ x, data=dummy)</code></dt>
+<dd>
+</dd>
+<dt><code>summary(fm)</code></dt>
+<dd><p>Fit a simple linear regression and look at the analysis. With <code>y</code> to the left of the tilde, we are modelling <em>y</em> dependent on <em>x</em>.</p>
+</dd>
+<dt><code>fm1 &lt;- lm(y ~ x, data=dummy, weight=1/w^2)</code></dt>
+<dd>
+</dd>
+<dt><code>summary(fm1)</code></dt>
+<dd><p>Since we know the standard deviations, we can do a weighted regression.</p>
+</dd>
 <dt><code>attach(dummy)</code></dt>
 <dd><p>Make the columns in the data frame visible as variables.</p>
 </dd>
@@ -259,13 +267,18 @@
 <dt><code>detach()</code></dt>
 <dd><p>Remove data frame from the search path.</p>
 </dd>
-</dl>
-<p><code>plot(fitted(fm), resid(fm),</code><br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xlab="Fitted&nbsp;values",</code><br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ylab="Residuals",</code><br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;main="Residuals&nbsp;vs&nbsp;Fitted")</code></p>
-<p>: A standard regression diagnostic plot to check for heteroscedasticity. Can you see it?</p>
-<dl>
+<dt><code>plot(fitted(fm), resid(fm),</code></dt>
+<dd>
+</dd>
+<dt><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xlab="Fitted&nbsp;values",</code></dt>
+<dd>
+</dd>
+<dt><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ylab="Residuals",</code></dt>
+<dd>
+</dd>
+<dt><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;main="Residuals&nbsp;vs&nbsp;Fitted")</code></dt>
+<dd><p>A standard regression diagnostic plot to check for heteroscedasticity. Can you see it?</p>
+</dd>
 <dt><code>qqnorm(resid(fm), main="Residuals Rankit Plot")</code></dt>
 <dd><p>A normal scores plot to check for skewness, kurtosis and outliers. (Not very useful here.)</p>
 </dd>
@@ -274,53 +287,76 @@
 </dd>
 </dl>
 <p>The next section will look at data from the classical experiment of Michelson to measure the speed of light. This dataset is available in the <code>morley</code> object, but we will read it to illustrate the <code>read.table</code> function.</p>
-<p><code>filepath &lt;- system.file("data", "morley.tab" , package="datasets")</code><br>
-<code>filepath</code></p>
-<p>: Get the path to the data file.</p>
 <dl>
+<dt><code>filepath &lt;- system.file("data", "morley.tab" , package="datasets")</code></dt>
+<dd>
+</dd>
+<dt><code>filepath</code></dt>
+<dd><p>Get the path to the data file.</p>
+</dd>
 <dt><code>file.show(filepath)</code></dt>
 <dd><p>Optional. Look at the file.</p>
 </dd>
-</dl>
-<p><code>mm &lt;- read.table(filepath)</code><br>
-<code>mm</code></p>
-<p>: Read in the Michelson data as a data frame, and look at it. There are five experiments (column <code>Expt</code>) and each has 20 runs (column <code>Run</code>) and <code>sl</code> is the recorded speed of light, suitably coded.</p>
-<p><code>mm$Expt &lt;- factor(mm$Expt)</code><br>
-<code>mm$Run &lt;- factor(mm$Run)</code></p>
-<p>: Change <code>Expt</code> and <code>Run</code> into factors.</p>
-<dl>
+<dt><code>mm &lt;- read.table(filepath)</code></dt>
+<dd>
+</dd>
+<dt><code>mm</code></dt>
+<dd><p>Read in the Michelson data as a data frame, and look at it. There are five experiments (column <code>Expt</code>) and each has 20 runs (column <code>Run</code>) and <code>sl</code> is the recorded speed of light, suitably coded.</p>
+</dd>
+<dt><code>mm$Expt &lt;- factor(mm$Expt)</code></dt>
+<dd>
+</dd>
+<dt><code>mm$Run &lt;- factor(mm$Run)</code></dt>
+<dd><p>Change <code>Expt</code> and <code>Run</code> into factors.</p>
+</dd>
 <dt><code>attach(mm)</code></dt>
 <dd><p>Make the data frame visible at position 2 (the default).</p>
 </dd>
 <dt><code>plot(Expt, Speed, main="Speed of Light Data", xlab="Experiment No.")</code></dt>
 <dd><p>Compare the five experiments with simple boxplots.</p>
 </dd>
+<dt><code>fm &lt;- aov(Speed ~ Run + Expt, data=mm)</code></dt>
+<dd>
+</dd>
+<dt><code>summary(fm)</code></dt>
+<dd><p>Analyze as a randomized block, with ‘runs’ and ‘experiments’ as factors.</p>
+</dd>
+<dt><code>fm0 &lt;- update(fm, . ~ . - Run)</code></dt>
+<dd>
+</dd>
+<dt><code>anova(fm0, fm)</code></dt>
+<dd><p>Fit the sub-model omitting ‘runs’, and compare using a formal analysis of variance.</p>
+</dd>
+<dt><code>detach()</code></dt>
+<dd>
+</dd>
+<dt><code>rm(fm, fm0)</code></dt>
+<dd><p>Clean up before moving on.</p>
+</dd>
 </dl>
-<p><code>fm &lt;- aov(Speed ~ Run + Expt, data=mm)</code><br>
-<code>summary(fm)</code></p>
-<p>: Analyze as a randomized block, with ‘runs’ and ‘experiments’ as factors.</p>
-<p><code>fm0 &lt;- update(fm, . ~ . - Run)</code><br>
-<code>anova(fm0, fm)</code></p>
-<p>: Fit the sub-model omitting ‘runs’, and compare using a formal analysis of variance.</p>
-<p><code>detach()</code><br>
-<code>rm(fm, fm0)</code></p>
-<p>: Clean up before moving on.</p>
 <p>We now look at some more graphical features: contour and image plots.</p>
-<p><code>x &lt;- seq(-pi, pi, len=50)</code><br>
-<code>y &lt;- x</code></p>
-<p>: <em>x</em> is a vector of 50 equally spaced values in the interval [-pi\, pi]. <em>y</em> is the same.</p>
 <dl>
+<dt><code>x &lt;- seq(-pi, pi, len=50)</code></dt>
+<dd>
+</dd>
+<dt><code>y &lt;- x</code></dt>
+<dd><p><em>x</em> is a vector of 50 equally spaced values in the interval [-pi\, pi]. <em>y</em> is the same.</p>
+</dd>
 <dt><code>f &lt;- outer(x, y, function(x, y) cos(y)/(1 + x^2))</code></dt>
 <dd><p><em>f</em> is a square matrix, with rows and columns indexed by <em>x</em> and <em>y</em> respectively, of values of the function cos(y)/(1 + x^2).</p>
 </dd>
-</dl>
-<p><code>oldpar &lt;- par(no.readonly = TRUE)</code><br>
-<code>par(pty="s")</code></p>
-<p>: Save the plotting parameters and set the plotting region to “square”.</p>
-<p><code>contour(x, y, f)</code><br>
-<code>contour(x, y, f, nlevels=15, add=TRUE)</code></p>
-<p>: Make a contour map of <em>f</em>; add in more lines for more detail.</p>
-<dl>
+<dt><code>oldpar &lt;- par(no.readonly = TRUE)</code></dt>
+<dd>
+</dd>
+<dt><code>par(pty="s")</code></dt>
+<dd><p>Save the plotting parameters and set the plotting region to “square”.</p>
+</dd>
+<dt><code>contour(x, y, f)</code></dt>
+<dd>
+</dd>
+<dt><code>contour(x, y, f, nlevels=15, add=TRUE)</code></dt>
+<dd><p>Make a contour map of <em>f</em>; add in more lines for more detail.</p>
+</dd>
 <dt><code>fa &lt;- (f-t(f))/2</code></dt>
 <dd><p><code>fa</code> is the “asymmetric part” of <em>f</em>. (<code>t()</code> is transpose).</p>
 </dd>
@@ -330,38 +366,51 @@
 <dt><code>par(oldpar)</code></dt>
 <dd><p>… and restore the old graphics parameters.</p>
 </dd>
-</dl>
-<p><code>image(x, y, f)</code><br>
-<code>image(x, y, fa)</code></p>
-<p>: Make some high density image plots, (of which you can get hardcopies if you wish), …</p>
-<dl>
+<dt><code>image(x, y, f)</code></dt>
+<dd>
+</dd>
+<dt><code>image(x, y, fa)</code></dt>
+<dd><p>Make some high density image plots, (of which you can get hardcopies if you wish), …</p>
+</dd>
 <dt><code>objects(); rm(x, y, f, fa)</code></dt>
 <dd><p>… and clean up before moving on.</p>
 </dd>
 </dl>
 <p>R can do complex arithmetic, also.</p>
-<p><code>th &lt;- seq(-pi, pi, len=100)</code><br>
-<code>z &lt;- exp(1i*th)</code></p>
-<p>: <code>1i</code> is used for the complex number <em>i</em>.</p>
-<p><code>par(pty="s")</code><br>
-<code>plot(z, type="l")</code></p>
-<p>: Plotting complex arguments means plot imaginary versus real parts. This should be a circle.</p>
 <dl>
+<dt><code>th &lt;- seq(-pi, pi, len=100)</code></dt>
+<dd>
+</dd>
+<dt><code>z &lt;- exp(1i*th)</code></dt>
+<dd><p><code>1i</code> is used for the complex number <em>i</em>.</p>
+</dd>
+<dt><code>par(pty="s")</code></dt>
+<dd>
+</dd>
+<dt><code>plot(z, type="l")</code></dt>
+<dd><p>Plotting complex arguments means plot imaginary versus real parts. This should be a circle.</p>
+</dd>
 <dt><code>w &lt;- rnorm(100) + rnorm(100)*1i</code></dt>
 <dd><p>Suppose we want to sample points within the unit circle. One method would be to take complex numbers with standard normal real and imaginary parts …</p>
 </dd>
 <dt><code>w &lt;- ifelse(Mod(w) &gt; 1, 1/w, w)</code></dt>
 <dd><p>… and to map any outside the circle onto their reciprocal.</p>
 </dd>
-</dl>
-<p><code>plot(w, xlim=c(-1,1), ylim=c(-1,1), pch="+",xlab="x", ylab="y")</code><br>
-<code>lines(z)</code></p>
-<p>: All points are inside the unit circle, but the distribution is not uniform.</p>
-<p><code>w &lt;- sqrt(runif(100))*exp(2*pi*runif(100)*1i)</code><br>
-<code>plot(w, xlim=c(-1,1), ylim=c(-1,1), pch="+", xlab="x", ylab="y")</code><br>
-<code>lines(z)</code></p>
-<p>: The second method uses the uniform distribution. The points should now look more evenly spaced over the disc.</p>
-<dl>
+<dt><code>plot(w, xlim=c(-1,1), ylim=c(-1,1), pch="+",xlab="x", ylab="y")</code></dt>
+<dd>
+</dd>
+<dt><code>lines(z)</code></dt>
+<dd><p>All points are inside the unit circle, but the distribution is not uniform.</p>
+</dd>
+<dt><code>w &lt;- sqrt(runif(100))*exp(2*pi*runif(100)*1i)</code></dt>
+<dd>
+</dd>
+<dt><code>plot(w, xlim=c(-1,1), ylim=c(-1,1), pch="+", xlab="x", ylab="y")</code></dt>
+<dd>
+</dd>
+<dt><code>lines(z)</code></dt>
+<dd><p>The second method uses the uniform distribution. The points should now look more evenly spaced over the disc.</p>
+</dd>
 <dt><code>rm(th, w, z)</code></dt>
 <dd><p>Clean up again.</p>
 </dd>
