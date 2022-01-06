@@ -30,7 +30,19 @@ devtools::load_all()
 #   - r-ints
 #
 
+# Determine the correct sequence for navbar links, etc.
+all_manuals <- c(
+  "r-intro",
+  "r-data",
+  "r-admin",
+  "r-exts",
+  "r-lang",
+  "r-ints"
+)
 
+# Determine which manuals to build.
+# Comment out some of these lines for quick testing.
+# For production, should be identical to all_manuals.
 manuals <- c(
   "R-intro.texi",
   "R-data.texi",
@@ -47,19 +59,27 @@ purrr::walk(manuals, process_manual)
 
 # Build each book --------------
 
-build_a_book <- function(x, index){
+build_a_book <- function(x, index, all_manuals) {
+
+  all_manuals <- basename(all_manuals)
   book <- fs::path(x, "book")
   yaml_file <- fs::path(book, "_quarto.yml")
   manual <- fs::path_file(x)
-  # browser()
-  index2 <- gsub(glue::glue("../{name}/index.html", name = manual), "index.md", index)
+
+
+  index2 <-
+    gsub(glue::glue("../{name}/index.html", name = manual), "index.md", index)
   yaml <- yaml::read_yaml(yaml_file)
-  navbar <- purrr::imap(index2, ~ {
+
+  navbar <- purrr::map(all_manuals, ~ {
     list(
       href = .x,
-      text = extract_title_from_index(glue::glue("manuals/{name}/prep/index.html", name = .y))
+      text = extract_title_from_index(
+        glue::glue("manuals/{name}/prep/index.html", name = .x)
+      )
     )
   })
+
   yaml$book$navbar$right <- c(
     list(list(href = "../index.html", text = "Home")),
     list(list(text = "Manuals", menu = unname(navbar))),
@@ -73,9 +93,8 @@ build_a_book <- function(x, index){
 #
 # This will modify the _quarto.yml navbar to include all manuals and then
 # build each manual as a Quarto book project
-build_books <- function(manuals_folder = "manuals", manuals) {
-
-  if (!missing(manuals)  && !is.null(manuals)) {
+build_books <- function(manuals_folder = "manuals", manuals, all_manuals) {
+  if (!missing(manuals) && !is.null(manuals)) {
     manuals <- tolower(gsub("\\.texi", "", manuals))
     manuals <- file.path(manuals_folder, manuals)
   } else {
@@ -87,15 +106,15 @@ build_books <- function(manuals_folder = "manuals", manuals) {
 
   cli::cli_h2("Tweaking Manuals...")
 
-  purrr::walk(manuals, build_a_book, index = index)
+  purrr::walk(manuals, build_a_book, index = index, all_manuals = all_manuals)
 
-  purrr::walk(manuals,  ~ {
+  purrr::walk(manuals, ~ {
     cli::cli_alert_info("Building book {.file {.x}}.")
     quarto::quarto_render(fs::path(.x, "book"), as_job = FALSE)
   })
 }
 
-build_books(manuals = manuals)
+build_books(manuals = manuals, all_manuals = all_manuals)
 
 # Build website --------------
 #
@@ -128,11 +147,11 @@ build_main_website <- function(manuals_folder = "manuals") {
       href = fs::path(manual, "index.html"),
       text = extract_title_from_index(
         glue::glue("manuals/{manual}/prep/index.html", manual = manual)
-        )
+      )
     )
   })
 
-  yaml$website$navbar$right<- c(
+  yaml$website$navbar$right <- c(
     list(list(href = "index.qmd", text = "Home")),
     list(list(text = "Manuals", menu = unname(index))),
     list(list(href = "about.qmd", text = "About"))
