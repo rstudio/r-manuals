@@ -37,7 +37,8 @@ manuals <- c(
   "R-admin.texi",
   "R-exts.texi",
   "R-lang.texi",
-  "R-ints.texi"
+  "R-ints.texi",
+  NULL
 )
 
 # purrr::walk(manuals, process_manual, .quicktest = TRUE)
@@ -72,8 +73,15 @@ build_a_book <- function(x, index){
 #
 # This will modify the _quarto.yml navbar to include all manuals and then
 # build each manual as a Quarto book project
-build_books <- function(manuals_folder = "manuals") {
-  manuals <- fs::dir_ls(manuals_folder)
+build_books <- function(manuals_folder = "manuals", manuals) {
+
+  if (!missing(manuals)  && !is.null(manuals)) {
+    manuals <- tolower(gsub("\\.texi", "", manuals))
+    manuals <- file.path(manuals_folder, manuals)
+  } else {
+    manuals <- fs::dir_ls(manuals_folder)
+  }
+
   index <- fs::path("..", fs::path_file(manuals), "index.html")
   names(index) <- fs::path_file(manuals)
 
@@ -87,7 +95,7 @@ build_books <- function(manuals_folder = "manuals") {
   })
 }
 
-build_books()
+build_books(manuals = manuals)
 
 # Build website --------------
 #

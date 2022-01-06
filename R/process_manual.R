@@ -13,15 +13,13 @@
 #'
 #' @return NULL.
 #' @export
-process_manual <- function(
-    manual = "R-exts.texi",
-    folder = tolower(sub(".texi", "", manual)),
-    manuals_folder = "manuals",
-    .quicktest = FALSE,
-    .make_info = !.quicktest,
-    .download = !.quicktest,
-    verbose = TRUE
-) {
+process_manual <- function(manual = "R-exts.texi",
+                           folder = tolower(sub(".texi", "", manual)),
+                           manuals_folder = "manuals",
+                           .quicktest = FALSE,
+                           .make_info = !.quicktest,
+                           .download = !.quicktest,
+                           verbose = TRUE) {
   cli::cli_h2("Processing {manual}")
 
   data_folder <- glue::glue("{manuals_folder}/{folder}/data")
@@ -44,7 +42,11 @@ process_manual <- function(
     # create folder for intermediate output
     if (fs::dir_exists(prep_folder)) fs::dir_delete(prep_folder)
     fs::dir_create(prep_folder)
-    make_info(manual, input_dir = data_folder, output_dir = prep_folder, verbose = verbose)
+    make_info(
+      manual,
+      input_dir = data_folder, output_dir = prep_folder,
+      verbose = verbose
+    )
 
     # Rename files containing "_002d" to "-"
     fs::dir_ls(prep_folder, glob = "*_002d*") %>%
@@ -62,15 +64,21 @@ process_manual <- function(
   fs::dir_ls(book_folder, glob = "*.html") %>% fs::file_delete()
 
   # copy markdown files to book folder
-
-  # browser()
-
   if (.quicktest) {
     fs::dir_ls(prep_folder, glob = "*.md")[1:3] %>%
       fs::file_copy(book_folder, overwrite = TRUE)
   } else {
     fs::dir_ls(prep_folder, glob = "*.md") %>%
       fs::file_copy(book_folder, overwrite = TRUE)
+  }
+
+  # copy images if present
+  images_present <- dir_ls(data_folder, glob = "*images")
+  if (length(images_present)) {
+    fs::dir_copy(
+      glue::glue("{data_folder}/images"),
+      glue::glue("{book_folder}/images")
+    )
   }
 
   # copy template files to book folder

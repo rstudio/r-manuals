@@ -112,7 +112,7 @@ download_manuals <- function(
     readr::read_lines(glue::glue("{destdir}/{manual}")) %>%
     stringr::str_match("@image\\{images/(.*?),.*\\}") %>%
     na.omit() %>%
-    .[,2]
+    .[, 2]
 
   fs::dir_create(glue::glue("{destdir}/images"))
   for (i in seq_along(image_names)) {
@@ -128,7 +128,9 @@ download_manuals <- function(
 
 #' Pre-process the texi files.
 #'
-#' At the moment the only pre-processing is to remove `@group` statements.  In PDF format this ensures line breaks don't occur in the middle of code blocks, but in HTML this causes multiple `pre` statements.
+#' At the moment the only pre-processing is to remove `@group` statements.
+#' In PDF format this ensures line breaks don't occur in the middle of code blocks, 
+#' but in HTML this causes multiple `pre` statements.
 #'
 #' @inheritParams download_manuals
 pre_process_manuals <- function(

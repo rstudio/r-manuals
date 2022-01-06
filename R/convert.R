@@ -26,7 +26,7 @@ convert_html_to_md <- function(input_file, verbose = FALSE) {
   if (basename(input_file) == "index.html") {
     book_title  <- extract_title_from_index(input_file)
     meta_data   <- glue::glue("--metadata=book_title:\"{book_title}\"")
-    lua_filters <- c(make_lua_filter("index.lua"), lua_filters)
+    lua_filters <- c(lua_filters, make_lua_filter("index.lua"))
   } else {
     meta_data = character()
   }
@@ -52,6 +52,8 @@ convert_html_to_md <- function(input_file, verbose = FALSE) {
     )
   # })
 
+  # browser(expr = basename(input_file) == "index.html")
+
   temp_md %>%
     read_lines() %>%
     # remove empty hyperlinks [](...)
@@ -60,18 +62,23 @@ convert_html_to_md <- function(input_file, verbose = FALSE) {
     gsub("\\{\\.sample\\}", "", .) %>%
     # fix footnote cross-references
     gsub("\\[\\^(\\d+)\\^\\]\\(#FOOT\\d+\\)\\{#DOCF\\d+\\}", "[^\\1]", .) %>%
+    gsub("\\[\\^(\\d+)\\^\\]\\(#FOOT\\d+\\)\\{#DOCF\\d+\\}", "[^\\1]", .) %>%
+    gsub("\\[\\((\\d+)\\)\\]\\(#DOCF\\d+\\)\\{#FOOT\\d+\\}", "[^\\1]", .) %>%
     gsub("\\[\\((\\d+)\\)\\]\\(#DOCF\\d+\\)\\{#FOOT\\d+\\}", "[^\\1]:", .) %>%
     # Fix function definition lists
     gsub("^(Function: .*)\\\\$", "\\1\n:    \n", .) %>%
+    gsub("^(`.*`)\\\\$", "\\1\n:    \n", .) %>%
     # Fix indented codeblocks by adding a newline in front of them
     gsub("(^    ``` c)", "\n\\1", .) %>%
     # remove quote around backticks
     gsub("('`|`')", "`", .) %>%
+    # insert missing colon in footnote references
+    gsub("^(\\[\\^\\d+\\])$", "\\1:", .) %>%
     write_lines(path = output_file)
 
   # Remove Table of Contents heading from index.md
   if (basename(input_file) == "index.html") {
-    read_lines(temp_md) %>%
+    read_lines(output_file) %>%
       sub("^Table of Contents \\{.*\\}$", "", .) %>%
       write_lines(output_file)
   }
@@ -97,21 +104,25 @@ convert_html_to_md <- function(input_file, verbose = FALSE) {
 convert_to_md <- function(path = "temp", verbose = FALSE) {
   file_list <- fs::dir_ls(path = path, glob = "*.html")
 
-  if (verbose) cli::cli_progress_step("Converting HTML to markdown")
+  # if (verbose) cli::cli_progress_step("Converting HTML to markdown")
 
   # create progress bar
   withr::local_options(list(cli.progress_show_after = 0))
   cli::cli_progress_bar(
     total = length(file_list),
     extra = list(file = ""),
-    format = "{cli::pb_spin} Converting {cli::pb_extra$file} {cli::pb_current}/{cli::pb_total}",
-    clear = FALSE
+    format = paste(
+      "{cli::pb_spin} Converting {cli::pb_extra$file}",
+      "{cli::pb_current}/{cli::pb_total} to markdown"
+    ),
+    clear = TRUE
   )
 
   for (i in seq_along(file_list)) {
-    cli::cli_progress_update(extra = list(file = file_list[i]))
     convert_html_to_md(file_list[i])
+    cli::cli_progress_update(extra = list(file = file_list[i]))
   }
   cli::cli_progress_done()
+  cli::cli_alert_success("Converted all HTML files to markdown")
   invisible()
 }

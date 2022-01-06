@@ -27,7 +27,7 @@ make_info <- function(manual, input_dir = "data", output_dir = "temp", verbose =
   fs::dir_create(output_dir)
   fs::dir_ls(path = output_dir) %>% fs::file_delete()
   filename <- glue::glue("{input_dir}/{manual}")
-  cli::cli_progress_step("Running makeinfo to convert {.file {filename}} to html")
+  cli::cli_progress_step("Running makeinfo to convert {.file {filename}} to html", msg_done = "Running makeinfo")
 
  if (.Platform$OS.type == "windows") {
    system2(
