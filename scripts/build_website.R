@@ -60,7 +60,6 @@ purrr::walk(manuals, process_manual)
 # Build each book --------------
 
 build_a_book <- function(x, index, all_manuals) {
-
   all_manuals <- basename(all_manuals)
   book <- fs::path(x, "book")
   yaml_file <- fs::path(book, "_quarto.yml")
@@ -71,15 +70,15 @@ build_a_book <- function(x, index, all_manuals) {
     gsub(glue::glue("../{name}/index.html", name = manual), "index.md", index)
   yaml <- yaml::read_yaml(yaml_file)
 
-  navbar <- purrr::map(all_manuals, ~ {
+  navbar <- purrr::imap(index2, ~ {
     list(
       href = .x,
-      text = extract_title_from_index(
-        glue::glue("manuals/{name}/prep/index.html", name = .x)
-      )
+      text = extract_title_from_index(glue::glue("manuals/{name}/prep/index.html", name = .y))
     )
   })
 
+navbar <- navbar[all_manuals]
+  
   yaml$book$navbar$right <- c(
     list(list(href = "../index.html", text = "Home")),
     list(list(text = "Manuals", menu = unname(navbar))),
@@ -138,7 +137,11 @@ build_main_website <- function(manuals_folder = "manuals") {
   yaml <- yaml::read_yaml("website/_quarto.yml")
 
   purrr::walk(books, ~ {
-    fs::dir_copy(.x, fs::path(site_output, fs::path_file(fs::path_dir(.x))))
+    fs::dir_copy(
+      .x,
+      fs::path(site_output, fs::path_file(fs::path_dir(.x))),
+      overwrite = TRUE
+    )
   })
 
   index <- purrr::map(books, ~ {

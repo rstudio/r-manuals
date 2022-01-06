@@ -77,7 +77,8 @@ process_manual <- function(manual = "R-exts.texi",
   if (length(images_present)) {
     fs::dir_copy(
       glue::glue("{data_folder}/images"),
-      glue::glue("{book_folder}/images")
+      glue::glue("{book_folder}/images"),
+      overwrite = TRUE
     )
   }
 

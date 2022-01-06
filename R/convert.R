@@ -52,8 +52,6 @@ convert_html_to_md <- function(input_file, verbose = FALSE) {
     )
   # })
 
-  # browser(expr = basename(input_file) == "index.html")
-
   temp_md %>%
     read_lines() %>%
     # remove empty hyperlinks [](...)
