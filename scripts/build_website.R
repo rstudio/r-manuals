@@ -63,11 +63,12 @@ build_a_book <- function(x, index, all_manuals) {
   all_manuals <- basename(all_manuals)
   book <- fs::path(x, "book")
   yaml_file <- fs::path(book, "_quarto.yml")
+  browser()
   manual <- fs::path_file(x)
-
 
   index2 <-
     gsub(glue::glue("../{name}/index.html", name = manual), "index.md", index)
+
   yaml <- yaml::read_yaml(yaml_file)
 
   navbar <- purrr::imap(index2, ~ {
@@ -77,8 +78,8 @@ build_a_book <- function(x, index, all_manuals) {
     )
   })
 
-navbar <- navbar[all_manuals]
-  
+  navbar <- navbar[all_manuals]
+
   yaml$book$navbar$right <- c(
     list(list(href = "../index.html", text = "Home")),
     list(list(text = "Manuals", menu = unname(navbar))),
@@ -89,6 +90,8 @@ navbar <- navbar[all_manuals]
   xfun::gsub_file(yaml_file, "\\sno\\s*$", " false")
 }
 
+
+# Build books ----------------
 #
 # This will modify the _quarto.yml navbar to include all manuals and then
 # build each manual as a Quarto book project
@@ -114,6 +117,7 @@ build_books <- function(manuals_folder = "manuals", manuals, all_manuals) {
 }
 
 build_books(manuals = manuals, all_manuals = all_manuals)
+
 
 # Build website --------------
 #
