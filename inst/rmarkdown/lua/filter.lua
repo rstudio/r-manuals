@@ -1,4 +1,4 @@
--- for debuging purpose
+-- for debugging purpose
 local debug_mode = os.getenv("DEBUG_PANDOC_LUA") == "TRUE"
 local function print_debug(label,obj,iter)
     obj = obj or nil
@@ -26,6 +26,7 @@ in_list = function(item, table)
   if valid[item] then return true else return false end
 end
 
+
 Blocks = function(blocks)
   for i = #blocks-1, 1, -1 do
     -- Add Blockquotes use to border some codeblock inside div with class
@@ -38,7 +39,6 @@ Blocks = function(blocks)
   end
   return blocks
 end
-
 
 
 Div = function(el)
