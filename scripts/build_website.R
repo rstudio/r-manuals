@@ -63,7 +63,6 @@ build_a_book <- function(x, index, all_manuals) {
   all_manuals <- basename(all_manuals)
   book <- fs::path(x, "book")
   yaml_file <- fs::path(book, "_quarto.yml")
-  browser()
   manual <- fs::path_file(x)
 
   index2 <-
