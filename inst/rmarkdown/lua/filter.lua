@@ -85,10 +85,11 @@ local split = function(s, delim)
     return res;
 end
 
-local fix_id = function(s)
+local fix_encoded_char = function(s)
   s = string.gsub(s, "_002b", "")
   s = string.gsub(s, "_002e", ".")
   s = string.gsub(s, "_002d", "-")
+  s = string.gsub(s, "_005f", "_")
   return s
 end
 
@@ -97,11 +98,11 @@ Link = function(el)
     if el.target:sub(1,1) == "#" then
       -- don't process footnotes link
       if el.target:sub(2,4) ~= "DOC" and el.target:sub(2,4) ~= "FOO" then
-        el.target = fix_id(pandoc.text.lower(el.target))
+        el.target = fix_encoded_char(pandoc.text.lower(el.target))
       end
     else
       local r = split(el.target, "[^#]*")
-      el.target = r[1] .. '#' .. fix_id(pandoc.text.lower(r[2]))
+      el.target = fix_encoded_char(r[1]) .. '#' .. fix_encoded_char(pandoc.text.lower(r[2]))
     end
   end
   return(el)
