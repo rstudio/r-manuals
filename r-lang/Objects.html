@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.9.48">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>R Manuals :: R Language Definition - 2&nbsp; Objects</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+
+  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+  <script src="site_libs/quarto-nav/headroom.min.js"></script>
+  <script src="site_libs/clipboard/clipboard.min.js"></script>
+  <meta name="quarto:offset" content="./">
+  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+  <script src="site_libs/quarto-search/fuse.min.js"></script>
+  <script src="site_libs/quarto-search/quarto-search.js"></script>
+  <link href="./Evaluation-of-expressions.html" rel="next">
+  <link href="./Introduction.html" rel="prev">
+  <script src="site_libs/quarto-html/quarto.js"></script>
+  <script src="site_libs/quarto-html/popper.min.js"></script>
+  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="site_libs/quarto-html/anchor.min.js"></script>
+  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
+  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <script id="quarto-search-options" type="application/json">{
+    "location": "navbar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "end",
+    "type": "overlay",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body class="floating slimcontent">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">R Manuals :: R Language Definition</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./../index.html">Home</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
+        <li>
+    <a class="dropdown-item" href="./../r-intro/index.html">
+ <span class="dropdown-text">An Introduction to R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-data/index.html">
+ <span class="dropdown-text">R Data Import/Export</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-admin/index.html">
+ <span class="dropdown-text">R Installation and Administration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-exts/index.html">
+ <span class="dropdown-text">Writing R Extensions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./index.html">
+ <span class="dropdown-text">R Language Definition</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-ints/index.html">
+ <span class="dropdown-text">R Internals</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./../about.html">About</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Objects</span></h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">R Language Definition</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Objects.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Objects</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Evaluation-of-expressions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Evaluation of expressions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Functions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Object-oriented-programming.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Object-oriented programming</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Computing-on-the-language.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Computing on the language</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./System-and-foreign-language-interfaces.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">System and foreign language interfaces</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Exception-handling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Exception handling</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Debugging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Debugging</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Parser.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Parser</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Function-and-Variable-Index.html" class="sidebar-item-text sidebar-link">Function and Variable Index</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Concept-Index.html" class="sidebar-item-text sidebar-link">Concept Index</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+<h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#basic-types" class="nav-link active" data-scroll-target="#basic-types"> <span class="header-section-number">2.1</span> Basic types</a>
+<ul class="collapse">
+<li><a href="#vectors" class="nav-link" data-scroll-target="#vectors"> <span class="header-section-number">2.1.1</span> Vectors</a></li>
+<li><a href="#lists" class="nav-link" data-scroll-target="#lists"> <span class="header-section-number">2.1.2</span> Lists</a></li>
+<li><a href="#language-objects" class="nav-link" data-scroll-target="#language-objects"> <span class="header-section-number">2.1.3</span> Language objects</a></li>
+<li><a href="#symbol-objects" class="nav-link" data-scroll-target="#symbol-objects"> <span class="header-section-number">2.1.4</span> Symbol objects</a></li>
+<li><a href="#expression-objects" class="nav-link" data-scroll-target="#expression-objects"> <span class="header-section-number">2.1.5</span> Expression objects</a></li>
+<li><a href="#function-objects" class="nav-link" data-scroll-target="#function-objects"> <span class="header-section-number">2.1.6</span> Function objects</a></li>
+<li><a href="#null" class="nav-link" data-scroll-target="#null"> <span class="header-section-number">2.1.7</span> NULL</a></li>
+<li><a href="#builtin-objects-and-special-forms" class="nav-link" data-scroll-target="#builtin-objects-and-special-forms"> <span class="header-section-number">2.1.8</span> Builtin objects and special forms</a></li>
+<li><a href="#promise-objects" class="nav-link" data-scroll-target="#promise-objects"> <span class="header-section-number">2.1.9</span> Promise objects</a></li>
+<li><a href="#dot-dot-dot" class="nav-link" data-scroll-target="#dot-dot-dot"> <span class="header-section-number">2.1.10</span> Dot-dot-dot</a></li>
+<li><a href="#environments" class="nav-link" data-scroll-target="#environments"> <span class="header-section-number">2.1.11</span> Environments</a></li>
+<li><a href="#pairlist-objects" class="nav-link" data-scroll-target="#pairlist-objects"> <span class="header-section-number">2.1.12</span> Pairlist objects</a></li>
+<li><a href="#the-any-type" class="nav-link" data-scroll-target="#the-any-type"> <span class="header-section-number">2.1.13</span> The “Any” type</a></li>
+</ul></li>
+<li><a href="#attributes" class="nav-link" data-scroll-target="#attributes"> <span class="header-section-number">2.2</span> Attributes</a>
+<ul class="collapse">
+<li><a href="#names" class="nav-link" data-scroll-target="#names"> <span class="header-section-number">2.2.1</span> Names</a></li>
+<li><a href="#dimensions" class="nav-link" data-scroll-target="#dimensions"> <span class="header-section-number">2.2.2</span> Dimensions</a></li>
+<li><a href="#dimnames" class="nav-link" data-scroll-target="#dimnames"> <span class="header-section-number">2.2.3</span> Dimnames</a></li>
+<li><a href="#classes" class="nav-link" data-scroll-target="#classes"> <span class="header-section-number">2.2.4</span> Classes</a></li>
+<li><a href="#time-series-attributes" class="nav-link" data-scroll-target="#time-series-attributes"> <span class="header-section-number">2.2.5</span> Time series attributes</a></li>
+<li><a href="#copying-of-attributes" class="nav-link" data-scroll-target="#copying-of-attributes"> <span class="header-section-number">2.2.6</span> Copying of attributes</a></li>
+</ul></li>
+<li><a href="#special-compound-objects" class="nav-link" data-scroll-target="#special-compound-objects"> <span class="header-section-number">2.3</span> Special compound objects</a>
+<ul class="collapse">
+<li><a href="#factors" class="nav-link" data-scroll-target="#factors"> <span class="header-section-number">2.3.1</span> Factors</a></li>
+<li><a href="#data-frame-objects" class="nav-link" data-scroll-target="#data-frame-objects"> <span class="header-section-number">2.3.2</span> Data frame objects</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+<header id="title-block-header">
+<h1 class="title display-7"><span id="objects" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Objects</span></span></h1>
+</header>
+
+<p>In every computer language variables provide a means of accessing the data stored in memory. R does not provide direct access to the computer’s memory but rather provides a number of specialized data structures we will refer to as objects. These objects are referred to through symbols or variables. In R, however, the symbols are themselves objects and can be manipulated in the same way as any other object. This is different from many other languages and has wide ranging effects.</p>
+<p>In this chapter we provide preliminary descriptions of the various data structures provided in R. More detailed discussions of many of them will be found in the subsequent chapters. The R specific function <code>typeof</code> returns the <em>type</em> of an R object. Note that in the C code underlying R, all objects are pointers to a structure with typedef <code>SEXPREC</code>; the different R data types are represented in C by <code>SEXPTYPE</code>, which determines how the information in the various parts of the structure is used.</p>
+<p>The following table describes the possible values returned by <code>typeof</code> and what they are.</p>
+<div class="blockquotes-block">
+<blockquote class="blockquote">
+<table class="table">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>"NULL"</code></td>
+<td style="text-align: left;">NULL</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>"symbol"</code></td>
+<td style="text-align: left;">a variable name</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>"pairlist"</code></td>
+<td style="text-align: left;">a pairlist object (mainly internal)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>"closure"</code></td>
+<td style="text-align: left;">a function</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>"environment"</code></td>
+<td style="text-align: left;">an environment</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>"promise"</code></td>
+<td style="text-align: left;">an object used to implement lazy evaluation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>"language"</code></td>
+<td style="text-align: left;">an R language construct</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>"special"</code></td>
+<td style="text-align: left;">an internal function that does not evaluate its arguments</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>"builtin"</code></td>
+<td style="text-align: left;">an internal function that evaluates its arguments</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>"char"</code></td>
+<td style="text-align: left;">a ‘scalar’ string object (internal only) ***</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>"logical"</code></td>
+<td style="text-align: left;">a vector containing logical values</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>"integer"</code></td>
+<td style="text-align: left;">a vector containing integer values</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>"double"</code></td>
+<td style="text-align: left;">a vector containing real values</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>"complex"</code></td>
+<td style="text-align: left;">a vector containing complex values</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>"character"</code></td>
+<td style="text-align: left;">a vector containing character values</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>"..."</code></td>
+<td style="text-align: left;">the special variable length argument ***</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>"any"</code></td>
+<td style="text-align: left;">a special type that matches all types: there are no objects of this type</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>"expression"</code></td>
+<td style="text-align: left;">an expression object</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>"list"</code></td>
+<td style="text-align: left;">a list</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>"bytecode"</code></td>
+<td style="text-align: left;">byte code (internal only) ***</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>"externalptr"</code></td>
+<td style="text-align: left;">an external pointer object</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>"weakref"</code></td>
+<td style="text-align: left;">a weak reference object</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>"raw"</code></td>
+<td style="text-align: left;">a vector containing bytes</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>"S4"</code></td>
+<td style="text-align: left;">an S4 object which is not a simple object</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<p>Users cannot easily get hold of objects of types marked with a ‘***’.</p>
+<p>Function <code>mode</code> gives information about the <em>mode</em> of an object in the sense of Becker, Chambers &amp; Wilks (1988), and is more compatible with other implementations of the S language. Finally, the function <code>storage.mode</code> returns the <em>storage mode</em> of its argument in the sense of Becker et al.&nbsp;(1988). It is generally used when calling functions written in another language, such as C or FORTRAN, to ensure that R objects have the data type expected by the routine being called. (In the S language, vectors with integer or real values are both of mode <code>"numeric"</code>, so their storage modes need to be distinguished.)</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> x <span class="op">&lt;-</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> typeof<span class="op">(</span>x<span class="op">)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="st">"integer"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> mode<span class="op">(</span>x<span class="op">)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="st">"numeric"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> storage<span class="op">.</span>mode<span class="op">(</span>x<span class="op">)</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="st">"integer"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>R objects are often coerced to different types during computations. There are also many functions available to perform explicit coercion. When programming in the R language the type of an object generally doesn’t affect the computations, however, when dealing with foreign languages or the operating system it is often necessary to ensure that an object is of the correct type.</p>
+<section id="basic-types" class="level2 section" data-number="2.1">
+<h2 class="section anchored" data-number="2.1" data-anchor-id="basic-types"><span class="header-section-number">2.1</span> Basic types</h2>
+<section id="vectors" class="level3 subsection" data-number="2.1.1">
+<h3 class="subsection anchored" data-number="2.1.1" data-anchor-id="vectors"><span class="header-section-number">2.1.1</span> Vectors</h3>
+<p>Vectors can be thought of as contiguous cells containing data. Cells are accessed through indexing operations such as <code>x[5]</code>. More details are given in <a href="Evaluation-of-expressions.html#indexing">Indexing</a>.</p>
+<p>R has six basic (‘atomic’) vector types: logical, integer, real, complex, string (or character) and raw. The modes and storage modes for the different vector types are listed in the following table.</p>
+<div class="blockquotes-block">
+<blockquote class="blockquote">
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">typeof</th>
+<th style="text-align: left;">mode</th>
+<th style="text-align: left;">storage.mode</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>logical</code></td>
+<td style="text-align: left;"><code>logical</code></td>
+<td style="text-align: left;"><code>logical</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>integer</code></td>
+<td style="text-align: left;"><code>numeric</code></td>
+<td style="text-align: left;"><code>integer</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>double</code></td>
+<td style="text-align: left;"><code>numeric</code></td>
+<td style="text-align: left;"><code>double</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>complex</code></td>
+<td style="text-align: left;"><code>complex</code></td>
+<td style="text-align: left;"><code>complex</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>character</code></td>
+<td style="text-align: left;"><code>character</code></td>
+<td style="text-align: left;"><code>character</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>raw</code></td>
+<td style="text-align: left;"><code>raw</code></td>
+<td style="text-align: left;"><code>raw</code></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<p>Single numbers, such as <code>4.2</code>, and strings, such as <code>"four point two"</code> are still vectors, of length 1; there are no more basic types. Vectors with length zero are possible (and useful).</p>
+<p>String vectors have mode and storage mode <code>"character"</code>. A single element of a character vector is often referred to as a <em>character string</em>.</p>
+</section>
+<section id="lists" class="level3 subsection" data-number="2.1.2">
+<h3 class="subsection anchored" data-number="2.1.2" data-anchor-id="lists"><span class="header-section-number">2.1.2</span> Lists</h3>
+<p>Lists (“generic vectors”) are another kind of data storage. Lists have elements, each of which can contain any type of R object, i.e.&nbsp;the elements of a list do not have to be of the same type. List elements are accessed through three different indexing operations. These are explained in detail in <a href="Evaluation-of-expressions.html#indexing">Indexing</a>.</p>
+<p>Lists are vectors, and the basic vector types are referred to as <em>atomic vectors</em> where it is necessary to exclude lists.</p>
+</section>
+<section id="language-objects" class="level3 subsection" data-number="2.1.3">
+<h3 class="subsection anchored" data-number="2.1.3" data-anchor-id="language-objects"><span class="header-section-number">2.1.3</span> Language objects</h3>
+<p>There are three types of objects that constitute the R language. They are <em>calls</em>, <em>expressions</em>, and <em>names</em>. Since R has objects of type <code>"expression"</code> we will try to avoid the use of the word expression in other contexts. In particular syntactically correct expressions will be referred to as <em>statements</em>.</p>
+<p>These objects have modes <code>"call"</code>, <code>"expression"</code>, and <code>"name"</code>, respectively.</p>
+<p>They can be created directly from expressions using the <code>quote</code> mechanism and converted to and from lists by the <code>as.list</code> and <code>as.call</code> functions. Components of the parse tree can be extracted using the standard indexing operations.</p>
+</section>
+<section id="symbol-objects" class="level3 subsubsection" data-number="2.1.4">
+<h3 class="subsubsection anchored" data-number="2.1.4" data-anchor-id="symbol-objects"><span class="header-section-number">2.1.4</span> Symbol objects</h3>
+<p>Symbols refer to R objects. The name of any R object is usually a symbol. Symbols can be created through the functions <code>as.name</code> and <code>quote</code>.</p>
+<p>Symbols have mode <code>"name"</code>, storage mode <code>"symbol"</code>, and type <code>"symbol"</code>. They can be coerced to and from character strings using <code>as.character</code> and <code>as.name</code>. They naturally appear as atoms of parsed expressions, try e.g.&nbsp;<code>as.list(quote(x + y))</code>.</p>
+</section>
+<section id="expression-objects" class="level3 subsection" data-number="2.1.5">
+<h3 class="subsection anchored" data-number="2.1.5" data-anchor-id="expression-objects"><span class="header-section-number">2.1.5</span> Expression objects</h3>
+<p>In R one can have objects of type <code>"expression"</code>. An <em>expression</em> contains one or more statements. A statement is a syntactically correct collection of tokens. Expression objects are special language objects which contain parsed but unevaluated R statements. The main difference is that an expression object can contain several such expressions. Another more subtle difference is that objects of type <code>"expression"</code> are only evaluated when explicitly passed to <code>eval</code>, whereas other language objects may get evaluated in some unexpected cases.</p>
+<p>An expression object behaves much like a list and its components should be accessed in the same way as the components of a list.</p>
+</section>
+<section id="function-objects" class="level3 subsection" data-number="2.1.6">
+<h3 class="subsection anchored" data-number="2.1.6" data-anchor-id="function-objects"><span class="header-section-number">2.1.6</span> Function objects</h3>
+<p>In R functions are objects and can be manipulated in much the same way as any other object. Functions (or more precisely, function closures) have three basic components: a formal argument list, a body and an environment. The argument list is a comma-separated list of arguments. An argument can be a symbol, or a <code>symbol = default</code> construct, or the special argument <code>...</code>. The second form of argument is used to specify a default value for an argument. This value will be used if the function is called without any value specified for that argument. The <code>...</code> argument is special and can contain any number of arguments. It is generally used if the number of arguments is unknown or in cases where the arguments will be passed on to another function.</p>
+<p>The body is a parsed R statement. It is usually a collection of statements in braces but it can be a single statement, a symbol or even a constant.</p>
+<p>A function’s environment is the environment that was active at the time that the function was created. Any symbols bound in that environment are <em>captured</em> and available to the function. This combination of the code of the function and the bindings in its environment is called a ‘function closure’, a term from functional programming theory. In this document we generally use the term ‘function’, but use ‘closure’ to emphasize the importance of the attached environment.</p>
+<p>It is possible to extract and manipulate the three parts of a closure object using <code>formals</code>, <code>body</code>, and <code>environment</code> constructs (all three can also be used on the left hand side of assignments). The last of these can be used to remove unwanted environment capture.</p>
+<p>When a function is called, a new environment (called the <em>evaluation environment</em>) is created, whose enclosure (see <a href="#environment-objects">Environment objects</a>) is the environment from the function closure. This new environment is initially populated with the unevaluated arguments to the function; as evaluation proceeds, local variables are created within it.</p>
+<p>There is also a facility for converting functions to and from list structures using <code>as.list</code> and <code>as.function</code>. These have been included to provide compatibility with S and their use is discouraged.</p>
+</section>
+<section id="null" class="level3 subsection" data-number="2.1.7">
+<h3 class="subsection anchored" data-number="2.1.7" data-anchor-id="null"><span class="header-section-number">2.1.7</span> NULL</h3>
+<p>There is a special object called <code>NULL</code>. It is used whenever there is a need to indicate or specify that an object is absent. It should not be confused with a vector or list of zero length.</p>
+<p>The <code>NULL</code> object has no type and no modifiable properties. There is only one <code>NULL</code> object in R, to which all instances refer. To test for <code>NULL</code> use <code>is.null</code>. You cannot set attributes on <code>NULL</code>.</p>
+</section>
+<section id="builtin-objects-and-special-forms" class="level3 subsection" data-number="2.1.8">
+<h3 class="subsection anchored" data-number="2.1.8" data-anchor-id="builtin-objects-and-special-forms"><span class="header-section-number">2.1.8</span> Builtin objects and special forms</h3>
+<p>These two kinds of object contain the builtin functions of R, i.e., those that are displayed as <code>.Primitive</code> in code listings (as well as those accessed via the <code>.Internal</code> function and hence not user-visible as objects). The difference between the two lies in the argument handling. Builtin functions have all their arguments evaluated and passed to the internal function, in accordance with <em>call-by-value</em>, whereas special functions pass the unevaluated arguments to the internal function.</p>
+<p>From the R language, these objects are just another kind of function. The <code>is.primitive</code> function can distinguish them from interpreted functions.</p>
+</section>
+<section id="promise-objects" class="level3 subsection" data-number="2.1.9">
+<h3 class="subsection anchored" data-number="2.1.9" data-anchor-id="promise-objects"><span class="header-section-number">2.1.9</span> Promise objects</h3>
+<p>Promise objects are part of R’s lazy evaluation mechanism. They contain three slots: a value, an expression, and an environment. When a function is called the arguments are matched and then each of the formal arguments is bound to a promise. The expression that was given for that formal argument and a pointer to the environment the function was called from are stored in the promise.</p>
+<p>Until that argument is accessed there is no <em>value</em> associated with the promise. When the argument is accessed, the stored expression is evaluated in the stored environment, and the result is returned. The result is also saved by the promise. The <code>substitute</code> function will extract the content of the expression slot. This allows the programmer to access either the value or the expression associated with the promise.</p>
+<p>Within the R language, promise objects are almost only seen implicitly: actual function arguments are of this type. There is also a <code>delayedAssign</code> function that will make a promise out of an expression. There is generally no way in R code to check whether an object is a promise or not, nor is there a way to use R code to determine the environment of a promise.</p>
+</section>
+<section id="dot-dot-dot" class="level3 subsection" data-number="2.1.10">
+<h3 class="subsection anchored" data-number="2.1.10" data-anchor-id="dot-dot-dot"><span class="header-section-number">2.1.10</span> Dot-dot-dot</h3>
+<p>The <code>...</code> object type is stored as a type of pairlist. The components of <code>...</code> can be accessed in the usual pairlist manner from C code, but <code>...</code> is not easily accessed as an object in interpreted code, and even the existence of such an object should typically not be assumed, as that may change in the future.</p>
+<p>The object can be captured (with promises being forced!) as a list, so for example in <code>table</code> one sees</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    args <span class="ot">&lt;-</span> <span class="fu">list</span>(...)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="do">## ....</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (a <span class="cf">in</span> args) {</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="do">## ....</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that the implementation of <code>...</code> as a pairlist object is <em>not</em> to be considered part of the R API, and code outside base R should not rely on this current description of <code>...</code>. On the other hand, the above <code>list(...)</code> access, and the other “dot-access” functions <code>...length()</code>, <code>...elt()</code>, <code>...names()</code>, and “reserved words” <code>..1</code>, <code>..2</code>, etc, see also help page <code>?dots</code>, are part of the stable R API.</p>
+<p>If a function has <code>...</code> as a formal argument then any actual arguments that do not match a formal argument are matched with <code>...</code>.</p>
+</section>
+<section id="environments" class="level3 subsection" data-number="2.1.11">
+<h3 class="subsection anchored" data-number="2.1.11" data-anchor-id="environments"><span class="header-section-number">2.1.11</span> Environments</h3>
+<p>Environments can be thought of as consisting of two things. A <em>frame</em>, consisting of a set of symbol-value pairs, and an <em>enclosure</em>, a pointer to an enclosing environment. When R looks up the value for a symbol the frame is examined and if a matching symbol is found its value will be returned. If not, the enclosing environment is then accessed and the process repeated. Environments form a tree structure in which the enclosures play the role of parents. The tree of environments is rooted in an empty environment, available through <code>emptyenv()</code>, which has no parent. It is the direct parent of the environment of the base package (available through the <code>baseenv()</code> function).</p>
+<p>Environments are created implicitly by function calls, as described in <a href="#function-objects">Function objects</a> and <a href="Evaluation-of-expressions.html#lexical-environment">Lexical environment</a>. In this case the environment contains the variables local to the function (including the arguments), and its enclosure is the environment of the currently called function. Environments may also be created directly by <code>new.env</code>. The frame content of an environment can be accessed by use of <code>ls</code>, <code>names</code>, <code>$</code>, <code>[</code>, <code>[[</code>, <code>get</code>, and <code>get0</code>, and manipulated by <code>$&lt;-</code>, <code>[[&lt;-</code>, and <code>assign</code> as well as <code>eval</code> and <code>evalq</code>.</p>
+<p>The <code>parent.env</code> function may be used to access the enclosure of an environment.</p>
+<p>Unlike most other R objects, environments are not copied when passed to functions or used in assignments. Thus, if you assign the same environment to several symbols and change one, the others will change too. In particular, assigning attributes to an environment can lead to surprises.</p>
+</section>
+<section id="pairlist-objects" class="level3 subsection" data-number="2.1.12">
+<h3 class="subsection anchored" data-number="2.1.12" data-anchor-id="pairlist-objects"><span class="header-section-number">2.1.12</span> Pairlist objects</h3>
+<p>Pairlist objects are similar to Lisp’s dotted-pair lists. They are used extensively in the internals of R, but are rarely visible in interpreted code, although they are returned by <code>formals</code>, and can be created by (e.g.) the <code>pairlist</code> function. A zero-length pairlist is <code>NULL</code>, as would be expected in Lisp but in contrast to a zero-length list. Each such object has three slots, a CAR value, a CDR value and a TAG value. The TAG value is a text string and CAR and CDR usually represent, respectively, a list item (head) and the remainder (tail) of the list with a NULL object as terminator (the CAR/CDR terminology is traditional Lisp and originally referred to the address and decrement registers on an early 60’s IBM computer).</p>
+<p>Pairlists are handled in the R language in exactly the same way as generic vectors (“lists”). In particular, elements are accessed using the same <code>[[]]</code> syntax. The use of pairlists is deprecated since generic vectors are usually more efficient to use. When an internal pairlist is accessed from R it is generally (including when subsetted) converted to a generic vector.</p>
+<p>In a very few cases pairlists are user-visible: one is <code>.Options</code>.</p>
+</section>
+<section id="the-any-type" class="level3 subsection" data-number="2.1.13">
+<h3 class="subsection anchored" data-number="2.1.13" data-anchor-id="the-any-type"><span class="header-section-number">2.1.13</span> The “Any” type</h3>
+<p>It is not really possible for an object to be of “Any” type, but it is nevertheless a valid type value. It gets used in certain (rather rare) circumstances, e.g.&nbsp;<code>as.vector(x, "any")</code>, indicating that type coercion should not be done.</p>
+</section>
+</section>
+<section id="attributes" class="level2 section page-columns page-full" data-number="2.2">
+<h2 class="section anchored" data-number="2.2" data-anchor-id="attributes"><span class="header-section-number">2.2</span> Attributes</h2>
+<p>All objects except <code>NULL</code> can have one or more attributes attached to them. Attributes are stored as a pairlist where all elements are named, but should be thought of as a set of name=value pairs. A listing of the attributes can be obtained using <code>attributes</code> and set by <code>attributes&lt;-</code>, individual components are accessed using <code>attr</code> and <code>attr&lt;-</code>.</p>
+<p>Some attributes have special accessor functions (e.g.&nbsp;<code>levels&lt;-</code> for factors) and these should be used when available. In addition to hiding details of implementation they may perform additional operations. R attempts to intercept calls to <code>attr&lt;-</code> and to <code>attributes&lt;-</code> that involve the special attributes and enforces the consistency checks.</p>
+<p>Matrices and arrays are simply vectors with the attribute <code>dim</code> and optionally <code>dimnames</code> attached to the vector.</p>
+<p>Attributes are used to implement the class structure used in R. If an object has a <code>class</code> attribute then that attribute will be examined during evaluation. The class structure in R is described in detail in <a href="Object_002doriented-programming.html#object-oriented-programming">Object-oriented programming</a>.</p>
+<section id="names" class="level3 subsection" data-number="2.2.1">
+<h3 class="subsection anchored" data-number="2.2.1" data-anchor-id="names"><span class="header-section-number">2.2.1</span> Names</h3>
+<p>A <code>names</code> attribute, when present, labels the individual elements of a vector or list. When an object is printed the <code>names</code> attribute, when present, is used to label the elements. The <code>names</code> attribute can also be used for indexing purposes, for example, <code>quantile(x)["25%"]</code>.</p>
+<p>One may get and set the names using <code>names</code> and <code>names&lt;-</code> constructions. The latter will perform the necessary consistency checks to ensure that the names attribute has the proper type and length.</p>
+<p>Pairlists and one-dimensional arrays are treated specially. For pairlist objects, a virtual <code>names</code> attribute is used; the <code>names</code> attribute is really constructed from the tags of the list components. For one-dimensional arrays the <code>names</code> attribute really accesses <code>dimnames[[1]]</code>.</p>
+</section>
+<section id="dimensions" class="level3 subsection" data-number="2.2.2">
+<h3 class="subsection anchored" data-number="2.2.2" data-anchor-id="dimensions"><span class="header-section-number">2.2.2</span> Dimensions</h3>
+<p>The <code>dim</code> attribute is used to implement arrays. The content of the array is stored in a vector in column-major order and the <code>dim</code> attribute is a vector of integers specifying the respective extents of the array. R ensures that the length of the vector is the product of the lengths of the dimensions. The length of one or more dimensions may be zero.</p>
+<p>A vector is not the same as a one-dimensional array since the latter has a <code>dim</code> attribute of length one, whereas the former has no <code>dim</code> attribute.</p>
+</section>
+<section id="dimnames" class="level3 subsection" data-number="2.2.3">
+<h3 class="subsection anchored" data-number="2.2.3" data-anchor-id="dimnames"><span class="header-section-number">2.2.3</span> Dimnames</h3>
+<p>Arrays may name each dimension separately using the <code>dimnames</code> attribute which is a list of character vectors. The <code>dimnames</code> list may itself have names which are then used for extent headings when printing arrays.</p>
+</section>
+<section id="classes" class="level3 subsection page-columns page-full" data-number="2.2.4">
+<h3 class="subsection anchored" data-number="2.2.4" data-anchor-id="classes"><span class="header-section-number">2.2.4</span> Classes</h3>
+<div class="page-columns page-full"><p>R has an elaborate class system<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, principally controlled via the <code>class</code> attribute. This attribute is a character vector containing the list of classes that an object inherits from. This forms the basis of the “generic methods” functionality in R.</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;actually two, but this draft manual predates the <strong>methods</strong> package.</p></li></div></div>
+<p>This attribute can be accessed and manipulated virtually without restriction by users. There is no checking that an object actually contains the components that class methods expect. Thus, altering the <code>class</code> attribute should be done with caution, and when they are available specific creation and coercion functions should be preferred.</p>
+</section>
+<section id="time-series-attributes" class="level3 subsection" data-number="2.2.5">
+<h3 class="subsection anchored" data-number="2.2.5" data-anchor-id="time-series-attributes"><span class="header-section-number">2.2.5</span> Time series attributes</h3>
+<p>The <code>tsp</code> attribute is used to hold parameters of time series, start, end, and frequency. This construction is mainly used to handle series with periodic substructure such as monthly or quarterly data.</p>
+</section>
+<section id="copying-of-attributes" class="level3 subsection" data-number="2.2.6">
+<h3 class="subsection anchored" data-number="2.2.6" data-anchor-id="copying-of-attributes"><span class="header-section-number">2.2.6</span> Copying of attributes</h3>
+<p>Whether attributes should be copied when an object is altered is a complex area, but there are some general rules (Becker, Chambers &amp; Wilks, 1988, pp.&nbsp;144–6).</p>
+<p>Scalar functions (those which operate element-by-element on a vector and whose output is similar to the input) should preserve attributes (except perhaps class).</p>
+<p>Binary operations normally copy most attributes from the longer argument (and if they are of the same length from both, preferring the values on the first). Here ‘most’ means all except the <code>names</code>, <code>dim</code> and <code>dimnames</code> which are set appropriately by the code for the operator.</p>
+<p>Subsetting (other than by an empty index) generally drops all attributes except <code>names</code>, <code>dim</code> and <code>dimnames</code> which are reset as appropriate. On the other hand, subassignment generally preserves attributes even if the length is changed. Coercion drops all attributes.</p>
+<p>The default method for sorting drops all attributes except names, which are sorted along with the object.</p>
+</section>
+</section>
+<section id="special-compound-objects" class="level2 section" data-number="2.3">
+<h2 class="section anchored" data-number="2.3" data-anchor-id="special-compound-objects"><span class="header-section-number">2.3</span> Special compound objects</h2>
+<section id="factors" class="level3 subsection" data-number="2.3.1">
+<h3 class="subsection anchored" data-number="2.3.1" data-anchor-id="factors"><span class="header-section-number">2.3.1</span> Factors</h3>
+<p>Factors are used to describe items that can have a finite number of values (gender, social class, etc.). A factor has a <code>levels</code> attribute and class <code>"factor"</code>. Optionally, it may also contain a <code>contrasts</code> attribute which controls the parametrisation used when the factor is used in a modeling functions.</p>
+<p>A factor may be purely nominal or may have ordered categories. In the latter case, it should be defined as such and have a <code>class</code> vector <code>c("ordered"," factor")</code>.</p>
+<p>Factors are currently implemented using an integer array to specify the actual levels and a second array of names that are mapped to the integers. Rather unfortunately users often make use of the implementation in order to make some calculations easier. This, however, is an implementation issue and is not guaranteed to hold in all implementations of R.</p>
+</section>
+<section id="data-frame-objects" class="level3 subsection" data-number="2.3.2">
+<h3 class="subsection anchored" data-number="2.3.2" data-anchor-id="data-frame-objects"><span class="header-section-number">2.3.2</span> Data frame objects</h3>
+<p>Data frames are the R structures which most closely mimic the SAS or SPSS data set, i.e.&nbsp;a “cases by variables” matrix of data.</p>
+<p>A data frame is a list of vectors, factors, and/or matrices all having the same length (number of rows in the case of matrices). In addition, a data frame generally has a <code>names</code> attribute labeling the variables and a <code>row.names</code> attribute for labeling the cases.</p>
+<p>A data frame can contain a list that is the same length as the other components. The list can contain elements of differing lengths thereby providing a data structure for ragged arrays. However, as of this writing such arrays are not generally handled correctly.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Introduction.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Evaluation-of-expressions.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Evaluation of expressions</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+  </div>
+</footer>
+
+
+</body></html>

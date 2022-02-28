@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.9.48">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>R Manuals :: R Internals - 12&nbsp; Current and future directions</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+
+  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+  <script src="site_libs/quarto-nav/headroom.min.js"></script>
+  <script src="site_libs/clipboard/clipboard.min.js"></script>
+  <meta name="quarto:offset" content="./">
+  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+  <script src="site_libs/quarto-search/fuse.min.js"></script>
+  <script src="site_libs/quarto-search/quarto-search.js"></script>
+  <link href="./Function-and-variable-index.html" rel="next">
+  <link href="./Use-of-TeX-dialects.html" rel="prev">
+  <script src="site_libs/quarto-html/quarto.js"></script>
+  <script src="site_libs/quarto-html/popper.min.js"></script>
+  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="site_libs/quarto-html/anchor.min.js"></script>
+  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
+  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <script id="quarto-search-options" type="application/json">{
+    "location": "navbar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "end",
+    "type": "overlay",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body class="floating slimcontent">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">R Manuals :: R Internals</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./../index.html">Home</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
+        <li>
+    <a class="dropdown-item" href="./../r-intro/index.html">
+ <span class="dropdown-text">An Introduction to R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-data/index.html">
+ <span class="dropdown-text">R Data Import/Export</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-admin/index.html">
+ <span class="dropdown-text">R Installation and Administration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-exts/index.html">
+ <span class="dropdown-text">Writing R Extensions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-lang/index.html">
+ <span class="dropdown-text">R Language Definition</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./index.html">
+ <span class="dropdown-text">R Internals</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./../about.html">About</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Current and future directions</span></h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">R Internals</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R-Internal-Structures.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R Internal Structures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Internationalization-in-the-R-sources.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Internationalization in the R sources</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Package-Structure.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Structure of an Installed Package</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Files.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Files</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Graphics-Devices.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Graphics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GUI-consoles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">GUI consoles</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Tools.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Tools</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R-coding-standards.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R coding standards</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Testing-R-code.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Testing R code</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Use-of-TeX-dialects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Use of TeX dialects</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Current-and-future-directions.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Current and future directions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link">Function and variable index</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link">Concept index</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+<h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#long-vectors" class="nav-link active" data-scroll-target="#long-vectors"> <span class="header-section-number">12.1</span> Long vectors</a></li>
+<li><a href="#bit-types" class="nav-link" data-scroll-target="#bit-types"> <span class="header-section-number">12.2</span> 64-bit types</a></li>
+<li><a href="#large-matrices" class="nav-link" data-scroll-target="#large-matrices"> <span class="header-section-number">12.3</span> Large matrices</a></li>
+</ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+<header id="title-block-header">
+<h1 class="title display-7"><span id="current-and-future-directions" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Current and future directions</span></span></h1>
+</header>
+
+<p>This chapter is for notes about possible in-progress and future changes to R: there is no commitment to release such changes, let alone to a timescale.</p>
+<section id="long-vectors" class="level2 section" data-number="12.1">
+<h2 class="section anchored" data-number="12.1" data-anchor-id="long-vectors"><span class="header-section-number">12.1</span> Long vectors</h2>
+<p>Vectors in R 2.x.y were limited to a length of 2^31 - 1 elements (about 2 billion), as the length is stored in the <code>SEXPREC</code> as a C <code>int</code>, and that type is used extensively to record lengths and element numbers, including in packages.</p>
+<p>Note that longer vectors are effectively impossible under 32-bit platforms because of their address limit, so this section applies only on 64-bit platforms. The internals are unchanged on a 32-bit build of R.</p>
+<p>A single object with 2^31 or more elements will take up at least 8GB of memory if integer or logical and 16GB if numeric or character, so routine use of such objects is still some way off.</p>
+<p>There is now some support for long vectors. This applies to raw, logical, integer, numeric and character vectors, and lists and expression vectors. (Elements of character vectors (<code>CHARSXP</code>s) remain limited to 2^31 - 1 bytes.) Some considerations:</p>
+<ul>
+<li>This has been implemented by recording the length (and true length) as <code>-1</code> and recording the actual length as a 64-bit field at the beginning of the header. Because a fair amount of code in R uses a signed type for the length, the ‘long length’ is recorded using the signed C99 type <code>ptrdiff_t</code>, which is typedef-ed to <code>R_xlen_t</code>.</li>
+<li>These can in theory have 63-bit lengths, but note that current 64-bit OSes do not even theoretically offer 64-bit address spaces and there is currently a 52-bit limit (which exceeds the theoretical limit of current OSes and ensures that such lengths can be stored exactly in doubles).</li>
+<li>The serialization format has been changed to accommodate longer lengths, but vectors of lengths up to 2^31-1 are stored in the same way as before. Longer vectors have their length field set to <code>-1</code> and followed by two 32-bit fields giving the upper and lower 32-bits of the actual length. There is currently a sanity check which limits lengths to 2^48 on unserialization.</li>
+<li>The type <code>R_xlen_t</code> is made available to packages in C header <code>Rinternals.h</code>: this should be fine in C code since C99 is required. People do try to use R internals in C++, but C++98 compilers are not required to support these types.</li>
+<li>Indexing can be done via the use of doubles. The internal indexing code used to work with positive integer indices (and negative, logical and matrix indices were all converted to positive integers): it now works with either <code>INTSXP</code> or <code>REALSXP</code> indices.</li>
+<li>The R function <code>length</code> returns a double value if the length exceeds 2^31-1. Code calling <code>as.integer(length(x))</code> before passing to <code>.C</code>/<code>.Fortran</code> should checks for an <code>NA</code> result.</li>
+</ul>
+</section>
+<section id="bit-types" class="level2 section page-columns page-full" data-number="12.2">
+<h2 class="section anchored" data-number="12.2" data-anchor-id="bit-types"><span class="header-section-number">12.2</span> 64-bit types</h2>
+<p>There is also some desire to be able to store larger integers in R, although the possibility of storing these as <code>double</code> is often overlooked (and e.g.&nbsp;file pointers as returned by <code>seek</code> are already stored as <code>double</code>).</p>
+<p>Different routes have been proposed:</p>
+<ul>
+<li>Add a new type to R and use that for lengths and indices—most likely this would be a 64-bit signed type, say <code>longint</code>. R’s usual implicit coercion rules would ensure that supplying an <code>integer</code> vector for indexing or <code>length&lt;-</code> would work.</li>
+<li>A more radical alternative is to change the existing <code>integer</code> type to be 64-bit on 64-bit platforms (which was the approach taken by S-PLUS for DEC/Compaq Alpha systems). Or even on all platforms.</li>
+<li>Allow either <code>integer</code> or <code>double</code> values for lengths and indices, and return <code>double</code> only when necessary.</li>
+</ul>
+<p>The third has the advantages of minimal disruption to existing code and not increasing memory requirements. In the first and third scenarios both R’s own code and user code would have to be adapted for lengths that were not of type <code>integer</code>, and in the third code branches for long vectors would be tested rarely.</p>
+<p>Most users of the <code>.C</code> and <code>.Fortran</code> interfaces use <code>as.integer</code> for lengths and element numbers, but a few omit these in the knowledge that these were of type <code>integer</code>. It may be reasonable to assume that these are never intended to be used with long vectors.</p>
+<div class="page-columns page-full"><p>The remaining interfaces will need to cope with the changed <code>VECTOR_SEXPREC</code> types. It seems likely that in most cases lengths are accessed by the <code>length</code> and <code>LENGTH</code> functions<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> The current approach is to keep these returning 32-bit lengths and introduce ‘long’ versions <code>xlength</code> and <code>XLENGTH</code> which return <code>R_xlen_t</code> values.</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;but <code>LENGTH</code> is a macro under some internal uses.</p></li></div></div>
+<p>See also <a href="https://homepage.cs.uiowa.edu/~luke/talks/useR10.pdf" class="uri">https://homepage.cs.uiowa.edu/~luke/talks/useR10.pdf</a>.</p>
+</section>
+<section id="large-matrices" class="level2 section" data-number="12.3">
+<h2 class="section anchored" data-number="12.3" data-anchor-id="large-matrices"><span class="header-section-number">12.3</span> Large matrices</h2>
+<p>Matrices are stored as vectors and so were also limited to 2^31-1 elements. Now longer vectors are allowed on 64-bit platforms, matrices with more elements are supported provided that each of the dimensions is no more than 2^31-1. However, not all applications can be supported.</p>
+<p>The main problem is linear algebra done by Fortran code compiled with 32-bit <code>INTEGER</code>. Although not guaranteed, it seems that all the compilers currently used with R on a 64-bit platform allow matrices each of whose dimensions is less than 2^31 but with 2^31 or more elements and index them correctly, and a substantial part of the support software (such as BLAS and LAPACK) also work.</p>
+<p>There are exceptions: for example some complex LAPACK auxiliary routines do use a single <code>INTEGER</code> index and hence overflow silently and segfault or give incorrect results. One example seen was <code>svd()</code> on a complex matrix.</p>
+<p>Since this is implementation-dependent, it is possible that optimized BLAS and LAPACK may have further restrictions: a segfault have been reported from <code>svd()</code> using ATLAS on <code>x86_64</code> Linux.</p>
+<p>For matrix algebra on large matrices one almost certainly wants a machine with a lot of RAM (100s of gigabytes), many cores and a multi-threaded BLAS.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Use-of-TeX-dialects.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Use of TeX dialects</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Function-and-variable-index.html" class="pagination-link">
+        <span class="nav-page-text">Function and variable index</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+  </div>
+</footer>
+
+
+</body></html>

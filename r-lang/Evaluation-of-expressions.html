@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.9.48">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>R Manuals :: R Language Definition - 3&nbsp; Evaluation of expressions</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+
+  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+  <script src="site_libs/quarto-nav/headroom.min.js"></script>
+  <script src="site_libs/clipboard/clipboard.min.js"></script>
+  <meta name="quarto:offset" content="./">
+  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+  <script src="site_libs/quarto-search/fuse.min.js"></script>
+  <script src="site_libs/quarto-search/quarto-search.js"></script>
+  <link href="./Functions.html" rel="next">
+  <link href="./Objects.html" rel="prev">
+  <script src="site_libs/quarto-html/quarto.js"></script>
+  <script src="site_libs/quarto-html/popper.min.js"></script>
+  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="site_libs/quarto-html/anchor.min.js"></script>
+  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
+  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <script id="quarto-search-options" type="application/json">{
+    "location": "navbar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "end",
+    "type": "overlay",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body class="floating slimcontent">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">R Manuals :: R Language Definition</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./../index.html">Home</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
+        <li>
+    <a class="dropdown-item" href="./../r-intro/index.html">
+ <span class="dropdown-text">An Introduction to R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-data/index.html">
+ <span class="dropdown-text">R Data Import/Export</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-admin/index.html">
+ <span class="dropdown-text">R Installation and Administration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-exts/index.html">
+ <span class="dropdown-text">Writing R Extensions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./index.html">
+ <span class="dropdown-text">R Language Definition</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-ints/index.html">
+ <span class="dropdown-text">R Internals</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./../about.html">About</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Evaluation of expressions</span></h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">R Language Definition</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Objects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Objects</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Evaluation-of-expressions.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Evaluation of expressions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Functions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Object-oriented-programming.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Object-oriented programming</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Computing-on-the-language.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Computing on the language</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./System-and-foreign-language-interfaces.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">System and foreign language interfaces</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Exception-handling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Exception handling</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Debugging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Debugging</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Parser.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Parser</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Function-and-Variable-Index.html" class="sidebar-item-text sidebar-link">Function and Variable Index</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Concept-Index.html" class="sidebar-item-text sidebar-link">Concept Index</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+<h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#simple-evaluation" class="nav-link active" data-scroll-target="#simple-evaluation"> <span class="header-section-number">3.1</span> Simple evaluation</a>
+<ul class="collapse">
+<li><a href="#constants" class="nav-link" data-scroll-target="#constants"> <span class="header-section-number">3.1.1</span> Constants</a></li>
+<li><a href="#symbol-lookup" class="nav-link" data-scroll-target="#symbol-lookup"> <span class="header-section-number">3.1.2</span> Symbol lookup</a></li>
+<li><a href="#function-calls" class="nav-link" data-scroll-target="#function-calls"> <span class="header-section-number">3.1.3</span> Function calls</a></li>
+<li><a href="#operators" class="nav-link" data-scroll-target="#operators"> <span class="header-section-number">3.1.4</span> Operators</a></li>
+</ul></li>
+<li><a href="#control-structures" class="nav-link" data-scroll-target="#control-structures"> <span class="header-section-number">3.2</span> Control structures</a>
+<ul class="collapse">
+<li><a href="#if" class="nav-link" data-scroll-target="#if"> <span class="header-section-number">3.2.1</span> if</a></li>
+<li><a href="#looping" class="nav-link" data-scroll-target="#looping"> <span class="header-section-number">3.2.2</span> Looping</a></li>
+<li><a href="#repeat" class="nav-link" data-scroll-target="#repeat"> <span class="header-section-number">3.2.3</span> repeat</a></li>
+<li><a href="#while" class="nav-link" data-scroll-target="#while"> <span class="header-section-number">3.2.4</span> while</a></li>
+<li><a href="#for" class="nav-link" data-scroll-target="#for"> <span class="header-section-number">3.2.5</span> for</a></li>
+<li><a href="#switch" class="nav-link" data-scroll-target="#switch"> <span class="header-section-number">3.2.6</span> switch</a></li>
+</ul></li>
+<li><a href="#elementary-arithmetic-operations" class="nav-link" data-scroll-target="#elementary-arithmetic-operations"> <span class="header-section-number">3.3</span> Elementary arithmetic operations</a>
+<ul class="collapse">
+<li><a href="#recycling-rules" class="nav-link" data-scroll-target="#recycling-rules"> <span class="header-section-number">3.3.1</span> Recycling rules</a></li>
+<li><a href="#propagation-of-names" class="nav-link" data-scroll-target="#propagation-of-names"> <span class="header-section-number">3.3.2</span> Propagation of names</a></li>
+<li><a href="#dimensional-attributes" class="nav-link" data-scroll-target="#dimensional-attributes"> <span class="header-section-number">3.3.3</span> Dimensional attributes</a></li>
+<li><a href="#na-handling" class="nav-link" data-scroll-target="#na-handling"> <span class="header-section-number">3.3.4</span> NA handling</a></li>
+</ul></li>
+<li><a href="#indexing" class="nav-link" data-scroll-target="#indexing"> <span class="header-section-number">3.4</span> Indexing</a>
+<ul class="collapse">
+<li><a href="#indexing-by-vectors" class="nav-link" data-scroll-target="#indexing-by-vectors"> <span class="header-section-number">3.4.1</span> Indexing by vectors</a></li>
+<li><a href="#indexing-matrices-and-arrays" class="nav-link" data-scroll-target="#indexing-matrices-and-arrays"> <span class="header-section-number">3.4.2</span> Indexing matrices and arrays</a></li>
+<li><a href="#indexing-other-structures" class="nav-link" data-scroll-target="#indexing-other-structures"> <span class="header-section-number">3.4.3</span> Indexing other structures</a></li>
+<li><a href="#subset-assignment" class="nav-link" data-scroll-target="#subset-assignment"> <span class="header-section-number">3.4.4</span> Subset assignment</a></li>
+</ul></li>
+<li><a href="#scope-of-variables" class="nav-link" data-scroll-target="#scope-of-variables"> <span class="header-section-number">3.5</span> Scope of variables</a>
+<ul class="collapse">
+<li><a href="#global-environment" class="nav-link" data-scroll-target="#global-environment"> <span class="header-section-number">3.5.1</span> Global environment</a></li>
+<li><a href="#lexical-environment" class="nav-link" data-scroll-target="#lexical-environment"> <span class="header-section-number">3.5.2</span> Lexical environment</a></li>
+<li><a href="#the-call-stack" class="nav-link" data-scroll-target="#the-call-stack"> <span class="header-section-number">3.5.3</span> The call stack</a></li>
+<li><a href="#search-path" class="nav-link" data-scroll-target="#search-path"> <span class="header-section-number">3.5.4</span> Search path</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+<header id="title-block-header">
+<h1 class="title display-7"><span id="evaluation-of-expressions" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Evaluation of expressions</span></span></h1>
+</header>
+
+<p>When a user types a command at the prompt (or when an expression is read from a file) the first thing that happens to it is that the command is transformed by the parser into an internal representation. The evaluator executes parsed R expressions and returns the value of the expression. All expressions have a value. This is the core of the language.</p>
+<p>This chapter describes the basic mechanisms of the evaluator, but avoids discussion of specific functions or groups of functions which are described in separate chapters later on or where the help pages should be sufficient documentation.</p>
+<p>Users can construct expressions and invoke the evaluator on them.</p>
+<section id="simple-evaluation" class="level2 section" data-number="3.1">
+<h2 class="section anchored" data-number="3.1" data-anchor-id="simple-evaluation"><span class="header-section-number">3.1</span> Simple evaluation</h2>
+<section id="constants" class="level3 subsection" data-number="3.1.1">
+<h3 class="subsection anchored" data-number="3.1.1" data-anchor-id="constants"><span class="header-section-number">3.1.1</span> Constants</h3>
+<p>Any number typed directly at the prompt is a constant and is evaluated.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Perhaps unexpectedly, the number returned from the expression <code>1</code> is a numeric. In most cases, the difference between an integer and a numeric value will be unimportant as R will do the right thing when using the numbers. There are, however, times when we would like to explicitly create an integer value for a constant. We can do this by calling the function <code>as.integer</code> or using various other techniques. But perhaps the simplest approach is to qualify our constant with the suffix character ‘L’. For example, to create the integer value 1, we might use</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> 1L</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We can use the ‘L’ suffix to qualify any number with the intent of making it an explicit integer. So ‘0x10L’ creates the integer value 16 from the hexadecimal representation. The constant <code>1e3L</code> gives 1000 as an integer rather than a numeric value and is equivalent to <code>1000L</code>. (Note that the ‘L’ is treated as qualifying the term <code>1e3</code> and not the <code>3</code>.) If we qualify a value with ‘L’ that is not an integer value, e.g. <code>1e-3L</code>, we get a warning and the numeric value is created. A warning is also created if there is an unnecessary decimal point in the number, e.g.&nbsp;<code>1.L</code>.</p>
+<p>We get a syntax error when using ‘L’ with complex numbers, e.g.&nbsp;<code>12iL</code> gives an error.</p>
+<p>Constants are fairly boring and to do more we need symbols.</p>
+</section>
+<section id="symbol-lookup" class="level3 subsection" data-number="3.1.2">
+<h3 class="subsection anchored" data-number="3.1.2" data-anchor-id="symbol-lookup"><span class="header-section-number">3.1.2</span> Symbol lookup</h3>
+<p>When a new variable is created it must have a name so it can be referenced and it usually has a value. The name itself is a symbol. When a symbol is evaluated its value is returned. Later we shall explain in detail how to determine the value associated with a symbol.</p>
+<p>In this small example <code>y</code> is a symbol and its value is 4. A symbol is an R object too, but one rarely needs to deal with symbols directly, except when doing “programming on the language” (<a href="Computing-on-the-language.html#computing-on-the-language">Computing on the language</a>).</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="function-calls" class="level3 subsection" data-number="3.1.3">
+<h3 class="subsection anchored" data-number="3.1.3" data-anchor-id="function-calls"><span class="header-section-number">3.1.3</span> Function calls</h3>
+<p>Most of the computations carried out in R involve the evaluation of functions. We will also refer to this as function <em>invocation</em>. Functions are invoked by name with a list of arguments separated by commas.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">mean</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">5.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In this example the function <code>mean</code> was called with one argument, the vector of integers from 1 to 10.</p>
+<p>R contains a huge number of functions with different purposes. Most are used for producing a result which is an R object, but others are used for their side effects, e.g., printing and plotting functions.</p>
+<p>Function calls can have <em>tagged</em> (or <em>named</em>) arguments, as in <code>plot(x, y, pch = 3)</code>. Arguments without tags are known as <em>positional</em> since the function must distinguish their meaning from their sequential positions among the arguments of the call, e.g., that <code>x</code> denotes the abscissa variable and <code>y</code> the ordinate. The use of tags/names is an obvious convenience for functions with a large number of optional arguments.</p>
+<p>A special type of function calls can appear on the left hand side of the assignment operator as in</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">class</span>(x) <span class="ot">&lt;-</span> <span class="st">"foo"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>What this construction really does is to call the function <code>class&lt;-</code> with the original object and the right hand side. This function performs the modification of the object and returns the result which is then stored back into the original variable. (At least conceptually, this is what happens. Some additional effort is made to avoid unnecessary data duplication.)</p>
+</section>
+<section id="operators" class="level3 subsection" data-number="3.1.4">
+<h3 class="subsection anchored" data-number="3.1.4" data-anchor-id="operators"><span class="header-section-number">3.1.4</span> Operators</h3>
+<p>R allows the use of arithmetic expressions using operators similar to those of the C programming language, for instance</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Expressions can be grouped using parentheses, mixed with function calls, and assigned to variables in a straightforward manner</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (a <span class="sc">+</span> <span class="fu">log</span>(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>R contains a number of operators. They are listed in the table below.</p>
+<div class="blockquotes-block">
+<blockquote class="blockquote">
+<table class="table">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>-</code></td>
+<td style="text-align: left;">Minus, can be unary or binary</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>+</code></td>
+<td style="text-align: left;">Plus, can be unary or binary</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>!</code></td>
+<td style="text-align: left;">Unary not</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>~</code></td>
+<td style="text-align: left;">Tilde, used for model formulae, can be either unary or binary</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>?</code></td>
+<td style="text-align: left;">Help</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>:</code></td>
+<td style="text-align: left;">Sequence, binary (in model formulae: interaction)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>*</code></td>
+<td style="text-align: left;">Multiplication, binary</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>/</code></td>
+<td style="text-align: left;">Division, binary</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>^</code></td>
+<td style="text-align: left;">Exponentiation, binary</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>%x%</code></td>
+<td style="text-align: left;">Special binary operators, <var>x</var> can be replaced by any valid name</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>%%</code></td>
+<td style="text-align: left;">Modulus, binary</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>%/%</code></td>
+<td style="text-align: left;">Integer divide, binary</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>%*%</code></td>
+<td style="text-align: left;">Matrix product, binary</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>%o%</code></td>
+<td style="text-align: left;">Outer product, binary</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>%x%</code></td>
+<td style="text-align: left;">Kronecker product, binary</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>%in%</code></td>
+<td style="text-align: left;">Matching operator, binary (in model formulae: nesting)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>&lt;</code></td>
+<td style="text-align: left;">Less than, binary</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>&gt;</code></td>
+<td style="text-align: left;">Greater than, binary</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>==</code></td>
+<td style="text-align: left;">Equal to, binary</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>&gt;=</code></td>
+<td style="text-align: left;">Greater than or equal to, binary</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>&lt;=</code></td>
+<td style="text-align: left;">Less than or equal to, binary</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>&amp;</code></td>
+<td style="text-align: left;">And, binary, vectorized</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>&amp;&amp;</code></td>
+<td style="text-align: left;">And, binary, not vectorized</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>|</code></td>
+<td style="text-align: left;">Or, binary, vectorized</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>||</code></td>
+<td style="text-align: left;">Or, binary, not vectorized</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>&lt;-</code></td>
+<td style="text-align: left;">Left assignment, binary</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>-&gt;</code></td>
+<td style="text-align: left;">Right assignment, binary</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>$</code></td>
+<td style="text-align: left;">List subset, binary</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<p>Except for the syntax, there is no difference between applying an operator and calling a function. In fact, <code>x + y</code> can equivalently be written <code>`+`(x, y)</code>. Notice that since <code>+</code> is a non-standard function name, it needs to be quoted.</p>
+<p>R deals with entire vectors of data at a time, and most of the elementary operators and basic mathematical functions like <code>log</code> are vectorized (as indicated in the table above). This means that e.g. adding two vectors of the same length will create a vector containing the element-wise sums, implicitly looping over the vector index. This applies also to other operators like <code>-</code>, <code>*</code>, and <code>/</code> as well as to higher dimensional structures. Notice in particular that multiplying two matrices does not produce the usual matrix product (the <code>%*%</code> operator exists for that purpose). Some finer points relating to vectorized operations will be discussed in <a href="#elementary-arithmetic-operations">Elementary arithmetic operations</a>.</p>
+<p>To access individual elements of an atomic vector, one generally uses the <code>x[i]</code> construction.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">5</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="sc">-</span><span class="fl">0.12526937</span> <span class="sc">-</span><span class="fl">0.27961154</span> <span class="sc">-</span><span class="fl">1.03718717</span> <span class="sc">-</span><span class="fl">0.08156527</span>  <span class="fl">1.37167090</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x[<span class="dv">2</span>]</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="sc">-</span><span class="fl">0.2796115</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>List components are more commonly accessed using <code>x$a</code> or <code>x[[i]]</code>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="fu">options</span>()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x<span class="sc">$</span>prompt</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"&gt; "</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Indexing constructs can also appear on the right hand side of an assignment.</p>
+<p>Like the other operators, indexing is really done by functions, and one could have used <code>`[`(x, 2)</code> instead of <code>x[2]</code>.</p>
+<p>R’s indexing operations contain many advanced features which are further described in <a href="#indexing">Indexing</a>.</p>
+</section>
+</section>
+<section id="control-structures" class="level2 section page-columns page-full" data-number="3.2">
+<h2 class="section anchored" data-number="3.2" data-anchor-id="control-structures"><span class="header-section-number">3.2</span> Control structures</h2>
+<div class="page-columns page-full"><p>Computation in R consists of sequentially evaluating <em>statements</em>. Statements, such as <code>x&lt;-1:10</code> or <code>mean(y)</code>, can be separated by either a semi-colon or a new line. Whenever the evaluator is presented with a syntactically complete statement that statement is evaluated and the <em>value</em> returned. The result of evaluating a statement can be referred to as the value of the statement<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> The value can always be assigned to a symbol.</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;Evaluation always takes place in an environment. See <a href="#scope-of-variables">Scope of variables</a> for more details.</p></li></div></div>
+<p>Both semicolons and new lines can be used to separate statements. A semicolon always indicates the end of a statement while a new line <em>may</em> indicate the end of a statement. If the current statement is not syntactically complete new lines are simply ignored by the evaluator. If the session is interactive the prompt changes from <code>&gt;</code> to <code>+</code>.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="dv">0</span>; x <span class="sc">+</span> <span class="dv">5</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">5</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="dv">1</span>; <span class="dv">2</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Statements can be grouped together using braces <code>{</code> and <code>}</code>. A group of statements is sometimes called a <em>block</em>. Single statements are evaluated when a new line is typed at the end of the syntactically complete statement. Blocks are not evaluated until a new line is entered after the closing brace. In the remainder of this section, <em>statement</em> refers to either a single statement or a block.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> { x <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> x <span class="sc">+</span> <span class="dv">5</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> }</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="if" class="level3 subsection" data-number="3.2.1">
+<h3 class="subsection anchored" data-number="3.2.1" data-anchor-id="if"><span class="header-section-number">3.2.1</span> if</h3>
+<p>The <code>if</code>/<code>else</code> statement conditionally evaluates two statements. There is a <em>condition</em> which is evaluated and if the <em>value</em> is <code>TRUE</code> then the first statement is evaluated; otherwise the second statement will be evaluated. The <code>if</code>/<code>else</code> statement returns, as its value, the value of the statement that was selected. The formal syntax is</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> ( statement1 )</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    statement2</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    statement3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>First, <var>statement1</var> is evaluated to yield <var>value1</var>. If <var>value1</var> is a logical vector with first element <code>TRUE</code> then <var>statement2</var> is evaluated. If the first element of <var>value1</var> is <code>FALSE</code> then <var>statement3</var> is evaluated. If <var>value1</var> is a numeric vector then <var>statement3</var> is evaluated when the first element of <var>value1</var> is zero and otherwise <var>statement2</var> is evaluated. Only the first element of <var>value1</var> is used. All other elements are ignored. If <var>value1</var> has any type other than a logical or a numeric vector an error is signalled.</p>
+<p><code>if</code>/<code>else</code> statements can be used to avoid numeric problems such as taking the logarithm of a negative number. Because <code>if</code>/<code>else</code> statements are the same as other statements you can assign the value of them. The two examples below are equivalent.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="cf">if</span>( <span class="fu">any</span>(x <span class="sc">&lt;=</span> <span class="dv">0</span>) ) y <span class="ot">&lt;-</span> <span class="fu">log</span>(<span class="dv">1</span><span class="sc">+</span>x) <span class="cf">else</span> y <span class="ot">&lt;-</span> <span class="fu">log</span>(x)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y <span class="ot">&lt;-</span> <span class="cf">if</span>( <span class="fu">any</span>(x <span class="sc">&lt;=</span> <span class="dv">0</span>) ) <span class="fu">log</span>(<span class="dv">1</span><span class="sc">+</span>x) <span class="cf">else</span> <span class="fu">log</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>else</code> clause is optional. The statement <code>if(any(x &lt;= 0)) x &lt;- x[x &lt;= 0]</code> is valid. When the <code>if</code> statement is not in a block the <code>else</code>, if present, must appear on the same line as the end of <var>statement2</var>. Otherwise the new line at the end of <var>statement2</var> completes the <code>if</code> and yields a syntactically complete statement that is evaluated. A simple solution is to use a compound statement wrapped in braces, putting the <code>else</code> on the same line as the closing brace that marks the end of the statement.</p>
+<p><code>if</code>/<code>else</code> statements can be nested.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> ( statement1 ) {</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    statement2</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> ( statement3 ) {</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    statement4</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> ( statement5 ) {</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    statement6</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    statement8</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>One of the even numbered statements will be evaluated and the resulting value returned. If the optional <code>else</code> clause is omitted and all the odd numbered <var>statement</var>s evaluate to <code>FALSE</code> no statement will be evaluated and <code>NULL</code> is returned.</p>
+<p>The odd numbered <var>statement</var>s are evaluated, in order, until one evaluates to <code>TRUE</code> and then the associated even numbered <var>statement</var> is evaluated. In this example, <var>statement6</var> will only be evaluated if <var>statement1</var> is <code>FALSE</code> and <var>statement3</var> is <code>FALSE</code> and <var>statement5</var> is <code>TRUE</code>. There is no limit to the number of <code>else if</code> clauses that are permitted.</p>
+</section>
+<section id="looping" class="level3 subsection page-columns page-full" data-number="3.2.2">
+<h3 class="subsection anchored" data-number="3.2.2" data-anchor-id="looping"><span class="header-section-number">3.2.2</span> Looping</h3>
+<div class="page-columns page-full"><p>R has three statements that provide explicit looping.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> They are <code>for</code>, <code>while</code> and <code>repeat</code>. The two built-in constructs, <code>next</code> and <code>break</code>, provide additional control over the evaluation. R provides other functions for implicit looping such as <code>tapply</code>, <code>apply</code>, and <code>lapply</code>. In addition many operations, especially arithmetic ones, are vectorized so you may not need to use a loop.</p><div class="no-row-height column-margin column-container"><li id="fn2" role="doc-endnote"><p><sup>2</sup>&nbsp;Looping is the repeated evaluation of a statement or block of statements.</p></li></div></div>
+<p>There are two statements that can be used to explicitly control looping. They are <code>break</code> and <code>next</code>. The <code>break</code> statement causes an exit from the innermost loop that is currently being executed. The <code>next</code> statement immediately causes control to return to the start of the loop. The next iteration of the loop (if there is one) is then executed. No statement below <code>next</code> in the current loop is evaluated.</p>
+<p>The value returned by a loop statement is always <code>NULL</code> and is returned invisibly.</p>
+</section>
+<section id="repeat" class="level3 subsection" data-number="3.2.3">
+<h3 class="subsection anchored" data-number="3.2.3" data-anchor-id="repeat"><span class="header-section-number">3.2.3</span> repeat</h3>
+<p>The <code>repeat</code> statement causes repeated evaluation of the body until a break is specifically requested. This means that you need to be careful when using <code>repeat</code> because of the danger of an infinite loop. The syntax of the <code>repeat</code> loop is</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">repeat</span> statement</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When using <code>repeat</code>, <var>statement</var> must be a block statement. You need to both perform some computation and test whether or not to break from the loop and usually this requires two statements.</p>
+</section>
+<section id="while" class="level3 subsection" data-number="3.2.4">
+<h3 class="subsection anchored" data-number="3.2.4" data-anchor-id="while"><span class="header-section-number">3.2.4</span> while</h3>
+<p>The <code>while</code> statement is very similar to the <code>repeat</code> statement. The syntax of the <code>while</code> loop is</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> ( statement1 ) statement2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>where <var>statement1</var> is evaluated and if its value is <code>TRUE</code> then <var>statement2</var> is evaluated. This process continues until <var>statement1</var> evaluates to <code>FALSE</code>.</p>
+</section>
+<section id="for" class="level3 subsection" data-number="3.2.5">
+<h3 class="subsection anchored" data-number="3.2.5" data-anchor-id="for"><span class="header-section-number">3.2.5</span> for</h3>
+<p>The syntax of the <code>for</code> loop is</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ( name <span class="cf">in</span> vector )</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>   statement1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>where <var>vector</var> can be either a vector or a list. For each element in <var>vector</var> the variable <var>name</var> is set to the value of that element and <var>statement1</var> is evaluated. A side effect is that the variable <var>name</var> still exists after the loop has concluded and it has the value of the last element of <var>vector</var> that the loop was evaluated for.</p>
+</section>
+<section id="switch" class="level3 subsection" data-number="3.2.6">
+<h3 class="subsection anchored" data-number="3.2.6" data-anchor-id="switch"><span class="header-section-number">3.2.6</span> switch</h3>
+<p>Technically speaking, <code>switch</code> is just another function, but its semantics are close to those of control structures of other programming languages.</p>
+<p>The syntax is</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">switch</span> (statement, list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>where the elements of <var>list</var> may be named. First, <var>statement</var> is evaluated and the result, <var>value</var>, obtained. If <var>value</var> is a number between 1 and the length of <var>list</var> then the corresponding element of <var>list</var> is evaluated and the result returned. If <var>value</var> is too large or too small <code>NULL</code> is returned.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="cf">switch</span>(x, <span class="dv">2</span><span class="sc">+</span><span class="dv">2</span>, <span class="fu">mean</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>), <span class="fu">rnorm</span>(<span class="dv">5</span>))</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="fl">2.2903605</span>  <span class="fl">2.3271663</span> <span class="sc">-</span><span class="fl">0.7060073</span>  <span class="fl">1.3622045</span> <span class="sc">-</span><span class="fl">0.2892720</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="cf">switch</span>(<span class="dv">2</span>, <span class="dv">2</span><span class="sc">+</span><span class="dv">2</span>, <span class="fu">mean</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>), <span class="fu">rnorm</span>(<span class="dv">5</span>))</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">5.5</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="cf">switch</span>(<span class="dv">6</span>, <span class="dv">2</span><span class="sc">+</span><span class="dv">2</span>, <span class="fu">mean</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>), <span class="fu">rnorm</span>(<span class="dv">5</span>))</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="cn">NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If <var>value</var> is a character vector then the element of <code>...</code> with a name that exactly matches <var>value</var> is evaluated. If there is no match a single unnamed argument will be used as a default. If no default is specified, <code>NULL</code> is returned.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y <span class="ot">&lt;-</span> <span class="st">"fruit"</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="cf">switch</span>(y, <span class="at">fruit =</span> <span class="st">"banana"</span>, <span class="at">vegetable =</span> <span class="st">"broccoli"</span>, <span class="st">"Neither"</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"banana"</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y <span class="ot">&lt;-</span> <span class="st">"meat"</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="cf">switch</span>(y, <span class="at">fruit =</span> <span class="st">"banana"</span>, <span class="at">vegetable =</span> <span class="st">"broccoli"</span>, <span class="st">"Neither"</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"Neither"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A common use of <code>switch</code> is to branch according to the character value of one of the arguments to a function.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> centre <span class="ot">&lt;-</span> <span class="cf">function</span>(x, type) {</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> <span class="cf">switch</span>(type,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>        <span class="at">mean =</span> <span class="fu">mean</span>(x),</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>        <span class="at">median =</span> <span class="fu">median</span>(x),</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>        <span class="at">trimmed =</span> <span class="fu">mean</span>(x, <span class="at">trim =</span> .<span class="dv">1</span>))</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> }</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="fu">rcauchy</span>(<span class="dv">10</span>)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">centre</span>(x, <span class="st">"mean"</span>)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.8760325</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">centre</span>(x, <span class="st">"median"</span>)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.5360891</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">centre</span>(x, <span class="st">"trimmed"</span>)</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">0.6086504</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>switch</code> returns either the value of the statement that was evaluated or <code>NULL</code> if no statement was evaluated.</p>
+<p>To choose from a list of alternatives that already exists <code>switch</code> may not be the best way to select one for evaluation. It is often better to use <code>eval</code> and the subset operator, <code>[[</code>, directly via <code>eval(x[[condition]])</code>.</p>
+</section>
+</section>
+<section id="elementary-arithmetic-operations" class="level2 section" data-number="3.3">
+<h2 class="section anchored" data-number="3.3" data-anchor-id="elementary-arithmetic-operations"><span class="header-section-number">3.3</span> Elementary arithmetic operations</h2>
+<p>In this section, we discuss the finer points of the rules that apply to basic operation like addition or multiplication of two vectors or matrices.</p>
+<section id="recycling-rules" class="level3 subsection" data-number="3.3.1">
+<h3 class="subsection anchored" data-number="3.3.1" data-anchor-id="recycling-rules"><span class="header-section-number">3.3.1</span> Recycling rules</h3>
+<p>If one tries to add two structures with a different number of elements, then the shortest is recycled to length of longest. That is, if for instance you add <code>c(1, 2, 3)</code> to a six-element vector then you will really add <code>c(1, 2, 3, 1, 2, 3)</code>. If the length of the longer vector is not a multiple of the shorter one, a warning is given.</p>
+<p>As from R 1.4.0, any arithmetic operation involving a zero-length vector has a zero-length result.</p>
+</section>
+<section id="propagation-of-names" class="level3 subsection" data-number="3.3.2">
+<h3 class="subsection anchored" data-number="3.3.2" data-anchor-id="propagation-of-names"><span class="header-section-number">3.3.2</span> Propagation of names</h3>
+<p>propagation of names (first one wins, I think - also if it has no names?? —- first one *with names* wins, recycling causes shortest to lose names)</p>
+</section>
+<section id="dimensional-attributes" class="level3 subsection" data-number="3.3.3">
+<h3 class="subsection anchored" data-number="3.3.3" data-anchor-id="dimensional-attributes"><span class="header-section-number">3.3.3</span> Dimensional attributes</h3>
+<p>(matrix+matrix, dimensions must match. vector+matrix: first recycle, then check if dims fit, error if not)</p>
+</section>
+<section id="na-handling" class="level3 subsection" data-number="3.3.4">
+<h3 class="subsection anchored" data-number="3.3.4" data-anchor-id="na-handling"><span class="header-section-number">3.3.4</span> NA handling</h3>
+<p>Missing values in the statistical sense, that is, variables whose value is not known, have the value <code>NA</code>. This should not be confused with the <code>missing</code> property for a function argument that has not been supplied (see <a href="Functions.html#arguments">Arguments</a>).</p>
+<p>As the elements of an atomic vector must be of the same type there are multiple types of <code>NA</code> values. There is one case where this is particularly important to the user. The default type of <code>NA</code> is <code>logical</code>, unless coerced to some other type, so the appearance of a missing value may trigger logical rather than numeric indexing (see <a href="#indexing">Indexing</a> for details).</p>
+<p>Numeric and logical calculations with <code>NA</code> generally return <code>NA</code>. In cases where the result of the operation would be the same for all possible values the <code>NA</code> could take, the operation may return this value. In particular, <code>FALSE &amp; NA</code> is <code>FALSE</code>, <code>TRUE | NA</code> is <code>TRUE</code>. <code>NA</code> is not equal to any other value or to itself; testing for <code>NA</code> is done using <code>is.na</code>. However, an <code>NA</code> value will match another <code>NA</code> value in <code>match</code>.</p>
+<p>Numeric calculations whose result is undefined, such as <code>0/0</code>, produce the value <code>NaN</code>. This exists only in the <code>double</code> type and for real or imaginary components of the complex type. The function <code>is.nan</code> is provided to check specifically for <code>NaN</code>, <code>is.na</code> also returns <code>TRUE</code> for <code>NaN</code>. Coercing <code>NaN</code> to logical or integer type gives an <code>NA</code> of the appropriate type, but coercion to character gives the string <code>"NaN"</code>. <code>NaN</code> values are incomparable so tests of equality or collation involving <code>NaN</code> will result in <code>NA</code>. They are regarded as matching any <code>NaN</code> value (and no other value, not even <code>NA</code>) by <code>match</code>.</p>
+<p>The <code>NA</code> of character type is as from R 1.5.0 distinct from the string <code>"NA"</code>. Programmers who need to specify an explicit string <code>NA</code> should use <code>as.character(NA)</code> rather than <code>"NA"</code>, or set elements to <code>NA</code> using <code>is.na&lt;-</code>.</p>
+<p>There are constants <code>NA_integer_</code>, <code>NA_real_</code>, <code>NA_complex_</code> and <code>NA_character_</code> which will generate (in the parser) an <code>NA</code> value of the appropriate type, and will be used in deparsing when it is not otherwise possible to identify the type of an <code>NA</code> (and the <code>control</code> options ask for this to be done).</p>
+<p>There is no <code>NA</code> value for raw vectors.</p>
+</section>
+</section>
+<section id="indexing" class="level2 section" data-number="3.4">
+<h2 class="section anchored" data-number="3.4" data-anchor-id="indexing"><span class="header-section-number">3.4</span> Indexing</h2>
+<p>R contains several constructs which allow access to individual elements or subsets through indexing operations. In the case of the basic vector types one can access the i-th element using <code>x[i]</code>, but there is also indexing of lists, matrices, and multi-dimensional arrays. There are several forms of indexing in addition to indexing with a single integer. Indexing can be used both to extract part of an object and to replace parts of an object (or to add parts).</p>
+<p>R has three basic indexing operators, with syntax displayed by the following examples</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>x[i]</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>x[i, j]</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>x[[i]]</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>x[[i, j]]</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span>a</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span><span class="st">"a"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For vectors and matrices the <code>[[</code> forms are rarely used, although they have some slight semantic differences from the <code>[</code> form (e.g.&nbsp;it drops any <code>names</code> or <code>dimnames</code> attribute, and that partial matching is used for character indices). When indexing multi-dimensional structures with a single index, <code>x[[i]]</code> or <code>x[i]</code> will return the <code>i</code>th sequential element of <code>x</code>.</p>
+<p>For lists, one generally uses <code>[[</code> to select any single element, whereas <code>[</code> returns a list of the selected elements.</p>
+<p>The <code>[[</code> form allows only a single element to be selected using integer or character indices, whereas <code>[</code> allows indexing by vectors. Note though that for a list or other recursive object, the index can be a vector and each element of the vector is applied in turn to the list, the selected component, the selected component of that component, and so on. The result is still a single element.</p>
+<p>The form using <code>$</code> applies to recursive objects such as lists and pairlists. It allows only a literal character string or a symbol as the index. That is, the index is not computable: for cases where you need to evaluate an expression to find the index, use <code>x[[expr]]</code>. Applying <code>$</code> to a non-recursive object is an error.</p>
+<section id="indexing-by-vectors" class="level3 subsection" data-number="3.4.1">
+<h3 class="subsection anchored" data-number="3.4.1" data-anchor-id="indexing-by-vectors"><span class="header-section-number">3.4.1</span> Indexing by vectors</h3>
+<p>R allows some powerful constructions using vectors as indices. We shall discuss indexing of simple vectors first. For simplicity, assume that the expression is <code>x[i]</code>. Then the following possibilities exist according to the type of <code>i</code>.</p>
+<ul>
+<li><p><span id="index-index-3"></span> <strong>Integer</strong>. All elements of <code>i</code> must have the same sign. If they are positive, the elements of <code>x</code> with those index numbers are selected. If <code>i</code> contains negative elements, all elements except those indicated are selected.</p>
+<p>If <code>i</code> is positive and exceeds <code>length(x)</code> then the corresponding selection is <code>NA</code>. Negative out of bounds values for <code>i</code> are silently disregarded since R version 2.6.0, S compatibly, as they mean to drop non-existing elements and that is an empty operation (“no-op”).</p>
+<p>A special case is the zero index, which has null effects: <code>x[0]</code> is an empty vector and otherwise including zeros among positive or negative indices has the same effect as if they were omitted.</p></li>
+<li><p><strong>Other numeric</strong>. Non-integer values are converted to integer (by truncation towards zero) before use.</p></li>
+<li><p><strong>Logical</strong>. The indexing <code>i</code> should generally have the same length as <code>x</code>. If it is shorter, then its elements will be recycled as discussed in <a href="#elementary-arithmetic-operations">Elementary arithmetic operations</a>. If it is longer, then <code>x</code> is conceptually extended with <code>NA</code>s. The selected values of <code>x</code> are those for which <code>i</code> is <code>TRUE</code>.</p></li>
+<li><p><span id="index-partial-matching"></span> <strong>Character</strong>. The strings in <code>i</code> are matched against the names attribute of <code>x</code> and the resulting integers are used. For <code>[[</code> and <code>$</code> partial matching is used if exact matching fails, so <code>x$aa</code> will match <code>x$aabb</code> if <code>x</code> does not contain a component named <code>"aa"</code> and <code>"aabb"</code> is the only name which has prefix <code>"aa"</code>. For <code>[[</code>, partial matching can be controlled via the <code>exact</code> argument which defaults to <code>NA</code> indicating that partial matching is allowed, but should result in a warning when it occurs. Setting <code>exact</code> to <code>TRUE</code> prevents partial matching from occurring, a <code>FALSE</code> value allows it and does not issue any warnings. Note that <code>[</code> always requires an exact match. The string <code>""</code> is treated specially: it indicates ‘no name’ and matches no element (not even those without a name). Note that partial matching is only used when extracting and not when replacing.</p></li>
+<li><p><strong>Factor</strong>. The result is identical to <code>x[as.integer(i)]</code>. The factor levels are never used. If so desired, use <code>x[as.character(i)]</code> or a similar construction.</p></li>
+<li><p><strong>Empty</strong>. The expression <code>x[]</code> returns <code>x</code>, but drops “irrelevant” attributes from the result. Only <code>names</code> and in multi-dimensional arrays <code>dim</code> and <code>dimnames</code> attributes are retained.</p></li>
+<li><p><strong>NULL</strong>. This is treated as if it were <code>integer(0)</code>.</p></li>
+</ul>
+<p>Indexing with a missing (i.e.&nbsp;<code>NA</code>) value gives an <code>NA</code> result. This rule applies also to the case of logical indexing, i.e.&nbsp;the elements of <code>x</code> that have an <code>NA</code> selector in <code>i</code> get included in the result, but their value will be <code>NA</code>.</p>
+<p>Notice however, that there are different modes of <code>NA</code>—the literal constant is of mode <code>"logical"</code>, but it is frequently automatically coerced to other types. One effect of this is that <code>x[NA]</code> has the length of <code>x</code>, but <code>x[c(1, NA)]</code> has length 2. That is because the rules for logical indices apply in the former case, but those for integer indices in the latter.</p>
+<p>Indexing with <code>[</code> will also carry out the relevant subsetting of any names attributes.</p>
+</section>
+<section id="indexing-matrices-and-arrays" class="level3 subsection" data-number="3.4.2">
+<h3 class="subsection anchored" data-number="3.4.2" data-anchor-id="indexing-matrices-and-arrays"><span class="header-section-number">3.4.2</span> Indexing matrices and arrays</h3>
+<p>Subsetting multi-dimensional structures generally follows the same rules as single-dimensional indexing for each index variable, with the relevant component of <code>dimnames</code> taking the place of <code>names</code>. A couple of special rules apply, though:</p>
+<p>Normally, a structure is accessed using the number of indices corresponding to its dimension. It is however also possible to use a single index in which case the <code>dim</code> and <code>dimnames</code> attributes are disregarded and the result is effectively that of <code>c(m)[i]</code>. Notice that <code>m[1]</code> is usually very different from <code>m[1, ]</code> or <code>m[, 1]</code>.</p>
+<p>It is possible to use a matrix of integers as an index. In this case, the number of columns of the matrix should match the number of dimensions of the structure, and the result will be a vector with length as the number of rows of the matrix. The following example shows how to extract the elements <code>m[1, 1]</code> and <code>m[2, 2]</code> in one operation.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> m <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">2</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> m</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>     [,<span class="dv">1</span>] [,<span class="dv">2</span>]</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">3</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>,]    <span class="dv">2</span>    <span class="dv">4</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> i <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>), <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> i</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>     [,<span class="dv">1</span>] [,<span class="dv">2</span>]</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">1</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>,]    <span class="dv">2</span>    <span class="dv">2</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> m[i]</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Indexing matrices may not contain negative indices. <code>NA</code> and zero values are allowed: rows in an index matrix containing a zero are ignored, whereas rows containing an <code>NA</code> produce an <code>NA</code> in the result.</p>
+<p>Both in the case of using a single index and in matrix indexing, a <code>names</code> attribute is used if present, as had the structure been one-dimensional.</p>
+<p>If an indexing operation causes the result to have one of its extents of length one, as in selecting a single slice of a three-dimensional matrix with (say) <code>m[2, , ]</code>, the corresponding dimension is generally dropped from the result. If a single-dimensional structure results, a vector is obtained. This is occasionally undesirable and can be turned off by adding the <code>drop = FALSE</code> to the indexing operation. Notice that this is an additional argument to the <code>[</code> function and doesn’t add to the index count. Hence the correct way of selecting the first row of a matrix as a <em>1</em> by <em>n</em> matrix is <code>m[1, , drop = FALSE]</code>. Forgetting to disable the dropping feature is a common cause of failure in general subroutines where an index occasionally, but not usually has length one. This rule still applies to a one-dimensional array, where any subsetting will give a vector result unless <code>drop = FALSE</code> is used.</p>
+<p>Notice that vectors are distinct from one-dimensional arrays in that the latter have <code>dim</code> and <code>dimnames</code> attributes (both of length one). One-dimensional arrays are not easily obtained from subsetting operations but they can be constructed explicitly and are returned by <code>table</code>. This is sometimes useful because the elements of the <code>dimnames</code> list may themselves be named, which is not the case for the <code>names</code> attribute.</p>
+<p>Some operations such as <code>m[FALSE, ]</code> result in structures in which a dimension has zero extent. R generally tries to handle these structures sensibly.</p>
+</section>
+<section id="indexing-other-structures" class="level3 subsection" data-number="3.4.3">
+<h3 class="subsection anchored" data-number="3.4.3" data-anchor-id="indexing-other-structures"><span class="header-section-number">3.4.3</span> Indexing other structures</h3>
+<p>The operator <code>[</code> is a generic function which allows class methods to be added, and the <code>$</code> and <code>[[</code> operators likewise. Thus, it is possible to have user-defined indexing operations for any structure. Such a function, say <code>[.foo</code> is called with a set of arguments of which the first is the structure being indexed and the rest are the indices. In the case of <code>$</code>, the index argument is of mode <code>"symbol"</code> even when using the <code>x$"abc"</code> form. It is important to be aware that class methods do not necessarily behave in the same way as the basic methods, for example with respect to partial matching.</p>
+<p>The most important example of a class method for <code>[</code> is that used for data frames. It is not described in detail here (see the help page for <code>[.data.frame</code>), but in broad terms, if two indices are supplied (even if one is empty) it creates matrix-like indexing for a structure that is basically a list of vectors of the same length. If a single index is supplied, it is interpreted as indexing the list of columns—in that case the <code>drop</code> argument is ignored, with a warning.</p>
+<p>The basic operators <code>$</code> and <code>[[</code> can be applied to environments. Only character indices are allowed and no partial matching is done.</p>
+</section>
+<section id="subset-assignment" class="level3 subsection" data-number="3.4.4">
+<h3 class="subsection anchored" data-number="3.4.4" data-anchor-id="subset-assignment"><span class="header-section-number">3.4.4</span> Subset assignment</h3>
+<p>Assignment to subsets of a structure is a special case of a general mechanism for complex assignment:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="dv">13</span><span class="sc">:</span><span class="dv">15</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The result of this command is as if the following had been executed</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span> <span class="ot">&lt;-</span> x</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">"[&lt;-"</span>(<span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span>, <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">value=</span><span class="dv">13</span><span class="sc">:</span><span class="dv">15</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that the index is first converted to a numeric index and then the elements are replaced sequentially along the numeric index, as if a <code>for</code> loop had been used. Any existing variable called <code>`*tmp*`</code> will be overwritten and deleted, and this variable name should not be used in code.</p>
+<p>The same mechanism can be applied to functions other than <code>[</code>. The replacement function has the same name with <code>&lt;-</code> pasted on. Its last argument, which must be called <code>value</code>, is the new value to be assigned. For example,</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(x) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"a"</span>,<span class="st">"b"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>is equivalent to</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span> <span class="ot">&lt;-</span> x</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">"names&lt;-"</span>(<span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span>, <span class="at">value=</span><span class="fu">c</span>(<span class="st">"a"</span>,<span class="st">"b"</span>))</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Nesting of complex assignments is evaluated recursively</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(x)[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="st">"Three"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>is equivalent to</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span> <span class="ot">&lt;-</span> x</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">"names&lt;-"</span>(<span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span>, <span class="at">value=</span><span class="st">"[&lt;-"</span>(<span class="fu">names</span>(<span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span>), <span class="dv">3</span>, <span class="at">value=</span><span class="st">"Three"</span>))</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Complex assignments in the enclosing environment (using <code>&lt;&lt;-</code>) are also permitted:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(x)[<span class="dv">3</span>] <span class="ot">&lt;&lt;-</span> <span class="st">"Three"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>is equivalent to</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span> <span class="ot">&lt;&lt;-</span> <span class="fu">get</span>(x, <span class="at">envir=</span><span class="fu">parent.env</span>(), <span class="at">inherits=</span><span class="cn">TRUE</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(<span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span>)[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="st">"Three"</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;&lt;-</span> <span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and also to</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span> <span class="ot">&lt;-</span> <span class="fu">get</span>(x,<span class="at">envir=</span><span class="fu">parent.env</span>(), <span class="at">inherits=</span><span class="cn">TRUE</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;&lt;-</span> <span class="st">"names&lt;-"</span>(<span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span>, <span class="at">value=</span><span class="st">"[&lt;-"</span>(<span class="fu">names</span>(<span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span>), <span class="dv">3</span>, <span class="at">value=</span><span class="st">"Three"</span>))</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Only the target variable is evaluated in the enclosing environment, so</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>e<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="at">a=</span><span class="dv">1</span>,<span class="at">b=</span><span class="dv">2</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>i<span class="ot">&lt;-</span><span class="dv">1</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">local</span>({</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>   e <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">A=</span><span class="dv">10</span>,<span class="at">B=</span><span class="dv">11</span>)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>   i <span class="ot">&lt;-</span><span class="dv">2</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>   e[i] <span class="ot">&lt;&lt;-</span> e[i]<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>uses the local value of <code>i</code> on both the LHS and RHS, and the local value of <code>e</code> on the RHS of the superassignment statement. It sets <code>e</code> in the outer environment to</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a> a  b </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span> <span class="dv">12</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>That is, the superassignment is equivalent to the four lines</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span> <span class="ot">&lt;-</span> <span class="fu">get</span>(e, <span class="at">envir=</span><span class="fu">parent.env</span>(), <span class="at">inherits=</span><span class="cn">TRUE</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span>[i] <span class="ot">&lt;-</span> e[i]<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;&lt;-</span> <span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Similarly</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>x[<span class="fu">is.na</span>(x)] <span class="ot">&lt;&lt;-</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>is equivalent to</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span> <span class="ot">&lt;-</span> <span class="fu">get</span>(x,<span class="at">envir=</span><span class="fu">parent.env</span>(), <span class="at">inherits=</span><span class="cn">TRUE</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span>[<span class="fu">is.na</span>(x)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;&lt;-</span> <span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and not to</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span> <span class="ot">&lt;-</span> <span class="fu">get</span>(x,<span class="at">envir=</span><span class="fu">parent.env</span>(), <span class="at">inherits=</span><span class="cn">TRUE</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span>[<span class="fu">is.na</span>(<span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span>)] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;&lt;-</span> <span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>These two candidate interpretations differ only if there is also a local variable <code>x</code>. It is a good idea to avoid having a local variable with the same name as the target variable of a superassignment. As this case was handled incorrectly in versions 1.9.1 and earlier there must not be a serious need for such code.</p>
+</section>
+</section>
+<section id="scope-of-variables" class="level2 section" data-number="3.5">
+<h2 class="section anchored" data-number="3.5" data-anchor-id="scope-of-variables"><span class="header-section-number">3.5</span> Scope of variables</h2>
+<p>Almost every programming language has a set of scoping rules, allowing the same name to be used for different objects. This allows, e.g., a local variable in a function to have the same name as a global object.</p>
+<p>R uses a <em>lexical scoping</em> model, similar to languages like Pascal. However, R is a <em>functional programming language</em> and allows dynamic creation and manipulation of functions and language objects, and has additional features reflecting this fact.</p>
+<section id="global-environment" class="level3 subsection" data-number="3.5.1">
+<h3 class="subsection anchored" data-number="3.5.1" data-anchor-id="global-environment"><span class="header-section-number">3.5.1</span> Global environment</h3>
+<p>The global environment is the root of the user workspace. An assignment operation from the command line will cause the relevant object to belong to the global environment. Its enclosing environment is the next environment on the search path, and so on back to the empty environment that is the enclosure of the base environment.</p>
+</section>
+<section id="lexical-environment" class="level3 subsection" data-number="3.5.2">
+<h3 class="subsection anchored" data-number="3.5.2" data-anchor-id="lexical-environment"><span class="header-section-number">3.5.2</span> Lexical environment</h3>
+<p>Every call to a function creates a <em>frame</em> which contains the local variables created in the function, and is evaluated in an environment, which in combination creates a new environment.</p>
+<p>Notice the terminology: A frame is a set of variables, an environment is a nesting of frames (or equivalently: the innermost frame plus the enclosing environment).</p>
+<p>Environments may be assigned to variables or be contained in other objects. However, notice that they are not standard objects—in particular, they are not copied on assignment.</p>
+<p>A closure (mode <code>"function"</code>) object will contain the environment in which it is created as part of its definition (By default. The environment can be manipulated using <code>environment&lt;-</code>). When the function is subsequently called, its evaluation environment is created with the closure’s environment as enclosure. Notice that this is not necessarily the environment of the caller!</p>
+<p>Thus, when a variable is requested inside a function, it is first sought in the evaluation environment, then in the enclosure, the enclosure of the enclosure, etc.; once the global environment or the environment of a package is reached, the search continues up the search path to the environment of the base package. If the variable is not found there, the search will proceed next to the empty environment, and will fail.</p>
+</section>
+<section id="the-call-stack" class="level3 subsection" data-number="3.5.3">
+<h3 class="subsection anchored" data-number="3.5.3" data-anchor-id="the-call-stack"><span class="header-section-number">3.5.3</span> The call stack</h3>
+<p>Every time a function is invoked a new evaluation frame is created. At any point in time during the computation the currently active environments are accessible through the <em>call stack</em>. Each time a function is invoked a special construct called a context is created internally and is placed on a list of contexts. When a function has finished evaluating its context is removed from the call stack.</p>
+<p>Making variables defined higher up the call stack available is called dynamic scope. The binding for a variable is then determined by the most recent (in time) definition of the variable. This contradicts the default scoping rules in R, which use the bindings in the environment in which the function was defined (lexical scope). Some functions, particularly those that use and manipulate model formulas, need to simulate dynamic scope by directly accessing the call stack.</p>
+<p>Access to the call stack is provided through a family of functions which have names that start with <code>sys.</code>. They are listed briefly below.</p>
+<dl>
+<dt><code>sys.call</code></dt>
+<dd>
+<p>Get the call for the specified context.</p>
+</dd>
+<dt><code>sys.frame</code></dt>
+<dd>
+<p>Get the evaluation frame for the specified context.</p>
+</dd>
+<dt><code>sys.nframe</code></dt>
+<dd>
+<p>Get the environment frame for all active contexts.</p>
+</dd>
+<dt><code>sys.function</code></dt>
+<dd>
+<p>Get the function being invoked in the specified context.</p>
+</dd>
+<dt><code>sys.parent</code></dt>
+<dd>
+<p>Get the parent of the current function invocation.</p>
+</dd>
+<dt><code>sys.calls</code></dt>
+<dd>
+<p>Get the calls for all the active contexts.</p>
+</dd>
+<dt><code>sys.frames</code></dt>
+<dd>
+<p>Get the evaluation frames for all the active contexts.</p>
+</dd>
+<dt><code>sys.parents</code></dt>
+<dd>
+<p>Get the numeric labels for all active contexts.</p>
+</dd>
+<dt><code>sys.on.exit</code></dt>
+<dd>
+<p>Set a function to be executed when the specified context is exited.</p>
+</dd>
+<dt><code>sys.status</code></dt>
+<dd>
+<p>Calls <code>sys.frames</code>, <code>sys.parents</code> and <code>sys.calls</code>.</p>
+</dd>
+<dt><code>parent.frame</code></dt>
+<dd>
+<p>Get the evaluation frame for the specified parent context.</p>
+</dd>
+</dl>
+</section>
+<section id="search-path" class="level3 subsection" data-number="3.5.4">
+<h3 class="subsection anchored" data-number="3.5.4" data-anchor-id="search-path"><span class="header-section-number">3.5.4</span> Search path</h3>
+<p>In addition to the evaluation environment structure, R has a search path of environments which are searched for variables not found elsewhere. This is used for two things: packages of functions and attached user data.</p>
+<p>The first element of the search path is the global environment and the last is the base package. An <code>Autoloads</code> environment is used for holding proxy objects that may be loaded on demand. Other environments are inserted in the path using <code>attach</code> or <code>library</code>.</p>
+<p>Packages which have a <em>namespace</em> have a different search path. When a search for an R object is started from an object in such a package, the package itself is searched first, then its imports, then the base namespace and finally the global environment and the rest of the regular search path. The effect is that references to other objects in the same package will be resolved to the package, and objects cannot be masked by objects of the same name in the global environment or in other packages.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Objects.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Objects</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Functions.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Functions</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+  </div>
+</footer>
+
+
+</body></html>

@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.9.48">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>R Manuals :: An Introduction to R - 10&nbsp; Writing your own functions</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+
+  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+  <script src="site_libs/quarto-nav/headroom.min.js"></script>
+  <script src="site_libs/clipboard/clipboard.min.js"></script>
+  <meta name="quarto:offset" content="./">
+  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+  <script src="site_libs/quarto-search/fuse.min.js"></script>
+  <script src="site_libs/quarto-search/quarto-search.js"></script>
+  <link href="./Statistical-models-in-R.html" rel="next">
+  <link href="./Loops-and-conditional-execution.html" rel="prev">
+  <script src="site_libs/quarto-html/quarto.js"></script>
+  <script src="site_libs/quarto-html/popper.min.js"></script>
+  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="site_libs/quarto-html/anchor.min.js"></script>
+  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
+  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <script id="quarto-search-options" type="application/json">{
+    "location": "navbar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "end",
+    "type": "overlay",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body class="floating slimcontent">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">R Manuals :: An Introduction to R</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./../index.html">Home</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
+        <li>
+    <a class="dropdown-item" href="./index.html">
+ <span class="dropdown-text">An Introduction to R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-data/index.html">
+ <span class="dropdown-text">R Data Import/Export</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-admin/index.html">
+ <span class="dropdown-text">R Installation and Administration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-exts/index.html">
+ <span class="dropdown-text">Writing R Extensions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-lang/index.html">
+ <span class="dropdown-text">R Language Definition</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-ints/index.html">
+ <span class="dropdown-text">R Internals</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./../about.html">About</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Writing your own functions</span></h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">An Introduction to R</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Preface.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Introduction-and-preliminaries.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction and preliminaries</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Simple-manipulations-numbers-and-vectors.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Simple manipulations; numbers and vectors</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Objects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Objects, their modes and attributes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Factors.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Ordered and unordered factors</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Arrays-and-matrices.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Arrays and matrices</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Lists-and-data-frames.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lists and data frames</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Reading-data-from-files.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Reading data from files</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Probability-distributions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Probability distributions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Loops-and-conditional-execution.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Grouping, loops and conditional execution</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Writing-your-own-functions.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Writing your own functions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Statistical-models-in-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Statistical models in R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Graphics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Graphical procedures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Packages.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Packages</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./OS-facilities.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">OS facilities</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A-sample-session.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">A sample session</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Invoking-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Invoking R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./The-command-line-editor.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">The command-line editor</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Function and variable index</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Concept index</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+<h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#simple-examples" class="nav-link active" data-scroll-target="#simple-examples"> <span class="header-section-number">10.1</span> Simple examples</a></li>
+<li><a href="#defining-new-binary-operators" class="nav-link" data-scroll-target="#defining-new-binary-operators"> <span class="header-section-number">10.2</span> Defining new binary operators</a></li>
+<li><a href="#named-arguments-and-defaults" class="nav-link" data-scroll-target="#named-arguments-and-defaults"> <span class="header-section-number">10.3</span> Named arguments and defaults</a></li>
+<li><a href="#the-argument" class="nav-link" data-scroll-target="#the-argument"> <span class="header-section-number">10.4</span> The <code>…</code> argument</a></li>
+<li><a href="#assignments-within-functions" class="nav-link" data-scroll-target="#assignments-within-functions"> <span class="header-section-number">10.5</span> Assignments within functions</a></li>
+<li><a href="#more-advanced-examples" class="nav-link" data-scroll-target="#more-advanced-examples"> <span class="header-section-number">10.6</span> More advanced examples</a>
+<ul class="collapse">
+<li><a href="#efficiency-factors-in-block-designs" class="nav-link" data-scroll-target="#efficiency-factors-in-block-designs"> <span class="header-section-number">10.6.1</span> Efficiency factors in block designs</a></li>
+<li><a href="#dropping-all-names-in-a-printed-array" class="nav-link" data-scroll-target="#dropping-all-names-in-a-printed-array"> <span class="header-section-number">10.6.2</span> Dropping all names in a printed array</a></li>
+<li><a href="#recursive-numerical-integration" class="nav-link" data-scroll-target="#recursive-numerical-integration"> <span class="header-section-number">10.6.3</span> Recursive numerical integration</a></li>
+</ul></li>
+<li><a href="#scope" class="nav-link" data-scroll-target="#scope"> <span class="header-section-number">10.7</span> Scope</a></li>
+<li><a href="#customizing-the-environment" class="nav-link" data-scroll-target="#customizing-the-environment"> <span class="header-section-number">10.8</span> Customizing the environment</a></li>
+<li><a href="#classes-generic-functions-and-object-orientation" class="nav-link" data-scroll-target="#classes-generic-functions-and-object-orientation"> <span class="header-section-number">10.9</span> Classes, generic functions and object orientation</a></li>
+</ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+<header id="title-block-header">
+<h1 class="title display-7"><span id="writing-your-own-functions" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Writing your own functions</span></span></h1>
+</header>
+
+<p>As we have seen informally along the way, the R language allows the user to create objects of mode <em>function</em>. These are true R functions that are stored in a special internal form and may be used in further expressions and so on. In the process, the language gains enormously in power, convenience and elegance, and learning to write useful functions is one of the main ways to make your use of R comfortable and productive.</p>
+<p>It should be emphasized that most of the functions supplied as part of the R system, such as <code>mean()</code>, <code>var()</code>, <code>postscript()</code> and so on, are themselves written in R and thus do not differ materially from user written functions.</p>
+<p>A function is defined by an assignment of the form</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> name <span class="ot">&lt;-</span> <span class="cf">function</span>(arg_1, arg_2, …) expression</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <var>expression</var> is an R expression, (usually a grouped expression), that uses the arguments, <var>arg_i</var>, to calculate a value. The value of the expression is the value returned for the function.</p>
+<p>A call to the function then usually takes the form <code>name(expr_1, expr_2, …)</code> and may occur anywhere a function call is legitimate.</p>
+<section id="simple-examples" class="level2 section page-columns page-full" data-number="10.1">
+<h2 class="section anchored" data-number="10.1" data-anchor-id="simple-examples"><span class="header-section-number">10.1</span> Simple examples</h2>
+<p>As a first example, consider a function to calculate the two sample <em>t</em>-statistic, showing “all the steps”. This is an artificial example, of course, since there are other, simpler ways of achieving the same end.</p>
+<p>The function is defined as follows:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> twosam <span class="ot">&lt;-</span> <span class="cf">function</span>(y1, y2) {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    n1  <span class="ot">&lt;-</span> <span class="fu">length</span>(y1); n2  <span class="ot">&lt;-</span> <span class="fu">length</span>(y2)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    yb1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(y1);   yb2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(y2)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    s1  <span class="ot">&lt;-</span> <span class="fu">var</span>(y1);    s2  <span class="ot">&lt;-</span> <span class="fu">var</span>(y2)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    s <span class="ot">&lt;-</span> ((n1<span class="dv">-1</span>)<span class="sc">*</span>s1 <span class="sc">+</span> (n2<span class="dv">-1</span>)<span class="sc">*</span>s2)<span class="sc">/</span>(n1<span class="sc">+</span>n2<span class="dv">-2</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    tst <span class="ot">&lt;-</span> (yb1 <span class="sc">-</span> yb2)<span class="sc">/</span><span class="fu">sqrt</span>(s<span class="sc">*</span>(<span class="dv">1</span><span class="sc">/</span>n1 <span class="sc">+</span> <span class="dv">1</span><span class="sc">/</span>n2))</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    tst</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>With this function defined, you could perform two sample <em>t</em>-tests using a call such as</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> tstat <span class="ot">&lt;-</span> <span class="fu">twosam</span>(data<span class="sc">$</span>male, data<span class="sc">$</span>female); tstat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>As a second example, consider a function to emulate directly the <span class="small">MATLAB</span> backslash command, which returns the coefficients of the orthogonal projection of the vector <em>y</em> onto the column space of the matrix, <em>X</em>. (This is ordinarily called the least squares estimate of the regression coefficients.) This would ordinarily be done with the <code>qr()</code> function; however this is sometimes a bit tricky to use directly and it pays to have a simple function such as the following to use it safely.</p>
+<p>Thus given a <em>n</em> by <em>1</em> vector <em>y</em> and an <em>n</em> by <em>p</em> matrix <em>X</em> then <em>X \ y</em> is defined as (X’X)^{-}X’y, where (X’X)^{-} is a generalized inverse of <em>X'X</em>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> bslash <span class="ot">&lt;-</span> <span class="cf">function</span>(X, y) {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  X <span class="ot">&lt;-</span> <span class="fu">qr</span>(X)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">qr.coef</span>(X, y)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>After this object is created it may be used in statements such as</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> regcoeff <span class="ot">&lt;-</span> <span class="fu">bslash</span>(Xmat, yvar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and so on.</p>
+<div class="page-columns page-full"><p>The classical R function <code>lsfit()</code> does this job quite well, and more<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. It in turn uses the functions <code>qr()</code> and <code>qr.coef()</code> in the slightly counterintuitive way above to do this part of the calculation. Hence there is probably some value in having just this part isolated in a simple to use function if it is going to be in frequent use. If so, we may wish to make it a matrix binary operator for even more convenient use.</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;See also the methods described in <a href="Statistical-models-in-R.html#statistical-models-in-r">Statistical models in R</a></p></li></div></div>
+</section>
+<section id="defining-new-binary-operators" class="level2 section" data-number="10.2">
+<h2 class="section anchored" data-number="10.2" data-anchor-id="defining-new-binary-operators"><span class="header-section-number">10.2</span> Defining new binary operators</h2>
+<p>Had we given the <code>bslash()</code> function a different name, namely one of the form</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">%anything%</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>it could have been used as a <em>binary operator</em> in expressions rather than in function form. Suppose, for example, we choose <code>!</code> for the internal character. The function definition would then start as</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="st">"%!%"</span> <span class="ot">&lt;-</span> <span class="cf">function</span>(X, y) { … }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>(Note the use of quote marks.) The function could then be used as <code>X %!% y</code>. (The backslash symbol itself is not a convenient choice as it presents special problems in this context.)</p>
+<p>The matrix multiplication operator, <code>%*%</code>, and the outer product matrix operator <code>%o%</code> are other examples of binary operators defined in this way.</p>
+</section>
+<section id="named-arguments-and-defaults" class="level2 section" data-number="10.3">
+<h2 class="section anchored" data-number="10.3" data-anchor-id="named-arguments-and-defaults"><span class="header-section-number">10.3</span> Named arguments and defaults</h2>
+<p>As first noted in <a href="Simple-manipulations-numbers-and-vectors.html#generating-regular-sequences">Generating regular sequences</a>, if arguments to called functions are given in the “<code>name=object</code>” form, they may be given in any order. Furthermore the argument sequence may begin in the unnamed, positional form, and specify named arguments after the positional arguments.</p>
+<p>Thus if there is a function <code>fun1</code> defined by</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> fun1 <span class="ot">&lt;-</span> <span class="cf">function</span>(data, data.frame, graph, limit) {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    [<span class="cf">function</span> body omitted]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>then the function may be invoked in several ways, for example</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> ans <span class="ot">&lt;-</span> <span class="fu">fun1</span>(d, df, <span class="cn">TRUE</span>, <span class="dv">20</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> ans <span class="ot">&lt;-</span> <span class="fu">fun1</span>(d, df, <span class="at">graph=</span><span class="cn">TRUE</span>, <span class="at">limit=</span><span class="dv">20</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> ans <span class="ot">&lt;-</span> <span class="fu">fun1</span>(<span class="at">data=</span>d, <span class="at">limit=</span><span class="dv">20</span>, <span class="at">graph=</span><span class="cn">TRUE</span>, <span class="at">data.frame=</span>df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>are all equivalent.</p>
+<p>In many cases arguments can be given commonly appropriate default values, in which case they may be omitted altogether from the call when the defaults are appropriate. For example, if <code>fun1</code> were defined as</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> fun1 <span class="ot">&lt;-</span> <span class="cf">function</span>(data, data.frame, <span class="at">graph=</span><span class="cn">TRUE</span>, <span class="at">limit=</span><span class="dv">20</span>) { … }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>it could be called as</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> ans <span class="ot">&lt;-</span> <span class="fu">fun1</span>(d, df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>which is now equivalent to the three cases above, or as</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> ans <span class="ot">&lt;-</span> <span class="fu">fun1</span>(d, df, <span class="at">limit=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>which changes one of the defaults.</p>
+<p>It is important to note that defaults may be arbitrary expressions, even involving other arguments to the same function; they are not restricted to be constants as in our simple example here.</p>
+</section>
+<section id="the-argument" class="level2 section" data-number="10.4">
+<h2 class="section anchored" data-number="10.4" data-anchor-id="the-argument"><span class="header-section-number">10.4</span> The <code>…</code> argument</h2>
+<p>Another frequent requirement is to allow one function to pass on argument settings to another. For example many graphics functions use the function <code>par()</code> and functions like <code>plot()</code> allow the user to pass on graphical parameters to <code>par()</code> to control the graphical output. (See <a href="Graphics.html#the-par_0028_0029-function">The par() function</a>, for more details on the <code>par()</code> function.) This can be done by including an extra argument, literally <code>…</code>, of the function, which may then be passed on. An outline example is given below.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>fun1 <span class="ot">&lt;-</span> <span class="cf">function</span>(data, data.frame, <span class="at">graph=</span><span class="cn">TRUE</span>, <span class="at">limit=</span><span class="dv">20</span>, ...) {</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  [omitted statements]</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (graph)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">par</span>(<span class="at">pch=</span><span class="st">"*"</span>, ...)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  [more omissions]</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Less frequently, a function will need to refer to components of <code>…</code>. The expression <code>list(...)</code> evaluates all such arguments and returns them in a named list, while <code>..1</code>, <code>..2</code>, etc. evaluate them one at a time, with <code>..n</code> returning the n’th unmatched argument.</p>
+</section>
+<section id="assignments-within-functions" class="level2 section" data-number="10.5">
+<h2 class="section anchored" data-number="10.5" data-anchor-id="assignments-within-functions"><span class="header-section-number">10.5</span> Assignments within functions</h2>
+<p>Note that <em>any ordinary assignments done within the function are local and temporary and are lost after exit from the function</em>. Thus the assignment <code>X &lt;- qr(X)</code> does not affect the value of the argument in the calling program.</p>
+<p>To understand completely the rules governing the scope of R assignments the reader needs to be familiar with the notion of an evaluation <em>frame</em>. This is a somewhat advanced, though hardly difficult, topic and is not covered further here.</p>
+<p>If global and permanent assignments are intended within a function, then either the “superassignment” operator, <code>&lt;&lt;-</code> or the function <code>assign()</code> can be used. See the <code>help</code> document for details.</p>
+</section>
+<section id="more-advanced-examples" class="level2 section" data-number="10.6">
+<h2 class="section anchored" data-number="10.6" data-anchor-id="more-advanced-examples"><span class="header-section-number">10.6</span> More advanced examples</h2>
+<section id="efficiency-factors-in-block-designs" class="level3 subsection" data-number="10.6.1">
+<h3 class="subsection anchored" data-number="10.6.1" data-anchor-id="efficiency-factors-in-block-designs"><span class="header-section-number">10.6.1</span> Efficiency factors in block designs</h3>
+<p>As a more complete, if a little pedestrian, example of a function, consider finding the efficiency factors for a block design. (Some aspects of this problem have already been discussed in <a href="Arrays-and-matrices.html#index-matrices">Index matrices</a>.)</p>
+<p>A block design is defined by two factors, say <code>blocks</code> (<code>b</code> levels) and <code>varieties</code> (<code>v</code> levels). If <em>R</em> and <em>K</em> are the <em>v</em> by <em>v</em> and <em>b</em> by <em>b</em> <em>replications</em> and <em>block size</em> matrices, respectively, and <em>N</em> is the <em>b</em> by <em>v</em> incidence matrix, then the efficiency factors are defined as the eigenvalues of the matrix E = I_v - R^{-1/2}N’K^{-1}NR^{-1/2} = I_v - A’A, where A = K^{-1/2}NR^{-1/2}. One way to write the function is given below.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> bdeff <span class="ot">&lt;-</span> <span class="cf">function</span>(blocks, varieties) {</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    blocks <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(blocks)             <span class="co"># minor safety move</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    b <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">levels</span>(blocks))</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    varieties <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(varieties)       <span class="co"># minor safety move</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    v <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">levels</span>(varieties))</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    K <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">table</span>(blocks))           <span class="co"># remove dim attr</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    R <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fu">table</span>(varieties))        <span class="co"># remove dim attr</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    N <span class="ot">&lt;-</span> <span class="fu">table</span>(blocks, varieties)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    A <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="fu">sqrt</span>(K) <span class="sc">*</span> N <span class="sc">*</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">/</span><span class="fu">sqrt</span>(R), <span class="fu">rep</span>(b, v))</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    sv <span class="ot">&lt;-</span> <span class="fu">svd</span>(A)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(<span class="at">eff=</span><span class="dv">1</span> <span class="sc">-</span> sv<span class="sc">$</span>d<span class="sc">^</span><span class="dv">2</span>, <span class="at">blockcv=</span>sv<span class="sc">$</span>u, <span class="at">varietycv=</span>sv<span class="sc">$</span>v)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>It is numerically slightly better to work with the singular value decomposition on this occasion rather than the eigenvalue routines.</p>
+<p>The result of the function is a list giving not only the efficiency factors as the first component, but also the block and variety canonical contrasts, since sometimes these give additional useful qualitative information.</p>
+</section>
+<section id="dropping-all-names-in-a-printed-array" class="level3 subsection" data-number="10.6.2">
+<h3 class="subsection anchored" data-number="10.6.2" data-anchor-id="dropping-all-names-in-a-printed-array"><span class="header-section-number">10.6.2</span> Dropping all names in a printed array</h3>
+<p>For printing purposes with large matrices or arrays, it is often useful to print them in close block form without the array names or numbers. Removing the <code>dimnames</code> attribute will not achieve this effect, but rather the array must be given a <code>dimnames</code> attribute consisting of empty strings. For example to print a matrix, <code>X</code></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> temp <span class="ot">&lt;-</span> X</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">dimnames</span>(temp) <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">rep</span>(<span class="st">""</span>, <span class="fu">nrow</span>(X)), <span class="fu">rep</span>(<span class="st">""</span>, <span class="fu">ncol</span>(X)))</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> temp; <span class="fu">rm</span>(temp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This can be much more conveniently done using a function, <code>no.dimnames()</code>, shown below, as a “wrap around” to achieve the same result. It also illustrates how some effective and useful user functions can be quite short.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>no<span class="op">.</span>dimnames <span class="op">&lt;-</span> function<span class="op">(</span>a<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="er">## Remove all dimension names from an array for compact printing.</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  d <span class="op">&lt;-</span> list<span class="op">()</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  l <span class="op">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span><span class="op">(</span>i in dim<span class="op">(</span>a<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    d<span class="op">[[</span>l <span class="op">&lt;-</span> l <span class="op">+</span> <span class="dv">1</span><span class="op">]]</span> <span class="op">&lt;-</span> rep<span class="op">(</span><span class="st">""</span><span class="op">,</span> i<span class="op">)</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  dimnames<span class="op">(</span>a<span class="op">)</span> <span class="op">&lt;-</span> d</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  a</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>With this function defined, an array may be printed in close format using</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">no.dimnames</span>(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is particularly useful for large integer arrays, where patterns are the real interest rather than the values.</p>
+</section>
+<section id="recursive-numerical-integration" class="level3 subsection" data-number="10.6.3">
+<h3 class="subsection anchored" data-number="10.6.3" data-anchor-id="recursive-numerical-integration"><span class="header-section-number">10.6.3</span> Recursive numerical integration</h3>
+<p>Functions may be recursive, and may themselves define functions within themselves. Note, however, that such functions, or indeed variables, are not inherited by called functions in higher evaluation frames as they would be if they were on the search path.</p>
+<p>The example below shows a naive way of performing one-dimensional numerical integration. The integrand is evaluated at the end points of the range and in the middle. If the one-panel trapezium rule answer is close enough to the two panel, then the latter is returned as the value. Otherwise the same process is recursively applied to each panel. The result is an adaptive integration process that concentrates function evaluations in regions where the integrand is farthest from linear. There is, however, a heavy overhead, and the function is only competitive with other algorithms when the integrand is both smooth and very difficult to evaluate.</p>
+<p>The example is also given partly as a little puzzle in R programming.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>area <span class="ot">&lt;-</span> <span class="cf">function</span>(f, a, b, <span class="at">eps =</span> <span class="fl">1.0e-06</span>, <span class="at">lim =</span> <span class="dv">10</span>) {</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  fun1 <span class="ot">&lt;-</span> <span class="cf">function</span>(f, a, b, fa, fb, a0, eps, lim, fun) {</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="do">## function ‘fun1’ is only visible inside ‘area’</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    d <span class="ot">&lt;-</span> (a <span class="sc">+</span> b)<span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    h <span class="ot">&lt;-</span> (b <span class="sc">-</span> a)<span class="sc">/</span><span class="dv">4</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    fd <span class="ot">&lt;-</span> <span class="fu">f</span>(d)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    a1 <span class="ot">&lt;-</span> h <span class="sc">*</span> (fa <span class="sc">+</span> fd)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    a2 <span class="ot">&lt;-</span> h <span class="sc">*</span> (fd <span class="sc">+</span> fb)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">abs</span>(a0 <span class="sc">-</span> a1 <span class="sc">-</span> a2) <span class="sc">&lt;</span> eps <span class="sc">||</span> lim <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(a1 <span class="sc">+</span> a2)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> {</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="fu">fun</span>(f, a, d, fa, fd, a1, eps, lim <span class="sc">-</span> <span class="dv">1</span>, fun) <span class="sc">+</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>             <span class="fu">fun</span>(f, d, b, fd, fb, a2, eps, lim <span class="sc">-</span> <span class="dv">1</span>, fun))</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  fa <span class="ot">&lt;-</span> <span class="fu">f</span>(a)</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>  fb <span class="ot">&lt;-</span> <span class="fu">f</span>(b)</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>  a0 <span class="ot">&lt;-</span> ((fa <span class="sc">+</span> fb) <span class="sc">*</span> (b <span class="sc">-</span> a))<span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fun1</span>(f, a, b, fa, fb, a0, eps, lim, fun1)</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="scope" class="level2 section page-columns page-full" data-number="10.7">
+<h2 class="section anchored" data-number="10.7" data-anchor-id="scope"><span class="header-section-number">10.7</span> Scope</h2>
+<p>The discussion in this section is somewhat more technical than in other parts of this document. However, it details one of the major differences between <span class="small">S-PLUS</span> and R.</p>
+<p>The symbols which occur in the body of a function can be divided into three classes; formal parameters, local variables and free variables. The formal parameters of a function are those occurring in the argument list of the function. Their values are determined by the process of <em>binding</em> the actual function arguments to the formal parameters. Local variables are those whose values are determined by the evaluation of expressions in the body of the functions. Variables which are not formal parameters or local variables are called free variables. Free variables become local variables if they are assigned to. Consider the following function definition.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">&lt;-</span> function<span class="op">(</span>x<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  y <span class="op">&lt;-</span> <span class="dv">2</span><span class="op">*</span>x</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  print<span class="op">(</span>x<span class="op">)</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  print<span class="op">(</span>y<span class="op">)</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  print<span class="op">(</span>z<span class="op">)</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In this function, <code>x</code> is a formal parameter, <code>y</code> is a local variable and <code>z</code> is a free variable.</p>
+<p>In R the free variable bindings are resolved by first looking in the environment in which the function was created. This is called <em>lexical scope</em>. First we define a function called <code>cube</code>.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>cube <span class="ot">&lt;-</span> <span class="cf">function</span>(n) {</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  sq <span class="ot">&lt;-</span> <span class="cf">function</span>() n<span class="sc">*</span>n</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  n<span class="sc">*</span><span class="fu">sq</span>()</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The variable <code>n</code> in the function <code>sq</code> is not an argument to that function. Therefore it is a free variable and the scoping rules must be used to ascertain the value that is to be associated with it. Under static scope (<span class="small">S-PLUS</span>) the value is that associated with a global variable named <code>n</code>. Under lexical scope (R) it is the parameter to the function <code>cube</code> since that is the active binding for the variable <code>n</code> at the time the function <code>sq</code> was defined. The difference between evaluation in R and evaluation in <span class="small">S-PLUS</span> is that <span class="small">S-PLUS</span> looks for a global variable called <code>n</code> while R first looks for a variable called <code>n</code> in the environment created when <code>cube</code> was invoked.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">## first evaluation in S</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>S<span class="sc">&gt;</span> <span class="fu">cube</span>(<span class="dv">2</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">sq</span>()<span class="sc">:</span> Object <span class="st">"n"</span> not found</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>Dumped</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>S<span class="sc">&gt;</span> n <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>S<span class="sc">&gt;</span> <span class="fu">cube</span>(<span class="dv">2</span>)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">18</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="do">## then the same function evaluated in R</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>R<span class="sc">&gt;</span> <span class="fu">cube</span>(<span class="dv">2</span>)</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Lexical scope can also be used to give functions <em>mutable state</em>. In the following example we show how R can be used to mimic a bank account. A functioning bank account needs to have a balance or total, a function for making withdrawals, a function for making deposits and a function for stating the current balance. We achieve this by creating the three functions within <code>account</code> and then returning a list containing them. When <code>account</code> is invoked it takes a numerical argument <code>total</code> and returns a list containing the three functions. Because these functions are defined in an environment which contains <code>total</code>, they will have access to its value.</p>
+<div class="page-columns page-full"><p>The special assignment operator, <code>&lt;&lt;-</code>, is used to change the value associated with <code>total</code>. This operator looks back in enclosing environments for an environment that contains the symbol <code>total</code> and when it finds such an environment it replaces the value, in that environment, with the value of right hand side. If the global or top-level environment is reached without finding the symbol <code>total</code> then that variable is created and assigned to there. For most users <code>&lt;&lt;-</code> creates a global variable and assigns the value of the right hand side to it<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Only when <code>&lt;&lt;-</code> has been used in a function that was returned as the value of another function will the special behavior described here occur.</p><div class="no-row-height column-margin column-container"><li id="fn2" role="doc-endnote"><p><sup>2</sup>&nbsp;In some sense this mimics the behavior in <span class="small">S-PLUS</span> since in <span class="small">S-PLUS</span> this operator always creates or assigns to a global variable.</p></li></div></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>open.account <span class="ot">&lt;-</span> <span class="cf">function</span>(total) {</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">deposit =</span> <span class="cf">function</span>(amount) {</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span>(amount <span class="sc">&lt;=</span> <span class="dv">0</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">stop</span>(<span class="st">"Deposits must be positive!</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>      total <span class="ot">&lt;&lt;-</span> total <span class="sc">+</span> amount</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cat</span>(amount, <span class="st">"deposited.  Your balance is"</span>, total, <span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">withdraw =</span> <span class="cf">function</span>(amount) {</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span>(amount <span class="sc">&gt;</span> total)</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>        <span class="fu">stop</span>(<span class="st">"You don't have that much money!</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>      total <span class="ot">&lt;&lt;-</span> total <span class="sc">-</span> amount</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cat</span>(amount, <span class="st">"withdrawn.  Your balance is"</span>, total, <span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">balance =</span> <span class="cf">function</span>() {</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">cat</span>(<span class="st">"Your balance is"</span>, total, <span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>ross <span class="ot">&lt;-</span> <span class="fu">open.account</span>(<span class="dv">100</span>)</span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>robert <span class="ot">&lt;-</span> <span class="fu">open.account</span>(<span class="dv">200</span>)</span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>ross<span class="sc">$</span><span class="fu">withdraw</span>(<span class="dv">30</span>)</span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>ross<span class="sc">$</span><span class="fu">balance</span>()</span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>robert<span class="sc">$</span><span class="fu">balance</span>()</span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>ross<span class="sc">$</span><span class="fu">deposit</span>(<span class="dv">50</span>)</span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>ross<span class="sc">$</span><span class="fu">balance</span>()</span>
+<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a>ross<span class="sc">$</span><span class="fu">withdraw</span>(<span class="dv">500</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="customizing-the-environment" class="level2 section page-columns page-full" data-number="10.8">
+<h2 class="section anchored" data-number="10.8" data-anchor-id="customizing-the-environment"><span class="header-section-number">10.8</span> Customizing the environment</h2>
+<p>Users can customize their environment in several different ways. There is a site initialization file and every directory can have its own special initialization file. Finally, the special functions <code>.First</code> and <code>.Last</code> can be used.</p>
+<div class="page-columns page-full"><p>The location of the site initialization file is taken from the value of the <code>R_PROFILE</code> environment variable. If that variable is unset, the file <code>Rprofile.site</code> in the R home subdirectory <code>etc</code> is used. This file should contain the commands that you want to execute every time R is started under your system. A second, personal, profile file named <code>.Rprofile</code><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> can be placed in any directory. If R is invoked in that directory then that file will be sourced. This file gives individual users control over their workspace and allows for different startup procedures in different working directories. If no <code>.Rprofile</code> file is found in the startup directory, then R looks for a <code>.Rprofile</code> file in the user’s home directory and uses that (if it exists). If the environment variable <code>R_PROFILE_USER</code> is set, the file it points to is used instead of the <code>.Rprofile</code> files.</p><div class="no-row-height column-margin column-container"><li id="fn3" role="doc-endnote"><p><sup>3</sup>&nbsp;So it is hidden under UNIX.</p></li></div></div>
+<p>Any function named <code>.First()</code> in either of the two profile files or in the <code>.RData</code> image has a special status. It is automatically performed at the beginning of an R session and may be used to initialize the environment. For example, the definition in the example below alters the prompt to <code>$</code> and sets up various other useful things that can then be taken for granted in the rest of the session.</p>
+<p>Thus, the sequence in which files are executed is, <code>Rprofile.site</code>, the user profile, <code>.RData</code> and then <code>.First()</code>. A definition in later files will mask definitions in earlier files.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="op">.</span>First <span class="op">&lt;-</span> function<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  options<span class="op">(</span>prompt<span class="op">=</span><span class="st">"$ "</span><span class="op">,</span> <span class="cf">continue</span><span class="op">=</span><span class="st">"+</span><span class="sc">\t</span><span class="st">"</span><span class="op">)</span>  # $ is the prompt</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  options<span class="op">(</span>digits<span class="op">=</span><span class="dv">5</span><span class="op">,</span> length<span class="op">=</span><span class="dv">999</span><span class="op">)</span>         # custom numbers and printout</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  x11<span class="op">()</span>                                 # <span class="cf">for</span> graphics</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  par<span class="op">(</span>pch <span class="op">=</span> <span class="st">"+"</span><span class="op">)</span>                        # plotting character</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  source<span class="op">(</span>file<span class="op">.</span>path<span class="op">(</span>Sys<span class="op">.</span>getenv<span class="op">(</span><span class="st">"HOME"</span><span class="op">),</span> <span class="st">"R"</span><span class="op">,</span> <span class="st">"mystuff.R"</span><span class="op">))</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>                                        <span class="er"># my personal functions</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  library<span class="op">(</span>MASS<span class="op">)</span>                         # attach a package</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Similarly a function <code>.Last()</code>, if defined, is (normally) executed at the very end of the session. An example is given below.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> .Last <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">graphics.off</span>()                        <span class="co"># a small safety measure.</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="fu">paste</span>(<span class="fu">date</span>(),<span class="st">"</span><span class="sc">\n</span><span class="st">Adios</span><span class="sc">\n</span><span class="st">"</span>))        <span class="co"># Is it time for lunch?</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="classes-generic-functions-and-object-orientation" class="level2 section" data-number="10.9">
+<h2 class="section anchored" data-number="10.9" data-anchor-id="classes-generic-functions-and-object-orientation"><span class="header-section-number">10.9</span> Classes, generic functions and object orientation</h2>
+<p>The class of an object determines how it will be treated by what are known as <em>generic</em> functions. Put the other way round, a generic function performs a task or action on its arguments <em>specific to the class of the argument itself</em>. If the argument lacks any <code>class</code> attribute, or has a class not catered for specifically by the generic function in question, there is always a <em>default action</em> provided.</p>
+<p>An example makes things clearer. The class mechanism offers the user the facility of designing and writing generic functions for special purposes. Among the other generic functions are <code>plot()</code> for displaying objects graphically, <code>summary()</code> for summarizing analyses of various types, and <code>anova()</code> for comparing statistical models.</p>
+<p>The number of generic functions that can treat a class in a specific way can be quite large. For example, the functions that can accommodate in some fashion objects of class <code>"data.frame"</code> include</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>[     [[<span class="ot">&lt;-</span>    any    as.matrix</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>[<span class="ot">&lt;-</span>   mean    plot   summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A currently complete list can be got by using the <code>methods()</code> function:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">methods</span>(<span class="at">class=</span><span class="st">"data.frame"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Conversely the number of classes a generic function can handle can also be quite large. For example the <code>plot()</code> function has a default method and variants for objects of classes <code>"data.frame"</code>, <code>"density"</code>, <code>"factor"</code>, and more. A complete list can be got again by using the <code>methods()</code> function:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">methods</span>(plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For many generic functions the function body is quite short, for example</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> coef</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span> (object, ...)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">UseMethod</span>(<span class="st">"coef"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The presence of <code>UseMethod</code> indicates this is a generic function. To see what methods are available we can use <code>methods()</code></p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">methods</span>(coef)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] coef.aov<span class="sc">*</span>         coef.Arima<span class="sc">*</span>       coef.default<span class="sc">*</span>     coef.listof<span class="sc">*</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">5</span>] coef.nls<span class="sc">*</span>         coef.summary.nls<span class="sc">*</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>   Non<span class="sc">-</span>visible functions are asterisked</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In this example there are six methods, none of which can be seen by typing its name. We can read these by either of</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">getAnywhere</span>(<span class="st">"coef.aov"</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>A single object matching <span class="st">'coef.aov'</span> was found</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>It was found <span class="cf">in</span> the following places</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  registered S3 method <span class="cf">for</span> coef from namespace stats</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  namespace<span class="sc">:</span>stats</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>with value</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span> (object, ...)</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    z <span class="ot">&lt;-</span> object<span class="sc">$</span>coef</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>    z[<span class="sc">!</span><span class="fu">is.na</span>(z)]</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">getS3method</span>(<span class="st">"coef"</span>, <span class="st">"aov"</span>)</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span> (object, ...)</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>    z <span class="ot">&lt;-</span> object<span class="sc">$</span>coef</span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>    z[<span class="sc">!</span><span class="fu">is.na</span>(z)]</span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A function named <code>gen.cl</code> will be invoked by the generic <code>gen</code> for class <code>cl</code>, so do not name functions in this style unless they are intended to be methods.</p>
+<p>The reader is referred to the <em>R Language Definition</em> for a more complete discussion of this mechanism.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Loops-and-conditional-execution.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Grouping, loops and conditional execution</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Statistical-models-in-R.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Statistical models in R</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+  </div>
+</footer>
+
+
+</body></html>

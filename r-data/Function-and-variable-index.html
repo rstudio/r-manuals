@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.9.48">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>R Manuals :: R Data Import/Export - Function and variable index</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+
+  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+  <script src="site_libs/quarto-nav/headroom.min.js"></script>
+  <script src="site_libs/clipboard/clipboard.min.js"></script>
+  <meta name="quarto:offset" content="./">
+  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+  <script src="site_libs/quarto-search/fuse.min.js"></script>
+  <script src="site_libs/quarto-search/quarto-search.js"></script>
+  <link href="./Concept-index.html" rel="next">
+  <link href="./References.html" rel="prev">
+  <script src="site_libs/quarto-html/quarto.js"></script>
+  <script src="site_libs/quarto-html/popper.min.js"></script>
+  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="site_libs/quarto-html/anchor.min.js"></script>
+  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
+  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <script id="quarto-search-options" type="application/json">{
+    "location": "navbar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "end",
+    "type": "overlay",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body class="floating fullcontent">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">R Manuals :: R Data Import/Export</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./../index.html">Home</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
+        <li>
+    <a class="dropdown-item" href="./../r-intro/index.html">
+ <span class="dropdown-text">An Introduction to R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./index.html">
+ <span class="dropdown-text">R Data Import/Export</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-admin/index.html">
+ <span class="dropdown-text">R Installation and Administration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-exts/index.html">
+ <span class="dropdown-text">Writing R Extensions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-lang/index.html">
+ <span class="dropdown-text">R Language Definition</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-ints/index.html">
+ <span class="dropdown-text">R Internals</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./../about.html">About</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Function and variable index</h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">R Data Import/Export</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Acknowledgements.html" class="sidebar-item-text sidebar-link">Acknowledgements</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Spreadsheet-like-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Spreadsheet-like data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Importing-from-other-statistical-systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Importing from other statistical systems</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Relational-databases.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Relational databases</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Binary-files.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Binary files</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Image-files.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Image files</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Connections.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Connections</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Network-interfaces.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Network interfaces</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Reading-Excel-spreadsheets.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Reading Excel spreadsheets</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link active">Function and variable index</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link">Concept index</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<header id="title-block-header">
+<h1 class="title display-7"><span id="function-and-variable-index" class="quarto-section-identifier d-none d-lg-block">Function and variable index</span></h1>
+</header>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Jump to: &nbsp;</td>
+<td style="text-align: left;"><a href="#function-and-variable-index_vr_symbol-1" class="summary-letter"><strong>.</strong></a> &nbsp;<br>
+<a href="#function-and-variable-index_vr_letter-b" class="summary-letter"><strong>B</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-c" class="summary-letter"><strong>C</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-d" class="summary-letter"><strong>D</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-f" class="summary-letter"><strong>F</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-g" class="summary-letter"><strong>G</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-h" class="summary-letter"><strong>H</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-i" class="summary-letter"><strong>I</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-m" class="summary-letter"><strong>M</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-n" class="summary-letter"><strong>N</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-o" class="summary-letter"><strong>O</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-p" class="summary-letter"><strong>P</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-r" class="summary-letter"><strong>R</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-s" class="summary-letter"><strong>S</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-t" class="summary-letter"><strong>T</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-u" class="summary-letter"><strong>U</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-w" class="summary-letter"><strong>W</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-x" class="summary-letter"><strong>X</strong></a> &nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;">Index Entry</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;">Section</td>
+</tr>
+<tr class="even">
+<td>.</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Relational-databases.html#index-.dbf"><code>.dbf</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Relational-databases.html#rodbc">RODBC</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Relational-databases.html#index-.xls"><code>.xls</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Relational-databases.html#rodbc">RODBC</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Reading-Excel-spreadsheets.html#index-.xls-1"><code>.xls</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Reading-Excel-spreadsheets.html">Reading Excel spreadsheets</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Reading-Excel-spreadsheets.html#index-.xlsx"><code>.xlsx</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Reading-Excel-spreadsheets.html">Reading Excel spreadsheets</a></td>
+</tr>
+<tr class="odd">
+<td>B</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Connections.html#index-bzfile"><code>bzfile</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Connections.html#types-of-connections">Types of connections</a></td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Introduction.html#index-cat"><code>cat</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Introduction.html#export-to-text-files">Export to text files</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Connections.html#index-cat-1"><code>cat</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Connections.html#output-to-connections">Output to connections</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Relational-databases.html#index-close"><code>close</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Relational-databases.html#rodbc">RODBC</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Connections.html#index-close-1"><code>close</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Connections.html#types-of-connections">Types of connections</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Network-interfaces.html#index-close.socket"><code>close.socket</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Network-interfaces.html#reading-from-sockets">Reading from sockets</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#index-count.fields"><code>count.fields</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#variations-on-read.table">Variations on read.table</a></td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Importing-from-other-statistical-systems.html#index-data.restore"><code>data.restore</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Importing-from-other-statistical-systems.html#epiinfo-minitab-sas-s-plus-spss-stata-systat">EpiInfo Minitab SAS S-PLUS SPSS Stata Systat</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Reading-Excel-spreadsheets.html#index-dataframes2xls"><code>dataframes2xls</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Reading-Excel-spreadsheets.html">Reading Excel spreadsheets</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Relational-databases.html#index-dbclearresult"><code>dbClearResult</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Relational-databases.html#dbi">DBI</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Relational-databases.html#index-dbconnect"><code>dbConnect</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Relational-databases.html#dbi">DBI</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Relational-databases.html#index-dbdisconnect"><code>dbDisconnect</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Relational-databases.html#dbi">DBI</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Relational-databases.html#index-dbdriver"><code>dbDriver</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Relational-databases.html#dbi">DBI</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Relational-databases.html#index-dbexiststable"><code>dbExistsTable</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Relational-databases.html#dbi">DBI</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Relational-databases.html#index-dbgetquery"><code>dbGetQuery</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Relational-databases.html#dbi">DBI</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Relational-databases.html#index-dbreadtable"><code>dbReadTable</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Relational-databases.html#dbi">DBI</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Relational-databases.html#index-dbremovetable"><code>dbRemoveTable</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Relational-databases.html#dbi">DBI</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Relational-databases.html#index-dbsendquery"><code>dbSendQuery</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Relational-databases.html#dbi">DBI</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Relational-databases.html#index-dbwritetable"><code>dbWriteTable</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Relational-databases.html#dbi">DBI</a></td>
+</tr>
+<tr class="odd">
+<td>F</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Relational-databases.html#index-fetch"><code>fetch</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Relational-databases.html#dbi">DBI</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Connections.html#index-file"><code>file</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Connections.html#types-of-connections">Types of connections</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Introduction.html#index-format"><code>format</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Introduction.html#export-to-text-files">Export to text files</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#index-ftable"><code>ftable</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#flat-contingency-tables">Flat contingency tables</a></td>
+</tr>
+<tr class="even">
+<td>G</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Connections.html#index-gzfile"><code>gzfile</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Connections.html#types-of-connections">Types of connections</a></td>
+</tr>
+<tr class="even">
+<td>H</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Binary-files.html#index-hdf5"><code>hdf5</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Binary-files.html#binary-data-formats">Binary data formats</a></td>
+</tr>
+<tr class="even">
+<td>I</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Connections.html#index-isseekable"><code>isSeekable</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Connections.html#listing-and-manipulating-connections">Listing and manipulating connections</a></td>
+</tr>
+<tr class="even">
+<td>M</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Network-interfaces.html#index-make.socket"><code>make.socket</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Network-interfaces.html#reading-from-sockets">Reading from sockets</a></td>
+</tr>
+<tr class="even">
+<td>N</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Binary-files.html#index-netcdf"><code>netCDF</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Binary-files.html#binary-data-formats">Binary data formats</a></td>
+</tr>
+<tr class="even">
+<td>O</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Relational-databases.html#index-odbcclose"><code>odbcClose</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Relational-databases.html#rodbc">RODBC</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Relational-databases.html#index-odbcconnect"><code>odbcConnect</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Relational-databases.html#rodbc">RODBC</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Binary-files.html#index-odbcconnectdbase"><code>odbcConnectDbase</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Binary-files.html#dbase-files-_0028dbf_0029">dBase files (DBF)</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Relational-databases.html#index-odbcconnectexcel"><code>odbcConnectExcel</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Relational-databases.html#rodbc">RODBC</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Reading-Excel-spreadsheets.html#index-odbcconnectexcel-1"><code>odbcConnectExcel</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Reading-Excel-spreadsheets.html">Reading Excel spreadsheets</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Reading-Excel-spreadsheets.html#index-odbcconnectexcel2007"><code>odbcConnectExcel2007</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Reading-Excel-spreadsheets.html">Reading Excel spreadsheets</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Relational-databases.html#index-odbcdriverconnect"><code>odbcDriverConnect</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Relational-databases.html#rodbc">RODBC</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Relational-databases.html#index-odbcgetinfo"><code>odbcGetInfo</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Relational-databases.html#rodbc">RODBC</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Relational-databases.html#index-odbcquery"><code>odbcQuery</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Relational-databases.html#rodbc">RODBC</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Connections.html#index-open"><code>open</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Connections.html#types-of-connections">Types of connections</a></td>
+</tr>
+<tr class="odd">
+<td>P</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Connections.html#index-pipe"><code>pipe</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Connections.html#types-of-connections">Types of connections</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Connections.html#index-pushback."><code>pushBack.</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Connections.html#pushback">Pushback</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Connections.html#index-pushbacklength"><code>pushBackLength</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Connections.html#pushback">Pushback</a></td>
+</tr>
+<tr class="odd">
+<td>R</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#index-read.csv"><code>read.csv</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#variations-on-read.table">Variations on read.table</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Reading-Excel-spreadsheets.html#index-read.csv-1"><code>read.csv</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Reading-Excel-spreadsheets.html">Reading Excel spreadsheets</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#index-read.csv2"><code>read.csv2</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#variations-on-read.table">Variations on read.table</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Binary-files.html#index-read.dbf"><code>read.dbf</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Binary-files.html#dbase-files-_0028dbf_0029">dBase files (DBF)</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#index-read.delim"><code>read.delim</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#variations-on-read.table">Variations on read.table</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Reading-Excel-spreadsheets.html#index-read.delim-1"><code>read.delim</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Reading-Excel-spreadsheets.html">Reading Excel spreadsheets</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#index-read.delim2"><code>read.delim2</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#variations-on-read.table">Variations on read.table</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#index-read.dif"><code>read.DIF</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#data-interchange-format-_0028dif_0029">Data Interchange Format (DIF)</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Reading-Excel-spreadsheets.html#index-read.dif-1"><code>read.DIF</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Reading-Excel-spreadsheets.html">Reading Excel spreadsheets</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Importing-from-other-statistical-systems.html#index-read.dta"><code>read.dta</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Importing-from-other-statistical-systems.html#epiinfo-minitab-sas-s-plus-spss-stata-systat">EpiInfo Minitab SAS S-PLUS SPSS Stata Systat</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Importing-from-other-statistical-systems.html#index-read.epiinfo"><code>read.epiinfo</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Importing-from-other-statistical-systems.html#epiinfo-minitab-sas-s-plus-spss-stata-systat">EpiInfo Minitab SAS S-PLUS SPSS Stata Systat</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#index-read.fortran"><code>read.fortran</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#fixed-width-format-files">Fixed-width-format files</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#index-read.ftable"><code>read.ftable</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#flat-contingency-tables">Flat contingency tables</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#index-read.fwf"><code>read.fwf</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#fixed-width-format-files">Fixed-width-format files</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Importing-from-other-statistical-systems.html#index-read.mtp"><code>read.mtp</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Importing-from-other-statistical-systems.html#epiinfo-minitab-sas-s-plus-spss-stata-systat">EpiInfo Minitab SAS S-PLUS SPSS Stata Systat</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Importing-from-other-statistical-systems.html#index-read.octave"><code>read.octave</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Importing-from-other-statistical-systems.html#octave">Octave</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Importing-from-other-statistical-systems.html#index-read.s"><code>read.S</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Importing-from-other-statistical-systems.html#epiinfo-minitab-sas-s-plus-spss-stata-systat">EpiInfo Minitab SAS S-PLUS SPSS Stata Systat</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Network-interfaces.html#index-read.socket"><code>read.socket</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Network-interfaces.html#reading-from-sockets">Reading from sockets</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Importing-from-other-statistical-systems.html#index-read.spss"><code>read.spss</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Importing-from-other-statistical-systems.html#epiinfo-minitab-sas-s-plus-spss-stata-systat">EpiInfo Minitab SAS S-PLUS SPSS Stata Systat</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Importing-from-other-statistical-systems.html#index-read.systat"><code>read.systat</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Importing-from-other-statistical-systems.html#epiinfo-minitab-sas-s-plus-spss-stata-systat">EpiInfo Minitab SAS S-PLUS SPSS Stata Systat</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#index-read.table"><code>read.table</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#variations-on-read.table">Variations on read.table</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Connections.html#index-read.table-1"><code>read.table</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Connections.html#input-from-connections">Input from connections</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Reading-Excel-spreadsheets.html#index-read.table-2"><code>read.table</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Reading-Excel-spreadsheets.html">Reading Excel spreadsheets</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Reading-Excel-spreadsheets.html#index-read.xls"><code>read.xls</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Reading-Excel-spreadsheets.html">Reading Excel spreadsheets</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Importing-from-other-statistical-systems.html#index-read.xport"><code>read.xport</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Importing-from-other-statistical-systems.html#epiinfo-minitab-sas-s-plus-spss-stata-systat">EpiInfo Minitab SAS S-PLUS SPSS Stata Systat</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Connections.html#index-readbin"><code>readBin</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Connections.html#binary-connections">Binary connections</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Connections.html#index-readchar"><code>readChar</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Connections.html#binary-connections">Binary connections</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Reading-Excel-spreadsheets.html#index-readclipboard"><code>readClipboard</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Reading-Excel-spreadsheets.html">Reading Excel spreadsheets</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#index-readlines"><code>readLines</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#using-scan-directly">Using scan directly</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Connections.html#index-readlines-1"><code>readLines</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Connections.html#input-from-connections">Input from connections</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Reading-Excel-spreadsheets.html#index-readxl"><code>readxl</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Reading-Excel-spreadsheets.html">Reading Excel spreadsheets</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#index-reshape"><code>reshape</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#re-shaping-data">Re-shaping data</a></td>
+</tr>
+<tr class="even">
+<td>S</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Introduction.html#index-scan"><code>scan</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Introduction.html#imports">Imports</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#index-scan-1"><code>scan</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#using-scan-directly">Using scan directly</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Connections.html#index-scan-2"><code>scan</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Connections.html#input-from-connections">Input from connections</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Connections.html#index-seek"><code>seek</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Connections.html#listing-and-manipulating-connections">Listing and manipulating connections</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Connections.html#index-showconnections"><code>showConnections</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Connections.html#listing-and-manipulating-connections">Listing and manipulating connections</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Introduction.html#index-sink"><code>sink</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Introduction.html#export-to-text-files">Export to text files</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Connections.html#index-sink-1"><code>sink</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Connections.html#output-to-connections">Output to connections</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Connections.html#index-socketconnection"><code>socketConnection</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Connections.html#types-of-connections">Types of connections</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Relational-databases.html#index-sqlcopy"><code>sqlCopy</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Relational-databases.html#rodbc">RODBC</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Relational-databases.html#index-sqlfetch"><code>sqlFetch</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Relational-databases.html#rodbc">RODBC</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Relational-databases.html#index-sqlfetchmore"><code>sqlFetchMore</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Relational-databases.html#rodbc">RODBC</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Relational-databases.html#index-sqlgetresults"><code>sqlGetResults</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Relational-databases.html#rodbc">RODBC</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Relational-databases.html#index-sqlquery"><code>sqlQuery</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Relational-databases.html#rodbc">RODBC</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Relational-databases.html#index-sqlsave"><code>sqlSave</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Relational-databases.html#rodbc">RODBC</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Relational-databases.html#index-sqltables"><code>sqlTables</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Relational-databases.html#rodbc">RODBC</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#index-stack"><code>stack</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#re-shaping-data">Re-shaping data</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Connections.html#index-stderr"><code>stderr</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Connections.html#types-of-connections">Types of connections</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Connections.html#index-stdin"><code>stdin</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Connections.html#types-of-connections">Types of connections</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Connections.html#index-stdout"><code>stdout</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Connections.html#types-of-connections">Types of connections</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#index-sys.localeconv"><code>Sys.localeconv</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#variations-on-read.table">Variations on read.table</a></td>
+</tr>
+<tr class="odd">
+<td>T</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Connections.html#index-textconnection"><code>textConnection</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Connections.html#types-of-connections">Types of connections</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Connections.html#index-truncate"><code>truncate</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Connections.html#listing-and-manipulating-connections">Listing and manipulating connections</a></td>
+</tr>
+<tr class="even">
+<td>U</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#index-unstack."><code>unstack.</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Spreadsheet_002dlike-data.html#re-shaping-data">Re-shaping data</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Connections.html#index-url"><code>url</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Connections.html#types-of-connections">Types of connections</a></td>
+</tr>
+<tr class="odd">
+<td>W</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Introduction.html#index-write"><code>write</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Introduction.html#export-to-text-files">Export to text files</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Connections.html#index-write-1"><code>write</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Connections.html#output-to-connections">Output to connections</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Introduction.html#index-write.csv"><code>write.csv</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Introduction.html#export-to-text-files">Export to text files</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Introduction.html#index-write.csv2"><code>write.csv2</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Introduction.html#export-to-text-files">Export to text files</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Binary-files.html#index-write.dbf"><code>write.dbf</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Binary-files.html#dbase-files-_0028dbf_0029">dBase files (DBF)</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Importing-from-other-statistical-systems.html#index-write.dta"><code>write.dta</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Importing-from-other-statistical-systems.html#epiinfo-minitab-sas-s-plus-spss-stata-systat">EpiInfo Minitab SAS S-PLUS SPSS Stata Systat</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Introduction.html#index-write.foreign"><code>write.foreign</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Introduction.html#export-to-text-files">Export to text files</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Introduction.html#index-write.matrix"><code>write.matrix</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Introduction.html#export-to-text-files">Export to text files</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Network-interfaces.html#index-write.socket"><code>write.socket</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Network-interfaces.html#reading-from-sockets">Reading from sockets</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Introduction.html#index-write.table"><code>write.table</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Introduction.html#export-to-text-files">Export to text files</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Connections.html#index-write.table-1"><code>write.table</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Connections.html#output-to-connections">Output to connections</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Connections.html#index-writebin"><code>writeBin</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Connections.html#binary-connections">Binary connections</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Connections.html#index-writechar"><code>writeChar</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Connections.html#binary-connections">Binary connections</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Connections.html#index-writelines"><code>writeLines</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Connections.html#output-to-connections">Output to connections</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Reading-Excel-spreadsheets.html#index-writexls"><code>WriteXLS</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Reading-Excel-spreadsheets.html">Reading Excel spreadsheets</a></td>
+</tr>
+<tr class="odd">
+<td>X</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Reading-Excel-spreadsheets.html#index-xlconnect"><code>XLConnect</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Reading-Excel-spreadsheets.html">Reading Excel spreadsheets</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Reading-Excel-spreadsheets.html#index-xlsx"><code>xlsx</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Reading-Excel-spreadsheets.html">Reading Excel spreadsheets</a></td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Jump to: &nbsp;</td>
+<td style="text-align: left;"><a href="#function-and-variable-index_vr_symbol-1" class="summary-letter"><strong>.</strong></a> &nbsp;<br>
+<a href="#function-and-variable-index_vr_letter-b" class="summary-letter"><strong>B</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-c" class="summary-letter"><strong>C</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-d" class="summary-letter"><strong>D</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-f" class="summary-letter"><strong>F</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-g" class="summary-letter"><strong>G</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-h" class="summary-letter"><strong>H</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-i" class="summary-letter"><strong>I</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-m" class="summary-letter"><strong>M</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-n" class="summary-letter"><strong>N</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-o" class="summary-letter"><strong>O</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-p" class="summary-letter"><strong>P</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-r" class="summary-letter"><strong>R</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-s" class="summary-letter"><strong>S</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-t" class="summary-letter"><strong>T</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-u" class="summary-letter"><strong>U</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-w" class="summary-letter"><strong>W</strong></a> &nbsp; <a href="#function-and-variable-index_vr_letter-x" class="summary-letter"><strong>X</strong></a> &nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+
+</main> <!-- /main -->
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./References.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">References</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Concept-index.html" class="pagination-link">
+        <span class="nav-page-text">Concept index</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+  </div>
+</footer>
+
+
+</body></html>

@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.9.48">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>R Manuals :: An Introduction to R - 5&nbsp; Arrays and matrices</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+
+  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+  <script src="site_libs/quarto-nav/headroom.min.js"></script>
+  <script src="site_libs/clipboard/clipboard.min.js"></script>
+  <meta name="quarto:offset" content="./">
+  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+  <script src="site_libs/quarto-search/fuse.min.js"></script>
+  <script src="site_libs/quarto-search/quarto-search.js"></script>
+  <link href="./Lists-and-data-frames.html" rel="next">
+  <link href="./Factors.html" rel="prev">
+  <script src="site_libs/quarto-html/quarto.js"></script>
+  <script src="site_libs/quarto-html/popper.min.js"></script>
+  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="site_libs/quarto-html/anchor.min.js"></script>
+  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
+  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <script id="quarto-search-options" type="application/json">{
+    "location": "navbar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "end",
+    "type": "overlay",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body class="floating slimcontent">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">R Manuals :: An Introduction to R</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./../index.html">Home</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
+        <li>
+    <a class="dropdown-item" href="./index.html">
+ <span class="dropdown-text">An Introduction to R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-data/index.html">
+ <span class="dropdown-text">R Data Import/Export</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-admin/index.html">
+ <span class="dropdown-text">R Installation and Administration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-exts/index.html">
+ <span class="dropdown-text">Writing R Extensions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-lang/index.html">
+ <span class="dropdown-text">R Language Definition</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-ints/index.html">
+ <span class="dropdown-text">R Internals</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./../about.html">About</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Arrays and matrices</span></h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">An Introduction to R</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Preface.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Introduction-and-preliminaries.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction and preliminaries</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Simple-manipulations-numbers-and-vectors.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Simple manipulations; numbers and vectors</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Objects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Objects, their modes and attributes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Factors.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Ordered and unordered factors</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Arrays-and-matrices.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Arrays and matrices</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Lists-and-data-frames.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lists and data frames</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Reading-data-from-files.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Reading data from files</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Probability-distributions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Probability distributions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Loops-and-conditional-execution.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Grouping, loops and conditional execution</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Writing-your-own-functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Writing your own functions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Statistical-models-in-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Statistical models in R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Graphics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Graphical procedures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Packages.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Packages</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./OS-facilities.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">OS facilities</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A-sample-session.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">A sample session</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Invoking-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Invoking R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./The-command-line-editor.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">The command-line editor</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Function and variable index</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Concept index</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+<h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#arrays" class="nav-link active" data-scroll-target="#arrays"> <span class="header-section-number">5.1</span> Arrays</a></li>
+<li><a href="#array-indexing.-subsections-of-an-array" class="nav-link" data-scroll-target="#array-indexing.-subsections-of-an-array"> <span class="header-section-number">5.2</span> Array indexing. Subsections of an array</a></li>
+<li><a href="#index-matrices" class="nav-link" data-scroll-target="#index-matrices"> <span class="header-section-number">5.3</span> Index matrices</a></li>
+<li><a href="#the-array-function" class="nav-link" data-scroll-target="#the-array-function"> <span class="header-section-number">5.4</span> The <code>array()</code> function</a>
+<ul class="collapse">
+<li><a href="#mixed-vector-and-array-arithmetic.-the-recycling-rule" class="nav-link" data-scroll-target="#mixed-vector-and-array-arithmetic.-the-recycling-rule"> <span class="header-section-number">5.4.1</span> Mixed vector and array arithmetic. The recycling rule</a></li>
+</ul></li>
+<li><a href="#the-outer-product-of-two-arrays" class="nav-link" data-scroll-target="#the-outer-product-of-two-arrays"> <span class="header-section-number">5.5</span> The outer product of two arrays</a>
+<ul class="collapse">
+<li><a href="#an-example-determinants-of-2-by-2-single-digit-matrices" class="nav-link" data-scroll-target="#an-example-determinants-of-2-by-2-single-digit-matrices"> <span class="header-section-number">5.5.1</span> An example: Determinants of 2 by 2 single-digit matrices</a></li>
+</ul></li>
+<li><a href="#generalized-transpose-of-an-array" class="nav-link" data-scroll-target="#generalized-transpose-of-an-array"> <span class="header-section-number">5.6</span> Generalized transpose of an array</a></li>
+<li><a href="#matrix-facilities" class="nav-link" data-scroll-target="#matrix-facilities"> <span class="header-section-number">5.7</span> Matrix facilities</a>
+<ul class="collapse">
+<li><a href="#matrix-multiplication" class="nav-link" data-scroll-target="#matrix-multiplication"> <span class="header-section-number">5.7.1</span> Matrix multiplication</a></li>
+<li><a href="#linear-equations-and-inversion" class="nav-link" data-scroll-target="#linear-equations-and-inversion"> <span class="header-section-number">5.7.2</span> Linear equations and inversion</a></li>
+<li><a href="#eigenvalues-and-eigenvectors" class="nav-link" data-scroll-target="#eigenvalues-and-eigenvectors"> <span class="header-section-number">5.7.3</span> Eigenvalues and eigenvectors</a></li>
+<li><a href="#singular-value-decomposition-and-determinants" class="nav-link" data-scroll-target="#singular-value-decomposition-and-determinants"> <span class="header-section-number">5.7.4</span> Singular value decomposition and determinants</a></li>
+<li><a href="#least-squares-fitting-and-the-qr-decomposition" class="nav-link" data-scroll-target="#least-squares-fitting-and-the-qr-decomposition"> <span class="header-section-number">5.7.5</span> Least squares fitting and the QR decomposition</a></li>
+</ul></li>
+<li><a href="#forming-partitioned-matrices-cbind-and-rbind" class="nav-link" data-scroll-target="#forming-partitioned-matrices-cbind-and-rbind"> <span class="header-section-number">5.8</span> Forming partitioned matrices, <code>cbind()</code> and <code>rbind()</code></a></li>
+<li><a href="#the-concatenation-function-c-with-arrays" class="nav-link" data-scroll-target="#the-concatenation-function-c-with-arrays"> <span class="header-section-number">5.9</span> The concatenation function, <code>c()</code>, with arrays</a></li>
+<li><a href="#frequency-tables-from-factors" class="nav-link" data-scroll-target="#frequency-tables-from-factors"> <span class="header-section-number">5.10</span> Frequency tables from factors</a></li>
+</ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+<header id="title-block-header">
+<h1 class="title display-7"><span id="arrays-and-matrices" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Arrays and matrices</span></span></h1>
+</header>
+
+<section id="arrays" class="level2 section" data-number="5.1">
+<h2 class="section anchored" data-number="5.1" data-anchor-id="arrays"><span class="header-section-number">5.1</span> Arrays</h2>
+<p>An array can be considered as a multiply subscripted collection of data entries, for example numeric. R allows simple facilities for creating and handling arrays, and in particular the special case of matrices.</p>
+<p>A dimension vector is a vector of non-negative integers. If its length is <em>k</em> then the array is <em>k</em>-dimensional, e.g.&nbsp;a matrix is a <em>2</em>-dimensional array. The dimensions are indexed from one up to the values given in the dimension vector.</p>
+<p>A vector can be used by R as an array only if it has a dimension vector as its <em>dim</em> attribute. Suppose, for example, <code>z</code> is a vector of 1500 elements. The assignment</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">dim</span>(z) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>gives it the <em>dim</em> attribute that allows it to be treated as a <em>3</em> by <em>5</em> by <em>100</em> array.</p>
+<p>Other functions such as <code>matrix()</code> and <code>array()</code> are available for simpler and more natural looking assignments, as we shall see in <a href="#the-array_0028_0029-function">The array() function</a>.</p>
+<p>The values in the data vector give the values in the array in the same order as they would occur in FORTRAN, that is “column major order,” with the first subscript moving fastest and the last subscript slowest.</p>
+<p>For example if the dimension vector for an array, say <code>a</code>, is <code>c(3,4,2)</code> then there are 3 * 4 * 2 = 24 entries in <code>a</code> and the data vector holds them in the order <code>a[1,1,1], a[2,1,1], …, a[2,4,2], a[3,4,2]</code>.</p>
+<p>Arrays can be one-dimensional: such arrays are usually treated in the same way as vectors (including when printing), but the exceptions can cause confusion.</p>
+</section>
+<section id="array-indexing.-subsections-of-an-array" class="level2 section" data-number="5.2">
+<h2 class="section anchored" data-number="5.2" data-anchor-id="array-indexing.-subsections-of-an-array"><span class="header-section-number">5.2</span> Array indexing. Subsections of an array</h2>
+<p>Individual elements of an array may be referenced by giving the name of the array followed by the subscripts in square brackets, separated by commas.</p>
+<p>More generally, subsections of an array may be specified by giving a sequence of <em>index vectors</em> in place of subscripts; however <em>if any index position is given an empty index vector, then the full range of that subscript is taken</em>.</p>
+<p>Continuing the previous example, <code>a[2,,]</code> is a 4 * 2 array with dimension vector <code>c(4,2)</code> and data vector containing the values</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(a[<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>], a[<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>], a[<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">1</span>], a[<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">1</span>],</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  a[<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>], a[<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>], a[<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">2</span>], a[<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>in that order. <code>a[,,]</code> stands for the entire array, which is the same as omitting the subscripts entirely and using <code>a</code> alone.</p>
+<p>For any array, say <code>Z</code>, the dimension vector may be referenced explicitly as <code>dim(Z)</code> (on either side of an assignment).</p>
+<p>Also, if an array name is given with just <em>one subscript or index vector</em>, then the corresponding values of the data vector only are used; in this case the dimension vector is ignored. This is not the case, however, if the single index is not a vector but itself an array, as we next discuss.</p>
+</section>
+<section id="index-matrices" class="level2 section" data-number="5.3">
+<h2 class="section anchored" data-number="5.3" data-anchor-id="index-matrices"><span class="header-section-number">5.3</span> Index matrices</h2>
+<p>As well as an index vector in any subscript position, a matrix may be used with a single <em>index matrix</em> in order either to assign a vector of quantities to an irregular collection of elements in the array, or to extract an irregular collection as a vector.</p>
+<p>A matrix example makes the process clear. In the case of a doubly indexed array, an index matrix may be given consisting of two columns and as many rows as desired. The entries in the index matrix are the row and column indices for the doubly indexed array. Suppose for example we have a <em>4</em> by <em>5</em> array <code>X</code> and we wish to do the following:</p>
+<ul>
+<li>Extract elements <code>X[1,3]</code>, <code>X[2,2]</code> and <code>X[3,1]</code> as a vector structure, and</li>
+<li>Replace these entries in the array <code>X</code> by zeroes.</li>
+</ul>
+<p>In this case we need a <em>3</em> by <em>2</em> subscript array, as in the following example.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">dim=</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">5</span>))   <span class="co"># Generate a 4 by 5 array.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>     [,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>] [,<span class="dv">4</span>] [,<span class="dv">5</span>]</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">5</span>    <span class="dv">9</span>   <span class="dv">13</span>   <span class="dv">17</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>,]    <span class="dv">2</span>    <span class="dv">6</span>   <span class="dv">10</span>   <span class="dv">14</span>   <span class="dv">18</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">3</span>,]    <span class="dv">3</span>    <span class="dv">7</span>   <span class="dv">11</span>   <span class="dv">15</span>   <span class="dv">19</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">4</span>,]    <span class="dv">4</span>    <span class="dv">8</span>   <span class="dv">12</span>   <span class="dv">16</span>   <span class="dv">20</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> i <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">3</span><span class="sc">:</span><span class="dv">1</span>), <span class="at">dim=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>))</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> i                             <span class="co"># i is a 3 by 2 index array.</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>     [,<span class="dv">1</span>] [,<span class="dv">2</span>]</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">3</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>,]    <span class="dv">2</span>    <span class="dv">2</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>[<span class="dv">3</span>,]    <span class="dv">3</span>    <span class="dv">1</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x[i]                          <span class="co"># Extract those elements</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">9</span> <span class="dv">6</span> <span class="dv">3</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x[i] <span class="ot">&lt;-</span> <span class="dv">0</span>                     <span class="co"># Replace those elements by zeros.</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>     [,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>] [,<span class="dv">4</span>] [,<span class="dv">5</span>]</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,]    <span class="dv">1</span>    <span class="dv">5</span>    <span class="dv">0</span>   <span class="dv">13</span>   <span class="dv">17</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>,]    <span class="dv">2</span>    <span class="dv">0</span>   <span class="dv">10</span>   <span class="dv">14</span>   <span class="dv">18</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>[<span class="dv">3</span>,]    <span class="dv">0</span>    <span class="dv">7</span>   <span class="dv">11</span>   <span class="dv">15</span>   <span class="dv">19</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>[<span class="dv">4</span>,]    <span class="dv">4</span>    <span class="dv">8</span>   <span class="dv">12</span>   <span class="dv">16</span>   <span class="dv">20</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Negative indices are not allowed in index matrices. <code>NA</code> and zero values are allowed: rows in the index matrix containing a zero are ignored, and rows containing an <code>NA</code> produce an <code>NA</code> in the result.</p>
+<p>As a less trivial example, suppose we wish to generate an (unreduced) design matrix for a block design defined by factors <code>blocks</code> (<code>b</code> levels) and <code>varieties</code> (<code>v</code> levels). Further suppose there are <code>n</code> plots in the experiment. We could proceed as follows:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Xb <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, n, b)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Xv <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, n, v)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> ib <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="dv">1</span><span class="sc">:</span>n, blocks)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> iv <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="dv">1</span><span class="sc">:</span>n, varieties)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Xb[ib] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Xv[iv] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> X <span class="ot">&lt;-</span> <span class="fu">cbind</span>(Xb, Xv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To construct the incidence matrix, <code>N</code> say, we could use</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> N <span class="ot">&lt;-</span> <span class="fu">crossprod</span>(Xb, Xv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>However a simpler direct way of producing this matrix is to use <code>table()</code>:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> N <span class="ot">&lt;-</span> <span class="fu">table</span>(blocks, varieties)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Index matrices must be numerical: any other form of matrix (e.g.&nbsp;a logical or character matrix) supplied as a matrix is treated as an indexing vector.</p>
+</section>
+<section id="the-array-function" class="level2 section" data-number="5.4">
+<h2 class="section anchored" data-number="5.4" data-anchor-id="the-array-function"><span class="header-section-number">5.4</span> The <code>array()</code> function</h2>
+<p>As well as giving a vector structure a <code>dim</code> attribute, arrays can be constructed from vectors by the <code>array</code> function, which has the form</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Z <span class="ot">&lt;-</span> <span class="fu">array</span>(data_vector, dim_vector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For example, if the vector <code>h</code> contains 24 or fewer, numbers then the command</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Z <span class="ot">&lt;-</span> <span class="fu">array</span>(h, <span class="at">dim=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>would use <code>h</code> to set up <em>3</em> by <em>4</em> by <em>2</em> array in <code>Z</code>. If the size of <code>h</code> is exactly 24 the result is the same as</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Z <span class="ot">&lt;-</span> h ; <span class="fu">dim</span>(Z) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>However if <code>h</code> is shorter than 24, its values are recycled from the beginning again to make it up to size 24 (see <a href="#the-recycling-rule">The recycling rule</a>) but <code>dim(h) &lt;- c(3,4,2)</code> would signal an error about mismatching length. As an extreme but common example</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Z <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="dv">0</span>, <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>makes <code>Z</code> an array of all zeros.</p>
+<p>At this point <code>dim(Z)</code> stands for the dimension vector <code>c(3,4,2)</code>, and <code>Z[1:24]</code> stands for the data vector as it was in <code>h</code>, and <code>Z[]</code> with an empty subscript or <code>Z</code> with no subscript stands for the entire array as an array.</p>
+<p>Arrays may be used in arithmetic expressions and the result is an array formed by element-by-element operations on the data vector. The <code>dim</code> attributes of operands generally need to be the same, and this becomes the dimension vector of the result. So if <code>A</code>, <code>B</code> and <code>C</code> are all similar arrays, then</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> D <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>A<span class="sc">*</span>B <span class="sc">+</span> C <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>makes <code>D</code> a similar array with its data vector being the result of the given element-by-element operations. However the precise rule concerning mixed array and vector calculations has to be considered a little more carefully.</p>
+<section id="mixed-vector-and-array-arithmetic.-the-recycling-rule" class="level3 subsection" data-number="5.4.1">
+<h3 class="subsection anchored" data-number="5.4.1" data-anchor-id="mixed-vector-and-array-arithmetic.-the-recycling-rule"><span class="header-section-number">5.4.1</span> Mixed vector and array arithmetic. The recycling rule</h3>
+<p>The precise rule affecting element by element mixed calculations with vectors and arrays is somewhat quirky and hard to find in the references. From experience we have found the following to be a reliable guide.</p>
+<ul>
+<li>The expression is scanned from left to right.</li>
+<li>Any short vector operands are extended by recycling their values until they match the size of any other operands.</li>
+<li>As long as short vectors and arrays <em>only</em> are encountered, the arrays must all have the same <code>dim</code> attribute or an error results.</li>
+<li>Any vector operand longer than a matrix or array operand generates an error.</li>
+<li>If array structures are present and no error or coercion to vector has been precipitated, the result is an array structure with the common <code>dim</code> attribute of its array operands.</li>
+</ul>
+</section>
+</section>
+<section id="the-outer-product-of-two-arrays" class="level2 section" data-number="5.5">
+<h2 class="section anchored" data-number="5.5" data-anchor-id="the-outer-product-of-two-arrays"><span class="header-section-number">5.5</span> The outer product of two arrays</h2>
+<p>An important operation on arrays is the <em>outer product</em>. If <code>a</code> and <code>b</code> are two numeric arrays, their outer product is an array whose dimension vector is obtained by concatenating their two dimension vectors (order is important), and whose data vector is got by forming all possible products of elements of the data vector of <code>a</code> with those of <code>b</code>. The outer product is formed by the special operator <code>%o%</code>:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> ab <span class="ot">&lt;-</span> a <span class="sc">%o%</span> b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>An alternative is</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> ab <span class="ot">&lt;-</span> <span class="fu">outer</span>(a, b, <span class="st">"*"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The multiplication function can be replaced by an arbitrary function of two variables. For example if we wished to evaluate the function f(x; y) = cos(y)/(1 + x^2) over a regular grid of values with <em>x</em>- and <em>y</em>-coordinates defined by the R vectors <code>x</code> and <code>y</code> respectively, we could proceed as follows:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> f <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) <span class="fu">cos</span>(y)<span class="sc">/</span>(<span class="dv">1</span> <span class="sc">+</span> x<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> z <span class="ot">&lt;-</span> <span class="fu">outer</span>(x, y, f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In particular the outer product of two ordinary vectors is a doubly subscripted array (that is a matrix, of rank at most 1). Notice that the outer product operator is of course non-commutative. Defining your own R functions will be considered further in <a href="Writing-your-own-functions.html#writing-your-own-functions">Writing your own functions</a>.</p>
+<section id="an-example-determinants-of-2-by-2-single-digit-matrices" class="level3 subsubheading" data-number="5.5.1">
+<h3 class="subsubheading anchored" data-number="5.5.1" data-anchor-id="an-example-determinants-of-2-by-2-single-digit-matrices"><span class="header-section-number">5.5.1</span> An example: Determinants of 2 by 2 single-digit matrices</h3>
+<p>As an artificial but cute example, consider the determinants of <em>2</em> by <em>2</em> matrices <em>[a, b; c, d]</em> where each entry is a non-negative integer in the range <em>0, 1, …, 9</em>, that is a digit.</p>
+<p>The problem is to find the determinants, <em>ad - bc</em>, of all possible matrices of this form and represent the frequency with which each value occurs as a <em>high density</em> plot. This amounts to finding the probability distribution of the determinant if each digit is chosen independently and uniformly at random.</p>
+<p>A neat way of doing this uses the <code>outer()</code> function twice:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> d <span class="ot">&lt;-</span> <span class="fu">outer</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">9</span>, <span class="dv">0</span><span class="sc">:</span><span class="dv">9</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> fr <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="fu">outer</span>(d, d, <span class="st">"-"</span>))</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">plot</span>(fr, <span class="at">xlab=</span><span class="st">"Determinant"</span>, <span class="at">ylab=</span><span class="st">"Frequency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Notice that <code>plot()</code> here uses a histogram like plot method, because it “sees” that <code>fr</code> is of class <code>"table"</code>. The “obvious” way of doing this problem with <code>for</code> loops, to be discussed in <a href="Loops-and-conditional-execution.html#loops-and-conditional-execution">Loops and conditional execution</a>, is so inefficient as to be impractical.</p>
+<p>It is also perhaps surprising that about 1 in 20 such matrices is singular.</p>
+</section>
+</section>
+<section id="generalized-transpose-of-an-array" class="level2 section" data-number="5.6">
+<h2 class="section anchored" data-number="5.6" data-anchor-id="generalized-transpose-of-an-array"><span class="header-section-number">5.6</span> Generalized transpose of an array</h2>
+<p>The function <code>aperm(a, perm)</code> may be used to permute an array, <code>a</code>. The argument <code>perm</code> must be a permutation of the integers <em>{1, …, k}</em>, where <em>k</em> is the number of subscripts in <code>a</code>. The result of the function is an array of the same size as <code>a</code> but with old dimension given by <code>perm[j]</code> becoming the new <code>j</code>-th dimension. The easiest way to think of this operation is as a generalization of transposition for matrices. Indeed if <code>A</code> is a matrix, (that is, a doubly subscripted array) then <code>B</code> given by</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> B <span class="ot">&lt;-</span> <span class="fu">aperm</span>(A, <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>is just the transpose of <code>A</code>. For this special case a simpler function <code>t()</code> is available, so we could have used <code>B &lt;- t(A)</code>.</p>
+</section>
+<section id="matrix-facilities" class="level2 section page-columns page-full" data-number="5.7">
+<h2 class="section anchored" data-number="5.7" data-anchor-id="matrix-facilities"><span class="header-section-number">5.7</span> Matrix facilities</h2>
+<p>As noted above, a matrix is just an array with two subscripts. However it is such an important special case it needs a separate discussion. R contains many operators and functions that are available only for matrices. For example <code>t(X)</code> is the matrix transpose function, as noted above. The functions <code>nrow(A)</code> and <code>ncol(A)</code> give the number of rows and columns in the matrix <code>A</code> respectively.</p>
+<section id="matrix-multiplication" class="level3 subsection page-columns page-full" data-number="5.7.1">
+<h3 class="subsection anchored" data-number="5.7.1" data-anchor-id="matrix-multiplication"><span class="header-section-number">5.7.1</span> Matrix multiplication</h3>
+<p>The operator <code>%*%</code> is used for matrix multiplication. An <em>n</em> by <em>1</em> or <em>1</em> by <em>n</em> matrix may of course be used as an <em>n</em>-vector if in the context such is appropriate. Conversely, vectors which occur in matrix multiplication expressions are automatically promoted either to row or column vectors, whichever is multiplicatively coherent, if possible, (although this is not always unambiguously possible, as we see later).</p>
+<p>If, for example, <code>A</code> and <code>B</code> are square matrices of the same size, then</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> A <span class="sc">*</span> B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>is the matrix of element by element products and</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> A <span class="sc">%*%</span> B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>is the matrix product. If <code>x</code> is a vector, then</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="sc">%*%</span> A <span class="sc">%*%</span> x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="page-columns page-full"><p>is a quadratic form.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;Note that <code>x %*% x</code> is ambiguous, as it could mean either x’x or x x’, where x is the column form. In such cases the smaller matrix seems implicitly to be the interpretation adopted, so the scalar x’x is in this case the result. The matrix x x’ may be calculated either by <code>cbind(x) %*% x</code> or <code>x %*% rbind(x)</code> since the result of <code>rbind()</code> or <code>cbind()</code> is always a matrix. However, the best way to compute x’x or x x’ is <code>crossprod(x)</code> or <code>x %o% x</code> respectively.</p></li></div></div>
+<p>The function <code>crossprod()</code> forms “crossproducts”, meaning that <code>crossprod(X, y)</code> is the same as <code>t(X) %*% y</code> but the operation is more efficient. If the second argument to <code>crossprod()</code> is omitted it is taken to be the same as the first.</p>
+<p>The meaning of <code>diag()</code> depends on its argument. <code>diag(v)</code>, where <code>v</code> is a vector, gives a diagonal matrix with elements of the vector as the diagonal entries. On the other hand <code>diag(M)</code>, where <code>M</code> is a matrix, gives the vector of main diagonal entries of <code>M</code>. This is the same convention as that used for <code>diag()</code> in <span class="small">MATLAB</span>. Also, somewhat confusingly, if <code>k</code> is a single numeric value then <code>diag(k)</code> is the <code>k</code> by <code>k</code> identity matrix!</p>
+</section>
+<section id="linear-equations-and-inversion" class="level3 subsection page-columns page-full" data-number="5.7.2">
+<h3 class="subsection anchored" data-number="5.7.2" data-anchor-id="linear-equations-and-inversion"><span class="header-section-number">5.7.2</span> Linear equations and inversion</h3>
+<p>Solving linear equations is the inverse of matrix multiplication. When after</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> b <span class="ot">&lt;-</span> A <span class="sc">%*%</span> x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>only <code>A</code> and <code>b</code> are given, the vector <code>x</code> is the solution of that linear equation system. In R,</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">solve</span>(A,b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>solves the system, returning <code>x</code> (up to some accuracy loss). Note that in linear algebra, formally <code>x = A^{-1} %*% b</code> where <code>A^{-1}</code> denotes the <em>inverse</em> of <code>A</code>, which can be computed by</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">solve</span>(A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>but rarely is needed. Numerically, it is both inefficient and potentially unstable to compute <code>x &lt;- solve(A) %*% b</code> instead of <code>solve(A,b)</code>.</p>
+<div class="page-columns page-full"><p>The quadratic form &nbsp;<code>x %*% A^{-1} %*% x</code> &nbsp; which is used in multivariate computations, should be computed by something like<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> <code>x %*% solve(A,x)</code>, rather than computing the inverse of <code>A</code>.</p><div class="no-row-height column-margin column-container"><li id="fn2" role="doc-endnote"><p><sup>2</sup>&nbsp;Even better would be to form a matrix square root B with A = BB’ and find the squared length of the solution of By = x , perhaps using the Cholesky or eigen decomposition of A.</p></li></div></div>
+</section>
+<section id="eigenvalues-and-eigenvectors" class="level3 subsection" data-number="5.7.3">
+<h3 class="subsection anchored" data-number="5.7.3" data-anchor-id="eigenvalues-and-eigenvectors"><span class="header-section-number">5.7.3</span> Eigenvalues and eigenvectors</h3>
+<p>The function <code>eigen(Sm)</code> calculates the eigenvalues and eigenvectors of a symmetric matrix <code>Sm</code>. The result of this function is a list of two components named <code>values</code> and <code>vectors</code>. The assignment</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> ev <span class="ot">&lt;-</span> <span class="fu">eigen</span>(Sm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>will assign this list to <code>ev</code>. Then <code>ev$val</code> is the vector of eigenvalues of <code>Sm</code> and <code>ev$vec</code> is the matrix of corresponding eigenvectors. Had we only needed the eigenvalues we could have used the assignment:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> evals <span class="ot">&lt;-</span> <span class="fu">eigen</span>(Sm)<span class="sc">$</span>values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>evals</code> now holds the vector of eigenvalues and the second component is discarded. If the expression</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">eigen</span>(Sm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>is used by itself as a command the two components are printed, with their names. For large matrices it is better to avoid computing the eigenvectors if they are not needed by using the expression</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> evals <span class="ot">&lt;-</span> <span class="fu">eigen</span>(Sm, <span class="at">only.values =</span> <span class="cn">TRUE</span>)<span class="sc">$</span>values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="singular-value-decomposition-and-determinants" class="level3 subsection" data-number="5.7.4">
+<h3 class="subsection anchored" data-number="5.7.4" data-anchor-id="singular-value-decomposition-and-determinants"><span class="header-section-number">5.7.4</span> Singular value decomposition and determinants</h3>
+<p>The function <code>svd(M)</code> takes an arbitrary matrix argument, <code>M</code>, and calculates the singular value decomposition of <code>M</code>. This consists of a matrix of orthonormal columns <code>U</code> with the same column space as <code>M</code>, a second matrix of orthonormal columns <code>V</code> whose column space is the row space of <code>M</code> and a diagonal matrix of positive entries <code>D</code> such that <code>M = U %*% D %*% t(V)</code>. <code>D</code> is actually returned as a vector of the diagonal elements. The result of <code>svd(M)</code> is actually a list of three components named <code>d</code>, <code>u</code> and <code>v</code>, with evident meanings.</p>
+<p>If <code>M</code> is in fact square, then, it is not hard to see that</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> absdetM <span class="ot">&lt;-</span> <span class="fu">prod</span>(<span class="fu">svd</span>(M)<span class="sc">$</span>d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>calculates the absolute value of the determinant of <code>M</code>. If this calculation were needed often with a variety of matrices it could be defined as an R function</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> absdet <span class="ot">&lt;-</span> <span class="cf">function</span>(M) <span class="fu">prod</span>(<span class="fu">svd</span>(M)<span class="sc">$</span>d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>after which we could use <code>absdet()</code> as just another R function. As a further trivial but potentially useful example, you might like to consider writing a function, say <code>tr()</code>, to calculate the trace of a square matrix. [Hint: You will not need to use an explicit loop. Look again at the <code>diag()</code> function.]</p>
+<p>R has a builtin function <code>det</code> to calculate a determinant, including the sign, and another, <code>determinant</code>, to give the sign and modulus (optionally on log scale),</p>
+</section>
+<section id="least-squares-fitting-and-the-qr-decomposition" class="level3 subsection" data-number="5.7.5">
+<h3 class="subsection anchored" data-number="5.7.5" data-anchor-id="least-squares-fitting-and-the-qr-decomposition"><span class="header-section-number">5.7.5</span> Least squares fitting and the QR decomposition</h3>
+<p>The function <code>lsfit()</code> returns a list giving results of a least squares fitting procedure. An assignment such as</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> ans <span class="ot">&lt;-</span> <span class="fu">lsfit</span>(X, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>gives the results of a least squares fit where <code>y</code> is the vector of observations and <code>X</code> is the design matrix. See the help facility for more details, and also for the follow-up function <code>ls.diag()</code> for, among other things, regression diagnostics. Note that a grand mean term is automatically included and need not be included explicitly as a column of <code>X</code>. Further note that you almost always will prefer using <code>lm(.)</code> (see <a href="Statistical-models-in-R.html#linear-models">Linear models</a>) to <code>lsfit()</code> for regression modelling.</p>
+<p>Another closely related function is <code>qr()</code> and its allies. Consider the following assignments</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Xplus <span class="ot">&lt;-</span> <span class="fu">qr</span>(X)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> b <span class="ot">&lt;-</span> <span class="fu">qr.coef</span>(Xplus, y)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> fit <span class="ot">&lt;-</span> <span class="fu">qr.fitted</span>(Xplus, y)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> res <span class="ot">&lt;-</span> <span class="fu">qr.resid</span>(Xplus, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>These compute the orthogonal projection of <code>y</code> onto the range of <code>X</code> in <code>fit</code>, the projection onto the orthogonal complement in <code>res</code> and the coefficient vector for the projection in <code>b</code>, that is, <code>b</code> is essentially the result of the <span class="small">MATLAB</span> ‘backslash’ operator.</p>
+<p>It is not assumed that <code>X</code> has full column rank. Redundancies will be discovered and removed as they are found.</p>
+<p>This alternative is the older, low-level way to perform least squares calculations. Although still useful in some contexts, it would now generally be replaced by the statistical models features, as will be discussed in <a href="Statistical-models-in-R.html#statistical-models-in-r">Statistical models in R</a>.</p>
+</section>
+</section>
+<section id="forming-partitioned-matrices-cbind-and-rbind" class="level2 section" data-number="5.8">
+<h2 class="section anchored" data-number="5.8" data-anchor-id="forming-partitioned-matrices-cbind-and-rbind"><span class="header-section-number">5.8</span> Forming partitioned matrices, <code>cbind()</code> and <code>rbind()</code></h2>
+<p>As we have already seen informally, matrices can be built up from other vectors and matrices by the functions <code>cbind()</code> and <code>rbind()</code>. Roughly <code>cbind()</code> forms matrices by binding together matrices horizontally, or column-wise, and <code>rbind()</code> vertically, or row-wise.</p>
+<p>In the assignment</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> X <span class="ot">&lt;-</span> <span class="fu">cbind</span>(arg_1, arg_2, arg_3, …)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>the arguments to <code>cbind()</code> must be either vectors of any length, or matrices with the same column size, that is the same number of rows. The result is a matrix with the concatenated arguments <var>arg_1</var>, <var>arg_2</var>, … forming the columns.</p>
+<p>If some of the arguments to <code>cbind()</code> are vectors they may be shorter than the column size of any matrices present, in which case they are cyclically extended to match the matrix column size (or the length of the longest vector if no matrices are given).</p>
+<p>The function <code>rbind()</code> does the corresponding operation for rows. In this case any vector argument, possibly cyclically extended, are of course taken as row vectors.</p>
+<p>Suppose <code>X1</code> and <code>X2</code> have the same number of rows. To combine these by columns into a matrix <code>X</code>, together with an initial column of <code>1</code>s we can use</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> X <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="dv">1</span>, X1, X2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The result of <code>rbind()</code> or <code>cbind()</code> always has matrix status. Hence <code>cbind(x)</code> and <code>rbind(x)</code> are possibly the simplest ways explicitly to allow the vector <code>x</code> to be treated as a column or row matrix respectively.</p>
+</section>
+<section id="the-concatenation-function-c-with-arrays" class="level2 section" data-number="5.9">
+<h2 class="section anchored" data-number="5.9" data-anchor-id="the-concatenation-function-c-with-arrays"><span class="header-section-number">5.9</span> The concatenation function, <code>c()</code>, with arrays</h2>
+<p>It should be noted that whereas <code>cbind()</code> and <code>rbind()</code> are concatenation functions that respect <code>dim</code> attributes, the basic <code>c()</code> function does not, but rather clears numeric objects of all <code>dim</code> and <code>dimnames</code> attributes. This is occasionally useful in its own right.</p>
+<p>The official way to coerce an array back to a simple vector object is to use <code>as.vector()</code></p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> vec <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>However a similar result can be achieved by using <code>c()</code> with just one argument, simply for this side-effect:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> vec <span class="ot">&lt;-</span> <span class="fu">c</span>(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>There are slight differences between the two, but ultimately the choice between them is largely a matter of style (with the former being preferable).</p>
+</section>
+<section id="frequency-tables-from-factors" class="level2 section" data-number="5.10">
+<h2 class="section anchored" data-number="5.10" data-anchor-id="frequency-tables-from-factors"><span class="header-section-number">5.10</span> Frequency tables from factors</h2>
+<p>Recall that a factor defines a partition into groups. Similarly a pair of factors defines a two way cross classification, and so on. The function <code>table()</code> allows frequency tables to be calculated from equal length factors. If there are <em>k</em> factor arguments, the result is a <em>k</em>-way array of frequencies.</p>
+<p>Suppose, for example, that <code>statef</code> is a factor giving the state code for each entry in a data vector. The assignment</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> statefr <span class="ot">&lt;-</span> <span class="fu">table</span>(statef)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>gives in <code>statefr</code> a table of frequencies of each state in the sample. The frequencies are ordered and labelled by the <code>levels</code> attribute of the factor. This simple case is equivalent to, but more convenient than,</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> statefr <span class="ot">&lt;-</span> <span class="fu">tapply</span>(statef, statef, length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Further suppose that <code>incomef</code> is a factor giving a suitably defined “income class” for each entry in the data vector, for example with the <code>cut()</code> function:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">factor</span>(<span class="fu">cut</span>(incomes, <span class="at">breaks =</span> <span class="dv">35</span><span class="sc">+</span><span class="dv">10</span><span class="sc">*</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">7</span>))) <span class="ot">-&gt;</span> incomef</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then to calculate a two-way table of frequencies:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">table</span>(incomef,statef)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>         statef</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>incomef   act nsw nt qld sa tas vic wa</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">35</span>,<span class="dv">45</span>]   <span class="dv">1</span>   <span class="dv">1</span>  <span class="dv">0</span>   <span class="dv">1</span>  <span class="dv">0</span>   <span class="dv">0</span>   <span class="dv">1</span>  <span class="dv">0</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">45</span>,<span class="dv">55</span>]   <span class="dv">1</span>   <span class="dv">1</span>  <span class="dv">1</span>   <span class="dv">1</span>  <span class="dv">2</span>   <span class="dv">0</span>   <span class="dv">1</span>  <span class="dv">3</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">55</span>,<span class="dv">65</span>]   <span class="dv">0</span>   <span class="dv">3</span>  <span class="dv">1</span>   <span class="dv">3</span>  <span class="dv">2</span>   <span class="dv">2</span>   <span class="dv">2</span>  <span class="dv">1</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">65</span>,<span class="dv">75</span>]   <span class="dv">0</span>   <span class="dv">1</span>  <span class="dv">0</span>   <span class="dv">0</span>  <span class="dv">0</span>   <span class="dv">0</span>   <span class="dv">1</span>  <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Extension to higher-way frequency tables is immediate.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Factors.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Ordered and unordered factors</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Lists-and-data-frames.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lists and data frames</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+  </div>
+</footer>
+
+
+</body></html>

@@ -1,0 +1,1626 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.9.48">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>R Manuals :: R Language Definition - Concept Index</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+
+  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+  <script src="site_libs/quarto-nav/headroom.min.js"></script>
+  <script src="site_libs/clipboard/clipboard.min.js"></script>
+  <meta name="quarto:offset" content="./">
+  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+  <script src="site_libs/quarto-search/fuse.min.js"></script>
+  <script src="site_libs/quarto-search/quarto-search.js"></script>
+  <link href="./References.html" rel="next">
+  <link href="./Function-and-Variable-Index.html" rel="prev">
+  <script src="site_libs/quarto-html/quarto.js"></script>
+  <script src="site_libs/quarto-html/popper.min.js"></script>
+  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="site_libs/quarto-html/anchor.min.js"></script>
+  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
+  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <script id="quarto-search-options" type="application/json">{
+    "location": "navbar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "end",
+    "type": "overlay",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body class="floating fullcontent">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">R Manuals :: R Language Definition</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./../index.html">Home</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
+        <li>
+    <a class="dropdown-item" href="./../r-intro/index.html">
+ <span class="dropdown-text">An Introduction to R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-data/index.html">
+ <span class="dropdown-text">R Data Import/Export</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-admin/index.html">
+ <span class="dropdown-text">R Installation and Administration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-exts/index.html">
+ <span class="dropdown-text">Writing R Extensions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./index.html">
+ <span class="dropdown-text">R Language Definition</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-ints/index.html">
+ <span class="dropdown-text">R Internals</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./../about.html">About</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Concept Index</h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">R Language Definition</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Objects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Objects</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Evaluation-of-expressions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Evaluation of expressions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Functions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Object-oriented-programming.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Object-oriented programming</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Computing-on-the-language.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Computing on the language</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./System-and-foreign-language-interfaces.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">System and foreign language interfaces</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Exception-handling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Exception handling</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Debugging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Debugging</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Parser.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Parser</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Function-and-Variable-Index.html" class="sidebar-item-text sidebar-link">Function and Variable Index</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Concept-Index.html" class="sidebar-item-text sidebar-link active">Concept Index</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<header id="title-block-header">
+<h1 class="title display-7"><span id="concept-index" class="quarto-section-identifier d-none d-lg-block">Concept Index</span></h1>
+</header>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Jump to: &nbsp;</td>
+<td><a href="#concept-index_cp_symbol-1" class="summary-letter"><strong>#</strong></a> &nbsp; <a href="#concept-index_cp_symbol-2" class="summary-letter"><strong>.</strong></a> &nbsp;<br>
+<a href="#concept-index_cp_letter-a" class="summary-letter"><strong>A</strong></a> &nbsp; <a href="#concept-index_cp_letter-b" class="summary-letter"><strong>B</strong></a> &nbsp; <a href="#concept-index_cp_letter-c" class="summary-letter"><strong>C</strong></a> &nbsp; <a href="#concept-index_cp_letter-e" class="summary-letter"><strong>E</strong></a> &nbsp; <a href="#concept-index_cp_letter-f" class="summary-letter"><strong>F</strong></a> &nbsp; <a href="#concept-index_cp_letter-i" class="summary-letter"><strong>I</strong></a> &nbsp; <a href="#concept-index_cp_letter-m" class="summary-letter"><strong>M</strong></a> &nbsp; <a href="#concept-index_cp_letter-n" class="summary-letter"><strong>N</strong></a> &nbsp; <a href="#concept-index_cp_letter-o" class="summary-letter"><strong>O</strong></a> &nbsp; <a href="#concept-index_cp_letter-p" class="summary-letter"><strong>P</strong></a> &nbsp; <a href="#concept-index_cp_letter-s" class="summary-letter"><strong>S</strong></a> &nbsp; <a href="#concept-index_cp_letter-t" class="summary-letter"><strong>T</strong></a> &nbsp; <a href="#concept-index_cp_letter-v" class="summary-letter"><strong>V</strong></a> &nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;">Index Entry</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;">Section</td>
+</tr>
+<tr class="even">
+<td>#</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Parser.html#index-_0023line">#line</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Parser.html#directives">Directives</a></td>
+</tr>
+<tr class="even">
+<td>.</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-.internal">.Internal</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#builtin-objects-and-special-forms">Builtin objects and special forms</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-.primitive">.Primitive</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#builtin-objects-and-special-forms">Builtin objects and special forms</a></td>
+</tr>
+<tr class="odd">
+<td>A</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-argument">argument</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#function-objects">Function objects</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-argument-1">argument</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#syntax-and-examples">Syntax and examples</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-argument_002c-default-values">argument, default values</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#arguments">Arguments</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-assignment">assignment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#function-objects">Function objects</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-assignment-1">assignment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#function-calls">Function calls</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-assignment-2">assignment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#operators">Operators</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-assignment-3">assignment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#subset-assignment">Subset assignment</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-assignment-4">assignment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#global-environment">Global environment</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-assignment-5">assignment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#argument-evaluation">Argument evaluation</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-assignment-6">assignment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#scope">Scope</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#index-assignment-7">assignment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#usemethod">UseMethod</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#index-assignment-8">assignment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#usemethod">UseMethod</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#index-assignment-9">assignment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#more-on-evaluation">More on evaluation</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#index-assignment-10">assignment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#manipulation-of-function-calls">Manipulation of function calls</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Parser.html#index-assignment-11">assignment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Parser.html#infix-and-prefix-operators">Infix and prefix operators</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Parser.html#index-assignment-12">assignment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Parser.html#infix-and-prefix-operators">Infix and prefix operators</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-atomic">atomic</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#vector-objects">Vector objects</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-attributes">attributes</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#attributes">Attributes</a></td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-binding">binding</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#scope">Scope</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-binding-1">binding</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#scope">Scope</a></td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-call">call</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#language-objects">Language objects</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-call-stack">call stack</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#stacks">Stacks</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-coercion">coercion</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#objects">Objects</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-coercion-1">coercion</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#symbol-objects">Symbol objects</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-coercion-2">coercion</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#any-type">Any-type</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-coercion-3">coercion</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#classes">Classes</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-coercion-4">coercion</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#na-handling">NA handling</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Parser.html#index-comments">comments</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Parser.html#comments">Comments</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-complex-assignment">complex assignment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#subset-assignment">Subset assignment</a></td>
+</tr>
+<tr class="odd">
+<td>E</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-environment">environment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#function-objects">Function objects</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-environment-1">environment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#function-objects">Function objects</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-environment-2">environment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#promise-objects">Promise objects</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-environment-3">environment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#environment-objects">Environment objects</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-environment-4">environment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#control-structures">Control structures</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-environment-5">environment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#global-environment">Global environment</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-environment-6">environment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#lexical-environment">Lexical environment</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-environment-7">environment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#stacks">Stacks</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-environment-8">environment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#search-path">Search path</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-environment-9">environment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#evaluation-environment">Evaluation environment</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-environment-10">environment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#argument-evaluation">Argument evaluation</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-environment-11">environment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#argument-evaluation">Argument evaluation</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-environment-12">environment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#scope">Scope</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#index-environment-13">environment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#usemethod">UseMethod</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#index-environment-14">environment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#usemethod">UseMethod</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#index-environment-15">environment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#more-on-evaluation">More on evaluation</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#index-environment-16">environment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#manipulation-of-functions">Manipulation of functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-environment-17">environment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#operating-system-access">Operating system access</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Debugging.html#index-environment-18">environment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Debugging.html#debugging">Debugging</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Debugging.html#index-environment-19">environment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Debugging.html#debugging">Debugging</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-environment_002c-evaluation">environment, evaluation</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#lexical-environment">Lexical environment</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-environment_002c-evaluation-1">environment, evaluation</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#lexical-environment">Lexical environment</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-environment_002c-evaluation-2">environment, evaluation</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#argument-evaluation">Argument evaluation</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-evaluation">evaluation</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#stacks">Stacks</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-evaluation-1">evaluation</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#evaluation-environment">Evaluation environment</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-evaluation-2">evaluation</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#argument-evaluation">Argument evaluation</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-evaluation-3">evaluation</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#scope">Scope</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#index-evaluation-4">evaluation</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#inheritance">Inheritance</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#index-evaluation-5">evaluation</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#usemethod">UseMethod</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#index-evaluation-6">evaluation</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#more-on-evaluation">More on evaluation</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#index-evaluation-7">evaluation</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#manipulation-of-function-calls">Manipulation of function calls</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-evaluation_002c-argument">evaluation, argument</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#argument-evaluation">Argument evaluation</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-evaluation_002c-expression">evaluation, expression</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#expression-objects">Expression objects</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-evaluation_002c-expression-1">evaluation, expression</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#promise-objects">Promise objects</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-evaluation_002c-expression-2">evaluation, expression</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#arguments">Arguments</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-evaluation_002c-lazy">evaluation, lazy</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#objects">Objects</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#index-evaluation_002c-lazy-1">evaluation, lazy</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#substitutions">Substitutions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#index-evaluation_002c-lazy-2">evaluation, lazy</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#substitutions">Substitutions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-evaluation_002c-statement">evaluation, statement</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#control-structures">Control structures</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-evaluation_002c-symbol">evaluation, symbol</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#attributes">Attributes</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-evaluation_002c-symbol-1">evaluation, symbol</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#symbol-lookup">Symbol lookup</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-evaluation_002c-symbol-2">evaluation, symbol</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#scope">Scope</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Introduction.html#index-expression">expression</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Introduction.html">Introduction</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-expression-1">expression</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#language-objects">Language objects</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Parser.html#index-expression-2">expression</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Parser.html#separators">Separators</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-expression-object">expression object</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#expression-objects">Expression objects</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-expression-object-1">expression object</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#expression-objects">Expression objects</a></td>
+</tr>
+<tr class="odd">
+<td>F</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-frame">frame</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#lexical-environment">Lexical environment</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-function">function</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#function-objects">Function objects</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-function-1">function</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#function-objects">Function objects</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-function-2">function</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#function-objects">Function objects</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-function-3">function</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#builtin-objects-and-special-forms">Builtin objects and special forms</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-function-4">function</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#builtin-objects-and-special-forms">Builtin objects and special forms</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-function-5">function</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#promise-objects">Promise objects</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-function-6">function</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#dot-dot-dot">Dot-dot-dot</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-function-7">function</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#function-calls">Function calls</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-function-8">function</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#lexical-environment">Lexical environment</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-function-9">function</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#lexical-environment">Lexical environment</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-function-10">function</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#stacks">Stacks</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-function-11">function</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#writing-functions">Writing functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-function-12">function</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#syntax-and-examples">Syntax and examples</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-function-13">function</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#syntax-and-examples">Syntax and examples</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-function-14">function</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#arguments">Arguments</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-function-15">function</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#evaluation-environment">Evaluation environment</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-function-16">function</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#argument-matching">Argument matching</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-function-17">function</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#argument-evaluation">Argument evaluation</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-function-18">function</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#argument-evaluation">Argument evaluation</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-function-19">function</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#argument-evaluation">Argument evaluation</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-function-20">function</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#argument-evaluation">Argument evaluation</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-function-21">function</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#scope">Scope</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-function-22">function</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#scope">Scope</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#index-function-23">function</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#object-oriented-programming">Object-oriented programming</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#index-function-24">function</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#definition">Definition</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#index-function-25">function</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#manipulation-of-function-calls">Manipulation of function calls</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#index-function-26">function</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#manipulation-of-functions">Manipulation of functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#index-function-27">function</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#manipulation-of-functions">Manipulation of functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Parser.html#index-function-28">function</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Parser.html#internal-representation">Internal representation</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Parser.html#index-function-29">function</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Parser.html#function-calls-_0028expressions_0029">Function calls (expressions)</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Parser.html#index-function-30">function</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Parser.html#function-definitions">Function definitions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-function-argument">function argument</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#promise-objects">Promise objects</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-function-argument-1">function argument</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#dot-dot-dot">Dot-dot-dot</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-function-arguments">function arguments</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#function-calls">Function calls</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-function-invocation">function invocation</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#function-calls">Function calls</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-function_002c-accessor">function, accessor</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#attributes">Attributes</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-function_002c-anonymous">function, anonymous</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#syntax-and-examples">Syntax and examples</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-function_002c-assignment">function, assignment</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#function-calls">Function calls</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#index-function_002c-generic">function, generic</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#object-oriented-programming">Object-oriented programming</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#index-function_002c-generic-1">function, generic</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#definition">Definition</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#index-function_002c-generic-2">function, generic</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#definition">Definition</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#index-function_002c-generic-3">function, generic</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#definition">Definition</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#index-function_002c-generic-4">function, generic</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#inheritance">Inheritance</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#index-function_002c-generic-5">function, generic</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#method-dispatching">Method dispatching</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#index-function_002c-generic-6">function, generic</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#writing-methods">Writing methods</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#index-function_002c-generic-7">function, generic</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#writing-methods">Writing methods</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-function_002c-internal">function, internal</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#argument-evaluation">Argument evaluation</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#index-function_002c-internal-1">function, internal</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#group-methods">Group methods</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-function_002c-modeling">function, modeling</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#factors">Factors</a></td>
+</tr>
+<tr class="even">
+<td>I</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Parser.html#index-identifier">identifier</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Parser.html#identifiers">Identifiers</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-index">index</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#vector-objects">Vector objects</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-index-1">index</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#list-objects">List objects</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-index-2">index</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#indexing">Indexing</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-index-3">index</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#indexing-by-vectors">Indexing by vectors</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-index-4">index</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#indexing-matrices-and-arrays">Indexing matrices and arrays</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-index-5">index</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#indexing-matrices-and-arrays">Indexing matrices and arrays</a></td>
+</tr>
+<tr class="even">
+<td>M</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-mode">mode</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#objects">Objects</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-mode-1">mode</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#vector-objects">Vector objects</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-mode-2">mode</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#symbol-objects">Symbol objects</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-modeling-function">modeling function</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#factors">Factors</a></td>
+</tr>
+<tr class="odd">
+<td>N</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-name">name</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#language-objects">Language objects</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-name-1">name</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#symbol-objects">Symbol objects</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-name-2">name</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#symbol-lookup">Symbol lookup</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-name-3">name</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#propagation-of-names">Propagation of names</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-name-4">name</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#scope-of-variables">Scope of variables</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-name-5">name</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#arguments">Arguments</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-name-6">name</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#argument-matching">Argument matching</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-name-7">name</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#argument-evaluation">Argument evaluation</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#index-name-8">name</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#method-dispatching">Method dispatching</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#index-name-9">name</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#nextmethod">NextMethod</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#index-name-10">name</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#direct-manipulation-of-language-objects">Direct manipulation of language objects</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Debugging.html#index-name-11">name</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Debugging.html#debugging">Debugging</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-namespace">namespace</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#search-path">Search path</a></td>
+</tr>
+<tr class="odd">
+<td>O</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-object">object</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#objects">Objects</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-object-1">object</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#objects">Objects</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-object-2">object</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#symbol-objects">Symbol objects</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-object-3">object</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#attributes">Attributes</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#index-object-4">object</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#method-dispatching">Method dispatching</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#index-object-oriented">object-oriented</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#object-oriented-programming">Object-oriented programming</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#index-object-oriented-1">object-oriented</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Object_002doriented-programming.html#definition">Definition</a></td>
+</tr>
+<tr class="odd">
+<td>P</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-pairlist">pairlist</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#pairlist-objects">Pairlist objects</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-parsing">parsing</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#language-objects">Language objects</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-parsing-1">parsing</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#symbol-objects">Symbol objects</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-parsing-2">parsing</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#evaluation-of-expressions">Evaluation of expressions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#index-parsing-3">parsing</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#computing-on-the-language">Computing on the language</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#index-parsing-4">parsing</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#direct-manipulation-of-language-objects">Direct manipulation of language objects</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#index-parsing-5">parsing</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#substitutions">Substitutions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Parser.html#index-parsing-6">parsing</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Parser.html#parser">Parser</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Parser.html#index-parsing-7">parsing</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Parser.html#internal-representation">Internal representation</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-partial-matching">partial matching</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#indexing-by-vectors">Indexing by vectors</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-promise">promise</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#promise-objects">Promise objects</a></td>
+</tr>
+<tr class="odd">
+<td>S</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-scope">scope</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#scope-of-variables">Scope of variables</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-scope-1">scope</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#stacks">Stacks</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-scope-2">scope</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#scope">Scope</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-scope-3">scope</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#scope">Scope</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-scope-4">scope</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#scope">Scope</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#index-scope-5">scope</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#more-on-evaluation">More on evaluation</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-search-path">search path</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#search-path">Search path</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-statement">statement</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#language-objects">Language objects</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-symbol">symbol</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#symbol-objects">Symbol objects</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-symbol-1">symbol</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#symbol-objects">Symbol objects</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-symbol-2">symbol</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#symbol-lookup">Symbol lookup</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Functions.html#index-symbol-3">symbol</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Functions.html#scope">Scope</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#index-symbol-4">symbol</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#substitutions">Substitutions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#index-symbol-5">symbol</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Computing-on-the-language.html#manipulation-of-function-calls">Manipulation of function calls</a></td>
+</tr>
+<tr class="even">
+<td>T</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-token">token</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#expression-objects">Expression objects</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-type">type</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#objects">Objects</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-type-1">type</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#objects">Objects</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-type-2">type</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#basic-types">Basic types</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-type-3">type</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#vector-objects">Vector objects</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-type-4">type</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#names">Names</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-type-5">type</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#na-handling">NA handling</a></td>
+</tr>
+<tr class="even">
+<td>V</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-value">value</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#symbol-lookup">Symbol lookup</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-variable">variable</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#objects">Objects</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-vector">vector</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#vector-objects">Vector objects</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Objects.html#index-vector-1">vector</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Objects.html#dimensions">Dimensions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#index-vector-2">vector</a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Evaluation-of-expressions.html#operators">Operators</a></td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Jump to: &nbsp;</td>
+<td><a href="#concept-index_cp_symbol-1" class="summary-letter"><strong>#</strong></a> &nbsp; <a href="#concept-index_cp_symbol-2" class="summary-letter"><strong>.</strong></a> &nbsp;<br>
+<a href="#concept-index_cp_letter-a" class="summary-letter"><strong>A</strong></a> &nbsp; <a href="#concept-index_cp_letter-b" class="summary-letter"><strong>B</strong></a> &nbsp; <a href="#concept-index_cp_letter-c" class="summary-letter"><strong>C</strong></a> &nbsp; <a href="#concept-index_cp_letter-e" class="summary-letter"><strong>E</strong></a> &nbsp; <a href="#concept-index_cp_letter-f" class="summary-letter"><strong>F</strong></a> &nbsp; <a href="#concept-index_cp_letter-i" class="summary-letter"><strong>I</strong></a> &nbsp; <a href="#concept-index_cp_letter-m" class="summary-letter"><strong>M</strong></a> &nbsp; <a href="#concept-index_cp_letter-n" class="summary-letter"><strong>N</strong></a> &nbsp; <a href="#concept-index_cp_letter-o" class="summary-letter"><strong>O</strong></a> &nbsp; <a href="#concept-index_cp_letter-p" class="summary-letter"><strong>P</strong></a> &nbsp; <a href="#concept-index_cp_letter-s" class="summary-letter"><strong>S</strong></a> &nbsp; <a href="#concept-index_cp_letter-t" class="summary-letter"><strong>T</strong></a> &nbsp; <a href="#concept-index_cp_letter-v" class="summary-letter"><strong>V</strong></a> &nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+
+</main> <!-- /main -->
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Function-and-Variable-Index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Function and Variable Index</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./References.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">References</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+  </div>
+</footer>
+
+
+</body></html>

@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.9.48">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>R Manuals :: An Introduction to R - 6&nbsp; Lists and data frames</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+
+  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+  <script src="site_libs/quarto-nav/headroom.min.js"></script>
+  <script src="site_libs/clipboard/clipboard.min.js"></script>
+  <meta name="quarto:offset" content="./">
+  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+  <script src="site_libs/quarto-search/fuse.min.js"></script>
+  <script src="site_libs/quarto-search/quarto-search.js"></script>
+  <link href="./Reading-data-from-files.html" rel="next">
+  <link href="./Arrays-and-matrices.html" rel="prev">
+  <script src="site_libs/quarto-html/quarto.js"></script>
+  <script src="site_libs/quarto-html/popper.min.js"></script>
+  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="site_libs/quarto-html/anchor.min.js"></script>
+  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
+  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <script id="quarto-search-options" type="application/json">{
+    "location": "navbar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "end",
+    "type": "overlay",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body class="floating slimcontent">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">R Manuals :: An Introduction to R</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./../index.html">Home</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
+        <li>
+    <a class="dropdown-item" href="./index.html">
+ <span class="dropdown-text">An Introduction to R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-data/index.html">
+ <span class="dropdown-text">R Data Import/Export</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-admin/index.html">
+ <span class="dropdown-text">R Installation and Administration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-exts/index.html">
+ <span class="dropdown-text">Writing R Extensions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-lang/index.html">
+ <span class="dropdown-text">R Language Definition</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-ints/index.html">
+ <span class="dropdown-text">R Internals</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./../about.html">About</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lists and data frames</span></h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">An Introduction to R</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Preface.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Introduction-and-preliminaries.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction and preliminaries</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Simple-manipulations-numbers-and-vectors.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Simple manipulations; numbers and vectors</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Objects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Objects, their modes and attributes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Factors.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Ordered and unordered factors</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Arrays-and-matrices.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Arrays and matrices</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Lists-and-data-frames.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lists and data frames</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Reading-data-from-files.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Reading data from files</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Probability-distributions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Probability distributions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Loops-and-conditional-execution.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Grouping, loops and conditional execution</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Writing-your-own-functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Writing your own functions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Statistical-models-in-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Statistical models in R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Graphics.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Graphical procedures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Packages.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Packages</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./OS-facilities.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">OS facilities</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A-sample-session.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">A sample session</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Invoking-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Invoking R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./The-command-line-editor.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">The command-line editor</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Function and variable index</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Concept index</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+<h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#lists" class="nav-link active" data-scroll-target="#lists"> <span class="header-section-number">6.1</span> Lists</a></li>
+<li><a href="#constructing-and-modifying-lists" class="nav-link" data-scroll-target="#constructing-and-modifying-lists"> <span class="header-section-number">6.2</span> Constructing and modifying lists</a>
+<ul class="collapse">
+<li><a href="#concatenating-lists" class="nav-link" data-scroll-target="#concatenating-lists"> <span class="header-section-number">6.2.1</span> Concatenating lists</a></li>
+</ul></li>
+<li><a href="#data-frames" class="nav-link" data-scroll-target="#data-frames"> <span class="header-section-number">6.3</span> Data frames</a>
+<ul class="collapse">
+<li><a href="#making-data-frames" class="nav-link" data-scroll-target="#making-data-frames"> <span class="header-section-number">6.3.1</span> Making data frames</a></li>
+<li><a href="#attach-and-detach" class="nav-link" data-scroll-target="#attach-and-detach"> <span class="header-section-number">6.3.2</span> <code>attach()</code> and <code>detach()</code></a></li>
+<li><a href="#working-with-data-frames" class="nav-link" data-scroll-target="#working-with-data-frames"> <span class="header-section-number">6.3.3</span> Working with data frames</a></li>
+<li><a href="#attaching-arbitrary-lists" class="nav-link" data-scroll-target="#attaching-arbitrary-lists"> <span class="header-section-number">6.3.4</span> Attaching arbitrary lists</a></li>
+<li><a href="#managing-the-search-path" class="nav-link" data-scroll-target="#managing-the-search-path"> <span class="header-section-number">6.3.5</span> Managing the search path</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+<header id="title-block-header">
+<h1 class="title display-7"><span id="lists-and-data-frames" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lists and data frames</span></span></h1>
+</header>
+
+<section id="lists" class="level2 section" data-number="6.1">
+<h2 class="section anchored" data-number="6.1" data-anchor-id="lists"><span class="header-section-number">6.1</span> Lists</h2>
+<p>An R <em>list</em> is an object consisting of an ordered collection of objects known as its <em>components</em>.</p>
+<p>There is no particular need for the components to be of the same mode or type, and, for example, a list could consist of a numeric vector, a logical value, a matrix, a complex vector, a character array, a function, and so on. Here is a simple example of how to make a list:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Lst <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">name=</span><span class="st">"Fred"</span>, <span class="at">wife=</span><span class="st">"Mary"</span>, <span class="at">no.children=</span><span class="dv">3</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">child.ages=</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">9</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Components are always <em>numbered</em> and may always be referred to as such. Thus if <code>Lst</code> is the name of a list with four components, these may be individually referred to as <code>Lst[[1]]</code>, <code>Lst[[2]]</code>, <code>Lst[[3]]</code> and <code>Lst[[4]]</code>. If, further, <code>Lst[[4]]</code> is a vector subscripted array then <code>Lst[[4]][1]</code> is its first entry.</p>
+<p>If <code>Lst</code> is a list, then the function <code>length(Lst)</code> gives the number of (top level) components it has.</p>
+<p>Components of lists may also be <em>named</em>, and in this case the component may be referred to either by giving the component name as a character string in place of the number in double square brackets, or, more conveniently, by giving an expression of the form</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> name<span class="sc">$</span>component_name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>for the same thing.</p>
+<p>This is a very useful convention as it makes it easier to get the right component if you forget the number.</p>
+<p>So in the simple example given above:</p>
+<p><code>Lst$name</code> is the same as <code>Lst[[1]]</code> and is the string <code>"Fred"</code>,</p>
+<p><code>Lst$wife</code> is the same as <code>Lst[[2]]</code> and is the string <code>"Mary"</code>,</p>
+<p><code>Lst$child.ages[1]</code> is the same as <code>Lst[[4]][1]</code> and is the number <code>4</code>.</p>
+<p>Additionally, one can also use the names of the list components in double square brackets, i.e., <code>Lst[["name"]]</code> is the same as <code>Lst$name</code>. This is especially useful, when the name of the component to be extracted is stored in another variable as in</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="st">"name"</span>; Lst[[x]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>It is very important to distinguish <code>Lst[[1]]</code> from <code>Lst[1]</code>. <code>[[…]]</code> is the operator used to select a single element, whereas <code>[…]</code> is a general subscripting operator. Thus the former is the <em>first object in the list</em> <code>Lst</code>, and if it is a named list the name is <em>not</em> included. The latter is a <em>sublist of the list <code>Lst</code> consisting of the first entry only. If it is a named list, the names are transferred to the sublist.</em></p>
+<p>The names of components may be abbreviated down to the minimum number of letters needed to identify them uniquely. Thus <code>Lst$coefficients</code> may be minimally specified as <code>Lst$coe</code> and <code>Lst$covariance</code> as <code>Lst$cov</code>.</p>
+<p>The vector of names is in fact simply an attribute of the list like any other and may be handled as such. Other structures besides lists may, of course, similarly be given a <em>names</em> attribute also.</p>
+</section>
+<section id="constructing-and-modifying-lists" class="level2 section" data-number="6.2">
+<h2 class="section anchored" data-number="6.2" data-anchor-id="constructing-and-modifying-lists"><span class="header-section-number">6.2</span> Constructing and modifying lists</h2>
+<p>New lists may be formed from existing objects by the function <code>list()</code>. An assignment of the form</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Lst <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">name_1=</span>object_1, …, <span class="at">name_m=</span>object_m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>sets up a list <code>Lst</code> of <em>m</em> components using <var>object_1</var>, …, <var>object_m</var> for the components and giving them names as specified by the argument names, (which can be freely chosen). If these names are omitted, the components are numbered only. The components used to form the list are <em>copied</em> when forming the new list and the originals are not affected.</p>
+<p>Lists, like any subscripted object, can be extended by specifying additional components. For example</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Lst[<span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">matrix=</span>Mat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="concatenating-lists" class="level3 subsection" data-number="6.2.1">
+<h3 class="subsection anchored" data-number="6.2.1" data-anchor-id="concatenating-lists"><span class="header-section-number">6.2.1</span> Concatenating lists</h3>
+<p>When the concatenation function <code>c()</code> is given list arguments, the result is an object of mode list also, whose components are those of the argument lists joined together in sequence.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> list.ABC <span class="ot">&lt;-</span> <span class="fu">c</span>(list.A, list.B, list.C)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Recall that with vector objects as arguments the concatenation function similarly joined together all arguments into a single vector structure. In this case all other attributes, such as <code>dim</code> attributes, are discarded.</p>
+</section>
+</section>
+<section id="data-frames" class="level2 section page-columns page-full" data-number="6.3">
+<h2 class="section anchored" data-number="6.3" data-anchor-id="data-frames"><span class="header-section-number">6.3</span> Data frames</h2>
+<p>A <em>data frame</em> is a list with class <code>"data.frame"</code>. There are restrictions on lists that may be made into data frames, namely</p>
+<ul>
+<li>The components must be vectors (numeric, character, or logical), factors, numeric matrices, lists, or other data frames.</li>
+<li>Matrices, lists, and data frames provide as many variables to the new data frame as they have columns, elements, or variables, respectively.</li>
+<li>Vector structures appearing as variables of the data frame must all have the <em>same length</em>, and matrix structures must all have the <em>same number of rows</em>.</li>
+</ul>
+<p>A data frame may for many purposes be regarded as a matrix with columns possibly of differing modes and attributes. It may be displayed in matrix form, and its rows and columns extracted using matrix indexing conventions.</p>
+<section id="making-data-frames" class="level3 subsection" data-number="6.3.1">
+<h3 class="subsection anchored" data-number="6.3.1" data-anchor-id="making-data-frames"><span class="header-section-number">6.3.1</span> Making data frames</h3>
+<p>Objects satisfying the restrictions placed on the columns (components) of a data frame may be used to form one using the function <code>data.frame</code>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> accountants <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">home=</span>statef, <span class="at">loot=</span>incomes, <span class="at">shot=</span>incomef)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A list whose components conform to the restrictions of a data frame may be <em>coerced</em> into a data frame using the function <code>as.data.frame()</code></p>
+<p>The simplest way to construct a data frame from scratch is to use the <code>read.table()</code> function to read an entire data frame from an external file. This is discussed further in <a href="Reading-data-from-files.html#reading-data-from-files">Reading data from files</a>.</p>
+</section>
+<section id="attach-and-detach" class="level3 subsection" data-number="6.3.2">
+<h3 class="subsection anchored" data-number="6.3.2" data-anchor-id="attach-and-detach"><span class="header-section-number">6.3.2</span> <code>attach()</code> and <code>detach()</code></h3>
+<p>The <code>$</code> notation, such as <code>accountants$home</code>, for list components is not always very convenient. A useful facility would be somehow to make the components of a list or data frame temporarily visible as variables under their component name, without the need to quote the list name explicitly each time.</p>
+<p>The <code>attach()</code> function takes a ‘database’ such as a list or data frame as its argument. Thus suppose <code>lentils</code> is a data frame with three variables <code>lentils$u</code>, <code>lentils$v</code>, <code>lentils$w</code>. The attach</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">attach</span>(lentils)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>places the data frame in the search path at position&nbsp;2, and provided there are no variables <code>u</code>, <code>v</code> or <code>w</code> in position&nbsp;1, <code>u</code>, <code>v</code> and <code>w</code> are available as variables from the data frame in their own right. At this point an assignment such as</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> u <span class="ot">&lt;-</span> v<span class="sc">+</span>w</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>does not replace the component <code>u</code> of the data frame, but rather masks it with another variable <code>u</code> in the working directory at position&nbsp;1 on the search path. To make a permanent change to the data frame itself, the simplest way is to resort once again to the <code>$</code> notation:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> lentils<span class="sc">$</span>u <span class="ot">&lt;-</span> v<span class="sc">+</span>w</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>However the new value of component <code>u</code> is not visible until the data frame is detached and attached again.</p>
+<p>To detach a data frame, use the function</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">detach</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>More precisely, this statement detaches from the search path the entity currently at position&nbsp;2. Thus in the present context the variables <code>u</code>, <code>v</code> and <code>w</code> would be no longer visible, except under the list notation as <code>lentils$u</code> and so on. Entities at positions greater than 2 on the search path can be detached by giving their number to <code>detach</code>, but it is much safer to always use a name, for example by <code>detach(lentils)</code> or <code>detach("lentils")</code></p>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> In R lists and data frames can only be attached at position 2 or above, and what is attached is a <em>copy</em> of the original object. You can alter the attached values <em>via</em> <code>assign</code>, but the original list or data frame is unchanged.</p>
+</blockquote>
+</section>
+<section id="working-with-data-frames" class="level3 subsection" data-number="6.3.3">
+<h3 class="subsection anchored" data-number="6.3.3" data-anchor-id="working-with-data-frames"><span class="header-section-number">6.3.3</span> Working with data frames</h3>
+<p>A useful convention that allows you to work with many different problems comfortably together in the same working directory is</p>
+<ul>
+<li>gather together all variables for any well defined and separate problem in a data frame under a suitably informative name;</li>
+<li>when working with a problem attach the appropriate data frame at position&nbsp;2, and use the working directory at level&nbsp;1 for operational quantities and temporary variables;</li>
+<li>before leaving a problem, add any variables you wish to keep for future reference to the data frame using the <code>$</code> form of assignment, and then <code>detach()</code>;</li>
+<li>finally remove all unwanted variables from the working directory and keep it as clean of left-over temporary variables as possible.</li>
+</ul>
+<p>In this way it is quite simple to work with many problems in the same directory, all of which have variables named <code>x</code>, <code>y</code> and <code>z</code>, for example.</p>
+</section>
+<section id="attaching-arbitrary-lists" class="level3 subsection" data-number="6.3.4">
+<h3 class="subsection anchored" data-number="6.3.4" data-anchor-id="attaching-arbitrary-lists"><span class="header-section-number">6.3.4</span> Attaching arbitrary lists</h3>
+<p><code>attach()</code> is a generic function that allows not only directories and data frames to be attached to the search path, but other classes of object as well. In particular any object of mode <code>"list"</code> may be attached in the same way:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">attach</span>(any.old.list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Anything that has been attached can be detached by <code>detach</code>, by position number or, preferably, by name.</p>
+</section>
+<section id="managing-the-search-path" class="level3 subsection page-columns page-full" data-number="6.3.5">
+<h3 class="subsection anchored" data-number="6.3.5" data-anchor-id="managing-the-search-path"><span class="header-section-number">6.3.5</span> Managing the search path</h3>
+<p>The function <code>search</code> shows the current search path and so is a very useful way to keep track of which data frames and lists (and packages) have been attached and detached. Initially it gives</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">search</span>()</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">".GlobalEnv"</span>   <span class="st">"Autoloads"</span>    <span class="st">"package:base"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="page-columns page-full"><p>where <code>.GlobalEnv</code> is the workspace.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;See the on-line help for <code>autoload</code> for the meaning of the second term.</p></li></div></div>
+<p>After <code>lentils</code> is attached we have</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">search</span>()</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">".GlobalEnv"</span>   <span class="st">"lentils"</span>      <span class="st">"Autoloads"</span>    <span class="st">"package:base"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">ls</span>(<span class="dv">2</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"u"</span> <span class="st">"v"</span> <span class="st">"w"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and as we see <code>ls</code> (or <code>objects</code>) can be used to examine the contents of any position on the search path.</p>
+<p>Finally, we detach the data frame and confirm it has been removed from the search path.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">detach</span>(<span class="st">"lentils"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">search</span>()</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">".GlobalEnv"</span>   <span class="st">"Autoloads"</span>    <span class="st">"package:base"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Arrays-and-matrices.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Arrays and matrices</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Reading-data-from-files.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Reading data from files</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+  </div>
+</footer>
+
+
+</body></html>

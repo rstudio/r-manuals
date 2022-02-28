@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.9.48">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>R Manuals :: R Internals - 8&nbsp; Tools</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+
+  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+  <script src="site_libs/quarto-nav/headroom.min.js"></script>
+  <script src="site_libs/clipboard/clipboard.min.js"></script>
+  <meta name="quarto:offset" content="./">
+  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+  <script src="site_libs/quarto-search/fuse.min.js"></script>
+  <script src="site_libs/quarto-search/quarto-search.js"></script>
+  <link href="./R-coding-standards.html" rel="next">
+  <link href="./GUI-consoles.html" rel="prev">
+  <script src="site_libs/quarto-html/quarto.js"></script>
+  <script src="site_libs/quarto-html/popper.min.js"></script>
+  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="site_libs/quarto-html/anchor.min.js"></script>
+  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
+  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <script id="quarto-search-options" type="application/json">{
+    "location": "navbar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "end",
+    "type": "overlay",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body class="floating slimcontent">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">R Manuals :: R Internals</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./../index.html">Home</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
+        <li>
+    <a class="dropdown-item" href="./../r-intro/index.html">
+ <span class="dropdown-text">An Introduction to R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-data/index.html">
+ <span class="dropdown-text">R Data Import/Export</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-admin/index.html">
+ <span class="dropdown-text">R Installation and Administration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-exts/index.html">
+ <span class="dropdown-text">Writing R Extensions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-lang/index.html">
+ <span class="dropdown-text">R Language Definition</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./index.html">
+ <span class="dropdown-text">R Internals</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./../about.html">About</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Tools</span></h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">R Internals</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R-Internal-Structures.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R Internal Structures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Internationalization-in-the-R-sources.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Internationalization in the R sources</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Package-Structure.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Structure of an Installed Package</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Files.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Files</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Graphics-Devices.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Graphics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GUI-consoles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">GUI consoles</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Tools.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Tools</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R-coding-standards.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R coding standards</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Testing-R-code.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Testing R code</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Use-of-TeX-dialects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Use of TeX dialects</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Current-and-future-directions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Current and future directions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link">Function and variable index</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link">Concept index</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+<header id="title-block-header">
+<h1 class="title display-7"><span id="tools" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Tools</span></span></h1>
+</header>
+<p>The behavior of <code>R CMD check</code> can be controlled through a variety of command line arguments and environment variables.</p>
+<p>There is an internal <code>--install=value</code> command line argument not shown by <code>R CMD check --help</code>, with possible values</p>
+<dl>
+<dt><code>check:file</code></dt>
+<dd>
+<p>Assume that installation was already performed with stdout/stderr to <var>file</var>, the contents of which need to be checked (without repeating the installation). This is useful for checks applied by repository maintainers: it reduces the check time by the installation time given that the package has already been installed. In this case, one also needs to specify <em>where</em> the package was installed to using command line option <code>--library</code>.</p>
+</dd>
+<dt><code>fake</code></dt>
+<dd>
+<p>Fake installation, and turn off the run-time tests.</p>
+</dd>
+<dt><code>skip</code></dt>
+<dd>
+<p>Skip installation, e.g., when testing recommended packages bundled with R.</p>
+</dd>
+<dt><code>no</code></dt>
+<dd>
+<p>The same as <code>--no-install</code> : turns off installation and the tests which require the package to be installed.</p>
+</dd>
+</dl>
+<p>The following environment variables can be used to customize the operation of <code>check</code>: a convenient place to set these is the check environment file (default, <code>~/.R/check.Renviron</code>).</p>
+<dl>
+<dt><code>_R_CHECK_ALL_NON_ISO_C_</code></dt>
+<dd>
+<p>If true, do not ignore compiler (typically GCC) warnings about non ISO C code in <em>system</em> headers. Note that this may also show additional ISO C++ warnings. Default: false.</p>
+</dd>
+<dt><code>_R_CHECK_FORCE_SUGGESTS_</code></dt>
+<dd>
+<p>If true, give an error if suggested packages are not available. Default: true (but false for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_RD_CONTENTS_</code></dt>
+<dd>
+<p>If true, check <code>Rd</code> files for auto-generated content which needs editing, and missing argument documentation. Default: true.</p>
+</dd>
+<dt><code>_R_CHECK_RD_LINE_WIDTHS_</code></dt>
+<dd>
+<p>If true, check <code>Rd</code> line widths in usage and examples sections. Default: false (but true for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_RD_STYLE_</code></dt>
+<dd>
+<p>If true, check whether <code>Rd</code> usage entries for S3 methods use the full function name rather than the appropriate <code>\method</code> markup. Default: true.</p>
+</dd>
+<dt><code>_R_CHECK_RD_XREFS_</code></dt>
+<dd>
+<p>If true, check the cross-references in <code>.Rd</code> files. Default: true.</p>
+</dd>
+<dt><code>_R_CHECK_SUBDIRS_NOCASE_</code></dt>
+<dd>
+<p>If true, check the case of directories such as <code>R</code> and <code>man</code>. Default: true.</p>
+</dd>
+<dt><code>_R_CHECK_SUBDIRS_STRICT_</code></dt>
+<dd>
+<p>Initial setting for <code>--check-subdirs</code>. Default: <code>default</code> (which checks only tarballs, and checks in the <code>src</code> only if there is no <code>configure</code> file).</p>
+</dd>
+<dt><code>_R_CHECK_USE_CODETOOLS_</code></dt>
+<dd>
+<p>If true, make use of the <a href="https://CRAN.R-project.org/package=codetools"><strong>codetools</strong></a> package, which provides a detailed analysis of visibility of objects (but may give false positives). Default: true (if recommended packages are installed).</p>
+</dd>
+<dt><code>_R_CHECK_USE_INSTALL_LOG_</code></dt>
+<dd>
+<p>If true, record the output from installing a package as part of its check to a log file (<code>00install.out</code> by default), even when running interactively. Default: true.</p>
+</dd>
+<dt><code>_R_CHECK_VIGNETTES_NLINES_</code></dt>
+<dd>
+<p>Maximum number of lines to show from the bottom of the output when reporting errors in running or re-building vignettes. ( Value <code>0</code> means all lines will be shown.) Default: 10 for running, 25 for re-building.</p>
+</dd>
+<dt><code>_R_CHECK_CODOC_S4_METHODS_</code></dt>
+<dd>
+<p>Control whether <code>codoc()</code> testing is also performed on S4 methods. Default: true.</p>
+</dd>
+<dt><code>_R_CHECK_DOT_INTERNAL_</code></dt>
+<dd>
+<p>Control whether the package code is scanned for <code>.Internal</code> calls, which should only be used by base (and occasionally by recommended) packages. Default: true.</p>
+</dd>
+<dt><code>_R_CHECK_EXECUTABLES_</code></dt>
+<dd>
+<p>Control checking for executable (binary) files. Default: true.</p>
+</dd>
+<dt><code>_R_CHECK_EXECUTABLES_EXCLUSIONS_</code></dt>
+<dd>
+<p>Control whether checking for executable (binary) files ignores files listed in the package’s <code>BinaryFiles</code> file. Default: true (but false for CRAN submission checks). However, most likely this package-level override mechanism will be removed eventually.</p>
+</dd>
+<dt><code>_R_CHECK_PERMISSIONS_</code></dt>
+<dd>
+<p>Control whether permissions of files should be checked. Default: true iff <code>.Platform$OS.type == "unix"</code>.</p>
+</dd>
+<dt><code>_R_CHECK_FF_CALLS_</code></dt>
+<dd>
+<p>Allows turning off <code>checkFF()</code> testing. If set to <code>registration</code>, checks the registration information (number of arguments, correct choice of <code>.C/.Fortran/.Call/.External</code>) for such calls provided the package is installed. Default: true.</p>
+</dd>
+<dt><code>_R_CHECK_FF_DUP_</code></dt>
+<dd>
+<p>Controls <code>checkFF(check_DUP)</code> Default: true (and forced to be true for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_LICENSE_</code></dt>
+<dd>
+<p>Control whether/how license checks are performed. A possible value is <code>maybe</code> (warn in case of problems, but not about standardizable non-standard license specs). Default: true.</p>
+</dd>
+<dt><code>_R_CHECK_RD_EXAMPLES_T_AND_F_</code></dt>
+<dd>
+<p>Control whether <code>check_T_and_F()</code> also looks for “bad” (global) <code>T</code>/<code>F</code> uses in examples. Off by default because this can result in false positives.</p>
+</dd>
+<dt><code>_R_CHECK_RD_CHECKRD_MINLEVEL_</code></dt>
+<dd>
+<p>Controls the minimum level for reporting warnings from <code>checkRd</code>. Default: -1.</p>
+</dd>
+<dt><code>_R_CHECK_XREFS_REPOSITORIES_</code></dt>
+<dd>
+<p>If set to a non-empty value, a space-separated list of repositories to use to determine known packages. Default: empty, when the CRAN and Bioconductor repositories known to R is used.</p>
+</dd>
+<dt><code>_R_CHECK_SRC_MINUS_W_IMPLICIT_</code></dt>
+<dd>
+<p>Control whether installation output is checked for compilation warnings about implicit function declarations (as spotted by GCC with command line option <code>-Wimplicit-function-declaration</code>, which is implied by <code>-Wall</code>). NB: implicit function declarations are errors in some recent C compilers, including Apple <code>clang</code>. Default: true from R 4.2.0, previously false.</p>
+</dd>
+<dt><code>_R_CHECK_SRC_MINUS_W_UNUSED_</code></dt>
+<dd>
+<p>Control whether installation output is checked for compilation warnings about unused code constituents (as spotted by GCC with command line option <code>-Wunused</code>, which is implied by <code>-Wall</code>). Default: true.</p>
+</dd>
+<dt><code>_R_CHECK_WALL_FORTRAN_</code></dt>
+<dd>
+<p>Control whether gfortran 4.0 or later <code>-Wall</code> warnings are used in the analysis of installation output. Default: false, even though the warnings are justifiable.</p>
+</dd>
+<dt><code>_R_CHECK_ASCII_CODE_</code></dt>
+<dd>
+<p>If true, check R code for non-ascii characters. Default: true.</p>
+</dd>
+<dt><code>_R_CHECK_ASCII_DATA_</code></dt>
+<dd>
+<p>If true, check data for non-ascii characters. <em>En route</em>, checks that all the datasets can be loaded and that their components can be accessed. Default: true.</p>
+</dd>
+<dt><code>_R_CHECK_COMPACT_DATA_</code></dt>
+<dd>
+<p>If true, check data for ascii and uncompressed saves, and also check if using <code>bzip2</code> or <code>xz</code> compression would be significantly better. Default: true.</p>
+</dd>
+<dt><code>_R_CHECK_SKIP_ARCH_</code></dt>
+<dd>
+<p>Comma-separated list of architectures that will be omitted from checking in a multi-arch setup. Default: none.</p>
+</dd>
+<dt><code>_R_CHECK_SKIP_TESTS_ARCH_</code></dt>
+<dd>
+<p>Comma-separated list of architectures that will be omitted from running tests in a multi-arch setup. Default: none.</p>
+</dd>
+<dt><code>_R_CHECK_SKIP_EXAMPLES_ARCH_</code></dt>
+<dd>
+<p>Comma-separated list of architectures that will be omitted from running examples in a multi-arch setup. Default: none.</p>
+</dd>
+<dt><code>_R_CHECK_VC_DIRS_</code></dt>
+<dd>
+<p>Should the unpacked package directory be checked for version-control directories (<code>CVS</code>, <code>.svn</code> …)? Default: true for tarballs.</p>
+</dd>
+<dt><code>_R_CHECK_PKG_SIZES_</code></dt>
+<dd>
+<p>Should <code>du</code> be used to find the installed sizes of packages? <code>R CMD check</code> does check for the availability of <code>du</code>. but this option allows the check to be overruled if an unsuitable command is found (including one that does not respect the <code>-k</code> flag to report in units of 1Kb, or reports in a different format – the GNU, macOS and Solaris <code>du</code> commands have been tested). Default: true if <code>du</code> is found.</p>
+</dd>
+<dt><code>_R_CHECK_PKG_SIZES_THRESHOLD_</code></dt>
+<dd>
+<p>Threshold used for <code>_R_CHECK_PKG_SIZES_</code> (in Mb). Default: 5</p>
+</dd>
+<dt><code>_R_CHECK_DOC_SIZES_</code></dt>
+<dd>
+<p>Should <code>qpdf</code> be used to check the installed sizes of PDFs? Default: true if <code>qpdf</code> is found.</p>
+</dd>
+<dt><code>_R_CHECK_DOC_SIZES2_</code></dt>
+<dd>
+<p>Should <code>gs</code> be used to check the installed sizes of PDFs? This is slower than (and in addition to) the previous check, but does detect figures with excessive detail (often hidden by over-plotting) or bitmap figures with too high a resolution. Requires that <code>R_GSCMD</code> is set to a valid program, or <code>gs</code> (or on Windows, <code>gswin32.exe</code> or <code>gswin64c.exe</code>) is on the path. Default: false (but true for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_ALWAYS_LOG_VIGNETTE_OUTPUT_</code></dt>
+<dd>
+<p>By default the output from running the R code in the vignettes is kept only if there is an error. This also applies to the <code>build_vignettes.log</code> log from the re-building of vignettes. Default: false.</p>
+</dd>
+<dt><code>_R_CHECK_CLEAN_VIGN_TEST_</code></dt>
+<dd>
+<p>Should the <code>vign_test</code> directory be removed if the test is successful? Default: true.</p>
+</dd>
+<dt><code>_R_CHECK_REPLACING_IMPORTS_</code></dt>
+<dd>
+<p>Should warnings about replacing imports be reported? These sometimes come from auto-generated <code>NAMESPACE</code> files in other packages, but most often from importing the whole of a namespace rather than using <code>importFrom</code>. Default: true.</p>
+</dd>
+<dt><code>_R_CHECK_UNSAFE_CALLS_</code></dt>
+<dd>
+<p>Check for calls that appear to tamper with (or allow tampering with) already loaded code not from the current package: such calls may well contravene CRAN policies. Default: true.</p>
+</dd>
+<dt><code>_R_CHECK_TIMINGS_</code></dt>
+<dd>
+<p>Optionally report timings for installation, examples, tests and running/re-building vignettes as part of the check log. The format is <code>[as/bs]</code> for the total CPU time (including child processes) <code>a</code> and elapsed time <code>b</code>, except on Windows, when it is <code>[bs]</code>. In most cases timings are only given for <code>OK</code> checks. Times with an elapsed component over 10 mins are reported in minutes (with abbreviation <code>m</code>). The value is the smallest numerical value in elapsed seconds that should be reported: non-numerical values indicate that no report is required, a value of <code>0</code> that a report is always required. Default: <code>""</code>. (<code>10</code> for CRAN checks.)</p>
+</dd>
+<dt><code>_R_CHECK_EXAMPLE_TIMING_THRESHOLD_</code></dt>
+<dd>
+<p>If timings are being recorded, set the threshold in seconds for reporting long-running examples (either user+system CPU time or elapsed time). Default: <code>"5"</code>.</p>
+</dd>
+<dt><code>_R_CHECK_EXAMPLE_TIMING_CPU_TO_ELAPSED_THRESHOLD_</code></dt>
+<dd>
+<p>For checks with timings enabled, report examples where the ratio of CPU time to elapsed time exceeds this threshold (and the CPU time is at least one second). This can help detect the simultaneous use of multiple CPU cores. Default: <code>NA</code>.</p>
+</dd>
+<dt><code>_R_CHECK_TEST_TIMING_CPU_TO_ELAPSED_THRESHOLD_</code></dt>
+<dd>
+<p>Report for running an individual test if the ratio of CPU time to elapsed time exceeds this threshold (and the CPU time is at least one second). Not supported on Windows. Default: <code>NA</code>.</p>
+</dd>
+<dt><code>_R_CHECK_VIGNETTE_TIMING_CPU_TO_ELAPSED_THRESHOLD_</code></dt>
+<dd>
+<p>Report if when running/re-building vignettes (individually or in aggregate) the ratio of CPU time to elapsed time exceeds this threshold (and the CPU time is at least one second). Not supported on Windows. Default: <code>NA</code>.</p>
+</dd>
+<dt><code>_R_CHECK_CODETOOLS_PROFILE_</code></dt>
+<dd>
+<p>A string with comma-separated <code>name=value</code> pairs (with <var>value</var> a logical constant) giving additional arguments for the <a href="https://CRAN.R-project.org/package=codetools"><strong>codetools</strong></a> functions used for analyzing package code. E.g., use <code>_R_CHECK_CODETOOLS_PROFILE_="suppressLocalUnused=FALSE"</code> to turn off suppressing warnings about unused local variables. Default: no additional arguments, corresponding to using <code>skipWith = TRUE</code>, <code>suppressPartialMatchArgs = FALSE</code> and <code>suppressLocalUnused = TRUE</code>.</p>
+</dd>
+<dt><code>_R_CHECK_CRAN_INCOMING_</code></dt>
+<dd>
+<p>Check whether package is suitable for publication on CRAN. Default: false, except for CRAN submission checks.</p>
+</dd>
+<dt><code>_R_CHECK_CRAN_INCOMING_REMOTE_</code></dt>
+<dd>
+<p>Include checks that require remote access among the above. Default: same as <code>_R_CHECK_CRAN_INCOMING_</code></p>
+</dd>
+<dt><code>_R_CHECK_XREFS_USE_ALIASES_FROM_CRAN_</code></dt>
+<dd>
+<p>When checking anchored Rd xrefs, use Rd aliases from the CRAN package web areas in addition to those in the packages installed locally. Default: false.</p>
+</dd>
+<dt><code>_R_SHLIB_BUILD_OBJECTS_SYMBOL_TABLES_</code></dt>
+<dd>
+<p>Make the checks of compiled code more accurate by recording the symbol tables for objects (<code>.o</code> files) at installation in a file <code>symbols.rds</code>. (Only currently supported on Linux, Solaris, macOS, Windows and FreeBSD.) Default: true.</p>
+</dd>
+<dt><code>_R_CHECK_CODE_ASSIGN_TO_GLOBALENV_</code></dt>
+<dd>
+<p>Should the package code be checked for assignments to the global environment? Default: false (but true for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_CODE_ATTACH_</code></dt>
+<dd>
+<p>Should the package code be checked for calls to <code>attach()</code>? Default: false (but true for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_CODE_DATA_INTO_GLOBALENV_</code></dt>
+<dd>
+<p>Should the package code be checked for calls to <code>data()</code> which load into the global environment? Default: false (but true for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_DOT_FIRSTLIB_</code></dt>
+<dd>
+<p>Should the package code be checked for the presence of the obsolete function <code>.First.lib()</code>? Default: false (but true for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_DEPRECATED_DEFUNCT_</code></dt>
+<dd>
+<p>Should the package code be checked for the presence of recently deprecated or defunct functions (including completely removed functions). Also for platform-specific graphics devices. Default: false (but true for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_SCREEN_DEVICE_</code></dt>
+<dd>
+<p>If set to <code>warn</code>, give a warning if examples etc open a screen device. If set to <code>stop</code>, give an error. Default: empty (but <code>stop</code> for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_WINDOWS_DEVICE_</code></dt>
+<dd>
+<p>If set to <code>stop</code>, give an error if a Windows-only device is used in example etc. This is only useful on Windows: the devices do not exist elsewhere. Default: empty (but <code>stop</code> for CRAN submission checks on Windows).</p>
+</dd>
+<dt><code>_R_CHECK_TOPLEVEL_FILES_</code></dt>
+<dd>
+<p>Report on top-level files in the package sources that are not described in ‘Writing R Extensions’ nor are commonly understood (like <code>ChangeLog</code>). Variations on standard names (e.g. <code>COPYRIGHT</code>) are also reported. Default: false (but true for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_GCT_N_</code></dt>
+<dd>
+<p>Should the <code>--use-gct</code> use <code>gctorture2(n)</code> rather than <code>gctorture(TRUE)</code>? Use a positive integer to enable this. Default: <code>0</code>.</p>
+</dd>
+<dt><code>_R_CHECK_LIMIT_CORES_</code></dt>
+<dd>
+<p>If set, check the usage of too many cores in package <strong>parallel</strong>. If set to <code>warn</code> gives a warning, to <code>false</code> or <code>FALSE</code> the check is skipped, and any other non-empty value gives an error when more than 2 children are spawned. Default: unset (but <code>TRUE</code> for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_CODE_USAGE_VIA_NAMESPACES_</code></dt>
+<dd>
+<p>If set, check code usage (via <a href="https://CRAN.R-project.org/package=codetools"><strong>codetools</strong></a>) directly on the package namespace without loading and attaching the package and its suggests and enhances. Default: true (and true for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_CODE_USAGE_WITH_ONLY_BASE_ATTACHED_</code></dt>
+<dd>
+<p>If set, check code usage (via <a href="https://CRAN.R-project.org/package=codetools"><strong>codetools</strong></a>) with only the base package attached. Default: true.</p>
+</dd>
+<dt><code>_R_CHECK_EXIT_ON_FIRST_ERROR_</code></dt>
+<dd>
+<p>If set to a true value, the check will exit on the first error. Default: false.</p>
+</dd>
+<dt><code>_R_CHECK_S3_METHODS_NOT_REGISTERED_</code></dt>
+<dd>
+<p>If set to a true value, report (apparent) S3 methods exported but not registered. Default: true.</p>
+</dd>
+<dt><code>_R_CHECK_OVERWRITE_REGISTERED_S3_METHODS_</code></dt>
+<dd>
+<p>If set to a true value, report already registered S3 methods in base/recommended packages which are overwritten when this package’s namespace is loaded. Default: false (but true for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_TESTS_NLINES_</code></dt>
+<dd>
+<p>Number of trailing lines of test output to reproduce in the log. If <code>0</code> all lines except the R preamble are reproduced. Default: 13.</p>
+</dd>
+<dt><code>_R_CHECK_NATIVE_ROUTINE_REGISTRATION_</code></dt>
+<dd>
+<p>If set to a true value, report if the entry points to register native routines and to suppress dynamic search are not found in a package’s DLL. (<strong>NB:</strong> this requires system command <code>nm</code> to be on the <code>PATH</code>. On Windows, <code>objdump.exe</code> is first searched for in compiler toolchain specified via <code>Makeconf</code> (can be customized by environment variable <code>BINPREF</code>). If not found there, it must be on the <code>PATH</code>. On Unix this would be normal when using a package with compiled code (which are the only ones this checks), but Windows’ users should check. Default: false (but true for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_NO_STOP_ON_TEST_ERROR_</code></dt>
+<dd>
+<p>If set to a true value, do not stop running tests after first error (as if command line option <code>--no-stop-on-test-error</code> had been given). Default: false (but true for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_PRAGMAS_</code></dt>
+<dd>
+<p>Run additional checks on the pragmas in C/C++ source code and headers. Default: false (but true for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_COMPILATION_FLAGS_</code></dt>
+<dd>
+<p>If the package is installed and has C/C++/Fortran code, check the install log for non-portable flags (for example those added to <code>src/Makevars</code> during configuration). Currently <code>-W</code> flags are reported, except <code>-Wall</code>, <code>-Wextra</code> and <code>-Weverything</code>, and flags which appear to be attempts to suppress warnings are highlighted. See ‘Writing R Extensions’ for the rationale of this check (and why even <code>-Werror</code> is unsafe).</p>
+<p>Environment variable <code>_R_CHECK_COMPILATION_FLAGS_KNOWN_</code> can be set to a space-separated set of flags which come from the R build used for testing (flags such as <code>-Wall</code> and <code>-Wextra</code> are already known). For example, for CRAN build of R &gt;= 4.0.0 on macOS one could use</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>_R_CHECK_COMPILATION_FLAGS_KNOWN_<span class="ot">=</span><span class="st">"-mmacosx-version-min=10.13"</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Default: false (but true for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_R_DEPENDS_</code></dt>
+<dd>
+<p>Check that any dependence on R is not on a recent patch-level version such as <code>R (&gt;= 3.3.3)</code> since blocking installation of a package will also block its reverse dependencies. Possible values <code>"note"</code>, <code>"warn"</code> and logical values (where currently true values are equivalent to <code>"note"</code>). Default: false (but <code>"warn"</code> for <code>--as-cran</code>).</p>
+</dd>
+<dt><code>_R_CHECK_SERIALIZATION_</code></dt>
+<dd>
+<p>Check that serialized R objects in the package sources were serialized with version 2 and there is no dependence on <code>R &gt;= 3.5.0</code>. (Version 3 is in use as from R 3.5.0 but should only be used when necessary.) Default: false (but true for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_R_ON_PATH_</code></dt>
+<dd>
+<p>This checks if the package attempts to use <code>R</code> or <code>Rscript</code> from the path rather than that under test. It does so by putting scripts at the head of the path which print a message and fail. Default: false (but true for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_PACKAGES_USED_IN_TESTS_USE_SUBDIRS_</code></dt>
+<dd>
+<p>If set to a true value, also check the R code in common unit test subdirectories of <code>tests</code> for undeclared package dependencies. Default: false (but true for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_SHLIB_OPENMP_FLAGS_</code></dt>
+<dd>
+<p>Check correct and portable use of <code>SHLIB_OPENMP_*FLAGS</code> in <code>src/Makevars</code> (and similar). Default: false (but true for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_CONNECTIONS_LEFT_OPEN_</code></dt>
+<dd>
+<p>When checking examples, check for each example if connections are left open: if any are found, this is reported with a fatal error. NB: ‘connections’ includes most use of files and any parallel clusters which have not be stopped by <code>stopCluster()</code>. Default: false (but true for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_FUTURE_FILE_TIMESTAMPS_</code></dt>
+<dd>
+<p>Check if any of the input files has a timestamp in the future (and to do so, checks that the system clock is correct to within 5 minutes). Default: false (but true for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_LENGTH_1_CONDITION_</code></dt>
+<dd>
+<p>Optionally check if the condition in <code>if</code> and <code>while</code> statements has length greater than one. For a true value (<code>T</code>, <code>True</code>, <code>TRUE</code> or <code>true</code>), give an error. For a false value (<code>F</code>, <code>False</code>, <code>FALSE</code> or <code>false</code>) or when unset, print a warning. Any other non-true non-empty value needs to be a list of commands separated by commas: <code>abort</code> causes R to terminate unconditionally instead of signalling an error (which is useful in pinpointing issues in code called from <code>try</code> or <code>tryCatch</code>), <code>verbose</code> prints a very detailed diagnostic message, <code>package:pkg</code> restricts the check to if/while statements executing in the namespace of package <code>pkg</code> (but <code>all_base</code> refers to all the standard packages), <code>package:_R_CHECK_PACKAGE_NAME_</code> restricts the check to if/while statements executing in the package that is currently being checked by <code>R CMD check</code>, <code>warn</code> causes R to report a warning instead of signalling an error. (More than one package specification can be given: a report, error or warning will be given if any are satisfied.) Default: unset (a warning is reported), but <code>package:_R_CHECK_PACKAGE_NAME_,abort,verbose</code> for the CRAN submission checks.</p>
+</dd>
+<dt><code>_R_CHECK_LENGTH_1_LOGIC2_</code></dt>
+<dd>
+<p>Optionally check if an argument of the binary operators <code>&amp;&amp;</code> and <code>||</code> has length greater than one, the right-hand side being checked only if it is used. The format is the same as for <code>_R_CHECK_LENGTH_1_CONDITION_</code>. Default: unset (a warning is reported), but <code>package:_R_CHECK_PACKAGE_NAME_,abort,verbose</code> for the CRAN submission checks.</p>
+</dd>
+<dt><code>_R_CHECK_VIGNETTES_SKIP_RUN_MAYBE_</code></dt>
+<dd>
+<p>Should running the R code in the vignettes be skipped if vignette outputs are to be rebuilt (which will involve running that code). Default: false (but true for CRAN checking)</p>
+</dd>
+<dt><code>_R_CHECK_BUILD_VIGNETTES_SEPARATELY_</code></dt>
+<dd>
+<p>Prior to R 3.6.0, re-building the vignette outputs was done in a single R session which allowed accidental reliance of one vignette on another (for example, in the loading of packages). The current default is to use a separate session for each vignette; this option allows testing the older behaviour, Default: true</p>
+</dd>
+<dt><code>_R_CHECK_SYSTEM_CLOCK_</code></dt>
+<dd>
+<p>As part of the ‘checking for future file timestamps’ enabled by <code>--as-cran</code>, check the system clock against an external clock to catch errors such as the wrong day or even year. Not necessary on systems doing repeated checks. Default: true (but false for CRAN checking)</p>
+</dd>
+<dt><code>_R_CHECK_AUTOCONF_</code></dt>
+<dd>
+<p>For packages with a <code>configure</code> file generated by GNU <code>autoconf</code> and either <code>configure.ac</code> or <code>configure,.in</code>, check that <code>autoreconf</code> can, if available, be run in a copy of the sources (this will detect missing source files and report <code>autoconf</code> warnings). Environment variable <code>AUTORECONf</code> controls the command used: it can give the full path to <code>autoreconf</code> (without spaces) and can include flags such as <code>--warnings=obsolete</code> (which is added for <code>autoreconf</code> version 2.68 or 2.69 and is the default for later versions). Default: false (but true for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_DATALIST_</code></dt>
+<dd>
+<p>Check whether file <code>data/datalist</code> is out-of-date. Default: false (but true for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_THINGS_IN_CHECK_DIR_</code></dt>
+<dd>
+<p>Check and report at the end of the check run if files have been left in the check directory. Default: false (but true for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_THINGS_IN_TEMP_DIR_</code></dt>
+<dd>
+<p>Check and report at the end of tthe check run if files would have been left in the temporary directory (usually <code>/tmp</code> on a Unix-alike). It does this by setting the environment variable <code>TEMPDIR</code> to a subdirectory of the R session directory for the <code>check</code> process: if any files or directories are left there they are removed. Since some of these might be out of the user’s control, environment variable <code>_R_CHECK_THINGS_IN_TEMP_DIR_EXCLUDE_</code> can specify an (extended regex) pattern of file paths not to be reported – CRAN uses <code>^ompi.</code> for directories left behind by OpenMPI. There are rare instances where <code>TEMPDIR</code> is not respected and so files are left in <code>/tmp</code> (and not reported, but see the next item): one example is <code>/tmp/boost_interprocess</code> on some OSes. Default: false (but true for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_THINGS_IN_OTHER_DIRS_</code></dt>
+<dd>
+<p>Check and report at the end of the check run if new files or directories are created in a selected set of directories during the check run. (This is confined to files owned by the user running the check process.) Currently the directories monitored are the home directory, <code>/tmp</code> (excluding <code>RtmpXXXXXX</code> dirs), <code>/dav/shm</code>, <code>~/.cache</code> (recursively) and <code>~/.local/share</code> (recursively) or their equivalents on Windows and macOS (the directories in which the default settings for <code>tools::R_user_dir()</code> use a <code>R</code> subdirectory). Additional directories can be specified in environment variable <code>_R_CHECK_THINGS_IN_OTHER_DIRS_XTRA_</code>, separated by semicolons. Directories are reported with a trailing <code>/</code> on all platforms.</p>
+<p>Environment variable <code>_R_CHECK_THINGS_IN_OTHER_DIRS_EXCLUDE_</code> can specify an (extended regex) pattern of file paths not to be reported – this should match absolute file paths with home represented by <code>~</code>. For example, on a Linux system</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="st">'^~/.cache/(mozilla/firefox|mesa_shader_cache)/'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>matches cache directories used by Firefox and OpenGL (and their content). If the value starts with <code>@</code> it is considered as a filepath which is read with each line treated as a pattern to be matched.</p>
+<p>Note that other processes (include check runs in parallel) may create new files in these directories which will get reported. However, this optional check is very useful for narrowing down possible packages which are leaving behind unexpected files. Default: false</p>
+</dd>
+<dt><code>_R_CHECK_BASHISMS_</code></dt>
+<dd>
+<p>Check the top-level scripts <code>configure</code> (unless generated by <code>autoconf</code>) and <code>cleanup</code> for non-Bourne-shell code, using the Perl script <code>checkbashisms</code> if available. This includes reporting scripts using the non-portable <code>#! /bin/bash</code>. (Script <code>checkbashisms</code> is available in most Linux distributions in a package named either <code>devscripts</code> or <code>devscripts-checkbashisms</code> and from <a href="https://sourceforge.net/projects/checkbaskisms/files" class="uri">https://sourceforge.net/projects/checkbaskisms/files</a>.) Default: false (but true for CRAN submission checks except on Windows).</p>
+</dd>
+<dt><code>_R_CHECK_ORPHANED_</code></dt>
+<dd>
+<p>Check if dependencies are orphaned packages. As from R 4.1.0 this checks strict dependencies recursively, so will report any orphaned packages which are needed to attach the package by <code>library()</code> as well as any orphaned packages which are suggested. Default: false (but true for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_EXCESSIVE_IMPORTS_</code></dt>
+<dd>
+<p>A positive integer. If set, give a NOTE if the number of imports from non-base packages exceed this threshold. Large numbers of imports make a package vulnerable to any of them becoming unavailable. Default: unset (but 20 for CRAN submission checks)</p>
+</dd>
+<dt><code>_R_CHECK_DONTTEST_EXAMPLES_</code></dt>
+<dd>
+<p>If true and examples are found with <code>\donttest</code> sections, the tests are run in one pass with these commented out and then in a second pass including the <code>\donttest</code> sections, (for the main architecture only). Only for the first pass are the results compared to any <code>.Rout.save</code> file and timings analysed. Overridden by <code>--run-donttest</code>. Default: false unless <code>-as-cran</code> is specified (which can be overridden by setting <code>_R_CHECK_DONTTEST_EXAMPLES_=false</code>).</p>
+</dd>
+<dt><code>_R_CHECK_XREFS_PKGS_ARE_DECLARED_</code></dt>
+<dd>
+<p>Check if packages used in ‘anchored’ cross-references in <code>.Rd</code> files (those of the form <code>\link[pkg]{foo}</code> and <code>\link[pkg:bar]{foo}</code>) are declared in the <code>DESCRIPTION</code> file and so these links can be checked. Default: false.</p>
+</dd>
+<dt><code>_R_CHECK_XREFS_MIND_SUSPECT_ANCHORS_</code></dt>
+<dd>
+<p>Check if package-anchored Rd cross-references are to <em>files</em> (and not aliases). Default: false.</p>
+</dd>
+<dt><code>_R_CHECK_BOGUS_RETURN_</code></dt>
+<dd>
+<p>If true and <code>_R_CHECK_USE_CODETOOLS_</code> is also true, functions are scanned for use of <code>return</code> rather than <code>return()</code>. Default: false (but true for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_MATRIX_DATA_</code></dt>
+<dd>
+<p>By default, the check for a mismatch between the data length and the dimensions in a call to <code>matrix</code> gives a warning: setting this to a true value gives an error with a compact traceback. Default: false (but true for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_CODE_CLASS_IS_STRING_</code></dt>
+<dd>
+<p>Check if package code has <code>if()</code> condition which compare the class of an object to a string. See <a href="https://developer.r-project.org/Blog/public/2019/11/09/when-you-think-class.-think-again/index.html" class="uri">https://developer.r-project.org/Blog/public/2019/11/09/when-you-think-class.-think-again/index.html</a> why this is a bad idea. Default: false (but true for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_RD_VALIDATE_RD2HTML_</code></dt>
+<dd>
+<p>Check the validity of the package HTML help pages using HTML tidy (<a href="https://www.html-tidy.org/" class="uri">https://www.html-tidy.org/</a>) (if available on the system path for executables). Default: false (but true for CRAN submission checks).</p>
+</dd>
+</dl>
+<div class="page-columns page-full"><p>The following variables control checks for undeclared/unconditional use of other packages. They work by setting up a temporary library directory and setting <code>.libPaths()</code> to just that and <code>.Library</code>, so are only effective if additional packages are installed somewhere other than <code>.Library</code>. The temporary library is populated by symbolic links<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> to installed packages not also in <code>.library</code>.</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;under Windows, junction points, or copies if environment variable <code>R_WIN_NO_JUNCTIONS</code> has a non-empty value.</p></li></div></div>
+<dl>
+<dt><code>_R_CHECK_INSTALL_DEPENDS_</code></dt>
+<dd>
+<p>If set to a true value and a test installation is to be done, this is done with a temporary library populated by all the Depends/Imports/LinkingTo packages. Default: false (but true for CRAN submission checks).</p>
+<p>Note that this is actually implemented in <code>R CMD INSTALL</code>, so it is available to those who first install recording to a log, then call <code>R CMD check</code>.</p>
+</dd>
+<dt><code>_R_CHECK_SUGGESTS_ONLY_</code></dt>
+<dd>
+<p>If set to a true value, running examples, tests and vignettes is done with a temporary library directory populated by all the Depends/Imports/Suggests packages. (As exceptions, packages in a <code>VignetteBuilder</code> field are always made available.) Default: false (but true for CRAN submission checks: some of the regular checks use true and some use false).</p>
+</dd>
+<dt><code>_R_CHECK_DEPENDS_ONLY_</code></dt>
+<dd>
+<p>As for <code>_R_CHECK_SUGGESTS_ONLY_</code> but using only Depends/Imports (and the exceptions, including test-suite managers in <code>Suggests</code>). Default: false</p>
+</dd>
+<dt><code>_R_CHECK_DEPENDS_ONLY_DATA_</code></dt>
+<dd>
+<p>Apply <code>_R_CHECK_DEPENDS_ONLY_</code> only to the check of loading from the <code>data</code> directory, so checks if any dataset depends on packages which are in Suggests or undeclared. Default: false (but true for CRAN submission checks)</p>
+</dd>
+<dt><code>_R_CHECK_DEPENDS_ONLY_EXAMPLES_</code></dt>
+<dd>
+
+</dd>
+<dt><code>_R_CHECK_DEPENDS_ONLY_TESTS_</code></dt>
+<dd>
+
+</dd>
+<dt><code>_R_CHECK_DEPENDS_ONLY_VIGNETTES_</code></dt>
+<dd>
+<p>Apply <code>_R_CHECK_DEPENDS_ONLY_</code> only to the checking of examples, tests or vignettes. These can be used on their own, or with a false value to override <code>_R_CHECK_DEPENDS_ONLY_</code>. Default: the value of <code>_R_CHECK_DEPENDS_ONLY_</code> or false if that is unset..</p>
+</dd>
+<dt><code>_R_CHECK_NO_RECOMMENDED_</code></dt>
+<dd>
+<p>If set to a true value, augment the previous checks to make recommended packages unavailable unless declared (even if installed in <code>.library</code>). Default: false (but true for CRAN submission checks).</p>
+<p>This may give false positives on code which uses <code>grDevices::densCols</code> and <code>stats:::.asSparse</code> / <code>stats:::.Diag</code> as these invoke <a href="https://CRAN.R-project.org/package=KernSmooth"><strong>KernSmooth</strong></a> and <a href="https://CRAN.R-project.org/package=Matrix"><strong>Matrix</strong></a> respectively. (Those in <strong>stats</strong> are called from various contrasts functions if <code>sparse = TRUE</code> is used.)</p>
+</dd>
+</dl>
+<p>CRAN’s submission checks use something like</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>_R_CHECK_CRAN_INCOMING_<span class="ot">=</span><span class="cn">TRUE</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>_R_CHECK_CRAN_INCOMING_REMOTE_<span class="ot">=</span><span class="cn">TRUE</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>_R_CHECK_VC_DIRS_<span class="ot">=</span><span class="cn">TRUE</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>_R_CHECK_TIMINGS_<span class="ot">=</span><span class="dv">10</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>_R_CHECK_INSTALL_DEPENDS_<span class="ot">=</span><span class="cn">TRUE</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>_R_CHECK_SUGGESTS_ONLY_<span class="ot">=</span><span class="cn">TRUE</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>_R_CHECK_NO_RECOMMENDED_<span class="ot">=</span><span class="cn">TRUE</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>_R_CHECK_EXECUTABLES_EXCLUSIONS_<span class="ot">=</span><span class="cn">FALSE</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>_R_CHECK_DOC_SIZES2_<span class="ot">=</span><span class="cn">TRUE</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>_R_CHECK_CODE_ASSIGN_TO_GLOBALENV_<span class="ot">=</span><span class="cn">TRUE</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>_R_CHECK_CODE_ATTACH_<span class="ot">=</span><span class="cn">TRUE</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>_R_CHECK_CODE_DATA_INTO_GLOBALENV_<span class="ot">=</span><span class="cn">TRUE</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>_R_CHECK_CODE_USAGE_VIA_NAMESPACES_<span class="ot">=</span><span class="cn">TRUE</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>_R_CHECK_DOT_FIRSTLIB_<span class="ot">=</span><span class="cn">TRUE</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>_R_CHECK_DEPRECATED_DEFUNCT_<span class="ot">=</span><span class="cn">TRUE</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>_R_CHECK_REPLACING_IMPORTS_<span class="ot">=</span><span class="cn">TRUE</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>_R_CHECK_SCREEN_DEVICE_<span class="ot">=</span>stop</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>_R_CHECK_TOPLEVEL_FILES_<span class="ot">=</span><span class="cn">TRUE</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>_R_CHECK_S3_METHODS_NOT_REGISTERED_<span class="ot">=</span><span class="cn">TRUE</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>_R_CHECK_OVERWRITE_REGISTERED_S3_METHODS_<span class="ot">=</span><span class="cn">TRUE</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>_R_CHECK_PRAGMAS_<span class="ot">=</span><span class="cn">TRUE</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>_R_CHECK_COMPILATION_FLAGS_<span class="ot">=</span><span class="cn">TRUE</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>_R_CHECK_R_DEPENDS_<span class="ot">=</span>warn</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>_R_CHECK_SERIALIZATION_<span class="ot">=</span><span class="cn">TRUE</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>_R_CHECK_R_ON_PATH_<span class="ot">=</span><span class="cn">TRUE</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>_R_CHECK_PACKAGES_USED_IN_TESTS_USE_SUBDIRS_<span class="ot">=</span><span class="cn">TRUE</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>_R_CHECK_SHLIB_OPENMP_FLAGS_<span class="ot">=</span><span class="cn">TRUE</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>_R_CHECK_CONNECTIONS_LEFT_OPEN_<span class="ot">=</span><span class="cn">TRUE</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>_R_CHECK_FUTURE_FILE_TIMESTAMPS_<span class="ot">=</span><span class="cn">TRUE</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>_R_CHECK_LENGTH_1_CONDITION_<span class="ot">=</span>package<span class="sc">:</span>_R_CHECK_PACKAGE_NAME_,abort,verbose</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>_R_CHECK_LENGTH_1_LOGIC2_<span class="ot">=</span>package<span class="sc">:</span>_R_CHECK_PACKAGE_NAME_,abort,verbose</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>_R_CHECK_AUTOCONF_<span class="ot">=</span>true</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>_R_CHECK_DATALIST_<span class="ot">=</span>true</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>_R_CHECK_THINGS_IN_CHECK_DIR_<span class="ot">=</span>true</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>_R_CHECK_THINGS_IN_TEMP_DIR_<span class="ot">=</span>true</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>_R_CHECK_BASHISMS_<span class="ot">=</span>true</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>_R_CLASS_MATRIX_ARRARY_<span class="ot">=</span>true</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>_R_CHECK_ORPHANED_<span class="ot">=</span>true</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>_R_CHECK_BOGUS_RETURN_<span class="ot">=</span>true</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>_R_CHECK_MATRIX_DATA_<span class="ot">=</span><span class="cn">TRUE</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>_R_CHECK_CODE_CLASS_IS_STRING_<span class="ot">=</span>true</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>_R_CHECK_RD_VALIDATE_RD2HTML_<span class="ot">=</span>true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>These are turned on by <code>R CMD check --as-cran</code>: the incoming checks also use</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>_R_CHECK_FORCE_SUGGESTS_<span class="ot">=</span><span class="cn">FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>since some packages do suggest other packages not available on CRAN or other commonly-used repositories.</p>
+<p>Several environment variables can be used to set ‘timeouts’: limits for the elapsed time taken by the sub-processes used for parts of the checks. A value of <code>0</code> indicates no limit, and is the default. Character strings ending in <code>s</code>, <code>m</code> or <code>h</code> indicate a number of seconds, minutes or hours respectively: other values are interpreted as a whole number of seconds (with invalid inputs being treated as no limit).</p>
+<dl>
+<dt><code>_R_CHECK_ELAPSED_TIMEOUT_</code></dt>
+<dd>
+<p>The default timeout for sub-processes not otherwise mentioned, and the default value for all except <code>_R_CHECK_ONE_TEST_ELAPSED_TIMEOUT_</code>. (This is also used by <code>tools::check_packages_in_dir</code>.)</p>
+</dd>
+<dt><code>_R_CHECK_INSTALL_ELAPSED_TIMEOUT_</code></dt>
+<dd>
+<p>Limit for when <code>R CMD INSTALL</code> is run by <code>check</code>.</p>
+</dd>
+<dt><code>_R_CHECK_EXAMPLES_ELAPSED_TIMEOUT_</code></dt>
+<dd>
+<p>Limit for running all the examples for one sub-architecture.</p>
+</dd>
+<dt><code>_R_CHECK_ONE_TEST_ELAPSED_TIMEOUT_</code></dt>
+<dd>
+<p>Limit for running one test for one sub-architecture. Default <code>_R_CHECK_TESTS_ELAPSED_TIMEOUT_</code>.</p>
+</dd>
+<dt><code>_R_CHECK_TESTS_ELAPSED_TIMEOUT_</code></dt>
+<dd>
+<p>Limit for running all the tests for one sub-architecture (and the default limit for running one test).</p>
+</dd>
+<dt><code>_R_CHECK_ONE_VIGNETTE_ELAPSED_TIMEOUT_</code></dt>
+<dd>
+<p>Limit for running the R code in one vignette, including for re-building each vignette separately.</p>
+</dd>
+<dt><code>_R_CHECK_BUILD_VIGNETTES_ELAPSED_TIMEOUT_</code></dt>
+<dd>
+<p>Limit for re-building all vignettes.</p>
+</dd>
+<dt><code>_R_CHECK_PKGMAN_ELAPSED_TIMEOUT_</code></dt>
+<dd>
+<p>Limit for each attempt at building the PDF package manual.</p>
+</dd>
+</dl>
+<div class="page-columns page-full"><p>Another variable which enables stricter checks is to set <code>R_CHECK_CONSTANTS</code> to <code>5</code>. This checks that nothing<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> changes the values of ‘constants’<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> in R code. This is best used in conjunction with setting <code>R_JIT_STRATEGY</code> to <code>3</code>, which checks code on first use (by default most code is only checked after byte-compilation on second use). Unfortunately these checks slow down checking of examples, tests and vignettes, typically two-fold but in the worst cases at least a hundred-fold.</p><div class="no-row-height column-margin column-container"><li id="fn2" role="doc-endnote"><p><sup>2</sup>&nbsp;The usual culprits are calls to compiled code <em>via</em> <code>.Call</code> or <code>.External</code> which alter their arguments.</p></li><li id="fn3" role="doc-endnote"><p><sup>3</sup>&nbsp;things which the byte compiler assumes do not change, e.g.&nbsp;function bodies.</p></li></div></div>
+<p>The following environment variables can be used to customize the operation of <code>INSTALL</code>.</p>
+<dl>
+<dt><code>_R_INSTALL_LIBS_ONLY_FORCE_DEPENDS_IMPORTS_</code></dt>
+<dd>
+<p>If true, give an error if installing only package libraries via <code>--libs-only</code> and some package imported or depended on is not available. Default: true (false only for special applications, which analyze native code of packages).</p>
+</dd>
+</dl>
+
+
+
+</main> <!-- /main -->
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./GUI-consoles.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">GUI consoles</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./R-coding-standards.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R coding standards</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+  </div>
+</footer>
+
+
+</body></html>

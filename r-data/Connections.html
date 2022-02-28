@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.9.48">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>R Manuals :: R Data Import/Export - 7&nbsp; Connections</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+
+  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+  <script src="site_libs/quarto-nav/headroom.min.js"></script>
+  <script src="site_libs/clipboard/clipboard.min.js"></script>
+  <meta name="quarto:offset" content="./">
+  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+  <script src="site_libs/quarto-search/fuse.min.js"></script>
+  <script src="site_libs/quarto-search/quarto-search.js"></script>
+  <link href="./Network-interfaces.html" rel="next">
+  <link href="./Image-files.html" rel="prev">
+  <script src="site_libs/quarto-html/quarto.js"></script>
+  <script src="site_libs/quarto-html/popper.min.js"></script>
+  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="site_libs/quarto-html/anchor.min.js"></script>
+  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
+  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <script id="quarto-search-options" type="application/json">{
+    "location": "navbar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "end",
+    "type": "overlay",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body class="floating">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">R Manuals :: R Data Import/Export</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./../index.html">Home</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
+        <li>
+    <a class="dropdown-item" href="./../r-intro/index.html">
+ <span class="dropdown-text">An Introduction to R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./index.html">
+ <span class="dropdown-text">R Data Import/Export</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-admin/index.html">
+ <span class="dropdown-text">R Installation and Administration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-exts/index.html">
+ <span class="dropdown-text">Writing R Extensions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-lang/index.html">
+ <span class="dropdown-text">R Language Definition</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-ints/index.html">
+ <span class="dropdown-text">R Internals</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./../about.html">About</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Connections</span></h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">R Data Import/Export</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Acknowledgements.html" class="sidebar-item-text sidebar-link">Acknowledgements</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Spreadsheet-like-data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Spreadsheet-like data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Importing-from-other-statistical-systems.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Importing from other statistical systems</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Relational-databases.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Relational databases</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Binary-files.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Binary files</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Image-files.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Image files</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Connections.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Connections</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Network-interfaces.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Network interfaces</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Reading-Excel-spreadsheets.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Reading Excel spreadsheets</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link">Function and variable index</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link">Concept index</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+<h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#types-of-connections" class="nav-link active" data-scroll-target="#types-of-connections"> <span class="header-section-number">7.1</span> Types of connections</a></li>
+<li><a href="#output-to-connections" class="nav-link" data-scroll-target="#output-to-connections"> <span class="header-section-number">7.2</span> Output to connections</a></li>
+<li><a href="#input-from-connections" class="nav-link" data-scroll-target="#input-from-connections"> <span class="header-section-number">7.3</span> Input from connections</a>
+<ul class="collapse">
+<li><a href="#pushback" class="nav-link" data-scroll-target="#pushback"> <span class="header-section-number">7.3.1</span> Pushback</a></li>
+</ul></li>
+<li><a href="#listing-and-manipulating-connections" class="nav-link" data-scroll-target="#listing-and-manipulating-connections"> <span class="header-section-number">7.4</span> Listing and manipulating connections</a></li>
+<li><a href="#binary-connections" class="nav-link" data-scroll-target="#binary-connections"> <span class="header-section-number">7.5</span> Binary connections</a>
+<ul class="collapse">
+<li><a href="#special-values" class="nav-link" data-scroll-target="#special-values"> <span class="header-section-number">7.5.1</span> Special values</a></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<header id="title-block-header">
+<h1 class="title display-7"><span id="connections" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Connections</span></span></h1>
+</header>
+
+<p><em>Connections</em> are used in R in the sense of Chambers (1998) and Ripley (2001), a set of functions to replace the use of file names by a flexible interface to file-like objects.</p>
+<section id="types-of-connections" class="level2 section" data-number="7.1">
+<h2 class="section anchored" data-number="7.1" data-anchor-id="types-of-connections"><span class="header-section-number">7.1</span> Types of connections</h2>
+<p>The most familiar type of connection will be a file, and file connections are created by function <code>file</code>. File connections can (if the OS will allow it for the particular file) be opened for reading or writing or appending, in text or binary mode. In fact, files can be opened for both reading and writing, and R keeps a separate file position for reading and writing.</p>
+<p>Note that by default a connection is not opened when it is created. The rule is that a function using a connection should open a connection (needed) if the connection is not already open, and close a connection after use if it opened it. In brief, leave the connection in the state you found it in. There are generic functions <code>open</code> and <code>close</code> with methods to explicitly open and close connections.</p>
+<p>Files compressed via the algorithm used by <code>gzip</code> can be used as connections created by the function <code>gzfile</code>, whereas files compressed by <code>bzip2</code> can be used via <code>bzfile</code>.</p>
+<p>Unix programmers are used to dealing with special files <code>stdin</code>, <code>stdout</code> and <code>stderr</code>. These exist as <em>terminal connections</em> in R. They may be normal files, but they might also refer to input from and output to a GUI console. (Even with the standard Unix R interface, <code>stdin</code> refers to the lines submitted from <code>readline</code> rather than a file.)</p>
+<p>The three terminal connections are always open, and cannot be opened or closed. <code>stdout</code> and <code>stderr</code> are conventionally used for normal output and error messages respectively. They may normally go to the same place, but whereas normal output can be re-directed by a call to <code>sink</code>, error output is sent to <code>stderr</code> unless re-directed by <code>sink, type="message")</code>. Note carefully the language used here: the connections cannot be re-directed, but output can be sent to other connections.</p>
+<p><em>Text connections</em> are another source of input. They allow R character vectors to be read as if the lines were being read from a text file. A text connection is created and opened by a call to <code>textConnection</code>, which copies the current contents of the character vector to an internal buffer at the time of creation.</p>
+<p>Text connections can also be used to capture R output to a character vector. <code>textConnection</code> can be asked to create a new character object or append to an existing one, in both cases in the user’s workspace. The connection is opened by the call to <code>textConnection</code>, and at all times the complete lines output to the connection are available in the R object. Closing the connection writes any remaining output to a final element of the character vector.</p>
+<p><em>Pipes</em> are a special form of file that connects to another process, and pipe connections are created by the function <code>pipe</code>. Opening a pipe connection for writing (it makes no sense to append to a pipe) runs an OS command, and connects its standard input to whatever R then writes to that connection. Conversely, opening a pipe connection for input runs an OS command and makes its standard output available for R input from that connection.</p>
+<p>URLs of types <code>http://</code>, <code>https://</code>, <code>ftp://</code> and <code>file://</code> can be read from using the function <code>url</code>. For convenience, <code>file</code> will also accept these as the file specification and call <code>url</code>.</p>
+<p>Sockets can also be used as connections via function <code>socketConnection</code> on platforms which support Berkeley-like sockets (most Unix systems, Linux and Windows). Sockets can be written to or read from, and both client and server sockets can be used.</p>
+</section>
+<section id="output-to-connections" class="level2 section" data-number="7.2">
+<h2 class="section anchored" data-number="7.2" data-anchor-id="output-to-connections"><span class="header-section-number">7.2</span> Output to connections</h2>
+<p>We have described functions <code>cat</code>, <code>write</code>, <code>write.table</code> and <code>sink</code> as writing to a file, possibly appending to a file if argument <code>append = TRUE</code>, and this is what they did prior to R version 1.2.0.</p>
+<p>The current behaviour is equivalent, but what actually happens is that when the <code>file</code> argument is a character string, a file connection is opened (for writing or appending) and closed again at the end of the function call. If we want to repeatedly write to the same file, it is more efficient to explicitly declare and open the connection, and pass the connection object to each call to an output function. This also makes it possible to write to pipes, which was implemented earlier in a limited way via the syntax <code>file = "|cmd"</code> (which can still be used).</p>
+<p>There is a function <code>writeLines</code> to write complete text lines to a connection.</p>
+<p>Some simple examples are</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>zz <span class="op">&lt;-</span> file<span class="op">(</span><span class="st">"ex.data"</span><span class="op">,</span> <span class="st">"w"</span><span class="op">)</span>  # open an output file connection</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>cat<span class="op">(</span><span class="st">"TITLE extra line"</span><span class="op">,</span> <span class="st">"2 3 5 7"</span><span class="op">,</span> <span class="st">""</span><span class="op">,</span> <span class="st">"11 13 17"</span><span class="op">,</span> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    file <span class="op">=</span> zz<span class="op">,</span> sep <span class="op">=</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span><span class="op">)</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>cat<span class="op">(</span><span class="st">"One more line</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span> file <span class="op">=</span> zz<span class="op">)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>close<span class="op">(</span>zz<span class="op">)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="er">## convert decimal point to comma in output, using a pipe (Unix)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="er">## both R strings and (probably) the shell need \ doubled</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>zz <span class="op">&lt;-</span> pipe<span class="op">(</span>paste<span class="op">(</span><span class="st">"sed s/</span><span class="sc">\\\\</span><span class="st">./,/ &gt;"</span><span class="op">,</span> <span class="st">"outfile"</span><span class="op">),</span> <span class="st">"w"</span><span class="op">)</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>cat<span class="op">(</span>format<span class="op">(</span>round<span class="op">(</span>rnorm<span class="op">(</span><span class="dv">100</span><span class="op">),</span> <span class="dv">4</span><span class="op">)),</span> sep <span class="op">=</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span> file <span class="op">=</span> zz<span class="op">)</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>close<span class="op">(</span>zz<span class="op">)</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="er">## now look at the output file:</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>file<span class="op">.</span>show<span class="op">(</span><span class="st">"outfile"</span><span class="op">,</span> delete<span class="op">.</span>file <span class="op">=</span> TRUE<span class="op">)</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="er">## capture R output: use examples from help(lm)</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>zz <span class="op">&lt;-</span> textConnection<span class="op">(</span><span class="st">"ex.lm.out"</span><span class="op">,</span> <span class="st">"w"</span><span class="op">)</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>sink<span class="op">(</span>zz<span class="op">)</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>example<span class="op">(</span>lm<span class="op">,</span> prompt<span class="op">.</span>echo <span class="op">=</span> <span class="st">"&gt; "</span><span class="op">)</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>sink<span class="op">()</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>close<span class="op">(</span>zz<span class="op">)</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="er">## now `ex.lm.out' contains the output for futher processing.</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="er">## Look at it by, e.g.,</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>cat<span class="op">(</span>ex<span class="op">.</span>lm<span class="op">.</span>out<span class="op">,</span> sep <span class="op">=</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="input-from-connections" class="level2 section" data-number="7.3">
+<h2 class="section anchored" data-number="7.3" data-anchor-id="input-from-connections"><span class="header-section-number">7.3</span> Input from connections</h2>
+<p>The basic functions to read from connections are <code>scan</code> and <code>readLines</code>. These take a character string argument and open a file connection for the duration of the function call, but explicitly opening a file connection allows a file to be read sequentially in different formats.</p>
+<p>Other functions that call <code>scan</code> can also make use of connections, in particular <code>read.table</code>.</p>
+<p>Some simple examples are</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## read in file created in last examples</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">readLines</span>(<span class="st">"ex.data"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unlink</span>(<span class="st">"ex.data"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="do">## read listing of current directory (Unix)</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">readLines</span>(<span class="fu">pipe</span>(<span class="st">"ls -1"</span>))</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># remove trailing commas from an input file.</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppose we are given a file `data' containing</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="dv">450</span>, <span class="dv">390</span>, <span class="dv">467</span>, <span class="dv">654</span>,  <span class="dv">30</span>, <span class="dv">542</span>, <span class="dv">334</span>, <span class="dv">432</span>, <span class="dv">421</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="dv">357</span>, <span class="dv">497</span>, <span class="dv">493</span>, <span class="dv">550</span>, <span class="dv">549</span>, <span class="dv">467</span>, <span class="dv">575</span>, <span class="dv">578</span>, <span class="dv">342</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="dv">446</span>, <span class="dv">547</span>, <span class="dv">534</span>, <span class="dv">495</span>, <span class="dv">979</span>, <span class="dv">479</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Then read this by</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">scan</span>(<span class="fu">pipe</span>(<span class="st">"sed -e s/,$// data"</span>), <span class="at">sep=</span><span class="st">","</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For convenience, if the <code>file</code> argument specifies a FTP, HTTP or HTTPS URL, the URL is opened for reading via <code>url</code>. Specifying files via <code>file://foo.bar</code> is also allowed.</p>
+<section id="pushback" class="level3 subsection" data-number="7.3.1">
+<h3 class="subsection anchored" data-number="7.3.1" data-anchor-id="pushback"><span class="header-section-number">7.3.1</span> Pushback</h3>
+<p>C programmers may be familiar with the <code>ungetc</code> function to push back a character onto a text input stream. R connections have the same idea in a more powerful way, in that an (essentially) arbitrary number of lines of text can be pushed back onto a connection via a call to <code>pushBack</code>.</p>
+<p>Pushbacks operate as a stack, so a read request first uses each line from the most recently pushbacked text, then those from earlier pushbacks and finally reads from the connection itself. Once a pushbacked line is read completely, it is cleared. The number of pending lines pushed back can be found via a call to <code>pushBackLength</code>.</p>
+<p>A simple example will show the idea.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> zz <span class="ot">&lt;-</span> <span class="fu">textConnection</span>(LETTERS)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">readLines</span>(zz, <span class="dv">2</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"A"</span> <span class="st">"B"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">scan</span>(zz, <span class="st">""</span>, <span class="dv">4</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>Read <span class="dv">4</span> items</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"C"</span> <span class="st">"D"</span> <span class="st">"E"</span> <span class="st">"F"</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">pushBack</span>(<span class="fu">c</span>(<span class="st">"aa"</span>, <span class="st">"bb"</span>), zz)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">scan</span>(zz, <span class="st">""</span>, <span class="dv">4</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>Read <span class="dv">4</span> items</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"aa"</span> <span class="st">"bb"</span> <span class="st">"G"</span>  <span class="st">"H"</span> </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">close</span>(zz)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Pushback is only available for connections opened for input in text mode.</p>
+</section>
+</section>
+<section id="listing-and-manipulating-connections" class="level2 section" data-number="7.4">
+<h2 class="section anchored" data-number="7.4" data-anchor-id="listing-and-manipulating-connections"><span class="header-section-number">7.4</span> Listing and manipulating connections</h2>
+<p>A summary of all the connections currently opened by the user can be found by <code>showConnections()</code>, and a summary of all connections, including closed and terminal connections, by <code>showConnections(all = TRUE)</code></p>
+<p>The generic function <code>seek</code> can be used to read and (on some connections) reset the current position for reading or writing. Unfortunately it depends on OS facilities which may be unreliable (e.g. with text files under Windows). Function <code>isSeekable</code> reports if <code>seek</code> can change the position on the connection given by its argument.</p>
+<p>The function <code>truncate</code> can be used to truncate a file opened for writing at its current position. It works only for <code>file</code> connections, and is not implemented on all platforms.</p>
+</section>
+<section id="binary-connections" class="level2 section" data-number="7.5">
+<h2 class="section anchored" data-number="7.5" data-anchor-id="binary-connections"><span class="header-section-number">7.5</span> Binary connections</h2>
+<p>Functions <code>readBin</code> and <code>writeBin</code> read to and write from binary connections. A connection is opened in binary mode by appending <code>"b"</code> to the mode specification, that is using mode <code>"rb"</code> for reading, and mode <code>"wb"</code> or <code>"ab"</code> (where appropriate) for writing. The functions have arguments</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">readBin</span>(con, what, <span class="at">n =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="cn">NA</span>, <span class="at">endian =</span> .Platform<span class="sc">$</span>endian) </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">writeBin</span>(object, con, <span class="at">size =</span> <span class="cn">NA</span>, <span class="at">endian =</span> .Platform<span class="sc">$</span>endian) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In each case <code>con</code> is a connection which will be opened if necessary for the duration of the call, and if a character string is given it is assumed to specify a file name.</p>
+<p>It is slightly simpler to describe writing, so we will do that first. <code>object</code> should be an atomic vector object, that is a vector of mode <code>numeric</code>, <code>integer</code>, <code>logical</code>, <code>character</code>, <code>complex</code> or <code>raw</code>, without attributes. By default this is written to the file as a stream of bytes exactly as it is represented in memory.</p>
+<p><code>readBin</code> reads a stream of bytes from the file and interprets them as a vector of mode given by <code>what</code>. This can be either an object of the appropriate mode (e.g.&nbsp;<code>what=integer()</code>) or a character string describing the mode (one of the five given in the previous paragraph or <code>"double"</code> or <code>"int"</code>). Argument <code>n</code> specifies the maximum number of vector elements to read from the connection: if fewer are available a shorter vector will be returned. Argument <code>signed</code> allows 1-byte and 2-byte integers to be read as signed (the default) or unsigned integers.</p>
+<p>The remaining two arguments are used to write or read data for interchange with another program or another platform. By default binary data is transferred directly from memory to the connection or <em>vice versa</em>. This will not suffice if the data are to be transferred to a machine with a different architecture, but between almost all R platforms the only change needed is that of byte-order. Common PCs (<code>ix86</code>-based and <code>x86_64</code>-based machines), Compaq Alpha and Vaxen are <em>little-endian</em>, whereas Sun Sparc, mc680x0 series, IBM R6000, SGI and most others are <em>big-endian</em>. (Network byte-order (as used by XDR, eXternal Data Representation) is big-endian.) To transfer to or from other programs we may need to do more, for example to read 16-bit integers or write single-precision real numbers. This can be done using the <code>size</code> argument, which (usually) allows sizes 1, 2, 4, 8 for integers and logicals, and sizes 4, 8 and perhaps 12 or 16 for reals. Transferring at different sizes can lose precision, and should not be attempted for vectors containing <code>NA</code>s.</p>
+<p>Character strings are read and written in C format, that is as a string of bytes terminated by a zero byte. Functions <code>readChar</code> and <code>writeChar</code> provide greater flexibility.</p>
+<section id="special-values" class="level3 subsection" data-number="7.5.1">
+<h3 class="subsection anchored" data-number="7.5.1" data-anchor-id="special-values"><span class="header-section-number">7.5.1</span> Special values</h3>
+<p>Functions <code>readBin</code> and <code>writeBin</code> will pass missing and special values, although this should not be attempted if a size change is involved.</p>
+<p>The missing value for R logical and integer types is <code>INT_MIN</code>, the smallest representable <code>int</code> defined in the C header <code>limits.h</code>, normally corresponding to the bit pattern <code>0x80000000</code>.</p>
+<p>The representation of the special values for R numeric and complex types is machine-dependent, and possibly also compiler-dependent. The simplest way to make use of them is to link an external application against the standalone <code>Rmath</code> library which exports double constants <code>NA_REAL</code>, <code>R_PosInf</code> and <code>R_NegInf</code>, and include the header <code>Rmath.h</code> which defines the macros <code>ISNAN</code> and <code>R_FINITE</code>.</p>
+<p>If that is not possible, on all current platforms IEC 60559 (aka IEEE 754) arithmetic is used, so standard C facilities can be used to test for or set <code>Inf</code>, <code>-Inf</code> and <code>NaN</code> values. On such platforms <code>NA</code> is represented by the <code>NaN</code> value with low-word <code>0x7a2</code> (1954 in decimal).</p>
+<p>Character missing values are written as <code>NA</code>, and there are no provision to recognize character values as missing (as this can be done by re-assigning them once read).</p>
+
+
+</section>
+</section>
+</main> <!-- /main -->
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Image-files.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Image files</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Network-interfaces.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Network interfaces</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+  </div>
+</footer>
+
+
+</body></html>

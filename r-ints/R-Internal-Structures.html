@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.9.48">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>R Manuals :: R Internals - 1&nbsp; R Internal Structures</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+
+  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+  <script src="site_libs/quarto-nav/headroom.min.js"></script>
+  <script src="site_libs/clipboard/clipboard.min.js"></script>
+  <meta name="quarto:offset" content="./">
+  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+  <script src="site_libs/quarto-search/fuse.min.js"></script>
+  <script src="site_libs/quarto-search/quarto-search.js"></script>
+  <link href="./_002eInternal-vs-_002ePrimitive.md" rel="next">
+  <link href="./index.html" rel="prev">
+  <script src="site_libs/quarto-html/quarto.js"></script>
+  <script src="site_libs/quarto-html/popper.min.js"></script>
+  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="site_libs/quarto-html/anchor.min.js"></script>
+  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
+  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <script id="quarto-search-options" type="application/json">{
+    "location": "navbar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "end",
+    "type": "overlay",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body class="floating slimcontent">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">R Manuals :: R Internals</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./../index.html">Home</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
+        <li>
+    <a class="dropdown-item" href="./../r-intro/index.html">
+ <span class="dropdown-text">An Introduction to R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-data/index.html">
+ <span class="dropdown-text">R Data Import/Export</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-admin/index.html">
+ <span class="dropdown-text">R Installation and Administration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-exts/index.html">
+ <span class="dropdown-text">Writing R Extensions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-lang/index.html">
+ <span class="dropdown-text">R Language Definition</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./index.html">
+ <span class="dropdown-text">R Internals</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./../about.html">About</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R Internal Structures</span></h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">R Internals</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R-Internal-Structures.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R Internal Structures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Internationalization-in-the-R-sources.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Internationalization in the R sources</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Package-Structure.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Structure of an Installed Package</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Files.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Files</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Graphics-Devices.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Graphics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GUI-consoles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">GUI consoles</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Tools.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Tools</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R-coding-standards.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R coding standards</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Testing-R-code.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Testing R code</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Use-of-TeX-dialects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Use of TeX dialects</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Current-and-future-directions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Current and future directions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link">Function and variable index</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link">Concept index</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+<h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#sexps" class="nav-link active" data-scroll-target="#sexps"> <span class="header-section-number">1.1</span> SEXPs</a>
+<ul class="collapse">
+<li><a href="#sexptypes" class="nav-link" data-scroll-target="#sexptypes"> <span class="header-section-number">1.1.1</span> SEXPTYPEs</a></li>
+<li><a href="#rest-of-header" class="nav-link" data-scroll-target="#rest-of-header"> <span class="header-section-number">1.1.2</span> Rest of header</a></li>
+<li><a href="#the-data" class="nav-link" data-scroll-target="#the-data"> <span class="header-section-number">1.1.3</span> The ‘data’</a></li>
+<li><a href="#allocation-classes" class="nav-link" data-scroll-target="#allocation-classes"> <span class="header-section-number">1.1.4</span> Allocation classes</a></li>
+</ul></li>
+<li><a href="#environments-and-variable-lookup" class="nav-link" data-scroll-target="#environments-and-variable-lookup"> <span class="header-section-number">1.2</span> Environments and variable lookup</a>
+<ul class="collapse">
+<li><a href="#search-paths" class="nav-link" data-scroll-target="#search-paths"> <span class="header-section-number">1.2.1</span> Search paths</a></li>
+<li><a href="#namespaces" class="nav-link" data-scroll-target="#namespaces"> <span class="header-section-number">1.2.2</span> Namespaces</a></li>
+<li><a href="#hash-table" class="nav-link" data-scroll-target="#hash-table"> <span class="header-section-number">1.2.3</span> Hash table</a></li>
+</ul></li>
+<li><a href="#attributes" class="nav-link" data-scroll-target="#attributes"> <span class="header-section-number">1.3</span> Attributes</a></li>
+<li><a href="#contexts" class="nav-link" data-scroll-target="#contexts"> <span class="header-section-number">1.4</span> Contexts</a></li>
+<li><a href="#argument-evaluation" class="nav-link" data-scroll-target="#argument-evaluation"> <span class="header-section-number">1.5</span> Argument evaluation</a>
+<ul class="collapse">
+<li><a href="#missingness" class="nav-link" data-scroll-target="#missingness"> <span class="header-section-number">1.5.1</span> Missingness</a></li>
+<li><a href="#dot-dot-dot-arguments" class="nav-link" data-scroll-target="#dot-dot-dot-arguments"> <span class="header-section-number">1.5.2</span> Dot-dot-dot arguments</a></li>
+</ul></li>
+<li><a href="#autoprinting" class="nav-link" data-scroll-target="#autoprinting"> <span class="header-section-number">1.6</span> Autoprinting</a></li>
+<li><a href="#the-write-barrier-and-the-garbage-collector" class="nav-link" data-scroll-target="#the-write-barrier-and-the-garbage-collector"> <span class="header-section-number">1.7</span> The write barrier and the garbage collector</a></li>
+<li><a href="#serialization-formats" class="nav-link" data-scroll-target="#serialization-formats"> <span class="header-section-number">1.8</span> Serialization Formats</a></li>
+<li><a href="#encodings-for-charsxps" class="nav-link" data-scroll-target="#encodings-for-charsxps"> <span class="header-section-number">1.9</span> Encodings for CHARSXPs</a></li>
+<li><a href="#the-charsxp-cache" class="nav-link" data-scroll-target="#the-charsxp-cache"> <span class="header-section-number">1.10</span> The CHARSXP cache</a></li>
+<li><a href="#warnings-and-errors" class="nav-link" data-scroll-target="#warnings-and-errors"> <span class="header-section-number">1.11</span> Warnings and errors</a></li>
+<li><a href="#s4-objects" class="nav-link" data-scroll-target="#s4-objects"> <span class="header-section-number">1.12</span> S4 objects</a>
+<ul class="collapse">
+<li><a href="#representation-of-s4-objects" class="nav-link" data-scroll-target="#representation-of-s4-objects"> <span class="header-section-number">1.12.1</span> Representation of S4 objects</a></li>
+<li><a href="#s4-classes" class="nav-link" data-scroll-target="#s4-classes"> <span class="header-section-number">1.12.2</span> S4 classes</a></li>
+<li><a href="#s4-methods" class="nav-link" data-scroll-target="#s4-methods"> <span class="header-section-number">1.12.3</span> S4 methods</a></li>
+<li><a href="#mechanics-of-s4-dispatch" class="nav-link" data-scroll-target="#mechanics-of-s4-dispatch"> <span class="header-section-number">1.12.4</span> Mechanics of S4 dispatch</a></li>
+</ul></li>
+<li><a href="#memory-allocators" class="nav-link" data-scroll-target="#memory-allocators"> <span class="header-section-number">1.13</span> Memory allocators</a>
+<ul class="collapse">
+<li><a href="#internals-of-r_alloc" class="nav-link" data-scroll-target="#internals-of-r_alloc"> <span class="header-section-number">1.13.1</span> Internals of R_alloc</a></li>
+</ul></li>
+<li><a href="#internal-use-of-global-and-base-environments" class="nav-link" data-scroll-target="#internal-use-of-global-and-base-environments"> <span class="header-section-number">1.14</span> Internal use of global and base environments</a>
+<ul class="collapse">
+<li><a href="#base-environment" class="nav-link" data-scroll-target="#base-environment"> <span class="header-section-number">1.14.1</span> Base environment</a></li>
+<li><a href="#global-environment" class="nav-link" data-scroll-target="#global-environment"> <span class="header-section-number">1.14.2</span> Global environment</a></li>
+</ul></li>
+<li><a href="#modules" class="nav-link" data-scroll-target="#modules"> <span class="header-section-number">1.15</span> Modules</a></li>
+<li><a href="#visibility" class="nav-link" data-scroll-target="#visibility"> <span class="header-section-number">1.16</span> Visibility</a>
+<ul class="collapse">
+<li><a href="#hiding-c-entry-points" class="nav-link" data-scroll-target="#hiding-c-entry-points"> <span class="header-section-number">1.16.1</span> Hiding C entry points</a></li>
+<li><a href="#variables-in-windows-dlls" class="nav-link" data-scroll-target="#variables-in-windows-dlls"> <span class="header-section-number">1.16.2</span> Variables in Windows DLLs</a></li>
+</ul></li>
+<li><a href="#lazy-loading" class="nav-link" data-scroll-target="#lazy-loading"> <span class="header-section-number">1.17</span> Lazy loading</a></li>
+</ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+<header id="title-block-header">
+<h1 class="title display-7"><span id="r-internal-structures" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R Internal Structures</span></span></h1>
+</header>
+
+<p>This chapter is the beginnings of documentation about R internal structures. It is written for the core team and others studying the code in the <code>src/main</code> directory.</p>
+<p>It is a work-in-progress and should be checked against the current version of the source code. Versions for R 2.x.y contain historical comments about when features were introduced: this version is for the 3.x.y series.</p>
+<section id="sexps" class="level2 section page-columns page-full" data-number="1.1">
+<h2 class="section anchored" data-number="1.1" data-anchor-id="sexps"><span class="header-section-number">1.1</span> SEXPs</h2>
+<p>What R users think of as <em>variables</em> or <em>objects</em> are symbols which are bound to a value. The value can be thought of as either a <code>SEXP</code> (a pointer), or the structure it points to, a <code>SEXPREC</code> (and there are alternative forms used for vectors, namely <code>VECSXP</code> pointing to <code>VECTOR_SEXPREC</code> structures). So the basic building blocks of R objects are often called <em>nodes</em>, meaning <code>SEXPREC</code>s or <code>VECTOR_SEXPREC</code>s.</p>
+<p>Note that the internal structure of the <code>SEXPREC</code> is not made available to R Extensions: rather <code>SEXP</code> is an opaque pointer, and the internals can only be accessed by the functions provided.</p>
+<div class="page-columns page-full"><p>Both types of node structure have as their first three fields a 64-bit <code>sxpinfo</code> header and then three pointers (to the attributes and the previous and next node in a doubly-linked list), and then some further fields. On a 32-bit platform a node<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> occupies 32 bytes: on a 64-bit platform typically 56 bytes (depending on alignment constraints).</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;strictly, a <code>SEXPREC</code> node; <code>VECTOR_SEXPREC</code> nodes are slightly smaller but followed by data in the node.</p></li></div></div>
+<p>The first five bits of the <code>sxpinfo</code> header specify one of up to 32 <code>SEXPTYPE</code>s.</p>
+<section id="sexptypes" class="level3 subsection page-columns page-full" data-number="1.1.1">
+<h3 class="subsection anchored" data-number="1.1.1" data-anchor-id="sexptypes"><span class="header-section-number">1.1.1</span> SEXPTYPEs</h3>
+<p>Currently <code>SEXPTYPE</code>s 0:10 and 13:25 are in use. Values 11 and 12 were used for internal factors and ordered factors and have since been withdrawn. Note that the <code>SEXPTYPE</code> numbers are stored in <code>save</code>d objects and that the ordering of the types is used, so the gap cannot easily be reused.</p>
+<div class="blockquotes-block">
+<blockquote class="blockquote">
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">no</th>
+<th style="text-align: left;">SEXPTYPE</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>0</code></td>
+<td style="text-align: left;"><code>NILSXP</code></td>
+<td style="text-align: left;"><code>NULL</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>1</code></td>
+<td style="text-align: left;"><code>SYMSXP</code></td>
+<td style="text-align: left;">symbols</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>2</code></td>
+<td style="text-align: left;"><code>LISTSXP</code></td>
+<td style="text-align: left;">pairlists</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>3</code></td>
+<td style="text-align: left;"><code>CLOSXP</code></td>
+<td style="text-align: left;">closures</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>4</code></td>
+<td style="text-align: left;"><code>ENVSXP</code></td>
+<td style="text-align: left;">environments</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>5</code></td>
+<td style="text-align: left;"><code>PROMSXP</code></td>
+<td style="text-align: left;">promises</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>6</code></td>
+<td style="text-align: left;"><code>LANGSXP</code></td>
+<td style="text-align: left;">language objects</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>7</code></td>
+<td style="text-align: left;"><code>SPECIALSXP</code></td>
+<td style="text-align: left;">special functions</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>8</code></td>
+<td style="text-align: left;"><code>BUILTINSXP</code></td>
+<td style="text-align: left;">builtin functions</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>9</code></td>
+<td style="text-align: left;"><code>CHARSXP</code></td>
+<td style="text-align: left;">internal character strings</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>10</code></td>
+<td style="text-align: left;"><code>LGLSXP</code></td>
+<td style="text-align: left;">logical vectors</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>13</code></td>
+<td style="text-align: left;"><code>INTSXP</code></td>
+<td style="text-align: left;">integer vectors</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>14</code></td>
+<td style="text-align: left;"><code>REALSXP</code></td>
+<td style="text-align: left;">numeric vectors</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>15</code></td>
+<td style="text-align: left;"><code>CPLXSXP</code></td>
+<td style="text-align: left;">complex vectors</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>16</code></td>
+<td style="text-align: left;"><code>STRSXP</code></td>
+<td style="text-align: left;">character vectors</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>17</code></td>
+<td style="text-align: left;"><code>DOTSXP</code></td>
+<td style="text-align: left;">dot-dot-dot object</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>18</code></td>
+<td style="text-align: left;"><code>ANYSXP</code></td>
+<td style="text-align: left;">make “any” args work</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>19</code></td>
+<td style="text-align: left;"><code>VECSXP</code></td>
+<td style="text-align: left;">list (generic vector)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>20</code></td>
+<td style="text-align: left;"><code>EXPRSXP</code></td>
+<td style="text-align: left;">expression vector</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>21</code></td>
+<td style="text-align: left;"><code>BCODESXP</code></td>
+<td style="text-align: left;">byte code</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>22</code></td>
+<td style="text-align: left;"><code>EXTPTRSXP</code></td>
+<td style="text-align: left;">external pointer</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>23</code></td>
+<td style="text-align: left;"><code>WEAKREFSXP</code></td>
+<td style="text-align: left;">weak reference</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>24</code></td>
+<td style="text-align: left;"><code>RAWSXP</code></td>
+<td style="text-align: left;">raw vector</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>25</code></td>
+<td style="text-align: left;"><code>S4SXP</code></td>
+<td style="text-align: left;">S4 classes not of simple type</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<p>Many of these will be familiar from R level: the atomic vector types are <code>LGLSXP</code>, <code>INTSXP</code>, <code>REALSXP</code>, <code>CPLXSP</code>, <code>STRSXP</code> and <code>RAWSXP</code>. Lists are <code>VECSXP</code> and names (also known as symbols) are <code>SYMSXP</code>. Pairlists (<code>LISTSXP</code>, the name going back to the origins of R as a Scheme-like language) are rarely seen at R level, but are for example used for argument lists. Character vectors are effectively lists all of whose elements are <code>CHARSXP</code>, a type that is rarely visible at R level.</p>
+<div class="page-columns page-full"><p>Language objects (<code>LANGSXP</code>) are calls (including formulae and so on). Internally they are pairlists with first element a reference<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> to the function to be called with remaining elements the actual arguments for the call (and with the tags if present giving the specified argument names). Although this is not enforced, many places in the code assume that the pairlist is of length one or more, often without checking.</p><div class="no-row-height column-margin column-container"><li id="fn2" role="doc-endnote"><p><sup>2</sup>&nbsp;a pointer to a function or a symbol to look up the function by name, or a language object to be evaluated to give a function.</p></li></div></div>
+<p>Expressions are of type <code>EXPRSXP</code>: they are a vector of (usually language) objects most often seen as the result of <code>parse()</code>.</p>
+<p>The functions are of types <code>CLOSXP</code>, <code>SPECIALSXP</code> and <code>BUILTINSXP</code>: where <code>SEXPTYPE</code>s are stored in an integer these are sometimes lumped into a pseudo-type <code>FUNSXP</code> with code 99. Functions defined via <code>function</code> are of type <code>CLOSXP</code> and have formals, body and environment.</p>
+<p>The <code>SEXPTYPE</code> <code>S4SXP</code> is for S4 objects which do not consist solely of a simple type such as an atomic vector or function.</p>
+</section>
+<section id="rest-of-header" class="level3 subsection" data-number="1.1.2">
+<h3 class="subsection anchored" data-number="1.1.2" data-anchor-id="rest-of-header"><span class="header-section-number">1.1.2</span> Rest of header</h3>
+<p>Note that the size and structure of the header changed in R 3.5.0: see earlier editions of this manual for the previous layout.</p>
+<p>The <code>sxpinfo</code> header is defined as a 64-bit C structure by</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define NAMED_BITS 16</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> sxpinfo_struct <span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    SEXPTYPE type      <span class="op">:</span>  <span class="dv">5</span><span class="op">;</span>  <span class="co">/* discussed above */</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">int</span> scalar<span class="op">:</span>  <span class="dv">1</span><span class="op">;</span>  <span class="co">/* is this a numeric vector of length 1?</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">    unsigned int obj   :  1;  /* is this an object with a class attribute? */</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">int</span> alt   <span class="op">:</span>  <span class="dv">1</span><span class="op">;</span>  <span class="co">/* is this an ALTREP object? */</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">int</span> gp    <span class="op">:</span> <span class="dv">16</span><span class="op">;</span>  <span class="co">/* general purpose, see below */</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">int</span> mark  <span class="op">:</span>  <span class="dv">1</span><span class="op">;</span>  <span class="co">/* mark object as ‘in use’ in GC */</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">int</span> debug <span class="op">:</span>  <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">int</span> trace <span class="op">:</span>  <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">int</span> spare <span class="op">:</span>  <span class="dv">1</span><span class="op">;</span>  <span class="co">/* debug once and with reference counting */</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">int</span> gcgen <span class="op">:</span>  <span class="dv">1</span><span class="op">;</span>  <span class="co">/* generation for GC */</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">int</span> gccls <span class="op">:</span>  <span class="dv">3</span><span class="op">;</span>  <span class="co">/* class of node for GC */</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">int</span> named <span class="op">:</span> NAMED_BITS<span class="op">;</span> <span class="co">/* used to control copying */</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">int</span> extra <span class="op">:</span> <span class="dv">32</span> <span class="op">-</span> NAMED_BITS<span class="op">;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="op">};</span> <span class="co">/*           Tot: 64 */</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>debug</code> bit is used for closures and environments. For closures it is set by <code>debug()</code> and unset by <code>undebug()</code>, and indicates that evaluations of the function should be run under the browser. For environments it indicates whether the browsing is in single-step mode.</p>
+<p>The <code>trace</code> bit is used for functions for <code>trace()</code> and for other objects when tracing duplications (see <code>tracemem</code>).</p>
+<p>The <code>spare</code> bit is used for closures to mark them for one-time debugging.</p>
+<p>The <code>named</code> field is set and accessed by the <code>SET_NAMED</code> and <code>NAMED</code> macros, and take values <code>0</code>, <code>1</code> and <code>2</code>, or possibly higher if <code>NAMEDMAX</code> is set to a higher value. R has a ‘call by value’ illusion, so an assignment like</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>[The <code>NAMED</code> mechanism has been replaced by reference counting.]</p>
+<p>appears to make a copy of <code>a</code> and refer to it as <code>b</code>. However, if neither <code>a</code> nor <code>b</code> are subsequently altered there is no need to copy. What really happens is that a new symbol <code>b</code> is bound to the same value as <code>a</code> and the <code>named</code> field on the value object is set (in this case to <code>2</code>). When an object is about to be altered, the <code>named</code> field is consulted. A value of <code>2</code> or more means that the object must be duplicated before being changed. (Note that this does not say that it is necessary to duplicate, only that it should be duplicated whether necessary or not.) A value of <code>0</code> means that it is known that no other <code>SEXP</code> shares data with this object, and so it may safely be altered. A value of <code>1</code> is used for situations like</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(a) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>where in principle two copies of <code>a</code> exist for the duration of the computation as (in principle)</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="st">`</span><span class="at">dim&lt;-</span><span class="st">`</span>(a, <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>but for no longer, and so some primitive functions can be optimized to avoid a copy in this case. [This mechanism is scheduled to be replaced in R 4.0.0.]</p>
+<p>The <code>gp</code> bits are by definition ‘general purpose’. We label these from 0 to 15. Bits 0–5 and bits 14–15 have been used as described below (mainly from detective work on the sources).</p>
+<p>The bits can be accessed and set by the <code>LEVELS</code> and <code>SETLEVELS</code> macros, which names appear to date back to the internal factor and ordered types and are now used in only a few places in the code. The <code>gp</code> field is serialized/unserialized for the <code>SEXPTYPE</code>s other than <code>NILSXP</code>, <code>SYMSXP</code> and <code>ENVSXP</code>.</p>
+<p>Bits 14 and 15 of <code>gp</code> are used for ‘fancy bindings’. Bit 14 is used to lock a binding or an environment, and bit 15 is used to indicate an active binding. (For the definition of an ‘active binding’ see the header comments in file <code>src/main/envir.c</code>.) Bit 15 is used for an environment to indicate if it participates in the global cache.</p>
+<p>The macros <code>ARGUSED</code> and <code>SET_ARGUSED</code> are used when matching actual and formal function arguments, and take the values 0, 1 and 2.</p>
+<p>The macros <code>MISSING</code> and <code>SET_MISSING</code> are used for pairlists of arguments. Four bits are reserved, but only two are used (and exactly what for is not explained). It seems that bit 0 is used by <code>matchArgs_NR</code> to mark missingness on the returned argument list, and bit 1 is used to mark the use of a default value for an argument copied to the evaluation frame of a closure.</p>
+<p>Bit 0 is used by macros <code>DDVAL</code> and <code>SET_DDVAL</code>. This indicates that a <code>SYMSXP</code> is one of the symbols <code>..n</code> which are implicitly created when <code>...</code> is processed, and so indicates that it may need to be looked up in a <code>DOTSXP</code>.</p>
+<p>Bit 0 is used for <code>PRSEEN</code>, a flag to indicate if a promise has already been seen during the evaluation of the promise (and so to avoid recursive loops).</p>
+<p>Bit 0 is used for <code>HASHASH</code>, on the <code>PRINTNAME</code> of the <code>TAG</code> of the frame of an environment. (This bit is not serialized for <code>CHARSXP</code> objects.)</p>
+<p>Bits 0 and 1 are used for weak references (to indicate ‘ready to finalize’, ‘finalize on exit’).</p>
+<p>Bit 0 is used by the condition handling system (on a <code>VECSXP</code>) to indicate a calling handler.</p>
+<p>Bit 4 is turned on to mark S4 objects.</p>
+<p>Bits 1, 2, 3, 5 and 6 are used for a <code>CHARSXP</code> to denote its encoding. Bit 1 indicates that the <code>CHARSXP</code> should be treated as a set of bytes, not necessarily representing a character in any known encoding. Bits 2, 3 and 6 are used to indicate that it is known to be in Latin-1, UTF-8 or ASCII respectively.</p>
+<p>Bit 5 for a <code>CHARSXP</code> indicates that it is hashed by its address, that is <code>NA_STRING</code> or is in the <code>CHARSXP</code> cache (this is not serialized). Only exceptionally is a <code>CHARSXP</code> not hashed, and this should never happen in end-user code.</p>
+</section>
+<section id="the-data" class="level3 subsection page-columns page-full" data-number="1.1.3">
+<h3 class="subsection anchored" data-number="1.1.3" data-anchor-id="the-data"><span class="header-section-number">1.1.3</span> The ‘data’</h3>
+<p>A <code>SEXPREC</code> is a C structure containing the 64-bit header as described above, three pointers (to the attributes, previous and next node) and the node data, a union</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>union {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    struct primsxp_struct primsxp;</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    struct symsxp_struct symsxp;</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    struct listsxp_struct listsxp;</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    struct envsxp_struct envsxp;</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    struct closxp_struct closxp;</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    struct promsxp_struct promsxp;</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>} u;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>All of these alternatives apart from the first (an <code>int</code>) are three pointers, so the union occupies three words.</p>
+<div class="page-columns page-full"><p>The vector types are <code>RAWSXP</code>, <code>CHARSXP</code>, <code>LGLSXP</code>, <code>INTSXP</code>, <code>REALSXP</code>, <code>CPLXSXP</code>, <code>STRSXP</code>, <code>VECSXP</code>, <code>EXPRSXP</code> and <code>WEAKREFSXP</code>. Remember that such types are a <code>VECTOR_SEXPREC</code>, which again consists of the header and the same three pointers, but followed by two integers giving the length and ‘true length’<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> of the vector, and then followed by the data (aligned as required: on most 32-bit systems with a 24-byte <code>VECTOR_SEXPREC</code> node the data can follow immediately after the node). The data are a block of memory of the appropriate length to store ‘true length’ elements (rounded up to a multiple of 8 bytes, with the 8-byte blocks being the ‘Vcells’ referred in the documentation for <code>gc()</code>).</p><div class="no-row-height column-margin column-container"><li id="fn3" role="doc-endnote"><p><sup>3</sup>&nbsp;The only current use is for hash tables of environments (<code>VECSXP</code>s), where <code>length</code> is the size of the table and <code>truelength</code> is the number of primary slots in use, for the reference hash tables in serialization (<code>VECSXP</code>s), and for ‘growable’ vectors (atomic vectors, <code>VECSXP</code>s and <code>EXPRSXP</code>s) which are created by slightly over-committing when enlarging a vector during subassignment, so that some number of the following enlargements during subassignment can be performed in place), where <code>truelength</code> is the number of slots in use.</p></li></div></div>
+<p>The ‘data’ for the various types are given in the table below. A lot of this is interpretation, i.e.&nbsp;the types are not checked.</p>
+<dl>
+<dt><code>NILSXP</code></dt>
+<dd>
+<p>There is only one object of type <code>NILSXP</code>, <code>R_NilValue</code>, with no data.</p>
+</dd>
+<dt><code>SYMSXP</code></dt>
+<dd>
+<p>Pointers to three nodes, the name, value and internal, accessed by <code>PRINTNAME</code> (a <code>CHARSXP</code>), <code>SYMVALUE</code> and <code>INTERNAL</code>. (If the symbol’s value is a <code>.Internal</code> function, the last is a pointer to the appropriate <code>SEXPREC</code>.) Many symbols have <code>SYMVALUE</code> <code>R_UnboundValue</code>.</p>
+</dd>
+<dt><code>LISTSXP</code></dt>
+<dd>
+<p>Pointers to the CAR, CDR (usually a <code>LISTSXP</code> or <code>NULL</code>) and TAG (a <code>SYMSXP</code> or <code>NULL</code>).</p>
+</dd>
+<dt><code>CLOSXP</code></dt>
+<dd>
+<p>Pointers to the formals (a pairlist), the body and the environment.</p>
+</dd>
+<dt><code>ENVSXP</code></dt>
+<dd>
+<p>Pointers to the frame, enclosing environment and hash table (<code>NULL</code> or a <code>VECSXP</code>). A frame is a tagged pairlist with tag the symbol and CAR the bound value.</p>
+</dd>
+<dt><code>PROMSXP</code></dt>
+<dd>
+<p>Pointers to the value, expression and environment (in which to evaluate the expression). Once an promise has been evaluated, the environment is set to <code>NULL</code>.</p>
+</dd>
+<dt><code>LANGSXP</code></dt>
+<dd>
+<p>A special type of <code>LISTSXP</code> used for function calls. (The CAR references the function (perhaps via a symbol or language object), and the CDR the argument list with tags for named arguments.) R-level documentation references to ‘expressions’ / ‘language objects’ are mainly <code>LANGSXP</code>s, but can be symbols (<code>SYMSXP</code>s) or expression vectors (<code>EXPRSXP</code>s).</p>
+</dd>
+<dt><code>SPECIALSXP</code></dt>
+<dd>
+
+</dd>
+<dt><code>BUILTINSXP</code></dt>
+<dd>
+<p>An integer giving the offset into the table of primitives/<code>.Internal</code>s.</p>
+</dd>
+<dt><code>CHARSXP</code></dt>
+<dd>
+<p><code>length</code>, <code>truelength</code> followed by a block of bytes (allowing for the <code>nul</code> terminator).</p>
+</dd>
+<dt><code>LGLSXP</code></dt>
+<dd>
+
+</dd>
+<dt><code>INTSXP</code></dt>
+<dd>
+<p><code>length</code>, <code>truelength</code> followed by a block of C <code>int</code>s (which are 32 bits on all R platforms).</p>
+</dd>
+<dt><code>REALSXP</code></dt>
+<dd>
+<p><code>length</code>, <code>truelength</code> followed by a block of C <code>double</code>s.</p>
+</dd>
+<dt><code>CPLXSXP</code></dt>
+<dd>
+<p><code>length</code>, <code>truelength</code> followed by a block of C99 <code>double complex</code>s.</p>
+</dd>
+<dt><code>STRSXP</code></dt>
+<dd>
+<p><code>length</code>, <code>truelength</code> followed by a block of pointers (<code>SEXP</code>s pointing to <code>CHARSXP</code>s).</p>
+</dd>
+<dt><code>DOTSXP</code></dt>
+<dd>
+<p>A special type of <code>LISTSXP</code> for the value bound to a <code>...</code> symbol: a pairlist of promises.</p>
+</dd>
+<dt><code>ANYSXP</code></dt>
+<dd>
+<p>This is used as a place holder for any type: there are no actual objects of this type.</p>
+</dd>
+<dt><code>VECSXP</code></dt>
+<dd>
+
+</dd>
+<dt><code>EXPRSXP</code></dt>
+<dd>
+<p><code>length</code>, <code>truelength</code> followed by a block of pointers. These are internally identical (and identical to <code>STRSXP</code>) but differ in the interpretations placed on the elements.</p>
+</dd>
+<dt><code>BCODESXP</code></dt>
+<dd>
+<p>For the ‘byte-code’ objects generated by the compiler.</p>
+</dd>
+<dt><code>EXTPTRSXP</code></dt>
+<dd>
+<p>Has three pointers, to the pointer, the protection value (an R object which if alive protects this object) and a tag (a <code>SYMSXP</code>?).</p>
+</dd>
+<dt><code>WEAKREFSXP</code></dt>
+<dd>
+<p>A <code>WEAKREFSXP</code> is a special <code>VECSXP</code> of length 4, with elements <code>key</code>, <code>value</code>, <code>finalizer</code> and <code>next</code>. The <code>key</code> is <code>NULL</code>, an environment or an external pointer, and the <code>finalizer</code> is a function or <code>NULL</code>.</p>
+</dd>
+<dt><code>RAWSXP</code></dt>
+<dd>
+<p><code>length</code>, <code>truelength</code> followed by a block of bytes.</p>
+</dd>
+<dt><code>S4SXP</code></dt>
+<dd>
+<p>two unused pointers and a tag.</p>
+</dd>
+</dl>
+</section>
+<section id="allocation-classes" class="level3 subsection" data-number="1.1.4">
+<h3 class="subsection anchored" data-number="1.1.4" data-anchor-id="allocation-classes"><span class="header-section-number">1.1.4</span> Allocation classes</h3>
+<p>As we have seen, the field <code>gccls</code> in the header is three bits to label up to 8 classes of nodes. Non-vector nodes are of class 0, and ‘small’ vector nodes are of classes 1 to 5, with a class for custom allocator vector nodes 6 and ‘large’ vector nodes being of class 7. The ‘small’ vector nodes are able to store vector data of up to 8, 16, 32, 64 and 128 bytes: larger vectors are <code>malloc</code>-ed individually whereas the ‘small’ nodes are allocated from pages of about 2000 bytes. Vector nodes allocated using custom allocators (via <code>allocVector3</code>) are not counted in the gc memory usage statistics since their memory semantics is not under R’s control and may be non-standard (e.g., memory could be partially shared across nodes).</p>
+</section>
+</section>
+<section id="environments-and-variable-lookup" class="level2 section page-columns page-full" data-number="1.2">
+<h2 class="section anchored" data-number="1.2" data-anchor-id="environments-and-variable-lookup"><span class="header-section-number">1.2</span> Environments and variable lookup</h2>
+<p>What users think of as ‘variables’ are symbols which are bound to objects in ‘environments’. The word ‘environment’ is used ambiguously in R to mean <em>either</em> the frame of an <code>ENVSXP</code> (a pairlist of symbol-value pairs) <em>or</em> an <code>ENVSXP</code>, a frame plus an enclosure.</p>
+<p>There are additional places that ‘variables’ can be looked up, called ‘user databases’ in comments in the code. These seem undocumented in the R sources, but apparently refer to the <strong>RObjectTable</strong> package formerly available at <a href="https://www.omegahat.net/RObjectTables/" class="uri">https://www.omegahat.net/RObjectTables/</a>.</p>
+<p>The base environment is special. There is an <code>ENVSXP</code> environment with enclosure the empty environment <code>R_EmptyEnv</code>, but the frame of that environment is not used. Rather its bindings are part of the global symbol table, being those symbols in the global symbol table whose values are not <code>R_UnboundValue</code>. When R is started the internal functions are installed (by C code) in the symbol table, with primitive functions having values and <code>.Internal</code> functions having what would be their values in the field accessed by the <code>INTERNAL</code> macro. Then <code>.Platform</code> and <code>.Machine</code> are computed and the base package is loaded into the base environment followed by the system profile.</p>
+<p>The frames of environments (and the symbol table) are normally hashed for faster access (including insertion and deletion).</p>
+<div class="page-columns page-full"><p>By default R maintains a (hashed) global cache of ‘variables’ (that is symbols and their bindings) which have been found, and this refers only to environments which have been marked to participate, which consists of the global environment (aka the user workspace), the base environment plus environments<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> which have been <code>attach</code>ed.&nbsp;When an environment is either <code>attach</code>ed or <code>detach</code>ed, the names of its symbols are flushed from the cache. The cache is used whenever searching for variables from the global environment (possibly as part of a recursive search).</p><div class="no-row-height column-margin column-container"><li id="fn4" role="doc-endnote"><p><sup>4</sup>&nbsp;Remember that attaching a list or a saved image actually creates and populates an environment and attaches that.</p></li></div></div>
+<section id="search-paths" class="level3 subsection" data-number="1.2.1">
+<h3 class="subsection anchored" data-number="1.2.1" data-anchor-id="search-paths"><span class="header-section-number">1.2.1</span> Search paths</h3>
+<p>S has the notion of a ‘search path’: the lookup for a ‘variable’ leads (possibly through a series of frames) to the ‘session frame’ the ‘working directory’ and then along the search path. The search path is a series of databases (as returned by <code>search()</code>) which contain the system functions (but not necessarily at the end of the path, as by default the equivalent of packages are added at the end).</p>
+<p>R has a variant on the S model. There is a search path (also returned by <code>search()</code>) which consists of the global environment (aka user workspace) followed by environments which have been attached and finally the base environment. Note that unlike S it is not possible to attach environments before the workspace nor after the base environment.</p>
+<p>However, the notion of variable lookup is more general in R, hence the plural in the title of this subsection. Since environments have enclosures, from any environment there is a search path found by looking in the frame, then the frame of its enclosure and so on. Since loops are not allowed, this process will eventually terminate: it can terminate at either the base environment or the empty environment. (It can be conceptually simpler to think of the search always terminating at the empty environment, but with an optimization to stop at the base environment.) So the ‘search path’ describes the chain of environments which is traversed once the search reaches the global environment.</p>
+</section>
+<section id="namespaces" class="level3 subsection" data-number="1.2.2">
+<h3 class="subsection anchored" data-number="1.2.2" data-anchor-id="namespaces"><span class="header-section-number">1.2.2</span> Namespaces</h3>
+<p>Namespaces are environments associated with packages (and once again the base package is special and will be considered separately). A package <code>pkg</code> defines two environments <code>namespace:pkg</code> and <code>package:pkg</code>: it is <code>package:pkg</code> that can be <code>attach</code>ed and form part of the search path.</p>
+<p>The objects defined by the R code in the package are symbols with bindings in the <code>namespace:pkg</code> environment. The <code>package:pkg</code> environment is populated by selected symbols from the <code>namespace:pkg</code> environment (the exports). The enclosure of this environment is an environment populated with the explicit imports from other namespaces, and the enclosure of <em>that</em> environment is the base namespace. (So the illusion of the imports being in the namespace environment is created via the environment tree.) The enclosure of the base namespace is the global environment, so the search from a package namespace goes via the (explicit and implicit) imports to the standard ‘search path’.</p>
+<p>The base namespace environment <code>R_BaseNamespace</code> is another <code>ENVSXP</code> that is special-cased. It is effectively the same thing as the base environment <code>R_BaseEnv</code> <em>except</em> that its enclosure is the global environment rather than the empty environment: the internal code diverts lookups in its frame to the global symbol table.</p>
+</section>
+<section id="hash-table" class="level3 subsection" data-number="1.2.3">
+<h3 class="subsection anchored" data-number="1.2.3" data-anchor-id="hash-table"><span class="header-section-number">1.2.3</span> Hash table</h3>
+<p>Environments in R usually have a hash table, and nowadays that is the default in <code>new.env()</code>. It is stored as a <code>VECSXP</code> where <code>length</code> is used for the allocated size of the table and <code>truelength</code> is the number of primary slots in use—the pointer to the <code>VECSXP</code> is part of the header of a <code>SEXP</code> of type <code>ENVSXP</code>, and this points to <code>R_NilValue</code> if the environment is not hashed.</p>
+<p>For the pros and cons of hashing, see a basic text on Computer Science.</p>
+<p>The code to implement hashed environments is in <code>src/main/envir.c</code>. Unless set otherwise (e.g.&nbsp;by the <code>size</code> argument of <code>new.env()</code>) the initial table size is <code>29</code>. The table will be resized by a factor of 1.2 once the load factor (the proportion of primary slots in use) reaches 85%.</p>
+<p>The hash chains are stored as pairlist elements of the <code>VECSXP</code>: items are inserted at the front of the pairlist. Hashing is principally designed for fast searching of environments, which are from time to time added to but rarely deleted from, so items are not actually deleted but have their value set to <code>R_UnboundValue</code>.</p>
+</section>
+</section>
+<section id="attributes" class="level2 section" data-number="1.3">
+<h2 class="section anchored" data-number="1.3" data-anchor-id="attributes"><span class="header-section-number">1.3</span> Attributes</h2>
+<p>As we have seen, every <code>SEXPREC</code> has a pointer to the attributes of the node (default <code>R_NilValue</code>). The attributes can be accessed/set by the macros/functions <code>ATTRIB</code> and <code>SET_ATTRIB</code>, but such direct access is normally only used to check if the attributes are <code>NULL</code> or to reset them. Otherwise access goes through the functions <code>getAttrib</code> and <code>setAttrib</code> which impose restrictions on the attributes. One thing to watch is that if you copy attributes from one object to another you may (un)set the <code>"class"</code> attribute and so need to copy the object and S4 bits as well. There is a macro/function <code>DUPLICATE_ATTRIB</code> to automate this.</p>
+<p>Note that the ‘attributes’ of a <code>CHARSXP</code> are used as part of the management of the <code>CHARSXP</code> cache: of course <code>CHARSXP</code>s are not user-visible but C-level code might look at their attributes.</p>
+<p>The code assumes that the attributes of a node are either <code>R_NilValue</code> or a pairlist of non-zero length (and this is checked by <code>SET_ATTRIB</code>). The attributes are named (via tags on the pairlist). The replacement function <code>attributes&lt;-</code> ensures that <code>"dim"</code> precedes <code>"dimnames"</code> in the pairlist. Attribute <code>"dim"</code> is one of several that is treated specially: the values are checked, and any <code>"names"</code> and <code>"dimnames"</code> attributes are removed. Similarly, you cannot set <code>"dimnames"</code> without having set <code>"dim"</code>, and the value assigned must be a list of the correct length and with elements of the correct lengths (and all zero-length elements are replaced by <code>NULL</code>).</p>
+<p>The other attributes which are given special treatment are <code>"names"</code>, <code>"class"</code>, <code>"tsp"</code>, <code>"comment"</code> and <code>"row.names"</code>. For pairlist-like objects the names are not stored as an attribute but (as symbols) as the tags: however the R interface makes them look like conventional attributes, and for one-dimensional arrays they are stored as the first element of the <code>"dimnames"</code> attribute. The C code ensures that the <code>"tsp"</code> attribute is an <code>REALSXP</code>, the frequency is positive and the implied length agrees with the number of rows of the object being assigned to. Classes and comments are restricted to character vectors, and assigning a zero-length comment or class removes the attribute. Setting or removing a <code>"class"</code> attribute sets the object bit appropriately. Integer row names are converted to and from the internal compact representation.</p>
+<p>Care needs to be taken when adding attributes to objects of the types with non-standard copying semantics. There is only one object of type <code>NILSXP</code>, <code>R_NilValue</code>, and that should never have attributes (and this is enforced in <code>installAttrib</code>). For environments, external pointers and weak references, the attributes should be relevant to all uses of the object: it is for example reasonable to have a name for an environment, and also a <code>"path"</code> attribute for those environments populated from R code in a package.</p>
+<p>When should attributes be preserved under operations on an object? Becker, Chambers &amp; Wilks (1988, pp.&nbsp;144–6) give some guidance. Scalar functions (those which operate element-by-element on a vector and whose output is similar to the input) should preserve attributes (except perhaps class, and if they do preserve class they need to preserve the <code>OBJECT</code> and S4 bits). Binary operations normally call <code>copyMostAttrib</code> to copy most attributes from the longer argument (and if they are of the same length from both, preferring the values on the first). Here ‘most’ means all except the <code>names</code>, <code>dim</code> and <code>dimnames</code> which are set appropriately by the code for the operator.</p>
+<p>Subsetting (other than by an empty index) generally drops all attributes except <code>names</code>, <code>dim</code> and <code>dimnames</code> which are reset as appropriate. On the other hand, subassignment generally preserves such attributes even if the length is changed. Coercion drops all attributes. For example:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="fu">structure</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>, <span class="at">names=</span>letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>], <span class="at">comm=</span><span class="st">"a comment"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x[]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>a b c d e f g h</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span> <span class="dv">7</span> <span class="dv">8</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">attr</span>(,<span class="st">"comm"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"a comment"</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>a b c</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>a b c d e f g h</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span> <span class="dv">7</span> <span class="dv">8</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="fu">attr</span>(,<span class="st">"comm"</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"a comment"</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x[<span class="dv">9</span>] <span class="ot">&lt;-</span> <span class="dv">9</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>a b c d e f g h</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span> <span class="dv">7</span> <span class="dv">8</span> <span class="dv">9</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="fu">attr</span>(,<span class="st">"comm"</span>)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"a comment"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="contexts" class="level2 section" data-number="1.4">
+<h2 class="section anchored" data-number="1.4" data-anchor-id="contexts"><span class="header-section-number">1.4</span> Contexts</h2>
+<p><em>Contexts</em> are the internal mechanism used to keep track of where a computation has got to (and from where), so that control-flow constructs can work and reasonable information can be produced on error conditions (such as <em>via</em> traceback), and otherwise (the <code>sys.xxx</code> functions).</p>
+<p>Execution contexts are a stack of C <code>structs</code>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> RCNTXT <span class="op">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> RCNTXT <span class="op">*</span>nextcontext<span class="op">;</span> <span class="co">/* The next context up the chain */</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> callflag<span class="op">;</span>               <span class="co">/* The context ‘type’ */</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    JMP_BUF cjmpbuf<span class="op">;</span>            <span class="co">/* C stack and register information */</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> cstacktop<span class="op">;</span>              <span class="co">/* Top of the pointer protection stack */</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> evaldepth<span class="op">;</span>              <span class="co">/* Evaluation depth at inception */</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    SEXP promargs<span class="op">;</span>              <span class="co">/* Promises supplied to closure */</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    SEXP callfun<span class="op">;</span>               <span class="co">/* The closure called */</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    SEXP sysparent<span class="op">;</span>             <span class="co">/* Environment the closure was called from */</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    SEXP call<span class="op">;</span>                  <span class="co">/* The call that effected this context */</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    SEXP cloenv<span class="op">;</span>                <span class="co">/* The environment */</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    SEXP conexit<span class="op">;</span>               <span class="co">/* Interpreted on.exit code */</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> <span class="op">(*</span>cend<span class="op">)(</span><span class="dt">void</span> <span class="op">*);</span>       <span class="co">/* C on.exit thunk */</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> <span class="op">*</span>cenddata<span class="op">;</span>             <span class="co">/* Data for C on.exit thunk */</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> <span class="op">*</span>vmax<span class="op">;</span>                 <span class="co">/* Top of the R_alloc stack */</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> intsusp<span class="op">;</span>                <span class="co">/* Interrupts are suspended */</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    SEXP handlerstack<span class="op">;</span>          <span class="co">/* Condition handler stack */</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    SEXP restartstack<span class="op">;</span>          <span class="co">/* Stack of available restarts */</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> RPRSTACK <span class="op">*</span>prstack<span class="op">;</span>   <span class="co">/* Stack of pending promises */</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> RCNTXT<span class="op">,</span> <span class="op">*</span>context<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>plus additional fields for the byte-code compiler. The ‘types’ are from</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">enum</span> <span class="op">{</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    CTXT_TOPLEVEL <span class="op">=</span> <span class="dv">0</span><span class="op">,</span>  <span class="co">/* toplevel context */</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    CTXT_NEXT     <span class="op">=</span> <span class="dv">1</span><span class="op">,</span>  <span class="co">/* target for next */</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    CTXT_BREAK    <span class="op">=</span> <span class="dv">2</span><span class="op">,</span>  <span class="co">/* target for break */</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    CTXT_LOOP     <span class="op">=</span> <span class="dv">3</span><span class="op">,</span>  <span class="co">/* break or next target */</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    CTXT_FUNCTION <span class="op">=</span> <span class="dv">4</span><span class="op">,</span>  <span class="co">/* function closure */</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    CTXT_CCODE    <span class="op">=</span> <span class="dv">8</span><span class="op">,</span>  <span class="co">/* other functions that need error cleanup */</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    CTXT_RETURN   <span class="op">=</span> <span class="dv">12</span><span class="op">,</span> <span class="co">/* return() from a closure */</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    CTXT_BROWSER  <span class="op">=</span> <span class="dv">16</span><span class="op">,</span> <span class="co">/* return target on exit from browser */</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    CTXT_GENERIC  <span class="op">=</span> <span class="dv">20</span><span class="op">,</span> <span class="co">/* rather, running an S3 method */</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    CTXT_RESTART  <span class="op">=</span> <span class="dv">32</span><span class="op">,</span> <span class="co">/* a call to restart was made from a closure */</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    CTXT_BUILTIN  <span class="op">=</span> <span class="dv">64</span>  <span class="co">/* builtin internal function */</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>where the <code>CTXT_FUNCTION</code> bit is on wherever function closures are involved.</p>
+<p>Contexts are created by a call to <code>begincontext</code> and ended by a call to <code>endcontext</code>: code can search up the stack for a particular type of context via <code>findcontext</code> (and jump there) or jump to a specific context via <code>R_JumpToContext</code>. <code>R_ToplevelContext</code> is the ‘idle’ state (normally the command prompt), and <code>R_GlobalContext</code> is the top of the stack.</p>
+<p>Note that whilst calls to closures set a context, internal functions never do and primitive builtins only set it when profiling or when they are interfaces to foreign functions.</p>
+<p>The byte-code compiler generates a map of instructions to source references and expressions at compile time, which allows to produce information on error conditions. As an optimization, the byte-code interpreter then does not set a context in some cases, such as in simple loops or when inlining simple builtins or wrappers for internal functions.</p>
+<p>Dispatching from a S3 generic (via <code>UseMethod</code> or its internal equivalent) or calling <code>NextMethod</code> sets the context type to <code>CTXT_GENERIC</code>. This is used to set the <code>sysparent</code> of the method call to that of the <code>generic</code>, so the method appears to have been called in place of the generic rather than from the generic.</p>
+<p>The R <code>sys.frame</code> and <code>sys.call</code> functions work by counting calls to closures (type <code>CTXT_FUNCTION</code>) from either end of the context stack.</p>
+<p>Note that the <code>sysparent</code> element of the structure is not the same thing as <code>sys.parent()</code>. Element <code>sysparent</code> is primarily used in managing changes of the function being evaluated, i.e.&nbsp;by <code>Recall</code> and method dispatch.</p>
+<p><code>CTXT_CCODE</code> contexts are currently used in <code>cat()</code>, <code>load()</code>, <code>scan()</code> and <code>write.table()</code> (to close the connection on error), by <code>PROTECT</code>, serialization (to recover from errors, e.g.&nbsp;free buffers) and within the error handling code (to raise the C stack limit and reset some variables).</p>
+</section>
+<section id="argument-evaluation" class="level2 section page-columns page-full" data-number="1.5">
+<h2 class="section anchored" data-number="1.5" data-anchor-id="argument-evaluation"><span class="header-section-number">1.5</span> Argument evaluation</h2>
+<p>As we have seen, functions in R come in three types, closures (<code>SEXPTYPE</code> <code>CLOSXP</code>), specials (<code>SPECIALSXP</code>) and builtins (<code>BUILTINSXP</code>). In this section we consider when (and if) the actual arguments of function calls are evaluated. The rules are different for the internal (special/builtin) and R-level functions (closures).</p>
+<p>For a call to a closure, the actual and formal arguments are matched and a matched call (another <code>LANGSXP</code>) is constructed. This process first replaces the actual argument list by a list of promises to the values supplied. It then constructs a new environment which contains the names of the formal parameters matched to actual or default values: all the matched values are promises, the defaults as promises to be evaluated in the environment just created. That environment is then used for the evaluation of the body of the function, and promises will be forced (and hence actual or default arguments evaluated) when they are encountered. (Evaluating a promise sets <code>NAMED = NAMEDMAX</code> on its value, so if the argument was a symbol its binding is regarded as having multiple references during the evaluation of the closure call.) [The <code>NAMED</code> mechanism has been replaced by reference counting.]</p>
+<p>If the closure is an S3 generic (that is, contains a call to <code>UseMethod</code>) the evaluation process is the same until the <code>UseMethod</code> call is encountered. At that point the argument on which to do dispatch (normally the first) will be evaluated if it has not been already. If a method has been found which is a closure, a new evaluation environment is created for it containing the matched arguments of the method plus any new variables defined so far during the evaluation of the body of the generic. (Note that this means changes to the values of the formal arguments in the body of the generic are discarded when calling the method, but <em>actual</em> argument promises which have been forced retain the values found when they were forced. On the other hand, missing arguments have values which are promises to use the default supplied by the method and not by the generic.) If the method found is a primitive it is called with the matched argument list of promises (possibly already forced) used for the generic.</p>
+<div class="page-columns page-full"><p>The essential difference<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> between special and builtin functions is that the arguments of specials are not evaluated before the C code is called, and those of builtins are. Note that being a special/builtin is separate from being primitive or <code>.Internal</code>: <code>quote</code> is a special primitive, <code>+</code> is a builtin primitive, <code>cbind</code> is a special <code>.Internal</code> and <code>grep</code> is a builtin <code>.Internal</code>.</p><div class="no-row-height column-margin column-container"><li id="fn5" role="doc-endnote"><p><sup>5</sup>&nbsp;There is currently one other difference: when profiling builtin functions are counted as function calls but specials are not.</p></li></div></div>
+<p>Many of the internal functions are internal generics, which for specials means that they do not evaluate their arguments on call, but the C code starts with a call to <code>DispatchOrEval</code>. The latter evaluates the first argument, and looks for a method based on its class. (If S4 dispatch is on, S4 methods are looked for first, even for S3 classes.) If it finds a method, it dispatches to that method with a call based on promises to evaluate the remaining arguments. If no method is found, the remaining arguments are evaluated before return to the internal generic.</p>
+<p>The other way that internal functions can be generic is to be group generic. Most such functions are builtins (so immediately evaluate all their arguments), and all contain a call to the C function <code>DispatchGeneric</code>. There are some peculiarities over the number of arguments for the <code>"Math"</code> group generic, with some members allowing only one argument, some having two (with a default for the second) and <code>trunc</code> allows one or more but the default method only accepts one.</p>
+<section id="missingness" class="level3 subsection" data-number="1.5.1">
+<h3 class="subsection anchored" data-number="1.5.1" data-anchor-id="missingness"><span class="header-section-number">1.5.1</span> Missingness</h3>
+<p>Actual arguments to (non-internal) R functions can be fewer than are required to match the formal arguments of the function. Having unmatched formal arguments will not matter if the argument is never used (by lazy evaluation), but when the argument is evaluated, either its default value is evaluated (within the evaluation environment of the function) or an error is thrown with a message along the lines of</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>argument <span class="st">"foobar"</span> is missing, with no default</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Internally missingness is handled by two mechanisms. The object <code>R_MissingArg</code> is used to indicate that a formal argument has no (default) value. When matching the actual arguments to the formal arguments, a new argument list is constructed from the formals all of whose values are <code>R_MissingArg</code> with the first <code>MISSING</code> bit set. Then whenever a formal argument is matched to an actual argument, the corresponding member of the new argument list has its value set to that of the matched actual argument, and if that is not <code>R_MissingArg</code> the missing bit is unset.</p>
+<p>This new argument list is used to form the evaluation frame for the function, and if named arguments are subsequently given a new value (before they are evaluated) the missing bit is cleared.</p>
+<p>Missingness of arguments can be interrogated via the <code>missing()</code> function. An argument is clearly missing if its missing bit is set or if the value is <code>R_MissingArg</code>. However, missingness can be passed on from function to function, for using a formal argument as an actual argument in a function call does not count as evaluation. So <code>missing()</code> has to examine the value (a promise) of a non-yet-evaluated formal argument to see if it might be missing, which might involve investigating a promise and so on ….</p>
+<p>Special primitives also need to handle missing arguments, and in some case (e.g.&nbsp;<code>log</code>) that is why they are special and not builtin. This is usually done by testing if an argument’s value is <code>R_MissingArg</code>.</p>
+</section>
+<section id="dot-dot-dot-arguments" class="level3 subsection" data-number="1.5.2">
+<h3 class="subsection anchored" data-number="1.5.2" data-anchor-id="dot-dot-dot-arguments"><span class="header-section-number">1.5.2</span> Dot-dot-dot arguments</h3>
+<p>Dot-dot-dot arguments are convenient when writing functions, but complicate the internal code for argument evaluation.</p>
+<p>The formals of a function with a <code>...</code> argument represent that as a single argument like any other argument, with tag the symbol <code>R_DotsSymbol</code>. When the actual arguments are matched to the formals, the value of the <code>...</code> argument is of <code>SEXPTYPE</code> <code>DOTSXP</code>, a pairlist of promises (as used for matched arguments) but distinguished by the <code>SEXPTYPE</code>.</p>
+<p>Recall that the evaluation frame for a function initially contains the <code>name=value</code> pairs from the matched call, and hence this will be true for <code>...</code> as well. The value of <code>...</code> is a (special) pairlist whose elements are referred to by the special symbols <code>..1</code>, <code>..2</code>, … which have the <code>DDVAL</code> bit set: when one of these is encountered it is looked up (via <code>ddfindVar</code>) in the value of the <code>...</code> symbol in the evaluation frame.</p>
+<p>Values of arguments matched to a <code>...</code> argument can be missing.</p>
+<p>Special primitives may need to handle <code>...</code> arguments: see for example the internal code of <code>switch</code> in file <code>src/main/builtin.c</code>.</p>
+</section>
+</section>
+<section id="autoprinting" class="level2 section page-columns page-full" data-number="1.6">
+<h2 class="section anchored" data-number="1.6" data-anchor-id="autoprinting"><span class="header-section-number">1.6</span> Autoprinting</h2>
+<p>Whether the returned value of a top-level R expression is printed is controlled by the global boolean variable <code>R_Visible</code>. This is set (to true or false) on entry to all primitive and internal functions based on the <code>eval</code> column of the table in file <code>src/main/names.c</code>: the appropriate setting can be extracted by the macro <code>PRIMPRINT</code>.</p>
+<p>The R primitive function <code>invisible</code> makes use of this mechanism: it just sets <code>R_Visible = FALSE</code> before entry and returns its argument.</p>
+<div class="page-columns page-full"><p>For most functions the intention will be that the setting of <code>R_Visible</code> when they are entered is the setting used when they return, but there need to be exceptions. The R functions <code>identify</code>, <code>options</code>, <code>system</code> and <code>writeBin</code> determine whether the result should be visible from the arguments or user action. Other functions themselves dispatch functions which may change the visibility flag: examples<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> are <code>.Internal</code>, <code>do.call</code>, <code>eval</code>, <code>withVisible</code>, <code>if</code>, <code>NextMethod</code>, <code>Recall</code>, <code>recordGraphics</code>, <code>standardGeneric</code>, <code>switch</code> and <code>UseMethod</code>.</p><div class="no-row-height column-margin column-container"><li id="fn6" role="doc-endnote"><p><sup>6</sup>&nbsp;the other current example is left brace, which is implemented as a primitive.</p></li></div></div>
+<p>‘Special’ primitive and internal functions evaluate their arguments internally <em>after</em> <code>R_Visible</code> has been set, and evaluation of the arguments (e.g.&nbsp;an assignment as in PR#9263) can change the value of the flag.</p>
+<p>The <code>R_Visible</code> flag can also get altered during the evaluation of a function, with comments in the code about <code>warning</code>, <code>writeChar</code> and graphics functions calling <code>GText</code> (PR#7397). (Since the C-level function <code>eval</code> sets <code>R_Visible</code>, this could apply to any function calling it. Since it is called when evaluating promises, even object lookup can change <code>R_Visible</code>.) Internal and primitive functions force the documented setting of <code>R_Visible</code> on return, unless the C code is allowed to change it (the exceptions above are indicated by <code>PRIMPRINT</code> having value 2).</p>
+<p>The actual autoprinting is done by <code>PrintValueEnv</code> in file <code>print.c</code>. If the object to be printed has the S4 bit set and S4 methods dispatch is on, <code>show</code> is called to print the object. Otherwise, if the object bit is set (so the object has a <code>"class"</code> attribute), <code>print</code> is called to dispatch methods: for objects without a class the internal code of <code>print.default</code> is called.</p>
+</section>
+<section id="the-write-barrier-and-the-garbage-collector" class="level2 section" data-number="1.7">
+<h2 class="section anchored" data-number="1.7" data-anchor-id="the-write-barrier-and-the-garbage-collector"><span class="header-section-number">1.7</span> The write barrier and the garbage collector</h2>
+<p>R has long had a generational garbage collector, and bit <code>gcgen</code> in the <code>sxpinfo</code> header is used in the implementation of this. This is used in conjunction with the <code>mark</code> bit to identify two previous generations.</p>
+<p>There are three levels of collections. Level 0 collects only the youngest generation, level 1 collects the two youngest generations and level 2 collects all generations. After 20 level-0 collections the next collection is at level 1, and after 5 level-1 collections at level 2. Further, if a level-<var>n</var> collection fails to provide 20% free space (for each of nodes and the vector heap), the next collection will be at level <var>n+1</var>. (The R-level function <code>gc()</code> performs a level-2 collection.)</p>
+<p>A generational collector needs to efficiently ‘age’ the objects, especially list-like objects (including <code>STRSXP</code>s). This is done by ensuring that the elements of a list are regarded as at least as old as the list <em>when they are assigned</em>. This is handled by the functions <code>SET_VECTOR_ELT</code> and <code>SET_STRING_ELT</code>, which is why they are functions and not macros. Ensuring the integrity of such operations is termed the <em>write barrier</em> and is done by making the <code>SEXP</code> opaque and only providing access via functions (which cannot be used as lvalues in assignments in C).</p>
+<p>All code in R extensions is behind the write barrier. R extensions cannot directly access the internals of the <code>SEXPREC</code>s. Base code can access internals if <code>USE_RINTERNALS</code> is defined. This is normally defined in <code>Defn.h</code> when R is compiled. To enable a check on the way that the access is used, R can be compiled with flag <code>--enable-strict-barrier</code> which ensures that header <code>Defn.h</code> does not define <code>USE_RINTERNALS</code> and hence that <code>SEXP</code> is opaque in most of R itself. (There are some necessary exceptions: foremost in file <code>memory.c</code> where the accessor functions are defined and also in file <code>size.c</code> which needs access to the sizes of the internal structures.)</p>
+<p>For background papers see <a href="https://homepage.stat.uiowa.edu/~luke/R/barrier.html" class="uri">https://homepage.stat.uiowa.edu/~luke/R/barrier.html</a> and <a href="https://homepage.stat.uiowa.edu/~luke/R/gengcnotes.html" class="uri">https://homepage.stat.uiowa.edu/~luke/R/gengcnotes.html</a>.</p>
+</section>
+<section id="serialization-formats" class="level2 section page-columns page-full" data-number="1.8">
+<h2 class="section anchored" data-number="1.8" data-anchor-id="serialization-formats"><span class="header-section-number">1.8</span> Serialization Formats</h2>
+<p>Serialized versions of R objects are used by <code>load</code>/<code>save</code> and also at a slightly lower level by <code>saveRDS</code>/<code>readRDS</code> (and their earlier ‘internal’ dot-name versions) and <code>serialize</code>/<code>unserialize</code>. These differ in what they serialize to (a file, a connection, a raw vector) and whether they are intended to serialize a single object or a collection of objects (typically the workspace). <code>save</code> writes a header at the beginning of the file (a single LF-terminated line) which the lower-level versions do not.</p>
+<p><code>save</code> and <code>saveRDS</code> allow various forms of compression, and <code>gzip</code> compression is the default (except for ASCII saves). Compression is applied to the whole file stream, including the headers, so serialized files can be uncompressed or re-compressed by external programs. Both <code>load</code> and <code>readRDS</code> can read <code>gzip</code>, <code>bzip2</code> and <code>xz</code> forms of compression when reading from a file, and <code>gzip</code> compression when reading from a connection.</p>
+<p>R has used the same serialization format called ‘version 2’ from R 1.4.0 in December 2001 until R 3.5.3 in March 2019. It has been expanded in back-compatible ways since its inception, for example to support additional <code>SEXPTYPE</code>s. Earlier formats are still supported via <code>load</code> and <code>save</code> but such formats are not described here. The current default serialization format is called ‘version 3’, and has been introduced in R 3.5.0.</p>
+<p><code>save</code> works by writing a single-line header (typically <code>RDX2\n</code> for a binary save: the only other current value is <code>RDA2\n</code> for <code>save(files=TRUE)</code>), then creating a tagged pairlist of the objects to be saved and serializing that single object. <code>load</code> reads the header line, unserializes a single object (a pairlist or a vector list) and assigns the elements of the object in the specified environment. The header line serves two purposes in R: it identifies the serialization format so <code>load</code> can switch to the appropriate reader code, and the newline <code>\n</code> allows the detection of files which have been subjected to a non-binary transfer which re-mapped line endings. It can also be thought of as a ‘magic number’ in the sense used by the <code>file</code> program (although R save files are not yet by default known to that program).</p>
+<p>Serialization in R needs to take into account that objects may contain references to environments, which then have enclosing environments and so on. (Environments recognized as package or name space environments are saved by name.) There are ‘reference objects’ which are not duplicated on copy and should remain shared on unserialization. These are weak references, external pointers and environments other than those associated with packages, namespaces and the global environment. These are handled via a hash table, and references after the first are written out as a reference marker indexed by the table entry.</p>
+<p>Version-2 serialization first writes a header indicating the format (normally <code>X\n</code> for an XDR format binary save, but <code>A\n</code>, ASCII, and <code>B\n</code>, native word-order binary, can also occur) and then three integers giving the version of the format and two R versions (packed by the <code>R_Version</code> macro from <code>Rversion.h</code>). (Unserialization interprets the two versions as the version of R which wrote the file followed by the minimal version of R needed to read the format.) Serialization then writes out the object recursively using function <code>WriteItem</code> in file <code>src/main/serialize.c</code>.</p>
+<p>Some objects are written as if they were <code>SEXPTYPE</code>s: such pseudo-<code>SEXPTYPE</code>s cover <code>R_NilValue</code>, <code>R_EmptyEnv</code>, <code>R_BaseEnv</code>, <code>R_GlobalEnv</code>, <code>R_UnboundValue</code>, <code>R_MissingArg</code> and <code>R_BaseNamespace</code>.</p>
+<div class="page-columns page-full"><p>For all <code>SEXPTYPE</code>s except <code>NILSXP</code>, <code>SYMSXP</code> and <code>ENVSXP</code> serialization starts with an integer with the <code>SEXPTYPE</code> in bits 0:7<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> followed by the object bit, two bits indicating if there are any attributes and if there is a tag (for the pairlist types), an unused bit and then the <code>gp</code> field<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> in bits 12:27. Pairlist-like objects write their attributes (if any), tag (if any), CAR and then CDR (using tail recursion): other objects write their attributes after themselves. Atomic vector objects write their length followed by the data: generic vector-list objects write their length followed by a call to <code>WriteItem</code> for each element. The code for <code>CHARSXP</code>s special-cases <code>NA_STRING</code> and writes it as length <code>-1</code> with no data. Lengths no more than <code>2^31 - 1</code> are written in that way and larger lengths (which only occur on 64-bit systems) as <code>-1</code> followed by the upper and lower 32-bits as integers (regarded as unsigned).</p><div class="no-row-height column-margin column-container"><li id="fn7" role="doc-endnote"><p><sup>7</sup>&nbsp;only bits 0:4 are currently used for <code>SEXPTYPE</code>s but values 241:255 are used for pseudo-<code>SEXPTYPE</code>s.</p></li><li id="fn8" role="doc-endnote"><p><sup>8</sup>&nbsp;Currently the only relevant bits are 0:1, 4, 14:15.</p></li></div></div>
+<p>Environments are treated in several ways: as we have seen, some are written as specific pseudo-<code>SEXPTYPE</code>s. Package and namespace environments are written with pseudo-<code>SEXPTYPE</code>s followed by the name. ‘Normal’ environments are written out as <code>ENVSXP</code>s with an integer indicating if the environment is locked followed by the enclosure, frame, ‘tag’ (the hash table) and attributes.</p>
+<p>In the ‘XDR’ format integers and doubles are written in bigendian order: however the format is not fully XDR (as defined in RFC 1832) as byte quantities (such as the contents of <code>CHARSXP</code> and <code>RAWSXP</code> types) are written as-is and not padded to a multiple of four bytes.</p>
+<p>The ‘ASCII’ format writes 7-bit characters. Integers are formatted with <code>%d</code> (except that <code>NA_integer_</code> is written as <code>NA</code>), doubles formatted with <code>%.16g</code> (plus <code>NA</code>, <code>Inf</code> and <code>-Inf</code>) and bytes with <code>%02x</code>. Strings are written using standard escapes (e.g.&nbsp;<code>\t</code> and <code>\013</code>) for non-printing and non-ASCII bytes.</p>
+<p>Version-3 serialization extends version-2 by support for custom serialization of <code>ALTREP</code> framework objects. It also stores the current native encoding at serialization time, so that unflagged strings can be converted if unserialized in R running under different native encoding.</p>
+</section>
+<section id="encodings-for-charsxps" class="level2 section page-columns page-full" data-number="1.9">
+<h2 class="section anchored" data-number="1.9" data-anchor-id="encodings-for-charsxps"><span class="header-section-number">1.9</span> Encodings for CHARSXPs</h2>
+<p>Character data in R are stored in the sexptype <code>CHARSXP</code>.</p>
+<p>There is support for encodings other than that of the current locale, in particular UTF-8 and the multi-byte encodings used on Windows for CJK languages. A limited means to indicate the encoding of a <code>CHARSXP</code> is <em>via</em> two of the ‘general purpose’ bits which are used to declare the encoding to be either Latin-1 or UTF-8. (Note that it is possible for a character vector to contain elements in different encodings.) Both printing and plotting notice the declaration and convert the string to the current locale (possibly using <code>&lt;xx&gt;</code> to display in hexadecimal bytes that are not valid in the current locale). Many (but not all) of the character manipulation functions will either preserve the declaration or re-encode the character string.</p>
+<p>Strings that refer to the OS such as file names need to be passed through a wide-character interface on some OSes (e.g.&nbsp;Windows).</p>
+<p>When are character strings declared to be of known encoding? One way is to do so directly via <code>Encoding</code>. The parser declares the encoding if this is known, either via the <code>encoding</code> argument to <code>parse</code> or from the locale within which parsing is being done at the R command line. (Other ways are recorded on the help page for <code>Encoding</code>.)</p>
+<p>It is not necessary to declare the encoding of ASCII strings as they will work in any locale. ASCII strings should never have a marked encoding, as any encoding will be ignored when entering such strings into the <code>CHARSXP</code> cache.</p>
+<div class="page-columns page-full"><p>The rationale behind considering only UTF-8 and Latin-1 was that most systems are capable of producing UTF-8 strings and this is the nearest we have to a universal format. For those that do not (for example those lacking a powerful enough <code>iconv</code>), it is likely that they work in Latin-1, the old R assumption. Then the parser can return a UTF-8-encoded string if it encounters a <code>\uxxxx</code> escape for a Unicode point that cannot be represented in the current charset. (This needs MBCS support, and in the past was only enabled<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> on Windows.) Now this is enabled for all platforms, and a <code>\uxxxx</code> or <code>\Uxxxxxxxx</code> escape ensures that the parsed string will be marked as UTF-8.</p><div class="no-row-height column-margin column-container"><li id="fn9" role="doc-endnote"><p><sup>9</sup>&nbsp;See define <code>USE_UTF8_IF_POSSIBLE</code> in old versions of file <code>src/main/gram.c</code>.</p></li></div></div>
+<p>Most of the character manipulation functions now preserve UTF-8 encodings: there are some notes as to which at the top of file <code>src/main/character.c</code> and in file <code>src/library/base/man/Encoding.Rd</code>.</p>
+<p>Graphics devices are offered the possibility of handing UTF-8-encoded strings without re-encoding to the native character set, by setting <code>hasTextUTF8</code> to be <code>TRUE</code> and supplying functions <code>textUTF8</code> and <code>strWidthUTF8</code> that expect UTF-8-encoded inputs. Normally the symbol font is encoded in Adobe Symbol encoding, but that can be re-encoded to UTF-8 by setting <code>wantSymbolUTF8</code> to <code>TRUE</code>. The Windows’ port of cairographics has a rather peculiar assumption: it wants the symbol font to be encoded in UTF-8 as if it were encoded in Latin-1 rather than Adobe Symbol: this is selected by <code>wantSymbolUTF8 = NA_LOGICAL</code>.</p>
+<div class="page-columns page-full"><p>Windows with MSVCRT as the C runtime has no UTF-8 locales, but rather expects to work with UCS-2<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> strings. R (being written in standard C) would not work internally with UCS-2 without extensive changes. The <code>Rgui</code> console<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> uses UCS-2 internally, but communicates with the R engine in the native encoding. To allow UTF-8 strings to be printed in UTF-8 in <code>Rgui.exe</code>, an escape convention is used (see header file <code>rgui_UTF8.h</code>) by <code>cat</code>, <code>print</code> and autoprinting.</p><div class="no-row-height column-margin column-container"><li id="fn10" role="doc-endnote"><p><sup>10</sup>&nbsp;or UTF-16 if support for surrogates is enabled in the OS, which it used not to be when encoding support was added to R.</p></li><li id="fn11" role="doc-endnote"><p><sup>11</sup>&nbsp;but not the GraphApp toolkit.</p></li></div></div>
+<p>‘Unicode’ (UCS-2LE) files are common in the Windows world, and <code>readLines</code> and <code>scan</code> will read them into UTF-8 strings on Windows if the encoding is declared explicitly on an unopened connection passed to those functions.</p>
+<p>Windows have multiple notions of the current locale encoding, one is in the C runtime (C library) and another is the active code page (system locale). The active code page is used when calling non-UTF-16 variants of Windows API functions (earlier referred to as ANSI calls), either directly or indirectly via POSIX wrappers inside MinGW-w64, from R, R packages and libraries they link to. While R has handled many cases by calling directly the UTF-16 variants of the Windows API, it still may sometimes use the non-UTF-16 ones, and external libraries also primarily developed for POSIX systems typically do that. Therefore, for R to reliably work with (non-ASCII) strings on Windows, both the C locale encoding and the active code page on Windows must be the same, and by default they are.</p>
+<p>The Windows UCRT C runtime supports UTF-8 locales. Historically, the active code page was a system-wide setting, changing which required a reboot, and UTF-8 was not supported. Later a "BETA: Use Unicode UTF-8 for worldwide language support" feature has been added to set the active code page to UTF-8, but this still required a reboot and impacted all applications, many of which would not work correctly with that unexpected setting, so it could not be used in practice.</p>
+<p>Windows since Windows 10 (version 1903), Windows Server 2022 (LTSC), and Windows Server 1903 (semi-annual channel) allow setting the active code page to UTF-8 in the application manifest. This changes the active code page only for the given application and does so together with changing also the UCRT C locale to UTF-8. R 4.2 for Windows uses this feature to get UTF-8 as the native encoding on Windows. To make that possible, R had to switch to UCRT, which in turn required creation of Rtools42.</p>
+<p>Older versions of Windows still rely on the previous encoding support where the native encoding cannot be UTF-8. R 4.2 requires UCRT to work, but UCRT can be installed on Windows since Vista SP2 and Windows Server 2008 SP2. It is shipped with Windows since Windows 10 and Windows Server 2016.</p>
+</section>
+<section id="the-charsxp-cache" class="level2 section" data-number="1.10">
+<h2 class="section anchored" data-number="1.10" data-anchor-id="the-charsxp-cache"><span class="header-section-number">1.10</span> The CHARSXP cache</h2>
+<p>There is a global cache for <code>CHARSXP</code>s created by <code>mkChar</code> — the cache ensures that most <code>CHARSXP</code>s with the same contents share storage (‘contents’ including any declared encoding). Not all <code>CHARSXP</code>s are part of the cache – notably <code>NA_STRING</code> is not. <code>CHARSXP</code>s reloaded from the <code>save</code> formats of R prior to 0.99.0 are not cached (since the code used is frozen and very few examples still exist).</p>
+<p>The cache records the encoding of the string as well as the bytes: all requests to create a <code>CHARSXP</code> should be <em>via</em> a call to <code>mkCharLenCE</code>. Any encoding given in <code>mkCharLenCE</code> call will be ignored if the string’s bytes are all ASCII characters.</p>
+</section>
+<section id="warnings-and-errors" class="level2 section" data-number="1.11">
+<h2 class="section anchored" data-number="1.11" data-anchor-id="warnings-and-errors"><span class="header-section-number">1.11</span> Warnings and errors</h2>
+<p>Each of <code>warning</code> and <code>stop</code> have two C-level equivalents, <code>warning</code>, <code>warningcall</code>, <code>error</code> and <code>errorcall</code>. The relationship between the pairs is similar: <code>warning</code> tries to fathom out a suitable call, and then calls <code>warningcall</code> with that call as the first argument if it succeeds, and with <code>call = R_NilValue</code> if it does not. When <code>warningcall</code> is called, it includes the deparsed call in its printout unless <code>call = R_NilValue</code>.</p>
+<p><code>warning</code> and <code>error</code> look at the context stack. If the topmost context is not of type <code>CTXT_BUILTIN</code>, it is used to provide the call, otherwise the next context provides the call. This means that when these functions are called from a primitive or <code>.Internal</code>, the imputed call will not be to primitive/<code>.Internal</code> but to the function calling the primitive/<code>.Internal</code> . This is exactly what one wants for a <code>.Internal</code>, as this will give the call to the closure wrapper. (Further, for a <code>.Internal</code>, the call is the argument to <code>.Internal</code>, and so may not correspond to any R function.) However, it is unlikely to be what is needed for a primitive.</p>
+<p>The upshot is that that <code>warningcall</code> and <code>errorcall</code> should normally be used for code called from a primitive, and <code>warning</code> and <code>error</code> should be used for code called from a <code>.Internal</code> (and necessarily from <code>.Call</code>, <code>.C</code> and so on, where the call is not passed down). However, there are two complications. One is that code might be called from either a primitive or a <code>.Internal</code>, in which case probably <code>warningcall</code> is more appropriate. The other involves replacement functions, where the call was once of the form</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">length</span>(x) <span class="ot">&lt;-</span> y <span class="sc">~</span> x</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="st">"length&lt;-"</span>(<span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span>, <span class="at">value =</span> y <span class="sc">~</span> x) <span class="sc">:</span> invalid value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>which is unpalatable to the end user. For replacement functions there will be a suitable context at the top of the stack, so <code>warning</code> should be used. (The results for <code>.Internal</code> replacement functions such as <code>substr&lt;-</code> are not ideal.)</p>
+</section>
+<section id="s4-objects" class="level2 section page-columns page-full" data-number="1.12">
+<h2 class="section anchored" data-number="1.12" data-anchor-id="s4-objects"><span class="header-section-number">1.12</span> S4 objects</h2>
+<p>[This section is currently a preliminary draft and should not be taken as definitive. The description assumes that <code>R_NO_METHODS_TABLES</code> has not been set.]</p>
+<section id="representation-of-s4-objects" class="level3 subsection page-columns page-full" data-number="1.12.1">
+<h3 class="subsection anchored" data-number="1.12.1" data-anchor-id="representation-of-s4-objects"><span class="header-section-number">1.12.1</span> Representation of S4 objects</h3>
+<p>S4 objects can be of any <code>SEXPTYPE</code>. They are either an object of a simple type (such as an atomic vector or function) with S4 class information or of type <code>S4SXP</code>. In all cases, the ‘S4 bit’ (bit 4 of the ‘general purpose’ field) is set, and can be tested by the macro/function <code>IS_S4_OBJECT</code>.</p>
+<div class="page-columns page-full"><p>S4 objects are created via <code>new()</code><a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> and thence via the C function <code>R_do_new_object</code>. This duplicates the prototype of the class, adds a class attribute and sets the S4 bit. All S4 class attributes should be character vectors of length one with an attribute giving (as a character string) the name of the package (or <code>.GlobalEnv</code>) containing the class definition. Since S4 objects have a class attribute, the <code>OBJECT</code> bit is set.</p><div class="no-row-height column-margin column-container"><li id="fn12" role="doc-endnote"><p><sup>12</sup>&nbsp;This can also create non-S4 objects, as in <code>new("integer")</code>.</p></li></div></div>
+<p>It is currently unclear what should happen if the class attribute is removed from an S4 object, or if this should be allowed.</p>
+</section>
+<section id="s4-classes" class="level3 subsection" data-number="1.12.2">
+<h3 class="subsection anchored" data-number="1.12.2" data-anchor-id="s4-classes"><span class="header-section-number">1.12.2</span> S4 classes</h3>
+<p>S4 classes are stored as R objects in the environment in which they are created, with names <code>.__C__classname</code>: as such they are not listed by default by <code>ls</code>.</p>
+<p>The objects are S4 objects of class <code>"classRepresentation"</code> which is defined in the <strong>methods</strong> package.</p>
+<p>Since these are just objects, they are subject to the normal scoping rules and can be imported and exported from namespaces like other objects. The directives <code>importClassesFrom</code> and <code>exportClasses</code> are merely convenient ways to refer to class objects without needing to know their internal ‘metaname’ (although <code>exportClasses</code> does a little sanity checking via <code>isClass</code>).</p>
+</section>
+<section id="s4-methods" class="level3 subsection" data-number="1.12.3">
+<h3 class="subsection anchored" data-number="1.12.3" data-anchor-id="s4-methods"><span class="header-section-number">1.12.3</span> S4 methods</h3>
+<p>Details of the methods are stored in environments (typically hidden in the respective namespace) with a non-syntactic name of the form <code>.__T__generic:package</code> containing objects of class <code>MethodDefinition</code> for all methods defined in the current environment for the named generic derived from a specific package (which might be <code>.GlobalEnv</code>). This is sometimes referred to as a ‘methods table’.</p>
+<p>For example,</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">length</span>(nM <span class="ot">&lt;-</span> <span class="fu">asNamespace</span>(<span class="st">"Matrix"</span>) )                    <span class="co"># 941 for Matrix 1.2-6</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">length</span>(meth <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">"^[.]__T__"</span>, <span class="fu">names</span>(nM), <span class="at">value=</span><span class="cn">TRUE</span>))<span class="co"># 107 generics with methods</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">length</span>(meth.Ops <span class="ot">&lt;-</span> nM<span class="sc">$</span><span class="st">`</span><span class="at">.__T__Ops:base</span><span class="st">`</span>) <span class="co"># 71 methods for the 'Ops' (group)generic</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a> <span class="fu">head</span>(<span class="fu">sort</span>(<span class="fu">names</span>(meth.Ops))) <span class="do">## "abIndex#abIndex" ... "ANY#ddiMatrix" "ANY#ldiMatrix" "ANY#Matrix"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>During an R session there is an environment associated with each non-primitive generic containing objects <code>.AllMTable</code>, <code>.Generic</code>, <code>.Methods</code>, <code>.MTable</code>, <code>.SigArgs</code> and <code>.SigLength</code>. <code>.MTable</code> and <code>AllMTable</code> are merged methods tables containing all the methods defined directly and via inheritance respectively. <code>.Methods</code> is a merged methods list.</p>
+<p>Exporting methods from a namespace is more complicated than exporting a class. Note first that you do not export a method, but rather the directive <code>exportMethods</code> will export all the methods defined in the namespace for a specified generic: the code also adds to the list of generics any that are exported directly. For generics which are listed via <code>exportMethods</code> or exported themselves, the corresponding environment is exported and so will appear (as hidden object) in the package environment.</p>
+<p>Methods for primitives which are internally S4 generic (see below) are always exported, whether mentioned in the <code>NAMESPACE</code> file or not.</p>
+<p>Methods can be imported either via the directive <code>importMethodsFrom</code> or via importing a namespace by <code>import</code>. Also, if a generic is imported via <code>importFrom</code>, its methods are also imported. In all cases the generic will be imported if it is in the namespace, so <code>importMethodsFrom</code> is most appropriate for methods defined on generics in other packages. Since methods for a generic could be imported from several different packages, the methods tables are merged.</p>
+<p>When a package is attached <code>methods:::cacheMetaData</code> is called to update the internal tables: only the visible methods will be cached.</p>
+</section>
+<section id="mechanics-of-s4-dispatch" class="level3 subsection page-columns page-full" data-number="1.12.4">
+<h3 class="subsection anchored" data-number="1.12.4" data-anchor-id="mechanics-of-s4-dispatch"><span class="header-section-number">1.12.4</span> Mechanics of S4 dispatch</h3>
+<p>This subsection does not discuss how S4 methods are chosen: see <a href="https://developer.r-project.org/howMethodsWork.pdf" class="uri">https://developer.r-project.org/howMethodsWork.pdf</a>.</p>
+<div class="page-columns page-full"><p>For all but primitive functions, setting a method on an existing function that is not itself S4 generic creates a new object in the current environment which is a call to <code>standardGeneric</code> with the old definition as the default method. Such S4 generics can also be created <em>via</em> a call to <code>setGeneric</code><a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a> and are standard closures in the R language, with environment the environment within which they are created. With the advent of namespaces this is somewhat problematic: if <code>myfn</code> was previously in a package with a name space there will be two functions called <code>myfn</code> on the search paths, and which will be called depends on which search path is in use. This is starkest for functions in the base namespace, where the original will be found ahead of the newly created function from any other package.</p><div class="no-row-height column-margin column-container"><li id="fn13" role="doc-endnote"><p><sup>13</sup>&nbsp;although this is not recommended as it is less future-proof.</p></li></div></div>
+<p>Primitive functions are treated quite differently, for efficiency reasons: this results in different semantics. <code>setGeneric</code> is disallowed for primitive functions. The <strong>methods</strong> namespace contains a list <code>.BasicFunsList</code> named by primitive functions: the entries are either <code>FALSE</code> or a standard S4 generic showing the effective definition. When <code>setMethod</code> (or <code>setReplaceMethod</code>) is called, it either fails (if the list entry is <code>FALSE</code>) or a method is set on the effective generic given in the list.</p>
+<p>Actual dispatch of S4 methods for almost all primitives piggy-backs on the S3 dispatch mechanism, so S4 methods can only be dispatched for primitives which are internally S3 generic. When a primitive that is internally S3 generic is called with a first argument which is an S4 object and S4 dispatch is on (that is, the <strong>methods</strong> namespace is loaded), <code>DispatchOrEval</code> calls <code>R_possible_dispatch</code> (defined in file <code>src/main/objects.c</code>). (Members of the S3 group generics, which includes all the generic operators, are treated slightly differently: the first two arguments are checked and <code>DispatchGroup</code> is called.) <code>R_possible_dispatch</code> first checks an internal table to see if any S4 methods are set for that generic (and S4 dispatch is currently enabled for that generic), and if so proceeds to S4 dispatch using methods stored in another internal table. All primitives are in the base namespace, and this mechanism means that S4 methods can be set for (some) primitives and will always be used, in contrast to setting methods on non-primitives.</p>
+<p>The exception is <code>%*%</code>, which is S4 generic but not S3 generic as its C code contains a direct call to <code>R_possible_dispatch</code>.</p>
+<p>The primitive <code>as.double</code> is special, as <code>as.numeric</code> and <code>as.real</code> are copies of it. The <strong>methods</strong> package code partly refers to generics by name and partly by function, and maps <code>as.double</code> and <code>as.real</code> to <code>as.numeric</code> (since that is the name used by packages exporting methods for it).</p>
+<p>Some elements of the language are implemented as primitives, for example <code>}</code>. This includes the subset and subassignment ‘functions’ and they are S4 generic, again piggybacking on S3 dispatch.</p>
+<p><code>.BasicFunsList</code> is generated when <strong>methods</strong> is installed, by computing all primitives, initially disallowing methods on all and then setting generics for members of <code>.GenericArgsEnv</code>, the S4 group generics and a short exceptions list in file <code>BasicFunsList.R</code>: this currently contains the subsetting and subassignment operators and an override for <code>c</code>.</p>
+</section>
+</section>
+<section id="memory-allocators" class="level2 section page-columns page-full" data-number="1.13">
+<h2 class="section anchored" data-number="1.13" data-anchor-id="memory-allocators"><span class="header-section-number">1.13</span> Memory allocators</h2>
+<p>R’s memory allocation is almost all done via routines in file <code>src/main/memory.c</code>.</p>
+<p>The rest of R should where possible make use of the allocators made available by file <code>src/main/memory.c</code>, which are also the methods recommended in ‘Writing R Extensions’ for use in R packages, namely the use of <code>R_alloc</code>, <code>R_Calloc</code>, <code>R_Realloc</code> and <code>R_Free</code>. Memory allocated by <code>R_alloc</code> is freed by the garbage collector once the ‘watermark’ has been reset by calling <code>vmaxset</code>. This is done automatically by the wrapper code calling primitives and <code>.Internal</code> functions (and also by the wrapper code to <code>.Call</code> and <code>.External</code>), but <code>vmaxget</code> and <code>vmaxset</code> can be used to reset the watermark from within internal code if the memory is only required for a short time.</p>
+<div class="page-columns page-full"><p>All of the methods of memory allocation mentioned so far are relatively expensive. All R platforms support <code>alloca</code>, and in almost all cases<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> this is managed by the compiler, allocates memory on the C stack and is very efficient.</p><div class="no-row-height column-margin column-container"><li id="fn14" role="doc-endnote"><p><sup>14</sup>&nbsp;but apparently not on Windows.</p></li></div></div>
+<p>There are two disadvantages in using <code>alloca</code>. First, it is fragile and care is needed to avoid writing (or even reading) outside the bounds of the allocation block returned. Second, it increases the danger of overflowing the C stack. It is suggested that it is only used for smallish allocations (up to tens of thousands of bytes), and that</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">R_CheckStack</span>();</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>is called immediately after the allocation (as R’s stack checking mechanism will warn far enough from the stack limit to allow for modest use of alloca). (<code>do_makeunique</code> in file <code>src/main/unique.c</code> provides an example of both points.)</p>
+<p>There is an alternative check,</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">R_CheckStack2</span>(size_t extra);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>to be called immediately <em>before</em> trying an allocation of <code>extra</code> bytes.</p>
+<p>An alternative strategy has been used for various functions which require intermediate blocks of storage of varying but usually small size, and this has been consolidated into the routines in the header file <code>src/main/RBufferUtils.h</code>. This uses a structure which contains a buffer, the current size and the default size. A call to</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">R_AllocStringBuffer</span>(size_t blen, R_StringBuffer <span class="sc">*</span>buf);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>sets <code>buf-&gt;data</code> to a memory area of at least <code>blen+1</code> bytes. At least the default size is used, which means that for small allocations the same buffer can be reused. A call to <code>R_FreeStringBufferL</code> releases memory if more than the default has been allocated whereas a call to <code>R_FreeStringBuffer</code> frees any memory allocated.</p>
+<p>The <code>R_StringBuffer</code> structure needs to be initialized, for example by</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="dt">static</span> R_StringBuffer ex_buff <span class="op">=</span> <span class="op">{</span>NULL<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> MAXELTSIZE<span class="op">};</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>which uses a default size of <code>MAXELTSIZE = 8192</code> bytes. Most current uses have a static <code>R_StringBuffer</code> structure, which allows the (default-sized) buffer to be shared between calls to e.g.&nbsp;<code>grep</code> and even between functions: this will need to be changed if R ever allows concurrent evaluation threads. So the idiom is</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="dt">static</span> R_StringBuffer ex_buff <span class="op">=</span> <span class="op">{</span>NULL<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> MAXELTSIZE<span class="op">};</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="op">...</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> <span class="op">*</span>buf<span class="op">;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span>i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        compute len</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        buf <span class="op">=</span> R_AllocStringBuffer<span class="op">(</span>len<span class="op">,</span> <span class="op">&amp;</span>ex_buff<span class="op">);</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        use buf</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">/*  free allocation if larger than the default, but leave</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">        default allocated for future use */</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>   R_FreeStringBufferL<span class="op">(&amp;</span>ex_buff<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="internals-of-r_alloc" class="level3 subsection" data-number="1.13.1">
+<h3 class="subsection anchored" data-number="1.13.1" data-anchor-id="internals-of-r_alloc"><span class="header-section-number">1.13.1</span> Internals of R_alloc</h3>
+<p>The memory used by <code>R_alloc</code> is allocated as R vectors, of type <code>RAWSXP</code>. Thus the allocation is in units of 8 bytes, and is rounded up. A request for zero bytes currently returns <code>NULL</code> (but this should not be relied on). For historical reasons, in all other cases 1 byte is added before rounding up so the allocation is always 1–8 bytes more than was asked for: again this should not be relied on.</p>
+<p>The vectors allocated are protected via the setting of <code>R_VStack</code>, as the garbage collector marks everything that can be reached from that location. When a vector is <code>R_alloc</code>ated, its <code>ATTRIB</code> pointer is set to the current <code>R_VStack</code>, and <code>R_VStack</code> is set to the latest allocation. Thus <code>R_VStack</code> is a single-linked chain of the vectors currently allocated via <code>R_alloc</code>. Function <code>vmaxset</code> resets the location <code>R_VStack</code>, and should be to a value that has previously be obtained <em>via</em> <code>vmaxget</code>: allocations after the value was obtained will no longer be protected and hence available for garbage collection.</p>
+</section>
+</section>
+<section id="internal-use-of-global-and-base-environments" class="level2 section" data-number="1.14">
+<h2 class="section anchored" data-number="1.14" data-anchor-id="internal-use-of-global-and-base-environments"><span class="header-section-number">1.14</span> Internal use of global and base environments</h2>
+<p>This section notes known use by the system of these environments: the intention is to minimize or eliminate such uses.</p>
+<section id="base-environment" class="level3 subsection" data-number="1.14.1">
+<h3 class="subsection anchored" data-number="1.14.1" data-anchor-id="base-environment"><span class="header-section-number">1.14.1</span> Base environment</h3>
+<p>The graphics devices system maintains two variables <code>.Device</code> and <code>.Devices</code> in the base environment: both are always set. The variable <code>.Devices</code> gives a list of character vectors of the names of open devices, and <code>.Device</code> is the element corresponding to the currently active device. The null device will always be open.</p>
+<p>There appears to be a variable <code>.Options</code>, a pairlist giving the current options settings. But in fact this is just a symbol with a value assigned, and so shows up as a base variable.</p>
+<p>Similarly, the evaluator creates a symbol <code>.Last.value</code> which appears as a variable in the base environment.</p>
+<p>Errors can give rise to objects <code>.Traceback</code> and <code>last.warning</code> in the base environment.</p>
+</section>
+<section id="global-environment" class="level3 subsection" data-number="1.14.2">
+<h3 class="subsection anchored" data-number="1.14.2" data-anchor-id="global-environment"><span class="header-section-number">1.14.2</span> Global environment</h3>
+<p>The seed for the random number generator is stored in object <code>.Random.seed</code> in the global environment.</p>
+<p>Some error handlers may give rise to objects in the global environment: for example <code>dump.frames</code> by default produces <code>last.dump</code>.</p>
+<p>The <code>windows()</code> device makes use of a variable <code>.SavedPlots</code> to store display lists of saved plots for later display. This is regarded as a variable created by the user.</p>
+</section>
+</section>
+<section id="modules" class="level2 section" data-number="1.15">
+<h2 class="section anchored" data-number="1.15" data-anchor-id="modules"><span class="header-section-number">1.15</span> Modules</h2>
+<p>R makes use of a number of shared objects/DLLs stored in the <code>modules</code> directory. These are parts of the code which have been chosen to be loaded ‘on demand’ rather than linked as dynamic libraries or incorporated into the main executable/dynamic library.</p>
+<p>For the remaining modules the motivation has been the amount of (often optional) code they will bring in <em>via</em> libraries to which they are linked.</p>
+<dl>
+<dt><code>internet</code></dt>
+<dd>
+<p>The internal HTTP and FTP clients and socket support, which link to system-specific support libraries. This may load <code>libcurl</code> and on Windows will load <code>wininet.dll</code> and <code>ws2_32.dll</code>.</p>
+</dd>
+<dt><code>lapack</code></dt>
+<dd>
+<p>The code which makes use of the LAPACK library, and is linked to <code>libRlapack</code> or an external LAPACK library.</p>
+</dd>
+<dt><code>X11</code></dt>
+<dd>
+<p>(Unix-alikes only.) The <code>X11()</code>, <code>jpeg()</code>, <code>png()</code> and <code>tiff()</code> devices. These are optional, and links to some or all of the <code>X11</code>, <code>pango</code>, <code>cairo</code>, <code>jpeg</code>, <code>libpng</code> and <code>libtiff</code> libraries.</p>
+</dd>
+</dl>
+</section>
+<section id="visibility" class="level2 section" data-number="1.16">
+<h2 class="section anchored" data-number="1.16" data-anchor-id="visibility"><span class="header-section-number">1.16</span> Visibility</h2>
+<section id="hiding-c-entry-points" class="level3 subsection" data-number="1.16.1">
+<h3 class="subsection anchored" data-number="1.16.1" data-anchor-id="hiding-c-entry-points"><span class="header-section-number">1.16.1</span> Hiding C entry points</h3>
+<p>We make use of the visibility mechanisms discussed in section ‘Controlling Visibility’ in ‘Writing R Extensions’, C entry points not needed outside the main R executable/dynamic library (and in particular in no package nor module) should be prefixed by <code>attribute_hidden</code>. Minimizing the visibility of symbols in the R dynamic library will speed up linking to it (which packages will do) and reduce the possibility of linking to the wrong entry points of the same name. In addition, on some platforms reducing the number of entry points allows more efficient versions of PIC to be used: somewhat over half the entry points are hidden. A convenient way to hide variables (as distinct from functions) is to declare them <code>extern0</code> in header file <code>Defn.h</code>.</p>
+<p>The visibility mechanism used is only available with some compilers and platforms, and in particular not on Windows, where an alternative mechanism is used. Entry points will not be made available in <code>R.dll</code> if they are listed in the file <code>src/gnuwin32/Rdll.hide</code>. Entries in that file start with a space and must be strictly in alphabetic order in the C locale (use <code>sort</code> on the file to ensure this if you change it). It is possible to hide Fortran as well as C entry points via this file: the former are lower-cased and have an underline as suffix, and the suffixed name should be included in the file. Some entry points exist only on Windows or need to be visible only on Windows, and some notes on these are provided in file <code>src/gnuwin32/Maintainters.notes</code>.</p>
+<p>Because of the advantages of reducing the number of visible entry points, they should be declared <code>attribute_hidden</code> where possible. Note that this only has an effect on a shared-R-library build, and so care is needed not to hide entry points that are legitimately used by packages. So it is best if the decision on visibility is made when a new entry point is created, including the decision if it should be included in header file <code>Rinternals.h</code>. A list of the visible entry points on shared-R-library build on a reasonably standard Unix-alike can be made by something like</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>nm <span class="sc">-</span>g libR.so <span class="sc">|</span> grep <span class="st">' [BCDT] '</span> <span class="sc">|</span> cut <span class="sc">-</span>b20<span class="sc">-</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="variables-in-windows-dlls" class="level3 subsection" data-number="1.16.2">
+<h3 class="subsection anchored" data-number="1.16.2" data-anchor-id="variables-in-windows-dlls"><span class="header-section-number">1.16.2</span> Variables in Windows DLLs</h3>
+<p>Windows is unique in that it conventionally treats importing variables differently from functions: variables that are imported from a DLL need to be specified by a prefix (often <code>_imp_</code>) when being linked to (‘imported’) but not when being linked from (‘exported’). The details depend on the compiler system, and have changed for MinGW during the lifetime of that port. They are in the main hidden behind some macros defined in header file <code>R_ext/libextern.h</code>.</p>
+<p>A (non-function) variable in the main R sources that needs to be referred to outside <code>R.dll</code> (in a package, module or another DLL such as <code>Rgraphapp.dll</code>) should be declared with prefix <code>LibExtern</code>. The main use is in <code>Rinternals.h</code>, but it needs to be considered for any public header and also <code>Defn.h</code>.</p>
+<p>It would nowadays be possible to make use of the ‘auto-import’ feature of the MinGW port of <code>ld</code> to fix up imports from DLLs (and if R is built for the Cygwin platform this is what happens). However, this was not possible when the MinGW build of R was first constructed in ca 1998, allows less control of visibility and would not work for other Windows compiler suites.</p>
+<p>It is only possible to check if this has been handled correctly by compiling the R sources on Windows.</p>
+</section>
+</section>
+<section id="lazy-loading" class="level2 section" data-number="1.17">
+<h2 class="section anchored" data-number="1.17" data-anchor-id="lazy-loading"><span class="header-section-number">1.17</span> Lazy loading</h2>
+<p>Lazy loading is always used for code in packages but is optional (selected by the package maintainer) for datasets in packages. When a package/namespace which uses it is loaded, the package/namespace environment is populated with promises for all the named objects: when these promises are evaluated they load the actual code from a database.</p>
+<p>There are separate databases for code and data, stored in the <code>R</code> and <code>data</code> subdirectories. The database consists of two files, <code>name.rdb</code> and <code>name.rdx</code>. The <code>.rdb</code> file is a concatenation of serialized objects, and the <code>.rdx</code> file contains an index. The objects are stored in (usually) a <code>gzip</code>-compressed format with a 4-byte header giving the uncompressed serialized length (in XDR, that is big-endian, byte order) and read by a call to the primitive <code>lazyLoadDBfetch</code>. (Note that this makes lazy-loading unsuitable for really large objects: the unserialized length of an R object can exceed 4GB.)</p>
+<p>The index or ‘map’ file <code>name.rdx</code> is a compressed serialized R object to be read by <code>readRDS</code>. It is a list with three elements <code>variables</code>, <code>references</code> and <code>compressed</code>. The first two are named lists of integer vectors of length 2 giving the offset and length of the serialized object in the <code>name.rdb</code> file. Element <code>variables</code> has an entry for each named object: <code>references</code> serializes a temporary environment used when named environments are added to the database. <code>compressed</code> is a logical indicating if the serialized objects were compressed: compression is always used nowadays. We later added the values <code>compressed = 2</code> and <code>3</code> for <code>bzip2</code> and <code>xz</code> compression (with the possibility of future expansion to other methods): these formats add a fifth byte to the header for the type of compression, and store serialized objects uncompressed if compression expands them.</p>
+<p>Source references are treated specially for performance reasons: bindings <code>lines</code> and <code>parseData</code> from <code>srcfile</code> environments are loaded lazily. This uses a mechanism that allows loading selected bindings from an environment lazily. The key for such environment is a list with two elements: <code>eagerKey</code> gives the length-two integer key for the bindings loaded eagerly and <code>lazyKeys</code> gives a vector of length-two integer keys, one for each lazily loaded binding.</p>
+<p>The loader for a lazy-load database of code or data is function <code>lazyLoad</code> in the <strong>base</strong> package, but note that there is a separate copy to load <strong>base</strong> itself in file <code>R_HOME/base/R/base</code>.</p>
+<p>Lazy-load databases are created by the code in <code>src/library/tools/R/makeLazyLoad.R</code>: the main tool is the unexported function <code>makeLazyLoadDB</code> and the insertion of database entries is done by calls to <code>.Call("R_lazyLoadDBinsertValue", ...)</code>.</p>
+<p>Lazy-load databases of less than 10MB are cached in memory at first use: this was found necessary when using file systems with high latency (removable devices and network-mounted file systems on Windows).</p>
+<p>Lazy-load databases are loaded into the exports for a package, but not into the namespace environment itself. Thus they are visible when the package is <em>attached</em>, and also <em>via</em> the <code>::</code> operator. This was a deliberate design decision, as packages mostly make datasets available for use by the end user (or other packages), and they should not be found preferentially from functions in the package, surprising users who expected the normal search path to be used. (There is an alternative mechanism, <code>sysdata.rda</code>, for ‘system datasets’ that are intended primarily to be used within the package.)</p>
+<p>The same database mechanism is used to store parsed <code>Rd</code> files. One or all of the parsed objects is fetched by a call to <code>tools:::fetchRdDB</code>.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">R Internals</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./_002eInternal-vs-_002ePrimitive.md" class="pagination-link">
+        <span class="nav-page-text"></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+  </div>
+</footer>
+
+
+</body></html>

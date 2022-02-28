@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.9.48">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>R Manuals :: R Language Definition - 6&nbsp; Computing on the language</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+
+  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+  <script src="site_libs/quarto-nav/headroom.min.js"></script>
+  <script src="site_libs/clipboard/clipboard.min.js"></script>
+  <meta name="quarto:offset" content="./">
+  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+  <script src="site_libs/quarto-search/fuse.min.js"></script>
+  <script src="site_libs/quarto-search/quarto-search.js"></script>
+  <link href="./System-and-foreign-language-interfaces.html" rel="next">
+  <link href="./Object-oriented-programming.html" rel="prev">
+  <script src="site_libs/quarto-html/quarto.js"></script>
+  <script src="site_libs/quarto-html/popper.min.js"></script>
+  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="site_libs/quarto-html/anchor.min.js"></script>
+  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
+  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <script id="quarto-search-options" type="application/json">{
+    "location": "navbar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "end",
+    "type": "overlay",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body class="floating">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">R Manuals :: R Language Definition</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./../index.html">Home</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
+        <li>
+    <a class="dropdown-item" href="./../r-intro/index.html">
+ <span class="dropdown-text">An Introduction to R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-data/index.html">
+ <span class="dropdown-text">R Data Import/Export</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-admin/index.html">
+ <span class="dropdown-text">R Installation and Administration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-exts/index.html">
+ <span class="dropdown-text">Writing R Extensions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./index.html">
+ <span class="dropdown-text">R Language Definition</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-ints/index.html">
+ <span class="dropdown-text">R Internals</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./../about.html">About</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Computing on the language</span></h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">R Language Definition</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Objects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Objects</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Evaluation-of-expressions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Evaluation of expressions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Functions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Object-oriented-programming.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Object-oriented programming</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Computing-on-the-language.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Computing on the language</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./System-and-foreign-language-interfaces.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">System and foreign language interfaces</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Exception-handling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Exception handling</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Debugging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Debugging</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Parser.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Parser</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Function-and-Variable-Index.html" class="sidebar-item-text sidebar-link">Function and Variable Index</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Concept-Index.html" class="sidebar-item-text sidebar-link">Concept Index</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+<h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#direct-manipulation-of-language-objects" class="nav-link active" data-scroll-target="#direct-manipulation-of-language-objects"> <span class="header-section-number">6.1</span> Direct manipulation of language objects</a></li>
+<li><a href="#substitutions" class="nav-link" data-scroll-target="#substitutions"> <span class="header-section-number">6.2</span> Substitutions</a></li>
+<li><a href="#more-on-evaluation" class="nav-link" data-scroll-target="#more-on-evaluation"> <span class="header-section-number">6.3</span> More on evaluation</a></li>
+<li><a href="#evaluation-of-expression-objects" class="nav-link" data-scroll-target="#evaluation-of-expression-objects"> <span class="header-section-number">6.4</span> Evaluation of expression objects</a></li>
+<li><a href="#manipulation-of-function-calls" class="nav-link" data-scroll-target="#manipulation-of-function-calls"> <span class="header-section-number">6.5</span> Manipulation of function calls</a></li>
+<li><a href="#manipulation-of-functions" class="nav-link" data-scroll-target="#manipulation-of-functions"> <span class="header-section-number">6.6</span> Manipulation of functions</a></li>
+</ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<header id="title-block-header">
+<h1 class="title display-7"><span id="computing-on-the-language" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Computing on the language</span></span></h1>
+</header>
+
+<p>R belongs to a class of programming languages in which subroutines have the ability to modify or construct other subroutines and evaluate the result as an integral part of the language itself. This is similar to Lisp and Scheme and other languages of the “functional programming” variety, but in contrast to FORTRAN and the ALGOL family. The Lisp family takes this feature to the extreme by the “everything is a list” paradigm in which there is no distinction between programs and data.</p>
+<p>R presents a friendlier interface to programming than Lisp does, at least to someone used to mathematical formulas and C-like control structures, but the engine is really very Lisp-like. R allows direct access to parsed expressions and functions and allows you to alter and subsequently execute them, or create entirely new functions from scratch.</p>
+<p>There is a number of standard applications of this facility, such as calculation of analytical derivatives of expressions, or the generation of polynomial functions from a vector of coefficients. However, there are also uses that are much more fundamental to the workings of the interpreted part of R. Some of these are essential to the reuse of functions as components in other functions, as the (admittedly not very pretty) calls to <code>model.frame</code> that are constructed in several modeling and plotting routines. Other uses simply allow elegant interfaces to useful functionality. As an example, consider the <code>curve</code> function, which allows you to draw the graph of a function given as an expression like <code>sin(x)</code> or the facilities for plotting mathematical expressions.</p>
+<p>In this chapter, we give an introduction to the set of facilities that are available for computing on the language.</p>
+<section id="direct-manipulation-of-language-objects" class="level2 section" data-number="6.1">
+<h2 class="section anchored" data-number="6.1" data-anchor-id="direct-manipulation-of-language-objects"><span class="header-section-number">6.1</span> Direct manipulation of language objects</h2>
+<p>There are three kinds of language objects that are available for modification, calls, expressions, and functions. At this point, we shall concentrate on the call objects. These are sometimes referred to as “unevaluated expressions”, although this terminology is somewhat confusing. The most direct method of obtaining a call object is to use <code>quote</code> with an expression argument, e.g.,</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> e1 <span class="ot">&lt;-</span> <span class="fu">quote</span>(<span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> e2 <span class="ot">&lt;-</span> <span class="fu">quote</span>(<span class="fu">plot</span>(x, y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The arguments are not evaluated, the result is simply the parsed argument. The objects <code>e1</code> and <code>e2</code> may be evaluated later using <code>eval</code>, or simply manipulated as data. It is perhaps most immediately obvious why the <code>e2</code> object has mode <code>"call"</code>, since it involves a call to the <code>plot</code> function with some arguments. However, <code>e1</code> actually has exactly the same structure as a call to the binary operator <code>+</code> with two arguments, a fact that gets clearly displayed by the following</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">quote</span>(<span class="st">"+"</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The components of a call object are accessed using a list-like syntax, and may in fact be converted to and from lists using <code>as.list</code> and <code>as.call</code></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> e2[[<span class="dv">1</span>]]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>plot</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> e2[[<span class="dv">2</span>]]</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>x</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> e2[[<span class="dv">3</span>]]</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When keyword argument matching is used, the keywords can be used as list tags:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> e3 <span class="ot">&lt;-</span> <span class="fu">quote</span>(<span class="fu">plot</span>(<span class="at">x =</span> age, <span class="at">y =</span> weight))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> e3<span class="sc">$</span>x</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>age</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> e3<span class="sc">$</span>y</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>weight</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>All the components of the call object have mode <code>"name"</code> in the preceding examples. This is true for identifiers in calls, but the components of a call can also be constants—which can be of any type, although the first component had better be a function if the call is to be evaluated successfully—or other call objects, corresponding to subexpressions. Objects of mode name can be constructed from character strings using <code>as.name</code>, so one might modify the <code>e2</code> object as follows</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> e2[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">as.name</span>(<span class="st">"+"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> e2</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To illustrate the fact that subexpressions are simply components that are themselves calls, consider</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> e1[[<span class="dv">2</span>]] <span class="ot">&lt;-</span> e2</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> e1</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>x <span class="sc">+</span> y <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>All grouping parentheses in input are preserved in parsed expressions. They are represented as a function call with one argument, so that <code>4 - (2 - 2)</code> becomes <code>"-"(4, "(" ("-"(2, 2)))</code> in prefix notation. In evaluations, the <code>(</code> operator just returns its argument.</p>
+<p>This is a bit unfortunate, but it is not easy to write a parser/deparser combination that both preserves user input, stores it in minimal form and ensures that parsing a deparsed expression gives the same expression back.</p>
+<p>As it happens, R’s parser is not perfectly invertible, nor is its deparser, as the following examples show</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">str</span>(<span class="fu">quote</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a> language <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">str</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a> num [<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="dv">1</span> <span class="dv">2</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">deparse</span>(<span class="fu">quote</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)))</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"c(1, 2)"</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">deparse</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"c(1, 2)"</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">quote</span>(<span class="st">"-"</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">-</span> <span class="dv">2</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">quote</span>(<span class="dv">2</span> <span class="sc">-</span> <span class="dv">2</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">-</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Deparsed expressions should, however, evaluate to an equivalent value to the original expression (up to rounding error).</p>
+<p>...internal storage of flow control constructs...note Splus incompatibility...</p>
+</section>
+<section id="substitutions" class="level2 section" data-number="6.2">
+<h2 class="section anchored" data-number="6.2" data-anchor-id="substitutions"><span class="header-section-number">6.2</span> Substitutions</h2>
+<p>It is in fact not often that one wants to modify the innards of an expression like in the previous section. More frequently, one wants to simply get at an expression in order to deparse it and use it for labeling plots, for instance. An example of this is seen at the beginning of <code>plot.default</code>:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>xlabel <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="sc">!</span><span class="fu">missing</span>(x))</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">deparse</span>(<span class="fu">substitute</span>(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This causes the variable or expression given as the <code>x</code> argument to <code>plot</code> to be used for labeling the x-axis later on.</p>
+<p>The function used to achieve this is <code>substitute</code> which takes the expression <code>x</code> and substitutes the expression that was passed through the formal argument <code>x</code>. Notice that for this to happen, <code>x</code> must carry information about the expression that creates its value. This is related to the lazy evaluation scheme of R (see <a href="Objects.html#promise-objects">Promise objects</a>). A formal argument is really a <em>promise</em>, an object with three slots, one for the expression that defines it, one for the environment in which to evaluate that expression, and one for the value of that expression once evaluated. <code>substitute</code> will recognize a promise variable and substitute the value of its expression slot. If <code>substitute</code> is invoked inside a function, the local variables of the function are also subject to substitution.</p>
+<p>The argument to <code>substitute</code> does not have to be a simple identifier, it can be an expression involving several variables and substitution will occur for each of these. Also, <code>substitute</code> has an additional argument which can be an environment or a list in which the variables are looked up. For example:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">substitute</span>(a <span class="sc">+</span> b, <span class="fu">list</span>(<span class="at">a =</span> <span class="dv">1</span>, <span class="at">b =</span> <span class="fu">quote</span>(x)))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Notice that quoting was necessary to substitute the <code>x</code>. This kind of construction comes in handy in connection with the facilities for putting math expression in graphs, as the following case shows</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">plot</span>(<span class="dv">0</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">text</span>(<span class="dv">1</span>, <span class="fl">0.2</span> <span class="sc">*</span> i,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>        <span class="fu">substitute</span>(x[ix] <span class="sc">==</span> y, <span class="fu">list</span>(<span class="at">ix =</span> i, <span class="at">y =</span> <span class="fu">pnorm</span>(i))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>It is important to realize that the substitutions are purely lexical; there is no checking that the resulting call objects make sense if they are evaluated. <code>substitute(x &lt;- x + 1, list(x = 2))</code> will happily return <code>2 &lt;- 2 + 1</code>. However, some parts of R make up their own rules for what makes sense and what does not and might actually have a use for such ill-formed expressions. For example, using the “math in graphs” feature often involves constructions that are syntactically correct, but which would be meaningless to evaluate, like <code>{}&gt;=40*" years"</code>.</p>
+<p>Substitute will not evaluate its first argument. This leads to the puzzle of how to do substitutions on an object that is contained in a variable. The solution is to use <code>substitute</code> once more, like this</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> expr <span class="ot">&lt;-</span> <span class="fu">quote</span>(x <span class="sc">+</span> y)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">substitute</span>(<span class="fu">substitute</span>(e, <span class="fu">list</span>(<span class="at">x =</span> <span class="dv">3</span>)), <span class="fu">list</span>(<span class="at">e =</span> expr))</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">substitute</span>(x <span class="sc">+</span> y, <span class="fu">list</span>(<span class="at">x =</span> <span class="dv">3</span>))</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">eval</span>(<span class="fu">substitute</span>(<span class="fu">substitute</span>(e, <span class="fu">list</span>(<span class="at">x =</span> <span class="dv">3</span>)), <span class="fu">list</span>(<span class="at">e =</span> expr)))</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">+</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The exact rules for substitutions are as follows: Each symbol in the parse tree for the first is matched against the second argument, which can be a tagged list or an environment frame. If it is a simple local object, its value is inserted, <em>except</em> if matching against the global environment. If it is a promise (usually a function argument), the promise expression is substituted. If the symbol is not matched, it is left untouched. The special exception for substituting at the top level is admittedly peculiar. It has been inherited from S and the rationale is most likely that there is no control over which variables might be bound at that level so that it would be better to just make substitute act as <code>quote</code>.</p>
+<p>The rule of promise substitution is slightly different from that of S if the local variable is modified before <code>substitute</code> is used. R will then use the new value of the variable, whereas S will unconditionally use the argument expression—unless it was a constant, which has the curious consequence that <code>f((1))</code> may be very different from <code>f(1)</code> in S. The R rule is considerably cleaner, although it does have consequences in connection with lazy evaluation that comes as a surprise to some. Consider</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>logplot <span class="ot">&lt;-</span> <span class="cf">function</span>(y, <span class="at">ylab =</span> <span class="fu">deparse</span>(<span class="fu">substitute</span>(y))) {</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> <span class="fu">log</span>(y)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>(y, <span class="at">ylab =</span> ylab)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This looks straightforward, but one will discover that the y label becomes an ugly <code>c(...)</code> expression. It happens because the rules of lazy evaluation cause the evaluation of the <code>ylab</code> expression to happen <em>after</em> <code>y</code> has been modified. The solution is to force <code>ylab</code> to be evaluated first, i.e.,</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>logplot <span class="ot">&lt;-</span> <span class="cf">function</span>(y, <span class="at">ylab =</span> <span class="fu">deparse</span>(<span class="fu">substitute</span>(y))) {</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    ylab</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> <span class="fu">log</span>(y)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>(y, <span class="at">ylab =</span> ylab)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Notice that one should not use <code>eval(ylab)</code> in this situation. If <code>ylab</code> is a language or expression object, then that would cause the object to be evaluated as well, which would not at all be desirable if a math expression like <code>quote(log[e](y))</code> was being passed.</p>
+<p>A variant on <code>substitute</code> is <code>bquote</code>, which is used to replace some subexpressions with their values. The example from above</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">plot</span>(<span class="dv">0</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">text</span>(<span class="dv">1</span>, <span class="fl">0.2</span> <span class="sc">*</span> i,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>        <span class="fu">substitute</span>(x[ix] <span class="sc">==</span> y, <span class="fu">list</span>(<span class="at">ix =</span> i, <span class="at">y =</span> <span class="fu">pnorm</span>(i))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>could be written more compactly as</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">0</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">text</span>(<span class="dv">1</span>, <span class="fl">0.2</span><span class="sc">*</span>i, <span class="fu">bquote</span>( x[.(i)] <span class="sc">==</span> .(<span class="fu">pnorm</span>(i)) ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The expression is quoted except for the contents of <code>.()</code> subexpressions, which are replaced with their values. There is an optional argument to compute the values in a different environment. The syntax for <code>bquote</code> is borrowed from the LISP backquote macro.</p>
+</section>
+<section id="more-on-evaluation" class="level2 section" data-number="6.3">
+<h2 class="section anchored" data-number="6.3" data-anchor-id="more-on-evaluation"><span class="header-section-number">6.3</span> More on evaluation</h2>
+<p>The <code>eval</code> function was introduced earlier in this chapter as a means of evaluating call objects. However, this is not the full story. It is also possible to specify the environment in which the evaluation is to take place. By default this is the evaluation frame from which <code>eval</code> is called, but quite frequently it needs to be set to something else.</p>
+<p>Very often, the relevant evaluation frame is that of the parent of the current frame (cf.&nbsp;???). In particular, when the object to evaluate is the result of a <code>substitute</code> operation of the function arguments, it will contain variables that make sense to the caller only (notice that there is no reason to expect that the variables of the caller are in the lexical scope of the callee). Since evaluation in the parent frame occurs frequently, an <code>eval.parent</code> function exists as a shorthand for <code>eval(expr, sys.frame(sys.parent()))</code>.</p>
+<p>Another case that occurs frequently is evaluation in a list or a data frame. For instance, this happens in connection with the <code>model.frame</code> function when a <code>data</code> argument is given. Generally, the terms of the model formula need to be evaluated in <code>data</code>, but they may occasionally also contain references to items in the caller of <code>model.frame</code>. This is sometimes useful in connection with simulation studies. So for this purpose one needs not only to evaluate an expression in a list, but also to specify an enclosure into which the search continues if the variable is not in the list. Hence, the call has the form</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">eval</span>(expr, data, <span class="fu">sys.frame</span>(<span class="fu">sys.parent</span>()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Notice that evaluation in a given environment may actually change that environment, most obviously in cases involving the assignment operator, such as</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">eval</span>(<span class="fu">quote</span>(total <span class="ot">&lt;-</span> <span class="dv">0</span>), <span class="fu">environment</span>(robert<span class="sc">$</span>balance)) <span class="co"># rob Rob</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is also true when evaluating in lists, but the original list does not change because one is really working on a copy.</p>
+</section>
+<section id="evaluation-of-expression-objects" class="level2 section" data-number="6.4">
+<h2 class="section anchored" data-number="6.4" data-anchor-id="evaluation-of-expression-objects"><span class="header-section-number">6.4</span> Evaluation of expression objects</h2>
+<p>Objects of mode <code>"expression"</code> are defined in <a href="Objects.html#expression-objects">Expression objects</a>. They are very similar to lists of call objects.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> ex <span class="ot">&lt;-</span> <span class="fu">expression</span>(<span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span>, <span class="dv">3</span> <span class="sc">+</span> <span class="dv">4</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> ex[[<span class="dv">1</span>]]</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> ex[[<span class="dv">2</span>]]</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">+</span> <span class="dv">4</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">eval</span>(ex)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Notice that evaluating an expression object evaluates each call in turn, but the final value is that of the last call. In this respect it behaves almost identically to the compound language object <code>quote({2 + 2; 3 + 4})</code>. However, there is a subtle difference: Call objects are indistinguishable from subexpressions in a parse tree. This means that they are automatically evaluated in the same way a subexpression would be. Expression objects can be recognized during evaluation and in a sense retain their quotedness. The evaluator will not evaluate an expression object recursively, only when it is passed directly to <code>eval</code> function as above. The difference can be seen like this:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">eval</span>(<span class="fu">substitute</span>(<span class="fu">mode</span>(x), <span class="fu">list</span>(<span class="at">x =</span> <span class="fu">quote</span>(<span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span>))))</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"numeric"</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">eval</span>(<span class="fu">substitute</span>(<span class="fu">mode</span>(x), <span class="fu">list</span>(<span class="at">x =</span> <span class="fu">expression</span>(<span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span>))))</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"expression"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The deparser represents an expression object by the call that creates it. This is similar to the way it handles numerical vectors and several other objects that do not have a specific external representation. However, it does lead to the following bit of confusion:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> e <span class="ot">&lt;-</span> <span class="fu">quote</span>(<span class="fu">expression</span>(<span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span>))</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> e</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">expression</span>(<span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">mode</span>(e)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"call"</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> ee <span class="ot">&lt;-</span> <span class="fu">expression</span>(<span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span>)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> ee</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="fu">expression</span>(<span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span>)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">mode</span>(ee)</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"expression"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>I.e., <code>e</code> and <code>ee</code> look identical when printed, but one is a call that generates an expression object and the other is the object itself.</p>
+</section>
+<section id="manipulation-of-function-calls" class="level2 section" data-number="6.5">
+<h2 class="section anchored" data-number="6.5" data-anchor-id="manipulation-of-function-calls"><span class="header-section-number">6.5</span> Manipulation of function calls</h2>
+<p>It is possible for a function to find out how it has been called by looking at the result of <code>sys.call</code> as in the following example of a function that simply returns its own call:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> f <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, ...) <span class="fu">sys.call</span>()</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">f</span>(<span class="at">y =</span> <span class="dv">1</span>, <span class="dv">2</span>, <span class="at">z =</span> <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(<span class="at">y =</span> <span class="dv">1</span>, <span class="dv">2</span>, <span class="at">z =</span> <span class="dv">3</span>, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>However, this is not really useful except for debugging because it requires the function to keep track of argument matching in order to interpret the call. For instance, it must be able to see that the 2nd actual argument gets matched to the first formal one (<code>x</code> in the above example).</p>
+<p>More often one requires the call with all actual arguments bound to the corresponding formals. To this end, the function <code>match.call</code> is used. Here’s a variant of the preceding example, a function that returns its own call with arguments matched</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> f <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, ...) <span class="fu">match.call</span>()</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">f</span>(<span class="at">y =</span> <span class="dv">1</span>, <span class="dv">2</span>, <span class="at">z =</span> <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(<span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> <span class="dv">1</span>, <span class="at">z =</span> <span class="dv">3</span>, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Notice that the second argument now gets matched to <code>x</code> and appears in the corresponding position in the result.</p>
+<p>The primary use of this technique is to call another function with the same arguments, possibly deleting some and adding others. A typical application is seen at the start of the <code>lm</code> function:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>    mf <span class="ot">&lt;-</span> cl <span class="ot">&lt;-</span> <span class="fu">match.call</span>()</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    mf<span class="sc">$</span>singular.ok <span class="ot">&lt;-</span> mf<span class="sc">$</span>model <span class="ot">&lt;-</span> mf<span class="sc">$</span>method <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    mf<span class="sc">$</span>x <span class="ot">&lt;-</span> mf<span class="sc">$</span>y <span class="ot">&lt;-</span> mf<span class="sc">$</span>qr <span class="ot">&lt;-</span> mf<span class="sc">$</span>contrasts <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    mf<span class="sc">$</span>drop.unused.levels <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    mf[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">as.name</span>(<span class="st">"model.frame"</span>)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    mf <span class="ot">&lt;-</span> <span class="fu">eval</span>(mf, <span class="fu">sys.frame</span>(<span class="fu">sys.parent</span>()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Notice that the resulting call is evaluated in the parent frame, in which one can be certain that the involved expressions make sense. The call can be treated as a list object where the first element is the name of the function and the remaining elements are the actual argument expressions, with the corresponding formal argument names as tags. Thus, the technique to eliminate undesired arguments is to assign <code>NULL</code>, as seen in lines 2 and 3, and to add an argument one uses tagged list assignment (here to pass <code>drop.unused.levels = TRUE</code>) as in line 4. To change the name of the function called, assign to the first element of the list and make sure that the value is a name, either using the <code>as.name("model.frame")</code> construction here or <code>quote(model.frame)</code>.</p>
+<p>The <code>match.call</code> function has an <code>expand.dots</code> argument, a switch which if set to <code>FALSE</code> lets all <code>...</code> arguments be collected as a single argument with the tag <code>...</code>.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> f <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, ...) <span class="fu">match.call</span>(<span class="at">expand.dots =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">f</span>(<span class="at">y =</span> <span class="dv">1</span>, <span class="dv">2</span>, <span class="at">z =</span> <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(<span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> <span class="dv">1</span>, <span class="at">... =</span> <span class="fu">list</span>(<span class="at">z =</span> <span class="dv">3</span>, <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>...</code> argument is a list (a pairlist to be precise), not a call to <code>list</code> like it is in S:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> e1 <span class="ot">&lt;-</span> <span class="fu">f</span>(<span class="at">y =</span> <span class="dv">1</span>, <span class="dv">2</span>, <span class="at">z =</span> <span class="dv">3</span>, <span class="dv">4</span>)<span class="sc">$</span>...</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> e1</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>z</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">3</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">2</span>]]</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>One reason for using this form of <code>match.call</code> is simply to get rid of any <code>...</code> arguments in order not to be passing unspecified arguments on to functions that may not know them. Here’s an example paraphrased from <code>plot.formula</code>:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">match.call</span>(<span class="at">expand.dots =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>m<span class="sc">$</span>... <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>m[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="st">"model.frame"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A more elaborate application is in <code>update.default</code> where a set of optional extra arguments can add to, replace, or cancel those of the original call:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>extras <span class="ot">&lt;-</span> <span class="fu">match.call</span>(<span class="at">expand.dots =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>...</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">length</span>(extras) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    existing <span class="ot">&lt;-</span> <span class="sc">!</span><span class="fu">is.na</span>(<span class="fu">match</span>(<span class="fu">names</span>(extras), <span class="fu">names</span>(call)))</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (a <span class="cf">in</span> <span class="fu">names</span>(extras)[existing]) call[[a]] <span class="ot">&lt;-</span> extras[[a]]</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">any</span>(<span class="sc">!</span>existing)) {</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>        call <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">as.list</span>(call), extras[<span class="sc">!</span>existing])</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>        call <span class="ot">&lt;-</span> <span class="fu">as.call</span>(call)</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Notice that care is taken to modify existing arguments individually in case <code>extras[[a]] == NULL</code>. Concatenation does not work on call objects without the coercion as shown; this is arguably a bug.</p>
+<p>Two further functions exist for the construction of function calls, namely <code>call</code> and <code>do.call</code>.</p>
+<p>The function <code>call</code> allows creation of a call object from the function name and the list of arguments</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="fl">10.5</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">call</span>(<span class="st">"round"</span>, x)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">10.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>As seen, the value of <code>x</code> rather than the symbol is inserted in the call, so it is distinctly different from <code>round(x)</code>. The form is used rather rarely, but is occasionally useful where the name of a function is available as a character variable.</p>
+<p>The function <code>do.call</code> is related, but evaluates the call immediately and takes the arguments from an object of mode <code>"list"</code> containing all the arguments. A natural use of this is when one wants to apply a function like <code>cbind</code> to all elements of a list or data frame.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>is.na.data.frame <span class="ot">&lt;-</span> <span class="cf">function</span> (x) {</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> <span class="fu">do.call</span>(cbind, <span class="fu">lapply</span>(x, is.na))</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rownames</span>(y) <span class="ot">&lt;-</span> <span class="fu">row.names</span>(x)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    y</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Other uses include variations over constructions like <code>do.call("f", list(...))</code>. However, one should be aware that this involves evaluation of the arguments before the actual function call, which may defeat aspects of lazy evaluation and argument substitution in the function itself. A similar remark applies to the <code>call</code> function.</p>
+</section>
+<section id="manipulation-of-functions" class="level2 section" data-number="6.6">
+<h2 class="section anchored" data-number="6.6" data-anchor-id="manipulation-of-functions"><span class="header-section-number">6.6</span> Manipulation of functions</h2>
+<p>It is often useful to be able to manipulate the components of a function or closure. R provides a set of interface functions for this purpose.</p>
+<dl>
+<dt><code>body</code></dt>
+<dd>
+<p>Returns the expression that is the body of the function.</p>
+</dd>
+<dt><code>formals</code></dt>
+<dd>
+<p>Returns a list of the formal arguments to the function. This is a <code>pairlist</code>.</p>
+</dd>
+<dt><code>environment</code></dt>
+<dd>
+<p><span id="index-environment-16"></span></p>
+<p>Returns the environment associated with the function.</p>
+</dd>
+<dt><code>body&lt;-</code></dt>
+<dd>
+<p>This sets the body of the function to the supplied expression.</p>
+</dd>
+<dt><code>formals&lt;-</code></dt>
+<dd>
+<p>Sets the formal arguments of the function to the supplied list.</p>
+</dd>
+<dt><code>environment&lt;-</code></dt>
+<dd>
+<p>Sets the environment of the function to the specified environment.</p>
+</dd>
+</dl>
+<p>It is also possible to alter the bindings of different variables in the environment of the function, using code along the lines of <code>evalq(x &lt;- 5, environment(f))</code>.</p>
+<p>It is also possible to convert a function to a list using <code>as.list</code>. The result is the concatenation of the list of formal arguments with the function body. Conversely such a list can be converted to a function using <code>as.function</code>. This functionality is mainly included for S compatibility. Notice that environment information is lost when <code>as.list</code> is used, whereas <code>as.function</code> has an argument that allows the environment to be set.</p>
+
+
+</section>
+</main> <!-- /main -->
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Object-oriented-programming.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Object-oriented programming</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./System-and-foreign-language-interfaces.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">System and foreign language interfaces</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+  </div>
+</footer>
+
+
+</body></html>

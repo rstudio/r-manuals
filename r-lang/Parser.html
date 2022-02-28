@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.9.48">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>R Manuals :: R Language Definition - 10&nbsp; Parser</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+
+  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+  <script src="site_libs/quarto-nav/headroom.min.js"></script>
+  <script src="site_libs/clipboard/clipboard.min.js"></script>
+  <meta name="quarto:offset" content="./">
+  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+  <script src="site_libs/quarto-search/fuse.min.js"></script>
+  <script src="site_libs/quarto-search/quarto-search.js"></script>
+  <link href="./Function-and-Variable-Index.html" rel="next">
+  <link href="./Debugging.html" rel="prev">
+  <script src="site_libs/quarto-html/quarto.js"></script>
+  <script src="site_libs/quarto-html/popper.min.js"></script>
+  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="site_libs/quarto-html/anchor.min.js"></script>
+  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
+  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <script id="quarto-search-options" type="application/json">{
+    "location": "navbar",
+    "copy-button": false,
+    "collapse-after": 2,
+    "panel-placement": "end",
+    "type": "overlay",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body class="floating slimcontent">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">R Manuals :: R Language Definition</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./../index.html">Home</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
+        <li>
+    <a class="dropdown-item" href="./../r-intro/index.html">
+ <span class="dropdown-text">An Introduction to R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-data/index.html">
+ <span class="dropdown-text">R Data Import/Export</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-admin/index.html">
+ <span class="dropdown-text">R Installation and Administration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-exts/index.html">
+ <span class="dropdown-text">Writing R Extensions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./index.html">
+ <span class="dropdown-text">R Language Definition</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-ints/index.html">
+ <span class="dropdown-text">R Internals</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./../about.html">About</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Parser</span></h1>
+      <button type="button" class="quarto-btn-toggle btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">R Language Definition</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Objects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Objects</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Evaluation-of-expressions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Evaluation of expressions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Functions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Functions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Object-oriented-programming.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Object-oriented programming</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Computing-on-the-language.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Computing on the language</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./System-and-foreign-language-interfaces.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">System and foreign language interfaces</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Exception-handling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Exception handling</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Debugging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Debugging</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Parser.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Parser</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Function-and-Variable-Index.html" class="sidebar-item-text sidebar-link">Function and Variable Index</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Concept-Index.html" class="sidebar-item-text sidebar-link">Concept Index</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+<h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#the-parsing-process" class="nav-link active" data-scroll-target="#the-parsing-process"> <span class="header-section-number">10.1</span> The parsing process</a>
+<ul class="collapse">
+<li><a href="#modes-of-parsing" class="nav-link" data-scroll-target="#modes-of-parsing"> <span class="header-section-number">10.1.1</span> Modes of parsing</a></li>
+<li><a href="#internal-representation" class="nav-link" data-scroll-target="#internal-representation"> <span class="header-section-number">10.1.2</span> Internal representation</a></li>
+<li><a href="#deparsing" class="nav-link" data-scroll-target="#deparsing"> <span class="header-section-number">10.1.3</span> Deparsing</a></li>
+</ul></li>
+<li><a href="#comments" class="nav-link" data-scroll-target="#comments"> <span class="header-section-number">10.2</span> Comments</a></li>
+<li><a href="#tokens" class="nav-link" data-scroll-target="#tokens"> <span class="header-section-number">10.3</span> Tokens</a>
+<ul class="collapse">
+<li><a href="#constants" class="nav-link" data-scroll-target="#constants"> <span class="header-section-number">10.3.1</span> Constants</a></li>
+<li><a href="#identifiers" class="nav-link" data-scroll-target="#identifiers"> <span class="header-section-number">10.3.2</span> Identifiers</a></li>
+<li><a href="#reserved-words" class="nav-link" data-scroll-target="#reserved-words"> <span class="header-section-number">10.3.3</span> Reserved words</a></li>
+<li><a href="#special-operators" class="nav-link" data-scroll-target="#special-operators"> <span class="header-section-number">10.3.4</span> Special operators</a></li>
+<li><a href="#separators" class="nav-link" data-scroll-target="#separators"> <span class="header-section-number">10.3.5</span> Separators</a></li>
+<li><a href="#operator-tokens" class="nav-link" data-scroll-target="#operator-tokens"> <span class="header-section-number">10.3.6</span> Operator tokens</a></li>
+<li><a href="#grouping" class="nav-link" data-scroll-target="#grouping"> <span class="header-section-number">10.3.7</span> Grouping</a></li>
+<li><a href="#indexing-tokens" class="nav-link" data-scroll-target="#indexing-tokens"> <span class="header-section-number">10.3.8</span> Indexing tokens</a></li>
+</ul></li>
+<li><a href="#expressions" class="nav-link" data-scroll-target="#expressions"> <span class="header-section-number">10.4</span> Expressions</a>
+<ul class="collapse">
+<li><a href="#function-calls" class="nav-link" data-scroll-target="#function-calls"> <span class="header-section-number">10.4.1</span> Function calls</a></li>
+<li><a href="#infix-and-prefix-operators" class="nav-link" data-scroll-target="#infix-and-prefix-operators"> <span class="header-section-number">10.4.2</span> Infix and prefix operators</a></li>
+<li><a href="#index-constructions" class="nav-link" data-scroll-target="#index-constructions"> <span class="header-section-number">10.4.3</span> Index constructions</a></li>
+<li><a href="#compound-expressions" class="nav-link" data-scroll-target="#compound-expressions"> <span class="header-section-number">10.4.4</span> Compound expressions</a></li>
+<li><a href="#flow-control-elements" class="nav-link" data-scroll-target="#flow-control-elements"> <span class="header-section-number">10.4.5</span> Flow control elements</a></li>
+<li><a href="#function-definitions" class="nav-link" data-scroll-target="#function-definitions"> <span class="header-section-number">10.4.6</span> Function definitions</a></li>
+</ul></li>
+<li><a href="#directives" class="nav-link" data-scroll-target="#directives"> <span class="header-section-number">10.5</span> Directives</a></li>
+</ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+<header id="title-block-header">
+<h1 class="title display-7"><span id="parser" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Parser</span></span></h1>
+</header>
+
+<p>The parser is what converts the textual representation of R code into an internal form which may then be passed to the R evaluator which causes the specified instructions to be carried out. The internal form is itself an R object and can be saved and otherwise manipulated within the R system.</p>
+<section id="the-parsing-process" class="level2 section" data-number="10.1">
+<h2 class="section anchored" data-number="10.1" data-anchor-id="the-parsing-process"><span class="header-section-number">10.1</span> The parsing process</h2>
+<section id="modes-of-parsing" class="level3 subsection" data-number="10.1.1">
+<h3 class="subsection anchored" data-number="10.1.1" data-anchor-id="modes-of-parsing"><span class="header-section-number">10.1.1</span> Modes of parsing</h3>
+<p>Parsing in R occurs in three different variants:</p>
+<ul>
+<li>The read-eval-print loop</li>
+<li>Parsing of text files</li>
+<li>Parsing of character strings</li>
+</ul>
+<p>The read-eval-print loop forms the basic command line interface to R. Textual input is read until a complete R expression is available. Expressions may be split over several input lines. The primary prompt (by default <code>&gt;</code>) indicates that the parser is ready for a new expression, and a continuation prompt (by default <code>+</code>) indicates that the parser expects the remainder of an incomplete expression. The expression is converted to internal form during input and the parsed expression is passed to the evaluator and the result is printed (unless specifically made invisible). If the parser finds itself in a state which is incompatible with the language syntax, a “Syntax Error” is flagged and the parser resets itself and resumes input at the beginning of the next input line.</p>
+<p>Text files can be parsed using the <code>parse</code> function. In particular, this is done during execution of the <code>source</code> function, which allows commands to be stored in an external file and executed as if they had been typed at the keyboard. Note, though, that the entire file is parsed and syntax checked before any evaluation takes place.</p>
+<p>Character strings, or vectors thereof, can be parsed using the <code>text=</code> argument to <code>parse</code>. The strings are treated exactly as if they were the lines of an input file.</p>
+</section>
+<section id="internal-representation" class="level3 subsection" data-number="10.1.2">
+<h3 class="subsection anchored" data-number="10.1.2" data-anchor-id="internal-representation"><span class="header-section-number">10.1.2</span> Internal representation</h3>
+<p>Parsed expressions are stored in an R object containing the parse tree. A fuller description of such objects can be found in <a href="Objects.html#language-objects">Language objects</a> and <a href="Objects.html#expression-objects">Expression objects</a>. Briefly, every elementary R expression is stored in function call form, as a list with the first element containing the function name and the remainder containing the arguments, which may in turn be further R expressions. The list elements can be named, corresponding to tagged matching of formal and actual arguments. Note that <em>all</em> R syntax elements are treated in this way, e.g.&nbsp;the assignment <code>x &lt;- 1</code> is encoded as <code>"&lt;-"(x, 1)</code>.</p>
+</section>
+<section id="deparsing" class="level3 subsection" data-number="10.1.3">
+<h3 class="subsection anchored" data-number="10.1.3" data-anchor-id="deparsing"><span class="header-section-number">10.1.3</span> Deparsing</h3>
+<p>Any R object can be converted to an R expression using <code>deparse</code>. This is frequently used in connection with output of results, e.g.&nbsp;for labeling plots. Notice that only objects of mode <code>"expression"</code> can be expected to be unchanged by reparsing the output of deparsing. For instance, the numeric vector <code>1:5</code> will deparse as <code>"c(1, 2, 3, 4, 5)"</code>, which will reparse as a call to the function <code>c</code>. As far as possible, evaluating the deparsed and reparsed expression gives the same result as evaluating the original, but there are a couple of awkward exceptions, mostly involving expressions that weren’t generated from a textual representation in the first place.</p>
+</section>
+</section>
+<section id="comments" class="level2 section" data-number="10.2">
+<h2 class="section anchored" data-number="10.2" data-anchor-id="comments"><span class="header-section-number">10.2</span> Comments</h2>
+<p>Comments in R are ignored by the parser. Any text from a <code>#</code> character to the end of the line is taken to be a comment, unless the <code>#</code> character is inside a quoted string. For example,</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="dv">1</span>  <span class="co"># This is a comment...</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y <span class="ot">&lt;-</span> <span class="st">"  #... but this is not."</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="tokens" class="level2 section page-columns page-full" data-number="10.3">
+<h2 class="section anchored" data-number="10.3" data-anchor-id="tokens"><span class="header-section-number">10.3</span> Tokens</h2>
+<p>Tokens are the elementary building blocks of a programming language. They are recognised during <em>lexical analysis</em> which (conceptually, at least) takes place prior to the syntactic analysis performed by the parser itself.</p>
+<section id="constants" class="level3 subsection" data-number="10.3.1">
+<h3 class="subsection anchored" data-number="10.3.1" data-anchor-id="constants"><span class="header-section-number">10.3.1</span> Constants</h3>
+<p>There are five types of constants: integer, logical, numeric, complex and string.</p>
+<p>In addition, there are four special constants, <code>NULL</code>, <code>NA</code>, <code>Inf</code>, and <code>NaN</code>.</p>
+<p><code>NULL</code> is used to indicate the empty object. <code>NA</code> is used for absent (“Not Available”) data values. <code>Inf</code> denotes infinity and <code>NaN</code> is not-a-number in the IEEE floating point calculus (results of the operations respectively <em>1/0</em> and <em>0/0</em>, for instance).</p>
+<p>Logical constants are either <code>TRUE</code> or <code>FALSE</code>.</p>
+<p>Numeric constants follow a similar syntax to that of the <strong>C</strong> language. They consist of an integer part consisting of zero or more digits, followed optionally by <code>.</code> and a fractional part of zero or more digits optionally followed by an exponent part consisting of an <code>E</code> or an <code>e</code>, an optional sign and a string of one or more digits. Either the fractional or the decimal part can be empty, but not both at once.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Valid numeric constants<span class="sc">:</span> <span class="dv">1</span> <span class="dv">10</span> <span class="fl">0.1</span> .<span class="dv">2</span> <span class="fl">1e-7</span> <span class="fl">1.2e+7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Numeric constants can also be hexadecimal, starting with <code>0x</code> or <code>0x</code> followed by zero or more digits, <code>a-f</code> or <code>A-F</code>. Hexadecimal floating point constants are supported using C99 syntax, e.g.&nbsp;<code>0x1.1p1</code>.</p>
+<p>There is now a separate class of integer constants. They are created by using the qualifier <code>L</code> at the end of the number. For example, <code>123L</code> gives an integer value rather than a numeric value. The suffix <code>L</code> can be used to qualify any non-complex number with the intent of creating an integer. So it can be used with numbers given by hexadecimal or scientific notation. However, if the value is not a valid integer, a warning is emitted and the numeric value created. The following shows examples of valid integer constants, values which will generate a warning and give numeric constants and syntax errors.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Valid integer constants<span class="op">:</span>  <span class="dv">1</span><span class="bu">L</span><span class="op">,</span> <span class="bn">0x10</span><span class="bu">L</span><span class="op">,</span> <span class="dv">1000000</span><span class="bu">L</span><span class="op">,</span> <span class="fl">1e6</span><span class="bu">L</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Valid numeric constants<span class="op">:</span>  <span class="fl">1.1</span><span class="bu">L</span><span class="op">,</span> <span class="fl">1e-3</span><span class="bu">L</span><span class="op">,</span> <span class="fl">0x1.1p-2</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Syntax error<span class="op">:</span>  <span class="dv">12</span><span class="er">iL</span> <span class="fl">0x1.1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A warning is emitted for decimal values that contain an unnecessary decimal point, e.g.&nbsp;<code>1.L</code>. It is an error to have a decimal point in a hexadecimal constant without the binary exponent.</p>
+<p>Note also that a preceding sign (<code>+</code> or <code>-</code>) is treated as a unary operator, not as part of the constant.</p>
+<p>Up-to-date information on the currently accepted formats can be found by <code>?NumericConstants</code>.</p>
+<p>Complex constants have the form of a decimal numeric constant followed by <code>i</code>. Notice that only purely imaginary numbers are actual constants, other complex numbers are parsed a unary or binary operations on numeric and imaginary numbers.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Valid complex constants<span class="sc">:</span> 2i <span class="fl">4.1</span>i <span class="fl">1e-2</span>i</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>String constants are delimited by a pair of single (`<code>') or double (</code>“`) quotes and can contain all other printable characters. Quotes and other special characters within strings are specified using <em>escape sequences</em>:</p>
+<dl>
+<dt><code>\</code></dt>
+<dd>
+<p>single quote</p>
+</dd>
+<dt><code>\"</code></dt>
+<dd>
+<p>double quote</p>
+</dd>
+<dt><code>\n</code></dt>
+<dd>
+<p>newline (aka ‘line feed’, LF)</p>
+</dd>
+<dt><code>\r</code></dt>
+<dd>
+<p>carriage return (CR)</p>
+</dd>
+<dt><code>\t</code></dt>
+<dd>
+<p>tab character</p>
+</dd>
+<dt><code>\b</code></dt>
+<dd>
+<p>backspace</p>
+</dd>
+<dt><code>\a</code></dt>
+<dd>
+<p>bell</p>
+</dd>
+<dt><code>\f</code></dt>
+<dd>
+<p>form feed</p>
+</dd>
+<dt><code>\v</code></dt>
+<dd>
+<p>vertical tab</p>
+</dd>
+<dt><code>\\</code></dt>
+<dd>
+<p>backslash itself</p>
+</dd>
+<dt><code>\nnn</code></dt>
+<dd>
+<p>character with given octal code – sequences of one, two or three digits in the range <code>0 ... 7</code> are accepted.</p>
+</dd>
+<dt><code>\xnn</code></dt>
+<dd>
+<p>character with given hex code – sequences of one or two hex digits (with entries <code>0 ... 9 A ... F a ... f</code>).</p>
+</dd>
+<dt><code>\unnnn \u{nnnn}</code></dt>
+<dd>
+<p>(where multibyte locales are supported, otherwise an error). Unicode character with given hex code – sequences of up to four hex digits. The character needs to be valid in the current locale.</p>
+</dd>
+<dt><code>\Unnnnnnnn \U{nnnnnnnn}</code></dt>
+<dd>
+<p>(where multibyte locales are supported, otherwise an error). Unicode character with given hex code – sequences of up to eight hex digits.</p>
+</dd>
+</dl>
+<p>A single quote may also be embedded directly in a double-quote delimited string and vice versa.</p>
+<p>A ‘nul’ (<code>\0</code>) is not allowed in a character string, so using <code>\0</code> in a string constant terminates the constant (usually with a warning): further characters up to the closing quote are scanned but ignored.</p>
+</section>
+<section id="identifiers" class="level3 subsection" data-number="10.3.2">
+<h3 class="subsection anchored" data-number="10.3.2" data-anchor-id="identifiers"><span class="header-section-number">10.3.2</span> Identifiers</h3>
+<p>Identifiers consist of a sequence of letters, digits, the period (<code>.</code>) and the underscore. They must not start with a digit or an underscore, or with a period followed by a digit.</p>
+<p>The definition of a letter depends on the current locale: the precise set of characters allowed is given by the C expression <code>(isalnum(c) || c == '.' || c == '_')</code> and will include accented letters in many Western European locales.</p>
+<p>Notice that identifiers starting with a period are not by default listed by the <code>ls</code> function and that <code>...</code> and <code>..1</code>, <code>..2</code>, etc. are special.</p>
+<p>Notice also that objects can have names that are not identifiers. These are generally accessed via <code>get</code> and <code>assign</code>, although they can also be represented by text strings in some limited circumstances when there is no ambiguity (e.g.&nbsp;<code>"x" &lt;- 1</code>). As <code>get</code> and <code>assign</code> are not restricted to names that are identifiers they do not recognise subscripting operators or replacement functions. The following pairs are <em>not</em> equivalent</p>
+<div class="blockquotes-block">
+<blockquote class="blockquote">
+<table class="table">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>x$a&lt;-1</code></td>
+<td style="text-align: left;"><code>assign("x$a",1)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>x[[1]]</code></td>
+<td style="text-align: left;"><code>get("x[[1]]")</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>names(x)&lt;-nm</code></td>
+<td style="text-align: left;"><code>assign("names(x)",nm)</code></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+</section>
+<section id="reserved-words" class="level3 subsection" data-number="10.3.3">
+<h3 class="subsection anchored" data-number="10.3.3" data-anchor-id="reserved-words"><span class="header-section-number">10.3.3</span> Reserved words</h3>
+<p>The following identifiers have a special meaning and cannot be used for object names</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="cf">else</span> repeat <span class="cf">while</span> function <span class="cf">for</span> in next <span class="cf">break</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>TRUE FALSE NULL Inf NaN</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>NA NA_integer_ NA_real_ NA_complex_ NA_character_</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="op">...</span> <span class="op">.</span><span class="fl">.1</span> <span class="op">.</span><span class="fl">.2</span> etc<span class="op">.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="special-operators" class="level3 subsection" data-number="10.3.4">
+<h3 class="subsection anchored" data-number="10.3.4" data-anchor-id="special-operators"><span class="header-section-number">10.3.4</span> Special operators</h3>
+<p>R allows user-defined infix operators. These have the form of a string of characters delimited by the <code>%</code> character. The string can contain any printable character except <code>%</code>. The escape sequences for strings do not apply here.</p>
+<p>Note that the following operators are predefined</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">%%</span> <span class="sc">%*%</span> <span class="sc">%/%</span> <span class="sc">%in%</span> <span class="sc">%o%</span> <span class="sc">%x%</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="separators" class="level3 subsection page-columns page-full" data-number="10.3.5">
+<h3 class="subsection anchored" data-number="10.3.5" data-anchor-id="separators"><span class="header-section-number">10.3.5</span> Separators</h3>
+<div class="page-columns page-full"><p>Although not strictly tokens, stretches of whitespace characters (spaces, tabs and formfeeds, on Windows and UTF-8 locales other Unicode whitespace characters<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>) serve to delimit tokens in case of ambiguity, (compare <code>x&lt;-5</code> and <code>x &lt; -5</code>).</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;such as <code>U+A0</code>, non-breaking space, and <code>U+3000</code>, ideographic space.</p></li></div></div>
+<p>Newlines have a function which is a combination of token separator and expression terminator. If an expression can terminate at the end of the line the parser will assume it does so, otherwise the newline is treated as whitespace. Semicolons (<code>;</code>) may be used to separate elementary expressions on the same line.</p>
+<p>Special rules apply to the <code>else</code> keyword: inside a compound expression, a newline before <code>else</code> is discarded, whereas at the outermost level, the newline terminates the <code>if</code> construction and a subsequent <code>else</code> causes a syntax error. This somewhat anomalous behaviour occurs because R should be usable in interactive mode and then it must decide whether the input expression is complete, incomplete, or invalid as soon as the user presses RET.</p>
+<p>The comma (<code>,</code>) is used to separate function arguments and multiple indices.</p>
+</section>
+<section id="operator-tokens" class="level3 subsection" data-number="10.3.6">
+<h3 class="subsection anchored" data-number="10.3.6" data-anchor-id="operator-tokens"><span class="header-section-number">10.3.6</span> Operator tokens</h3>
+<p>R uses the following operator tokens</p>
+<div class="blockquotes-block">
+<blockquote class="blockquote">
+<table class="table">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>+ - * / %% ^</code></td>
+<td style="text-align: left;">arithmetic</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>&gt; &gt;= &lt; &lt;= == !=</code></td>
+<td style="text-align: left;">relational</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>! &amp; |</code></td>
+<td style="text-align: left;">logical</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>~</code></td>
+<td style="text-align: left;">model formulae</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>-&gt; &lt;-</code></td>
+<td style="text-align: left;">assignment</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>$</code></td>
+<td style="text-align: left;">list indexing</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>:</code></td>
+<td style="text-align: left;">sequence</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<p>(Several of the operators have different meaning inside model formulas)</p>
+</section>
+<section id="grouping" class="level3 subsection" data-number="10.3.7">
+<h3 class="subsection anchored" data-number="10.3.7" data-anchor-id="grouping"><span class="header-section-number">10.3.7</span> Grouping</h3>
+<p>Ordinary parentheses—<code>(</code> and <code>)</code>—are used for explicit grouping within expressions and to delimit the argument lists for function definitions and function calls.</p>
+<p>Braces—<code>{</code> and <code>}</code>—delimit blocks of expressions in function definitions, conditional expressions, and iterative constructs.</p>
+</section>
+<section id="indexing-tokens" class="level3 subsection" data-number="10.3.8">
+<h3 class="subsection anchored" data-number="10.3.8" data-anchor-id="indexing-tokens"><span class="header-section-number">10.3.8</span> Indexing tokens</h3>
+<p>Indexing of arrays and vectors is performed using the single and double brackets, <code>[]</code> and <code>[[]]</code>. Also, indexing tagged lists may be done using the <code>$</code> operator.</p>
+</section>
+</section>
+<section id="expressions" class="level2 section" data-number="10.4">
+<h2 class="section anchored" data-number="10.4" data-anchor-id="expressions"><span class="header-section-number">10.4</span> Expressions</h2>
+<p>An R program consists of a sequence of R expressions. An expression can be a simple expression consisting of only a constant or an identifier, or it can be a compound expression constructed from other parts (which may themselves be expressions).</p>
+<p>The following sections detail the various syntactical constructs that are available.</p>
+<section id="function-calls" class="level3 subsection" data-number="10.4.1">
+<h3 class="subsection anchored" data-number="10.4.1" data-anchor-id="function-calls"><span class="header-section-number">10.4.1</span> Function calls</h3>
+<p>A function call takes the form of a function reference followed by a comma-separated list of arguments within a set of parentheses.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">function_reference</span> ( arg1, arg2, ...... , argn )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The function reference can be either</p>
+<ul>
+<li>an identifier (the name of the function)</li>
+<li>a text string (ditto, but handy if the function has a name which is not a valid identifier)</li>
+<li>an expression (which should evaluate to a function object)</li>
+</ul>
+<p>Each argument can be tagged (<code>tag=expr</code>), or just be a simple expression. It can also be empty or it can be one of the special tokens <code>...</code>, <code>..2</code>, etc.</p>
+<p>A tag can be an identifier or a text string.</p>
+<p>Examples:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(x)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">g</span>(<span class="at">tag =</span> value, , <span class="dv">5</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="st">"odd name"</span>(<span class="st">"strange tag"</span> <span class="ot">=</span> <span class="dv">5</span>, y)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>(<span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span>)(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="infix-and-prefix-operators" class="level3 subsection" data-number="10.4.2">
+<h3 class="subsection anchored" data-number="10.4.2" data-anchor-id="infix-and-prefix-operators"><span class="header-section-number">10.4.2</span> Infix and prefix operators</h3>
+<p>The order of precedence (highest first) of the operators is</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">::</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="er">$</span> <span class="er">@</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="er">^</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span> <span class="sc">+</span>                (unary)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="sc">:</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="sc">%xyz%</span> <span class="er">|&gt;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="er">*</span> <span class="er">/</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> <span class="sc">-</span>                (binary)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="er">&gt;=</span> <span class="er">&lt;</span> <span class="er">&lt;=</span> <span class="er">==</span> <span class="er">!=</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="er">&amp;</span> <span class="er">&amp;&amp;</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="er">|</span> <span class="er">||</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="er">~</span>                  (unary and binary)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="ot">-&gt;</span> <span class="ot">-&gt;&gt;</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;</span><span class="sc">-</span> <span class="er">&lt;&lt;</span><span class="sc">-</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="er">=</span>                  (as assignment)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that <code>:</code> precedes binary +/-, but not <code>^</code>. Hence, <code>1:3-1</code> is <em>0 1 2</em>, but <code>1:2^3</code> is <code>1:8</code>.</p>
+<p>The exponentiation operator <code>^</code> and the left assignment plus minus operators <code>&lt;- - = &lt;&lt;-</code> group right to left, all other operators group left to right. That is, <code>2 ^ 2 ^ 3</code> is <em>2 ^ 8</em>, not <em>4 ^ 3</em>, whereas <code>1 - 1 - 1</code> is <em>-1</em>, not 1.</p>
+<p>Notice that the operators <code>%%</code> and <code>%/%</code> for integer remainder and divide have higher precedence than multiply and divide.</p>
+<p>Although it is not strictly an operator, it also needs mentioning that the <code>=</code> sign is used for tagging arguments in function calls and for assigning default values in function definitions.</p>
+<p>The <code>$</code> sign is in some sense an operator, but does not allow arbitrary right hand sides and is discussed under <a href="#index-constructions">Index constructions</a>. It has higher precedence than any of the other operators.</p>
+<p>The parsed form of a unary or binary operation is completely equivalent to a function call with the operator as the function name and the operands as the function arguments.</p>
+<p>Parentheses are recorded as equivalent to a unary operator, with name <code>"("</code>, even in cases where the parentheses could be inferred from operator precedence (e.g., <code>a * (b + c)</code>).</p>
+<p>Notice that the assignment symbols are operators just like the arithmetic, relational, and logical ones. Any expression is allowed also on the target side of an assignment, as far as the parser is concerned (<code>2 + 2 &lt;- 5</code> is a valid expression as far as the parser is concerned. The evaluator will object, though). Similar comments apply to the model formula operator.</p>
+</section>
+<section id="index-constructions" class="level3 subsection" data-number="10.4.3">
+<h3 class="subsection anchored" data-number="10.4.3" data-anchor-id="index-constructions"><span class="header-section-number">10.4.3</span> Index constructions</h3>
+<p>R has three indexing constructs, two of which are syntactically similar although with somewhat different semantics:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>object [ arg1, ...... , argn ]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>object [[ arg1, ...... , argn ]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <var>object</var> can formally be any valid expression, but it is understood to denote or evaluate to a subsettable object. The arguments generally evaluate to numerical or character indices, but other kinds of arguments are possible (notably <code>drop = FALSE</code>).</p>
+<p>Internally, these index constructs are stored as function calls with function name <code>"["</code> respectively <code>"[["</code>.</p>
+<p>The third index construction is</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>object <span class="sc">$</span> tag</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here, <var>object</var> is as above, whereas <var>tag</var> is an identifier or a text string. Internally, it is stored as a function call with name <code>"$"</code></p>
+</section>
+<section id="compound-expressions" class="level3 subsection" data-number="10.4.4">
+<h3 class="subsection anchored" data-number="10.4.4" data-anchor-id="compound-expressions"><span class="header-section-number">10.4.4</span> Compound expressions</h3>
+<p>A compound expression is of the form</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>{ expr1 ; expr2 ; ...... ; exprn }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The semicolons may be replaced by newlines. Internally, this is stored as a function call with <code>"{"</code> as the function name and the expressions as arguments.</p>
+</section>
+<section id="flow-control-elements" class="level3 subsection" data-number="10.4.5">
+<h3 class="subsection anchored" data-number="10.4.5" data-anchor-id="flow-control-elements"><span class="header-section-number">10.4.5</span> Flow control elements</h3>
+<p>R contains the following control structures as special syntactic constructs</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> ( cond ) expr</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> ( cond ) expr1 <span class="cf">else</span> expr2</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> ( cond ) expr</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="cf">repeat</span> expr</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ( var <span class="cf">in</span> list ) expr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The expressions in these constructs will typically be compound expressions.</p>
+<p>Within the loop constructs (<code>while</code>, <code>repeat</code>, <code>for</code>), one may use <code>break</code> (to terminate the loop) and <code>next</code> (to skip to the next iteration).</p>
+<p>Internally, the constructs are stored as function calls:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="st">"if"</span>(cond, expr)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="st">"if"</span>(cond, expr1, expr2)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="st">"while"</span>(cond, expr)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="st">"repeat"</span>(expr)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="st">"for"</span>(var, list, expr)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="st">"break"</span>()</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="st">"next"</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="function-definitions" class="level3 subsection" data-number="10.4.6">
+<h3 class="subsection anchored" data-number="10.4.6" data-anchor-id="function-definitions"><span class="header-section-number">10.4.6</span> Function definitions</h3>
+<p>A function definition is of the form</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span> ( arglist ) body</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The function body is an expression, often a compound expression. The <var>arglist</var> is a comma-separated list of items each of which can be an identifier, or of the form <code>identifier = default</code>, or the special token <code>...</code>. The <var>default</var> can be any valid expression.</p>
+<p>Notice that function arguments unlike list tags, etc., cannot have “strange names” given as text strings.</p>
+<p>Internally, a function definition is stored as a function call with function name <code>function</code> and two arguments, the <var>arglist</var> and the <var>body</var>. The <var>arglist</var> is stored as a tagged pairlist where the tags are the argument names and the values are the default expressions.</p>
+</section>
+</section>
+<section id="directives" class="level2 section" data-number="10.5">
+<h2 class="section anchored" data-number="10.5" data-anchor-id="directives"><span class="header-section-number">10.5</span> Directives</h2>
+<p>The parser currently only supports one directive, <code>#line</code>. This is similar to the C-preprocessor directive of the same name. The syntax is</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#line nn [ "filename" ]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>where <var>nn</var> is an integer line number, and the optional <var>filename</var> (in required double quotes) names the source file.</p>
+<p>Unlike the C directive, <code>#line</code> must appear as the first five characters on a line. As in C, <var>nn</var> and <code>"filename"</code> entries may be separated from it by whitespace. And unlike C, any following text on the line will be treated as a comment and ignored.</p>
+<p>This directive tells the parser that the following line should be assumed to be line <var>nn</var> of file <var>filename</var>. (If the filename is not given, it is assumed to be the same as for the previous directive.) This is not typically used by users, but may be used by preprocessors so that diagnostic messages refer to the original file.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Debugging.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Debugging</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Function-and-Variable-Index.html" class="pagination-link">
+        <span class="nav-page-text">Function and Variable Index</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+  </div>
+</footer>
+
+
+</body></html>
