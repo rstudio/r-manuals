@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.48">
+  <meta name="generator" content="quarto-0.9.50">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: R Language Definition - 2&nbsp; Objects</title>
   <style>
@@ -558,7 +558,7 @@
 <p>All objects except <code>NULL</code> can have one or more attributes attached to them. Attributes are stored as a pairlist where all elements are named, but should be thought of as a set of name=value pairs. A listing of the attributes can be obtained using <code>attributes</code> and set by <code>attributes&lt;-</code>, individual components are accessed using <code>attr</code> and <code>attr&lt;-</code>.</p>
 <p>Some attributes have special accessor functions (e.g.&nbsp;<code>levels&lt;-</code> for factors) and these should be used when available. In addition to hiding details of implementation they may perform additional operations. R attempts to intercept calls to <code>attr&lt;-</code> and to <code>attributes&lt;-</code> that involve the special attributes and enforces the consistency checks.</p>
 <p>Matrices and arrays are simply vectors with the attribute <code>dim</code> and optionally <code>dimnames</code> attached to the vector.</p>
-<p>Attributes are used to implement the class structure used in R. If an object has a <code>class</code> attribute then that attribute will be examined during evaluation. The class structure in R is described in detail in <a href="Object_002doriented-programming.html#object-oriented-programming">Object-oriented programming</a>.</p>
+<p>Attributes are used to implement the class structure used in R. If an object has a <code>class</code> attribute then that attribute will be examined during evaluation. The class structure in R is described in detail in <a href="Object-oriented-programming.html#object-oriented-programming">Object-oriented programming</a>.</p>
 <section id="names" class="level3 subsection" data-number="2.2.1">
 <h3 class="subsection anchored" data-number="2.2.1" data-anchor-id="names"><span class="header-section-number">2.2.1</span> Names</h3>
 <p>A <code>names</code> attribute, when present, labels the individual elements of a vector or list. When an object is printed the <code>names</code> attribute, when present, is used to label the elements. The <code>names</code> attribute can also be used for indexing purposes, for example, <code>quantile(x)["25%"]</code>.</p>

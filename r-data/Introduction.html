@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.48">
+  <meta name="generator" content="quarto-0.9.50">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: R Data Import/Export - 1&nbsp; Introduction</title>
   <style>
@@ -292,7 +292,7 @@
 <p>This manual was first written in 2000, and the number of scope of R packages has increased a hundredfold since. For specialist data formats it is worth searching to see if a suitable package already exists.</p>
 <section id="imports" class="level2 section page-columns page-full" data-number="1.1">
 <h2 class="section anchored" data-number="1.1" data-anchor-id="imports"><span class="header-section-number">1.1</span> Imports</h2>
-<p>The easiest form of data to import into R is a simple text file, and this will often be acceptable for problems of small or medium scale. The primary function to import from a text file is <code>scan</code>, and this underlies most of the more convenient functions discussed in <a href="Spreadsheet_002dlike-data.html#spreadsheet-like-data">Spreadsheet-like data</a>.</p>
+<p>The easiest form of data to import into R is a simple text file, and this will often be acceptable for problems of small or medium scale. The primary function to import from a text file is <code>scan</code>, and this underlies most of the more convenient functions discussed in <a href="Spreadsheet-like-data.html#spreadsheet-like-data">Spreadsheet-like data</a>.</p>
 <p>However, all statistical consultants are familiar with being presented by a client with a memory stick (formerly, a floppy disc or CD-R) of data in some proprietary binary format, for example ‘an Excel spreadsheet’ or ‘an SPSS file’. Often the simplest thing to do is to use the originating application to export the data as a text file (and statistical consultants will have copies of the most common applications on their computers for that purpose). However, this is not always possible, and <a href="Importing-from-other-statistical-systems.html#importing-from-other-statistical-systems">Importing from other statistical systems</a> discusses what facilities are available to access such files directly from R. For Excel spreadsheets, the available methods are summarized in <a href="Reading-Excel-spreadsheets.html">Reading Excel spreadsheets</a>.</p>
 <p>In a few cases, data have been stored in a binary form for compactness and speed of access. One application of this that we have seen several times is imaging data, which is normally stored as a stream of bytes as represented in memory, possibly preceded by a header. Such data formats are discussed in <a href="Binary-files.html#binary-files">Binary files</a> and <a href="Connections.html#binary-connections">Binary connections</a>.</p>
 <p>For much larger databases it is common to handle the data using a database management system (DBMS). There is once again the option of using the DBMS to extract a plain file, but for many such DBMSs the extraction operation can be done directly from an R package: See <a href="Relational-databases.html#relational-databases">Relational databases</a>. Importing data via network connections is discussed in <a href="Network-interfaces.html#network-interfaces">Network interfaces</a>.</p>
