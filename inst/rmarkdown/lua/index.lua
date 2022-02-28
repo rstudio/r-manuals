@@ -2,7 +2,7 @@ local vars = {}
 
 function get_vars (meta)
   for k, v in pairs(meta) do
-    if type(v) == 'table' and v.t == 'MetaInlines' and k == "title" then
+    if pandoc.utils.type(v) == 'Inlines' and k == "title" then
       vars[k] = pandoc.utils.stringify(v)
     end
   end
