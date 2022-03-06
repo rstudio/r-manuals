@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.50">
+  <meta name="generator" content="quarto-0.9.64">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: R Internals - 8&nbsp; Tools</title>
   <style>
@@ -607,11 +607,11 @@
 </dd>
 <dt><code>_R_CHECK_LENGTH_1_CONDITION_</code></dt>
 <dd>
-<p>Optionally check if the condition in <code>if</code> and <code>while</code> statements has length greater than one. For a true value (<code>T</code>, <code>True</code>, <code>TRUE</code> or <code>true</code>), give an error. For a false value (<code>F</code>, <code>False</code>, <code>FALSE</code> or <code>false</code>) or when unset, print a warning. Any other non-true non-empty value needs to be a list of commands separated by commas: <code>abort</code> causes R to terminate unconditionally instead of signalling an error (which is useful in pinpointing issues in code called from <code>try</code> or <code>tryCatch</code>), <code>verbose</code> prints a very detailed diagnostic message, <code>package:pkg</code> restricts the check to if/while statements executing in the namespace of package <code>pkg</code> (but <code>all_base</code> refers to all the standard packages), <code>package:_R_CHECK_PACKAGE_NAME_</code> restricts the check to if/while statements executing in the package that is currently being checked by <code>R CMD check</code>, <code>warn</code> causes R to report a warning instead of signalling an error. (More than one package specification can be given: a report, error or warning will be given if any are satisfied.) Default: unset (a warning is reported), but <code>package:_R_CHECK_PACKAGE_NAME_,abort,verbose</code> for the CRAN submission checks.</p>
+<p>No longer in use: conditions of length greater than one in <code>if</code> or <code>while</code> statements are now an error.</p>
 </dd>
 <dt><code>_R_CHECK_LENGTH_1_LOGIC2_</code></dt>
 <dd>
-<p>Optionally check if an argument of the binary operators <code>&amp;&amp;</code> and <code>||</code> has length greater than one, the right-hand side being checked only if it is used. The format is the same as for <code>_R_CHECK_LENGTH_1_CONDITION_</code>. Default: unset (a warning is reported), but <code>package:_R_CHECK_PACKAGE_NAME_,abort,verbose</code> for the CRAN submission checks.</p>
+<p>Optionally check if an argument of the binary operators <code>&amp;&amp;</code> and <code>||</code> has length greater than one, the right-hand side being checked only if it is used. For a false value (<code>F</code>, <code>False</code>, <code>FALSE</code> or <code>false</code>) or when unset, print a warning. Any other non-true non-empty value needs to be a list of commands separated by commas: <code>abort</code> causes R to terminate unconditionally instead of signalling an error (which is useful in pinpointing issues in code called from <code>try</code> or <code>tryCatch</code>), <code>verbose</code> prints a very detailed diagnostic message, <code>package:pkg</code> restricts the check to if/while statements executing in the namespace of package <code>pkg</code> (but <code>all_base</code> refers to all the standard packages), <code>package:_R_CHECK_PACKAGE_NAME_</code> restricts the check to if/while statements executing in the package that is currently being checked by <code>R CMD check</code>, <code>warn</code> causes R to report a warning instead of signalling an error. (More than one package specification can be given: a report, error or warning will be given if any are satisfied.) Default: unset (a warning is reported), but <code>package:_R_CHECK_PACKAGE_NAME_,abort,verbose</code> for the CRAN submission checks.</p>
 </dd>
 <dt><code>_R_CHECK_VIGNETTES_SKIP_RUN_MAYBE_</code></dt>
 <dd>
