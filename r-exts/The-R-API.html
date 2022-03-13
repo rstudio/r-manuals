@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.64">
+  <meta name="generator" content="quarto-0.9.83">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: Writing R Extensions - 6&nbsp; The R API: entry points for C code</title>
   <style>
@@ -947,10 +947,16 @@
 </dl>
 <!-- -->
 <dl>
+<dt>Function: <em>double</em> <strong>Rtanpi</strong> <em>(double <var>x</var>)</em></dt>
+<dd>
+<p>Computes <code>tan(pi * x)</code> accurately, notably for integer <var>x</var>, giving <var>NaN</var> for half integer <var>x</var> and exactly +1 or -1 for (non half) quarter integers.</p>
+</dd>
+</dl>
+<!-- -->
+<dl>
 <dt>Function: <em>double</em> <strong>tanpi</strong> <em>(double <var>x</var>)</em></dt>
 <dd>
-<p>Computes <code>tan(pi * x)</code> accurately, notably for (half) integer <var>x</var>.</p>
-<p>This might be provided by your platform, in which case it is not included in <code>Rmath.h</code>, but is in <code>math.h</code> which <code>Rmath.h</code> includes (but see the comments for <code>cospi</code>).</p>
+<p>Computes <code>tan(pi * x)</code> accurately for integer <var>x</var> with possibly platform dependent behavior for half (and quarter) integers. This might be provided by your platform, in which case it is not included in <code>Rmath.h</code>, but is in <code>math.h</code> which <code>Rmath.h</code> includes (but see the comments for <code>cospi</code>).</p>
 </dd>
 </dl>
 <!-- -->
