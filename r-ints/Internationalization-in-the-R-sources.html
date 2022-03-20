@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.83">
+  <meta name="generator" content="quarto-0.9.120">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: R Internals - 3&nbsp; Internationalization in the R sources</title>
   <style>
@@ -97,7 +97,7 @@
   <script id="quarto-search-options" type="application/json">{
     "location": "navbar",
     "copy-button": false,
-    "collapse-after": 2,
+    "collapse-after": 3,
     "panel-placement": "end",
     "type": "overlay",
     "limit": 20,
@@ -278,9 +278,9 @@
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header id="title-block-header">
-<h1 class="title display-7"><span id="internationalization-in-the-r-sources" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Internationalization in the R sources</span></span></h1>
-</header>
+<header id="title-block-header" class="quarto-title-block default">
+
+<div class="quarto-title"><h1 class="title display-7"><span id="internationalization-in-the-r-sources" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Internationalization in the R sources</span></span></h1></div></header>
 
 <p>The process of marking messages (errors, warnings etc) for translation in an R package is described in ‘Writing R Extensions’, and the standard packages included with R have (with an exception in <strong>grDevices</strong> for the menus of the <code>windows()</code> device) been internationalized in the same way as other packages.</p>
 <section id="r-code" class="level2 section" data-number="3.1">
@@ -321,6 +321,7 @@
 <section id="updating" class="level2 section" data-number="3.5">
 <h2 class="section anchored" data-number="3.5" data-anchor-id="updating"><span class="header-section-number">3.5</span> Updating</h2>
 <p>See file <code>po/README</code> for how to update the message templates and catalogs.</p>
+
 
 
 </section>

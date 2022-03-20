@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.83">
+  <meta name="generator" content="quarto-0.9.120">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: R Internals - 4&nbsp; Structure of an Installed Package</title>
   <style>
@@ -97,7 +97,7 @@
   <script id="quarto-search-options" type="application/json">{
     "location": "navbar",
     "copy-button": false,
-    "collapse-after": 2,
+    "collapse-after": 3,
     "panel-placement": "end",
     "type": "overlay",
     "limit": 20,
@@ -275,9 +275,9 @@
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header id="title-block-header">
-<h1 class="title display-7"><span id="structure-of-an-installed-package" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Structure of an Installed Package</span></span></h1>
-</header>
+<header id="title-block-header" class="quarto-title-block default">
+
+<div class="quarto-title"><h1 class="title display-7"><span id="structure-of-an-installed-package" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Structure of an Installed Package</span></span></h1></div></header>
 
 <p>The structure of a <em>source</em> packages is described in <a href="https://cran.r-project.org/doc/manuals/R-exts.html#Creating-R-packages">Creating R packages</a> in Writing R Extensions: this chapter is concerned with the structure of <em>installed</em> packages.</p>
 <p>An installed package has a top-level file <code>DESCRIPTION</code>, a copy of the file of that name in the package sources with a <code>Built</code> field appended, and file <code>INDEX</code>, usually describing the objects on which help is available, a file <code>NAMESPACE</code> if the package has a name space, optional files such as <code>CITATION</code>, <code>LICENCE</code> and <code>NEWS</code>, and any other files copied in from <code>inst</code>. It will have directories <code>Meta</code>, <code>help</code> and <code>html</code> (even if the package has no help pages), almost always has a directory <code>R</code> and often has a directory <code>libs</code> to contain compiled code. Other directories with known meaning to R are <code>data</code>, <code>demo</code>, <code>doc</code> and <code>po</code>.</p>
@@ -305,6 +305,7 @@
 <p>Directory <code>help</code> contains files <code>AnIndex</code>, <code>paths.rds</code> and <code>pkgname.rd[bx]</code>. The latter two files are a lazy-load database of parsed <code>.Rd</code> files, accessed by <code>tools:::fetchRdDB</code>. File <code>paths.rds</code> is a saved character vector of the original path names of the <code>.Rd</code> files, used when updating the database.</p>
 <p>File <code>AnIndex</code> is a two-column tab-delimited file: the first column contains the aliases defined in the help files and the second the basename (without the <code>.Rd</code> or <code>.rd</code> extension) of the file containing that alias. It is read by <code>utils:::index.search</code> to search for files matching a topic (alias), and read by <code>scan</code> in <code>utils:::matchAvailableTopics</code>, part of the completion system.</p>
 <p>File <code>aliases.rds</code> is the same information as <code>AnIndex</code> as a named character vector (names the topics, values the file basename), for faster access.</p>
+
 
 
 </section>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.83">
+  <meta name="generator" content="quarto-0.9.120">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: R Installation and Administration - 10&nbsp; Essential and useful other programs under a Unix-alike</title>
   <style>
@@ -97,7 +97,7 @@
   <script id="quarto-search-options" type="application/json">{
     "location": "navbar",
     "copy-button": false,
-    "collapse-after": 2,
+    "collapse-after": 3,
     "panel-placement": "end",
     "type": "overlay",
     "limit": 20,
@@ -300,9 +300,9 @@
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
-<header id="title-block-header">
-<h1 class="title display-7"><span id="essential-and-useful-other-programs-under-a-unix-alike" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Essential and useful other programs under a Unix-alike</span></span></h1>
-</header>
+<header id="title-block-header" class="quarto-title-block default">
+
+<div class="quarto-title"><h1 class="title display-7"><span id="essential-and-useful-other-programs-under-a-unix-alike" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Essential and useful other programs under a Unix-alike</span></span></h1></div></header>
 
 <p>This appendix gives details of programs you will need to build R on Unix-like platforms, or which will be used by R if found by <code>configure</code>.</p>
 <p>Remember that some package management systems (such as RPM and Debian/Ubuntu’s) make a distinction between the user version of a package and the development version. The latter usually has the same name but with the extension <code>-devel</code> or <code>-dev</code>: you need both versions installed.</p>
@@ -455,6 +455,7 @@
 <p>respectively, each of which can be used as a shared BLAS. For the second and third the number of threads is controlled by <code>OPENBLAS_NUM_THREADS</code> and <code>OMP_NUM_THREADS</code> (as usual for OpenMP) respectively. There is also a Fedora RPM <code>openblas-Rblas</code> to replace <code>libRblas.so</code> in their distribution of R.</p>
 <p>Note that building R on Linux against distributed libraries may need <code>-devel</code> or <code>-dev</code> packages installed.</p>
 <p>For <code>ix86</code> and <code>x86_64</code> most distributed libraries contain several alternatives for different CPU microarchitectures with the choice being made at run time.</p>
+<p>Another descendant project is BLIS (<a href="https://github.com/flame/blis" class="uri">https://github.com/flame/blis</a>).</p>
 </section>
 <section id="intel-mkl" class="level3 subsubsection page-columns page-full" data-number="10.3.4">
 <h3 class="subsubsection anchored" data-number="10.3.4" data-anchor-id="intel-mkl"><span class="header-section-number">10.3.4</span> Intel MKL</h3>
@@ -519,7 +520,7 @@
 <h3 class="subsection anchored" data-number="10.3.7" data-anchor-id="caveats"><span class="header-section-number">10.3.7</span> Caveats</h3>
 <p>As with all libraries, you need to ensure that they and R were compiled with compatible compilers and flags. For example, this has meant that on Sun Sparc using the Oracle compilers the flag <code>-dalign</code> is needed if <code>sunperf</code> is to be used.</p>
 <p>On some systems it has been necessary that an external BLAS/LAPACK was built with the same Fortran compiler used to build R.</p>
-<p>LAPACK 3.9.0 has a bug in which the DCOMBSSQ subroutine has a bug that may cause NA to be interpreted as zero. This is fixed in the R 3.6.3 and later sources, but if you use an external LAPACK, you may need to fix it there.</p>
+<p>LAPACK 3.9.0 (and probably earlier) had a bug in which the DCOMBSSQ subroutine may cause NA to be interpreted as zero. This is fixed in the R 3.6.3 and later sources, but if you use an external LAPACK, you may need to fix it there. (The bug was corrected in 3.10.0.)</p>
 <p>The code (in <code>dlapack.f</code>) should read</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="sc">*</span>     ..</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="sc">*</span>     .. Executable Statements ..</span>
@@ -536,6 +537,7 @@
 <span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>      END IF</span>
 <span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>      RETURN</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>(The inner ELSE clause was missing in LAPACK 3.9.0.)</p>
+
 
 
 </section>

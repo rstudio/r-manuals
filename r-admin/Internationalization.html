@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.83">
+  <meta name="generator" content="quarto-0.9.120">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: R Installation and Administration - 7&nbsp; Internationalization and Localization</title>
   <style>
@@ -34,7 +34,7 @@
   <script id="quarto-search-options" type="application/json">{
     "location": "navbar",
     "copy-button": false,
-    "collapse-after": 2,
+    "collapse-after": 3,
     "panel-placement": "end",
     "type": "overlay",
     "limit": 20,
@@ -227,9 +227,9 @@
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
-<header id="title-block-header">
-<h1 class="title display-7"><span id="internationalization-and-localization" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Internationalization and Localization</span></span></h1>
-</header>
+<header id="title-block-header" class="quarto-title-block default">
+
+<div class="quarto-title"><h1 class="title display-7"><span id="internationalization-and-localization" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Internationalization and Localization</span></span></h1></div></header>
 
 <p><em>Internationalization</em> refers to the process of enabling support for many human languages, and <em>localization</em> to adapting to a specific country and language.</p>
 <p>Current builds of R support all the character sets that the underlying OS can handle. These are interpreted according to the current <code>locale</code>, a sufficiently complicated topic to merit a separate section. Note though that R has no built-in support for right-to-left languages and bidirectional output, relying on the OS services. For example, how character vectors in UTF-8 containing both English digits and Hebrew characters are printed is OS-dependent (and perhaps locale-dependent).</p>
@@ -280,6 +280,7 @@
 <p>Translations in the right language but the wrong charset are made use of by on-the-fly re-encoding. The <code>LANGUAGE</code> variable (only) can be a colon-separated list, for example <code>se:de</code>, giving a set of languages in decreasing order of preference. One special value is <code>en@quot</code>, which can be used in a UTF-8 locale to have American error messages with pairs of single quotes translated to Unicode directional quotes.</p>
 <div class="page-columns page-full"><p>If no suitable translation catalogue is found or a particular message is not translated in any suitable catalogue, ‘English’<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> is used.</p><div class="no-row-height column-margin column-container"><li id="fn5" role="doc-endnote"><p><sup>5</sup>&nbsp;with Americanisms.</p></li></div></div>
 <p>See <a href="https://developer.r-project.org/Translations30.html" class="uri">https://developer.r-project.org/Translations30.html</a> for how to prepare and install translation catalogues.</p>
+
 
 
 </section>

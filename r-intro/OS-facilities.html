@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.83">
+  <meta name="generator" content="quarto-0.9.120">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: An Introduction to R - 14&nbsp; OS facilities</title>
   <style>
@@ -34,7 +34,7 @@
   <script id="quarto-search-options" type="application/json">{
     "location": "navbar",
     "copy-button": false,
-    "collapse-after": 2,
+    "collapse-after": 3,
     "panel-placement": "end",
     "type": "overlay",
     "limit": 20,
@@ -254,9 +254,9 @@
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header id="title-block-header">
-<h1 class="title display-7"><span id="os-facilities" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">OS facilities</span></span></h1>
-</header>
+<header id="title-block-header" class="quarto-title-block default">
+
+<div class="quarto-title"><h1 class="title display-7"><span id="os-facilities" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">OS facilities</span></span></h1></div></header>
 
 <p>R has quite extensive facilities to access the OS under which it is running: this allows it to be used as a scripting language and that ability is much used by R itself, for example to install packages.</p>
 <p>Because R’s own scripts need to work across all platforms, considerable effort has gone into make the scripting facilities as platform-independent as is feasible.</p>
@@ -303,6 +303,7 @@
 <p>The type of compression which has been supported for longest is <code>gzip</code> compression, and that remains a good general compromise. Files compressed by the earlier Unix <code>compress</code> utility can also be read, but these are becoming rare. Two other forms of compression, those of the <code>bzip2</code> and <code>xz</code> utilities are also available. These generally achieve higher rates of compression (depending on the file, much higher) at the expense of slower decompression and much slower compression.</p>
 <p>There is some confusion between <code>xz</code> and <code>lzma</code> compression (see <a href="https://en.wikipedia.org/wiki/Xz" class="uri">https://en.wikipedia.org/wiki/Xz</a> and <a href="https://en.wikipedia.org/wiki/LZMA" class="uri">https://en.wikipedia.org/wiki/LZMA</a>): R can read files compressed by most versions of either.</p>
 <p>File archives are single files which contain a collection of files, the most common ones being ‘tarballs’ and zip files as used to distribute R packages. R can list and unpack both (see functions <code>untar</code> and <code>unzip</code>) and create both (for <code>zip</code> with the help of an external program).</p>
+
 
 
 </section>

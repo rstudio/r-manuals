@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.83">
+  <meta name="generator" content="quarto-0.9.120">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: R Language Definition - 4&nbsp; Functions</title>
   <style>
@@ -97,7 +97,7 @@
   <script id="quarto-search-options" type="application/json">{
     "location": "navbar",
     "copy-button": false,
-    "collapse-after": 2,
+    "collapse-after": 3,
     "panel-placement": "end",
     "type": "overlay",
     "limit": 20,
@@ -286,9 +286,9 @@
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header id="title-block-header">
-<h1 class="title display-7"><span id="functions" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Functions</span></span></h1>
-</header>
+<header id="title-block-header" class="quarto-title-block default">
+
+<div class="quarto-title"><h1 class="title display-7"><span id="functions" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Functions</span></span></h1></div></header>
 
 <section id="writing-functions" class="level2 section" data-number="4.1">
 <h2 class="section anchored" data-number="4.1" data-anchor-id="writing-functions"><span class="header-section-number">4.1</span> Writing functions</h2>
@@ -371,6 +371,7 @@
 <p>A rather interesting question is what happens when <code>h</code> is evaluated. When a function body is evaluated there is no problem determining values for local variables or for bound variables. Scoping rules determine how the language will find values for the unbound variables.</p>
 <p>When <code>h(3)</code> is evaluated we see that its body is that of <code>g</code>. Within that body <code>x</code> is bound to the formal argument and <code>y</code> is unbound. In a language with lexical scope <code>x</code> will be associated with the value 3 and <code>y</code> with the value 10 local to <code>f</code> so <code>h(3)</code> should return the value 13. In R this is indeed what happens.</p>
 <p>In S, because of the different scoping rules one will get an error indicating that <code>y</code> is not found, unless there is a variable <code>y</code> in your workspace in which case its value will be used.</p>
+
 
 
 </section>

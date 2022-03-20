@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.83">
+  <meta name="generator" content="quarto-0.9.120">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: Writing R Extensions - 7&nbsp; Generic functions and methods</title>
   <style>
@@ -97,7 +97,7 @@
   <script id="quarto-search-options" type="application/json">{
     "location": "navbar",
     "copy-button": false,
-    "collapse-after": 2,
+    "collapse-after": 3,
     "panel-placement": "end",
     "type": "overlay",
     "limit": 20,
@@ -264,9 +264,9 @@
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header id="title-block-header">
-<h1 class="title display-7"><span id="generic-functions-and-methods" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Generic functions and methods</span></span></h1>
-</header>
+<header id="title-block-header" class="quarto-title-block default">
+
+<div class="quarto-title"><h1 class="title display-7"><span id="generic-functions-and-methods" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Generic functions and methods</span></span></h1></div></header>
 
 <p>R programmers will often want to add methods for existing generic functions, and may want to add new generic functions or make existing functions generic. In this chapter we give guidelines for doing so, with examples of the problems caused by not adhering to them.</p>
 <p>This chapter only covers the ‘informal’ class system copied from S3, and not with the S4 (formal) methods of package <strong>methods</strong>.</p>
@@ -314,6 +314,7 @@
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>foo.default <span class="ot">&lt;-</span> <span class="cf">function</span>(object, ...) base<span class="sc">::</span><span class="fu">foo</span>(object)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Earlier versions of this manual suggested assigning <code>foo.default &lt;- base::foo</code>. This is <strong>not</strong> a good idea, as it captures the base function at the time of installation and it might be changed as R is patched or updated.</p>
 <p>The same idea can be applied for functions in other packages.</p>
+
 
 
 </section>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.83">
+  <meta name="generator" content="quarto-0.9.120">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: R Language Definition - 10&nbsp; Parser</title>
   <style>
@@ -97,7 +97,7 @@
   <script id="quarto-search-options" type="application/json">{
     "location": "navbar",
     "copy-button": false,
-    "collapse-after": 2,
+    "collapse-after": 3,
     "panel-placement": "end",
     "type": "overlay",
     "limit": 20,
@@ -301,9 +301,9 @@
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
-<header id="title-block-header">
-<h1 class="title display-7"><span id="parser" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Parser</span></span></h1>
-</header>
+<header id="title-block-header" class="quarto-title-block default">
+
+<div class="quarto-title"><h1 class="title display-7"><span id="parser" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Parser</span></span></h1></div></header>
 
 <p>The parser is what converts the textual representation of R code into an internal form which may then be passed to the R evaluator which causes the specified instructions to be carried out. The internal form is itself an R object and can be saved and otherwise manipulated within the R system.</p>
 <section id="the-parsing-process" class="level2 section" data-number="10.1">
@@ -619,6 +619,7 @@
 <p>where <var>nn</var> is an integer line number, and the optional <var>filename</var> (in required double quotes) names the source file.</p>
 <p>Unlike the C directive, <code>#line</code> must appear as the first five characters on a line. As in C, <var>nn</var> and <code>"filename"</code> entries may be separated from it by whitespace. And unlike C, any following text on the line will be treated as a comment and ignored.</p>
 <p>This directive tells the parser that the following line should be assumed to be line <var>nn</var> of file <var>filename</var>. (If the filename is not given, it is assumed to be the same as for the previous directive.) This is not typically used by users, but may be used by preprocessors so that diagnostic messages refer to the original file.</p>
+
 
 
 </section>

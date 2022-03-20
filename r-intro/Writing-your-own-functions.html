@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.83">
+  <meta name="generator" content="quarto-0.9.120">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: An Introduction to R - 10&nbsp; Writing your own functions</title>
   <style>
@@ -97,7 +97,7 @@
   <script id="quarto-search-options" type="application/json">{
     "location": "navbar",
     "copy-button": false,
-    "collapse-after": 2,
+    "collapse-after": 3,
     "panel-placement": "end",
     "type": "overlay",
     "limit": 20,
@@ -327,9 +327,9 @@
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
-<header id="title-block-header">
-<h1 class="title display-7"><span id="writing-your-own-functions" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Writing your own functions</span></span></h1>
-</header>
+<header id="title-block-header" class="quarto-title-block default">
+
+<div class="quarto-title"><h1 class="title display-7"><span id="writing-your-own-functions" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Writing your own functions</span></span></h1></div></header>
 
 <p>As we have seen informally along the way, the R language allows the user to create objects of mode <em>function</em>. These are true R functions that are stored in a special internal form and may be used in further expressions and so on. In the process, the language gains enormously in power, convenience and elegance, and learning to write useful functions is one of the main ways to make your use of R comfortable and productive.</p>
 <p>It should be emphasized that most of the functions supplied as part of the R system, such as <code>mean()</code>, <code>var()</code>, <code>postscript()</code> and so on, are themselves written in R and thus do not differ materially from user written functions.</p>
@@ -602,6 +602,7 @@
 <span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>A function named <code>gen.cl</code> will be invoked by the generic <code>gen</code> for class <code>cl</code>, so do not name functions in this style unless they are intended to be methods.</p>
 <p>The reader is referred to the <em>R Language Definition</em> for a more complete discussion of this mechanism.</p>
+
 
 
 </section>

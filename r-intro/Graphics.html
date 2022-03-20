@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.83">
+  <meta name="generator" content="quarto-0.9.120">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: An Introduction to R - 12&nbsp; Graphical procedures</title>
   <style>
@@ -97,7 +97,7 @@
   <script id="quarto-search-options" type="application/json">{
     "location": "navbar",
     "copy-button": false,
-    "collapse-after": 2,
+    "collapse-after": 3,
     "panel-placement": "end",
     "type": "overlay",
     "limit": 20,
@@ -344,9 +344,9 @@
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
-<header id="title-block-header">
-<h1 class="title display-7"><span id="graphical-procedures" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Graphical procedures</span></span></h1>
-</header>
+<header id="title-block-header" class="quarto-title-block default">
+
+<div class="quarto-title"><h1 class="title display-7"><span id="graphical-procedures" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Graphical procedures</span></span></h1></div></header>
 
 <p>Graphical facilities are an important and extremely versatile component of the R environment. It is possible to use the facilities to display a wide variety of statistical graphs and also to build entirely new types of graph.</p>
 <p>The graphics facilities can be used in both interactive and batch modes, but in most cases, interactive use is more productive. Interactive use is also easy because at startup time R initiates a graphics <em>device driver</em> which opens a special <em>graphics window</em> for the display of interactive graphics. Although this is done automatically, it may useful to know that the command used is <code>X11()</code> under UNIX, <code>windows()</code> under Windows and <code>quartz()</code> under macOS. A new device can always be opened by <code>dev.new()</code>.</p>
@@ -1062,6 +1062,7 @@
 </blockquote>
 <p>and these can be accessed from R via the package <a href="https://CRAN.R-project.org/package=rggobi"><strong>rggobi</strong></a>, described at <a href="http://ggobi.org/rggobi.html" class="uri">http://ggobi.org/rggobi.html</a>.</p>
 <p>Also, package <a href="https://CRAN.R-project.org/package=rgl"><strong>rgl</strong></a> provides ways to interact with 3D plots, for example of surfaces.</p>
+
 
 
 </section>

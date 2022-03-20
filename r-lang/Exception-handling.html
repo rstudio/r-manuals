@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.83">
+  <meta name="generator" content="quarto-0.9.120">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: R Language Definition - 8&nbsp; Exception handling</title>
   <style>
@@ -34,7 +34,7 @@
   <script id="quarto-search-options" type="application/json">{
     "location": "navbar",
     "copy-button": false,
-    "collapse-after": 2,
+    "collapse-after": 3,
     "panel-placement": "end",
     "type": "overlay",
     "limit": 20,
@@ -214,9 +214,9 @@
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header id="title-block-header">
-<h1 class="title display-7"><span id="exception-handling" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Exception handling</span></span></h1>
-</header>
+<header id="title-block-header" class="quarto-title-block default">
+
+<div class="quarto-title"><h1 class="title display-7"><span id="exception-handling" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Exception handling</span></span></h1></div></header>
 
 <p>The exception handling facilities in R are provided through two mechanisms. Functions such as <code>stop</code> or <code>warning</code> can be called directly or options such as <code>"warn"</code> can be used to control the handling of problems.</p>
 <section id="stop" class="level2 section" data-number="8.1">
@@ -253,6 +253,7 @@
 </dl>
 <p>Expressions installed by <code>options("error")</code> are evaluated before calls to <code>on.exit</code> are carried out.</p>
 <p>One can use <code>options(error = expression(q("yes")))</code> to get R to quit when an error has been signalled. In this case an error will cause R to shut down and the global environment will be saved.</p>
+
 
 
 </section>

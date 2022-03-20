@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.83">
+  <meta name="generator" content="quarto-0.9.120">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: R Internals - 6&nbsp; Graphics</title>
   <style>
@@ -97,7 +97,7 @@
   <script id="quarto-search-options" type="application/json">{
     "location": "navbar",
     "copy-button": false,
-    "collapse-after": 2,
+    "collapse-after": 3,
     "panel-placement": "end",
     "type": "overlay",
     "limit": 20,
@@ -291,9 +291,9 @@
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
-<header id="title-block-header">
-<h1 class="title display-7"><span id="graphics" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Graphics</span></span></h1>
-</header>
+<header id="title-block-header" class="quarto-title-block default">
+
+<div class="quarto-title"><h1 class="title display-7"><span id="graphics" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Graphics</span></span></h1></div></header>
 
 <div class="page-columns page-full"><p>R’s graphics internals were re-designed to enable multiple graphics systems to be installed on top on the graphics ‘engine’ – currently there are two such systems, one supporting ‘base’ graphics (based on that in S and whose R code<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> is in package <strong>graphics</strong>) and one implemented in package <strong>grid</strong>.</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;The C code is in files <code>base.c</code>, <code>graphics.c</code>, <code>par.c</code>, <code>plot.c</code> and <code>plot3d.c</code> in directory <code>src/main</code>.</p></li></div></div>
 <p>Some notes on the historical changes can be found at <a href="https://www.stat.auckland.ac.nz/~paul/R/basegraph.html" class="uri">https://www.stat.auckland.ac.nz/~paul/R/basegraph.html</a> and <a href="https://www.stat.auckland.ac.nz/~paul/R/graphicsChanges.html" class="uri">https://www.stat.auckland.ac.nz/~paul/R/graphicsChanges.html</a>.</p>
@@ -559,6 +559,7 @@
 <section id="grid-graphics" class="level2 section" data-number="6.4">
 <h2 class="section anchored" data-number="6.4" data-anchor-id="grid-graphics"><span class="header-section-number">6.4</span> Grid graphics</h2>
 <p>[At least pointers to documentation.]</p>
+
 
 
 </section>

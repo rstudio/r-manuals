@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.83">
+  <meta name="generator" content="quarto-0.9.120">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: R Language Definition - 9&nbsp; Debugging</title>
   <style>
@@ -97,7 +97,7 @@
   <script id="quarto-search-options" type="application/json">{
     "location": "navbar",
     "copy-button": false,
-    "collapse-after": 2,
+    "collapse-after": 3,
     "panel-placement": "end",
     "type": "overlay",
     "limit": 20,
@@ -277,9 +277,9 @@
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header id="title-block-header">
-<h1 class="title display-7"><span id="debugging" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Debugging</span></span></h1>
-</header>
+<header id="title-block-header" class="quarto-title-block default">
+
+<div class="quarto-title"><h1 class="title display-7"><span id="debugging" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Debugging</span></span></h1></div></header>
 
 <p>Debugging code has always been a bit of an art. R provides several tools that help users find problems in their code. These tools halt execution at particular points in the code and the current state of the computation can be inspected.</p>
 <p>Most debugging takes place either through calls to <code>browser</code> or <code>debug</code>. Both of these functions rely on the same internal mechanism and both provide the user with a special prompt. Any command can be typed at the prompt. The evaluation environment for the command is the currently active environment. This allows you to examine the current state of any variables etc.</p>
@@ -368,6 +368,7 @@
 <section id="traceback" class="level2 section" data-number="9.4">
 <h2 class="section anchored" data-number="9.4" data-anchor-id="traceback"><span class="header-section-number">9.4</span> traceback</h2>
 <p>When an error has caused a jump to top-level a special variable called <code>.Traceback</code> is placed into the base environment. <code>.Traceback</code> is a character vector with one entry for each function call that was active at the time the error occurred. An examination of <code>.Traceback</code> can be carried out by a call to <code>traceback</code>.</p>
+
 
 
 </section>

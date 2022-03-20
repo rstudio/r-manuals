@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.83">
+  <meta name="generator" content="quarto-0.9.120">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: An Introduction to R - 4&nbsp; Ordered and unordered factors</title>
   <style>
@@ -97,7 +97,7 @@
   <script id="quarto-search-options" type="application/json">{
     "location": "navbar",
     "copy-button": false,
-    "collapse-after": 2,
+    "collapse-after": 3,
     "panel-placement": "end",
     "type": "overlay",
     "limit": 20,
@@ -316,9 +316,9 @@
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
-<header id="title-block-header">
-<h1 class="title display-7"><span id="ordered-and-unordered-factors" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Ordered and unordered factors</span></span></h1>
-</header>
+<header id="title-block-header" class="quarto-title-block default">
+
+<div class="quarto-title"><h1 class="title display-7"><span id="ordered-and-unordered-factors" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Ordered and unordered factors</span></span></h1></div></header>
 
 <p>A <em>factor</em> is a vector object used to specify a discrete classification (grouping) of the components of other vectors of the same length. R provides both <em>ordered</em> and <em>unordered</em> factors. While the “real” application of factors is with model formulae (see <a href="Statistical-models-in-R.html#contrasts">Contrasts</a>), we here look at a specific example.</p>
 <section id="a-specific-example" class="level2 section page-columns page-full" data-number="4.1">
@@ -368,6 +368,7 @@
 <h2 class="section anchored" data-number="4.3" data-anchor-id="ordered-factors"><span class="header-section-number">4.3</span> Ordered factors</h2>
 <p>The levels of factors are stored in alphabetical order, or in the order they were specified to <code>factor</code> if they were specified explicitly.</p>
 <p>Sometimes the levels will have a natural ordering that we want to record and want our statistical analysis to make use of. The <code>ordered()</code> function creates such ordered factors but is otherwise identical to <code>factor</code>. For most purposes the only difference between ordered and unordered factors is that the former are printed showing the ordering of the levels, but the contrasts generated for them in fitting linear models are different.</p>
+
 
 
 </section>

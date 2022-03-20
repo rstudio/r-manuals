@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.83">
+  <meta name="generator" content="quarto-0.9.120">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: R Installation and Administration - 11&nbsp; Configuration on a Unix-alike</title>
   <style>
@@ -97,7 +97,7 @@
   <script id="quarto-search-options" type="application/json">{
     "location": "navbar",
     "copy-button": false,
-    "collapse-after": 2,
+    "collapse-after": 3,
     "panel-placement": "end",
     "type": "overlay",
     "limit": 20,
@@ -297,9 +297,9 @@
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
-<header id="title-block-header">
-<h1 class="title display-7"><span id="configuration-on-a-unix-alike" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Configuration on a Unix-alike</span></span></h1>
-</header>
+<header id="title-block-header" class="quarto-title-block default">
+
+<div class="quarto-title"><h1 class="title display-7"><span id="configuration-on-a-unix-alike" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Configuration on a Unix-alike</span></span></h1></div></header>
 
 <section id="configuration-options" class="level2 section page-columns page-full" data-number="11.1">
 <h2 class="section anchored" data-number="11.1" data-anchor-id="configuration-options"><span class="header-section-number">11.1</span> Configuration options</h2>
@@ -493,6 +493,7 @@
 <p>File <code>src/include/config.h</code> is created by <code>autoheader</code> (part of <strong>autoconf</strong>).</p>
 <p>Grammar files <code>*.y</code> are converted to C sources by an implementation of <code>yacc</code>, usually <code>bison -y</code>: these are found in <code>src/main</code> and <code>src/library/tools/src</code>. It is known that earlier versions of <code>bison</code> generate code which reads (and in some cases writes) outside array bounds: <code>bison</code> 2.6.1 was found to be satisfactory.</p>
 <div class="page-columns page-full"><p>The ultimate sources for package <strong>compiler</strong> are in its <code>noweb</code> directory. To re-create the sources from <code>src/library/compiler/noweb/compiler.nw</code>, the command <code>notangle</code> is required. Some Linux distributions include this command in package <strong>noweb</strong>. It can also be installed from the sources at <a href="https://www.cs.tufts.edu/~nr/noweb/" class="uri">https://www.cs.tufts.edu/~nr/noweb/</a><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. The package sources are only re-created even in maintainer mode if <code>src/library/compiler/noweb/compiler.nw</code> has been updated.</p><div class="no-row-height column-margin column-container"><li id="fn4" role="doc-endnote"><p><sup>4</sup>&nbsp;The links there have proved difficult to access, in which case grab the copy made available at <a href="https://developer.r-project.org/noweb-2.11b.tgz" class="uri">https://developer.r-project.org/noweb-2.11b.tgz</a>.</p></li></div></div>
+
 
 
 </section>

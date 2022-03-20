@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.83">
+  <meta name="generator" content="quarto-0.9.120">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: R Installation and Administration - 2&nbsp; Installing R under Unix-alikes</title>
   <style>
@@ -97,7 +97,7 @@
   <script id="quarto-search-options" type="application/json">{
     "location": "navbar",
     "copy-button": false,
-    "collapse-after": 2,
+    "collapse-after": 3,
     "panel-placement": "end",
     "type": "overlay",
     "limit": 20,
@@ -303,9 +303,9 @@
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
-<header id="title-block-header">
-<h1 class="title display-7"><span id="installing-r-under-unix-alikes" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Installing R under Unix-alikes</span></span></h1>
-</header>
+<header id="title-block-header" class="quarto-title-block default">
+
+<div class="quarto-title"><h1 class="title display-7"><span id="installing-r-under-unix-alikes" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Installing R under Unix-alikes</span></span></h1></div></header>
 
 <div class="page-columns page-full"><p>R will configure and build under most common Unix and Unix-alike platforms including <code>cpu-*-linux-gnu</code> for the <code>alpha</code>, <code>arm64</code>, <code>hppa</code>, <code>ix86</code>, <code>m68k</code>, <code>mips</code>, <code>mipsel</code>#, <code>ppc64</code>, <code>s390x</code>, <code>sparc64</code>, and <code>x86_64</code> CPUs, <code>x86_64-apple-darwin</code> and <code>aarch64-apple-darwin</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> as well as perhaps (it is tested less frequently on these platforms) <code>i386-sun-solaris</code>, <code>i386-*-freebsd</code>, <code>x86_64-*-freebsd</code>, <code>i386-*-netbsd</code>, <code>x86_64-*-openbsd</code> and <code>powerpc-ibm-aix6*</code></p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;aka ‘Apple Silicon’, known to some as <code>arm64-apple-darwin</code>.</p></li></div></div>
 <p>In addition, binary distributions are available for some common Linux distributions (see the FAQ for current details) and for macOS. These are installed in platform-specific ways, so for the rest of this chapter we consider only building from the sources.</p>
@@ -401,10 +401,6 @@
 <dt><code>cm-super</code></dt>
 <dd>
 <p>Using type-1 versions of the Computer Modern fonts by Vladimir Volovich. This is a large installation, obtainable from <a href="https://www.ctan.org/tex-archive/fonts/ps-type1/cm-super/" class="uri">https://www.ctan.org/tex-archive/fonts/ps-type1/cm-super/</a> and its mirrors. These type-1 fonts have poor hinting and so are nowhere near as readable on-screen as the other three options.</p>
-</dd>
-<dt><code>ae</code></dt>
-<dd>
-<p>A package to use composites of Computer Modern fonts. This works well most of the time, and its PDF is more readable on-screen than the previous two options. There are three fonts for which it will need to use bitmapped fonts, <code>tctt0900.600pk</code>, <code>tctt1000.600pk</code> and <code>tcrm1000.600pk</code>. Unfortunately, if those files are not available, Acrobat Reader will substitute completely incorrect glyphs so you need to examine the logs carefully.</p>
 </dd>
 </dl>
 <div class="page-columns page-full"><p>The default can be overridden by setting the environment variable <code>R_RD4PDF</code>. (On Unix-alikes, this will be picked up at install time and stored in <code>etc/Renviron</code>, but can still be overridden when the manuals are built, using <code>make -e</code>.) The usual<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> default value for <code>R_RD4PDF</code> is <code>times,inconsolata,hyper</code>: omit <code>hyper</code> if you do not want hyperlinks (e.g.&nbsp;for printing the manual) or do not have LaTeX package <strong>hyperref</strong>, and omit <code>inconsolata</code> if you do not have LaTeX package <strong>inconsolata</strong> installed.</p><div class="no-row-height column-margin column-container"><li id="fn5" role="doc-endnote"><p><sup>5</sup>&nbsp;on a Unix-alike, <code>inconsolata</code> is omitted if not found by <code>configure</code>.</p></li></div></div>
@@ -653,6 +649,7 @@
 <p>Note that the results may depend on the language set for times and messages: for maximal similarity to reference results you may want to try setting (before starting the R session)</p>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>LANGUAGE<span class="ot">=</span>en</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>and use a UTF-8 or Latin-1 locale.</p>
+
 
 
 </section>

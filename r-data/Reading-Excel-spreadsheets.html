@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.83">
+  <meta name="generator" content="quarto-0.9.120">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: R Data Import/Export - 9&nbsp; Reading Excel spreadsheets</title>
   <style>
@@ -34,7 +34,7 @@
   <script id="quarto-search-options" type="application/json">{
     "location": "navbar",
     "copy-button": false,
-    "collapse-after": 2,
+    "collapse-after": 3,
     "panel-placement": "end",
     "type": "overlay",
     "limit": 20,
@@ -204,9 +204,9 @@
     
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header id="title-block-header">
-<h1 class="title display-7"><span id="reading-excel-spreadsheets" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Reading Excel spreadsheets</span></span></h1>
-</header>
+<header id="title-block-header" class="quarto-title-block default">
+
+<div class="quarto-title"><h1 class="title display-7"><span id="reading-excel-spreadsheets" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Reading Excel spreadsheets</span></span></h1></div></header>
 <p>The most common R data import/export question seems to be ‘how do I read an Excel spreadsheet’. This chapter collects together advice and options given earlier. Note that most of the advice is for pre-Excel 2007 spreadsheets and not the later <code>.xlsx</code> format.</p>
 <p>The first piece of advice is to avoid doing so if possible! If you have access to Excel, export the data you want from Excel in tab-delimited or comma-separated form, and use <code>read.delim</code> or <code>read.csv</code> to import it into R. (You may need to use <code>read.delim2</code> or <code>read.csv2</code> in a locale that uses comma as the decimal point.) Exporting a DIF file and reading it using <code>read.DIF</code> is another possibility.</p>
 <p>If you do not have Excel, many other programs are able to read such spreadsheets and export in a text format on both Windows and Unix, for example Gnumeric (<a href="http://www.gnumeric.org" class="uri">http://www.gnumeric.org</a>) and OpenOffice (<a href="https://www.openoffice.org" class="uri">https://www.openoffice.org</a>). You can also cut-and-paste between the display of a spreadsheet in such a program and R: <code>read.table</code> will read from the R console or, under Windows, from the clipboard (via <code>file = "clipboard"</code> or <code>readClipboard</code>). The <code>read.DIF</code> function can also read from the clipboard.</p>
@@ -217,6 +217,7 @@
 <p>Packages <a href="https://CRAN.R-project.org/package=xlsx"><strong>xlsx</strong></a> can read and and manipulate Excel 2007 and later spreadsheets: it requires Java.</p>
 <p>Package <a href="https://CRAN.R-project.org/package=XLConnect"><strong>XLConnect</strong></a> can read, write and manipulate both Excel 97–2003 and Excel 2007/10 spreadsheets, using Java.</p>
 <p>Package <a href="https://CRAN.R-project.org/package=readxl"><strong>readxl</strong></a> can read both Excel 97–2003 and Excel 2007/10 spreadsheets, using an included C library.</p>
+
 
 
 </main> <!-- /main -->

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.83">
+  <meta name="generator" content="quarto-0.9.120">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: Writing R Extensions - 8&nbsp; Linking GUIs and other front-ends to R</title>
   <style>
@@ -97,7 +97,7 @@
   <script id="quarto-search-options" type="application/json">{
     "location": "navbar",
     "copy-button": false,
-    "collapse-after": 2,
+    "collapse-after": 3,
     "panel-placement": "end",
     "type": "overlay",
     "limit": 20,
@@ -277,9 +277,9 @@
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
-<header id="title-block-header">
-<h1 class="title display-7"><span id="linking-guis-and-other-front-ends-to-r" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linking GUIs and other front-ends to R</span></span></h1>
-</header>
+<header id="title-block-header" class="quarto-title-block default">
+
+<div class="quarto-title"><h1 class="title display-7"><span id="linking-guis-and-other-front-ends-to-r" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linking GUIs and other front-ends to R</span></span></h1></div></header>
 
 <p>There are a number of ways to build front-ends to R: we take this to mean a GUI or other application that has the ability to submit commands to R and perhaps to receive results back (not necessarily in a text format). There are other routes besides those described here, for example the package <a href="https://CRAN.R-project.org/package=Rserve"><strong>Rserve</strong></a> (from CRAN, see also <a href="https://www.rforge.net/Rserve/" class="uri">https://www.rforge.net/Rserve/</a>) and connections to Java in <code>JRI</code> (part of the <a href="https://CRAN.R-project.org/package=rJava"><strong>rJava</strong></a> package on CRAN).</p>
 <p>Note that the APIs described in this chapter are only intended to be used in an alternative front-end: they are not part of the API made available for R packages and can be dangerous to use in a conventional package (although packages may contain alternative front-ends). Conversely some of the functions from the API (such as <code>R_alloc</code>) should not be used in front-ends.</p>
@@ -768,6 +768,7 @@
 <li>If the desired architecture is known, look in <code>Software\R-core\R32</code> or <code>Software\R-core\R64</code>, and if that does not exist or the architecture is immaterial, in <code>Software\R-core\R</code>.</li>
 <li>If key <code>InstallPath</code> exists then this is <code>R_HOME</code> (recorded using backslashes). If it does not, look for version-specific keys like <code>2.11.0 alpha</code>, pick the latest (which is of itself a complicated algorithm as <code>2.11.0 patched &gt; 2.11.0 &gt; 2.11.0 alpha &gt; 2.8.1</code>) and use its value for <code>InstallPath</code>.</li>
 </ul>
+
 
 
 </section>

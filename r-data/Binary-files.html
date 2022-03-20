@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.83">
+  <meta name="generator" content="quarto-0.9.120">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: R Data Import/Export - 5&nbsp; Binary files</title>
   <style>
@@ -34,7 +34,7 @@
   <script id="quarto-search-options" type="application/json">{
     "location": "navbar",
     "copy-button": false,
-    "collapse-after": 2,
+    "collapse-after": 3,
     "panel-placement": "end",
     "type": "overlay",
     "limit": 20,
@@ -212,9 +212,9 @@
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header id="title-block-header">
-<h1 class="title display-7"><span id="binary-files" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Binary files</span></span></h1>
-</header>
+<header id="title-block-header" class="quarto-title-block default">
+
+<div class="quarto-title"><h1 class="title display-7"><span id="binary-files" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Binary files</span></span></h1></div></header>
 
 <p>Binary connections (<a href="Connections.html#connections">Connections</a>) are now the preferred way to handle binary files.</p>
 <section id="binary-data-formats" class="level2 section" data-number="5.1">
@@ -228,6 +228,7 @@
 <h2 class="section anchored" data-number="5.2" data-anchor-id="dbase-files-dbf"><span class="header-section-number">5.2</span> dBase files (DBF)</h2>
 <p><code>dBase</code> was a DOS program written by Ashton-Tate and later owned by Borland which has a binary flat-file format that became popular, with file extension <code>.dbf</code>. It has been adopted for the ‘Xbase’ family of databases, covering dBase, Clipper, FoxPro and their Windows equivalents Visual dBase, Visual Objects and Visual FoxPro (see <a href="https://www.clicketyclick.dk/databases/xbase/format/" class="uri">https://www.clicketyclick.dk/databases/xbase/format/</a>). A dBase file contains a header and then a series of fields and so is most similar to an R data frame. The data itself is stored in text format, and can include character, logical and numeric fields, and other types in later versions (see for example <a href="https://www.loc.gov/preservation/digital/formats/fdd/fdd000325.shtml" class="uri">https://www.loc.gov/preservation/digital/formats/fdd/fdd000325.shtml</a> and <a href="https://www.clicketyclick.dk/databases/xbase/format/index.html" class="uri">https://www.clicketyclick.dk/databases/xbase/format/index.html</a>).</p>
 <p>Functions <code>read.dbf</code> and <code>write.dbf</code> provide ways to read and write basic DBF files on all R platforms. For Windows users <code>odbcConnectDbase</code> in package <a href="https://CRAN.R-project.org/package=RODBC"><strong>RODBC</strong></a> provides more comprehensive facilities to read DBF files <em>via</em> Microsoft’s dBase ODBC driver (and the Visual FoxPro driver can also be used via <code>odbcDriverConnect</code>).</p>
+
 
 
 </section>

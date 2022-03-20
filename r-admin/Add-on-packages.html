@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.83">
+  <meta name="generator" content="quarto-0.9.120">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: R Installation and Administration - 6&nbsp; Add-on packages</title>
   <style>
@@ -97,7 +97,7 @@
   <script id="quarto-search-options" type="application/json">{
     "location": "navbar",
     "copy-button": false,
-    "collapse-after": 2,
+    "collapse-after": 3,
     "panel-placement": "end",
     "type": "overlay",
     "limit": 20,
@@ -298,9 +298,9 @@
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
-<header id="title-block-header">
-<h1 class="title display-7"><span id="add-on-packages" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Add-on packages</span></span></h1>
-</header>
+<header id="title-block-header" class="quarto-title-block default">
+
+<div class="quarto-title"><h1 class="title display-7"><span id="add-on-packages" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Add-on packages</span></span></h1></div></header>
 
 <p>It is helpful to use the correct terminology. A <em>package</em> is loaded from a <em>library</em> by the function <code>library()</code>. Thus a library is a directory containing installed packages; the main library is <code>R_HOME/library</code>, but others can be used, for example by setting the environment variable <code>R_LIBS</code> or using the R function <code>.libPaths()</code>. To avoid any confusion you will often see a library directory referred to as a ‘library tree’.</p>
 <section id="default-packages" class="level2 section" data-number="6.1">
@@ -509,6 +509,7 @@
 <p><code>R CMD INSTALL</code> can do a <code>i386</code> install and then add the <code>x64</code> DLL from a single command by</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> CMD INSTALL <span class="at">--merge-multiarch</span> <span class="at">-l</span> libdir tarball</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>and <code>--build</code> can be added to zip up the installation.</p>
+
 
 
 </section>

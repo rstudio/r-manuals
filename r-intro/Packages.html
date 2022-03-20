@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.83">
+  <meta name="generator" content="quarto-0.9.120">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: An Introduction to R - 13&nbsp; Packages</title>
   <style>
@@ -97,7 +97,7 @@
   <script id="quarto-search-options" type="application/json">{
     "location": "navbar",
     "copy-button": false,
-    "collapse-after": 2,
+    "collapse-after": 3,
     "panel-placement": "end",
     "type": "overlay",
     "limit": 20,
@@ -316,9 +316,9 @@
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header id="title-block-header">
-<h1 class="title display-7"><span id="packages" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Packages</span></span></h1>
-</header>
+<header id="title-block-header" class="quarto-title-block default">
+
+<div class="quarto-title"><h1 class="title display-7"><span id="packages" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Packages</span></span></h1></div></header>
 
 <p>All R functions and datasets are stored in <em>packages</em>. Only when a package is loaded are its contents available. This is done both for efficiency (the full list would take more memory and would take longer to search than a subset), and to aid package developers, who are protected from name clashes with other code. The process of developing packages is described in <a href="https://cran.r-project.org/doc/manuals/R-exts.html#Creating-R-packages">Creating R packages</a> in Writing R Extensions. Here, we will describe them from a user’s point of view.</p>
 <p>To see which packages are installed at your site, issue the command</p>
@@ -348,6 +348,7 @@
 <p>There are two operators that work with namespaces. The double-colon operator <code>::</code> selects definitions from a particular namespace. In the example above, the transpose function will always be available as <code>base::t</code>, because it is defined in the <code>base</code> package. Only functions that are exported from the package can be retrieved in this way.</p>
 <p>The triple-colon operator <code>:::</code> may be seen in a few places in R code: it acts like the double-colon operator but also allows access to hidden objects. Users are more likely to use the <code>getAnywhere()</code> function, which searches multiple packages.</p>
 <p>Packages are often inter-dependent, and loading one may cause others to be automatically loaded. The colon operators described above will also cause automatic loading of the associated package. When packages with namespaces are loaded automatically they are not added to the search list.</p>
+
 
 
 </section>

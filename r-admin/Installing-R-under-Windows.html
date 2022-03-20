@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.83">
+  <meta name="generator" content="quarto-0.9.120">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: R Installation and Administration - 3&nbsp; Installing R under Windows</title>
   <style>
@@ -97,7 +97,7 @@
   <script id="quarto-search-options" type="application/json">{
     "location": "navbar",
     "copy-button": false,
-    "collapse-after": 2,
+    "collapse-after": 3,
     "panel-placement": "end",
     "type": "overlay",
     "limit": 20,
@@ -290,9 +290,9 @@
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
-<header id="title-block-header">
-<h1 class="title display-7"><span id="installing-r-under-windows" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Installing R under Windows</span></span></h1>
-</header>
+<header id="title-block-header" class="quarto-title-block default">
+
+<div class="quarto-title"><h1 class="title display-7"><span id="installing-r-under-windows" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Installing R under Windows</span></span></h1></div></header>
 
 <p>The <code>bin/windows</code> directory of a CRAN site contains binaries for a base distribution and a large number of add-on packages from CRAN to run on 32- or 64-bit Windows (Windows 7 and later are tested; XP is known to fail some tests) on <code>ix86</code> and <code>x86_64</code> CPUs.</p>
 <p>Your file system must allow long file names (as is likely except perhaps for some network-mounted systems). If it does not also support conversion to short name equivalents (a.k.a. DOS 8.3 names), then R <em>must</em> be installed in a path that does not contain spaces.</p>
@@ -341,6 +341,7 @@
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">testInstalledPackages</span>(<span class="at">scope =</span> <span class="st">"recommended"</span>, <span class="at">errorsAreFatal =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>runs the basic tests and then all the tests on the standard and recommended packages. These tests can be run from anywhere: they write some of their results in the <code>tests</code> folder of the R home directory (as given by <code>R.home()</code>), and hence may need to be run under the account used to install R.</p>
 <p>The results of <code>example(md5sums)</code> when testing <strong>tools</strong> will differ from the reference output as some files are installed with Windows’ CRLF line endings.</p>
+
 
 
 </section>

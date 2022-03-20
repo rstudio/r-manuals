@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.83">
+  <meta name="generator" content="quarto-0.9.120">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: R Language Definition - 5&nbsp; Object-oriented programming</title>
   <style>
@@ -97,7 +97,7 @@
   <script id="quarto-search-options" type="application/json">{
     "location": "navbar",
     "copy-button": false,
-    "collapse-after": 2,
+    "collapse-after": 3,
     "panel-placement": "end",
     "type": "overlay",
     "limit": 20,
@@ -280,9 +280,9 @@
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header id="title-block-header">
-<h1 class="title display-7"><span id="object-oriented-programming" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Object-oriented programming</span></span></h1>
-</header>
+<header id="title-block-header" class="quarto-title-block default">
+
+<div class="quarto-title"><h1 class="title display-7"><span id="object-oriented-programming" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Object-oriented programming</span></span></h1></div></header>
 
 <p>Object-oriented programming is a style of programming that has become popular in recent years. Much of the popularity comes from the fact that it makes it easier to write and maintain complicated systems. It does this through several different mechanisms.</p>
 <p>Central to any object-oriented language are the concepts of class and of methods. A <em>class</em> is a definition of an object. Typically a class contains several <em>slots</em> that are used to hold class-specific information. An object in the language must be an instance of some class. Programming is based on objects or instances of classes.</p>
@@ -382,6 +382,7 @@
 <p>Users can easily write their own methods and generic functions. A generic function is simply a function with a call to <code>UseMethod</code>. A method is simply a function that has been invoked via method dispatch. This can be as a result of a call to either <code>UseMethod</code> or <code>NextMethod</code>.</p>
 <p>It is worth remembering that methods can be called directly. That means that they can be entered without a call to <code>UseMethod</code> having been made and hence the special variables <code>.Generic</code>, <code>.Class</code> and <code>.Method</code> will not have been instantiated. In that case the default rules detailed above will be used to determine these.</p>
 <p>The most common use of generic functions is to provide <code>print</code> and <code>summary</code> methods for statistical objects, generally the output of some model fitting process. To do this, each model attaches a class attribute to its output and then provides a special method that takes that output and provides a nice readable version of it. The user then needs only remember that <code>print</code> or <code>summary</code> will provide nice output for the results of any analysis.</p>
+
 
 
 </section>

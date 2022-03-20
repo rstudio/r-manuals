@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.83">
+  <meta name="generator" content="quarto-0.9.120">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: R Data Import/Export - 7&nbsp; Connections</title>
   <style>
@@ -97,7 +97,7 @@
   <script id="quarto-search-options" type="application/json">{
     "location": "navbar",
     "copy-button": false,
-    "collapse-after": 2,
+    "collapse-after": 3,
     "panel-placement": "end",
     "type": "overlay",
     "limit": 20,
@@ -284,9 +284,9 @@
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header id="title-block-header">
-<h1 class="title display-7"><span id="connections" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Connections</span></span></h1>
-</header>
+<header id="title-block-header" class="quarto-title-block default">
+
+<div class="quarto-title"><h1 class="title display-7"><span id="connections" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Connections</span></span></h1></div></header>
 
 <p><em>Connections</em> are used in R in the sense of Chambers (1998) and Ripley (2001), a set of functions to replace the use of file names by a flexible interface to file-like objects.</p>
 <section id="types-of-connections" class="level2 section" data-number="7.1">
@@ -394,6 +394,7 @@
 <p>The representation of the special values for R numeric and complex types is machine-dependent, and possibly also compiler-dependent. The simplest way to make use of them is to link an external application against the standalone <code>Rmath</code> library which exports double constants <code>NA_REAL</code>, <code>R_PosInf</code> and <code>R_NegInf</code>, and include the header <code>Rmath.h</code> which defines the macros <code>ISNAN</code> and <code>R_FINITE</code>.</p>
 <p>If that is not possible, on all current platforms IEC 60559 (aka IEEE 754) arithmetic is used, so standard C facilities can be used to test for or set <code>Inf</code>, <code>-Inf</code> and <code>NaN</code> values. On such platforms <code>NA</code> is represented by the <code>NaN</code> value with low-word <code>0x7a2</code> (1954 in decimal).</p>
 <p>Character missing values are written as <code>NA</code>, and there are no provision to recognize character values as missing (as this can be done by re-assigning them once read).</p>
+
 
 
 </section>

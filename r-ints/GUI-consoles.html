@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.83">
+  <meta name="generator" content="quarto-0.9.120">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: R Internals - 7&nbsp; GUI consoles</title>
   <style>
@@ -34,7 +34,7 @@
   <script id="quarto-search-options" type="application/json">{
     "location": "navbar",
     "copy-button": false,
-    "collapse-after": 2,
+    "collapse-after": 3,
     "panel-placement": "end",
     "type": "overlay",
     "limit": 20,
@@ -211,9 +211,9 @@
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
-<header id="title-block-header">
-<h1 class="title display-7"><span id="gui-consoles" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">GUI consoles</span></span></h1>
-</header>
+<header id="title-block-header" class="quarto-title-block default">
+
+<div class="quarto-title"><h1 class="title display-7"><span id="gui-consoles" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">GUI consoles</span></span></h1></div></header>
 
 <p>The standard R front-ends are programs which run in a terminal, but there are several ways to provide a GUI console.</p>
 <p>This can be done by a package which is loaded from terminal-based R and launches a console as part of its startup code or by the user running a specific function: package <a href="https://CRAN.R-project.org/package=Rcmdr"><strong>Rcmdr</strong></a> is a well-known example with a Tk-based GUI.</p>
@@ -250,6 +250,7 @@
 <li>If either R was started by <code>--gui=aqua</code> or R is running in a terminal which is not of type <code>dumb</code>, the standard output to files <code>stdout</code> and <code>stderr</code> is directed through the C function <code>Rstd_WriteConsoleEx</code>. This uses ANSI terminal escapes to render lines sent to <code>stderr</code> as bold on <code>stdout</code>.</li>
 <li>For historical reasons the startup option <code>-psn</code> is allowed but ignored. (It seems that in 2003, <code>r27492</code>, this was added by Finder.)</li>
 </ul>
+
 
 
 </section>
