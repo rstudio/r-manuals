@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
   <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.120">
+  <meta name="generator" content="quarto-0.9.146">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>R Manuals :: R Installation and Administration - 2&nbsp; Installing R under Unix-alikes</title>
   <style>
@@ -90,7 +90,7 @@
   <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
   <script src="site_libs/quarto-html/anchor.min.js"></script>
   <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-  <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <link id="quarto-text-highlighting-styles" href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
   <script src="site_libs/bootstrap/bootstrap.min.js"></script>
   <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
   <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
@@ -173,7 +173,7 @@
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
       <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Installing R under Unix-alikes</span></h1>
-      <button type="button" class="quarto-btn-toggle btn">
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
     </div>
@@ -451,9 +451,9 @@
 <p>Configure options <code>--bindir</code> and <code>--mandir</code> are supported and govern where a copy of the <code>R</code> script and the <code>man</code> page are installed.</p>
 <p>The configure option <code>--libdir</code> controls where the main R files are installed: the default is <code>eprefix/LIBnn</code>, where <var>eprefix</var> is the prefix used for installing architecture-dependent files, defaults to <var>prefix</var>, and can be set via the configure option <code>--exec-prefix</code>.</p>
 <p>Each of <code>bindir</code>, <code>mandir</code> and <code>libdir</code> can also be specified on the <code>make install</code> command line (at least for GNU <code>make</code>).</p>
-<p>The <code>configure</code> or <code>make</code> variables <code>rdocdir</code> and <code>rsharedir</code> can be used to install the system-independent <code>doc</code> and <code>share</code> directories to somewhere other than <code>libdir</code>. The C header files can be installed to the value of <code>rincludedir</code>: note that as the headers are not installed into a subdirectory you probably want something like <code>rincludedir=/usr/local/include/R-4.2.0 Under development</code>.</p>
+<p>The <code>configure</code> or <code>make</code> variables <code>rdocdir</code> and <code>rsharedir</code> can be used to install the system-independent <code>doc</code> and <code>share</code> directories to somewhere other than <code>libdir</code>. The C header files can be installed to the value of <code>rincludedir</code>: note that as the headers are not installed into a subdirectory you probably want something like <code>rincludedir=/usr/local/include/R-4.3.0 Under development</code>.</p>
 <p>If you want the R home to be something other than <code>libdir/R</code>, use <code>rhome</code>: for example</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>make install rhome<span class="ot">=</span><span class="er">/</span>usr<span class="sc">/</span>local<span class="sc">/</span>lib64<span class="sc">/</span>R<span class="dv">-4</span>.<span class="fl">2.0</span> Under development</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>make install rhome<span class="ot">=</span><span class="er">/</span>usr<span class="sc">/</span>local<span class="sc">/</span>lib64<span class="sc">/</span>R<span class="dv">-4</span>.<span class="fl">3.0</span> Under development</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>will use a version-specific R home on a non-Debian Linux 64-bit system.</p>
 <p>If you have made R as a shared/static library you can install it in your system’s library directory by</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>make prefix<span class="ot">=</span><span class="er">/</span>path<span class="sc">/</span>to<span class="sc">/</span>here install<span class="sc">-</span>libR</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
