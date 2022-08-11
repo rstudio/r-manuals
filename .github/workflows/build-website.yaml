@@ -25,7 +25,11 @@ jobs:
         run: |
           mkdir -p ~/.local/bin
           ln -s $(dirname $(readlink -f  $(which quarto)))"/pandoc" ~/.local/bin/pandoc
-          ~/.local/bin/pandoc --version
+        shell: bash
+
+      - name: Print pandoc version
+        run: |
+          pandoc --version
         shell: bash
 
       - uses: r-lib/actions/setup-r@v2
