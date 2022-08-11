@@ -1,6 +1,8 @@
 on_ci <- isTRUE(as.logical(Sys.getenv("CI")))
 
-devtools::load_all()
+pkgload::load_all()
+
+stop_if_makeinfo_not_installed()
 
 ##### Process Manuals ----------------
 #

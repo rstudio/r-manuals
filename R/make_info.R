@@ -1,3 +1,33 @@
+stop_if_makeinfo_not_installed <- function() {
+  if (Sys.which("makeinfo") == "") {
+    if (.Platform$OS.type == "windows") {
+      try_makeinfo <-
+        system2(
+          "perl",
+          args = c(
+            file.path(dirname(Sys.which("make")), "makeinfo"),
+             "--version"
+            ),
+          stdout = TRUE,
+          stderr = TRUE
+        )
+      if (!any(grepl("makeinfo", try_makeinfo))) {
+        stop(
+          "makeinfo not installed. try 'sudo apt install texinfo'.",
+          call. = FALSE
+        )
+      }
+    } else{
+        stop(
+          "makeinfo not installed. try 'sudo apt install texinfo'.",
+          call. = FALSE
+        )
+    }
+  }
+
+}
+
+
 #' Make manual from `.texi` file using `makeinfo`
 #'
 #' @param manual Name of manual, e.g. `R-exts.texi`
@@ -8,26 +38,14 @@
 #' @return Runs makeinfo and generates html files
 #' @export
 make_info <- function(manual, input_dir = "data", output_dir = "temp", verbose = FALSE) {
-  if (Sys.which("makeinfo") == "") {
-    if (.Platform$OS.type == "windows") {
-      try_makeinfo <-
-        system2(
-          "perl",
-          args = c(file.path(dirname(Sys.which("make")), "makeinfo"), "--version"),
-          stdout = TRUE,
-          stderr = TRUE
-        )
-      if (!any(grepl("makeinfo", try_makeinfo))) {
-        stop("makeinfo not installed.")
-      }
-    } else{
-      stop("makeinfo not installed.")
-    }
-  }
+  stop_if_makeinfo_not_installed()
   fs::dir_create(output_dir)
   fs::dir_ls(path = output_dir) %>% fs::file_delete()
   filename <- glue::glue("{input_dir}/{manual}")
-  cli::cli_progress_step("Running makeinfo to convert {.file {filename}} to html", msg_done = "Running makeinfo")
+  cli::cli_progress_step(
+    "Running makeinfo to convert {.file {filename}} to html", 
+    msg_done = "Running makeinfo"
+    )
 
  if (.Platform$OS.type == "windows") {
    system2(
@@ -40,7 +58,10 @@ make_info <- function(manual, input_dir = "data", output_dir = "temp", verbose =
      )
    )
    filename <- sub(".texi", "", manual)
-   fs::file_move(glue::glue("{output_dir}/{filename}_0.html"), glue::glue("{output_dir}/index.html"))
+   fs::file_move(
+    glue::glue("{output_dir}/{filename}_0.html"), 
+    glue::glue("{output_dir}/index.html")
+  )
  } else {
   system2(
     "makeinfo",
