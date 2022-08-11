@@ -32,7 +32,7 @@ jobs:
           VERSION=2.19
           DEB=pandoc-2.19-1-amd64.deb
           wget https://github.com/jgm/pandoc/releases/download/$VERSION/$DEB
-          dpkg -i $DEB
+          sudo dpkg -i $DEB
           pandoc --version
         shell: bash
 
