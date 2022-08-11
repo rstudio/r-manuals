@@ -29,7 +29,7 @@ jobs:
 
       - name: Print pandoc version
         run: |
-          ~/.local/bin/pandoc --version
+          $(dirname $(readlink -f  $(which quarto)))"/pandoc --version"
         shell: bash
 
       - uses: r-lib/actions/setup-r@v2
