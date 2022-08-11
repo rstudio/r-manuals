@@ -27,11 +27,6 @@ jobs:
           ln -s $(dirname $(readlink -f  $(which quarto)))"/pandoc" ~/.local/bin/pandoc
         shell: bash
 
-      - name: Print pandoc version
-        run: |
-          $(dirname $(readlink -f  $(which quarto)))"/pandoc --version"
-        shell: bash
-
       - uses: r-lib/actions/setup-r@v2
         with:
           use-public-rspm: true
