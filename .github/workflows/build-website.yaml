@@ -29,7 +29,7 @@ jobs:
 
       - name: Print pandoc version
         run: |
-          pandoc --version
+          ~/.local/bin/pandoc --version
         shell: bash
 
       - uses: r-lib/actions/setup-r@v2
