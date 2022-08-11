@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: quarto-dev/quarto-actions/install-quarto@v1
+      - uses: quarto-dev/quarto-actions/install-quarto@v2
 
       - name: Put pandoc in PATH
         run: |
