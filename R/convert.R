@@ -9,6 +9,7 @@
 #'
 convert_html_to_md <- function(input_file, verbose = FALSE) {
 
+  
   input_file <- normalizePath(input_file)
   output_file <- gsub("\\.html$", ".md", input_file)
 
@@ -36,8 +37,6 @@ convert_html_to_md <- function(input_file, verbose = FALSE) {
     gsub("^<span .*?></span>", "", .) %>%
     write_lines(temp_html)
 
-
-  # capture.output({
     pandoc_convert(
       temp_html,
       output = temp_md,
@@ -50,7 +49,6 @@ convert_html_to_md <- function(input_file, verbose = FALSE) {
         ),
       verbose = verbose
     )
-  # })
 
   temp_md %>%
     read_lines() %>%

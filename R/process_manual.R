@@ -32,8 +32,6 @@ process_manual <- function(manual = "R-exts.texi",
     download_manuals(manual = manual, destdir = data_folder)
   }
 
-
-
   # Compile the .texi to HTML
   if (.make_info) {
     # pre-process texi
