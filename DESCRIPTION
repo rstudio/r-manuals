@@ -30,4 +30,5 @@ Imports:
     quarto,
     xml2,
     readr,
-    stringr
+    stringr,
+    pkgload

@@ -9,7 +9,6 @@
 #'
 convert_html_to_md <- function(input_file, verbose = FALSE) {
 
-  
   input_file <- normalizePath(input_file)
   output_file <- gsub("\\.html$", ".md", input_file)
 
