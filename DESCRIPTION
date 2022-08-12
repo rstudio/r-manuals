@@ -31,4 +31,5 @@ Imports:
     xml2,
     readr,
     stringr,
-    pkgload
+    pkgload,
+    devtools
