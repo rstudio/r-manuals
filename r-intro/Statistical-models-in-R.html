@@ -1,123 +1,129 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-  <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.180">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>R Manuals :: An Introduction to R - 11&nbsp; Statistical models in R</title>
-  <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      {   }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-    code span.at { color: #7d9029; } /* Attribute */
-    code span.bn { color: #40a070; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #4070a0; } /* Char */
-    code span.cn { color: #880000; } /* Constant */
-    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-    code span.dt { color: #902000; } /* DataType */
-    code span.dv { color: #40a070; } /* DecVal */
-    code span.er { color: #ff0000; font-weight: bold; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #40a070; } /* Float */
-    code span.fu { color: #06287e; } /* Function */
-    code span.im { } /* Import */
-    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-    code span.op { color: #666666; } /* Operator */
-    code span.ot { color: #007020; } /* Other */
-    code span.pp { color: #bc7a00; } /* Preprocessor */
-    code span.sc { color: #4070a0; } /* SpecialChar */
-    code span.ss { color: #bb6688; } /* SpecialString */
-    code span.st { color: #4070a0; } /* String */
-    code span.va { color: #19177c; } /* Variable */
-    code span.vs { color: #4070a0; } /* VerbatimString */
-    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-  </style>
 
-  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-  <script src="site_libs/quarto-nav/headroom.min.js"></script>
-  <script src="site_libs/clipboard/clipboard.min.js"></script>
-  <meta name="quarto:offset" content="./">
-  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-  <script src="site_libs/quarto-search/fuse.min.js"></script>
-  <script src="site_libs/quarto-search/quarto-search.js"></script>
-  <link href="./Graphics.html" rel="next">
-  <link href="./Writing-your-own-functions.html" rel="prev">
-  <script src="site_libs/quarto-html/quarto.js"></script>
-  <script src="site_libs/quarto-html/popper.min.js"></script>
-  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-  <script src="site_libs/quarto-html/anchor.min.js"></script>
-  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-  <link id="quarto-text-highlighting-styles" href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
-  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
-  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
-  <script id="quarto-search-options" type="application/json">{
-    "location": "navbar",
-    "copy-button": false,
-    "collapse-after": 3,
-    "panel-placement": "end",
-    "type": "overlay",
-    "limit": 20,
-    "language": {
-      "search-no-results-text": "No results",
-      "search-matching-documents-text": "matching documents",
-      "search-copy-link-title": "Copy link to search",
-      "search-hide-matches-text": "Hide additional matches",
-      "search-more-match-text": "more match in this document",
-      "search-more-matches-text": "more matches in this document",
-      "search-clear-button-title": "Clear",
-      "search-detached-cancel-button-title": "Cancel",
-      "search-submit-button-title": "Submit"
-    }
-  }</script>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>R Manuals :: An Introduction to R - 11&nbsp; Statistical models in R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Graphics.html" rel="next">
+<link href="./Writing-your-own-functions.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
 </head>
-<body class="floating">
+
+<body class="nav-sidebar floating nav-fixed">
+
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
@@ -306,43 +312,57 @@
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc">
-<h2 id="toc-title">Table of contents</h2>
-<ul>
-<li><a href="#defining-statistical-models-formulae" class="nav-link active" data-scroll-target="#defining-statistical-models-formulae"> <span class="header-section-number">11.1</span> Defining statistical models; formulae</a>
-<ul class="collapse">
-<li><a href="#examples" class="nav-link" data-scroll-target="#examples"> <span class="header-section-number">11.1.1</span> Examples</a></li>
-<li><a href="#contrasts" class="nav-link" data-scroll-target="#contrasts"> <span class="header-section-number">11.1.2</span> Contrasts</a></li>
-</ul></li>
-<li><a href="#linear-models" class="nav-link" data-scroll-target="#linear-models"> <span class="header-section-number">11.2</span> Linear models</a></li>
-<li><a href="#generic-functions-for-extracting-model-information" class="nav-link" data-scroll-target="#generic-functions-for-extracting-model-information"> <span class="header-section-number">11.3</span> Generic functions for extracting model information</a></li>
-<li><a href="#analysis-of-variance-and-model-comparison" class="nav-link" data-scroll-target="#analysis-of-variance-and-model-comparison"> <span class="header-section-number">11.4</span> Analysis of variance and model comparison</a>
-<ul class="collapse">
-<li><a href="#anova-tables" class="nav-link" data-scroll-target="#anova-tables"> <span class="header-section-number">11.4.1</span> ANOVA tables</a></li>
-</ul></li>
-<li><a href="#updating-fitted-models" class="nav-link" data-scroll-target="#updating-fitted-models"> <span class="header-section-number">11.5</span> Updating fitted models</a></li>
-<li><a href="#generalized-linear-models" class="nav-link" data-scroll-target="#generalized-linear-models"> <span class="header-section-number">11.6</span> Generalized linear models</a>
-<ul class="collapse">
-<li><a href="#families" class="nav-link" data-scroll-target="#families"> <span class="header-section-number">11.6.1</span> Families</a></li>
-<li><a href="#the-glm-function" class="nav-link" data-scroll-target="#the-glm-function"> <span class="header-section-number">11.6.2</span> The <code>glm()</code> function</a></li>
-<li><a href="#the-gaussian-family" class="nav-link" data-scroll-target="#the-gaussian-family"> <span class="header-section-number">11.6.3</span> The <code>gaussian</code> family</a></li>
-<li><a href="#the-binomial-family" class="nav-link" data-scroll-target="#the-binomial-family"> <span class="header-section-number">11.6.4</span> The <code>binomial</code> family</a></li>
-<li><a href="#poisson-models" class="nav-link" data-scroll-target="#poisson-models"> <span class="header-section-number">11.6.5</span> Poisson models</a></li>
-<li><a href="#quasi-likelihood-models" class="nav-link" data-scroll-target="#quasi-likelihood-models"> <span class="header-section-number">11.6.6</span> Quasi-likelihood models</a></li>
-</ul></li>
-<li><a href="#nonlinear-least-squares-and-maximum-likelihood-models" class="nav-link" data-scroll-target="#nonlinear-least-squares-and-maximum-likelihood-models"> <span class="header-section-number">11.7</span> Nonlinear least squares and maximum likelihood models</a>
-<ul class="collapse">
-<li><a href="#least-squares" class="nav-link" data-scroll-target="#least-squares"> <span class="header-section-number">11.7.1</span> Least squares</a></li>
-<li><a href="#maximum-likelihood" class="nav-link" data-scroll-target="#maximum-likelihood"> <span class="header-section-number">11.7.2</span> Maximum likelihood</a></li>
-</ul></li>
-<li><a href="#some-non-standard-models" class="nav-link" data-scroll-target="#some-non-standard-models"> <span class="header-section-number">11.8</span> Some non-standard models</a></li>
-</ul>
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#defining-statistical-models-formulae" id="toc-defining-statistical-models-formulae" class="nav-link active" data-scroll-target="#defining-statistical-models-formulae"> <span class="header-section-number">11.1</span> Defining statistical models; formulae</a>
+  <ul class="collapse">
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples"> <span class="header-section-number">11.1.1</span> Examples</a></li>
+  <li><a href="#contrasts" id="toc-contrasts" class="nav-link" data-scroll-target="#contrasts"> <span class="header-section-number">11.1.2</span> Contrasts</a></li>
+  </ul></li>
+  <li><a href="#linear-models" id="toc-linear-models" class="nav-link" data-scroll-target="#linear-models"> <span class="header-section-number">11.2</span> Linear models</a></li>
+  <li><a href="#generic-functions-for-extracting-model-information" id="toc-generic-functions-for-extracting-model-information" class="nav-link" data-scroll-target="#generic-functions-for-extracting-model-information"> <span class="header-section-number">11.3</span> Generic functions for extracting model information</a></li>
+  <li><a href="#analysis-of-variance-and-model-comparison" id="toc-analysis-of-variance-and-model-comparison" class="nav-link" data-scroll-target="#analysis-of-variance-and-model-comparison"> <span class="header-section-number">11.4</span> Analysis of variance and model comparison</a>
+  <ul class="collapse">
+  <li><a href="#anova-tables" id="toc-anova-tables" class="nav-link" data-scroll-target="#anova-tables"> <span class="header-section-number">11.4.1</span> ANOVA tables</a></li>
+  </ul></li>
+  <li><a href="#updating-fitted-models" id="toc-updating-fitted-models" class="nav-link" data-scroll-target="#updating-fitted-models"> <span class="header-section-number">11.5</span> Updating fitted models</a></li>
+  <li><a href="#generalized-linear-models" id="toc-generalized-linear-models" class="nav-link" data-scroll-target="#generalized-linear-models"> <span class="header-section-number">11.6</span> Generalized linear models</a>
+  <ul class="collapse">
+  <li><a href="#families" id="toc-families" class="nav-link" data-scroll-target="#families"> <span class="header-section-number">11.6.1</span> Families</a></li>
+  <li><a href="#the-glm-function" id="toc-the-glm-function" class="nav-link" data-scroll-target="#the-glm-function"> <span class="header-section-number">11.6.2</span> The <code>glm()</code> function</a></li>
+  <li><a href="#the-gaussian-family" id="toc-the-gaussian-family" class="nav-link" data-scroll-target="#the-gaussian-family"> <span class="header-section-number">11.6.3</span> The <code>gaussian</code> family</a></li>
+  <li><a href="#the-binomial-family" id="toc-the-binomial-family" class="nav-link" data-scroll-target="#the-binomial-family"> <span class="header-section-number">11.6.4</span> The <code>binomial</code> family</a></li>
+  <li><a href="#poisson-models" id="toc-poisson-models" class="nav-link" data-scroll-target="#poisson-models"> <span class="header-section-number">11.6.5</span> Poisson models</a></li>
+  <li><a href="#quasi-likelihood-models" id="toc-quasi-likelihood-models" class="nav-link" data-scroll-target="#quasi-likelihood-models"> <span class="header-section-number">11.6.6</span> Quasi-likelihood models</a></li>
+  </ul></li>
+  <li><a href="#nonlinear-least-squares-and-maximum-likelihood-models" id="toc-nonlinear-least-squares-and-maximum-likelihood-models" class="nav-link" data-scroll-target="#nonlinear-least-squares-and-maximum-likelihood-models"> <span class="header-section-number">11.7</span> Nonlinear least squares and maximum likelihood models</a>
+  <ul class="collapse">
+  <li><a href="#least-squares" id="toc-least-squares" class="nav-link" data-scroll-target="#least-squares"> <span class="header-section-number">11.7.1</span> Least squares</a></li>
+  <li><a href="#maximum-likelihood" id="toc-maximum-likelihood" class="nav-link" data-scroll-target="#maximum-likelihood"> <span class="header-section-number">11.7.2</span> Maximum likelihood</a></li>
+  </ul></li>
+  <li><a href="#some-non-standard-models" id="toc-some-non-standard-models" class="nav-link" data-scroll-target="#some-non-standard-models"> <span class="header-section-number">11.8</span> Some non-standard models</a></li>
+  </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<header id="title-block-header" class="quarto-title-block default">
 
-<div class="quarto-title"><h1 class="title display-7"><span id="statistical-models-in-r" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Statistical models in R</span></span></h1></div></header>
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="statistical-models-in-r" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Statistical models in R</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
 
 <p>This section presumes the reader has some familiarity with statistical methodology, in particular with regression analysis and the analysis of variance. Later we make some rather more ambitious presumptions, namely that something is known about generalized linear models and nonlinear regression.</p>
 <p>The requirements for fitting statistical models are sufficiently well defined to make it possible to construct general tools that apply in a broad spectrum of problems.</p>
@@ -474,39 +494,39 @@
 <p>The <em>formula operators</em> are similar in effect to the Wilkinson and Rogers notation used by such programs as Glim and Genstat. One inevitable change is that the operator <code>.</code> becomes <code>:</code> since the period is a valid name character in R.</p>
 <p>The notation is summarized below (based on Chambers &amp; Hastie, 1992, p.29):</p>
 <dl>
-<dt><code>Y ~ M</code></dt>
+<dt><var>Y</var><var>~ ``M</var></dt>
 <dd>
 <p><var>Y</var> is modeled as <var>M</var>.</p>
 </dd>
-<dt><code>M_1 + M_2</code></dt>
+<dt><var>M_1</var><var>+ ``M_2</var></dt>
 <dd>
 <p>Include <var>M_1</var> and <var>M_2</var>.</p>
 </dd>
-<dt><code>M_1 - M_2</code></dt>
+<dt><var>M_1</var><var>- ``M_2</var></dt>
 <dd>
 <p>Include <var>M_1</var> leaving out terms of <var>M_2</var>.</p>
 </dd>
-<dt><code>M_1 : M_2</code></dt>
+<dt><var>M_1</var><var>: ``M_2</var></dt>
 <dd>
 <p>The tensor product of <var>M_1</var> and <var>M_2</var>. If both terms are factors, then the “subclasses” factor.</p>
 </dd>
-<dt><code>M_1 %in% M_2</code></dt>
+<dt><var>M_1</var><var>%in% ``M_2</var></dt>
 <dd>
-<p>Similar to <code>M_1:M_2</code>, but with a different coding.</p>
+<p>Similar to <var>M_1</var><var>:``M_2</var>, but with a different coding.</p>
 </dd>
-<dt><code>M_1 * M_2</code></dt>
+<dt><var>M_1</var><var>* ``M_2</var></dt>
 <dd>
-<p><code>M_1 + M_2 + M_1:M_2</code>.</p>
+<p><var>M_1</var><var>+ ``M_2</var><var>+ ``M_1</var><var>:``M_2</var>.</p>
 </dd>
-<dt><code>M_1 / M_2</code></dt>
+<dt><var>M_1</var><var>/ ``M_2</var></dt>
 <dd>
-<p><code>M_1 + M_2 %in% M_1</code>.</p>
+<p><var>M_1</var><var>+ ``M_2</var><var>%in% ``M_1</var>.</p>
 </dd>
-<dt><code>M^n</code></dt>
+<dt><var>M</var><var>^``n</var></dt>
 <dd>
 <p>All terms in <var>M</var> together with “interactions” up to order <var>n</var></p>
 </dd>
-<dt><code>I(M)</code></dt>
+<dt><var>I(``M</var><code>)</code></dt>
 <dd>
 <p>Insulate <var>M</var>. Inside <var>M</var> all operators have their normal arithmetic meaning, and that term appears in the model matrix.</p>
 </dd>
@@ -545,34 +565,34 @@
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>anova   effects    labels       proj     vcov</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>coef    family     plot         residuals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>A brief description of the most commonly used ones is given below.</p>
-<p><code>anova(object_1, object_2)</code></p>
+<p><var>anova(``object_1</var><var>, ``object_2</var><code>)</code></p>
 <p>Compare a submodel with an outer model and produce an analysis of variance table.</p>
-<p><code>coef(object)</code></p>
+<p><var>coef(``object</var><code>)</code></p>
 <p>Extract the regression coefficient (matrix).</p>
-<p>Long form: <code>coefficients(object)</code>.</p>
-<p><code>deviance(object)</code></p>
+<p>Long form: <var>coefficients(``object</var><code>)</code>.</p>
+<p><var>deviance(``object</var><code>)</code></p>
 <p>Residual sum of squares, weighted if appropriate.</p>
-<p><code>formula(object)</code></p>
+<p><var>formula(``object</var><code>)</code></p>
 <p>Extract the model formula.</p>
-<p><code>plot(object)</code></p>
+<p><var>plot(``object</var><code>)</code></p>
 <p>Produce four plots, showing residuals, fitted values and some diagnostics.</p>
-<p><code>predict(object, newdata=data.frame)</code></p>
+<p><var>predict(``object</var><var>, newdata=``data.frame</var><code>)</code></p>
 <p>The data frame supplied must have variables specified with the same labels as the original. The value is a vector or matrix of predicted values corresponding to the determining variable values in <var>data.frame</var>.</p>
-<p><code>print(object)</code></p>
+<p><var>print(``object</var><code>)</code></p>
 <p>Print a concise version of the object. Most often used implicitly.</p>
-<p><code>residuals(object)</code></p>
+<p><var>residuals(``object</var><code>)</code></p>
 <p>Extract the (matrix of) residuals, weighted as appropriate.</p>
-<p>Short form: <code>resid(object)</code>.</p>
-<p><code>step(object)</code></p>
+<p>Short form: <var>resid(``object</var><code>)</code>.</p>
+<p><var>step(``object</var><code>)</code></p>
 <p>Select a suitable model by adding or dropping terms and preserving hierarchies. The model with the smallest value of AIC (Akaike’s An Information Criterion) discovered in the stepwise search is returned.</p>
-<p><code>summary(object)</code></p>
+<p><var>summary(``object</var><code>)</code></p>
 <p>Print a comprehensive summary of the results of the regression analysis.</p>
-<p><code>vcov(object)</code></p>
+<p><var>vcov(``object</var><code>)</code></p>
 <p>Returns the variance-covariance matrix of the main parameters of a fitted model object.</p>
 </section>
 <section id="analysis-of-variance-and-model-comparison" class="level2 section" data-number="11.4">
 <h2 class="section anchored" data-number="11.4" data-anchor-id="analysis-of-variance-and-model-comparison"><span class="header-section-number">11.4</span> Analysis of variance and model comparison</h2>
-<p>The model fitting function <code>aov(formula, data=data.frame)</code> operates at the simplest level in a very similar way to the function <code>lm()</code>, and most of the generic functions listed in the table in <a href="#generic-functions-for-extracting-model-information">Generic functions for extracting model information</a> apply.</p>
+<p>The model fitting function <var>aov(``formula</var><var>, data=``data.frame</var><code>)</code> operates at the simplest level in a very similar way to the function <code>lm()</code>, and most of the generic functions listed in the table in <a href="#generic-functions-for-extracting-model-information">Generic functions for extracting model information</a> apply.</p>
 <p>It should be noted that in addition <code>aov()</code> allows an analysis of models with multiple error strata such as split plot experiments, or balanced incomplete block designs with recovery of inter-block information. The model formula</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>response <span class="sc">~</span> mean.formula <span class="sc">+</span> <span class="fu">Error</span>(strata.formula)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>specifies a multi-stratum experiment with error strata defined by the <var>strata.formula</var>. In the simplest case, <var>strata.formula</var> is simply a factor, when it defines a two strata experiment, namely between and within the levels of the factor.</p>
@@ -845,11 +865,29 @@
 </ul>
 
 
-
 </section>
+
 </main> <!-- /main -->
-<script type="application/javascript">
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -869,7 +907,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.blur();
     // flash "checked"
     button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
     setTimeout(function() {
+      button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
     // clear code selection
@@ -959,6 +1000,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
   </div>
 </footer>
+
 
 
 </body></html>

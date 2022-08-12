@@ -1,123 +1,129 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-  <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.180">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>R Manuals :: R Internals - 8&nbsp; Tools</title>
-  <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      {   }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-    code span.at { color: #7d9029; } /* Attribute */
-    code span.bn { color: #40a070; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #4070a0; } /* Char */
-    code span.cn { color: #880000; } /* Constant */
-    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-    code span.dt { color: #902000; } /* DataType */
-    code span.dv { color: #40a070; } /* DecVal */
-    code span.er { color: #ff0000; font-weight: bold; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #40a070; } /* Float */
-    code span.fu { color: #06287e; } /* Function */
-    code span.im { } /* Import */
-    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-    code span.op { color: #666666; } /* Operator */
-    code span.ot { color: #007020; } /* Other */
-    code span.pp { color: #bc7a00; } /* Preprocessor */
-    code span.sc { color: #4070a0; } /* SpecialChar */
-    code span.ss { color: #bb6688; } /* SpecialString */
-    code span.st { color: #4070a0; } /* String */
-    code span.va { color: #19177c; } /* Variable */
-    code span.vs { color: #4070a0; } /* VerbatimString */
-    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-  </style>
 
-  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-  <script src="site_libs/quarto-nav/headroom.min.js"></script>
-  <script src="site_libs/clipboard/clipboard.min.js"></script>
-  <meta name="quarto:offset" content="./">
-  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-  <script src="site_libs/quarto-search/fuse.min.js"></script>
-  <script src="site_libs/quarto-search/quarto-search.js"></script>
-  <link href="./R-coding-standards.html" rel="next">
-  <link href="./GUI-consoles.html" rel="prev">
-  <script src="site_libs/quarto-html/quarto.js"></script>
-  <script src="site_libs/quarto-html/popper.min.js"></script>
-  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-  <script src="site_libs/quarto-html/anchor.min.js"></script>
-  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-  <link id="quarto-text-highlighting-styles" href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
-  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
-  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
-  <script id="quarto-search-options" type="application/json">{
-    "location": "navbar",
-    "copy-button": false,
-    "collapse-after": 3,
-    "panel-placement": "end",
-    "type": "overlay",
-    "limit": 20,
-    "language": {
-      "search-no-results-text": "No results",
-      "search-matching-documents-text": "matching documents",
-      "search-copy-link-title": "Copy link to search",
-      "search-hide-matches-text": "Hide additional matches",
-      "search-more-match-text": "more match in this document",
-      "search-more-matches-text": "more matches in this document",
-      "search-clear-button-title": "Clear",
-      "search-detached-cancel-button-title": "Cancel",
-      "search-submit-button-title": "Submit"
-    }
-  }</script>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>R Manuals :: R Internals - 8&nbsp; Tools</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./R-coding-standards.html" rel="next">
+<link href="./GUI-consoles.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
 </head>
-<body class="floating slimcontent">
+
+<body class="nav-sidebar floating nav-fixed slimcontent">
+
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
@@ -202,6 +208,11 @@
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./_002eInternal-vs-_002ePrimitive.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>.Internal</code> vs <code>.Primitive</code></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./Internationalization-in-the-R-sources.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Internationalization in the R sources</span></a>
   </div>
 </li>
@@ -269,13 +280,27 @@
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
-<header id="title-block-header" class="quarto-title-block default">
 
-<div class="quarto-title"><h1 class="title display-7"><span id="tools" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Tools</span></span></h1></div></header>
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="tools" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Tools</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
 <p>The behavior of <code>R CMD check</code> can be controlled through a variety of command line arguments and environment variables.</p>
-<p>There is an internal <code>--install=value</code> command line argument not shown by <code>R CMD check --help</code>, with possible values</p>
+<p>There is an internal <var>--install=``value</var> command line argument not shown by <code>R CMD check --help</code>, with possible values</p>
 <dl>
-<dt><code>check:file</code></dt>
+<dt><var>check:``file</var></dt>
 <dd>
 <p>Assume that installation was already performed with stdout/stderr to <var>file</var>, the contents of which need to be checked (without repeating the installation). This is useful for checks applied by repository maintainers: it reduces the check time by the installation time given that the package has already been installed. In this case, one also needs to specify <em>where</em> the package was installed to using command line option <code>--library</code>.</p>
 </dd>
@@ -476,7 +501,7 @@
 </dd>
 <dt><code>_R_CHECK_CODETOOLS_PROFILE_</code></dt>
 <dd>
-<p>A string with comma-separated <code>name=value</code> pairs (with <var>value</var> a logical constant) giving additional arguments for the <a href="https://CRAN.R-project.org/package=codetools"><strong>codetools</strong></a> functions used for analyzing package code. E.g., use <code>_R_CHECK_CODETOOLS_PROFILE_="suppressLocalUnused=FALSE"</code> to turn off suppressing warnings about unused local variables. Default: no additional arguments, corresponding to using <code>skipWith = TRUE</code>, <code>suppressPartialMatchArgs = FALSE</code> and <code>suppressLocalUnused = TRUE</code>.</p>
+<p>A string with comma-separated <var>name</var><var>=``value</var> pairs (with <var>value</var> a logical constant) giving additional arguments for the <a href="https://CRAN.R-project.org/package=codetools"><strong>codetools</strong></a> functions used for analyzing package code. E.g., use <code>_R_CHECK_CODETOOLS_PROFILE_="suppressLocalUnused=FALSE"</code> to turn off suppressing warnings about unused local variables. Default: no additional arguments, corresponding to using <code>skipWith = TRUE</code>, <code>suppressPartialMatchArgs = FALSE</code> and <code>suppressLocalUnused = TRUE</code>.</p>
 </dd>
 <dt><code>_R_CHECK_CRAN_INCOMING_</code></dt>
 <dd>
@@ -528,7 +553,7 @@
 </dd>
 <dt><code>_R_CHECK_GCT_N_</code></dt>
 <dd>
-<p>Should the <code>--use-gct</code> use <code>gctorture2(n)</code> rather than <code>gctorture(TRUE)</code>? Use a positive integer to enable this. Default: <code>0</code>.</p>
+<p>Should the <code>--use-gct</code> use <var>gctorture2(``n</var><code>)</code> rather than <code>gctorture(TRUE)</code>? Use a positive integer to enable this. Default: <code>0</code>.</p>
 </dd>
 <dt><code>_R_CHECK_LIMIT_CORES_</code></dt>
 <dd>
@@ -609,10 +634,6 @@
 <dd>
 <p>No longer in use: conditions of length greater than one in <code>if</code> or <code>while</code> statements are now an error.</p>
 </dd>
-<dt><code>_R_CHECK_LENGTH_1_LOGIC2_</code></dt>
-<dd>
-<p>Optionally check if an argument of the binary operators <code>&amp;&amp;</code> and <code>||</code> has length greater than one, the right-hand side being checked only if it is used. For a false value (<code>F</code>, <code>False</code>, <code>FALSE</code> or <code>false</code>) or when unset, print a warning. Any other non-true non-empty value needs to be a list of commands separated by commas: <code>abort</code> causes R to terminate unconditionally instead of signalling an error (which is useful in pinpointing issues in code called from <code>try</code> or <code>tryCatch</code>), <code>verbose</code> prints a very detailed diagnostic message, <code>package:pkg</code> restricts the check to if/while statements executing in the namespace of package <code>pkg</code> (but <code>all_base</code> refers to all the standard packages), <code>package:_R_CHECK_PACKAGE_NAME_</code> restricts the check to if/while statements executing in the package that is currently being checked by <code>R CMD check</code>, <code>warn</code> causes R to report a warning instead of signalling an error. (More than one package specification can be given: a report, error or warning will be given if any are satisfied.) Default: unset (a warning is reported), but <code>package:_R_CHECK_PACKAGE_NAME_,abort,verbose</code> for the CRAN submission checks.</p>
-</dd>
 <dt><code>_R_CHECK_VIGNETTES_SKIP_RUN_MAYBE_</code></dt>
 <dd>
 <p>Should running the R code in the vignettes be skipped if vignette outputs are to be rebuilt (which will involve running that code). Default: false (but true for CRAN checking)</p>
@@ -663,11 +684,11 @@
 </dd>
 <dt><code>_R_CHECK_DONTTEST_EXAMPLES_</code></dt>
 <dd>
-<p>If true and examples are found with <code>\donttest</code> sections, the tests are run in one pass with these commented out and then in a second pass including the <code>\donttest</code> sections, (for the main architecture only). Only for the first pass are the results compared to any <code>.Rout.save</code> file and timings analysed. Overridden by <code>--run-donttest</code>. Default: false unless <code>-as-cran</code> is specified (which can be overridden by setting <code>_R_CHECK_DONTTEST_EXAMPLES_=false</code>).</p>
+<p>If true and examples are found with <code>\donttest</code> sections, the tests are run in one pass with these commented out and then in a second pass including the <code>\donttest</code> sections, (for the main architecture only). Only for the first pass are the results compared to any <code>.Rout.save</code> file and timings analysed. Overridden by <code>--run-donttest</code>. Default: false unless <code>--as-cran</code> is specified (which can be overridden by setting <code>_R_CHECK_DONTTEST_EXAMPLES_=false</code>).</p>
 </dd>
 <dt><code>_R_CHECK_XREFS_PKGS_ARE_DECLARED_</code></dt>
 <dd>
-<p>Check if packages used in ‘anchored’ cross-references in <code>.Rd</code> files (those of the form <code>\link[pkg]{foo}</code> and <code>\link[pkg:bar]{foo}</code>) are declared in the <code>DESCRIPTION</code> file and so these links can be checked. Default: false.</p>
+<p>Check if packages used in ‘anchored’ cross-references in <code>.Rd</code> files (those of the form <var>\link[``pkg</var><var>]{``foo</var><code>}</code> and <var>\link[``pkg:bar</var><var>]{``foo</var><code>}</code>) are declared in the <code>DESCRIPTION</code> file and so these links can be checked. Default: false.</p>
 </dd>
 <dt><code>_R_CHECK_XREFS_MIND_SUSPECT_ANCHORS_</code></dt>
 <dd>
@@ -683,11 +704,15 @@
 </dd>
 <dt><code>_R_CHECK_CODE_CLASS_IS_STRING_</code></dt>
 <dd>
-<p>Check if package code has <code>if()</code> condition which compare the class of an object to a string. See <a href="https://developer.r-project.org/Blog/public/2019/11/09/when-you-think-class.-think-again/index.html" class="uri">https://developer.r-project.org/Blog/public/2019/11/09/when-you-think-class.-think-again/index.html</a> why this is a bad idea. Default: false (but true for CRAN submission checks).</p>
+<p>Check if package code has <code>if()</code> condition which compare the class of an object to a string. See <a href="https://blog.r-project.org/2019/11/09/when-you-think-class.-think-again/" class="uri">https://blog.r-project.org/2019/11/09/when-you-think-class.-think-again/</a> why this is a bad idea. Default: false (but true for CRAN submission checks).</p>
 </dd>
 <dt><code>_R_CHECK_RD_VALIDATE_RD2HTML_</code></dt>
 <dd>
-<p>Check the validity of the package HTML help pages using HTML tidy (<a href="https://www.html-tidy.org/" class="uri">https://www.html-tidy.org/</a>) (if available on the system path for executables). Default: false (but true for CRAN submission checks).</p>
+<p>Check the validity of the package HTML help pages using HTML Tidy (<a href="https://www.html-tidy.org/" class="uri">https://www.html-tidy.org/</a>) (if a suitable version is available on the system path for executables or its path is specified by environment variable <code>R_TIDYCMD</code>). macOS users are advised to install 5.8.0 or later from <a href="http://binaries.html-tidy.org/" class="uri">http://binaries.html-tidy.org/</a>. Default: false (but true for CRAN submission checks). <code>--as-cran</code> can be overridden by setting this variable to a false value.</p>
+</dd>
+<dt><code>_R_CHECK_RD_MATH_RENDERING_</code></dt>
+<dd>
+<p>Check whether HTML math rendering via KaTeX works (if package <a href="https://CRAN.R-project.org/package=V8"><strong>V8</strong></a> is available). See <a href="https://blog.r-project.org/2022/04/08/enhancements-to-html-documentation/" class="uri">https://blog.r-project.org/2022/04/08/enhancements-to-html-documentation/</a>. Default: false.</p>
 </dd>
 </dl>
 <div class="page-columns page-full"><p>The following variables control checks for undeclared/unconditional use of other packages. They work by setting up a temporary library directory and setting <code>.libPaths()</code> to just that and <code>.Library</code>, so are only effective if additional packages are installed somewhere other than <code>.Library</code>. The temporary library is populated by symbolic links<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> to installed packages not also in <code>.library</code>.</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;under Windows, junction points, or copies if environment variable <code>R_WIN_NO_JUNCTIONS</code> has a non-empty value.</p></li></div></div>
@@ -719,7 +744,7 @@
 </dd>
 <dt><code>_R_CHECK_DEPENDS_ONLY_VIGNETTES_</code></dt>
 <dd>
-<p>Apply <code>_R_CHECK_DEPENDS_ONLY_</code> only to the checking of examples, tests or vignettes. These can be used on their own, or with a false value to override <code>_R_CHECK_DEPENDS_ONLY_</code>. Default: the value of <code>_R_CHECK_DEPENDS_ONLY_</code> or false if that is unset..</p>
+<p>Apply <code>_R_CHECK_DEPENDS_ONLY_</code> only to the checking of examples, tests or vignettes. These can be used on their own, or with a false value to override <code>_R_CHECK_DEPENDS_ONLY_</code>. Default: the value of <code>_R_CHECK_DEPENDS_ONLY_</code> or false if that is unset.</p>
 </dd>
 <dt><code>_R_CHECK_NO_RECOMMENDED_</code></dt>
 <dd>
@@ -821,8 +846,26 @@
 
 
 </main> <!-- /main -->
-<script type="application/javascript">
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -842,7 +885,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.blur();
     // flash "checked"
     button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
     setTimeout(function() {
+      button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
     // clear code selection
@@ -932,6 +978,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
   </div>
 </footer>
+
 
 
 </body></html>

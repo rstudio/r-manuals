@@ -1,123 +1,129 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-  <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.180">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>R Manuals :: An Introduction to R - 12&nbsp; Graphical procedures</title>
-  <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      {   }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-    code span.at { color: #7d9029; } /* Attribute */
-    code span.bn { color: #40a070; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #4070a0; } /* Char */
-    code span.cn { color: #880000; } /* Constant */
-    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-    code span.dt { color: #902000; } /* DataType */
-    code span.dv { color: #40a070; } /* DecVal */
-    code span.er { color: #ff0000; font-weight: bold; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #40a070; } /* Float */
-    code span.fu { color: #06287e; } /* Function */
-    code span.im { } /* Import */
-    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-    code span.op { color: #666666; } /* Operator */
-    code span.ot { color: #007020; } /* Other */
-    code span.pp { color: #bc7a00; } /* Preprocessor */
-    code span.sc { color: #4070a0; } /* SpecialChar */
-    code span.ss { color: #bb6688; } /* SpecialString */
-    code span.st { color: #4070a0; } /* String */
-    code span.va { color: #19177c; } /* Variable */
-    code span.vs { color: #4070a0; } /* VerbatimString */
-    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-  </style>
 
-  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-  <script src="site_libs/quarto-nav/headroom.min.js"></script>
-  <script src="site_libs/clipboard/clipboard.min.js"></script>
-  <meta name="quarto:offset" content="./">
-  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-  <script src="site_libs/quarto-search/fuse.min.js"></script>
-  <script src="site_libs/quarto-search/quarto-search.js"></script>
-  <link href="./Packages.html" rel="next">
-  <link href="./Statistical-models-in-R.html" rel="prev">
-  <script src="site_libs/quarto-html/quarto.js"></script>
-  <script src="site_libs/quarto-html/popper.min.js"></script>
-  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-  <script src="site_libs/quarto-html/anchor.min.js"></script>
-  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-  <link id="quarto-text-highlighting-styles" href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
-  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
-  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
-  <script id="quarto-search-options" type="application/json">{
-    "location": "navbar",
-    "copy-button": false,
-    "collapse-after": 3,
-    "panel-placement": "end",
-    "type": "overlay",
-    "limit": 20,
-    "language": {
-      "search-no-results-text": "No results",
-      "search-matching-documents-text": "matching documents",
-      "search-copy-link-title": "Copy link to search",
-      "search-hide-matches-text": "Hide additional matches",
-      "search-more-match-text": "more match in this document",
-      "search-more-matches-text": "more matches in this document",
-      "search-clear-button-title": "Clear",
-      "search-detached-cancel-button-title": "Cancel",
-      "search-submit-button-title": "Submit"
-    }
-  }</script>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>R Manuals :: An Introduction to R - 12&nbsp; Graphical procedures</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Packages.html" rel="next">
+<link href="./Statistical-models-in-R.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
 </head>
-<body class="floating slimcontent">
+
+<body class="nav-sidebar floating nav-fixed slimcontent">
+
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
@@ -306,47 +312,61 @@
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc">
-<h2 id="toc-title">Table of contents</h2>
-<ul>
-<li><a href="#high-level-plotting-commands" class="nav-link active" data-scroll-target="#high-level-plotting-commands"> <span class="header-section-number">12.1</span> High-level plotting commands</a>
-<ul class="collapse">
-<li><a href="#the-plot-function" class="nav-link" data-scroll-target="#the-plot-function"> <span class="header-section-number">12.1.1</span> The <code>plot()</code> function</a></li>
-<li><a href="#displaying-multivariate-data" class="nav-link" data-scroll-target="#displaying-multivariate-data"> <span class="header-section-number">12.1.2</span> Displaying multivariate data</a></li>
-<li><a href="#display-graphics" class="nav-link" data-scroll-target="#display-graphics"> <span class="header-section-number">12.1.3</span> Display graphics</a></li>
-<li><a href="#arguments-to-high-level-plotting-functions" class="nav-link" data-scroll-target="#arguments-to-high-level-plotting-functions"> <span class="header-section-number">12.1.4</span> Arguments to high-level plotting functions</a></li>
-</ul></li>
-<li><a href="#low-level-plotting-commands" class="nav-link" data-scroll-target="#low-level-plotting-commands"> <span class="header-section-number">12.2</span> Low-level plotting commands</a>
-<ul class="collapse">
-<li><a href="#mathematical-annotation" class="nav-link" data-scroll-target="#mathematical-annotation"> <span class="header-section-number">12.2.1</span> Mathematical annotation</a></li>
-<li><a href="#hershey-vector-fonts" class="nav-link" data-scroll-target="#hershey-vector-fonts"> <span class="header-section-number">12.2.2</span> Hershey vector fonts</a></li>
-</ul></li>
-<li><a href="#interacting-with-graphics" class="nav-link" data-scroll-target="#interacting-with-graphics"> <span class="header-section-number">12.3</span> Interacting with graphics</a></li>
-<li><a href="#using-graphics-parameters" class="nav-link" data-scroll-target="#using-graphics-parameters"> <span class="header-section-number">12.4</span> Using graphics parameters</a>
-<ul class="collapse">
-<li><a href="#permanent-changes-the-par-function" class="nav-link" data-scroll-target="#permanent-changes-the-par-function"> <span class="header-section-number">12.4.1</span> Permanent changes: The <code>par()</code> function</a></li>
-<li><a href="#temporary-changes-arguments-to-graphics-functions" class="nav-link" data-scroll-target="#temporary-changes-arguments-to-graphics-functions"> <span class="header-section-number">12.4.2</span> Temporary changes: Arguments to graphics functions</a></li>
-</ul></li>
-<li><a href="#graphics-parameters-list" class="nav-link" data-scroll-target="#graphics-parameters-list"> <span class="header-section-number">12.5</span> Graphics parameters list</a>
-<ul class="collapse">
-<li><a href="#graphical-elements" class="nav-link" data-scroll-target="#graphical-elements"> <span class="header-section-number">12.5.1</span> Graphical elements</a></li>
-<li><a href="#axes-and-tick-marks" class="nav-link" data-scroll-target="#axes-and-tick-marks"> <span class="header-section-number">12.5.2</span> Axes and tick marks</a></li>
-<li><a href="#figure-margins" class="nav-link" data-scroll-target="#figure-margins"> <span class="header-section-number">12.5.3</span> Figure margins</a></li>
-<li><a href="#multiple-figure-environment" class="nav-link" data-scroll-target="#multiple-figure-environment"> <span class="header-section-number">12.5.4</span> Multiple figure environment</a></li>
-</ul></li>
-<li><a href="#device-drivers" class="nav-link" data-scroll-target="#device-drivers"> <span class="header-section-number">12.6</span> Device drivers</a>
-<ul class="collapse">
-<li><a href="#postscript-diagrams-for-typeset-documents" class="nav-link" data-scroll-target="#postscript-diagrams-for-typeset-documents"> <span class="header-section-number">12.6.1</span> PostScript diagrams for typeset documents</a></li>
-<li><a href="#multiple-graphics-devices" class="nav-link" data-scroll-target="#multiple-graphics-devices"> <span class="header-section-number">12.6.2</span> Multiple graphics devices</a></li>
-</ul></li>
-<li><a href="#dynamic-graphics" class="nav-link" data-scroll-target="#dynamic-graphics"> <span class="header-section-number">12.7</span> Dynamic graphics</a></li>
-</ul>
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#high-level-plotting-commands" id="toc-high-level-plotting-commands" class="nav-link active" data-scroll-target="#high-level-plotting-commands"> <span class="header-section-number">12.1</span> High-level plotting commands</a>
+  <ul class="collapse">
+  <li><a href="#the-plot-function" id="toc-the-plot-function" class="nav-link" data-scroll-target="#the-plot-function"> <span class="header-section-number">12.1.1</span> The <code>plot()</code> function</a></li>
+  <li><a href="#displaying-multivariate-data" id="toc-displaying-multivariate-data" class="nav-link" data-scroll-target="#displaying-multivariate-data"> <span class="header-section-number">12.1.2</span> Displaying multivariate data</a></li>
+  <li><a href="#display-graphics" id="toc-display-graphics" class="nav-link" data-scroll-target="#display-graphics"> <span class="header-section-number">12.1.3</span> Display graphics</a></li>
+  <li><a href="#arguments-to-high-level-plotting-functions" id="toc-arguments-to-high-level-plotting-functions" class="nav-link" data-scroll-target="#arguments-to-high-level-plotting-functions"> <span class="header-section-number">12.1.4</span> Arguments to high-level plotting functions</a></li>
+  </ul></li>
+  <li><a href="#low-level-plotting-commands" id="toc-low-level-plotting-commands" class="nav-link" data-scroll-target="#low-level-plotting-commands"> <span class="header-section-number">12.2</span> Low-level plotting commands</a>
+  <ul class="collapse">
+  <li><a href="#mathematical-annotation" id="toc-mathematical-annotation" class="nav-link" data-scroll-target="#mathematical-annotation"> <span class="header-section-number">12.2.1</span> Mathematical annotation</a></li>
+  <li><a href="#hershey-vector-fonts" id="toc-hershey-vector-fonts" class="nav-link" data-scroll-target="#hershey-vector-fonts"> <span class="header-section-number">12.2.2</span> Hershey vector fonts</a></li>
+  </ul></li>
+  <li><a href="#interacting-with-graphics" id="toc-interacting-with-graphics" class="nav-link" data-scroll-target="#interacting-with-graphics"> <span class="header-section-number">12.3</span> Interacting with graphics</a></li>
+  <li><a href="#using-graphics-parameters" id="toc-using-graphics-parameters" class="nav-link" data-scroll-target="#using-graphics-parameters"> <span class="header-section-number">12.4</span> Using graphics parameters</a>
+  <ul class="collapse">
+  <li><a href="#permanent-changes-the-par-function" id="toc-permanent-changes-the-par-function" class="nav-link" data-scroll-target="#permanent-changes-the-par-function"> <span class="header-section-number">12.4.1</span> Permanent changes: The <code>par()</code> function</a></li>
+  <li><a href="#temporary-changes-arguments-to-graphics-functions" id="toc-temporary-changes-arguments-to-graphics-functions" class="nav-link" data-scroll-target="#temporary-changes-arguments-to-graphics-functions"> <span class="header-section-number">12.4.2</span> Temporary changes: Arguments to graphics functions</a></li>
+  </ul></li>
+  <li><a href="#graphics-parameters-list" id="toc-graphics-parameters-list" class="nav-link" data-scroll-target="#graphics-parameters-list"> <span class="header-section-number">12.5</span> Graphics parameters list</a>
+  <ul class="collapse">
+  <li><a href="#graphical-elements" id="toc-graphical-elements" class="nav-link" data-scroll-target="#graphical-elements"> <span class="header-section-number">12.5.1</span> Graphical elements</a></li>
+  <li><a href="#axes-and-tick-marks" id="toc-axes-and-tick-marks" class="nav-link" data-scroll-target="#axes-and-tick-marks"> <span class="header-section-number">12.5.2</span> Axes and tick marks</a></li>
+  <li><a href="#figure-margins" id="toc-figure-margins" class="nav-link" data-scroll-target="#figure-margins"> <span class="header-section-number">12.5.3</span> Figure margins</a></li>
+  <li><a href="#multiple-figure-environment" id="toc-multiple-figure-environment" class="nav-link" data-scroll-target="#multiple-figure-environment"> <span class="header-section-number">12.5.4</span> Multiple figure environment</a></li>
+  </ul></li>
+  <li><a href="#device-drivers" id="toc-device-drivers" class="nav-link" data-scroll-target="#device-drivers"> <span class="header-section-number">12.6</span> Device drivers</a>
+  <ul class="collapse">
+  <li><a href="#postscript-diagrams-for-typeset-documents" id="toc-postscript-diagrams-for-typeset-documents" class="nav-link" data-scroll-target="#postscript-diagrams-for-typeset-documents"> <span class="header-section-number">12.6.1</span> PostScript diagrams for typeset documents</a></li>
+  <li><a href="#multiple-graphics-devices" id="toc-multiple-graphics-devices" class="nav-link" data-scroll-target="#multiple-graphics-devices"> <span class="header-section-number">12.6.2</span> Multiple graphics devices</a></li>
+  </ul></li>
+  <li><a href="#dynamic-graphics" id="toc-dynamic-graphics" class="nav-link" data-scroll-target="#dynamic-graphics"> <span class="header-section-number">12.7</span> Dynamic graphics</a></li>
+  </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
-<header id="title-block-header" class="quarto-title-block default">
 
-<div class="quarto-title"><h1 class="title display-7"><span id="graphical-procedures" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Graphical procedures</span></span></h1></div></header>
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="graphical-procedures" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Graphical procedures</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
 
 <p>Graphical facilities are an important and extremely versatile component of the R environment. It is possible to use the facilities to display a wide variety of statistical graphs and also to build entirely new types of graph.</p>
 <p>The graphics facilities can be used in both interactive and batch modes, but in most cases, interactive use is more productive. Interactive use is also easy because at startup time R initiates a graphics <em>device driver</em> which opens a special <em>graphics window</em> for the display of interactive graphics. Although this is done automatically, it may useful to know that the command used is <code>X11()</code> under UNIX, <code>windows()</code> under Windows and <code>quartz()</code> under macOS. A new device can always be opened by <code>dev.new()</code>.</p>
@@ -366,35 +386,35 @@
 <h3 class="subsection anchored" data-number="12.1.1" data-anchor-id="the-plot-function"><span class="header-section-number">12.1.1</span> The <code>plot()</code> function</h3>
 <p>One of the most frequently used plotting functions in R is the <code>plot()</code> function. This is a <em>generic</em> function: the type of plot produced is dependent on the type or <em>class</em> of the first argument.</p>
 <dl>
-<dt><code>plot(x, y)</code></dt>
+<dt><var>plot(``x</var><var>, ``y</var><code>)</code></dt>
 <dd>
 
 </dd>
-<dt><code>plot(xy)</code></dt>
+<dt><var>plot(``xy</var><code>)</code></dt>
 <dd>
-<p>If <var>x</var> and <var>y</var> are vectors, <code>plot(x, y)</code> produces a scatterplot of <var>y</var> against <var>x</var>. The same effect can be produced by supplying one argument (second form) as either a list containing two elements <var>x</var> and <var>y</var> or a two-column matrix.</p>
+<p>If <var>x</var> and <var>y</var> are vectors, <var>plot(``x</var><var>, ``y</var><code>)</code> produces a scatterplot of <var>y</var> against <var>x</var>. The same effect can be produced by supplying one argument (second form) as either a list containing two elements <var>x</var> and <var>y</var> or a two-column matrix.</p>
 </dd>
-<dt><code>plot(x)</code></dt>
+<dt><var>plot(``x</var><code>)</code></dt>
 <dd>
 <p>If <var>x</var> is a time series, this produces a time-series plot. If <var>x</var> is a numeric vector, it produces a plot of the values in the vector against their index in the vector. If <var>x</var> is a complex vector, it produces a plot of imaginary versus real parts of the vector elements.</p>
 </dd>
-<dt><code>plot(f)</code></dt>
+<dt><var>plot(``f</var><code>)</code></dt>
 <dd>
 
 </dd>
-<dt><code>plot(f, y)</code></dt>
+<dt><var>plot(``f</var><var>, ``y</var><code>)</code></dt>
 <dd>
 <p><var>f</var> is a factor object, <var>y</var> is a numeric vector. The first form generates a bar plot of <var>f</var>; the second form produces boxplots of <var>y</var> for each level of <var>f</var>.</p>
 </dd>
-<dt><code>plot(df)</code></dt>
+<dt><var>plot(``df</var><code>)</code></dt>
 <dd>
 
 </dd>
-<dt><code>plot(~ expr)</code></dt>
+<dt><var>plot(~ ``expr</var><code>)</code></dt>
 <dd>
 
 </dd>
-<dt><code>plot(y ~ expr)</code></dt>
+<dt><var>plot(``y</var><var>~ ``expr</var><code>)</code></dt>
 <dd>
 <p><var>df</var> is a data frame, <var>y</var> is any object, <var>expr</var> is a list of object names separated by <code>+</code> (e.g., <code>a + b + c</code>). The first two forms produce distributional plots of the variables in a data frame (first form) or of a number of named objects (second form). The third form plots <var>y</var> against every object named in <var>expr</var>.</p>
 </dd>
@@ -433,11 +453,11 @@
 <dd>
 
 </dd>
-<dt><code>hist(x, nclass=n)</code></dt>
+<dt><var>hist(x, nclass=``n</var><code>)</code></dt>
 <dd>
 
 </dd>
-<dt><code>hist(x, breaks=b, …)</code></dt>
+<dt><var>hist(x, breaks=``b</var><code>, …)</code></dt>
 <dd>
 <p><span id="index-hist-1"></span></p>
 <p>Produces a histogram of the numeric vector <code>x</code>. A sensible number of classes is usually chosen, but a recommendation can be given with the <code>nclass=</code> argument. Alternatively, the breakpoints can be specified exactly with the <code>breaks=</code> argument. If the <code>probability=TRUE</code> argument is given, the bars represent relative frequencies divided by bin width instead of counts.</p>
@@ -521,19 +541,16 @@
 </dd>
 </dl>
 </dd>
-<dt><code>xlab=string</code></dt>
-<dd>
-
-</dd>
-<dt><code>ylab=string</code></dt>
-<dd>
-<p>Axis labels for the <em>x</em> and <em>y</em> axes. Use these arguments to change the default labels, usually the names of the objects used in the call to the high-level plotting function.</p>
-</dd>
-<dt><code>main=string</code></dt>
+</dl>
+<p><var>xlab=``string</var><br>
+<var>ylab=``string</var></p>
+<p>: Axis labels for the <em>x</em> and <em>y</em> axes. Use these arguments to change the default labels, usually the names of the objects used in the call to the high-level plotting function.</p>
+<dl>
+<dt><var>main=``string</var></dt>
 <dd>
 <p>Figure title, placed at the top of the plot in a large font.</p>
 </dd>
-<dt><code>sub=string</code></dt>
+<dt><var>sub=``string</var></dt>
 <dd>
 <p>Sub-title, placed just below the <em>x</em>-axis in a smaller font.</p>
 </dd>
@@ -566,18 +583,18 @@
 <dd>
 
 </dd>
-<dt><code>abline(h=y)</code></dt>
+<dt><var>abline(h=``y</var><code>)</code></dt>
 <dd>
 
 </dd>
-<dt><code>abline(v=x)</code></dt>
+<dt><var>abline(v=``x</var><code>)</code></dt>
 <dd>
 
 </dd>
-<dt><code>abline(lm.obj)</code></dt>
+<dt><var>abline(``lm.obj</var><code>)</code></dt>
 <dd>
 <p><span id="index-abline"></span></p>
-<p>Adds a line of slope <code>b</code> and intercept <code>a</code> to the current plot. <code>h=y</code> may be used to specify <em>y</em>-coordinates for the heights of horizontal lines to go across a plot, and <code>v=x</code> similarly for the <em>x</em>-coordinates for vertical lines. Also <var>lm.obj</var> may be list with a <code>coefficients</code> component of length 2 (such as the result of model-fitting functions,) which are taken as an intercept and slope, in that order.</p>
+<p>Adds a line of slope <code>b</code> and intercept <code>a</code> to the current plot. <var>h=``y</var> may be used to specify <em>y</em>-coordinates for the heights of horizontal lines to go across a plot, and <var>v=``x</var> similarly for the <em>x</em>-coordinates for vertical lines. Also <var>lm.obj</var> may be list with a <code>coefficients</code> component of length 2 (such as the result of model-fitting functions,) which are taken as an intercept and slope, in that order.</p>
 </dd>
 <dt><code>polygon(x, y, …)</code></dt>
 <dd>
@@ -589,23 +606,23 @@
 <p><span id="index-legend"></span></p>
 <p>Adds a legend to the current plot at the specified position. Plotting characters, line styles, colors etc., are identified with the labels in the character vector <code>legend</code>. At least one other argument <var>v</var> (a vector the same length as <code>legend</code>) with the corresponding values of the plotting unit must also be given, as follows:</p>
 <dl>
-<dt><code>legend( , fill=v)</code></dt>
+<dt><var>legend( , fill=``v</var><code>)</code></dt>
 <dd>
 <p>Colors for filled boxes</p>
 </dd>
-<dt><code>legend( , col=v)</code></dt>
+<dt><var>legend( , col=``v</var><code>)</code></dt>
 <dd>
 <p>Colors in which points or lines will be drawn</p>
 </dd>
-<dt><code>legend( , lty=v)</code></dt>
+<dt><var>legend( , lty=``v</var><code>)</code></dt>
 <dd>
 <p>Line styles</p>
 </dd>
-<dt><code>legend( , lwd=v)</code></dt>
+<dt><var>legend( , lwd=``v</var><code>)</code></dt>
 <dd>
 <p>Line widths</p>
 </dd>
-<dt><code>legend( , pch=v)</code></dt>
+<dt><var>legend( , pch=``v</var><code>)</code></dt>
 <dd>
 <p>Plotting characters (character vector)</p>
 </dd>
@@ -717,7 +734,7 @@
 <p>The following sections detail many of the commonly-used graphical parameters. The R help documentation for the <code>par()</code> function provides a more concise summary; this is provided as a somewhat more detailed alternative.</p>
 <p>Graphics parameters will be presented in the following form:</p>
 <dl>
-<dt><code>name=value</code></dt>
+<dt><var>name</var><var>=``value</var></dt>
 <dd>
 <p>A description of the parameter’s effect. <var>name</var> is the name of the parameter, that is, the argument name to use in calls to <code>par()</code> or a graphics function. <var>value</var> is a typical value you might use when setting the parameter.</p>
 </dd>
@@ -849,7 +866,7 @@
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/fig11.png" class="img-fluid figure-img"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">images/fig11</figcaption><p></p>
+<p></p><figcaption class="figure-caption">images/fig11</figcaption><p></p>
 </figure>
 </div>
 <p>Graphics parameters controlling figure layout include:</p>
@@ -871,7 +888,7 @@
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/fig12.png" class="img-fluid figure-img"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">images/fig12</figcaption><p></p>
+<p></p><figcaption class="figure-caption">images/fig12</figcaption><p></p>
 </figure>
 </div>
 <p>The graphical parameters relating to multiple figures are as follows:</p>
@@ -1029,21 +1046,21 @@
 <p><span id="index-dev_002enext"></span></p>
 <p>Returns the number and name of the graphics device next to, or previous to the current device, respectively.</p>
 </dd>
-<dt><code>dev.set(which=k)</code></dt>
+<dt><var>dev.set(which=``k</var><code>)</code></dt>
 <dd>
 <p><span id="index-dev_002eset"></span></p>
 <p>Can be used to change the current graphics device to the one at position <var>k</var> of the device list. Returns the number and label of the device.</p>
 </dd>
-<dt><code>dev.off(k)</code></dt>
+<dt><var>dev.off(``k</var><code>)</code></dt>
 <dd>
 <p><span id="index-dev_002eoff"></span></p>
 <p>Terminate the graphics device at point <var>k</var> of the device list. For some devices, such as <code>postscript</code> devices, this will either print the file immediately or correctly complete the file for later printing, depending on how the device was initiated.</p>
 </dd>
-<dt><code>dev.copy(device, …, which=k)</code></dt>
+<dt><var>dev.copy(device, …, which=``k</var><code>)</code></dt>
 <dd>
 
 </dd>
-<dt><code>dev.print(device, …, which=k)</code></dt>
+<dt><var>dev.print(device, …, which=``k</var><code>)</code></dt>
 <dd>
 <p>Make a copy of the device <var>k</var>. Here <code>device</code> is a device function, such as <code>postscript</code>, with extra arguments, if needed, specified by <code>…</code>. <code>dev.print</code> is similar, but the copied device is immediately closed, so that end actions, such as printing hardcopies, are immediately performed.</p>
 </dd>
@@ -1064,12 +1081,30 @@
 <p>Also, package <a href="https://CRAN.R-project.org/package=rgl"><strong>rgl</strong></a> provides ways to interact with 3D plots, for example of surfaces.</p>
 
 
-
 </section>
 
+
 </main> <!-- /main -->
-<script type="application/javascript">
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -1089,7 +1124,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.blur();
     // flash "checked"
     button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
     setTimeout(function() {
+      button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
     // clear code selection
@@ -1179,6 +1217,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
   </div>
 </footer>
+
 
 
 </body></html>

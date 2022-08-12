@@ -1,123 +1,129 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-  <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.180">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>R Manuals :: An Introduction to R - 5&nbsp; Arrays and matrices</title>
-  <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      {   }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-    code span.at { color: #7d9029; } /* Attribute */
-    code span.bn { color: #40a070; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #4070a0; } /* Char */
-    code span.cn { color: #880000; } /* Constant */
-    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-    code span.dt { color: #902000; } /* DataType */
-    code span.dv { color: #40a070; } /* DecVal */
-    code span.er { color: #ff0000; font-weight: bold; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #40a070; } /* Float */
-    code span.fu { color: #06287e; } /* Function */
-    code span.im { } /* Import */
-    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-    code span.op { color: #666666; } /* Operator */
-    code span.ot { color: #007020; } /* Other */
-    code span.pp { color: #bc7a00; } /* Preprocessor */
-    code span.sc { color: #4070a0; } /* SpecialChar */
-    code span.ss { color: #bb6688; } /* SpecialString */
-    code span.st { color: #4070a0; } /* String */
-    code span.va { color: #19177c; } /* Variable */
-    code span.vs { color: #4070a0; } /* VerbatimString */
-    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-  </style>
 
-  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-  <script src="site_libs/quarto-nav/headroom.min.js"></script>
-  <script src="site_libs/clipboard/clipboard.min.js"></script>
-  <meta name="quarto:offset" content="./">
-  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-  <script src="site_libs/quarto-search/fuse.min.js"></script>
-  <script src="site_libs/quarto-search/quarto-search.js"></script>
-  <link href="./Lists-and-data-frames.html" rel="next">
-  <link href="./Factors.html" rel="prev">
-  <script src="site_libs/quarto-html/quarto.js"></script>
-  <script src="site_libs/quarto-html/popper.min.js"></script>
-  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-  <script src="site_libs/quarto-html/anchor.min.js"></script>
-  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-  <link id="quarto-text-highlighting-styles" href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
-  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
-  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
-  <script id="quarto-search-options" type="application/json">{
-    "location": "navbar",
-    "copy-button": false,
-    "collapse-after": 3,
-    "panel-placement": "end",
-    "type": "overlay",
-    "limit": 20,
-    "language": {
-      "search-no-results-text": "No results",
-      "search-matching-documents-text": "matching documents",
-      "search-copy-link-title": "Copy link to search",
-      "search-hide-matches-text": "Hide additional matches",
-      "search-more-match-text": "more match in this document",
-      "search-more-matches-text": "more matches in this document",
-      "search-clear-button-title": "Clear",
-      "search-detached-cancel-button-title": "Cancel",
-      "search-submit-button-title": "Submit"
-    }
-  }</script>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>R Manuals :: An Introduction to R - 5&nbsp; Arrays and matrices</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Lists-and-data-frames.html" rel="next">
+<link href="./Factors.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
 </head>
-<body class="floating slimcontent">
+
+<body class="nav-sidebar floating nav-fixed slimcontent">
+
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
@@ -306,39 +312,53 @@
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc">
-<h2 id="toc-title">Table of contents</h2>
-<ul>
-<li><a href="#arrays" class="nav-link active" data-scroll-target="#arrays"> <span class="header-section-number">5.1</span> Arrays</a></li>
-<li><a href="#array-indexing.-subsections-of-an-array" class="nav-link" data-scroll-target="#array-indexing.-subsections-of-an-array"> <span class="header-section-number">5.2</span> Array indexing. Subsections of an array</a></li>
-<li><a href="#index-matrices" class="nav-link" data-scroll-target="#index-matrices"> <span class="header-section-number">5.3</span> Index matrices</a></li>
-<li><a href="#the-array-function" class="nav-link" data-scroll-target="#the-array-function"> <span class="header-section-number">5.4</span> The <code>array()</code> function</a>
-<ul class="collapse">
-<li><a href="#mixed-vector-and-array-arithmetic.-the-recycling-rule" class="nav-link" data-scroll-target="#mixed-vector-and-array-arithmetic.-the-recycling-rule"> <span class="header-section-number">5.4.1</span> Mixed vector and array arithmetic. The recycling rule</a></li>
-</ul></li>
-<li><a href="#the-outer-product-of-two-arrays" class="nav-link" data-scroll-target="#the-outer-product-of-two-arrays"> <span class="header-section-number">5.5</span> The outer product of two arrays</a>
-<ul class="collapse">
-<li><a href="#an-example-determinants-of-2-by-2-single-digit-matrices" class="nav-link" data-scroll-target="#an-example-determinants-of-2-by-2-single-digit-matrices"> <span class="header-section-number">5.5.1</span> An example: Determinants of 2 by 2 single-digit matrices</a></li>
-</ul></li>
-<li><a href="#generalized-transpose-of-an-array" class="nav-link" data-scroll-target="#generalized-transpose-of-an-array"> <span class="header-section-number">5.6</span> Generalized transpose of an array</a></li>
-<li><a href="#matrix-facilities" class="nav-link" data-scroll-target="#matrix-facilities"> <span class="header-section-number">5.7</span> Matrix facilities</a>
-<ul class="collapse">
-<li><a href="#matrix-multiplication" class="nav-link" data-scroll-target="#matrix-multiplication"> <span class="header-section-number">5.7.1</span> Matrix multiplication</a></li>
-<li><a href="#linear-equations-and-inversion" class="nav-link" data-scroll-target="#linear-equations-and-inversion"> <span class="header-section-number">5.7.2</span> Linear equations and inversion</a></li>
-<li><a href="#eigenvalues-and-eigenvectors" class="nav-link" data-scroll-target="#eigenvalues-and-eigenvectors"> <span class="header-section-number">5.7.3</span> Eigenvalues and eigenvectors</a></li>
-<li><a href="#singular-value-decomposition-and-determinants" class="nav-link" data-scroll-target="#singular-value-decomposition-and-determinants"> <span class="header-section-number">5.7.4</span> Singular value decomposition and determinants</a></li>
-<li><a href="#least-squares-fitting-and-the-qr-decomposition" class="nav-link" data-scroll-target="#least-squares-fitting-and-the-qr-decomposition"> <span class="header-section-number">5.7.5</span> Least squares fitting and the QR decomposition</a></li>
-</ul></li>
-<li><a href="#forming-partitioned-matrices-cbind-and-rbind" class="nav-link" data-scroll-target="#forming-partitioned-matrices-cbind-and-rbind"> <span class="header-section-number">5.8</span> Forming partitioned matrices, <code>cbind()</code> and <code>rbind()</code></a></li>
-<li><a href="#the-concatenation-function-c-with-arrays" class="nav-link" data-scroll-target="#the-concatenation-function-c-with-arrays"> <span class="header-section-number">5.9</span> The concatenation function, <code>c()</code>, with arrays</a></li>
-<li><a href="#frequency-tables-from-factors" class="nav-link" data-scroll-target="#frequency-tables-from-factors"> <span class="header-section-number">5.10</span> Frequency tables from factors</a></li>
-</ul>
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#arrays" id="toc-arrays" class="nav-link active" data-scroll-target="#arrays"> <span class="header-section-number">5.1</span> Arrays</a></li>
+  <li><a href="#array-indexing.-subsections-of-an-array" id="toc-array-indexing.-subsections-of-an-array" class="nav-link" data-scroll-target="#array-indexing.-subsections-of-an-array"> <span class="header-section-number">5.2</span> Array indexing. Subsections of an array</a></li>
+  <li><a href="#index-matrices" id="toc-index-matrices" class="nav-link" data-scroll-target="#index-matrices"> <span class="header-section-number">5.3</span> Index matrices</a></li>
+  <li><a href="#the-array-function" id="toc-the-array-function" class="nav-link" data-scroll-target="#the-array-function"> <span class="header-section-number">5.4</span> The <code>array()</code> function</a>
+  <ul class="collapse">
+  <li><a href="#mixed-vector-and-array-arithmetic.-the-recycling-rule" id="toc-mixed-vector-and-array-arithmetic.-the-recycling-rule" class="nav-link" data-scroll-target="#mixed-vector-and-array-arithmetic.-the-recycling-rule"> <span class="header-section-number">5.4.1</span> Mixed vector and array arithmetic. The recycling rule</a></li>
+  </ul></li>
+  <li><a href="#the-outer-product-of-two-arrays" id="toc-the-outer-product-of-two-arrays" class="nav-link" data-scroll-target="#the-outer-product-of-two-arrays"> <span class="header-section-number">5.5</span> The outer product of two arrays</a>
+  <ul class="collapse">
+  <li><a href="#an-example-determinants-of-2-by-2-single-digit-matrices" id="toc-an-example-determinants-of-2-by-2-single-digit-matrices" class="nav-link" data-scroll-target="#an-example-determinants-of-2-by-2-single-digit-matrices"> <span class="header-section-number">5.5.1</span> An example: Determinants of 2 by 2 single-digit matrices</a></li>
+  </ul></li>
+  <li><a href="#generalized-transpose-of-an-array" id="toc-generalized-transpose-of-an-array" class="nav-link" data-scroll-target="#generalized-transpose-of-an-array"> <span class="header-section-number">5.6</span> Generalized transpose of an array</a></li>
+  <li><a href="#matrix-facilities" id="toc-matrix-facilities" class="nav-link" data-scroll-target="#matrix-facilities"> <span class="header-section-number">5.7</span> Matrix facilities</a>
+  <ul class="collapse">
+  <li><a href="#matrix-multiplication" id="toc-matrix-multiplication" class="nav-link" data-scroll-target="#matrix-multiplication"> <span class="header-section-number">5.7.1</span> Matrix multiplication</a></li>
+  <li><a href="#linear-equations-and-inversion" id="toc-linear-equations-and-inversion" class="nav-link" data-scroll-target="#linear-equations-and-inversion"> <span class="header-section-number">5.7.2</span> Linear equations and inversion</a></li>
+  <li><a href="#eigenvalues-and-eigenvectors" id="toc-eigenvalues-and-eigenvectors" class="nav-link" data-scroll-target="#eigenvalues-and-eigenvectors"> <span class="header-section-number">5.7.3</span> Eigenvalues and eigenvectors</a></li>
+  <li><a href="#singular-value-decomposition-and-determinants" id="toc-singular-value-decomposition-and-determinants" class="nav-link" data-scroll-target="#singular-value-decomposition-and-determinants"> <span class="header-section-number">5.7.4</span> Singular value decomposition and determinants</a></li>
+  <li><a href="#least-squares-fitting-and-the-qr-decomposition" id="toc-least-squares-fitting-and-the-qr-decomposition" class="nav-link" data-scroll-target="#least-squares-fitting-and-the-qr-decomposition"> <span class="header-section-number">5.7.5</span> Least squares fitting and the QR decomposition</a></li>
+  </ul></li>
+  <li><a href="#forming-partitioned-matrices-cbind-and-rbind" id="toc-forming-partitioned-matrices-cbind-and-rbind" class="nav-link" data-scroll-target="#forming-partitioned-matrices-cbind-and-rbind"> <span class="header-section-number">5.8</span> Forming partitioned matrices, <code>cbind()</code> and <code>rbind()</code></a></li>
+  <li><a href="#the-concatenation-function-c-with-arrays" id="toc-the-concatenation-function-c-with-arrays" class="nav-link" data-scroll-target="#the-concatenation-function-c-with-arrays"> <span class="header-section-number">5.9</span> The concatenation function, <code>c()</code>, with arrays</a></li>
+  <li><a href="#frequency-tables-from-factors" id="toc-frequency-tables-from-factors" class="nav-link" data-scroll-target="#frequency-tables-from-factors"> <span class="header-section-number">5.10</span> Frequency tables from factors</a></li>
+  </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
-<header id="title-block-header" class="quarto-title-block default">
 
-<div class="quarto-title"><h1 class="title display-7"><span id="arrays-and-matrices" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Arrays and matrices</span></span></h1></div></header>
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="arrays-and-matrices" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Arrays and matrices</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
 
 <section id="arrays" class="level2 section" data-number="5.1">
 <h2 class="section anchored" data-number="5.1" data-anchor-id="arrays"><span class="header-section-number">5.1</span> Arrays</h2>
@@ -569,12 +589,30 @@
 <p>Extension to higher-way frequency tables is immediate.</p>
 
 
-
 </section>
 
+
 </main> <!-- /main -->
-<script type="application/javascript">
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -594,7 +632,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.blur();
     // flash "checked"
     button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
     setTimeout(function() {
+      button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
     // clear code selection
@@ -684,6 +725,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
   </div>
 </footer>
+
 
 
 </body></html>

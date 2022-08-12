@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>R Manuals :: R Internals - 2&nbsp; .Internal vs .Primitive</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Internationalization-in-the-R-sources.html" rel="next">
+<link href="./R-Internal-Structures.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">R Manuals :: R Internals</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./../index.html">Home</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
+        <li>
+    <a class="dropdown-item" href="./../r-intro/index.html">
+ <span class="dropdown-text">An Introduction to R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-data/index.html">
+ <span class="dropdown-text">R Data Import/Export</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-admin/index.html">
+ <span class="dropdown-text">R Installation and Administration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-exts/index.html">
+ <span class="dropdown-text">Writing R Extensions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-lang/index.html">
+ <span class="dropdown-text">R Language Definition</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./index.html">
+ <span class="dropdown-text">R Internals</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./../about.html">About</a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>.Internal</code> vs <code>.Primitive</code></span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">R Internals</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R-Internal-Structures.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R Internal Structures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./_002eInternal-vs-_002ePrimitive.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>.Internal</code> vs <code>.Primitive</code></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Internationalization-in-the-R-sources.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Internationalization in the R sources</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Package-Structure.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Structure of an Installed Package</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Files.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Files</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Graphics-Devices.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Graphics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./GUI-consoles.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">GUI consoles</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Tools.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Tools</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R-coding-standards.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">R coding standards</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Testing-R-code.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Testing R code</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Use-of-TeX-dialects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Use of TeX dialects</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Current-and-future-directions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Current and future directions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link">Function and variable index</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link">Concept index</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#special-primitives" id="toc-special-primitives" class="nav-link active" data-scroll-target="#special-primitives"> <span class="header-section-number">2.1</span> Special primitives</a></li>
+  <li><a href="#special-internals" id="toc-special-internals" class="nav-link" data-scroll-target="#special-internals"> <span class="header-section-number">2.2</span> Special internals</a></li>
+  <li><a href="#prototypes-for-primitives" id="toc-prototypes-for-primitives" class="nav-link" data-scroll-target="#prototypes-for-primitives"> <span class="header-section-number">2.3</span> Prototypes for primitives</a></li>
+  <li><a href="#adding-a-primitive" id="toc-adding-a-primitive" class="nav-link" data-scroll-target="#adding-a-primitive"> <span class="header-section-number">2.4</span> Adding a primitive</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="internal-vs-.primitive" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>.Internal</code> vs <code>.Primitive</code></span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>C code compiled into R at build time can be called directly in what are termed <em>primitives</em> or via the <code>.Internal</code> interface, which is very similar to the <code>.External</code> interface except in syntax. More precisely, R maintains a table of R function names and corresponding C functions to call, which by convention all start with <code>do_</code> and return a <code>SEXP</code>. This table (<code>R_FunTab</code> in file <code>src/main/names.c</code>) also specifies how many arguments to a function are required or allowed, whether or not the arguments are to be evaluated before calling, and whether the function is ‘internal’ in the sense that it must be accessed via the <code>.Internal</code> interface, or directly accessible in which case it is printed in R as <code>.Primitive</code>.</p>
+<p>Functions using <code>.Internal()</code> wrapped in a closure are in general preferred as this ensures standard handling of named and default arguments. For example, <code>grep</code> is defined as</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>grep <span class="ot">&lt;-</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span> (pattern, x, <span class="at">ignore.case =</span> <span class="cn">FALSE</span>, <span class="at">perl =</span> <span class="cn">FALSE</span>, <span class="at">value =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">fixed =</span> <span class="cn">FALSE</span>, <span class="at">useBytes =</span> <span class="cn">FALSE</span>, <span class="at">invert =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.character</span>(x)) x <span class="ot">&lt;-</span> <span class="fu">structure</span>(<span class="fu">as.character</span>(x), <span class="at">names =</span> <span class="fu">names</span>(x))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">.Internal</span>(<span class="fu">grep</span>(<span class="fu">as.character</span>(pattern), x, ignore.case, value,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                   perl, fixed, useBytes, invert))</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and the use of <code>as.character</code> allows methods to be dispatched (for example, for factors).</p>
+<p>However, for reasons of convenience and also efficiency (as there is some overhead in using the <code>.Internal</code> interface wrapped in a function closure), the primitive functions are exceptions that can be accessed directly. And of course, primitive functions are needed for basic operations—for example <code>.Internal</code> is itself a primitive. Note that primitive functions make no use of R code, and hence are very different from the usual interpreted functions. In particular, <code>formals</code> and <code>body</code> return <code>NULL</code> for such objects, and argument matching can be handled differently. For some primitives (including <code>call</code>, <code>switch</code>, <code>.C</code> and <code>.subset</code>) positional matching is important to avoid partial matching of the first argument.</p>
+<p>The list of primitive functions is subject to change; currently, it includes the following.</p>
+<ol type="1">
+<li><p>“Special functions” which really are <em>language</em> elements, but implemented as primitive functions: <code>R     {       (         if     for      while  repeat  break  next     return  function  quote  switch</code></p></li>
+<li><p>Language elements and basic <em>operator</em>s (i.e., functions usually <em>not</em> called as <code>foo(a, b, ...)</code>) for subsetting, assignment, arithmetic, comparison and logic:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>               [    [[    <span class="sc">$</span>    <span class="er">@</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;</span><span class="sc">-</span>   <span class="er">&lt;&lt;</span><span class="sc">-</span>  <span class="er">=</span>    [<span class="ot">&lt;-</span>  [[<span class="ot">&lt;-</span>  <span class="er">$&lt;</span><span class="sc">-</span>  <span class="er">@&lt;</span><span class="sc">-</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>    <span class="sc">-</span>    <span class="er">*</span>    <span class="er">/</span>     <span class="er">^</span>    <span class="sc">%%</span>   <span class="sc">%*%</span>  <span class="sc">%/%</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;</span>    <span class="er">&lt;=</span>   <span class="er">==</span>   <span class="er">!=</span>    <span class="er">&gt;=</span>   <span class="er">&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="er">|</span>    <span class="er">||</span>   <span class="er">&amp;</span>    <span class="er">&amp;&amp;</span>    <span class="sc">!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When the arithmetic, comparison and logical operators are called as functions, any argument names are discarded so positional matching is used.</p></li>
+<li><p>“Low level” 0– and 1–argument functions which belong to one of the following groups of functions:</p>
+<ol type="a">
+<li><p>Basic mathematical functions with a single argument, i.e.,</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>abs     sign    sqrt</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>floor   ceiling</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>exp     expm1</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>log2    log10   log1p</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>cos     sin     tan</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>acos    asin    atan</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>cosh    sinh    tanh</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>acosh   asinh   atanh</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>cospi   sinpi   tanpi</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>gamma   lgamma  digamma trigamma</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>cumsum  cumprod cummax  cummin</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>Im  Re  Arg  Conj  Mod</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>log</code> is a primitive function of one or two arguments with named argument matching.</p>
+<p><code>trunc</code> is a difficult case: it is a primitive that can have one or more arguments: the default method handled in the primitive has only one.</p></li>
+<li><p>Functions rarely used outside of “programming” (i.e., mostly used inside other functions), such as <code>c     nargs          missing        on.exit        interactive     as.call        as.character   as.complex     as.double     as.environment as.integer     as.logical     as.raw     is.array       is.atomic      is.call        is.character     is.complex     is.double      is.environment is.expression     is.finite      is.function    is.infinite    is.integer     is.language    is.list        is.logical     is.matrix     is.na          is.name        is.nan         is.null     is.numeric     is.object      is.pairlist    is.raw     is.real        is.recursive   is.single      is.symbol     baseenv        emptyenv       globalenv      pos.to.env     unclass        invisible      seq_along      seq_len</code></p></li>
+<li><p>The programming and session management utilities <code>R     browser  proc.time  gc.time tracemem retracemem untracemem</code></p></li>
+</ol></li>
+<li><p>The following basic replacement and extractor functions</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>length      length<span class="ot">&lt;-</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>class       class<span class="ot">&lt;-</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>oldClass    oldClass<span class="ot">&lt;-</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>attr        attr<span class="ot">&lt;-</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>attributes  attributes<span class="ot">&lt;-</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>names       names<span class="ot">&lt;-</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>dim         dim<span class="ot">&lt;-</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>dimnames    dimnames<span class="ot">&lt;-</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>            environment<span class="ot">&lt;-</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>            levels<span class="ot">&lt;-</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>            storage.mode<span class="ot">&lt;-</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that optimizing <code>NAMED = 1</code> is only effective within a primitive (as the closure wrapper of a <code>.Internal</code> will set <code>NAMED = NAMEDMAX</code> when the promise to the argument is evaluated) and hence replacement functions should where possible be primitive to avoid copying (at least in their default methods). [The <code>NAMED</code> mechanism has been replaced by reference counting.]</p></li>
+<li><p>The following functions are primitive for efficiency reasons:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">:</span>           <span class="op">~</span>           c           list</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>call        expression  substitute</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>UseMethod   standardGeneric</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="op">.</span>C          <span class="op">.</span>Fortran   <span class="op">.</span>Call        <span class="op">.</span>External</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>round       signif      rep         seq<span class="op">.</span><span class="dt">int</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>as well as the following internal-use-only functions</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>.Primitive      .Internal</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>.Call.graphics  .External.graphics</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>.subset         .subset2</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>.primTrace      .primUntrace</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>lazyLoadDBfetch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+<p>The multi-argument primitives</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>call       <span class="cf">switch</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>.C         .Fortran   .Call       .External</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>intentionally use positional matching, and need to do so to avoid partial matching to their first argument. They do check that the first argument is unnamed or for the first two, partially matches the formal argument name. On the other hand,</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>attr       attr<span class="op">&lt;-</span>     browser     rememtrace substitute  UseMethod</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>log        round      signif      rep        seq<span class="op">.</span><span class="dt">int</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>manage their own argument matching and do work in the standard way.</p>
+<p>All the one-argument primitives check that if they are called with a named argument that this (partially) matches the name given in the documentation: this is also done for replacement functions with one argument plus <code>value</code>.</p>
+<p>The net effect is that argument matching for primitives intended for end-user use <em>as functions</em> is done in the same way as for interpreted functions except for the six exceptions where positional matching is required.</p>
+<section id="special-primitives" class="level2 section" data-number="2.1">
+<h2 class="section anchored" data-number="2.1" data-anchor-id="special-primitives"><span class="header-section-number">2.1</span> Special primitives</h2>
+<p>A small number of primitives are <em>specials</em> rather than <em>builtins</em>, that is they are entered with unevaluated arguments. This is clearly necessary for the language constructs and the assignment operators, as well as for <code>&amp;&amp;</code> and <code>||</code> which conditionally evaluate their second argument, and <code>~</code>, <code>.Internal</code>, <code>call</code>, <code>expression</code>, <code>missing</code>, <code>on.exit</code>, <code>quote</code> and <code>substitute</code> which do not evaluate some of their arguments.</p>
+<p><code>rep</code> and <code>seq.int</code> are special as they evaluate some of their arguments conditional on which are non-missing.</p>
+<p><code>log</code>, <code>round</code> and <code>signif</code> are special to allow default values to be given to missing arguments.</p>
+<p>The subsetting, subassignment and <code>@</code> operators are all special. (For both extraction and replacement forms, <code>$</code> and <code>@</code> take a symbol argument, and <code>[</code> and <code>[[</code> allow missing arguments.)</p>
+<p><code>UseMethod</code> is special to avoid the additional contexts added to calls to builtins.</p>
+</section>
+<section id="special-internals" class="level2 section" data-number="2.2">
+<h2 class="section anchored" data-number="2.2" data-anchor-id="special-internals"><span class="header-section-number">2.2</span> Special internals</h2>
+<p>There are also special <code>.Internal</code> functions: <code>NextMethod</code>, <code>Recall</code>, <code>withVisible</code>, <code>cbind</code>, <code>rbind</code> (to allow for the <code>deparse.level</code> argument), <code>eapply</code>, <code>lapply</code> and <code>vapply</code>.</p>
+</section>
+<section id="prototypes-for-primitives" class="level2 section" data-number="2.3">
+<h2 class="section anchored" data-number="2.3" data-anchor-id="prototypes-for-primitives"><span class="header-section-number">2.3</span> Prototypes for primitives</h2>
+<p>Prototypes are available for the primitive functions and operators, and these are used for printing, <code>args</code> and package checking (e.g.&nbsp;by <code>tools::checkS3methods</code> and by package <a href="https://CRAN.R-project.org/package=codetools"><strong>codetools</strong></a>). There are two environments in the <strong>base</strong> package (and namespace), <code>.GenericArgsEnv</code> for those primitives which are internal S3 generics, and <code>.ArgsEnv</code> for the rest. Those environments contain closures with the same names as the primitives, formal arguments derived (manually) from the help pages, a body which is a suitable call to <code>UseMethod</code> or <code>NULL</code> and environment the base namespace.</p>
+<p>The C code for <code>print.default</code> and <code>args</code> uses the closures in these environments in preference to the definitions in base (as primitives).</p>
+<p>The QC function <code>undoc</code> checks that all the functions prototyped in these environments are currently primitive, and that the primitives not included are better thought of as language elements (at the time of writing</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>  <span class="er">$&lt;</span><span class="sc">-</span>  <span class="er">&amp;&amp;</span>  (  <span class="sc">:</span>  <span class="er">@</span>  <span class="er">@&lt;</span><span class="sc">-</span>  [  [[  [[<span class="ot">&lt;-</span>  [<span class="ot">&lt;-</span>  {  <span class="sc">||</span>  <span class="er">~</span>  <span class="er">&lt;</span><span class="sc">-</span>  <span class="er">&lt;&lt;</span><span class="sc">-</span>  <span class="er">=</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="cf">break</span>  <span class="cf">for</span> <span class="cf">function</span>  <span class="cf">if</span>  <span class="cf">next</span>  <span class="cf">repeat</span>  return  <span class="cf">while</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>). One could argue about <code>~</code>, but it is known to the parser and has semantics quite unlike a normal function. And <code>:</code> is documented with different argument names in its two meanings.</p>
+<p>The QC functions <code>codoc</code> and <code>checkS3methods</code> also make use of these environments (effectively placing them in front of base in the search path), and hence the formals of the functions they contain are checked against the help pages by <code>codoc</code>. However, there are two problems with the generic primitives. The first is that many of the operators are part of the S3 group generic <code>Ops</code> and that defines their arguments to be <code>e1</code> and <code>e2</code>: although it would be very unusual, an operator could be called as e.g.&nbsp;<code>"+"(e1=a, e2=b)</code> and if method dispatch occurred to a closure, there would be an argument name mismatch. So the definitions in environment <code>.GenericArgsEnv</code> have to use argument names <code>e1</code> and <code>e2</code> even though the traditional documentation is in terms of <code>x</code> and <code>y</code>: <code>codoc</code> makes the appropriate adjustment via <code>tools:::.make_S3_primitive_generic_env</code>. The second discrepancy is with the <code>Math</code> group generics, where the group generic is defined with argument list <code>(x, ...)</code>, but most of the members only allow one argument when used as the default method (and <code>round</code> and <code>signif</code> allow two as default methods): again fix-ups are used.</p>
+<p>Those primitives which are in <code>.GenericArgsEnv</code> are checked (via <code>tests/primitives.R</code>) to be generic <em>via</em> defining methods for them, and a check is made that the remaining primitives are probably not generic, by setting a method and checking it is not dispatched to (but this can fail for other reasons). However, there is no certain way to know that if other <code>.Internal</code> or primitive functions are not internally generic except by reading the source code.</p>
+</section>
+<section id="adding-a-primitive" class="level2 section" data-number="2.4">
+<h2 class="section anchored" data-number="2.4" data-anchor-id="adding-a-primitive"><span class="header-section-number">2.4</span> Adding a primitive</h2>
+<p>[For R-core use: reverse this procedure to remove a primitive. Most commonly this is done by changing a <code>.Internal</code> to a primitive or <em>vice versa</em>.]</p>
+<p>Primitives are listed in the table <code>R_FunTab</code> in <code>src/main/names.c</code>: primitives have <code>Y = 0</code> in the <code>eval</code> field.</p>
+<p>There needs to be an <code>\alias</code> entry in a help file in the <strong>base</strong> package, and the primitive needs to be added to one of the lists at the start of this section.</p>
+<p>Some primitives are regarded as language elements (the current ones are listed above). These need to be added to two lists of exceptions, <code>langElts</code> in <code>undoc()</code> (in file <code>src/library/tools/R/QC.R</code>) and <code>lang_elements</code> in <code>tests/primitives.R</code>.</p>
+<p>All other primitives are regarded as functions and should be listed in one of the environments defined in <code>src/library/base/R/zzz.R</code>, either <code>.ArgsEnv</code> or <code>.GenericArgsEnv</code>: internal generics also need to be listed in the character vector <code>.S3PrimitiveGenerics</code>. Note too the discussion about argument matching above: if you add a primitive function with more than one argument by converting a <code>.Internal</code> you need to add argument matching to the C code, and for those with a single argument, add argument-name checking.</p>
+<p>Do ensure that <code>make check-devel</code> has been run: that tests most of these requirements.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./R-Internal-Structures.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R Internal Structures</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Internationalization-in-the-R-sources.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Internationalization in the R sources</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>

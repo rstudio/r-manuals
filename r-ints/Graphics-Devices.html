@@ -1,123 +1,129 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-  <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.180">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>R Manuals :: R Internals - 6&nbsp; Graphics</title>
-  <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      {   }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-    code span.at { color: #7d9029; } /* Attribute */
-    code span.bn { color: #40a070; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #4070a0; } /* Char */
-    code span.cn { color: #880000; } /* Constant */
-    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-    code span.dt { color: #902000; } /* DataType */
-    code span.dv { color: #40a070; } /* DecVal */
-    code span.er { color: #ff0000; font-weight: bold; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #40a070; } /* Float */
-    code span.fu { color: #06287e; } /* Function */
-    code span.im { } /* Import */
-    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-    code span.op { color: #666666; } /* Operator */
-    code span.ot { color: #007020; } /* Other */
-    code span.pp { color: #bc7a00; } /* Preprocessor */
-    code span.sc { color: #4070a0; } /* SpecialChar */
-    code span.ss { color: #bb6688; } /* SpecialString */
-    code span.st { color: #4070a0; } /* String */
-    code span.va { color: #19177c; } /* Variable */
-    code span.vs { color: #4070a0; } /* VerbatimString */
-    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-  </style>
 
-  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-  <script src="site_libs/quarto-nav/headroom.min.js"></script>
-  <script src="site_libs/clipboard/clipboard.min.js"></script>
-  <meta name="quarto:offset" content="./">
-  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-  <script src="site_libs/quarto-search/fuse.min.js"></script>
-  <script src="site_libs/quarto-search/quarto-search.js"></script>
-  <link href="./GUI-consoles.html" rel="next">
-  <link href="./Files.html" rel="prev">
-  <script src="site_libs/quarto-html/quarto.js"></script>
-  <script src="site_libs/quarto-html/popper.min.js"></script>
-  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-  <script src="site_libs/quarto-html/anchor.min.js"></script>
-  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-  <link id="quarto-text-highlighting-styles" href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
-  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
-  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
-  <script id="quarto-search-options" type="application/json">{
-    "location": "navbar",
-    "copy-button": false,
-    "collapse-after": 3,
-    "panel-placement": "end",
-    "type": "overlay",
-    "limit": 20,
-    "language": {
-      "search-no-results-text": "No results",
-      "search-matching-documents-text": "matching documents",
-      "search-copy-link-title": "Copy link to search",
-      "search-hide-matches-text": "Hide additional matches",
-      "search-more-match-text": "more match in this document",
-      "search-more-matches-text": "more matches in this document",
-      "search-clear-button-title": "Clear",
-      "search-detached-cancel-button-title": "Cancel",
-      "search-submit-button-title": "Submit"
-    }
-  }</script>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>R Manuals :: R Internals - 6&nbsp; Graphics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./GUI-consoles.html" rel="next">
+<link href="./Files.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
 </head>
-<body class="floating slimcontent">
+
+<body class="nav-sidebar floating nav-fixed slimcontent">
+
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
@@ -202,6 +208,11 @@
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./_002eInternal-vs-_002ePrimitive.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>.Internal</code> vs <code>.Primitive</code></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./Internationalization-in-the-R-sources.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Internationalization in the R sources</span></a>
   </div>
 </li>
@@ -266,34 +277,48 @@
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc">
-<h2 id="toc-title">Table of contents</h2>
-<ul>
-<li><a href="#graphics-devices" class="nav-link active" data-scroll-target="#graphics-devices"> <span class="header-section-number">6.1</span> Graphics Devices</a>
-<ul class="collapse">
-<li><a href="#device-structures" class="nav-link" data-scroll-target="#device-structures"> <span class="header-section-number">6.1.1</span> Device structures</a></li>
-<li><a href="#device-capabilities" class="nav-link" data-scroll-target="#device-capabilities"> <span class="header-section-number">6.1.2</span> Device capabilities</a></li>
-<li><a href="#handling-text" class="nav-link" data-scroll-target="#handling-text"> <span class="header-section-number">6.1.3</span> Handling text</a></li>
-<li><a href="#conventions" class="nav-link" data-scroll-target="#conventions"> <span class="header-section-number">6.1.4</span> Conventions</a></li>
-<li><a href="#mode" class="nav-link" data-scroll-target="#mode"> <span class="header-section-number">6.1.5</span> ‘Mode’</a></li>
-<li><a href="#graphics-events" class="nav-link" data-scroll-target="#graphics-events"> <span class="header-section-number">6.1.6</span> Graphics events</a></li>
-<li><a href="#specific-devices" class="nav-link" data-scroll-target="#specific-devices"> <span class="header-section-number">6.1.7</span> Specific devices</a></li>
-<li><a href="#x11" class="nav-link" data-scroll-target="#x11"> <span class="header-section-number">6.1.8</span> X11()</a></li>
-<li><a href="#windows" class="nav-link" data-scroll-target="#windows"> <span class="header-section-number">6.1.9</span> windows()</a></li>
-</ul></li>
-<li><a href="#colours" class="nav-link" data-scroll-target="#colours"> <span class="header-section-number">6.2</span> Colours</a></li>
-<li><a href="#base-graphics" class="nav-link" data-scroll-target="#base-graphics"> <span class="header-section-number">6.3</span> Base graphics</a>
-<ul class="collapse">
-<li><a href="#arguments-and-parameters" class="nav-link" data-scroll-target="#arguments-and-parameters"> <span class="header-section-number">6.3.1</span> Arguments and parameters</a></li>
-</ul></li>
-<li><a href="#grid-graphics" class="nav-link" data-scroll-target="#grid-graphics"> <span class="header-section-number">6.4</span> Grid graphics</a></li>
-</ul>
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#graphics-devices" id="toc-graphics-devices" class="nav-link active" data-scroll-target="#graphics-devices"> <span class="header-section-number">6.1</span> Graphics Devices</a>
+  <ul class="collapse">
+  <li><a href="#device-structures" id="toc-device-structures" class="nav-link" data-scroll-target="#device-structures"> <span class="header-section-number">6.1.1</span> Device structures</a></li>
+  <li><a href="#device-capabilities" id="toc-device-capabilities" class="nav-link" data-scroll-target="#device-capabilities"> <span class="header-section-number">6.1.2</span> Device capabilities</a></li>
+  <li><a href="#handling-text" id="toc-handling-text" class="nav-link" data-scroll-target="#handling-text"> <span class="header-section-number">6.1.3</span> Handling text</a></li>
+  <li><a href="#conventions" id="toc-conventions" class="nav-link" data-scroll-target="#conventions"> <span class="header-section-number">6.1.4</span> Conventions</a></li>
+  <li><a href="#mode" id="toc-mode" class="nav-link" data-scroll-target="#mode"> <span class="header-section-number">6.1.5</span> ‘Mode’</a></li>
+  <li><a href="#graphics-events" id="toc-graphics-events" class="nav-link" data-scroll-target="#graphics-events"> <span class="header-section-number">6.1.6</span> Graphics events</a></li>
+  <li><a href="#specific-devices" id="toc-specific-devices" class="nav-link" data-scroll-target="#specific-devices"> <span class="header-section-number">6.1.7</span> Specific devices</a></li>
+  <li><a href="#x11" id="toc-x11" class="nav-link" data-scroll-target="#x11"> <span class="header-section-number">6.1.8</span> X11()</a></li>
+  <li><a href="#windows" id="toc-windows" class="nav-link" data-scroll-target="#windows"> <span class="header-section-number">6.1.9</span> windows()</a></li>
+  </ul></li>
+  <li><a href="#colours" id="toc-colours" class="nav-link" data-scroll-target="#colours"> <span class="header-section-number">6.2</span> Colours</a></li>
+  <li><a href="#base-graphics" id="toc-base-graphics" class="nav-link" data-scroll-target="#base-graphics"> <span class="header-section-number">6.3</span> Base graphics</a>
+  <ul class="collapse">
+  <li><a href="#arguments-and-parameters" id="toc-arguments-and-parameters" class="nav-link" data-scroll-target="#arguments-and-parameters"> <span class="header-section-number">6.3.1</span> Arguments and parameters</a></li>
+  </ul></li>
+  <li><a href="#grid-graphics" id="toc-grid-graphics" class="nav-link" data-scroll-target="#grid-graphics"> <span class="header-section-number">6.4</span> Grid graphics</a></li>
+  </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
-<header id="title-block-header" class="quarto-title-block default">
 
-<div class="quarto-title"><h1 class="title display-7"><span id="graphics" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Graphics</span></span></h1></div></header>
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="graphics" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Graphics</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
 
 <div class="page-columns page-full"><p>R’s graphics internals were re-designed to enable multiple graphics systems to be installed on top on the graphics ‘engine’ – currently there are two such systems, one supporting ‘base’ graphics (based on that in S and whose R code<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> is in package <strong>graphics</strong>) and one implemented in package <strong>grid</strong>.</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;The C code is in files <code>base.c</code>, <code>graphics.c</code>, <code>par.c</code>, <code>plot.c</code> and <code>plot3d.c</code> in directory <code>src/main</code>.</p></li></div></div>
 <p>Some notes on the historical changes can be found at <a href="https://www.stat.auckland.ac.nz/~paul/R/basegraph.html" class="uri">https://www.stat.auckland.ac.nz/~paul/R/basegraph.html</a> and <a href="https://www.stat.auckland.ac.nz/~paul/R/graphicsChanges.html" class="uri">https://www.stat.auckland.ac.nz/~paul/R/graphicsChanges.html</a>.</p>
@@ -525,9 +550,9 @@
 <h2 class="section anchored" data-number="6.2" data-anchor-id="colours"><span class="header-section-number">6.2</span> Colours</h2>
 <p>Devices receive colours as a <code>typedef</code> <code>rcolor</code> (an <code>unsigned int</code>) defined in the header <code>R_ext/GraphicsEngine.h</code>). The 4 bytes are <em>R</em> ,<em>G</em>, <em>B</em> and <em>alpha</em> from least to most significant. So each of RGB has 256 levels of luminosity from 0 to 255. The alpha byte represents opacity, so value 255 is fully opaque and 0 fully transparent: many but not all devices handle semi-transparent colours.</p>
 <p>Colors can be created in C via the macro <code>R_RGBA</code>, and a set of macros are defined in <code>R_ext/GraphicsDevice.h</code> to extract the various components.</p>
-<p>Colours in the base graphics system were originally adopted from S (and before that the GRZ library from Bell Labs), with the concept of a (variable-sized) palette of colours referenced by numbers <code>1...N</code> plus <code>0</code> (the background colour of the current device). R introduced the idea of referring to colours by character strings, either in the forms <code>#RRGGBB</code> or <code>#RRGGBBAA</code> (representing the bytes in hex) as given by function <code>rgb()</code> or via names: the 657 known names are given in the character vector <code>colors</code> and in a table in file <code>colors.c</code> in package <strong>grDevices</strong>. Note that semi-transparent colours are not ‘premultiplied’, so 50% transparent white is <code>#ffffff80</code>.</p>
+<p>Colours in the base graphics system were originally adopted from S (and before that the GRZ library from Bell Labs), with the concept of a (variable-sized) palette of colours referenced by numbers <var>1...``N</var>’ plus <code>0</code> (the background colour of the current device). R introduced the idea of referring to colours by character strings, either in the forms <code>#RRGGBB</code> or <code>#RRGGBBAA</code> (representing the bytes in hex) as given by function <code>rgb()</code> or via names: the 657 known names are given in the character vector <code>colors</code> and in a table in file <code>colors.c</code> in package <strong>grDevices</strong>. Note that semi-transparent colours are not ‘premultiplied’, so 50% transparent white is <code>#ffffff80</code>.</p>
 <p>Integer or character <code>NA</code> colours are mapped internally to transparent white, as is the character string <code>"NA"</code>.</p>
-<p>Negative colour numbers are an error. Colours greater than <code>N</code> are wrapped around, so that for example with the default palette of size 8, colour <code>10</code> is colour <code>2</code> in the palette.</p>
+<p>Negative colour numbers are an error. Colours greater than <var>N</var>’ are wrapped around, so that for example with the default palette of size 8, colour <code>10</code> is colour <code>2</code> in the palette.</p>
 <p>Integer colours have been used more widely than the base graphics sub-system, as they are supported by package <strong>grid</strong> and hence by <a href="https://CRAN.R-project.org/package=lattice"><strong>lattice</strong></a> and <a href="https://CRAN.R-project.org/package=ggplot2"><strong>ggplot2</strong></a>. (They are also used by package <a href="https://CRAN.R-project.org/package=rgl"><strong>rgl</strong></a>.) <strong>grid</strong> did re-define colour <code>0</code> to be transparent white, but <a href="https://CRAN.R-project.org/package=rgl"><strong>rgl</strong></a> used <code>col2rgb</code> and hence the background colour of base graphics.</p>
 <p>Note that positive integer colours refer to the current palette and colour <code>0</code> to the current device (and a device is opened if needs be). These are mapped to type <code>rcolor</code> at the time of use: this matters when re-playing the display list, e.g.&nbsp;when a device is resized or <code>dev.copy</code> is used. The palette should be thought of as per-session: it is stored in package <strong>grDevices</strong>.</p>
 <p>The convention is that devices use the colorspace ‘sRGB’. This is an industry standard: it is used by Web browsers and JPEGs from all but high-end digital cameras. The interpretation is a matter for graphics devices and for code that manipulates colours, but not for the graphics engine or subsystems.</p>
@@ -561,12 +586,30 @@
 <p>[At least pointers to documentation.]</p>
 
 
-
 </section>
 
+
 </main> <!-- /main -->
-<script type="application/javascript">
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -586,7 +629,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.blur();
     // flash "checked"
     button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
     setTimeout(function() {
+      button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
     // clear code selection
@@ -676,6 +722,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
   </div>
 </footer>
+
 
 
 </body></html>

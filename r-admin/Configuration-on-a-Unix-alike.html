@@ -1,123 +1,129 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-  <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.180">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>R Manuals :: R Installation and Administration - 11&nbsp; Configuration on a Unix-alike</title>
-  <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      {   }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-    code span.at { color: #7d9029; } /* Attribute */
-    code span.bn { color: #40a070; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #4070a0; } /* Char */
-    code span.cn { color: #880000; } /* Constant */
-    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-    code span.dt { color: #902000; } /* DataType */
-    code span.dv { color: #40a070; } /* DecVal */
-    code span.er { color: #ff0000; font-weight: bold; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #40a070; } /* Float */
-    code span.fu { color: #06287e; } /* Function */
-    code span.im { } /* Import */
-    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-    code span.op { color: #666666; } /* Operator */
-    code span.ot { color: #007020; } /* Other */
-    code span.pp { color: #bc7a00; } /* Preprocessor */
-    code span.sc { color: #4070a0; } /* SpecialChar */
-    code span.ss { color: #bb6688; } /* SpecialString */
-    code span.st { color: #4070a0; } /* String */
-    code span.va { color: #19177c; } /* Variable */
-    code span.vs { color: #4070a0; } /* VerbatimString */
-    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-  </style>
 
-  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-  <script src="site_libs/quarto-nav/headroom.min.js"></script>
-  <script src="site_libs/clipboard/clipboard.min.js"></script>
-  <meta name="quarto:offset" content="./">
-  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-  <script src="site_libs/quarto-search/fuse.min.js"></script>
-  <script src="site_libs/quarto-search/quarto-search.js"></script>
-  <link href="./Platform-notes.html" rel="next">
-  <link href="./Essential-and-useful-other-programs-under-a-Unix-alike.html" rel="prev">
-  <script src="site_libs/quarto-html/quarto.js"></script>
-  <script src="site_libs/quarto-html/popper.min.js"></script>
-  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-  <script src="site_libs/quarto-html/anchor.min.js"></script>
-  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-  <link id="quarto-text-highlighting-styles" href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
-  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
-  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
-  <script id="quarto-search-options" type="application/json">{
-    "location": "navbar",
-    "copy-button": false,
-    "collapse-after": 3,
-    "panel-placement": "end",
-    "type": "overlay",
-    "limit": 20,
-    "language": {
-      "search-no-results-text": "No results",
-      "search-matching-documents-text": "matching documents",
-      "search-copy-link-title": "Copy link to search",
-      "search-hide-matches-text": "Hide additional matches",
-      "search-more-match-text": "more match in this document",
-      "search-more-matches-text": "more matches in this document",
-      "search-clear-button-title": "Clear",
-      "search-detached-cancel-button-title": "Cancel",
-      "search-submit-button-title": "Submit"
-    }
-  }</script>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>R Manuals :: R Installation and Administration - 11&nbsp; Configuration on a Unix-alike</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Platform-notes.html" rel="next">
+<link href="./Essential-and-useful-other-programs-under-a-Unix-alike.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
 </head>
-<body class="floating slimcontent">
+
+<body class="nav-sidebar floating nav-fixed slimcontent">
+
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
@@ -276,30 +282,44 @@
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc">
-<h2 id="toc-title">Table of contents</h2>
-<ul>
-<li><a href="#configuration-options" class="nav-link active" data-scroll-target="#configuration-options"> <span class="header-section-number">11.1</span> Configuration options</a></li>
-<li><a href="#internationalization-support" class="nav-link" data-scroll-target="#internationalization-support"> <span class="header-section-number">11.2</span> Internationalization support</a></li>
-<li><a href="#configuration-variables" class="nav-link" data-scroll-target="#configuration-variables"> <span class="header-section-number">11.3</span> Configuration variables</a>
-<ul class="collapse">
-<li><a href="#setting-paper-size" class="nav-link" data-scroll-target="#setting-paper-size"> <span class="header-section-number">11.3.1</span> Setting paper size</a></li>
-<li><a href="#setting-the-browsers" class="nav-link" data-scroll-target="#setting-the-browsers"> <span class="header-section-number">11.3.2</span> Setting the browsers</a></li>
-<li><a href="#compilation-flags" class="nav-link" data-scroll-target="#compilation-flags"> <span class="header-section-number">11.3.3</span> Compilation flags</a></li>
-<li><a href="#making-manuals" class="nav-link" data-scroll-target="#making-manuals"> <span class="header-section-number">11.3.4</span> Making manuals</a></li>
-</ul></li>
-<li><a href="#setting-the-shell" class="nav-link" data-scroll-target="#setting-the-shell"> <span class="header-section-number">11.4</span> Setting the shell</a></li>
-<li><a href="#using-make" class="nav-link" data-scroll-target="#using-make"> <span class="header-section-number">11.5</span> Using make</a></li>
-<li><a href="#using-fortran" class="nav-link" data-scroll-target="#using-fortran"> <span class="header-section-number">11.6</span> Using Fortran</a></li>
-<li><a href="#compile-and-load-flags" class="nav-link" data-scroll-target="#compile-and-load-flags"> <span class="header-section-number">11.7</span> Compile and load flags</a></li>
-<li><a href="#maintainer-mode" class="nav-link" data-scroll-target="#maintainer-mode"> <span class="header-section-number">11.8</span> Maintainer mode</a></li>
-</ul>
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#configuration-options" id="toc-configuration-options" class="nav-link active" data-scroll-target="#configuration-options"> <span class="header-section-number">11.1</span> Configuration options</a></li>
+  <li><a href="#internationalization-support" id="toc-internationalization-support" class="nav-link" data-scroll-target="#internationalization-support"> <span class="header-section-number">11.2</span> Internationalization support</a></li>
+  <li><a href="#configuration-variables" id="toc-configuration-variables" class="nav-link" data-scroll-target="#configuration-variables"> <span class="header-section-number">11.3</span> Configuration variables</a>
+  <ul class="collapse">
+  <li><a href="#setting-paper-size" id="toc-setting-paper-size" class="nav-link" data-scroll-target="#setting-paper-size"> <span class="header-section-number">11.3.1</span> Setting paper size</a></li>
+  <li><a href="#setting-the-browsers" id="toc-setting-the-browsers" class="nav-link" data-scroll-target="#setting-the-browsers"> <span class="header-section-number">11.3.2</span> Setting the browsers</a></li>
+  <li><a href="#compilation-flags" id="toc-compilation-flags" class="nav-link" data-scroll-target="#compilation-flags"> <span class="header-section-number">11.3.3</span> Compilation flags</a></li>
+  <li><a href="#making-manuals" id="toc-making-manuals" class="nav-link" data-scroll-target="#making-manuals"> <span class="header-section-number">11.3.4</span> Making manuals</a></li>
+  </ul></li>
+  <li><a href="#setting-the-shell" id="toc-setting-the-shell" class="nav-link" data-scroll-target="#setting-the-shell"> <span class="header-section-number">11.4</span> Setting the shell</a></li>
+  <li><a href="#using-make" id="toc-using-make" class="nav-link" data-scroll-target="#using-make"> <span class="header-section-number">11.5</span> Using make</a></li>
+  <li><a href="#using-fortran" id="toc-using-fortran" class="nav-link" data-scroll-target="#using-fortran"> <span class="header-section-number">11.6</span> Using Fortran</a></li>
+  <li><a href="#compile-and-load-flags" id="toc-compile-and-load-flags" class="nav-link" data-scroll-target="#compile-and-load-flags"> <span class="header-section-number">11.7</span> Compile and load flags</a></li>
+  <li><a href="#maintainer-mode" id="toc-maintainer-mode" class="nav-link" data-scroll-target="#maintainer-mode"> <span class="header-section-number">11.8</span> Maintainer mode</a></li>
+  </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
-<header id="title-block-header" class="quarto-title-block default">
 
-<div class="quarto-title"><h1 class="title display-7"><span id="configuration-on-a-unix-alike" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Configuration on a Unix-alike</span></span></h1></div></header>
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="configuration-on-a-unix-alike" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Configuration on a Unix-alike</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
 
 <section id="configuration-options" class="level2 section page-columns page-full" data-number="11.1">
 <h2 class="section anchored" data-number="11.1" data-anchor-id="configuration-options"><span class="header-section-number">11.1</span> Configuration options</h2>
@@ -311,11 +331,11 @@
 <dd>
 <p>use the X Window System [yes]</p>
 </dd>
-<dt><code>--x-includes=DIR</code></dt>
+<dt><var>--x-includes=``DIR</var></dt>
 <dd>
 <p>X include files are in <var>DIR</var></p>
 </dd>
-<dt><code>--x-libraries=DIR</code></dt>
+<dt><var>--x-libraries=``DIR</var></dt>
 <dd>
 <p>X library files are in <var>DIR</var></p>
 </dd>
@@ -343,7 +363,7 @@
 <p>You can use <code>--without-foo</code> or <code>--disable-foo</code> for the negatives.</p>
 <p>You will want to use <code>--disable-R-profiling</code> if you are building a profiled executable of R (e.g.&nbsp;with <code>-pg)</code>. Support for R profiling requires OS support for POSIX threads (<em>aka</em> <code>pthreads</code>), which are available on all mainstream Unix-alike platforms.</p>
 <div class="page-columns page-full"><p>Flag <code>--enable-R-shlib</code> causes the make process to build R as a dynamic (shared) library, typically called <code>libR.so</code>, and link the main R executable <code>R.bin</code> against that library. This can only be done if all the code (including system libraries) can be compiled into a dynamic library, and there may be a performance<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> penalty. So you probably only want this if you will be using an application which embeds R. Note that C code in packages installed on an R system linked with <code>--enable-R-shlib</code> is linked against the dynamic library and so such packages cannot be used from an R system built in the default way. Also, because packages are linked against R they are on some OSes also linked against the dynamic libraries R itself is linked against, and this can lead to symbol conflicts.</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;We have measured 15–20% on <code>i686</code> Linux and around 10% on <code>x86_64</code> Linux.</p></li></div></div>
-<div class="page-columns page-full"><p>For maximally effective use of <code>valgrind</code>, R should be compiled with valgrind instrumentation. The <code>configure</code> option is <code>--with-valgrind-instrumentation=level</code>, where <var>level</var> is 0, 1 or 2. (Level 0 is the default and does not add anything.) The system headers for <code>valgrind</code> can be requested by option <code>--with-system-valgrind-headers</code>: they will be used if present (on Linux they may be in a separate package such as <strong>valgrind-devel</strong>). Note though that there is no guarantee that the code in R will be compatible with very old<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> or future <code>valgrind</code> headers.</p><div class="no-row-height column-margin column-container"><li id="fn2" role="doc-endnote"><p><sup>2</sup>&nbsp;We believe that versions 3.4.0 to 3.15.0 are compatible.</p></li></div></div>
+<div class="page-columns page-full"><p>For maximally effective use of <code>valgrind</code>, R should be compiled with valgrind instrumentation. The <code>configure</code> option is <var>--with-valgrind-instrumentation=``level</var>, where <var>level</var> is 0, 1 or 2. (Level 0 is the default and does not add anything.) The system headers for <code>valgrind</code> can be requested by option <code>--with-system-valgrind-headers</code>: they will be used if present (on Linux they may be in a separate package such as <strong>valgrind-devel</strong>). Note though that there is no guarantee that the code in R will be compatible with very old<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> or future <code>valgrind</code> headers.</p><div class="no-row-height column-margin column-container"><li id="fn2" role="doc-endnote"><p><sup>2</sup>&nbsp;We believe that versions 3.4.0 to 3.15.0 are compatible.</p></li></div></div>
 <p>If you need to re-configure R with different options you may need to run <code>make clean</code> or even <code>make distclean</code> before doing so.</p>
 <p>The <code>configure</code> script has other generic options added by <code>autoconf</code> and which are not supported for R: in particular building for one architecture on a different host is not possible.</p>
 </section>
@@ -366,7 +386,7 @@
 <h3 class="subsection anchored" data-number="11.3.1" data-anchor-id="setting-paper-size"><span class="header-section-number">11.3.1</span> Setting paper size</h3>
 <p>One common variable to change is <code>R_PAPERSIZE</code>, which defaults to <code>a4</code>, not <code>letter</code>. (Valid values are <code>a4</code>, <code>letter</code>, <code>legal</code> and <code>executive</code>.)</p>
 <p>This is used both when configuring R to set the default, and when running R to override the default. It is also used to set the paper size when making PDF manuals.</p>
-<p>The configure default will most often be <code>a4</code> if <code>R_PAPERSIZE</code> is unset. (If the (Debian Linux) program <code>paperconf</code> is found or the environment variable <code>PAPERSIZE</code> is set, these are used to produce the default.)</p>
+<p>The configure default will most often be <code>a4</code> if <code>R_PAPERSIZE</code> is unset. (If the program <code>paperconf</code> is found, present in many Linux distributions, or the environment variable <code>PAPERSIZE</code> is set, these are used to produce the default.)</p>
 </section>
 <section id="setting-the-browsers" class="level3 subsection" data-number="11.3.2">
 <h3 class="subsection anchored" data-number="11.3.2" data-anchor-id="setting-the-browsers"><span class="header-section-number">11.3.2</span> Setting the browsers</h3>
@@ -401,7 +421,7 @@
 <p>Note that only Fortran compilers which convert identifiers to lower case are supported.</p>
 <p>You must set whatever compilation flags (if any) are needed to ensure that Fortran <code>integer</code> is equivalent to a C <code>int</code> pointer and Fortran <code>double precision</code> is equivalent to a C <code>double</code> pointer. This is checked during the configuration process.</p>
 <p>Some of the Fortran code makes use of <code>DOUBLE COMPLEX</code> and <code>COMPLEX*16</code> variables. This is checked for at configure time, as well as its equivalence to the <code>Rcomplex</code> C structure defined in <code>R_ext/Complex.h</code>.</p>
-<p><code>gfortran</code>&nbsp;10 by default gives a compilation error for the previously widespread practice of passing a Fortran array element where an array is expected, or a scalar instead of a length-one array. See <a href="https://gcc.gnu.org/gcc-10/porting_to.html" class="uri">https://gcc.gnu.org/gcc-10/porting_to.html</a>.</p>
+<p><code>gfortran</code>&nbsp;10 by default gives a compilation error for the previously widespread practice of passing a Fortran array element where an array is expected, or a scalar instead of a length-one array. See <a href="https://gcc.gnu.org/gcc-10/porting_to.html" class="uri">https://gcc.gnu.org/gcc-10/porting_to.html</a>. <code>gfortran</code>&nbsp;12 errors in more cases of this.</p>
 </section>
 <section id="compile-and-load-flags" class="level2 section" data-number="11.7">
 <h2 class="section anchored" data-number="11.7" data-anchor-id="compile-and-load-flags"><span class="header-section-number">11.7</span> Compile and load flags</h2>
@@ -495,12 +515,30 @@
 <div class="page-columns page-full"><p>The ultimate sources for package <strong>compiler</strong> are in its <code>noweb</code> directory. To re-create the sources from <code>src/library/compiler/noweb/compiler.nw</code>, the command <code>notangle</code> is required. Some Linux distributions include this command in package <strong>noweb</strong>. It can also be installed from the sources at <a href="https://www.cs.tufts.edu/~nr/noweb/" class="uri">https://www.cs.tufts.edu/~nr/noweb/</a><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. The package sources are only re-created even in maintainer mode if <code>src/library/compiler/noweb/compiler.nw</code> has been updated.</p><div class="no-row-height column-margin column-container"><li id="fn4" role="doc-endnote"><p><sup>4</sup>&nbsp;The links there have proved difficult to access, in which case grab the copy made available at <a href="https://developer.r-project.org/noweb-2.11b.tgz" class="uri">https://developer.r-project.org/noweb-2.11b.tgz</a>.</p></li></div></div>
 
 
-
 </section>
 
+
 </main> <!-- /main -->
-<script type="application/javascript">
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -520,7 +558,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.blur();
     // flash "checked"
     button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
     setTimeout(function() {
+      button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
     // clear code selection
@@ -610,6 +651,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
   </div>
 </footer>
+
 
 
 </body></html>

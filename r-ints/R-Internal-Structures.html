@@ -1,123 +1,129 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-  <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.180">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>R Manuals :: R Internals - 1&nbsp; R Internal Structures</title>
-  <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      {   }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-    code span.at { color: #7d9029; } /* Attribute */
-    code span.bn { color: #40a070; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #4070a0; } /* Char */
-    code span.cn { color: #880000; } /* Constant */
-    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-    code span.dt { color: #902000; } /* DataType */
-    code span.dv { color: #40a070; } /* DecVal */
-    code span.er { color: #ff0000; font-weight: bold; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #40a070; } /* Float */
-    code span.fu { color: #06287e; } /* Function */
-    code span.im { } /* Import */
-    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-    code span.op { color: #666666; } /* Operator */
-    code span.ot { color: #007020; } /* Other */
-    code span.pp { color: #bc7a00; } /* Preprocessor */
-    code span.sc { color: #4070a0; } /* SpecialChar */
-    code span.ss { color: #bb6688; } /* SpecialString */
-    code span.st { color: #4070a0; } /* String */
-    code span.va { color: #19177c; } /* Variable */
-    code span.vs { color: #4070a0; } /* VerbatimString */
-    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-  </style>
 
-  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-  <script src="site_libs/quarto-nav/headroom.min.js"></script>
-  <script src="site_libs/clipboard/clipboard.min.js"></script>
-  <meta name="quarto:offset" content="./">
-  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-  <script src="site_libs/quarto-search/fuse.min.js"></script>
-  <script src="site_libs/quarto-search/quarto-search.js"></script>
-  <link href="./_002eInternal-vs-_002ePrimitive.md" rel="next">
-  <link href="./index.html" rel="prev">
-  <script src="site_libs/quarto-html/quarto.js"></script>
-  <script src="site_libs/quarto-html/popper.min.js"></script>
-  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-  <script src="site_libs/quarto-html/anchor.min.js"></script>
-  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-  <link id="quarto-text-highlighting-styles" href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
-  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
-  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
-  <script id="quarto-search-options" type="application/json">{
-    "location": "navbar",
-    "copy-button": false,
-    "collapse-after": 3,
-    "panel-placement": "end",
-    "type": "overlay",
-    "limit": 20,
-    "language": {
-      "search-no-results-text": "No results",
-      "search-matching-documents-text": "matching documents",
-      "search-copy-link-title": "Copy link to search",
-      "search-hide-matches-text": "Hide additional matches",
-      "search-more-match-text": "more match in this document",
-      "search-more-matches-text": "more matches in this document",
-      "search-clear-button-title": "Clear",
-      "search-detached-cancel-button-title": "Cancel",
-      "search-submit-button-title": "Submit"
-    }
-  }</script>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>R Manuals :: R Internals - 1&nbsp; R Internal Structures</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./_002eInternal-vs-_002ePrimitive.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
 </head>
-<body class="floating slimcontent">
+
+<body class="nav-sidebar floating nav-fixed slimcontent">
+
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
@@ -202,6 +208,11 @@
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./_002eInternal-vs-_002ePrimitive.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>.Internal</code> vs <code>.Primitive</code></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./Internationalization-in-the-R-sources.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Internationalization in the R sources</span></a>
   </div>
 </li>
@@ -266,65 +277,79 @@
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc">
-<h2 id="toc-title">Table of contents</h2>
-<ul>
-<li><a href="#sexps" class="nav-link active" data-scroll-target="#sexps"> <span class="header-section-number">1.1</span> SEXPs</a>
-<ul class="collapse">
-<li><a href="#sexptypes" class="nav-link" data-scroll-target="#sexptypes"> <span class="header-section-number">1.1.1</span> SEXPTYPEs</a></li>
-<li><a href="#rest-of-header" class="nav-link" data-scroll-target="#rest-of-header"> <span class="header-section-number">1.1.2</span> Rest of header</a></li>
-<li><a href="#the-data" class="nav-link" data-scroll-target="#the-data"> <span class="header-section-number">1.1.3</span> The ‘data’</a></li>
-<li><a href="#allocation-classes" class="nav-link" data-scroll-target="#allocation-classes"> <span class="header-section-number">1.1.4</span> Allocation classes</a></li>
-</ul></li>
-<li><a href="#environments-and-variable-lookup" class="nav-link" data-scroll-target="#environments-and-variable-lookup"> <span class="header-section-number">1.2</span> Environments and variable lookup</a>
-<ul class="collapse">
-<li><a href="#search-paths" class="nav-link" data-scroll-target="#search-paths"> <span class="header-section-number">1.2.1</span> Search paths</a></li>
-<li><a href="#namespaces" class="nav-link" data-scroll-target="#namespaces"> <span class="header-section-number">1.2.2</span> Namespaces</a></li>
-<li><a href="#hash-table" class="nav-link" data-scroll-target="#hash-table"> <span class="header-section-number">1.2.3</span> Hash table</a></li>
-</ul></li>
-<li><a href="#attributes" class="nav-link" data-scroll-target="#attributes"> <span class="header-section-number">1.3</span> Attributes</a></li>
-<li><a href="#contexts" class="nav-link" data-scroll-target="#contexts"> <span class="header-section-number">1.4</span> Contexts</a></li>
-<li><a href="#argument-evaluation" class="nav-link" data-scroll-target="#argument-evaluation"> <span class="header-section-number">1.5</span> Argument evaluation</a>
-<ul class="collapse">
-<li><a href="#missingness" class="nav-link" data-scroll-target="#missingness"> <span class="header-section-number">1.5.1</span> Missingness</a></li>
-<li><a href="#dot-dot-dot-arguments" class="nav-link" data-scroll-target="#dot-dot-dot-arguments"> <span class="header-section-number">1.5.2</span> Dot-dot-dot arguments</a></li>
-</ul></li>
-<li><a href="#autoprinting" class="nav-link" data-scroll-target="#autoprinting"> <span class="header-section-number">1.6</span> Autoprinting</a></li>
-<li><a href="#the-write-barrier-and-the-garbage-collector" class="nav-link" data-scroll-target="#the-write-barrier-and-the-garbage-collector"> <span class="header-section-number">1.7</span> The write barrier and the garbage collector</a></li>
-<li><a href="#serialization-formats" class="nav-link" data-scroll-target="#serialization-formats"> <span class="header-section-number">1.8</span> Serialization Formats</a></li>
-<li><a href="#encodings-for-charsxps" class="nav-link" data-scroll-target="#encodings-for-charsxps"> <span class="header-section-number">1.9</span> Encodings for CHARSXPs</a></li>
-<li><a href="#the-charsxp-cache" class="nav-link" data-scroll-target="#the-charsxp-cache"> <span class="header-section-number">1.10</span> The CHARSXP cache</a></li>
-<li><a href="#warnings-and-errors" class="nav-link" data-scroll-target="#warnings-and-errors"> <span class="header-section-number">1.11</span> Warnings and errors</a></li>
-<li><a href="#s4-objects" class="nav-link" data-scroll-target="#s4-objects"> <span class="header-section-number">1.12</span> S4 objects</a>
-<ul class="collapse">
-<li><a href="#representation-of-s4-objects" class="nav-link" data-scroll-target="#representation-of-s4-objects"> <span class="header-section-number">1.12.1</span> Representation of S4 objects</a></li>
-<li><a href="#s4-classes" class="nav-link" data-scroll-target="#s4-classes"> <span class="header-section-number">1.12.2</span> S4 classes</a></li>
-<li><a href="#s4-methods" class="nav-link" data-scroll-target="#s4-methods"> <span class="header-section-number">1.12.3</span> S4 methods</a></li>
-<li><a href="#mechanics-of-s4-dispatch" class="nav-link" data-scroll-target="#mechanics-of-s4-dispatch"> <span class="header-section-number">1.12.4</span> Mechanics of S4 dispatch</a></li>
-</ul></li>
-<li><a href="#memory-allocators" class="nav-link" data-scroll-target="#memory-allocators"> <span class="header-section-number">1.13</span> Memory allocators</a>
-<ul class="collapse">
-<li><a href="#internals-of-r_alloc" class="nav-link" data-scroll-target="#internals-of-r_alloc"> <span class="header-section-number">1.13.1</span> Internals of R_alloc</a></li>
-</ul></li>
-<li><a href="#internal-use-of-global-and-base-environments" class="nav-link" data-scroll-target="#internal-use-of-global-and-base-environments"> <span class="header-section-number">1.14</span> Internal use of global and base environments</a>
-<ul class="collapse">
-<li><a href="#base-environment" class="nav-link" data-scroll-target="#base-environment"> <span class="header-section-number">1.14.1</span> Base environment</a></li>
-<li><a href="#global-environment" class="nav-link" data-scroll-target="#global-environment"> <span class="header-section-number">1.14.2</span> Global environment</a></li>
-</ul></li>
-<li><a href="#modules" class="nav-link" data-scroll-target="#modules"> <span class="header-section-number">1.15</span> Modules</a></li>
-<li><a href="#visibility" class="nav-link" data-scroll-target="#visibility"> <span class="header-section-number">1.16</span> Visibility</a>
-<ul class="collapse">
-<li><a href="#hiding-c-entry-points" class="nav-link" data-scroll-target="#hiding-c-entry-points"> <span class="header-section-number">1.16.1</span> Hiding C entry points</a></li>
-<li><a href="#variables-in-windows-dlls" class="nav-link" data-scroll-target="#variables-in-windows-dlls"> <span class="header-section-number">1.16.2</span> Variables in Windows DLLs</a></li>
-</ul></li>
-<li><a href="#lazy-loading" class="nav-link" data-scroll-target="#lazy-loading"> <span class="header-section-number">1.17</span> Lazy loading</a></li>
-</ul>
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sexps" id="toc-sexps" class="nav-link active" data-scroll-target="#sexps"> <span class="header-section-number">1.1</span> SEXPs</a>
+  <ul class="collapse">
+  <li><a href="#sexptypes" id="toc-sexptypes" class="nav-link" data-scroll-target="#sexptypes"> <span class="header-section-number">1.1.1</span> SEXPTYPEs</a></li>
+  <li><a href="#rest-of-header" id="toc-rest-of-header" class="nav-link" data-scroll-target="#rest-of-header"> <span class="header-section-number">1.1.2</span> Rest of header</a></li>
+  <li><a href="#the-data" id="toc-the-data" class="nav-link" data-scroll-target="#the-data"> <span class="header-section-number">1.1.3</span> The ‘data’</a></li>
+  <li><a href="#allocation-classes" id="toc-allocation-classes" class="nav-link" data-scroll-target="#allocation-classes"> <span class="header-section-number">1.1.4</span> Allocation classes</a></li>
+  </ul></li>
+  <li><a href="#environments-and-variable-lookup" id="toc-environments-and-variable-lookup" class="nav-link" data-scroll-target="#environments-and-variable-lookup"> <span class="header-section-number">1.2</span> Environments and variable lookup</a>
+  <ul class="collapse">
+  <li><a href="#search-paths" id="toc-search-paths" class="nav-link" data-scroll-target="#search-paths"> <span class="header-section-number">1.2.1</span> Search paths</a></li>
+  <li><a href="#namespaces" id="toc-namespaces" class="nav-link" data-scroll-target="#namespaces"> <span class="header-section-number">1.2.2</span> Namespaces</a></li>
+  <li><a href="#hash-table" id="toc-hash-table" class="nav-link" data-scroll-target="#hash-table"> <span class="header-section-number">1.2.3</span> Hash table</a></li>
+  </ul></li>
+  <li><a href="#attributes" id="toc-attributes" class="nav-link" data-scroll-target="#attributes"> <span class="header-section-number">1.3</span> Attributes</a></li>
+  <li><a href="#contexts" id="toc-contexts" class="nav-link" data-scroll-target="#contexts"> <span class="header-section-number">1.4</span> Contexts</a></li>
+  <li><a href="#argument-evaluation" id="toc-argument-evaluation" class="nav-link" data-scroll-target="#argument-evaluation"> <span class="header-section-number">1.5</span> Argument evaluation</a>
+  <ul class="collapse">
+  <li><a href="#missingness" id="toc-missingness" class="nav-link" data-scroll-target="#missingness"> <span class="header-section-number">1.5.1</span> Missingness</a></li>
+  <li><a href="#dot-dot-dot-arguments" id="toc-dot-dot-dot-arguments" class="nav-link" data-scroll-target="#dot-dot-dot-arguments"> <span class="header-section-number">1.5.2</span> Dot-dot-dot arguments</a></li>
+  </ul></li>
+  <li><a href="#autoprinting" id="toc-autoprinting" class="nav-link" data-scroll-target="#autoprinting"> <span class="header-section-number">1.6</span> Autoprinting</a></li>
+  <li><a href="#the-write-barrier-and-the-garbage-collector" id="toc-the-write-barrier-and-the-garbage-collector" class="nav-link" data-scroll-target="#the-write-barrier-and-the-garbage-collector"> <span class="header-section-number">1.7</span> The write barrier and the garbage collector</a></li>
+  <li><a href="#serialization-formats" id="toc-serialization-formats" class="nav-link" data-scroll-target="#serialization-formats"> <span class="header-section-number">1.8</span> Serialization Formats</a></li>
+  <li><a href="#encodings-for-charsxps" id="toc-encodings-for-charsxps" class="nav-link" data-scroll-target="#encodings-for-charsxps"> <span class="header-section-number">1.9</span> Encodings for CHARSXPs</a></li>
+  <li><a href="#the-charsxp-cache" id="toc-the-charsxp-cache" class="nav-link" data-scroll-target="#the-charsxp-cache"> <span class="header-section-number">1.10</span> The CHARSXP cache</a></li>
+  <li><a href="#warnings-and-errors" id="toc-warnings-and-errors" class="nav-link" data-scroll-target="#warnings-and-errors"> <span class="header-section-number">1.11</span> Warnings and errors</a></li>
+  <li><a href="#s4-objects" id="toc-s4-objects" class="nav-link" data-scroll-target="#s4-objects"> <span class="header-section-number">1.12</span> S4 objects</a>
+  <ul class="collapse">
+  <li><a href="#representation-of-s4-objects" id="toc-representation-of-s4-objects" class="nav-link" data-scroll-target="#representation-of-s4-objects"> <span class="header-section-number">1.12.1</span> Representation of S4 objects</a></li>
+  <li><a href="#s4-classes" id="toc-s4-classes" class="nav-link" data-scroll-target="#s4-classes"> <span class="header-section-number">1.12.2</span> S4 classes</a></li>
+  <li><a href="#s4-methods" id="toc-s4-methods" class="nav-link" data-scroll-target="#s4-methods"> <span class="header-section-number">1.12.3</span> S4 methods</a></li>
+  <li><a href="#mechanics-of-s4-dispatch" id="toc-mechanics-of-s4-dispatch" class="nav-link" data-scroll-target="#mechanics-of-s4-dispatch"> <span class="header-section-number">1.12.4</span> Mechanics of S4 dispatch</a></li>
+  </ul></li>
+  <li><a href="#memory-allocators" id="toc-memory-allocators" class="nav-link" data-scroll-target="#memory-allocators"> <span class="header-section-number">1.13</span> Memory allocators</a>
+  <ul class="collapse">
+  <li><a href="#internals-of-r_alloc" id="toc-internals-of-r_alloc" class="nav-link" data-scroll-target="#internals-of-r_alloc"> <span class="header-section-number">1.13.1</span> Internals of R_alloc</a></li>
+  </ul></li>
+  <li><a href="#internal-use-of-global-and-base-environments" id="toc-internal-use-of-global-and-base-environments" class="nav-link" data-scroll-target="#internal-use-of-global-and-base-environments"> <span class="header-section-number">1.14</span> Internal use of global and base environments</a>
+  <ul class="collapse">
+  <li><a href="#base-environment" id="toc-base-environment" class="nav-link" data-scroll-target="#base-environment"> <span class="header-section-number">1.14.1</span> Base environment</a></li>
+  <li><a href="#global-environment" id="toc-global-environment" class="nav-link" data-scroll-target="#global-environment"> <span class="header-section-number">1.14.2</span> Global environment</a></li>
+  </ul></li>
+  <li><a href="#modules" id="toc-modules" class="nav-link" data-scroll-target="#modules"> <span class="header-section-number">1.15</span> Modules</a></li>
+  <li><a href="#visibility" id="toc-visibility" class="nav-link" data-scroll-target="#visibility"> <span class="header-section-number">1.16</span> Visibility</a>
+  <ul class="collapse">
+  <li><a href="#hiding-c-entry-points" id="toc-hiding-c-entry-points" class="nav-link" data-scroll-target="#hiding-c-entry-points"> <span class="header-section-number">1.16.1</span> Hiding C entry points</a></li>
+  <li><a href="#variables-in-windows-dlls" id="toc-variables-in-windows-dlls" class="nav-link" data-scroll-target="#variables-in-windows-dlls"> <span class="header-section-number">1.16.2</span> Variables in Windows DLLs</a></li>
+  </ul></li>
+  <li><a href="#lazy-loading" id="toc-lazy-loading" class="nav-link" data-scroll-target="#lazy-loading"> <span class="header-section-number">1.17</span> Lazy loading</a></li>
+  </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
-<header id="title-block-header" class="quarto-title-block default">
 
-<div class="quarto-title"><h1 class="title display-7"><span id="r-internal-structures" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R Internal Structures</span></span></h1></div></header>
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="r-internal-structures" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R Internal Structures</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
 
 <p>This chapter is the beginnings of documentation about R internal structures. It is written for the core team and others studying the code in the <code>src/main</code> directory.</p>
 <p>It is a work-in-progress and should be checked against the current version of the source code. Versions for R 2.x.y contain historical comments about when features were introduced: this version is for the 3.x.y series.</p>
@@ -656,8 +681,8 @@
 </section>
 <section id="namespaces" class="level3 subsection" data-number="1.2.2">
 <h3 class="subsection anchored" data-number="1.2.2" data-anchor-id="namespaces"><span class="header-section-number">1.2.2</span> Namespaces</h3>
-<p>Namespaces are environments associated with packages (and once again the base package is special and will be considered separately). A package <code>pkg</code> defines two environments <code>namespace:pkg</code> and <code>package:pkg</code>: it is <code>package:pkg</code> that can be <code>attach</code>ed and form part of the search path.</p>
-<p>The objects defined by the R code in the package are symbols with bindings in the <code>namespace:pkg</code> environment. The <code>package:pkg</code> environment is populated by selected symbols from the <code>namespace:pkg</code> environment (the exports). The enclosure of this environment is an environment populated with the explicit imports from other namespaces, and the enclosure of <em>that</em> environment is the base namespace. (So the illusion of the imports being in the namespace environment is created via the environment tree.) The enclosure of the base namespace is the global environment, so the search from a package namespace goes via the (explicit and implicit) imports to the standard ‘search path’.</p>
+<p>Namespaces are environments associated with packages (and once again the base package is special and will be considered separately). A package <var>pkg</var> defines two environments <var>namespace:``pkg</var> and <var>package:``pkg</var>: it is <var>package:``pkg</var> that can be <code>attach</code>ed and form part of the search path.</p>
+<p>The objects defined by the R code in the package are symbols with bindings in the <var>namespace:``pkg</var> environment. The <var>package:``pkg</var> environment is populated by selected symbols from the <var>namespace:``pkg</var> environment (the exports). The enclosure of this environment is an environment populated with the explicit imports from other namespaces, and the enclosure of <em>that</em> environment is the base namespace. (So the illusion of the imports being in the namespace environment is created via the environment tree.) The enclosure of the base namespace is the global environment, so the search from a package namespace goes via the (explicit and implicit) imports to the standard ‘search path’.</p>
 <p>The base namespace environment <code>R_BaseNamespace</code> is another <code>ENVSXP</code> that is special-cased. It is effectively the same thing as the base environment <code>R_BaseEnv</code> <em>except</em> that its enclosure is the global environment rather than the empty environment: the internal code diverts lookups in its frame to the global symbol table.</p>
 </section>
 <section id="hash-table" class="level3 subsection" data-number="1.2.3">
@@ -701,7 +726,7 @@
 </section>
 <section id="contexts" class="level2 section" data-number="1.4">
 <h2 class="section anchored" data-number="1.4" data-anchor-id="contexts"><span class="header-section-number">1.4</span> Contexts</h2>
-<p><em>Contexts</em> are the internal mechanism used to keep track of where a computation has got to (and from where), so that control-flow constructs can work and reasonable information can be produced on error conditions (such as <em>via</em> traceback), and otherwise (the <code>sys.xxx</code> functions).</p>
+<p><em>Contexts</em> are the internal mechanism used to keep track of where a computation has got to (and from where), so that control-flow constructs can work and reasonable information can be produced on error conditions (such as <em>via</em> traceback), and otherwise (the <var>sys.``xxx</var> functions).</p>
 <p>Execution contexts are a stack of C <code>structs</code>:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> <span class="kw">struct</span> RCNTXT <span class="op">{</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">struct</span> RCNTXT <span class="op">*</span>nextcontext<span class="op">;</span> <span class="co">/* The next context up the chain */</span></span>
@@ -767,7 +792,7 @@
 <h3 class="subsection anchored" data-number="1.5.2" data-anchor-id="dot-dot-dot-arguments"><span class="header-section-number">1.5.2</span> Dot-dot-dot arguments</h3>
 <p>Dot-dot-dot arguments are convenient when writing functions, but complicate the internal code for argument evaluation.</p>
 <p>The formals of a function with a <code>...</code> argument represent that as a single argument like any other argument, with tag the symbol <code>R_DotsSymbol</code>. When the actual arguments are matched to the formals, the value of the <code>...</code> argument is of <code>SEXPTYPE</code> <code>DOTSXP</code>, a pairlist of promises (as used for matched arguments) but distinguished by the <code>SEXPTYPE</code>.</p>
-<p>Recall that the evaluation frame for a function initially contains the <code>name=value</code> pairs from the matched call, and hence this will be true for <code>...</code> as well. The value of <code>...</code> is a (special) pairlist whose elements are referred to by the special symbols <code>..1</code>, <code>..2</code>, … which have the <code>DDVAL</code> bit set: when one of these is encountered it is looked up (via <code>ddfindVar</code>) in the value of the <code>...</code> symbol in the evaluation frame.</p>
+<p>Recall that the evaluation frame for a function initially contains the <var>name</var><var>=``value</var> pairs from the matched call, and hence this will be true for <code>...</code> as well. The value of <code>...</code> is a (special) pairlist whose elements are referred to by the special symbols <code>..1</code>, <code>..2</code>, … which have the <code>DDVAL</code> bit set: when one of these is encountered it is looked up (via <code>ddfindVar</code>) in the value of the <code>...</code> symbol in the evaluation frame.</p>
 <p>Values of arguments matched to a <code>...</code> argument can be missing.</p>
 <p>Special primitives may need to handle <code>...</code> arguments: see for example the internal code of <code>switch</code> in file <code>src/main/builtin.c</code>.</p>
 </section>
@@ -846,13 +871,13 @@
 </section>
 <section id="s4-classes" class="level3 subsection" data-number="1.12.2">
 <h3 class="subsection anchored" data-number="1.12.2" data-anchor-id="s4-classes"><span class="header-section-number">1.12.2</span> S4 classes</h3>
-<p>S4 classes are stored as R objects in the environment in which they are created, with names <code>.__C__classname</code>: as such they are not listed by default by <code>ls</code>.</p>
+<p>S4 classes are stored as R objects in the environment in which they are created, with names <var>.__C__``classname</var>: as such they are not listed by default by <code>ls</code>.</p>
 <p>The objects are S4 objects of class <code>"classRepresentation"</code> which is defined in the <strong>methods</strong> package.</p>
 <p>Since these are just objects, they are subject to the normal scoping rules and can be imported and exported from namespaces like other objects. The directives <code>importClassesFrom</code> and <code>exportClasses</code> are merely convenient ways to refer to class objects without needing to know their internal ‘metaname’ (although <code>exportClasses</code> does a little sanity checking via <code>isClass</code>).</p>
 </section>
 <section id="s4-methods" class="level3 subsection" data-number="1.12.3">
 <h3 class="subsection anchored" data-number="1.12.3" data-anchor-id="s4-methods"><span class="header-section-number">1.12.3</span> S4 methods</h3>
-<p>Details of the methods are stored in environments (typically hidden in the respective namespace) with a non-syntactic name of the form <code>.__T__generic:package</code> containing objects of class <code>MethodDefinition</code> for all methods defined in the current environment for the named generic derived from a specific package (which might be <code>.GlobalEnv</code>). This is sometimes referred to as a ‘methods table’.</p>
+<p>Details of the methods are stored in environments (typically hidden in the respective namespace) with a non-syntactic name of the form <var>.__T__``generic</var><var>:``package</var> containing objects of class <code>MethodDefinition</code> for all methods defined in the current environment for the named generic derived from a specific package (which might be <code>.GlobalEnv</code>). This is sometimes referred to as a ‘methods table’.</p>
 <p>For example,</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">length</span>(nM <span class="ot">&lt;-</span> <span class="fu">asNamespace</span>(<span class="st">"Matrix"</span>) )                    <span class="co"># 941 for Matrix 1.2-6</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">length</span>(meth <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">"^[.]__T__"</span>, <span class="fu">names</span>(nM), <span class="at">value=</span><span class="cn">TRUE</span>))<span class="co"># 107 generics with methods</span></span>
@@ -966,8 +991,8 @@
 <section id="lazy-loading" class="level2 section" data-number="1.17">
 <h2 class="section anchored" data-number="1.17" data-anchor-id="lazy-loading"><span class="header-section-number">1.17</span> Lazy loading</h2>
 <p>Lazy loading is always used for code in packages but is optional (selected by the package maintainer) for datasets in packages. When a package/namespace which uses it is loaded, the package/namespace environment is populated with promises for all the named objects: when these promises are evaluated they load the actual code from a database.</p>
-<p>There are separate databases for code and data, stored in the <code>R</code> and <code>data</code> subdirectories. The database consists of two files, <code>name.rdb</code> and <code>name.rdx</code>. The <code>.rdb</code> file is a concatenation of serialized objects, and the <code>.rdx</code> file contains an index. The objects are stored in (usually) a <code>gzip</code>-compressed format with a 4-byte header giving the uncompressed serialized length (in XDR, that is big-endian, byte order) and read by a call to the primitive <code>lazyLoadDBfetch</code>. (Note that this makes lazy-loading unsuitable for really large objects: the unserialized length of an R object can exceed 4GB.)</p>
-<p>The index or ‘map’ file <code>name.rdx</code> is a compressed serialized R object to be read by <code>readRDS</code>. It is a list with three elements <code>variables</code>, <code>references</code> and <code>compressed</code>. The first two are named lists of integer vectors of length 2 giving the offset and length of the serialized object in the <code>name.rdb</code> file. Element <code>variables</code> has an entry for each named object: <code>references</code> serializes a temporary environment used when named environments are added to the database. <code>compressed</code> is a logical indicating if the serialized objects were compressed: compression is always used nowadays. We later added the values <code>compressed = 2</code> and <code>3</code> for <code>bzip2</code> and <code>xz</code> compression (with the possibility of future expansion to other methods): these formats add a fifth byte to the header for the type of compression, and store serialized objects uncompressed if compression expands them.</p>
+<p>There are separate databases for code and data, stored in the <code>R</code> and <code>data</code> subdirectories. The database consists of two files, <var>name</var><code>.rdb</code> and <var>name</var><code>.rdx</code>. The <code>.rdb</code> file is a concatenation of serialized objects, and the <code>.rdx</code> file contains an index. The objects are stored in (usually) a <code>gzip</code>-compressed format with a 4-byte header giving the uncompressed serialized length (in XDR, that is big-endian, byte order) and read by a call to the primitive <code>lazyLoadDBfetch</code>. (Note that this makes lazy-loading unsuitable for really large objects: the unserialized length of an R object can exceed 4GB.)</p>
+<p>The index or ‘map’ file <var>name</var><code>.rdx</code> is a compressed serialized R object to be read by <code>readRDS</code>. It is a list with three elements <code>variables</code>, <code>references</code> and <code>compressed</code>. The first two are named lists of integer vectors of length 2 giving the offset and length of the serialized object in the <var>name</var><code>.rdb</code> file. Element <code>variables</code> has an entry for each named object: <code>references</code> serializes a temporary environment used when named environments are added to the database. <code>compressed</code> is a logical indicating if the serialized objects were compressed: compression is always used nowadays. We later added the values <code>compressed = 2</code> and <code>3</code> for <code>bzip2</code> and <code>xz</code> compression (with the possibility of future expansion to other methods): these formats add a fifth byte to the header for the type of compression, and store serialized objects uncompressed if compression expands them.</p>
 <p>Source references are treated specially for performance reasons: bindings <code>lines</code> and <code>parseData</code> from <code>srcfile</code> environments are loaded lazily. This uses a mechanism that allows loading selected bindings from an environment lazily. The key for such environment is a list with two elements: <code>eagerKey</code> gives the length-two integer key for the bindings loaded eagerly and <code>lazyKeys</code> gives a vector of length-two integer keys, one for each lazily loaded binding.</p>
 <p>The loader for a lazy-load database of code or data is function <code>lazyLoad</code> in the <strong>base</strong> package, but note that there is a separate copy to load <strong>base</strong> itself in file <code>R_HOME/base/R/base</code>.</p>
 <p>Lazy-load databases are created by the code in <code>src/library/tools/R/makeLazyLoad.R</code>: the main tool is the unexported function <code>makeLazyLoadDB</code> and the insertion of database entries is done by calls to <code>.Call("R_lazyLoadDBinsertValue", ...)</code>.</p>
@@ -976,12 +1001,30 @@
 <p>The same database mechanism is used to store parsed <code>Rd</code> files. One or all of the parsed objects is fetched by a call to <code>tools:::fetchRdDB</code>.</p>
 
 
-
 </section>
 
+
 </main> <!-- /main -->
-<script type="application/javascript">
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -1001,7 +1044,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.blur();
     // flash "checked"
     button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
     setTimeout(function() {
+      button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
     // clear code selection
@@ -1079,8 +1125,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./_002eInternal-vs-_002ePrimitive.md" class="pagination-link">
-        <span class="nav-page-text"></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./_002eInternal-vs-_002ePrimitive.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>.Internal</code> vs <code>.Primitive</code></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1091,6 +1137,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
   </div>
 </footer>
+
 
 
 </body></html>

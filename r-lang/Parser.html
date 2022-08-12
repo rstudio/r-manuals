@@ -1,123 +1,129 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-  <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.180">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>R Manuals :: R Language Definition - 10&nbsp; Parser</title>
-  <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      {   }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-    code span.at { color: #7d9029; } /* Attribute */
-    code span.bn { color: #40a070; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #4070a0; } /* Char */
-    code span.cn { color: #880000; } /* Constant */
-    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-    code span.dt { color: #902000; } /* DataType */
-    code span.dv { color: #40a070; } /* DecVal */
-    code span.er { color: #ff0000; font-weight: bold; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #40a070; } /* Float */
-    code span.fu { color: #06287e; } /* Function */
-    code span.im { } /* Import */
-    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-    code span.op { color: #666666; } /* Operator */
-    code span.ot { color: #007020; } /* Other */
-    code span.pp { color: #bc7a00; } /* Preprocessor */
-    code span.sc { color: #4070a0; } /* SpecialChar */
-    code span.ss { color: #bb6688; } /* SpecialString */
-    code span.st { color: #4070a0; } /* String */
-    code span.va { color: #19177c; } /* Variable */
-    code span.vs { color: #4070a0; } /* VerbatimString */
-    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-  </style>
 
-  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-  <script src="site_libs/quarto-nav/headroom.min.js"></script>
-  <script src="site_libs/clipboard/clipboard.min.js"></script>
-  <meta name="quarto:offset" content="./">
-  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-  <script src="site_libs/quarto-search/fuse.min.js"></script>
-  <script src="site_libs/quarto-search/quarto-search.js"></script>
-  <link href="./Function-and-Variable-Index.html" rel="next">
-  <link href="./Debugging.html" rel="prev">
-  <script src="site_libs/quarto-html/quarto.js"></script>
-  <script src="site_libs/quarto-html/popper.min.js"></script>
-  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-  <script src="site_libs/quarto-html/anchor.min.js"></script>
-  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-  <link id="quarto-text-highlighting-styles" href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
-  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
-  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
-  <script id="quarto-search-options" type="application/json">{
-    "location": "navbar",
-    "copy-button": false,
-    "collapse-after": 3,
-    "panel-placement": "end",
-    "type": "overlay",
-    "limit": 20,
-    "language": {
-      "search-no-results-text": "No results",
-      "search-matching-documents-text": "matching documents",
-      "search-copy-link-title": "Copy link to search",
-      "search-hide-matches-text": "Hide additional matches",
-      "search-more-match-text": "more match in this document",
-      "search-more-matches-text": "more matches in this document",
-      "search-clear-button-title": "Clear",
-      "search-detached-cancel-button-title": "Cancel",
-      "search-submit-button-title": "Submit"
-    }
-  }</script>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>R Manuals :: R Language Definition - 10&nbsp; Parser</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Function-and-Variable-Index.html" rel="next">
+<link href="./Debugging.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
 </head>
-<body class="floating slimcontent">
+
+<body class="nav-sidebar floating nav-fixed slimcontent">
+
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
@@ -266,44 +272,58 @@
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc">
-<h2 id="toc-title">Table of contents</h2>
-<ul>
-<li><a href="#the-parsing-process" class="nav-link active" data-scroll-target="#the-parsing-process"> <span class="header-section-number">10.1</span> The parsing process</a>
-<ul class="collapse">
-<li><a href="#modes-of-parsing" class="nav-link" data-scroll-target="#modes-of-parsing"> <span class="header-section-number">10.1.1</span> Modes of parsing</a></li>
-<li><a href="#internal-representation" class="nav-link" data-scroll-target="#internal-representation"> <span class="header-section-number">10.1.2</span> Internal representation</a></li>
-<li><a href="#deparsing" class="nav-link" data-scroll-target="#deparsing"> <span class="header-section-number">10.1.3</span> Deparsing</a></li>
-</ul></li>
-<li><a href="#comments" class="nav-link" data-scroll-target="#comments"> <span class="header-section-number">10.2</span> Comments</a></li>
-<li><a href="#tokens" class="nav-link" data-scroll-target="#tokens"> <span class="header-section-number">10.3</span> Tokens</a>
-<ul class="collapse">
-<li><a href="#constants" class="nav-link" data-scroll-target="#constants"> <span class="header-section-number">10.3.1</span> Constants</a></li>
-<li><a href="#identifiers" class="nav-link" data-scroll-target="#identifiers"> <span class="header-section-number">10.3.2</span> Identifiers</a></li>
-<li><a href="#reserved-words" class="nav-link" data-scroll-target="#reserved-words"> <span class="header-section-number">10.3.3</span> Reserved words</a></li>
-<li><a href="#special-operators" class="nav-link" data-scroll-target="#special-operators"> <span class="header-section-number">10.3.4</span> Special operators</a></li>
-<li><a href="#separators" class="nav-link" data-scroll-target="#separators"> <span class="header-section-number">10.3.5</span> Separators</a></li>
-<li><a href="#operator-tokens" class="nav-link" data-scroll-target="#operator-tokens"> <span class="header-section-number">10.3.6</span> Operator tokens</a></li>
-<li><a href="#grouping" class="nav-link" data-scroll-target="#grouping"> <span class="header-section-number">10.3.7</span> Grouping</a></li>
-<li><a href="#indexing-tokens" class="nav-link" data-scroll-target="#indexing-tokens"> <span class="header-section-number">10.3.8</span> Indexing tokens</a></li>
-</ul></li>
-<li><a href="#expressions" class="nav-link" data-scroll-target="#expressions"> <span class="header-section-number">10.4</span> Expressions</a>
-<ul class="collapse">
-<li><a href="#function-calls" class="nav-link" data-scroll-target="#function-calls"> <span class="header-section-number">10.4.1</span> Function calls</a></li>
-<li><a href="#infix-and-prefix-operators" class="nav-link" data-scroll-target="#infix-and-prefix-operators"> <span class="header-section-number">10.4.2</span> Infix and prefix operators</a></li>
-<li><a href="#index-constructions" class="nav-link" data-scroll-target="#index-constructions"> <span class="header-section-number">10.4.3</span> Index constructions</a></li>
-<li><a href="#compound-expressions" class="nav-link" data-scroll-target="#compound-expressions"> <span class="header-section-number">10.4.4</span> Compound expressions</a></li>
-<li><a href="#flow-control-elements" class="nav-link" data-scroll-target="#flow-control-elements"> <span class="header-section-number">10.4.5</span> Flow control elements</a></li>
-<li><a href="#function-definitions" class="nav-link" data-scroll-target="#function-definitions"> <span class="header-section-number">10.4.6</span> Function definitions</a></li>
-</ul></li>
-<li><a href="#directives" class="nav-link" data-scroll-target="#directives"> <span class="header-section-number">10.5</span> Directives</a></li>
-</ul>
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#the-parsing-process" id="toc-the-parsing-process" class="nav-link active" data-scroll-target="#the-parsing-process"> <span class="header-section-number">10.1</span> The parsing process</a>
+  <ul class="collapse">
+  <li><a href="#modes-of-parsing" id="toc-modes-of-parsing" class="nav-link" data-scroll-target="#modes-of-parsing"> <span class="header-section-number">10.1.1</span> Modes of parsing</a></li>
+  <li><a href="#internal-representation" id="toc-internal-representation" class="nav-link" data-scroll-target="#internal-representation"> <span class="header-section-number">10.1.2</span> Internal representation</a></li>
+  <li><a href="#deparsing" id="toc-deparsing" class="nav-link" data-scroll-target="#deparsing"> <span class="header-section-number">10.1.3</span> Deparsing</a></li>
+  </ul></li>
+  <li><a href="#comments" id="toc-comments" class="nav-link" data-scroll-target="#comments"> <span class="header-section-number">10.2</span> Comments</a></li>
+  <li><a href="#tokens" id="toc-tokens" class="nav-link" data-scroll-target="#tokens"> <span class="header-section-number">10.3</span> Tokens</a>
+  <ul class="collapse">
+  <li><a href="#constants" id="toc-constants" class="nav-link" data-scroll-target="#constants"> <span class="header-section-number">10.3.1</span> Constants</a></li>
+  <li><a href="#identifiers" id="toc-identifiers" class="nav-link" data-scroll-target="#identifiers"> <span class="header-section-number">10.3.2</span> Identifiers</a></li>
+  <li><a href="#reserved-words" id="toc-reserved-words" class="nav-link" data-scroll-target="#reserved-words"> <span class="header-section-number">10.3.3</span> Reserved words</a></li>
+  <li><a href="#special-operators" id="toc-special-operators" class="nav-link" data-scroll-target="#special-operators"> <span class="header-section-number">10.3.4</span> Special operators</a></li>
+  <li><a href="#separators" id="toc-separators" class="nav-link" data-scroll-target="#separators"> <span class="header-section-number">10.3.5</span> Separators</a></li>
+  <li><a href="#operator-tokens" id="toc-operator-tokens" class="nav-link" data-scroll-target="#operator-tokens"> <span class="header-section-number">10.3.6</span> Operator tokens</a></li>
+  <li><a href="#grouping" id="toc-grouping" class="nav-link" data-scroll-target="#grouping"> <span class="header-section-number">10.3.7</span> Grouping</a></li>
+  <li><a href="#indexing-tokens" id="toc-indexing-tokens" class="nav-link" data-scroll-target="#indexing-tokens"> <span class="header-section-number">10.3.8</span> Indexing tokens</a></li>
+  </ul></li>
+  <li><a href="#expressions" id="toc-expressions" class="nav-link" data-scroll-target="#expressions"> <span class="header-section-number">10.4</span> Expressions</a>
+  <ul class="collapse">
+  <li><a href="#function-calls" id="toc-function-calls" class="nav-link" data-scroll-target="#function-calls"> <span class="header-section-number">10.4.1</span> Function calls</a></li>
+  <li><a href="#infix-and-prefix-operators" id="toc-infix-and-prefix-operators" class="nav-link" data-scroll-target="#infix-and-prefix-operators"> <span class="header-section-number">10.4.2</span> Infix and prefix operators</a></li>
+  <li><a href="#index-constructions" id="toc-index-constructions" class="nav-link" data-scroll-target="#index-constructions"> <span class="header-section-number">10.4.3</span> Index constructions</a></li>
+  <li><a href="#compound-expressions" id="toc-compound-expressions" class="nav-link" data-scroll-target="#compound-expressions"> <span class="header-section-number">10.4.4</span> Compound expressions</a></li>
+  <li><a href="#flow-control-elements" id="toc-flow-control-elements" class="nav-link" data-scroll-target="#flow-control-elements"> <span class="header-section-number">10.4.5</span> Flow control elements</a></li>
+  <li><a href="#function-definitions" id="toc-function-definitions" class="nav-link" data-scroll-target="#function-definitions"> <span class="header-section-number">10.4.6</span> Function definitions</a></li>
+  </ul></li>
+  <li><a href="#directives" id="toc-directives" class="nav-link" data-scroll-target="#directives"> <span class="header-section-number">10.5</span> Directives</a></li>
+  </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
-<header id="title-block-header" class="quarto-title-block default">
 
-<div class="quarto-title"><h1 class="title display-7"><span id="parser" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Parser</span></span></h1></div></header>
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="parser" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Parser</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
 
 <p>The parser is what converts the textual representation of R code into an internal form which may then be passed to the R evaluator which causes the specified instructions to be carried out. The internal form is itself an R object and can be saved and otherwise manipulated within the R system.</p>
 <section id="the-parsing-process" class="level2 section" data-number="10.1">
@@ -398,19 +418,19 @@
 <dd>
 <p>backslash itself</p>
 </dd>
-<dt><code>\nnn</code></dt>
+<dt><var>\``nnn</var></dt>
 <dd>
 <p>character with given octal code – sequences of one, two or three digits in the range <code>0 ... 7</code> are accepted.</p>
 </dd>
-<dt><code>\xnn</code></dt>
+<dt><var>\x``nn</var></dt>
 <dd>
 <p>character with given hex code – sequences of one or two hex digits (with entries <code>0 ... 9 A ... F a ... f</code>).</p>
 </dd>
-<dt><code>\unnnn \u{nnnn}</code></dt>
+<dt><var>\u``nnnn</var><var>\u{``nnnn</var><code>}</code></dt>
 <dd>
 <p>(where multibyte locales are supported, otherwise an error). Unicode character with given hex code – sequences of up to four hex digits. The character needs to be valid in the current locale.</p>
 </dd>
-<dt><code>\Unnnnnnnn \U{nnnnnnnn}</code></dt>
+<dt><var>\U``nnnnnnnn</var><var>\U{``nnnnnnnn</var><code>}</code></dt>
 <dd>
 <p>(where multibyte locales are supported, otherwise an error). Unicode character with given hex code – sequences of up to eight hex digits.</p>
 </dd>
@@ -531,7 +551,7 @@
 <li>a text string (ditto, but handy if the function has a name which is not a valid identifier)</li>
 <li>an expression (which should evaluate to a function object)</li>
 </ul>
-<p>Each argument can be tagged (<code>tag=expr</code>), or just be a simple expression. It can also be empty or it can be one of the special tokens <code>...</code>, <code>..2</code>, etc.</p>
+<p>Each argument can be tagged (<var>tag</var><var>=``expr</var>), or just be a simple expression. It can also be empty or it can be one of the special tokens <code>...</code>, <code>..2</code>, etc.</p>
 <p>A tag can be an identifier or a text string.</p>
 <p>Examples:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(x)</span>
@@ -607,7 +627,7 @@
 <h3 class="subsection anchored" data-number="10.4.6" data-anchor-id="function-definitions"><span class="header-section-number">10.4.6</span> Function definitions</h3>
 <p>A function definition is of the form</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span> ( arglist ) body</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The function body is an expression, often a compound expression. The <var>arglist</var> is a comma-separated list of items each of which can be an identifier, or of the form <code>identifier = default</code>, or the special token <code>...</code>. The <var>default</var> can be any valid expression.</p>
+<p>The function body is an expression, often a compound expression. The <var>arglist</var> is a comma-separated list of items each of which can be an identifier, or of the form <var>identifier</var><var>= ``default</var>’, or the special token <code>...</code>. The <var>default</var> can be any valid expression.</p>
 <p>Notice that function arguments unlike list tags, etc., cannot have “strange names” given as text strings.</p>
 <p>Internally, a function definition is stored as a function call with function name <code>function</code> and two arguments, the <var>arglist</var> and the <var>body</var>. The <var>arglist</var> is stored as a tagged pairlist where the tags are the argument names and the values are the default expressions.</p>
 </section>
@@ -621,12 +641,30 @@
 <p>This directive tells the parser that the following line should be assumed to be line <var>nn</var> of file <var>filename</var>. (If the filename is not given, it is assumed to be the same as for the previous directive.) This is not typically used by users, but may be used by preprocessors so that diagnostic messages refer to the original file.</p>
 
 
-
 </section>
 
+
 </main> <!-- /main -->
-<script type="application/javascript">
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -646,7 +684,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.blur();
     // flash "checked"
     button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
     setTimeout(function() {
+      button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
     // clear code selection
@@ -736,6 +777,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
   </div>
 </footer>
+
 
 
 </body></html>

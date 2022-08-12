@@ -1,123 +1,129 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-  <meta charset="utf-8">
-  <meta name="generator" content="quarto-0.9.180">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>R Manuals :: Writing R Extensions - 5&nbsp; System and foreign language interfaces</title>
-  <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      {   }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-    code span.at { color: #7d9029; } /* Attribute */
-    code span.bn { color: #40a070; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #4070a0; } /* Char */
-    code span.cn { color: #880000; } /* Constant */
-    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-    code span.dt { color: #902000; } /* DataType */
-    code span.dv { color: #40a070; } /* DecVal */
-    code span.er { color: #ff0000; font-weight: bold; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #40a070; } /* Float */
-    code span.fu { color: #06287e; } /* Function */
-    code span.im { } /* Import */
-    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-    code span.op { color: #666666; } /* Operator */
-    code span.ot { color: #007020; } /* Other */
-    code span.pp { color: #bc7a00; } /* Preprocessor */
-    code span.sc { color: #4070a0; } /* SpecialChar */
-    code span.ss { color: #bb6688; } /* SpecialString */
-    code span.st { color: #4070a0; } /* String */
-    code span.va { color: #19177c; } /* Variable */
-    code span.vs { color: #4070a0; } /* VerbatimString */
-    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-  </style>
 
-  <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-  <script src="site_libs/quarto-nav/headroom.min.js"></script>
-  <script src="site_libs/clipboard/clipboard.min.js"></script>
-  <meta name="quarto:offset" content="./">
-  <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-  <script src="site_libs/quarto-search/fuse.min.js"></script>
-  <script src="site_libs/quarto-search/quarto-search.js"></script>
-  <link href="./The-R-API.html" rel="next">
-  <link href="./Debugging.html" rel="prev">
-  <script src="site_libs/quarto-html/quarto.js"></script>
-  <script src="site_libs/quarto-html/popper.min.js"></script>
-  <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-  <script src="site_libs/quarto-html/anchor.min.js"></script>
-  <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-  <link id="quarto-text-highlighting-styles" href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
-  <script src="site_libs/bootstrap/bootstrap.min.js"></script>
-  <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-  <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
-  <script id="quarto-search-options" type="application/json">{
-    "location": "navbar",
-    "copy-button": false,
-    "collapse-after": 3,
-    "panel-placement": "end",
-    "type": "overlay",
-    "limit": 20,
-    "language": {
-      "search-no-results-text": "No results",
-      "search-matching-documents-text": "matching documents",
-      "search-copy-link-title": "Copy link to search",
-      "search-hide-matches-text": "Hide additional matches",
-      "search-more-match-text": "more match in this document",
-      "search-more-matches-text": "more matches in this document",
-      "search-clear-button-title": "Clear",
-      "search-detached-cancel-button-title": "Cancel",
-      "search-submit-button-title": "Submit"
-    }
-  }</script>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>R Manuals :: Writing R Extensions - 5&nbsp; System and foreign language interfaces</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./The-R-API.html" rel="next">
+<link href="./Debugging.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
 </head>
-<body class="floating slimcontent">
+
+<body class="nav-sidebar floating nav-fixed slimcontent">
+
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
@@ -256,71 +262,85 @@
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc">
-<h2 id="toc-title">Table of contents</h2>
-<ul>
-<li><a href="#operating-system-access" class="nav-link active" data-scroll-target="#operating-system-access"> <span class="header-section-number">5.1</span> Operating system access</a></li>
-<li><a href="#interface-functions-.c-and-.fortran" class="nav-link" data-scroll-target="#interface-functions-.c-and-.fortran"> <span class="header-section-number">5.2</span> Interface functions <code>.C</code> and <code>.Fortran</code></a></li>
-<li><a href="#dyn.load-and-dyn.unload" class="nav-link" data-scroll-target="#dyn.load-and-dyn.unload"> <span class="header-section-number">5.3</span> <code>dyn.load</code> and <code>dyn.unload</code></a></li>
-<li><a href="#registering-native-routines" class="nav-link" data-scroll-target="#registering-native-routines"> <span class="header-section-number">5.4</span> Registering native routines</a>
-<ul class="collapse">
-<li><a href="#speed-considerations" class="nav-link" data-scroll-target="#speed-considerations"> <span class="header-section-number">5.4.1</span> Speed considerations</a></li>
-<li><a href="#example-converting-a-package-to-use-registration" class="nav-link" data-scroll-target="#example-converting-a-package-to-use-registration"> <span class="header-section-number">5.4.2</span> Example: converting a package to use registration</a></li>
-<li><a href="#linking-to-native-routines-in-other-packages" class="nav-link" data-scroll-target="#linking-to-native-routines-in-other-packages"> <span class="header-section-number">5.4.3</span> Linking to native routines in other packages</a></li>
-</ul></li>
-<li><a href="#creating-shared-objects" class="nav-link" data-scroll-target="#creating-shared-objects"> <span class="header-section-number">5.5</span> Creating shared objects</a></li>
-<li><a href="#interfacing-c-code" class="nav-link" data-scroll-target="#interfacing-c-code"> <span class="header-section-number">5.6</span> Interfacing C++ code</a>
-<ul class="collapse">
-<li><a href="#external-c-code" class="nav-link" data-scroll-target="#external-c-code"> <span class="header-section-number">5.6.1</span> External C++ code</a></li>
-</ul></li>
-<li><a href="#fortran-io" class="nav-link" data-scroll-target="#fortran-io"> <span class="header-section-number">5.7</span> Fortran I/O</a></li>
-<li><a href="#linking-to-other-packages" class="nav-link" data-scroll-target="#linking-to-other-packages"> <span class="header-section-number">5.8</span> Linking to other packages</a>
-<ul class="collapse">
-<li><a href="#unix-alikes" class="nav-link" data-scroll-target="#unix-alikes"> <span class="header-section-number">5.8.1</span> Unix-alikes</a></li>
-<li><a href="#windows" class="nav-link" data-scroll-target="#windows"> <span class="header-section-number">5.8.2</span> Windows</a></li>
-</ul></li>
-<li><a href="#handling-r-objects-in-c" class="nav-link" data-scroll-target="#handling-r-objects-in-c"> <span class="header-section-number">5.9</span> Handling R objects in C</a>
-<ul class="collapse">
-<li><a href="#handling-the-effects-of-garbage-collection" class="nav-link" data-scroll-target="#handling-the-effects-of-garbage-collection"> <span class="header-section-number">5.9.1</span> Handling the effects of garbage collection</a></li>
-<li><a href="#allocating-storage" class="nav-link" data-scroll-target="#allocating-storage"> <span class="header-section-number">5.9.2</span> Allocating storage</a></li>
-<li><a href="#details-of-r-types" class="nav-link" data-scroll-target="#details-of-r-types"> <span class="header-section-number">5.9.3</span> Details of R types</a></li>
-<li><a href="#attributes" class="nav-link" data-scroll-target="#attributes"> <span class="header-section-number">5.9.4</span> Attributes</a></li>
-<li><a href="#classes" class="nav-link" data-scroll-target="#classes"> <span class="header-section-number">5.9.5</span> Classes</a></li>
-<li><a href="#handling-lists" class="nav-link" data-scroll-target="#handling-lists"> <span class="header-section-number">5.9.6</span> Handling lists</a></li>
-<li><a href="#handling-character-data" class="nav-link" data-scroll-target="#handling-character-data"> <span class="header-section-number">5.9.7</span> Handling character data</a></li>
-<li><a href="#finding-and-setting-variables" class="nav-link" data-scroll-target="#finding-and-setting-variables"> <span class="header-section-number">5.9.8</span> Finding and setting variables</a></li>
-<li><a href="#some-convenience-functions" class="nav-link" data-scroll-target="#some-convenience-functions"> <span class="header-section-number">5.9.9</span> Some convenience functions</a></li>
-<li><a href="#semi-internal-convenience-functions" class="nav-link" data-scroll-target="#semi-internal-convenience-functions"> <span class="header-section-number">5.9.10</span> Semi-internal convenience functions</a></li>
-<li><a href="#named-objects-and-copying" class="nav-link" data-scroll-target="#named-objects-and-copying"> <span class="header-section-number">5.9.11</span> Named objects and copying</a></li>
-</ul></li>
-<li><a href="#interface-functions-.call-and-.external" class="nav-link" data-scroll-target="#interface-functions-.call-and-.external"> <span class="header-section-number">5.10</span> Interface functions <code>.Call</code> and <code>.External</code></a>
-<ul class="collapse">
-<li><a href="#calling-.call" class="nav-link" data-scroll-target="#calling-.call"> <span class="header-section-number">5.10.1</span> Calling <code>.Call</code></a></li>
-<li><a href="#calling-.external" class="nav-link" data-scroll-target="#calling-.external"> <span class="header-section-number">5.10.2</span> Calling <code>.External</code></a></li>
-<li><a href="#missing-and-special-values" class="nav-link" data-scroll-target="#missing-and-special-values"> <span class="header-section-number">5.10.3</span> Missing and special values</a></li>
-</ul></li>
-<li><a href="#evaluating-r-expressions-from-c" class="nav-link" data-scroll-target="#evaluating-r-expressions-from-c"> <span class="header-section-number">5.11</span> Evaluating R expressions from C</a>
-<ul class="collapse">
-<li><a href="#zero-finding" class="nav-link" data-scroll-target="#zero-finding"> <span class="header-section-number">5.11.1</span> Zero-finding</a></li>
-<li><a href="#calculating-numerical-derivatives" class="nav-link" data-scroll-target="#calculating-numerical-derivatives"> <span class="header-section-number">5.11.2</span> Calculating numerical derivatives</a></li>
-</ul></li>
-<li><a href="#parsing-r-code-from-c" class="nav-link" data-scroll-target="#parsing-r-code-from-c"> <span class="header-section-number">5.12</span> Parsing R code from C</a>
-<ul class="collapse">
-<li><a href="#accessing-source-references" class="nav-link" data-scroll-target="#accessing-source-references"> <span class="header-section-number">5.12.1</span> Accessing source references</a></li>
-</ul></li>
-<li><a href="#external-pointers-and-weak-references" class="nav-link" data-scroll-target="#external-pointers-and-weak-references"> <span class="header-section-number">5.13</span> External pointers and weak references</a>
-<ul class="collapse">
-<li><a href="#an-example" class="nav-link" data-scroll-target="#an-example"> <span class="header-section-number">5.13.1</span> An example</a></li>
-</ul></li>
-<li><a href="#vector-accessor-functions" class="nav-link" data-scroll-target="#vector-accessor-functions"> <span class="header-section-number">5.14</span> Vector accessor functions</a></li>
-<li><a href="#character-encoding-issues" class="nav-link" data-scroll-target="#character-encoding-issues"> <span class="header-section-number">5.15</span> Character encoding issues</a></li>
-</ul>
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#operating-system-access" id="toc-operating-system-access" class="nav-link active" data-scroll-target="#operating-system-access"> <span class="header-section-number">5.1</span> Operating system access</a></li>
+  <li><a href="#interface-functions-.c-and-.fortran" id="toc-interface-functions-.c-and-.fortran" class="nav-link" data-scroll-target="#interface-functions-.c-and-.fortran"> <span class="header-section-number">5.2</span> Interface functions <code>.C</code> and <code>.Fortran</code></a></li>
+  <li><a href="#dyn.load-and-dyn.unload" id="toc-dyn.load-and-dyn.unload" class="nav-link" data-scroll-target="#dyn.load-and-dyn.unload"> <span class="header-section-number">5.3</span> <code>dyn.load</code> and <code>dyn.unload</code></a></li>
+  <li><a href="#registering-native-routines" id="toc-registering-native-routines" class="nav-link" data-scroll-target="#registering-native-routines"> <span class="header-section-number">5.4</span> Registering native routines</a>
+  <ul class="collapse">
+  <li><a href="#speed-considerations" id="toc-speed-considerations" class="nav-link" data-scroll-target="#speed-considerations"> <span class="header-section-number">5.4.1</span> Speed considerations</a></li>
+  <li><a href="#example-converting-a-package-to-use-registration" id="toc-example-converting-a-package-to-use-registration" class="nav-link" data-scroll-target="#example-converting-a-package-to-use-registration"> <span class="header-section-number">5.4.2</span> Example: converting a package to use registration</a></li>
+  <li><a href="#linking-to-native-routines-in-other-packages" id="toc-linking-to-native-routines-in-other-packages" class="nav-link" data-scroll-target="#linking-to-native-routines-in-other-packages"> <span class="header-section-number">5.4.3</span> Linking to native routines in other packages</a></li>
+  </ul></li>
+  <li><a href="#creating-shared-objects" id="toc-creating-shared-objects" class="nav-link" data-scroll-target="#creating-shared-objects"> <span class="header-section-number">5.5</span> Creating shared objects</a></li>
+  <li><a href="#interfacing-c-code" id="toc-interfacing-c-code" class="nav-link" data-scroll-target="#interfacing-c-code"> <span class="header-section-number">5.6</span> Interfacing C++ code</a>
+  <ul class="collapse">
+  <li><a href="#external-c-code" id="toc-external-c-code" class="nav-link" data-scroll-target="#external-c-code"> <span class="header-section-number">5.6.1</span> External C++ code</a></li>
+  </ul></li>
+  <li><a href="#fortran-io" id="toc-fortran-io" class="nav-link" data-scroll-target="#fortran-io"> <span class="header-section-number">5.7</span> Fortran I/O</a></li>
+  <li><a href="#linking-to-other-packages" id="toc-linking-to-other-packages" class="nav-link" data-scroll-target="#linking-to-other-packages"> <span class="header-section-number">5.8</span> Linking to other packages</a>
+  <ul class="collapse">
+  <li><a href="#unix-alikes" id="toc-unix-alikes" class="nav-link" data-scroll-target="#unix-alikes"> <span class="header-section-number">5.8.1</span> Unix-alikes</a></li>
+  <li><a href="#windows" id="toc-windows" class="nav-link" data-scroll-target="#windows"> <span class="header-section-number">5.8.2</span> Windows</a></li>
+  </ul></li>
+  <li><a href="#handling-r-objects-in-c" id="toc-handling-r-objects-in-c" class="nav-link" data-scroll-target="#handling-r-objects-in-c"> <span class="header-section-number">5.9</span> Handling R objects in C</a>
+  <ul class="collapse">
+  <li><a href="#handling-the-effects-of-garbage-collection" id="toc-handling-the-effects-of-garbage-collection" class="nav-link" data-scroll-target="#handling-the-effects-of-garbage-collection"> <span class="header-section-number">5.9.1</span> Handling the effects of garbage collection</a></li>
+  <li><a href="#allocating-storage" id="toc-allocating-storage" class="nav-link" data-scroll-target="#allocating-storage"> <span class="header-section-number">5.9.2</span> Allocating storage</a></li>
+  <li><a href="#details-of-r-types" id="toc-details-of-r-types" class="nav-link" data-scroll-target="#details-of-r-types"> <span class="header-section-number">5.9.3</span> Details of R types</a></li>
+  <li><a href="#attributes" id="toc-attributes" class="nav-link" data-scroll-target="#attributes"> <span class="header-section-number">5.9.4</span> Attributes</a></li>
+  <li><a href="#classes" id="toc-classes" class="nav-link" data-scroll-target="#classes"> <span class="header-section-number">5.9.5</span> Classes</a></li>
+  <li><a href="#handling-lists" id="toc-handling-lists" class="nav-link" data-scroll-target="#handling-lists"> <span class="header-section-number">5.9.6</span> Handling lists</a></li>
+  <li><a href="#handling-character-data" id="toc-handling-character-data" class="nav-link" data-scroll-target="#handling-character-data"> <span class="header-section-number">5.9.7</span> Handling character data</a></li>
+  <li><a href="#finding-and-setting-variables" id="toc-finding-and-setting-variables" class="nav-link" data-scroll-target="#finding-and-setting-variables"> <span class="header-section-number">5.9.8</span> Finding and setting variables</a></li>
+  <li><a href="#some-convenience-functions" id="toc-some-convenience-functions" class="nav-link" data-scroll-target="#some-convenience-functions"> <span class="header-section-number">5.9.9</span> Some convenience functions</a></li>
+  <li><a href="#semi-internal-convenience-functions" id="toc-semi-internal-convenience-functions" class="nav-link" data-scroll-target="#semi-internal-convenience-functions"> <span class="header-section-number">5.9.10</span> Semi-internal convenience functions</a></li>
+  <li><a href="#named-objects-and-copying" id="toc-named-objects-and-copying" class="nav-link" data-scroll-target="#named-objects-and-copying"> <span class="header-section-number">5.9.11</span> Named objects and copying</a></li>
+  </ul></li>
+  <li><a href="#interface-functions-.call-and-.external" id="toc-interface-functions-.call-and-.external" class="nav-link" data-scroll-target="#interface-functions-.call-and-.external"> <span class="header-section-number">5.10</span> Interface functions <code>.Call</code> and <code>.External</code></a>
+  <ul class="collapse">
+  <li><a href="#calling-.call" id="toc-calling-.call" class="nav-link" data-scroll-target="#calling-.call"> <span class="header-section-number">5.10.1</span> Calling <code>.Call</code></a></li>
+  <li><a href="#calling-.external" id="toc-calling-.external" class="nav-link" data-scroll-target="#calling-.external"> <span class="header-section-number">5.10.2</span> Calling <code>.External</code></a></li>
+  <li><a href="#missing-and-special-values" id="toc-missing-and-special-values" class="nav-link" data-scroll-target="#missing-and-special-values"> <span class="header-section-number">5.10.3</span> Missing and special values</a></li>
+  </ul></li>
+  <li><a href="#evaluating-r-expressions-from-c" id="toc-evaluating-r-expressions-from-c" class="nav-link" data-scroll-target="#evaluating-r-expressions-from-c"> <span class="header-section-number">5.11</span> Evaluating R expressions from C</a>
+  <ul class="collapse">
+  <li><a href="#zero-finding" id="toc-zero-finding" class="nav-link" data-scroll-target="#zero-finding"> <span class="header-section-number">5.11.1</span> Zero-finding</a></li>
+  <li><a href="#calculating-numerical-derivatives" id="toc-calculating-numerical-derivatives" class="nav-link" data-scroll-target="#calculating-numerical-derivatives"> <span class="header-section-number">5.11.2</span> Calculating numerical derivatives</a></li>
+  </ul></li>
+  <li><a href="#parsing-r-code-from-c" id="toc-parsing-r-code-from-c" class="nav-link" data-scroll-target="#parsing-r-code-from-c"> <span class="header-section-number">5.12</span> Parsing R code from C</a>
+  <ul class="collapse">
+  <li><a href="#accessing-source-references" id="toc-accessing-source-references" class="nav-link" data-scroll-target="#accessing-source-references"> <span class="header-section-number">5.12.1</span> Accessing source references</a></li>
+  </ul></li>
+  <li><a href="#external-pointers-and-weak-references" id="toc-external-pointers-and-weak-references" class="nav-link" data-scroll-target="#external-pointers-and-weak-references"> <span class="header-section-number">5.13</span> External pointers and weak references</a>
+  <ul class="collapse">
+  <li><a href="#an-example" id="toc-an-example" class="nav-link" data-scroll-target="#an-example"> <span class="header-section-number">5.13.1</span> An example</a></li>
+  </ul></li>
+  <li><a href="#vector-accessor-functions" id="toc-vector-accessor-functions" class="nav-link" data-scroll-target="#vector-accessor-functions"> <span class="header-section-number">5.14</span> Vector accessor functions</a></li>
+  <li><a href="#character-encoding-issues" id="toc-character-encoding-issues" class="nav-link" data-scroll-target="#character-encoding-issues"> <span class="header-section-number">5.15</span> Character encoding issues</a></li>
+  </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
-<header id="title-block-header" class="quarto-title-block default">
 
-<div class="quarto-title"><h1 class="title display-7"><span id="system-and-foreign-language-interfaces" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">System and foreign language interfaces</span></span></h1></div></header>
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="system-and-foreign-language-interfaces" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">System and foreign language interfaces</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
 
 <section id="operating-system-access" class="level2 section" data-number="5.1">
 <h2 class="section anchored" data-number="5.1" data-anchor-id="operating-system-access"><span class="header-section-number">5.1</span> Operating system access</h2>
@@ -422,10 +442,10 @@
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library.dynam</span>(<span class="st">"libname"</span>, package, lib.loc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>where <code>libname</code> is the object/DLL name <em>with the extension omitted</em>. Note that the first argument, <code>chname</code>, should <strong>not</strong> be <code>package</code> since this will not work if the package is installed under another name.</p>
 <p>Under some Unix-alike systems there is a choice of how the symbols are resolved when the object is loaded, governed by the arguments <code>local</code> and <code>now</code>. Only use these if really necessary: in particular using <code>now=FALSE</code> and then calling an unresolved symbol will terminate R unceremoniously.</p>
-<p>R provides a way of executing some code automatically when a object/DLL is either loaded or unloaded. This can be used, for example, to register native routines with R’s dynamic symbol mechanism, initialize some data in the native code, or initialize a third party library. On loading a DLL, R will look for a routine within that DLL named <code>R_init_lib</code> where <var>lib</var> is the name of the DLL file with the extension removed. For example, in the command</p>
+<p>R provides a way of executing some code automatically when a object/DLL is either loaded or unloaded. This can be used, for example, to register native routines with R’s dynamic symbol mechanism, initialize some data in the native code, or initialize a third party library. On loading a DLL, R will look for a routine within that DLL named <var>R_init_``lib</var> where <var>lib</var> is the name of the DLL file with the extension removed. For example, in the command</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library.dynam</span>(<span class="st">"mylib"</span>, package, lib.loc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>R looks for the symbol named <code>R_init_mylib</code>. Similarly, when unloading the object, R looks for a routine named <code>R_unload_lib</code>, e.g., <code>R_unload_mylib</code>. In either case, if the routine is present, R will invoke it and pass it a single argument describing the DLL. This is a value of type <code>DllInfo</code> which is defined in the <code>Rdynload.h</code> file in the <code>R_ext</code> directory.</p>
-<p>Note that there are some implicit restrictions on this mechanism as the basename of the DLL needs to be both a valid file name and valid as part of a C entry point (e.g.&nbsp;it cannot contain <code>.</code>): for portable code it is best to confine DLL names to be ASCII alphanumeric plus underscore. If entry point <code>R_init_lib</code> is not found it is also looked for with <code>.</code> replaced by <code>_</code>.</p>
+<p>R looks for the symbol named <code>R_init_mylib</code>. Similarly, when unloading the object, R looks for a routine named <var>R_unload_``lib</var>, e.g., <code>R_unload_mylib</code>. In either case, if the routine is present, R will invoke it and pass it a single argument describing the DLL. This is a value of type <code>DllInfo</code> which is defined in the <code>Rdynload.h</code> file in the <code>R_ext</code> directory.</p>
+<p>Note that there are some implicit restrictions on this mechanism as the basename of the DLL needs to be both a valid file name and valid as part of a C entry point (e.g.&nbsp;it cannot contain <code>.</code>): for portable code it is best to confine DLL names to be ASCII alphanumeric plus underscore. If entry point <var>R_init_``lib</var> is not found it is also looked for with <code>.</code> replaced by <code>_</code>.</p>
 <p>The following example shows templates for the initialization and unload routines for the <code>mylib</code> DLL.</p>
 <div class="blockquotes-block">
 <blockquote class="blockquote">
@@ -456,14 +476,14 @@
 </div>
 <div class="page-columns page-full"><p>If a shared object/DLL is loaded more than once the most recent version is used.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> More generally, if the same symbol name appears in several shared objects, the most recently loaded occurrence is used. The <code>PACKAGE</code> argument and registration (see the next section) provide good ways to avoid any ambiguity in which occurrence is meant.</p><div class="no-row-height column-margin column-container"><li id="fn3" role="doc-endnote"><p><sup>3</sup>&nbsp;Strictly this is OS-specific, but no exceptions have been seen for many years.</p></li></div></div>
 <p>On Unix-alikes the paths used to resolve dynamically linked dependent libraries are fixed (for security reasons) when the process is launched, so <code>dyn.load</code> will only look for such libraries in the locations set by the <code>R</code> shell script (<em>via</em> <code>etc/ldpaths</code>) and in the OS-specific defaults.</p>
-<p>Windows allows more control (and less security) over where dependent DLLs are looked for. On all versions this includes the <code>PATH</code> environment variable, but with lowest priority: note that it does not include the directory from which the DLL was loaded. It is possible to add a single path with quite high priority <em>via</em> the <code>DLLpath</code> argument to <code>dyn.load</code>. This is (by default) used by <code>library.dynam</code> to include the package’s <code>libs/i386</code> or <code>libs/x64</code> directory in the DLL search path.</p>
+<p>Windows allows more control (and less security) over where dependent DLLs are looked for. On all versions this includes the <code>PATH</code> environment variable, but with lowest priority: note that it does not include the directory from which the DLL was loaded. It is possible to add a single path with quite high priority <em>via</em> the <code>DLLpath</code> argument to <code>dyn.load</code>. This is (by default) used by <code>library.dynam</code> to include the package’s <code>libs/x64</code> directory in the DLL search path.</p>
 </section>
 <section id="registering-native-routines" class="level2 section page-columns page-full" data-number="5.4">
 <h2 class="section anchored" data-number="5.4" data-anchor-id="registering-native-routines"><span class="header-section-number">5.4</span> Registering native routines</h2>
 <p>By ‘native’ routine, we mean an entry point in compiled code.</p>
 <div class="page-columns page-full"><p>In calls to <code>.C</code>, <code>.Call</code>, <code>.Fortran</code> and <code>.External</code>, R must locate the specified native routine by looking in the appropriate shared object/DLL. By default, R uses the operating-system-specific dynamic loader to lookup the symbol in all<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> loaded DLLs and the R executable or libraries it is linked to. Alternatively, the author of the DLL can explicitly register routines with R and use a single, platform-independent mechanism for finding the routines in the DLL. One can use this registration mechanism to provide additional information about a routine, including the number and type of the arguments, and also make it available to R programmers under a different name.</p><div class="no-row-height column-margin column-container"><li id="fn4" role="doc-endnote"><p><sup>4</sup>&nbsp;For calls from within a namespace the search is confined to the DLL loaded for that package.</p></li></div></div>
 <div class="page-columns page-full"><p>Registering routines has two main advantages: it provides a faster<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> way to find the address of the entry point <em>via</em> tables stored in the DLL at compilation time, and it provides a run-time check that the entry point is called with the right number of arguments and, optionally, the right argument types.</p><div class="no-row-height column-margin column-container"><li id="fn5" role="doc-endnote"><p><sup>5</sup>&nbsp;For unregistered entry points the OS’s <code>dlsym</code> routine is used to find addresses. Its performance varies considerably by OS and even in the best case it will need to search a much larger symbol table than, say, the table of <code>.Call</code> entry points.</p></li></div></div>
-<p>To register routines with R, one calls the C routine <code>R_registerRoutines</code>. This is typically done when the DLL is first loaded within the initialization routine <code>R_init_dll name</code> described in <a href="#dyn.load-and-dyn.unload">dyn.load and dyn.unload</a>. <code>R_registerRoutines</code> takes 5 arguments. The first is the <code>DllInfo</code> object passed by R to the initialization routine. This is where R stores the information about the methods. The remaining 4 arguments are arrays describing the routines for each of the 4 different interfaces: <code>.C</code>, <code>.Call</code>, <code>.Fortran</code> and <code>.External</code>. Each argument is a <code>NULL</code>-terminated array of the element types given in the following table:</p>
+<p>To register routines with R, one calls the C routine <code>R_registerRoutines</code>. This is typically done when the DLL is first loaded within the initialization routine <var>R_init_``dll name</var> described in <a href="#dyn.load-and-dyn.unload">dyn.load and dyn.unload</a>. <code>R_registerRoutines</code> takes 5 arguments. The first is the <code>DllInfo</code> object passed by R to the initialization routine. This is where R stores the information about the methods. The remaining 4 arguments are arrays describing the routines for each of the 4 different interfaces: <code>.C</code>, <code>.Call</code>, <code>.Fortran</code> and <code>.External</code>. Each argument is a <code>NULL</code>-terminated array of the element types given in the following table:</p>
 <div class="blockquotes-block">
 <blockquote class="blockquote">
 <table class="table">
@@ -741,6 +761,7 @@
 <p>A package that wishes to make use of header files in other packages needs to declare them as a comma-separated list in the field <code>LinkingTo</code> in the <code>DESCRIPTION</code> file. This then arranges for the <code>include</code> directories in the installed linked-to packages to be added to the include paths for C and C++ code.</p>
 <div class="page-columns page-full"><p>It must specify<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> <code>Imports</code> or <code>Depends</code> of those packages, for they have to be loaded<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> prior to this one (so the path to their compiled code has been registered).</p><div class="no-row-height column-margin column-container"><li id="fn7" role="doc-endnote"><p><sup>7</sup>&nbsp;whether or not <code>LinkingTo</code> is used.</p></li><li id="fn8" role="doc-endnote"><p><sup>8</sup>&nbsp;so there needs to be a corresponding <code>import</code> or <code>importFrom</code> entry in the <code>NAMESPACE</code> file.</p></li></div></div>
 <p>CRAN examples of the use of this mechanism include <a href="https://CRAN.R-project.org/package=coxme"><strong>coxme</strong></a> linking to <a href="https://CRAN.R-project.org/package=bdsmatrix"><strong>bdsmatrix</strong></a> and <a href="https://CRAN.R-project.org/package=xts"><strong>xts</strong></a> linking to <a href="https://CRAN.R-project.org/package=zoo"><strong>zoo</strong></a>.</p>
+<p><strong>NB</strong>: this mechanism is fragile, as changes to the interface provided by <strong>packA</strong> have to be recognised by <strong>packB</strong>. The consequences of not doing so have included serious corruption to the memory pool of the R session. Either <strong>packB</strong> has to depend on the exact version of <strong>packA</strong> or there needs to be a mechanism for <strong>packB</strong> to test at runtime the version of <strong>packA</strong> it is linked to matches that it was compiled against.</p>
 </section>
 </section>
 <section id="creating-shared-objects" class="level2 section" data-number="5.5">
@@ -748,16 +769,16 @@
 <p>Shared objects for loading into R can be created using <code>R CMD SHLIB</code>. This accepts as arguments a list of files which must be object files (with extension <code>.o</code>) or sources for C, C++, Fortran, Objective C or Objective C++ (with extensions <code>.c</code>, <code>.cc</code> or <code>.cpp</code>, <code>.f</code> (fixed-form Fortran), <code>.f90</code> or <code>.f95</code> (free-form), <code>.m</code>, and <code>.mm</code> or <code>.M</code>, respectively), or commands to be passed to the linker. See <kbd>R CMD SHLIB --help</kbd> (or the R help for <code>SHLIB</code>) for usage information. Note that files intended for the Fortran pre-processor with extension <code>.F</code> are not accepted.</p>
 <p>If compiling the source files does not work “out of the box”, you can specify additional flags by setting some of the variables <code>PKG_CPPFLAGS</code> (for the C/C++ preprocessor, mainly <code>-I</code>, <code>-D</code> and <code>-U</code> flags), <code>PKG_CFLAGS</code>, <code>PKG_CXXFLAGS</code>, <code>PKG_FFLAGS</code>, <code>PKG_OBJCFLAGS</code>, and <code>PKG_OBJCXXFLAGS</code> (for the C, C++, Fortran, Objective C, and Objective C++ compilers, respectively) in the file <code>Makevars</code> in the compilation directory (or, of course, create the object files directly from the command line). Similarly, variable <code>PKG_LIBS</code> in <code>Makevars</code> can be used for additional <code>-l</code> and <code>-L</code> flags to be passed to the linker when building the shared object. (Supplying linker commands as arguments to <code>R CMD SHLIB</code> will take precedence over <code>PKG_LIBS</code> in <code>Makevars</code>.)</p>
 <p>It is possible to arrange to include compiled code from other languages by setting the macro <code>OBJECTS</code> in file <code>Makevars</code>, together with suitable rules to make the objects.</p>
-<p>Flags that are already set (for example in file <code>etcR_ARCH/Makeconf</code>) can be overridden by the environment variable <code>MAKEFLAGS</code> (at least for systems using a POSIX-compliant <code>make</code>), as in (Bourne shell syntax)</p>
+<p>Flags that are already set (for example in file <var>etc``R_ARCH</var><code>/Makeconf</code>) can be overridden by the environment variable <code>MAKEFLAGS</code> (at least for systems using a POSIX-compliant <code>make</code>), as in (Bourne shell syntax)</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="va">MAKEFLAGS</span><span class="op">=</span><span class="st">"CFLAGS=-O3"</span> <span class="ex">R</span> CMD SHLIB <span class="pp">*</span>.c</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>It is also possible to set such variables in personal <code>Makevars</code> files, which are read after the local <code>Makevars</code> and the system makefiles or in a site-wide <code>Makevars.site</code> file.</p>
 <p>Note that as <code>R CMD SHLIB</code> uses Make, it will not remake a shared object just because the flags have changed, and if <code>test.c</code> and <code>test.f</code> both exist in the current directory</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> CMD SHLIB test.f</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>will compile <code>test.c</code>!</p>
 <p>If the <code>src</code> subdirectory of an add-on package contains source code with one of the extensions listed above or a file <code>Makevars</code> but <strong>not</strong> a file <code>Makefile</code>, <code>R CMD INSTALL</code> creates a shared object (for loading into R through <code>useDynlib</code> in the <code>NAMESPACE</code>, or in the <code>.onLoad</code> function of the package) using the <code>R CMD SHLIB</code> mechanism. If file <code>Makevars</code> exists it is read first, then the system makefile and then any personal <code>Makevars</code> files.</p>
-<p>If the <code>src</code> subdirectory of package contains a file <code>Makefile</code>, this is used by <code>R CMD INSTALL</code> in place of the <code>R CMD SHLIB</code> mechanism. <code>make</code> is called with makefiles <code>R_HOME/etcR_ARCH/Makeconf</code>, <code>src/Makefile</code> and any personal <code>Makevars</code> files (in that order). The first target found in <code>src/Makefile</code> is used.</p>
+<p>If the <code>src</code> subdirectory of package contains a file <code>Makefile</code>, this is used by <code>R CMD INSTALL</code> in place of the <code>R CMD SHLIB</code> mechanism. <code>make</code> is called with makefiles <var>R_HOME</var><var>/etc``R_ARCH</var><code>/Makeconf</code>, <code>src/Makefile</code> and any personal <code>Makevars</code> files (in that order). The first target found in <code>src/Makefile</code> is used.</p>
 <p>It is better to make use of a <code>Makevars</code> file rather than a <code>Makefile</code>: the latter should be needed only exceptionally.</p>
-<p>Under Windows the same commands work, but <code>Makevars.win</code> will be used in preference to <code>Makevars</code>, and only <code>src/Makefile.win</code> will be used by <code>R CMD INSTALL</code> with <code>src/Makefile</code> being ignored. Since R 4.2.0, <code>Makevars.ucrt</code> will be used in preference to <code>Makevars.win</code> and <code>src/Makefile.ucrt</code> will be used in preference to <code>src/Makefile.win</code>. For past experiences of building DLLs with a variety of compilers, see file <code>README.packages</code>. Under Windows you can supply an exports definitions file called <code>dllname-win.def</code>: otherwise all entry points in objects (but not libraries) supplied to <code>R CMD SHLIB</code> will be exported from the DLL. An example is <code>stats-win.def</code> for the <strong>stats</strong> package: a CRAN example in package <a href="https://CRAN.R-project.org/package=fastICA"><strong>fastICA</strong></a>.</p>
+<p>Under Windows the same commands work, but <code>Makevars.win</code> will be used in preference to <code>Makevars</code>, and only <code>src/Makefile.win</code> will be used by <code>R CMD INSTALL</code> with <code>src/Makefile</code> being ignored. Since R 4.2.0, <code>Makevars.ucrt</code> will be used in preference to <code>Makevars.win</code> and <code>src/Makefile.ucrt</code> will be used in preference to <code>src/Makefile.win</code>. For past experiences of building DLLs with a variety of compilers, see file <code>README.packages</code>. Under Windows you can supply an exports definitions file called <var>dllname</var><code>-win.def</code>: otherwise all entry points in objects (but not libraries) supplied to <code>R CMD SHLIB</code> will be exported from the DLL. An example is <code>stats-win.def</code> for the <strong>stats</strong> package: a CRAN example in package <a href="https://CRAN.R-project.org/package=fastICA"><strong>fastICA</strong></a>.</p>
 <p>If you feel tempted to read the source code and subvert these mechanisms, please resist. Far too much developer time has been wasted in chasing down errors caused by failures to follow this documentation, and even more by package authors demanding explanations as to why their packages no longer work. In particular, undocumented environment or <code>make</code> variables are not for use by package writers and are subject to change without notice.</p>
 </section>
 <section id="interfacing-c-code" class="level2 section page-columns page-full" data-number="5.6">
@@ -966,16 +987,16 @@
 <p>Here <code>args</code> is a <code>LISTSXP</code>, a Lisp-style pairlist from which the arguments can be extracted.</p>
 <div class="page-columns page-full"><p>In each case the R objects are available for manipulation <em>via</em> a set of functions and macros defined in the header file <code>Rinternals.h</code> or some S-compatibility macros<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a> See <a href="#interface-functions-.call-and-.external">Interface functions .Call and .External</a> for details on <code>.Call</code> and <code>.External</code>.</p><div class="no-row-height column-margin column-container"><li id="fn13" role="doc-endnote"><p><sup>13</sup>&nbsp;That is, similar to those defined in S version 4 from the 1990s: these are not kept up to date and are not recommended for new projects.</p></li></div></div>
 <p>Before you decide to use <code>.Call</code> or <code>.External</code>, you should look at other alternatives. First, consider working in interpreted R code; if this is fast enough, this is normally the best option. You should also see if using <code>.C</code> is enough. If the task to be performed in C is simple enough involving only atomic vectors and requiring no call to R, <code>.C</code> suffices. A great deal of useful code was written using just <code>.C</code> before <code>.Call</code> and <code>.External</code> were available. These interfaces allow much more control, but they also impose much greater responsibilities so need to be used with care. Neither <code>.Call</code> nor <code>.External</code> copy their arguments: you should treat arguments you receive through these interfaces as read-only.</p>
-<div class="page-columns page-full"><p>To handle R objects from within C code we use the macros and functions that have been used to implement the core parts of R. A public<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> subset of these is defined in the header file <code>Rinternals.h</code> in the directory <code>R_INCLUDE_DIR</code> (default <code>R_HOME/include</code>) that should be available on any R installation.</p><div class="no-row-height column-margin column-container"><li id="fn14" role="doc-endnote"><p><sup>14</sup>&nbsp;see <a href="The-R-API.html#the-r-api">The R API</a>: note that these are not all part of the API.</p></li></div></div>
+<div class="page-columns page-full"><p>To handle R objects from within C code we use the macros and functions that have been used to implement the core parts of R. A public<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> subset of these is defined in the header file <code>Rinternals.h</code> in the directory <var>R_INCLUDE_DIR</var> (default <var>R_HOME</var><code>/include</code>) that should be available on any R installation.</p><div class="no-row-height column-margin column-container"><li id="fn14" role="doc-endnote"><p><sup>14</sup>&nbsp;see <a href="The-R-API.html#the-r-api">The R API</a>: note that these are not all part of the API.</p></li></div></div>
 <p>A substantial amount of R, including the standard packages, is implemented using the functions and macros described here, so the R source code provides a rich source of examples and “how to do it”: do make use of the source code for inspirational examples.</p>
 <div class="page-columns page-full"><p>It is necessary to know something about how R objects are handled in C code. All the R objects you will deal with will be handled with the type <em>SEXP</em><a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a>, which is a pointer to a structure with typedef <code>SEXPREC</code>. Think of this structure as a <em>variant type</em> that can handle all the usual types of R objects, that is vectors of various modes, functions, environments, language objects and so on. The details are given later in this section and in <a href="https://cran.r-project.org/doc/manuals/R-ints.html#R-Internal-Structures">R Internal Structures</a> in R Internals, but for most purposes the programmer does not need to know them. Think rather of a model such as that used by Visual Basic, in which R objects are handed around in C code (as they are in interpreted R code) as the variant type, and the appropriate part is extracted for, for example, numerical calculations, only when it is needed. As in interpreted R code, much use is made of coercion to force the variant object to the right type.</p><div class="no-row-height column-margin column-container"><li id="fn15" role="doc-endnote"><p><sup>15</sup>&nbsp;SEXP is an acronym for <em>S</em>imple <em>EXP</em>ression, common in LISP-like language syntaxes.</p></li></div></div>
 <section id="handling-the-effects-of-garbage-collection" class="level3 subsection" data-number="5.9.1">
 <h3 class="subsection anchored" data-number="5.9.1" data-anchor-id="handling-the-effects-of-garbage-collection"><span class="header-section-number">5.9.1</span> Handling the effects of garbage collection</h3>
 <p>We need to know a little about the way R handles memory allocation. The memory allocated for R objects is not freed by the user; instead, the memory is from time to time <em>garbage collected</em>. That is, some or all of the allocated memory not being used is freed or marked as re-usable.</p>
 <p>The R object types are represented by a C structure defined by a typedef <code>SEXPREC</code> in <code>Rinternals.h</code>. It contains several things among which are pointers to data blocks and to other <code>SEXPREC</code>s. A <code>SEXP</code> is simply a pointer to a <code>SEXPREC</code>.</p>
-<p>If you create an R object in your C code, you must tell R that you are using the object by using the <code>PROTECT</code> macro on a pointer to the object. This tells R that the object is in use so it is not destroyed during garbage collection. Notice that it is the object which is protected, not the pointer variable. It is a common mistake to believe that if you invoked <code>PROTECT(p)</code> at some point then <var>p</var> is protected from then on, but that is not true once a new object is assigned to <var>p</var>.</p>
+<p>If you create an R object in your C code, you must tell R that you are using the object by using the <code>PROTECT</code> macro on a pointer to the object. This tells R that the object is in use so it is not destroyed during garbage collection. Notice that it is the object which is protected, not the pointer variable. It is a common mistake to believe that if you invoked <var>PROTECT(``p</var><code>)</code> at some point then <var>p</var> is protected from then on, but that is not true once a new object is assigned to <var>p</var>.</p>
 <p>Protecting an R object automatically protects all the R objects pointed to in the corresponding <code>SEXPREC</code>, for example all elements of a protected list are automatically protected.</p>
-<p>The programmer is solely responsible for housekeeping the calls to <code>PROTECT</code>. There is a corresponding macro <code>UNPROTECT</code> that takes as argument an <code>int</code> giving the number of objects to unprotect when they are no longer needed. The protection mechanism is stack-based, so <code>UNPROTECT(n)</code> unprotects the last <var>n</var> objects which were protected. The calls to <code>PROTECT</code> and <code>UNPROTECT</code> must balance when the user’s code returns and should balance in all functions. R will warn about <code>"stack imbalance in .Call"</code> (or <code>.External</code>) if the housekeeping is wrong.</p>
+<p>The programmer is solely responsible for housekeeping the calls to <code>PROTECT</code>. There is a corresponding macro <code>UNPROTECT</code> that takes as argument an <code>int</code> giving the number of objects to unprotect when they are no longer needed. The protection mechanism is stack-based, so <var>UNPROTECT(``n</var><code>)</code> unprotects the last <var>n</var> objects which were protected. The calls to <code>PROTECT</code> and <code>UNPROTECT</code> must balance when the user’s code returns and should balance in all functions. R will warn about <code>"stack imbalance in .Call"</code> (or <code>.External</code>) if the housekeeping is wrong.</p>
 <p>Here is a small example of creating an R numeric vector in C code:</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;R.h&gt;</span></span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Rinternals.h&gt;</span></span>
@@ -988,7 +1009,7 @@
 <span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>    UNPROTECT<span class="op">(</span><span class="dv">1</span><span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Now, the reader may ask how the R object could possibly get removed during those manipulations, as it is just our C code that is running. As it happens, we can do without the protection in this example, but in general we do not know (nor want to know) what is hiding behind the R macros and functions we use, and any of them might cause memory to be allocated, hence garbage collection and hence our object <code>ab</code> to be removed. It is usually wise to err on the side of caution and assume that any of the R macros and functions might remove the object.</p>
 <p>In some cases it is necessary to keep better track of whether protection is really needed. Be particularly aware of situations where a large number of objects are generated. The pointer protection stack has a fixed size (default 10,000) and can become full. It is not a good idea then to just <code>PROTECT</code> everything in sight and <code>UNPROTECT</code> several thousand objects at the end. It will almost invariably be possible to either assign the objects as part of another object (which automatically protects them) or unprotect them immediately after use.</p>
-<p>There is a less-used macro <code>UNPROTECT_PTR(s)</code> that unprotects the object pointed to by the <code>SEXP</code> <var>s</var>, even if it is not the top item on the pointer protection stack. This macro was introduced for use in the parser, where the code interfacing with the R heap is generated and the generator cannot be configured to insert proper calls to <code>PROTECT</code> and <code>UNPROTECT</code>. However, <code>UNPROTECT_PTR</code> is dangerous to use in combination with <code>UNPROTECT</code> when the same object has been protected multiple times. It has been superseded by multi-set based functions <code>R_PreserveInMSet</code> and <code>R_ReleaseFromMSet</code>, which protect objects in a multi-set created by <code>R_NewPreciousMSet</code> and typically itself protected using <code>PROTECT</code>. These functions should not be needed outside parsers.</p>
+<p>There is a less-used macro <var>UNPROTECT_PTR(``s</var><code>)</code> that unprotects the object pointed to by the <code>SEXP</code> <var>s</var>, even if it is not the top item on the pointer protection stack. This macro was introduced for use in the parser, where the code interfacing with the R heap is generated and the generator cannot be configured to insert proper calls to <code>PROTECT</code> and <code>UNPROTECT</code>. However, <code>UNPROTECT_PTR</code> is dangerous to use in combination with <code>UNPROTECT</code> when the same object has been protected multiple times. It has been superseded by multi-set based functions <code>R_PreserveInMSet</code> and <code>R_ReleaseFromMSet</code>, which protect objects in a multi-set created by <code>R_NewPreciousMSet</code> and typically itself protected using <code>PROTECT</code>. These functions should not be needed outside parsers.</p>
 <p>Sometimes an object is changed (for example duplicated, coerced or grown) yet the current value needs to be protected. For these cases <code>PROTECT_WITH_INDEX</code> saves an index of the protection location that can be used to replace the protected value using <code>REPROTECT</code>. For example (from the internal code for <code>optim</code>)</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>    PROTECT_INDEX ipx;</span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1008,7 +1029,7 @@
 </section>
 <section id="allocating-storage" class="level3 subsection" data-number="5.9.2">
 <h3 class="subsection anchored" data-number="5.9.2" data-anchor-id="allocating-storage"><span class="header-section-number">5.9.2</span> Allocating storage</h3>
-<p>For many purposes it is sufficient to allocate R objects and manipulate those. There are quite a few <code>allocXxx</code> functions defined in <code>Rinternals.h</code>—you may want to explore them.</p>
+<p>For many purposes it is sufficient to allocate R objects and manipulate those. There are quite a few <var>alloc``Xxx</var> functions defined in <code>Rinternals.h</code>—you may want to explore them.</p>
 <p>One that is commonly used is <code>allocVector</code>, the C-level equivalent of R-level <code>vector()</code> and its wrappers such as <code>integer()</code> and <code>character()</code>. One distinction is that whereas the R functions always initialize the elements of the vector, <code>allocVector</code> only does so for lists, expressions and character vectors (the cases where the elements are themselves R objects).</p>
 <p>If storage is required for C objects during the calculations this is best allocating by calling <code>R_alloc</code>; see <a href="The-R-API.html#memory-allocation">Memory allocation</a>. All of these memory allocation routines do their own error-checking, so the programmer may assume that they will raise an error and not return if the memory cannot be allocated.</p>
 </section>
@@ -1174,7 +1195,7 @@
 </section>
 <section id="handling-lists" class="level3 subsection" data-number="5.9.6">
 <h3 class="subsection anchored" data-number="5.9.6" data-anchor-id="handling-lists"><span class="header-section-number">5.9.6</span> Handling lists</h3>
-<p>Some care is needed with lists, as R moved early on from using LISP-like lists (now called “pairlists”) to S-like generic vectors. As a result, the appropriate test for an object of mode <code>list</code> is <code>isNewList</code>, and we need <code>allocVector(VECSXP, n</code>) and <em>not</em> <code>allocList(n)</code>.</p>
+<p>Some care is needed with lists, as R moved early on from using LISP-like lists (now called “pairlists”) to S-like generic vectors. As a result, the appropriate test for an object of mode <code>list</code> is <code>isNewList</code>, and we need <var>allocVector(VECSXP, ``n</var>) and <em>not</em> <var>allocList(``n</var><code>)</code>.</p>
 <p>List elements can be retrieved or set by direct access to the elements of the generic vector. Suppose we have a list object</p>
 <div class="sourceCode" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">f =</span> <span class="dv">1</span>, <span class="at">g =</span> <span class="dv">2</span>, <span class="at">h =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Then we can access <code>a$g</code> as <code>a[[2]]</code> by</p>
@@ -1249,7 +1270,7 @@
 <span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a>SEXP ScalarComplex<span class="op">(</span>Rcomplex<span class="op">);</span></span>
 <span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a>SEXP ScalarString<span class="op">(</span>SEXP<span class="op">);</span></span>
 <span id="cb77-7"><a href="#cb77-7" aria-hidden="true" tabindex="-1"></a>SEXP mkString<span class="op">(</span><span class="dt">const</span> <span class="dt">char</span> <span class="op">*);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Some of the <code>isXXXX</code> functions differ from their apparent R-level counterparts: for example <code>isVector</code> is true for any atomic vector type (<code>isVectorAtomic</code>) and for lists and expressions (<code>isVectorList</code>) (with no check on attributes). <code>isMatrix</code> is a test of a length-2 <code>"dim"</code> attribute.</p>
+<p>Some of the <var>is``XXXX</var> functions differ from their apparent R-level counterparts: for example <code>isVector</code> is true for any atomic vector type (<code>isVectorAtomic</code>) and for lists and expressions (<code>isVectorList</code>) (with no check on attributes). <code>isMatrix</code> is a test of a length-2 <code>"dim"</code> attribute.</p>
 <div class="sourceCode" id="cb78"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>Rboolean isVector<span class="op">(</span>SEXP<span class="op">);</span></span>
 <span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>Rboolean isVectorAtomic<span class="op">(</span>SEXP<span class="op">);</span></span>
 <span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>Rboolean isVectorList<span class="op">(</span>SEXP<span class="op">);</span></span>
@@ -1808,12 +1829,30 @@
 <p>to create marked character strings of a given length.</p>
 
 
-
 </section>
 
+
 </main> <!-- /main -->
-<script type="application/javascript">
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -1833,7 +1872,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.blur();
     // flash "checked"
     button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
     setTimeout(function() {
+      button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
     // clear code selection
@@ -1923,6 +1965,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
   </div>
 </footer>
+
 
 
 </body></html>
