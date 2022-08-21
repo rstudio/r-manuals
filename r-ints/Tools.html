@@ -481,7 +481,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </dd>
 <dt><code>_R_CHECK_TIMINGS_</code></dt>
 <dd>
-<p>Optionally report timings for installation, examples, tests and running/re-building vignettes as part of the check log. The format is <code>[as/bs]</code> for the total CPU time (including child processes) <code>a</code> and elapsed time <code>b</code>, except on Windows, when it is <code>[bs]</code>. In most cases timings are only given for <code>OK</code> checks. Times with an elapsed component over 10 mins are reported in minutes (with abbreviation <code>m</code>). The value is the smallest numerical value in elapsed seconds that should be reported: non-numerical values indicate that no report is required, a value of <code>0</code> that a report is always required. Default: <code>""</code>. (<code>10</code> for CRAN checks.)</p>
+<p>Optionally report timings for installation, examples, tests and running/re-building vignettes as part of the check log. The format is <code>[as/bs]</code> for the total CPU time (including child processes) <code>a</code> and elapsed time <code>b</code>, except on Windows, when it is <code>[bs]</code>. In most cases timings are only given for <code>OK</code> checks. Times with an elapsed component over 10 mins are reported in minutes (with abbreviation <code>m</code>). The value is the smallest numerical value in elapsed seconds that should be reported: non-numerical values indicate that no report is required, a value of <code>0</code> that a report is always required. Default: <code>""</code>. (<code>10</code> for CRAN checks unless set in the environment.)</p>
 </dd>
 <dt><code>_R_CHECK_EXAMPLE_TIMING_THRESHOLD_</code></dt>
 <dd>
@@ -708,14 +708,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </dd>
 <dt><code>_R_CHECK_RD_VALIDATE_RD2HTML_</code></dt>
 <dd>
-<p>Check the validity of the package HTML help pages using HTML Tidy (<a href="https://www.html-tidy.org/" class="uri">https://www.html-tidy.org/</a>) (if a suitable version is available on the system path for executables or its path is specified by environment variable <code>R_TIDYCMD</code>). macOS users are advised to install 5.8.0 or later from <a href="http://binaries.html-tidy.org/" class="uri">http://binaries.html-tidy.org/</a>. Default: false (but true for CRAN submission checks). <code>--as-cran</code> can be overridden by setting this variable to a false value.</p>
+<p>Check the validity of the package HTML help pages using HTML Tidy (<a href="https://www.html-tidy.org/" class="uri">https://www.html-tidy.org/</a>) (if a suitable version is available on the system path for executables or its path is specified by environment variable <code>R_TIDYCMD</code>). macOS users are advised to install 5.8.0 or later from <a href="https://binaries.html-tidy.org/" class="uri">https://binaries.html-tidy.org/</a>. Default: false (but true for CRAN submission checks). <code>--as-cran</code> can be overridden by setting this variable to a false value.</p>
 </dd>
 <dt><code>_R_CHECK_RD_MATH_RENDERING_</code></dt>
 <dd>
-<p>Check whether HTML math rendering via KaTeX works (if package <a href="https://CRAN.R-project.org/package=V8"><strong>V8</strong></a> is available). See <a href="https://blog.r-project.org/2022/04/08/enhancements-to-html-documentation/" class="uri">https://blog.r-project.org/2022/04/08/enhancements-to-html-documentation/</a>. Default: false.</p>
+<p>Check whether HTML math rendering via KaTeX works (if package <a href="https://CRAN.R-project.org/package=V8"><strong>V8</strong></a> is available). See <a href="https://blog.r-project.org/2022/04/08/enhancements-to-html-documentation/" class="uri">https://blog.r-project.org/2022/04/08/enhancements-to-html-documentation/</a>. Default: false (but true for CRAN submission checks).</p>
+</dd>
+<dt><code>_R_CHECK_NEWS_IN_PLAIN_TEXT_</code></dt>
+<dd>
+<p>Check whether <code>news()</code> can successfully read package news in plain text (file <code>NEWS</code>) format. Default: false (but true for CRAN submission checks).</p>
 </dd>
 </dl>
-<div class="page-columns page-full"><p>The following variables control checks for undeclared/unconditional use of other packages. They work by setting up a temporary library directory and setting <code>.libPaths()</code> to just that and <code>.Library</code>, so are only effective if additional packages are installed somewhere other than <code>.Library</code>. The temporary library is populated by symbolic links<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> to installed packages not also in <code>.library</code>.</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;under Windows, junction points, or copies if environment variable <code>R_WIN_NO_JUNCTIONS</code> has a non-empty value.</p></li></div></div>
+<div class="page-columns page-full"><p>The following variables control checks for undeclared/unconditional use of other packages. They work by setting up a temporary library directory and setting <code>.libPaths()</code> to just that and <code>.Library</code>, so are only effective if additional packages are installed somewhere other than <code>.Library</code>. The temporary library is populated by symbolic links<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> to installed packages not also in <code>.Library</code>.</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;under Windows, junction points, or copies if environment variable <code>R_WIN_NO_JUNCTIONS</code> has a non-empty value.</p></li></div></div>
 <dl>
 <dt><code>_R_CHECK_INSTALL_DEPENDS_</code></dt>
 <dd>
@@ -794,7 +798,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>_R_CHECK_BOGUS_RETURN_<span class="ot">=</span>true</span>
 <span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>_R_CHECK_MATRIX_DATA_<span class="ot">=</span><span class="cn">TRUE</span></span>
 <span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>_R_CHECK_CODE_CLASS_IS_STRING_<span class="ot">=</span>true</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>_R_CHECK_RD_VALIDATE_RD2HTML_<span class="ot">=</span>true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>_R_CHECK_RD_VALIDATE_RD2HTML_<span class="ot">=</span>true</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>_R_CHECK_RD_MATH_RENDERING_<span class="ot">=</span>true</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>_R_CHECK_NEWS_IN_PLAIN_TEXT_<span class="ot">=</span>true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>These are turned on by <code>R CMD check --as-cran</code>: the incoming checks also use</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>_R_CHECK_FORCE_SUGGESTS_<span class="ot">=</span><span class="cn">FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>since some packages do suggest other packages not available on CRAN or other commonly-used repositories.</p>
