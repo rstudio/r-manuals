@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.38">
+<meta name="generator" content="quarto-1.1.149">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -53,7 +58,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -66,7 +71,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -128,9 +133,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="./index.html">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: An Introduction to R</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -311,21 +318,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-r-environment" id="toc-the-r-environment" class="nav-link active" data-scroll-target="#the-r-environment"> <span class="header-section-number">1.1</span> The R environment</a></li>
-  <li><a href="#related-software-and-documentation" id="toc-related-software-and-documentation" class="nav-link" data-scroll-target="#related-software-and-documentation"> <span class="header-section-number">1.2</span> Related software and documentation</a></li>
-  <li><a href="#r-and-statistics" id="toc-r-and-statistics" class="nav-link" data-scroll-target="#r-and-statistics"> <span class="header-section-number">1.3</span> R and statistics</a></li>
-  <li><a href="#r-and-the-window-system" id="toc-r-and-the-window-system" class="nav-link" data-scroll-target="#r-and-the-window-system"> <span class="header-section-number">1.4</span> R and the window system</a></li>
-  <li><a href="#using-r-interactively" id="toc-using-r-interactively" class="nav-link" data-scroll-target="#using-r-interactively"> <span class="header-section-number">1.5</span> Using R interactively</a></li>
-  <li><a href="#an-introductory-session" id="toc-an-introductory-session" class="nav-link" data-scroll-target="#an-introductory-session"> <span class="header-section-number">1.6</span> An introductory session</a></li>
-  <li><a href="#getting-help-with-functions-and-features" id="toc-getting-help-with-functions-and-features" class="nav-link" data-scroll-target="#getting-help-with-functions-and-features"> <span class="header-section-number">1.7</span> Getting help with functions and features</a></li>
-  <li><a href="#r-commands-case-sensitivity-etc." id="toc-r-commands-case-sensitivity-etc." class="nav-link" data-scroll-target="#r-commands-case-sensitivity-etc."> <span class="header-section-number">1.8</span> R commands, case sensitivity, etc.</a></li>
-  <li><a href="#recall-and-correction-of-previous-commands" id="toc-recall-and-correction-of-previous-commands" class="nav-link" data-scroll-target="#recall-and-correction-of-previous-commands"> <span class="header-section-number">1.9</span> Recall and correction of previous commands</a></li>
-  <li><a href="#executing-commands-from-or-diverting-output-to-a-file" id="toc-executing-commands-from-or-diverting-output-to-a-file" class="nav-link" data-scroll-target="#executing-commands-from-or-diverting-output-to-a-file"> <span class="header-section-number">1.10</span> Executing commands from or diverting output to a file</a></li>
-  <li><a href="#data-permanency-and-removing-objects" id="toc-data-permanency-and-removing-objects" class="nav-link" data-scroll-target="#data-permanency-and-removing-objects"> <span class="header-section-number">1.11</span> Data permanency and removing objects</a></li>
+  <li><a href="#the-r-environment" id="toc-the-r-environment" class="nav-link active" data-scroll-target="#the-r-environment"><span class="toc-section-number">1.1</span>  The R environment</a></li>
+  <li><a href="#related-software-and-documentation" id="toc-related-software-and-documentation" class="nav-link" data-scroll-target="#related-software-and-documentation"><span class="toc-section-number">1.2</span>  Related software and documentation</a></li>
+  <li><a href="#r-and-statistics" id="toc-r-and-statistics" class="nav-link" data-scroll-target="#r-and-statistics"><span class="toc-section-number">1.3</span>  R and statistics</a></li>
+  <li><a href="#r-and-the-window-system" id="toc-r-and-the-window-system" class="nav-link" data-scroll-target="#r-and-the-window-system"><span class="toc-section-number">1.4</span>  R and the window system</a></li>
+  <li><a href="#using-r-interactively" id="toc-using-r-interactively" class="nav-link" data-scroll-target="#using-r-interactively"><span class="toc-section-number">1.5</span>  Using R interactively</a></li>
+  <li><a href="#an-introductory-session" id="toc-an-introductory-session" class="nav-link" data-scroll-target="#an-introductory-session"><span class="toc-section-number">1.6</span>  An introductory session</a></li>
+  <li><a href="#getting-help-with-functions-and-features" id="toc-getting-help-with-functions-and-features" class="nav-link" data-scroll-target="#getting-help-with-functions-and-features"><span class="toc-section-number">1.7</span>  Getting help with functions and features</a></li>
+  <li><a href="#r-commands-case-sensitivity-etc." id="toc-r-commands-case-sensitivity-etc." class="nav-link" data-scroll-target="#r-commands-case-sensitivity-etc."><span class="toc-section-number">1.8</span>  R commands, case sensitivity, etc.</a></li>
+  <li><a href="#recall-and-correction-of-previous-commands" id="toc-recall-and-correction-of-previous-commands" class="nav-link" data-scroll-target="#recall-and-correction-of-previous-commands"><span class="toc-section-number">1.9</span>  Recall and correction of previous commands</a></li>
+  <li><a href="#executing-commands-from-or-diverting-output-to-a-file" id="toc-executing-commands-from-or-diverting-output-to-a-file" class="nav-link" data-scroll-target="#executing-commands-from-or-diverting-output-to-a-file"><span class="toc-section-number">1.10</span>  Executing commands from or diverting output to a file</a></li>
+  <li><a href="#data-permanency-and-removing-objects" id="toc-data-permanency-and-removing-objects" class="nav-link" data-scroll-target="#data-permanency-and-removing-objects"><span class="toc-section-number">1.11</span>  Data permanency and removing objects</a></li>
   </ul>
 </nav>
     </div>
@@ -425,13 +432,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="r-commands-case-sensitivity-etc." class="level2 section page-columns page-full" data-number="1.8">
 <h2 class="section anchored" data-number="1.8" data-anchor-id="r-commands-case-sensitivity-etc."><span class="header-section-number">1.8</span> R commands, case sensitivity, etc.</h2>
-<div class="page-columns page-full"><p>Technically R is an <em>expression language</em> with a very simple syntax. It is <em>case sensitive</em> as are most UNIX based packages, so <code>A</code> and <code>a</code> are different symbols and would refer to different variables. The set of symbols which can be used in R names depends on the operating system and country within which R is being run (technically on the <em>locale</em> in use). Normally all alphanumeric symbols are allowed<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> (and in some countries this includes accented letters) plus <code>.</code> and <code>_</code>, with the restriction that a name must start with <code>.</code> or a letter, and if it starts with <code>.</code> the second character must not be a digit. Names are effectively unlimited in length.</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;For portable R code (including that to be used in R packages) only A–Za–z0–9 should be used.</p></li></div></div>
+<div class="page-columns page-full"><p>Technically R is an <em>expression language</em> with a very simple syntax. It is <em>case sensitive</em> as are most UNIX based packages, so <code>A</code> and <code>a</code> are different symbols and would refer to different variables. The set of symbols which can be used in R names depends on the operating system and country within which R is being run (technically on the <em>locale</em> in use). Normally all alphanumeric symbols are allowed<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> (and in some countries this includes accented letters) plus <code>.</code> and <code>_</code>, with the restriction that a name must start with <code>.</code> or a letter, and if it starts with <code>.</code> the second character must not be a digit. Names are effectively unlimited in length.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;For portable R code (including that to be used in R packages) only A–Za–z0–9 should be used.</p></li></div></div>
 <p>Elementary commands consist of either <em>expressions</em> or <em>assignments</em>. If an expression is given as a command, it is evaluated, printed (unless specifically made invisible), and the value is lost. An assignment also evaluates an expression and passes the value to a variable but the result is not automatically printed.</p>
-<div class="page-columns page-full"><p>Commands are separated either by a semi-colon (<code>;</code>), or by a newline. Elementary commands can be grouped together into one compound expression by braces (<code>{</code> and <code>}</code>). <em>Comments</em> can be put almost<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> anywhere, starting with a hashmark (<code>#</code>), everything to the end of the line is a comment.</p><div class="no-row-height column-margin column-container"><li id="fn2" role="doc-endnote"><p><sup>2</sup>&nbsp;<strong>not</strong> inside strings, nor within the argument list of a function definition</p></li></div></div>
+<div class="page-columns page-full"><p>Commands are separated either by a semi-colon (<code>;</code>), or by a newline. Elementary commands can be grouped together into one compound expression by braces (<code>{</code> and <code>}</code>). <em>Comments</em> can be put almost<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> anywhere, starting with a hashmark (<code>#</code>), everything to the end of the line is a comment.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;<strong>not</strong> inside strings, nor within the argument list of a function definition</p></li></div></div>
 <p>If a command is not complete at the end of a line, R will give a different prompt, by default</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>on second and subsequent lines and continue to read input until the command is syntactically complete. This prompt may be changed by the user. We will generally omit the continuation prompt and indicate continuation by simple indenting.</p>
-<div class="page-columns page-full"><p>Command lines entered at the console are limited<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> to about 4095 bytes (not characters).</p><div class="no-row-height column-margin column-container"><li id="fn3" role="doc-endnote"><p><sup>3</sup>&nbsp;some of the consoles will not allow you to enter more, and amongst those which do some will silently discard the excess and some will use it as the start of the next line.</p></li></div></div>
+<div class="page-columns page-full"><p>Command lines entered at the console are limited<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> to about 4095 bytes (not characters).</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;some of the consoles will not allow you to enter more, and amongst those which do some will silently discard the excess and some will use it as the start of the next line.</p></li></div></div>
 </section>
 <section id="recall-and-correction-of-previous-commands" class="level2 section" data-number="1.9">
 <h2 class="section anchored" data-number="1.9" data-anchor-id="recall-and-correction-of-previous-commands"><span class="header-section-number">1.9</span> Recall and correction of previous commands</h2>
@@ -441,7 +448,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="executing-commands-from-or-diverting-output-to-a-file" class="level2 section page-columns page-full" data-number="1.10">
 <h2 class="section anchored" data-number="1.10" data-anchor-id="executing-commands-from-or-diverting-output-to-a-file"><span class="header-section-number">1.10</span> Executing commands from or diverting output to a file</h2>
-<div class="page-columns page-full"><p>If commands<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> are stored in an external file, say <code>commands.R</code> in the working directory <code>work</code>, they may be executed at any time in an R session with the command</p><div class="no-row-height column-margin column-container"><li id="fn4" role="doc-endnote"><p><sup>4</sup>&nbsp;of unlimited length.</p></li></div></div>
+<div class="page-columns page-full"><p>If commands<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> are stored in an external file, say <code>commands.R</code> in the working directory <code>work</code>, they may be executed at any time in an R session with the command</p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;of unlimited length.</p></li></div></div>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">source</span>(<span class="st">"commands.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>For Windows <strong>Source</strong> is also available on the <strong>File</strong> menu. The function <code>sink</code>,</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sink</span>(<span class="st">"record.lis"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -457,7 +464,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>(alternatively, <code>ls()</code>) can be used to display the names of (most of) the objects which are currently stored within R. The collection of objects currently stored is called the <em>workspace</em>.</p>
 <p>To remove objects the function <code>rm</code> is available:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">rm</span>(x, y, z, ink, junk, temp, foo, bar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="page-columns page-full"><p>All objects created during an R session can be stored permanently in a file for use in future R sessions. At the end of each R session you are given the opportunity to save all the currently available objects. If you indicate that you want to do this, the objects are written to a file called <code>.RData</code><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> in the current directory, and the command lines used in the session are saved to a file called <code>.Rhistory</code>.</p><div class="no-row-height column-margin column-container"><li id="fn5" role="doc-endnote"><p><sup>5</sup>&nbsp;The leading “dot” in this file name makes it <em>invisible</em> in normal file listings in UNIX, and in default GUI file listings on macOS and Windows.</p></li></div></div>
+<div class="page-columns page-full"><p>All objects created during an R session can be stored permanently in a file for use in future R sessions. At the end of each R session you are given the opportunity to save all the currently available objects. If you indicate that you want to do this, the objects are written to a file called <code>.RData</code><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> in the current directory, and the command lines used in the session are saved to a file called <code>.Rhistory</code>.</p><div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;The leading “dot” in this file name makes it <em>invisible</em> in normal file listings in UNIX, and in default GUI file listings on macOS and Windows.</p></li></div></div>
 <p>When R is started at later time from the same directory it reloads the workspace from this file. At the same time the associated commands history is reloaded.</p>
 <p>It is recommended that you should use separate working directories for analyses conducted with R. It is quite common for objects with names <code>x</code> and <code>y</code> to be created during an analysis. Names like this are often meaningful in the context of a single analysis, but it can be quite hard to decide what they might be when the several analyses have been conducted in the same directory.</p>
 
@@ -535,7 +542,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

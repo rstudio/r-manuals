@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.38">
+<meta name="generator" content="quarto-1.1.149">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -53,7 +58,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -66,7 +71,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -128,9 +133,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="./index.html">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: Writing R Extensions</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -261,23 +268,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#embedding-r-under-unix-alikes" id="toc-embedding-r-under-unix-alikes" class="nav-link active" data-scroll-target="#embedding-r-under-unix-alikes"> <span class="header-section-number">8.1</span> Embedding R under Unix-alikes</a>
+  <li><a href="#embedding-r-under-unix-alikes" id="toc-embedding-r-under-unix-alikes" class="nav-link active" data-scroll-target="#embedding-r-under-unix-alikes"><span class="toc-section-number">8.1</span>  Embedding R under Unix-alikes</a>
   <ul class="collapse">
-  <li><a href="#compiling-against-the-r-library" id="toc-compiling-against-the-r-library" class="nav-link" data-scroll-target="#compiling-against-the-r-library"> <span class="header-section-number">8.1.1</span> Compiling against the R library</a></li>
-  <li><a href="#setting-r-callbacks" id="toc-setting-r-callbacks" class="nav-link" data-scroll-target="#setting-r-callbacks"> <span class="header-section-number">8.1.2</span> Setting R callbacks</a></li>
-  <li><a href="#registering-symbols" id="toc-registering-symbols" class="nav-link" data-scroll-target="#registering-symbols"> <span class="header-section-number">8.1.3</span> Registering symbols</a></li>
-  <li><a href="#meshing-event-loops" id="toc-meshing-event-loops" class="nav-link" data-scroll-target="#meshing-event-loops"> <span class="header-section-number">8.1.4</span> Meshing event loops</a></li>
-  <li><a href="#threading-issues" id="toc-threading-issues" class="nav-link" data-scroll-target="#threading-issues"> <span class="header-section-number">8.1.5</span> Threading issues</a></li>
+  <li><a href="#compiling-against-the-r-library" id="toc-compiling-against-the-r-library" class="nav-link" data-scroll-target="#compiling-against-the-r-library"><span class="toc-section-number">8.1.1</span>  Compiling against the R library</a></li>
+  <li><a href="#setting-r-callbacks" id="toc-setting-r-callbacks" class="nav-link" data-scroll-target="#setting-r-callbacks"><span class="toc-section-number">8.1.2</span>  Setting R callbacks</a></li>
+  <li><a href="#registering-symbols" id="toc-registering-symbols" class="nav-link" data-scroll-target="#registering-symbols"><span class="toc-section-number">8.1.3</span>  Registering symbols</a></li>
+  <li><a href="#meshing-event-loops" id="toc-meshing-event-loops" class="nav-link" data-scroll-target="#meshing-event-loops"><span class="toc-section-number">8.1.4</span>  Meshing event loops</a></li>
+  <li><a href="#threading-issues" id="toc-threading-issues" class="nav-link" data-scroll-target="#threading-issues"><span class="toc-section-number">8.1.5</span>  Threading issues</a></li>
   </ul></li>
-  <li><a href="#embedding-r-under-windows" id="toc-embedding-r-under-windows" class="nav-link" data-scroll-target="#embedding-r-under-windows"> <span class="header-section-number">8.2</span> Embedding R under Windows</a>
+  <li><a href="#embedding-r-under-windows" id="toc-embedding-r-under-windows" class="nav-link" data-scroll-target="#embedding-r-under-windows"><span class="toc-section-number">8.2</span>  Embedding R under Windows</a>
   <ul class="collapse">
-  <li><a href="#using-dcom" id="toc-using-dcom" class="nav-link" data-scroll-target="#using-dcom"> <span class="header-section-number">8.2.1</span> Using (D)COM</a></li>
-  <li><a href="#calling-r.dll-directly" id="toc-calling-r.dll-directly" class="nav-link" data-scroll-target="#calling-r.dll-directly"> <span class="header-section-number">8.2.2</span> Calling R.dll directly</a></li>
-  <li><a href="#finding-r_home" id="toc-finding-r_home" class="nav-link" data-scroll-target="#finding-r_home"> <span class="header-section-number">8.2.3</span> Finding R_HOME</a></li>
+  <li><a href="#using-dcom" id="toc-using-dcom" class="nav-link" data-scroll-target="#using-dcom"><span class="toc-section-number">8.2.1</span>  Using (D)COM</a></li>
+  <li><a href="#calling-r.dll-directly" id="toc-calling-r.dll-directly" class="nav-link" data-scroll-target="#calling-r.dll-directly"><span class="toc-section-number">8.2.2</span>  Calling R.dll directly</a></li>
+  <li><a href="#finding-r_home" id="toc-finding-r_home" class="nav-link" data-scroll-target="#finding-r_home"><span class="toc-section-number">8.2.3</span>  Finding R_HOME</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -305,7 +312,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Note that the APIs described in this chapter are only intended to be used in an alternative front-end: they are not part of the API made available for R packages and can be dangerous to use in a conventional package (although packages may contain alternative front-ends). Conversely some of the functions from the API (such as <code>R_alloc</code>) should not be used in front-ends.</p>
 <section id="embedding-r-under-unix-alikes" class="level2 section page-columns page-full" data-number="8.1">
 <h2 class="section anchored" data-number="8.1" data-anchor-id="embedding-r-under-unix-alikes"><span class="header-section-number">8.1</span> Embedding R under Unix-alikes</h2>
-<div class="page-columns page-full"><p>R can be built as a shared library<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> if configured with <code>--enable-R-shlib</code>. This shared library can be used to run R from alternative front-end programs. We will assume this has been done for the rest of this section. Also, it can be built as a static library if configured with <code>--enable-R-static-lib</code>, and that can be used in a very similar way (at least on Linux: on other platforms one needs to ensure that all the symbols exported by <code>libR.a</code> are linked into the front-end).</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;In the parlance of macOS this is a <em>dynamic</em> library, and is the normal way to build R on that platform.</p></li></div></div>
+<div class="page-columns page-full"><p>R can be built as a shared library<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> if configured with <code>--enable-R-shlib</code>. This shared library can be used to run R from alternative front-end programs. We will assume this has been done for the rest of this section. Also, it can be built as a static library if configured with <code>--enable-R-static-lib</code>, and that can be used in a very similar way (at least on Linux: on other platforms one needs to ensure that all the symbols exported by <code>libR.a</code> are linked into the front-end).</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;In the parlance of macOS this is a <em>dynamic</em> library, and is the normal way to build R on that platform.</p></li></div></div>
 <p>The command-line R front-end, <var>R_HOME</var><code>/bin/exec/R</code>, is one such example, and the former GNOME (see package <strong>gnomeGUI</strong> on CRAN’s <code>Archive</code> area) and macOS consoles are others. The source for <var>R_HOME</var><code>/bin/exec/R</code> is in file <code>src/main/Rmain.c</code> and is very simple</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> Rf_initialize_R<span class="op">(</span><span class="dt">int</span> ac<span class="op">,</span> <span class="dt">char</span> <span class="op">**</span>av<span class="op">);</span> <span class="co">/* in ../unix/system.c */</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> Rf_mainloop<span class="op">();</span>                     <span class="co">/* in main.c */</span></span>
@@ -329,7 +336,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> CMD /usr/local/lib/R/bin/exec/R</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> CMD exec/R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>will both work in a standard R installation. (<code>R CMD</code> looks first for executables in <var>R_HOME</var><code>/bin</code>. These command-lines need modification if a sub-architecture is in use.) If you do not want to run your front-end in this way, you need to ensure that <code>R_HOME</code> is set and <code>LD_LIBRARY_PATH</code> is suitable. (The latter might well be, but modern Unix/Linux systems do not normally include <code>/usr/local/lib</code> (<code>/usr/local/lib64</code> on some architectures), and R does look there for system components.)</p>
-<div class="page-columns page-full"><p>The other senses in which this example is too simple are that all the internal defaults are used and that control is handed over to the R main loop. There are a number of small examples<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> in the <code>tests/Embedding</code> directory. These make use of <code>Rf_initEmbeddedR</code> in <code>src/main/Rembedded.c</code>, and essentially use</p><div class="no-row-height column-margin column-container"><li id="fn2" role="doc-endnote"><p><sup>2</sup>&nbsp;but these are not part of the automated test procedures and so little tested.</p></li></div></div>
+<div class="page-columns page-full"><p>The other senses in which this example is too simple are that all the internal defaults are used and that control is handed over to the R main loop. There are a number of small examples<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> in the <code>tests/Embedding</code> directory. These make use of <code>Rf_initEmbeddedR</code> in <code>src/main/Rembedded.c</code>, and essentially use</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;but these are not part of the automated test procedures and so little tested.</p></li></div></div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Rembedded.h&gt;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> ac<span class="op">,</span> <span class="dt">char</span> <span class="op">**</span>av<span class="op">)</span></span>
@@ -620,7 +627,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Mouse and window events when displaying the X11-based dataentry window, in file <code>src/modules/X11/dataentry.c</code>. This is regarded as <em>modal</em>, and no other events are serviced whilst it is active.</li>
 </ul>
 <p>There is a protocol for adding event handlers to the first two types of event loops, using types and functions declared in the header <code>R_ext/eventloop.h</code> and described in comments in file <code>src/unix/sys-std.c</code>. It is possible to add (or remove) an input handler for events on a particular file descriptor, or to set a polling interval (<em>via</em> <code>R_wait_usec</code>) and a function to be called periodically <em>via</em> <code>R_PolledEvents</code>: the polling mechanism is used by the <strong>tcltk</strong> package.</p>
-<div class="page-columns page-full"><p>It is not intended that these facilities are used by packages, but if they are needed exceptionally, the package should ensure that it cleans up and removes its handlers when its namespace is unloaded. Note that the header <code>sys/select.h</code> is needed<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>: users should check this is available and define <code>HAVE_SYS_SELECT_H</code> before including <code>R_ext/eventloop.h</code>. (It is often the case that another header will include <code>sys/select.h</code> before <code>eventloop.h</code> is processed, but this should not be relied on.)</p><div class="no-row-height column-margin column-container"><li id="fn3" role="doc-endnote"><p><sup>3</sup>&nbsp;At least according to POSIX 2004 and later. Earlier standards prescribed <code>sys/time.h</code>: <code>R_ext/eventloop.h</code> will include it if <code>HAVE_SYS_TIME_H</code> is defined.</p></li></div></div>
+<div class="page-columns page-full"><p>It is not intended that these facilities are used by packages, but if they are needed exceptionally, the package should ensure that it cleans up and removes its handlers when its namespace is unloaded. Note that the header <code>sys/select.h</code> is needed<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>: users should check this is available and define <code>HAVE_SYS_SELECT_H</code> before including <code>R_ext/eventloop.h</code>. (It is often the case that another header will include <code>sys/select.h</code> before <code>eventloop.h</code> is processed, but this should not be relied on.)</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;At least according to POSIX 2004 and later. Earlier standards prescribed <code>sys/time.h</code>: <code>R_ext/eventloop.h</code> will include it if <code>HAVE_SYS_TIME_H</code> is defined.</p></li></div></div>
 <p>An alternative front-end needs both to make provision for other R events whilst waiting for input, and to ensure that it is not frozen out during events of the second type. The ability to add a polled handler as <code>R_timeout_handler</code> is used by the <strong>tcltk</strong> package.</p>
 </section>
 <section id="threading-issues" class="level3 subsection page-columns page-full" data-number="8.1.5">
@@ -629,7 +636,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb17"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="dt">uintptr_t</span> R_CStackLimit<span class="op">;</span> <span class="co">/* C stack limit */</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="dt">uintptr_t</span> R_CStackStart<span class="op">;</span> <span class="co">/* Initial stack address */</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Note that <code>uintptr_t</code> is an optional C99 type for which a substitute is defined in R, so your code needs to define <code>HAVE_UINTPTR_T</code> appropriately. To do so, test if the type is defined in C header <code>stdint.h</code> or C++ header <code>cstdint</code> and if so include the header and define <code>HAVE_UINTPTR_T</code> before including <code>Rinterface.h</code>. (For C code one can simply include <code>Rconfig.h</code>, possibly <em>via</em> <code>R.h</code>, and for C++11 code <code>Rinterface.h</code> will include the header <code>cstdint</code>.)</p>
-<div class="page-columns page-full"><p>These will be set<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> when <code>Rf_initialize_R</code> is called, to values appropriate to the main thread. Stack-checking can be disabled by setting <code>R_CStackLimit = (uintptr_t)-1</code> immediately after <code>Rf_initialize_R</code> is called, but it is better to if possible set appropriate values. (What these are and how to determine them are OS-specific, and the stack size limit may differ for secondary threads. If you have a choice of stack size, at least 10Mb is recommended.)</p><div class="no-row-height column-margin column-container"><li id="fn4" role="doc-endnote"><p><sup>4</sup>&nbsp;at least on platforms where the values are available, that is having <code>getrlimit</code> and on Linux or having <code>sysctl</code> supporting <code>KERN_USRSTACK</code>, including FreeBSD and macOS.</p></li></div></div>
+<div class="page-columns page-full"><p>These will be set<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> when <code>Rf_initialize_R</code> is called, to values appropriate to the main thread. Stack-checking can be disabled by setting <code>R_CStackLimit = (uintptr_t)-1</code> immediately after <code>Rf_initialize_R</code> is called, but it is better to if possible set appropriate values. (What these are and how to determine them are OS-specific, and the stack size limit may differ for secondary threads. If you have a choice of stack size, at least 10Mb is recommended.)</p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;at least on platforms where the values are available, that is having <code>getrlimit</code> and on Linux or having <code>sysctl</code> supporting <code>KERN_USRSTACK</code>, including FreeBSD and macOS.</p></li></div></div>
 <p>You may also want to consider how signals are handled: R sets signal handlers for several signals, including <code>SIGINT</code>, <code>SIGSEGV</code>, <code>SIGPIPE</code>, <code>SIGUSR1</code> and <code>SIGUSR2</code>, but these can all be suppressed by setting the variable <code>R_SignalHandlers</code> (declared in <code>Rinterface.h</code>) to <code>0</code>.</p>
 <p>Note that these variables must not be changed by an R <strong>package</strong>: a package should not call R internals which makes use of the stack-checking mechanism on a secondary thread.</p>
 </section>
@@ -774,7 +781,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>The mainloop can be split up to allow the calling application to take some action after each line of input has been dealt with: see the alternative code below <code>#ifdef SIMPLE_CASE</code>.</p></li>
 </ul>
 <p>It may be that no R GraphApp windows need to be considered, although these include pagers, the <code>windows()</code> graphics device, the R data and script editors and various popups such as <code>choose.file()</code> and <code>select.list()</code>. It would be possible to replace all of these, but it seems easier to allow GraphApp to handle most of them.</p>
-<div class="page-columns page-full"><p>It is possible to run R in a GUI in a single thread (as <code>RGui.exe</code> shows) but it will normally be easier<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> to use multiple threads.</p><div class="no-row-height column-margin column-container"><li id="fn5" role="doc-endnote"><p><sup>5</sup>&nbsp;An attempt to use only threads in the late 1990s failed to work correctly under Windows 95, the predominant version of Windows at that time.</p></li></div></div>
+<div class="page-columns page-full"><p>It is possible to run R in a GUI in a single thread (as <code>RGui.exe</code> shows) but it will normally be easier<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> to use multiple threads.</p><div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;An attempt to use only threads in the late 1990s failed to work correctly under Windows 95, the predominant version of Windows at that time.</p></li></div></div>
 <p>Note that R’s own front ends use a stack size of 10Mb, whereas MinGW executables default to 2Mb, and Visual C++ ones to 1Mb. The latter stack sizes are too small for a number of R applications, so general-purpose front-ends should use a larger stack size.</p>
 <p>Applications embedding R 4.2.0 and newer should use UCRT as the C runtime and opt in for UTF-8 as the active code page in their manifest, as all frontends shipped with R do. This will allow the embedded R to use UTF-8 as its native encoding on recent Windows systems.</p>
 </section>
@@ -866,7 +873,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

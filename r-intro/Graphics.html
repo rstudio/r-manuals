@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.38">
+<meta name="generator" content="quarto-1.1.149">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -53,7 +58,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -66,7 +71,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -128,9 +133,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="./index.html">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: An Introduction to R</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -311,41 +318,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#high-level-plotting-commands" id="toc-high-level-plotting-commands" class="nav-link active" data-scroll-target="#high-level-plotting-commands"> <span class="header-section-number">12.1</span> High-level plotting commands</a>
+  <li><a href="#high-level-plotting-commands" id="toc-high-level-plotting-commands" class="nav-link active" data-scroll-target="#high-level-plotting-commands"><span class="toc-section-number">12.1</span>  High-level plotting commands</a>
   <ul class="collapse">
-  <li><a href="#the-plot-function" id="toc-the-plot-function" class="nav-link" data-scroll-target="#the-plot-function"> <span class="header-section-number">12.1.1</span> The <code>plot()</code> function</a></li>
-  <li><a href="#displaying-multivariate-data" id="toc-displaying-multivariate-data" class="nav-link" data-scroll-target="#displaying-multivariate-data"> <span class="header-section-number">12.1.2</span> Displaying multivariate data</a></li>
-  <li><a href="#display-graphics" id="toc-display-graphics" class="nav-link" data-scroll-target="#display-graphics"> <span class="header-section-number">12.1.3</span> Display graphics</a></li>
-  <li><a href="#arguments-to-high-level-plotting-functions" id="toc-arguments-to-high-level-plotting-functions" class="nav-link" data-scroll-target="#arguments-to-high-level-plotting-functions"> <span class="header-section-number">12.1.4</span> Arguments to high-level plotting functions</a></li>
+  <li><a href="#the-plot-function" id="toc-the-plot-function" class="nav-link" data-scroll-target="#the-plot-function"><span class="toc-section-number">12.1.1</span>  The <code>plot()</code> function</a></li>
+  <li><a href="#displaying-multivariate-data" id="toc-displaying-multivariate-data" class="nav-link" data-scroll-target="#displaying-multivariate-data"><span class="toc-section-number">12.1.2</span>  Displaying multivariate data</a></li>
+  <li><a href="#display-graphics" id="toc-display-graphics" class="nav-link" data-scroll-target="#display-graphics"><span class="toc-section-number">12.1.3</span>  Display graphics</a></li>
+  <li><a href="#arguments-to-high-level-plotting-functions" id="toc-arguments-to-high-level-plotting-functions" class="nav-link" data-scroll-target="#arguments-to-high-level-plotting-functions"><span class="toc-section-number">12.1.4</span>  Arguments to high-level plotting functions</a></li>
   </ul></li>
-  <li><a href="#low-level-plotting-commands" id="toc-low-level-plotting-commands" class="nav-link" data-scroll-target="#low-level-plotting-commands"> <span class="header-section-number">12.2</span> Low-level plotting commands</a>
+  <li><a href="#low-level-plotting-commands" id="toc-low-level-plotting-commands" class="nav-link" data-scroll-target="#low-level-plotting-commands"><span class="toc-section-number">12.2</span>  Low-level plotting commands</a>
   <ul class="collapse">
-  <li><a href="#mathematical-annotation" id="toc-mathematical-annotation" class="nav-link" data-scroll-target="#mathematical-annotation"> <span class="header-section-number">12.2.1</span> Mathematical annotation</a></li>
-  <li><a href="#hershey-vector-fonts" id="toc-hershey-vector-fonts" class="nav-link" data-scroll-target="#hershey-vector-fonts"> <span class="header-section-number">12.2.2</span> Hershey vector fonts</a></li>
+  <li><a href="#mathematical-annotation" id="toc-mathematical-annotation" class="nav-link" data-scroll-target="#mathematical-annotation"><span class="toc-section-number">12.2.1</span>  Mathematical annotation</a></li>
+  <li><a href="#hershey-vector-fonts" id="toc-hershey-vector-fonts" class="nav-link" data-scroll-target="#hershey-vector-fonts"><span class="toc-section-number">12.2.2</span>  Hershey vector fonts</a></li>
   </ul></li>
-  <li><a href="#interacting-with-graphics" id="toc-interacting-with-graphics" class="nav-link" data-scroll-target="#interacting-with-graphics"> <span class="header-section-number">12.3</span> Interacting with graphics</a></li>
-  <li><a href="#using-graphics-parameters" id="toc-using-graphics-parameters" class="nav-link" data-scroll-target="#using-graphics-parameters"> <span class="header-section-number">12.4</span> Using graphics parameters</a>
+  <li><a href="#interacting-with-graphics" id="toc-interacting-with-graphics" class="nav-link" data-scroll-target="#interacting-with-graphics"><span class="toc-section-number">12.3</span>  Interacting with graphics</a></li>
+  <li><a href="#using-graphics-parameters" id="toc-using-graphics-parameters" class="nav-link" data-scroll-target="#using-graphics-parameters"><span class="toc-section-number">12.4</span>  Using graphics parameters</a>
   <ul class="collapse">
-  <li><a href="#permanent-changes-the-par-function" id="toc-permanent-changes-the-par-function" class="nav-link" data-scroll-target="#permanent-changes-the-par-function"> <span class="header-section-number">12.4.1</span> Permanent changes: The <code>par()</code> function</a></li>
-  <li><a href="#temporary-changes-arguments-to-graphics-functions" id="toc-temporary-changes-arguments-to-graphics-functions" class="nav-link" data-scroll-target="#temporary-changes-arguments-to-graphics-functions"> <span class="header-section-number">12.4.2</span> Temporary changes: Arguments to graphics functions</a></li>
+  <li><a href="#permanent-changes-the-par-function" id="toc-permanent-changes-the-par-function" class="nav-link" data-scroll-target="#permanent-changes-the-par-function"><span class="toc-section-number">12.4.1</span>  Permanent changes: The <code>par()</code> function</a></li>
+  <li><a href="#temporary-changes-arguments-to-graphics-functions" id="toc-temporary-changes-arguments-to-graphics-functions" class="nav-link" data-scroll-target="#temporary-changes-arguments-to-graphics-functions"><span class="toc-section-number">12.4.2</span>  Temporary changes: Arguments to graphics functions</a></li>
   </ul></li>
-  <li><a href="#graphics-parameters-list" id="toc-graphics-parameters-list" class="nav-link" data-scroll-target="#graphics-parameters-list"> <span class="header-section-number">12.5</span> Graphics parameters list</a>
+  <li><a href="#graphics-parameters-list" id="toc-graphics-parameters-list" class="nav-link" data-scroll-target="#graphics-parameters-list"><span class="toc-section-number">12.5</span>  Graphics parameters list</a>
   <ul class="collapse">
-  <li><a href="#graphical-elements" id="toc-graphical-elements" class="nav-link" data-scroll-target="#graphical-elements"> <span class="header-section-number">12.5.1</span> Graphical elements</a></li>
-  <li><a href="#axes-and-tick-marks" id="toc-axes-and-tick-marks" class="nav-link" data-scroll-target="#axes-and-tick-marks"> <span class="header-section-number">12.5.2</span> Axes and tick marks</a></li>
-  <li><a href="#figure-margins" id="toc-figure-margins" class="nav-link" data-scroll-target="#figure-margins"> <span class="header-section-number">12.5.3</span> Figure margins</a></li>
-  <li><a href="#multiple-figure-environment" id="toc-multiple-figure-environment" class="nav-link" data-scroll-target="#multiple-figure-environment"> <span class="header-section-number">12.5.4</span> Multiple figure environment</a></li>
+  <li><a href="#graphical-elements" id="toc-graphical-elements" class="nav-link" data-scroll-target="#graphical-elements"><span class="toc-section-number">12.5.1</span>  Graphical elements</a></li>
+  <li><a href="#axes-and-tick-marks" id="toc-axes-and-tick-marks" class="nav-link" data-scroll-target="#axes-and-tick-marks"><span class="toc-section-number">12.5.2</span>  Axes and tick marks</a></li>
+  <li><a href="#figure-margins" id="toc-figure-margins" class="nav-link" data-scroll-target="#figure-margins"><span class="toc-section-number">12.5.3</span>  Figure margins</a></li>
+  <li><a href="#multiple-figure-environment" id="toc-multiple-figure-environment" class="nav-link" data-scroll-target="#multiple-figure-environment"><span class="toc-section-number">12.5.4</span>  Multiple figure environment</a></li>
   </ul></li>
-  <li><a href="#device-drivers" id="toc-device-drivers" class="nav-link" data-scroll-target="#device-drivers"> <span class="header-section-number">12.6</span> Device drivers</a>
+  <li><a href="#device-drivers" id="toc-device-drivers" class="nav-link" data-scroll-target="#device-drivers"><span class="toc-section-number">12.6</span>  Device drivers</a>
   <ul class="collapse">
-  <li><a href="#postscript-diagrams-for-typeset-documents" id="toc-postscript-diagrams-for-typeset-documents" class="nav-link" data-scroll-target="#postscript-diagrams-for-typeset-documents"> <span class="header-section-number">12.6.1</span> PostScript diagrams for typeset documents</a></li>
-  <li><a href="#multiple-graphics-devices" id="toc-multiple-graphics-devices" class="nav-link" data-scroll-target="#multiple-graphics-devices"> <span class="header-section-number">12.6.2</span> Multiple graphics devices</a></li>
+  <li><a href="#postscript-diagrams-for-typeset-documents" id="toc-postscript-diagrams-for-typeset-documents" class="nav-link" data-scroll-target="#postscript-diagrams-for-typeset-documents"><span class="toc-section-number">12.6.1</span>  PostScript diagrams for typeset documents</a></li>
+  <li><a href="#multiple-graphics-devices" id="toc-multiple-graphics-devices" class="nav-link" data-scroll-target="#multiple-graphics-devices"><span class="toc-section-number">12.6.2</span>  Multiple graphics devices</a></li>
   </ul></li>
-  <li><a href="#dynamic-graphics" id="toc-dynamic-graphics" class="nav-link" data-scroll-target="#dynamic-graphics"> <span class="header-section-number">12.7</span> Dynamic graphics</a></li>
+  <li><a href="#dynamic-graphics" id="toc-dynamic-graphics" class="nav-link" data-scroll-target="#dynamic-graphics"><span class="toc-section-number">12.7</span>  Dynamic graphics</a></li>
   </ul>
 </nav>
     </div>
@@ -656,7 +663,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Hershey fonts can produce better output, especially on a computer screen, for rotated and/or small text.</li>
 <li>Hershey fonts provide certain symbols that may not be available in the standard fonts. In particular, there are zodiac signs, cartographic symbols and astronomical symbols.</li>
-<li>Hershey fonts provide cyrillic and japanese (Kana and Kanji) characters.</li>
+<li>Hershey fonts provide Cyrillic and Japanese (Kana and Kanji) characters.</li>
 </ul>
 <p>More information, including tables of Hershey characters can be obtained from within R using the commands:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">help</span>(Hershey)</span>
@@ -716,7 +723,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> oldpar <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">col=</span><span class="dv">4</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  … plotting commands …</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">par</span>(oldpar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="page-columns page-full"><p>To save and restore <em>all</em> settable<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> graphical parameters use</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;Some graphics parameters such as the size of the current device are for information only.</p></li></div></div>
+<div class="page-columns page-full"><p>To save and restore <em>all</em> settable<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> graphical parameters use</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Some graphics parameters such as the size of the current device are for information only.</p></li></div></div>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> oldpar <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">no.readonly=</span><span class="cn">TRUE</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  … plotting commands …</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">par</span>(oldpar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1154,7 +1161,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.38">
+<meta name="generator" content="quarto-1.1.149">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -53,7 +58,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -66,7 +71,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -128,9 +133,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="./index.html">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: Writing R Extensions</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -261,49 +268,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#memory-allocation" id="toc-memory-allocation" class="nav-link active" data-scroll-target="#memory-allocation"> <span class="header-section-number">6.1</span> Memory allocation</a>
+  <li><a href="#memory-allocation" id="toc-memory-allocation" class="nav-link active" data-scroll-target="#memory-allocation"><span class="toc-section-number">6.1</span>  Memory allocation</a>
   <ul class="collapse">
-  <li><a href="#transient-storage-allocation" id="toc-transient-storage-allocation" class="nav-link" data-scroll-target="#transient-storage-allocation"> <span class="header-section-number">6.1.1</span> Transient storage allocation</a></li>
-  <li><a href="#user-controlled-memory" id="toc-user-controlled-memory" class="nav-link" data-scroll-target="#user-controlled-memory"> <span class="header-section-number">6.1.2</span> User-controlled memory</a></li>
+  <li><a href="#transient-storage-allocation" id="toc-transient-storage-allocation" class="nav-link" data-scroll-target="#transient-storage-allocation"><span class="toc-section-number">6.1.1</span>  Transient storage allocation</a></li>
+  <li><a href="#user-controlled-memory" id="toc-user-controlled-memory" class="nav-link" data-scroll-target="#user-controlled-memory"><span class="toc-section-number">6.1.2</span>  User-controlled memory</a></li>
   </ul></li>
-  <li><a href="#error-signaling" id="toc-error-signaling" class="nav-link" data-scroll-target="#error-signaling"> <span class="header-section-number">6.2</span> Error signaling</a>
+  <li><a href="#error-signaling" id="toc-error-signaling" class="nav-link" data-scroll-target="#error-signaling"><span class="toc-section-number">6.2</span>  Error signaling</a>
   <ul class="collapse">
-  <li><a href="#error-signaling-from-fortran" id="toc-error-signaling-from-fortran" class="nav-link" data-scroll-target="#error-signaling-from-fortran"> <span class="header-section-number">6.2.1</span> Error signaling from Fortran</a></li>
+  <li><a href="#error-signaling-from-fortran" id="toc-error-signaling-from-fortran" class="nav-link" data-scroll-target="#error-signaling-from-fortran"><span class="toc-section-number">6.2.1</span>  Error signaling from Fortran</a></li>
   </ul></li>
-  <li><a href="#random-number-generation" id="toc-random-number-generation" class="nav-link" data-scroll-target="#random-number-generation"> <span class="header-section-number">6.3</span> Random number generation</a></li>
-  <li><a href="#missing-and-ieee-special-values" id="toc-missing-and-ieee-special-values" class="nav-link" data-scroll-target="#missing-and-ieee-special-values"> <span class="header-section-number">6.4</span> Missing and IEEE special values</a></li>
-  <li><a href="#printing" id="toc-printing" class="nav-link" data-scroll-target="#printing"> <span class="header-section-number">6.5</span> Printing</a>
+  <li><a href="#random-number-generation" id="toc-random-number-generation" class="nav-link" data-scroll-target="#random-number-generation"><span class="toc-section-number">6.3</span>  Random number generation</a></li>
+  <li><a href="#missing-and-ieee-special-values" id="toc-missing-and-ieee-special-values" class="nav-link" data-scroll-target="#missing-and-ieee-special-values"><span class="toc-section-number">6.4</span>  Missing and IEEE special values</a></li>
+  <li><a href="#printing" id="toc-printing" class="nav-link" data-scroll-target="#printing"><span class="toc-section-number">6.5</span>  Printing</a>
   <ul class="collapse">
-  <li><a href="#printing-from-fortran" id="toc-printing-from-fortran" class="nav-link" data-scroll-target="#printing-from-fortran"> <span class="header-section-number">6.5.1</span> Printing from Fortran</a></li>
+  <li><a href="#printing-from-fortran" id="toc-printing-from-fortran" class="nav-link" data-scroll-target="#printing-from-fortran"><span class="toc-section-number">6.5.1</span>  Printing from Fortran</a></li>
   </ul></li>
-  <li><a href="#calling-c-from-fortran-and-vice-versa" id="toc-calling-c-from-fortran-and-vice-versa" class="nav-link" data-scroll-target="#calling-c-from-fortran-and-vice-versa"> <span class="header-section-number">6.6</span> Calling C from Fortran and vice versa</a>
+  <li><a href="#calling-c-from-fortran-and-vice-versa" id="toc-calling-c-from-fortran-and-vice-versa" class="nav-link" data-scroll-target="#calling-c-from-fortran-and-vice-versa"><span class="toc-section-number">6.6</span>  Calling C from Fortran and vice versa</a>
   <ul class="collapse">
-  <li><a href="#fortran-character-strings" id="toc-fortran-character-strings" class="nav-link" data-scroll-target="#fortran-character-strings"> <span class="header-section-number">6.6.1</span> Fortran character strings</a></li>
-  <li><a href="#fortran-logical" id="toc-fortran-logical" class="nav-link" data-scroll-target="#fortran-logical"> <span class="header-section-number">6.6.2</span> Fortran LOGICAL</a></li>
-  <li><a href="#passing-functions" id="toc-passing-functions" class="nav-link" data-scroll-target="#passing-functions"> <span class="header-section-number">6.6.3</span> Passing functions</a></li>
+  <li><a href="#fortran-character-strings" id="toc-fortran-character-strings" class="nav-link" data-scroll-target="#fortran-character-strings"><span class="toc-section-number">6.6.1</span>  Fortran character strings</a></li>
+  <li><a href="#fortran-logical" id="toc-fortran-logical" class="nav-link" data-scroll-target="#fortran-logical"><span class="toc-section-number">6.6.2</span>  Fortran LOGICAL</a></li>
+  <li><a href="#passing-functions" id="toc-passing-functions" class="nav-link" data-scroll-target="#passing-functions"><span class="toc-section-number">6.6.3</span>  Passing functions</a></li>
   </ul></li>
-  <li><a href="#numerical-analysis-subroutines" id="toc-numerical-analysis-subroutines" class="nav-link" data-scroll-target="#numerical-analysis-subroutines"> <span class="header-section-number">6.7</span> Numerical analysis subroutines</a>
+  <li><a href="#numerical-analysis-subroutines" id="toc-numerical-analysis-subroutines" class="nav-link" data-scroll-target="#numerical-analysis-subroutines"><span class="toc-section-number">6.7</span>  Numerical analysis subroutines</a>
   <ul class="collapse">
-  <li><a href="#distribution-functions" id="toc-distribution-functions" class="nav-link" data-scroll-target="#distribution-functions"> <span class="header-section-number">6.7.1</span> Distribution functions</a></li>
-  <li><a href="#mathematical-functions" id="toc-mathematical-functions" class="nav-link" data-scroll-target="#mathematical-functions"> <span class="header-section-number">6.7.2</span> Mathematical functions</a></li>
-  <li><a href="#numerical-utilities" id="toc-numerical-utilities" class="nav-link" data-scroll-target="#numerical-utilities"> <span class="header-section-number">6.7.3</span> Numerical Utilities</a></li>
-  <li><a href="#mathematical-constants" id="toc-mathematical-constants" class="nav-link" data-scroll-target="#mathematical-constants"> <span class="header-section-number">6.7.4</span> Mathematical constants</a></li>
+  <li><a href="#distribution-functions" id="toc-distribution-functions" class="nav-link" data-scroll-target="#distribution-functions"><span class="toc-section-number">6.7.1</span>  Distribution functions</a></li>
+  <li><a href="#mathematical-functions" id="toc-mathematical-functions" class="nav-link" data-scroll-target="#mathematical-functions"><span class="toc-section-number">6.7.2</span>  Mathematical functions</a></li>
+  <li><a href="#numerical-utilities" id="toc-numerical-utilities" class="nav-link" data-scroll-target="#numerical-utilities"><span class="toc-section-number">6.7.3</span>  Numerical Utilities</a></li>
+  <li><a href="#mathematical-constants" id="toc-mathematical-constants" class="nav-link" data-scroll-target="#mathematical-constants"><span class="toc-section-number">6.7.4</span>  Mathematical constants</a></li>
   </ul></li>
-  <li><a href="#optimization" id="toc-optimization" class="nav-link" data-scroll-target="#optimization"> <span class="header-section-number">6.8</span> Optimization</a></li>
-  <li><a href="#integration" id="toc-integration" class="nav-link" data-scroll-target="#integration"> <span class="header-section-number">6.9</span> Integration</a></li>
-  <li><a href="#utility-functions" id="toc-utility-functions" class="nav-link" data-scroll-target="#utility-functions"> <span class="header-section-number">6.10</span> Utility functions</a></li>
-  <li><a href="#re-encoding" id="toc-re-encoding" class="nav-link" data-scroll-target="#re-encoding"> <span class="header-section-number">6.11</span> Re-encoding</a></li>
-  <li><a href="#condition-handling-and-cleanup-code" id="toc-condition-handling-and-cleanup-code" class="nav-link" data-scroll-target="#condition-handling-and-cleanup-code"> <span class="header-section-number">6.12</span> Condition handling and cleanup code</a></li>
-  <li><a href="#allowing-interrupts" id="toc-allowing-interrupts" class="nav-link" data-scroll-target="#allowing-interrupts"> <span class="header-section-number">6.13</span> Allowing interrupts</a></li>
-  <li><a href="#platform-and-version-information" id="toc-platform-and-version-information" class="nav-link" data-scroll-target="#platform-and-version-information"> <span class="header-section-number">6.14</span> Platform and version information</a></li>
-  <li><a href="#inlining-c-functions" id="toc-inlining-c-functions" class="nav-link" data-scroll-target="#inlining-c-functions"> <span class="header-section-number">6.15</span> Inlining C functions</a></li>
-  <li><a href="#controlling-visibility" id="toc-controlling-visibility" class="nav-link" data-scroll-target="#controlling-visibility"> <span class="header-section-number">6.16</span> Controlling visibility</a></li>
-  <li><a href="#using-these-functions-in-your-own-c-code" id="toc-using-these-functions-in-your-own-c-code" class="nav-link" data-scroll-target="#using-these-functions-in-your-own-c-code"> <span class="header-section-number">6.17</span> Using these functions in your own C code</a></li>
-  <li><a href="#organization-of-header-files" id="toc-organization-of-header-files" class="nav-link" data-scroll-target="#organization-of-header-files"> <span class="header-section-number">6.18</span> Organization of header files</a></li>
+  <li><a href="#optimization" id="toc-optimization" class="nav-link" data-scroll-target="#optimization"><span class="toc-section-number">6.8</span>  Optimization</a></li>
+  <li><a href="#integration" id="toc-integration" class="nav-link" data-scroll-target="#integration"><span class="toc-section-number">6.9</span>  Integration</a></li>
+  <li><a href="#utility-functions" id="toc-utility-functions" class="nav-link" data-scroll-target="#utility-functions"><span class="toc-section-number">6.10</span>  Utility functions</a></li>
+  <li><a href="#re-encoding" id="toc-re-encoding" class="nav-link" data-scroll-target="#re-encoding"><span class="toc-section-number">6.11</span>  Re-encoding</a></li>
+  <li><a href="#condition-handling-and-cleanup-code" id="toc-condition-handling-and-cleanup-code" class="nav-link" data-scroll-target="#condition-handling-and-cleanup-code"><span class="toc-section-number">6.12</span>  Condition handling and cleanup code</a></li>
+  <li><a href="#allowing-interrupts" id="toc-allowing-interrupts" class="nav-link" data-scroll-target="#allowing-interrupts"><span class="toc-section-number">6.13</span>  Allowing interrupts</a></li>
+  <li><a href="#platform-and-version-information" id="toc-platform-and-version-information" class="nav-link" data-scroll-target="#platform-and-version-information"><span class="toc-section-number">6.14</span>  Platform and version information</a></li>
+  <li><a href="#inlining-c-functions" id="toc-inlining-c-functions" class="nav-link" data-scroll-target="#inlining-c-functions"><span class="toc-section-number">6.15</span>  Inlining C functions</a></li>
+  <li><a href="#controlling-visibility" id="toc-controlling-visibility" class="nav-link" data-scroll-target="#controlling-visibility"><span class="toc-section-number">6.16</span>  Controlling visibility</a></li>
+  <li><a href="#using-these-functions-in-your-own-c-code" id="toc-using-these-functions-in-your-own-c-code" class="nav-link" data-scroll-target="#using-these-functions-in-your-own-c-code"><span class="toc-section-number">6.17</span>  Using these functions in your own C code</a></li>
+  <li><a href="#organization-of-header-files" id="toc-organization-of-header-files" class="nav-link" data-scroll-target="#organization-of-header-files"><span class="toc-section-number">6.18</span>  Organization of header files</a></li>
   </ul>
 </nav>
     </div>
@@ -334,7 +341,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote class="blockquote">
 <p><strong>Note:</strong> Because R re-maps many of its external names to avoid clashes with system or user code, it is <em>essential</em> to include the appropriate header files when using these entry points.</p>
 </blockquote>
-<div class="page-columns page-full"><p>This remapping can cause problems<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, and can be eliminated by defining <code>R_NO_REMAP</code> (before including any R headers) and prepending <code>Rf_</code> to <em>all</em> the function names used from <code>Rinternals.h</code> and <code>R_ext/Error.h</code>. These problems can usually be avoided by including other headers (such as system headers and those for external software used by the package) before any R headers. (Headers from other packages may include R headers directly or <em>via</em> inclusion from further packages, and may define <code>R_NO_REMAP</code> with or without including <code>Rinternals.h</code>.)</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;Known problems have been defining <code>LENGTH</code>, <code>error</code>, <code>length</code>, <code>vector</code> and <code>warning</code>: whether these matter depends on the OS and toolchain, with many problem reports involving <code>clang++</code>. As from LLVM <code>clang</code> 13.0.0, the remapping of <code>match</code> breaks the subsequent inclusion of <code>omp.h</code>.</p></li></div></div>
+<div class="page-columns page-full"><p>This remapping can cause problems<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, and can be eliminated by defining <code>R_NO_REMAP</code> (before including any R headers) and prepending <code>Rf_</code> to <em>all</em> the function names used from <code>Rinternals.h</code> and <code>R_ext/Error.h</code>. These problems can usually be avoided by including other headers (such as system headers and those for external software used by the package) before any R headers. (Headers from other packages may include R headers directly or <em>via</em> inclusion from further packages, and may define <code>R_NO_REMAP</code> with or without including <code>Rinternals.h</code>.)</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Known problems have been defining <code>LENGTH</code>, <code>error</code>, <code>length</code>, <code>vector</code> and <code>warning</code>: whether these matter depends on the OS and toolchain, with many problem reports involving <code>clang++</code>. As from LLVM <code>clang</code> 13.0.0, the remapping of <code>match</code> breaks the subsequent inclusion of <code>omp.h</code>.</p></li></div></div>
 <p>We can classify the entry points as</p>
 <dl>
 <dt><em>API</em></dt>
@@ -390,7 +397,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> R_Free<span class="op">(</span>any <span class="op">*</span>p<span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>providing analogues of <code>calloc</code>, <code>realloc</code> and <code>free</code>. If there is an error during allocation it is handled by R, so if these return the memory has been successfully allocated or freed. <code>R_Free</code> will set the pointer <var>p</var> to <code>NULL</code>. (Some but not all versions of S did so.)</p>
 <p>Users should arrange to <code>R_Free</code> this memory when no longer needed, including on error or user interrupt. This can often be done most conveniently from an <code>on.exit</code> action in the calling R function – see <code>pwilcox</code> for an example.</p>
-<div class="page-columns page-full"><p>Do not assume that memory allocated by <code>R_Calloc</code>/<code>R_Realloc</code> comes from the same pool as used by <code>malloc</code>:<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>in particular do not use <code>free</code> or <code>strdup</code> with it.</p><div class="no-row-height column-margin column-container"><li id="fn2" role="doc-endnote"><p><sup>2</sup>&nbsp;That was not the case on Windows prior to R 4.2.0.</p></li></div></div>
+<div class="page-columns page-full"><p>Do not assume that memory allocated by <code>R_Calloc</code>/<code>R_Realloc</code> comes from the same pool as used by <code>malloc</code>:<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>in particular do not use <code>free</code> or <code>strdup</code> with it.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;That was not the case on Windows prior to R 4.2.0.</p></li></div></div>
 <p>Memory obtained by these macros should be aligned in the same way as <code>malloc</code>, that is ‘suitably aligned for any kind of variable’.</p>
 <p>Historically the macros <code>Calloc</code>, <code>Free</code> and <code>Realloc</code> were used, and these remain available unless <code>STRICT_R_HEADERS</code> was defined prior to the inclusion of the header.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> <span class="op">*</span> CallocCharBuf<span class="op">(</span><span class="dt">size_t</span> n<span class="op">)</span></span>
@@ -450,7 +457,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="section anchored" data-number="6.5" data-anchor-id="printing"><span class="header-section-number">6.5</span> Printing</h2>
 <p>The most useful function for printing from a C routine compiled into R is <code>Rprintf</code>. This is used in exactly the same way as <code>printf</code>, but is guaranteed to write to R’s output (which might be a GUI console rather than a file, and can be re-directed by <code>sink</code>). It is wise to write complete lines (including the <code>"\n"</code>) before returning to R. It is defined in <code>R_ext/Print.h</code>.</p>
 <p>The function <code>REprintf</code> is similar but writes on the error stream (<code>stderr</code>) which may or may not be different from the standard output stream.</p>
-<div class="page-columns page-full"><p>Functions <code>Rvprintf</code> and <code>REvprintf</code> are analogues using the <code>vprintf</code> interface. Because that is a C99<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> interface, they are only defined by <code>R_ext/Print.h</code> in C++ code if the macro <code>R_USE_C99_IN_CXX</code> is defined before it is included or (as from R 4.0.0) a C++11 compiler is used.</p><div class="no-row-height column-margin column-container"><li id="fn3" role="doc-endnote"><p><sup>3</sup>&nbsp;also part of C++11.</p></li></div></div>
+<div class="page-columns page-full"><p>Functions <code>Rvprintf</code> and <code>REvprintf</code> are analogues using the <code>vprintf</code> interface. Because that is a C99<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> interface, they are only defined by <code>R_ext/Print.h</code> in C++ code if the macro <code>R_USE_C99_IN_CXX</code> is defined before it is included or (as from R 4.0.0) a C++11 compiler is used.</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;also part of C++11.</p></li></div></div>
 <p>Another circumstance when it may be important to use these functions is when using parallel computation on a cluster of computational nodes, as their output will be re-directed/logged appropriately.</p>
 <section id="printing-from-fortran" class="level3 subsection" data-number="6.5.1">
 <h3 class="subsection anchored" data-number="6.5.1" data-anchor-id="printing-from-fortran"><span class="header-section-number">6.5.1</span> Printing from Fortran</h3>
@@ -470,7 +477,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="calling-c-from-fortran-and-vice-versa" class="level2 section page-columns page-full" data-number="6.6">
 <h2 class="section anchored" data-number="6.6" data-anchor-id="calling-c-from-fortran-and-vice-versa"><span class="header-section-number">6.6</span> Calling C from Fortran and vice versa</h2>
-<div class="page-columns page-full"><p>Naming conventions for symbols generated by Fortran differ by platform: it is not safe to assume that Fortran names appear to C with a trailing underscore. To help cover up the platform-specific differences there is a set of macros<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> that should be used.</p><div class="no-row-height column-margin column-container"><li id="fn4" role="doc-endnote"><p><sup>4</sup>&nbsp;The <code>F77_</code> in the names is historical and dates back to usage in S.</p></li></div></div>
+<div class="page-columns page-full"><p>Naming conventions for symbols generated by Fortran differ by platform: it is not safe to assume that Fortran names appear to C with a trailing underscore. To help cover up the platform-specific differences there is a set of macros<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> that should be used.</p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;The <code>F77_</code> in the names is historical and dates back to usage in S.</p></li></div></div>
 <dl>
 <dt><var>F77_SUB(``name</var><code>)</code></dt>
 <dd>
@@ -954,7 +961,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <dt>Function: <em>double</em> <strong>cospi</strong> <em>(double <var>x</var>)</em></dt>
 <dd class="page-columns page-full">
 <p>Computes <code>cos(pi * x)</code> (where <code>pi</code> is 3.14159...), accurately, notably for half integer <var>x</var>.</p>
-<div class="page-columns page-full"><p>This might be provided by your platform<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>, in which case it is not included in <code>Rmath.h</code>, but is in <code>math.h</code> which <code>Rmath.h</code> includes. (Ensure that neither <code>math.h</code> nor <code>cmath</code> is included before <code>Rmath.h</code> or define</p><div class="no-row-height column-margin column-container"><li id="fn5" role="doc-endnote"><p><sup>5</sup>&nbsp;It is an optional C11 extension.</p></li></div></div>
+<div class="page-columns page-full"><p>This might be provided by your platform<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>, in which case it is not included in <code>Rmath.h</code>, but is in <code>math.h</code> which <code>Rmath.h</code> includes. (Ensure that neither <code>math.h</code> nor <code>cmath</code> is included before <code>Rmath.h</code> or define</p><div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;It is an optional C11 extension.</p></li></div></div>
 <div class="sourceCode" id="cb39"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define __STDC_WANT_IEC_60559_FUNCS_EXT__ 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>before the first inclusion.)</p>
 </dd>
@@ -1454,7 +1461,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="platform-and-version-information" class="level2 section page-columns page-full" data-number="6.14">
 <h2 class="section anchored" data-number="6.14" data-anchor-id="platform-and-version-information"><span class="header-section-number">6.14</span> Platform and version information</h2>
 <p>The header files define <code>USING_R</code>, which can be used to test if the code is indeed being used with R.</p>
-<div class="page-columns page-full"><p>Header file <code>Rconfig.h</code> (included by <code>R.h</code>) is used to define platform-specific macros that are mainly for use in other header files. The macro <code>WORDS_BIGENDIAN</code> is defined on big-endian<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> systems (e.g.&nbsp;most OSes on Sparc and PowerPC hardware) and not on little-endian systems (nowadays all the commoner R platforms). It can be useful when manipulating binary files. NB: these macros apply only to the C compiler used to build R, not necessarily to another C or C++ compiler.</p><div class="no-row-height column-margin column-container"><li id="fn6" role="doc-endnote"><p><sup>6</sup>&nbsp;<a href="https://en.wikipedia.org/wiki/Endianness" class="uri">https://en.wikipedia.org/wiki/Endianness</a>.</p></li></div></div>
+<div class="page-columns page-full"><p>Header file <code>Rconfig.h</code> (included by <code>R.h</code>) is used to define platform-specific macros that are mainly for use in other header files. The macro <code>WORDS_BIGENDIAN</code> is defined on big-endian<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> systems (e.g.&nbsp;most OSes on Sparc and PowerPC hardware) and not on little-endian systems (nowadays all the commoner R platforms). It can be useful when manipulating binary files. NB: these macros apply only to the C compiler used to build R, not necessarily to another C or C++ compiler.</p><div class="no-row-height column-margin column-container"><li id="fn6"><p><sup>6</sup>&nbsp;<a href="https://en.wikipedia.org/wiki/Endianness" class="uri">https://en.wikipedia.org/wiki/Endianness</a>.</p></li></div></div>
 <p>Header file <code>Rversion.h</code> (<strong>not</strong> included by <code>R.h</code>) defines a macro <code>R_VERSION</code> giving the version number encoded as an integer, plus a macro <code>R_Version</code> to do the encoding. This can be used to test if the version of R is late enough, or to include back-compatibility features. For protection against very old versions of R which did not have this macro, use a construction such as</p>
 <div class="sourceCode" id="cb56"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#if defined(R_VERSION) &amp;&amp; R_VERSION &gt;= R_Version(3, 1, 0)</span></span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">...</span></span>
@@ -1485,8 +1492,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="controlling-visibility" class="level2 section page-columns page-full" data-number="6.16">
 <h2 class="section anchored" data-number="6.16" data-anchor-id="controlling-visibility"><span class="header-section-number">6.16</span> Controlling visibility</h2>
-<div class="page-columns page-full"><p>Header <code>R_ext/Visibility.h</code> has some definitions for controlling the visibility of entry points. These are only effective when <code>HAVE_VISIBILITY_ATTRIBUTE</code> is defined – this is checked when R is configured and recorded in header <code>Rconfig.h</code> (included by <code>R_ext/Visibility.h</code>). It is often defined on modern Unix-alikes with a recent compiler<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>, but not supported on macOS nor Windows. Minimizing the visibility of symbols in a shared library will both speed up its loading (unlikely to be significant) and reduce the possibility of linking to other entry points of the same name.</p><div class="no-row-height column-margin column-container"><li id="fn7" role="doc-endnote"><p><sup>7</sup>&nbsp;It is defined by the Intel compilers, but also hides unsatisfied references and so cannot be used with R. It is not supported by the AIX nor Solaris compilers.</p></li></div></div>
-<div class="page-columns page-full"><p>C/C++ entry points prefixed by <code>attribute_hidden</code> will not be visible in the shared object. There is no comparable mechanism for Fortran entry points, but there is a more comprehensive scheme used by, for example package <strong>stats</strong>. Most compilers which allow control of visibility will allow control of visibility for all symbols <em>via</em> a flag, and where known the flag is encapsulated in the macros <code>C_VISIBILITY</code>, <code>CXX_VISIBILITY</code><a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> and <code>F_VISIBILITY</code> for C, C++ and Fortran compilers.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> These are defined in <code>etc/Makeconf</code> and so available for normal compilation of package code. For example, <code>src/Makevars</code> could include some of</p><div class="no-row-height column-margin column-container"><li id="fn8" role="doc-endnote"><p><sup>8</sup>&nbsp;This applies to the compiler for the default C++ dialect (currently C++11) and not necessarily to other dialects.</p></li><li id="fn9" role="doc-endnote"><p><sup>9</sup>&nbsp;In some cases Fortran compilers accept the flag but do not actually hide their symbols.</p></li></div></div>
+<div class="page-columns page-full"><p>Header <code>R_ext/Visibility.h</code> has some definitions for controlling the visibility of entry points. These are only effective when <code>HAVE_VISIBILITY_ATTRIBUTE</code> is defined – this is checked when R is configured and recorded in header <code>Rconfig.h</code> (included by <code>R_ext/Visibility.h</code>). It is often defined on modern Unix-alikes with a recent compiler<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>, but not supported on macOS nor Windows. Minimizing the visibility of symbols in a shared library will both speed up its loading (unlikely to be significant) and reduce the possibility of linking to other entry points of the same name.</p><div class="no-row-height column-margin column-container"><li id="fn7"><p><sup>7</sup>&nbsp;It is defined by the Intel compilers, but also hides unsatisfied references and so cannot be used with R. It is not supported by the AIX nor Solaris compilers.</p></li></div></div>
+<div class="page-columns page-full"><p>C/C++ entry points prefixed by <code>attribute_hidden</code> will not be visible in the shared object. There is no comparable mechanism for Fortran entry points, but there is a more comprehensive scheme used by, for example package <strong>stats</strong>. Most compilers which allow control of visibility will allow control of visibility for all symbols <em>via</em> a flag, and where known the flag is encapsulated in the macros <code>C_VISIBILITY</code>, <code>CXX_VISIBILITY</code><a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> and <code>F_VISIBILITY</code> for C, C++ and Fortran compilers.<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> These are defined in <code>etc/Makeconf</code> and so available for normal compilation of package code. For example, <code>src/Makevars</code> could include some of</p><div class="no-row-height column-margin column-container"><li id="fn8"><p><sup>8</sup>&nbsp;This applies to the compiler for the default C++ dialect (currently C++11) and not necessarily to other dialects.</p></li><li id="fn9"><p><sup>9</sup>&nbsp;In some cases Fortran compilers accept the flag but do not actually hide their symbols.</p></li></div></div>
 <div class="sourceCode" id="cb59"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>PKG_CFLAGS<span class="op">=</span>$<span class="op">(</span>C_VISIBILITY<span class="op">)</span></span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>PKG_CXXFLAGS<span class="op">=</span>$<span class="op">(</span>CXX_VISIBILITY<span class="op">)</span></span>
 <span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>PKG_FFLAGS<span class="op">=</span>$<span class="op">(</span>F_VISIBILITY<span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1740,7 +1747,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

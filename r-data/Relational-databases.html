@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.38">
+<meta name="generator" content="quarto-1.1.149">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -53,7 +58,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -66,7 +71,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -128,9 +133,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="./index.html">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: R Data Import/Export</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -271,20 +278,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#why-use-a-database" id="toc-why-use-a-database" class="nav-link active" data-scroll-target="#why-use-a-database"> <span class="header-section-number">4.1</span> Why use a database?</a></li>
-  <li><a href="#overview-of-rdbmss" id="toc-overview-of-rdbmss" class="nav-link" data-scroll-target="#overview-of-rdbmss"> <span class="header-section-number">4.2</span> Overview of RDBMSs</a>
+  <li><a href="#why-use-a-database" id="toc-why-use-a-database" class="nav-link active" data-scroll-target="#why-use-a-database"><span class="toc-section-number">4.1</span>  Why use a database?</a></li>
+  <li><a href="#overview-of-rdbmss" id="toc-overview-of-rdbmss" class="nav-link" data-scroll-target="#overview-of-rdbmss"><span class="toc-section-number">4.2</span>  Overview of RDBMSs</a>
   <ul class="collapse">
-  <li><a href="#sql-queries" id="toc-sql-queries" class="nav-link" data-scroll-target="#sql-queries"> <span class="header-section-number">4.2.1</span> SQL queries</a></li>
-  <li><a href="#data-types" id="toc-data-types" class="nav-link" data-scroll-target="#data-types"> <span class="header-section-number">4.2.2</span> Data types</a></li>
+  <li><a href="#sql-queries" id="toc-sql-queries" class="nav-link" data-scroll-target="#sql-queries"><span class="toc-section-number">4.2.1</span>  SQL queries</a></li>
+  <li><a href="#data-types" id="toc-data-types" class="nav-link" data-scroll-target="#data-types"><span class="toc-section-number">4.2.2</span>  Data types</a></li>
   </ul></li>
-  <li><a href="#r-interface-packages" id="toc-r-interface-packages" class="nav-link" data-scroll-target="#r-interface-packages"> <span class="header-section-number">4.3</span> R interface packages</a>
+  <li><a href="#r-interface-packages" id="toc-r-interface-packages" class="nav-link" data-scroll-target="#r-interface-packages"><span class="toc-section-number">4.3</span>  R interface packages</a>
   <ul class="collapse">
-  <li><a href="#packages-using-dbi" id="toc-packages-using-dbi" class="nav-link" data-scroll-target="#packages-using-dbi"> <span class="header-section-number">4.3.1</span> Packages using DBI</a></li>
-  <li><a href="#package-rodbc" id="toc-package-rodbc" class="nav-link" data-scroll-target="#package-rodbc"> <span class="header-section-number">4.3.2</span> Package RODBC</a></li>
+  <li><a href="#packages-using-dbi" id="toc-packages-using-dbi" class="nav-link" data-scroll-target="#packages-using-dbi"><span class="toc-section-number">4.3.1</span>  Packages using DBI</a></li>
+  <li><a href="#package-rodbc" id="toc-package-rodbc" class="nav-link" data-scroll-target="#package-rodbc"><span class="toc-section-number">4.3.2</span>  Package RODBC</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -326,7 +333,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="overview-of-rdbmss" class="level2 section page-columns page-full" data-number="4.2">
 <h2 class="section anchored" data-number="4.2" data-anchor-id="overview-of-rdbmss"><span class="header-section-number">4.2</span> Overview of RDBMSs</h2>
-<div class="page-columns page-full"><p>Traditionally there had been large (and expensive) commercial RDBMSs (<a href="https://www.ibm.com/software/data/informix/">Informix</a>; <a href="https://www.oracle.com">Oracle</a>; Sybase; <a href="https://www.ibm.com/db2">IBM’s DB2</a>; <a href="https://www.microsoft.com/sql-server/">Microsoft SQL Server</a> on Windows) and academic and small-system databases (such as MySQL<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, PostgreSQL, Microsoft Access, …), the former marked out by much greater emphasis on data security features. The line is blurring, with MySQL and PostgreSQL having more and more high-end features, and free ‘express’ versions being made available for the commercial DBMSs.</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;and forks, notably MariaDB.</p></li></div></div>
+<div class="page-columns page-full"><p>Traditionally there had been large (and expensive) commercial RDBMSs (<a href="https://www.ibm.com/software/data/informix/">Informix</a>; <a href="https://www.oracle.com">Oracle</a>; Sybase; <a href="https://www.ibm.com/db2">IBM’s DB2</a>; <a href="https://www.microsoft.com/sql-server/">Microsoft SQL Server</a> on Windows) and academic and small-system databases (such as MySQL<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, PostgreSQL, Microsoft Access, …), the former marked out by much greater emphasis on data security features. The line is blurring, with MySQL and PostgreSQL having more and more high-end features, and free ‘express’ versions being made available for the commercial DBMSs.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;and forks, notably MariaDB.</p></li></div></div>
 <p>There are other commonly used data sources, including spreadsheets, non-relational databases and even text files (possibly compressed). Open Database Connectivity (ODBC) is a standard to use all of these data sources. It originated on Windows (see <a href="https://docs.microsoft.com/en-us/sql/odbc/microsoft-open-database-connectivity-odbc" class="uri">https://docs.microsoft.com/en-us/sql/odbc/microsoft-open-database-connectivity-odbc</a>) but is also implemented on Linux/Unix/macOS.</p>
 <p>All of the packages described later in this chapter provide clients to client/server databases. The database can reside on the same machine or (more often) remotely. There is an ISO standard (in fact several: SQL92 is ISO/IEC 9075, also known as ANSI X3.135-1992, and SQL99 is coming into use) for an interface language called SQL (Structured Query Language, sometimes pronounced ‘sequel’: see Bowman <em>et al.</em> 1996 and Kline and Kline 2001) which these DBMSs support to varying degrees.</p>
 <section id="sql-queries" class="level3 subsection" data-number="4.2.1">
@@ -447,7 +454,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="subsection anchored" data-number="4.3.2" data-anchor-id="package-rodbc"><span class="header-section-number">4.3.2</span> Package RODBC</h3>
 <p>Package <a href="https://CRAN.R-project.org/package=RODBC"><strong>RODBC</strong></a> on CRAN provides an interface to database sources supporting an ODBC interface. This is very widely available, and allows the same R code to access different database systems. <a href="https://CRAN.R-project.org/package=RODBC"><strong>RODBC</strong></a> runs on Unix/Linux, Windows and macOS, and almost all database systems provide support for ODBC. We have tested Microsoft SQL Server, Access, MySQL, PostgreSQL, Oracle and IBM DB2 on Windows and MySQL, MariaDB, Oracle, PostgreSQL and SQLite on Linux.</p>
 <p>ODBC is a client-server system, and we have happily connected to a DBMS running on a Unix server from a Windows client, and <em>vice versa</em>.</p>
-<p>On Windows ODBC support is part of the OS. On Unix/Linux you will need an ODBC Driver Manager such as unixODBC (<a href="http://www.unixODBC.org" class="uri">http://www.unixODBC.org</a>) or iOBDC (<a href="http://www.iODBC.org" class="uri">http://www.iODBC.org</a>: this is pre-installed in macOS) and an installed driver for your database system.</p>
+<p>On Windows ODBC support is part of the OS. On Unix/Linux you will need an ODBC Driver Manager such as unixODBC (<a href="http://www.unixODBC.org" class="uri">http://www.unixODBC.org</a>) or iOBDC (<a href="https://www.iodbc.org/" class="uri">https://www.iodbc.org/</a>: this is pre-installed in macOS) and an installed driver for your database system.</p>
 <p>Windows provides drivers not just for DBMSs but also for Excel (<code>.xls</code>) spreadsheets, DBase (<code>.dbf</code>) files and even text files. (The named applications do <em>not</em> need to be installed. Which file formats are supported depends on the versions of the drivers.) There are versions for Excel and Access 2007/2010 (go to <a href="https://www.microsoft.com/en-us/download/default.aspx" class="uri">https://www.microsoft.com/en-us/download/default.aspx</a>, and search for ‘Office ODBC’, which will lead to <code>AccessDatabaseEngine.exe</code>), the ‘2007 Office System Driver’ (the latter has a version for 64-bit Windows, and that will also read earlier versions).</p>
 <p>On macOS the Actual Technologies (<a href="https://www.actualtech.com/product_access.php" class="uri">https://www.actualtech.com/product_access.php</a>) drivers provide ODBC interfaces to Access databases and to Excel spreadsheets (not including Excel 2007/2010).</p>
 <p>Many simultaneous connections are possible. A connection is opened by a call to <code>odbcConnect</code> or <code>odbcDriverConnect</code> (which on the Windows GUI allows a database to be selected via dialog boxes) which returns a handle used for subsequent access to the database. Printing a connection will provide some details of the ODBC connection, and calling <code>odbcGetInfo</code> will give details on the client and server.</p>
@@ -579,7 +586,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

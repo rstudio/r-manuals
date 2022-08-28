@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.38">
+<meta name="generator" content="quarto-1.1.149">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -53,7 +58,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -66,7 +71,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -128,9 +133,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="./index.html">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: R Data Import/Export</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -271,16 +278,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#variations-on-read.table" id="toc-variations-on-read.table" class="nav-link active" data-scroll-target="#variations-on-read.table"> <span class="header-section-number">2.1</span> Variations on <code>read.table</code></a></li>
-  <li><a href="#fixed-width-format-files" id="toc-fixed-width-format-files" class="nav-link" data-scroll-target="#fixed-width-format-files"> <span class="header-section-number">2.2</span> Fixed-width-format files</a></li>
-  <li><a href="#data-interchange-format-dif" id="toc-data-interchange-format-dif" class="nav-link" data-scroll-target="#data-interchange-format-dif"> <span class="header-section-number">2.3</span> Data Interchange Format (DIF)</a></li>
-  <li><a href="#using-scan-directly" id="toc-using-scan-directly" class="nav-link" data-scroll-target="#using-scan-directly"> <span class="header-section-number">2.4</span> Using <code>scan</code> directly</a></li>
-  <li><a href="#re-shaping-data" id="toc-re-shaping-data" class="nav-link" data-scroll-target="#re-shaping-data"> <span class="header-section-number">2.5</span> Re-shaping data</a></li>
-  <li><a href="#flat-contingency-tables" id="toc-flat-contingency-tables" class="nav-link" data-scroll-target="#flat-contingency-tables"> <span class="header-section-number">2.6</span> Flat contingency tables</a></li>
+  <li><a href="#variations-on-read.table" id="toc-variations-on-read.table" class="nav-link active" data-scroll-target="#variations-on-read.table"><span class="toc-section-number">2.1</span>  Variations on <code>read.table</code></a></li>
+  <li><a href="#fixed-width-format-files" id="toc-fixed-width-format-files" class="nav-link" data-scroll-target="#fixed-width-format-files"><span class="toc-section-number">2.2</span>  Fixed-width-format files</a></li>
+  <li><a href="#data-interchange-format-dif" id="toc-data-interchange-format-dif" class="nav-link" data-scroll-target="#data-interchange-format-dif"><span class="toc-section-number">2.3</span>  Data Interchange Format (DIF)</a></li>
+  <li><a href="#using-scan-directly" id="toc-using-scan-directly" class="nav-link" data-scroll-target="#using-scan-directly"><span class="toc-section-number">2.4</span>  Using <code>scan</code> directly</a></li>
+  <li><a href="#re-shaping-data" id="toc-re-shaping-data" class="nav-link" data-scroll-target="#re-shaping-data"><span class="toc-section-number">2.5</span>  Re-shaping data</a></li>
+  <li><a href="#flat-contingency-tables" id="toc-flat-contingency-tables" class="nav-link" data-scroll-target="#flat-contingency-tables"><span class="toc-section-number">2.6</span>  Flat contingency tables</a></li>
   </ul>
 </nav>
     </div>
@@ -361,7 +368,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb8"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>read<span class="op">.</span>table<span class="op">(</span><span class="st">"intro.dat"</span><span class="op">,</span> fileEncoding <span class="op">=</span> <span class="st">"UTF-8-BOM"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>(This would most likely work without specifying an encoding in a UTF-8 locale.)</p></li>
 </ol>
-<div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;This is normally fast as looking at the first entry rules out most of the possibilities.</p></li></div><p>Convenience functions <code>read.csv</code> and <code>read.delim</code> provide arguments to <code>read.table</code> appropriate for CSV and tab-delimited files exported from spreadsheets in English-speaking locales. The variations <code>read.csv2</code> and <code>read.delim2</code> are appropriate for use in those locales where the comma is used for the decimal point and (for <code>read.csv2</code>) for spreadsheets which use semicolons to separate fields.</p>
+<div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;This is normally fast as looking at the first entry rules out most of the possibilities.</p></li></div><p>Convenience functions <code>read.csv</code> and <code>read.delim</code> provide arguments to <code>read.table</code> appropriate for CSV and tab-delimited files exported from spreadsheets in English-speaking locales. The variations <code>read.csv2</code> and <code>read.delim2</code> are appropriate for use in those locales where the comma is used for the decimal point and (for <code>read.csv2</code>) for spreadsheets which use semicolons to separate fields.</p>
 <p>If the options to <code>read.table</code> are specified incorrectly, the error message will usually be of the form</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Error <span class="cf">in</span> <span class="fu">scan</span>(<span class="at">file =</span> file, <span class="at">what =</span> what, <span class="at">sep =</span> sep, <span class="sc">:</span> </span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>        line <span class="dv">1</span> did not have <span class="dv">5</span> elements</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -549,7 +556,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

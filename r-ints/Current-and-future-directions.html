@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.38">
+<meta name="generator" content="quarto-1.1.149">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 </style>
 
 
@@ -65,9 +70,11 @@ ul.task-list{list-style: none;}
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="./index.html">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: R Internals</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -213,13 +220,13 @@ ul.task-list{list-style: none;}
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#long-vectors" id="toc-long-vectors" class="nav-link active" data-scroll-target="#long-vectors"> <span class="header-section-number">12.1</span> Long vectors</a></li>
-  <li><a href="#bit-types" id="toc-bit-types" class="nav-link" data-scroll-target="#bit-types"> <span class="header-section-number">12.2</span> 64-bit types</a></li>
-  <li><a href="#large-matrices" id="toc-large-matrices" class="nav-link" data-scroll-target="#large-matrices"> <span class="header-section-number">12.3</span> Large matrices</a></li>
+  <li><a href="#long-vectors" id="toc-long-vectors" class="nav-link active" data-scroll-target="#long-vectors"><span class="toc-section-number">12.1</span>  Long vectors</a></li>
+  <li><a href="#bit-types" id="toc-bit-types" class="nav-link" data-scroll-target="#bit-types"><span class="toc-section-number">12.2</span>  64-bit types</a></li>
+  <li><a href="#large-matrices" id="toc-large-matrices" class="nav-link" data-scroll-target="#large-matrices"><span class="toc-section-number">12.3</span>  Large matrices</a></li>
   </ul>
 </nav>
     </div>
@@ -269,7 +276,7 @@ ul.task-list{list-style: none;}
 </ul>
 <p>The third has the advantages of minimal disruption to existing code and not increasing memory requirements. In the first and third scenarios both R’s own code and user code would have to be adapted for lengths that were not of type <code>integer</code>, and in the third code branches for long vectors would be tested rarely.</p>
 <p>Most users of the <code>.C</code> and <code>.Fortran</code> interfaces use <code>as.integer</code> for lengths and element numbers, but a few omit these in the knowledge that these were of type <code>integer</code>. It may be reasonable to assume that these are never intended to be used with long vectors.</p>
-<div class="page-columns page-full"><p>The remaining interfaces will need to cope with the changed <code>VECTOR_SEXPREC</code> types. It seems likely that in most cases lengths are accessed by the <code>length</code> and <code>LENGTH</code> functions<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> The current approach is to keep these returning 32-bit lengths and introduce ‘long’ versions <code>xlength</code> and <code>XLENGTH</code> which return <code>R_xlen_t</code> values.</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;but <code>LENGTH</code> is a macro under some internal uses.</p></li></div></div>
+<div class="page-columns page-full"><p>The remaining interfaces will need to cope with the changed <code>VECTOR_SEXPREC</code> types. It seems likely that in most cases lengths are accessed by the <code>length</code> and <code>LENGTH</code> functions<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> The current approach is to keep these returning 32-bit lengths and introduce ‘long’ versions <code>xlength</code> and <code>XLENGTH</code> which return <code>R_xlen_t</code> values.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;but <code>LENGTH</code> is a macro under some internal uses.</p></li></div></div>
 <p>See also <a href="https://homepage.cs.uiowa.edu/~luke/talks/useR10.pdf" class="uri">https://homepage.cs.uiowa.edu/~luke/talks/useR10.pdf</a>.</p>
 </section>
 <section id="large-matrices" class="level2 section" data-number="12.3">
@@ -354,7 +361,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.38">
+<meta name="generator" content="quarto-1.1.149">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -53,7 +58,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -66,7 +71,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -128,9 +133,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="./index.html">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: An Introduction to R</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -311,22 +318,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#lists" id="toc-lists" class="nav-link active" data-scroll-target="#lists"> <span class="header-section-number">6.1</span> Lists</a></li>
-  <li><a href="#constructing-and-modifying-lists" id="toc-constructing-and-modifying-lists" class="nav-link" data-scroll-target="#constructing-and-modifying-lists"> <span class="header-section-number">6.2</span> Constructing and modifying lists</a>
+  <li><a href="#lists" id="toc-lists" class="nav-link active" data-scroll-target="#lists"><span class="toc-section-number">6.1</span>  Lists</a></li>
+  <li><a href="#constructing-and-modifying-lists" id="toc-constructing-and-modifying-lists" class="nav-link" data-scroll-target="#constructing-and-modifying-lists"><span class="toc-section-number">6.2</span>  Constructing and modifying lists</a>
   <ul class="collapse">
-  <li><a href="#concatenating-lists" id="toc-concatenating-lists" class="nav-link" data-scroll-target="#concatenating-lists"> <span class="header-section-number">6.2.1</span> Concatenating lists</a></li>
+  <li><a href="#concatenating-lists" id="toc-concatenating-lists" class="nav-link" data-scroll-target="#concatenating-lists"><span class="toc-section-number">6.2.1</span>  Concatenating lists</a></li>
   </ul></li>
-  <li><a href="#data-frames" id="toc-data-frames" class="nav-link" data-scroll-target="#data-frames"> <span class="header-section-number">6.3</span> Data frames</a>
+  <li><a href="#data-frames" id="toc-data-frames" class="nav-link" data-scroll-target="#data-frames"><span class="toc-section-number">6.3</span>  Data frames</a>
   <ul class="collapse">
-  <li><a href="#making-data-frames" id="toc-making-data-frames" class="nav-link" data-scroll-target="#making-data-frames"> <span class="header-section-number">6.3.1</span> Making data frames</a></li>
-  <li><a href="#attach-and-detach" id="toc-attach-and-detach" class="nav-link" data-scroll-target="#attach-and-detach"> <span class="header-section-number">6.3.2</span> <code>attach()</code> and <code>detach()</code></a></li>
-  <li><a href="#working-with-data-frames" id="toc-working-with-data-frames" class="nav-link" data-scroll-target="#working-with-data-frames"> <span class="header-section-number">6.3.3</span> Working with data frames</a></li>
-  <li><a href="#attaching-arbitrary-lists" id="toc-attaching-arbitrary-lists" class="nav-link" data-scroll-target="#attaching-arbitrary-lists"> <span class="header-section-number">6.3.4</span> Attaching arbitrary lists</a></li>
-  <li><a href="#managing-the-search-path" id="toc-managing-the-search-path" class="nav-link" data-scroll-target="#managing-the-search-path"> <span class="header-section-number">6.3.5</span> Managing the search path</a></li>
+  <li><a href="#making-data-frames" id="toc-making-data-frames" class="nav-link" data-scroll-target="#making-data-frames"><span class="toc-section-number">6.3.1</span>  Making data frames</a></li>
+  <li><a href="#attach-and-detach" id="toc-attach-and-detach" class="nav-link" data-scroll-target="#attach-and-detach"><span class="toc-section-number">6.3.2</span>  <code>attach()</code> and <code>detach()</code></a></li>
+  <li><a href="#working-with-data-frames" id="toc-working-with-data-frames" class="nav-link" data-scroll-target="#working-with-data-frames"><span class="toc-section-number">6.3.3</span>  Working with data frames</a></li>
+  <li><a href="#attaching-arbitrary-lists" id="toc-attaching-arbitrary-lists" class="nav-link" data-scroll-target="#attaching-arbitrary-lists"><span class="toc-section-number">6.3.4</span>  Attaching arbitrary lists</a></li>
+  <li><a href="#managing-the-search-path" id="toc-managing-the-search-path" class="nav-link" data-scroll-target="#managing-the-search-path"><span class="toc-section-number">6.3.5</span>  Managing the search path</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -441,7 +448,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The function <code>search</code> shows the current search path and so is a very useful way to keep track of which data frames and lists (and packages) have been attached and detached. Initially it gives</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">search</span>()</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">".GlobalEnv"</span>   <span class="st">"Autoloads"</span>    <span class="st">"package:base"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="page-columns page-full"><p>where <code>.GlobalEnv</code> is the workspace.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;See the on-line help for <code>autoload</code> for the meaning of the second term.</p></li></div></div>
+<div class="page-columns page-full"><p>where <code>.GlobalEnv</code> is the workspace.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;See the on-line help for <code>autoload</code> for the meaning of the second term.</p></li></div></div>
 <p>After <code>lentils</code> is attached we have</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">search</span>()</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">".GlobalEnv"</span>   <span class="st">"lentils"</span>      <span class="st">"Autoloads"</span>    <span class="st">"package:base"</span></span>
@@ -528,7 +535,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

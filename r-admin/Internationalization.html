@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.38">
+<meta name="generator" content="quarto-1.1.149">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 </style>
 
 
@@ -65,9 +70,11 @@ ul.task-list{list-style: none;}
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="./index.html">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: R Installation and Administration</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -218,17 +225,17 @@ ul.task-list{list-style: none;}
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#locales" id="toc-locales" class="nav-link active" data-scroll-target="#locales"> <span class="header-section-number">7.1</span> Locales</a>
+  <li><a href="#locales" id="toc-locales" class="nav-link active" data-scroll-target="#locales"><span class="toc-section-number">7.1</span>  Locales</a>
   <ul class="collapse">
-  <li><a href="#locales-under-unix-alikes" id="toc-locales-under-unix-alikes" class="nav-link" data-scroll-target="#locales-under-unix-alikes"> <span class="header-section-number">7.1.1</span> Locales under Unix-alikes</a></li>
-  <li><a href="#locales-under-windows" id="toc-locales-under-windows" class="nav-link" data-scroll-target="#locales-under-windows"> <span class="header-section-number">7.1.2</span> Locales under Windows</a></li>
-  <li><a href="#locales-under-macos" id="toc-locales-under-macos" class="nav-link" data-scroll-target="#locales-under-macos"> <span class="header-section-number">7.1.3</span> Locales under macOS</a></li>
+  <li><a href="#locales-under-unix-alikes" id="toc-locales-under-unix-alikes" class="nav-link" data-scroll-target="#locales-under-unix-alikes"><span class="toc-section-number">7.1.1</span>  Locales under Unix-alikes</a></li>
+  <li><a href="#locales-under-windows" id="toc-locales-under-windows" class="nav-link" data-scroll-target="#locales-under-windows"><span class="toc-section-number">7.1.2</span>  Locales under Windows</a></li>
+  <li><a href="#locales-under-macos" id="toc-locales-under-macos" class="nav-link" data-scroll-target="#locales-under-macos"><span class="toc-section-number">7.1.3</span>  Locales under macOS</a></li>
   </ul></li>
-  <li><a href="#localization-of-messages" id="toc-localization-of-messages" class="nav-link" data-scroll-target="#localization-of-messages"> <span class="header-section-number">7.2</span> Localization of messages</a></li>
+  <li><a href="#localization-of-messages" id="toc-localization-of-messages" class="nav-link" data-scroll-target="#localization-of-messages"><span class="toc-section-number">7.2</span>  Localization of messages</a></li>
   </ul>
 </nav>
     </div>
@@ -267,7 +274,7 @@ ul.task-list{list-style: none;}
 <p>R is principally concerned with the first (for translations) and third. Note that the charset may be deducible from the language, as some OSes offer only one charset per language.</p>
 <section id="locales-under-unix-alikes" class="level3 subsection page-columns page-full" data-number="7.1.1">
 <h3 class="subsection anchored" data-number="7.1.1" data-anchor-id="locales-under-unix-alikes"><span class="header-section-number">7.1.1</span> Locales under Unix-alikes</h3>
-<div class="page-columns page-full"><p>Modern Linux uses the XPG<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> locale specifications which have the form <code>en_GB</code>, <code>en_GB.UTF-8</code>, <code>aa_ER.UTF-8@saaho</code>, <code>de_AT.iso885915@euro</code>, the components being in the order listed above. (See <code>man locale</code> and <code>locale -a</code> for more details.) Similar schemes are used by most Unix-alikes: some (including some distributions of Linux) use <code>.utf8</code> rather than <code>.UTF-8</code>.</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;‘X/Open Portability Guide’, which has had several versions.</p></li></div></div>
+<div class="page-columns page-full"><p>Modern Linux uses the XPG<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> locale specifications which have the form <code>en_GB</code>, <code>en_GB.UTF-8</code>, <code>aa_ER.UTF-8@saaho</code>, <code>de_AT.iso885915@euro</code>, the components being in the order listed above. (See <code>man locale</code> and <code>locale -a</code> for more details.) Similar schemes are used by most Unix-alikes: some (including some distributions of Linux) use <code>.utf8</code> rather than <code>.UTF-8</code>.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;‘X/Open Portability Guide’, which has had several versions.</p></li></div></div>
 <p>Note that whereas UTF-8 locales are nowadays almost universally used, locales such as <code>en_GB</code> use 8-bit encodings for backwards compatibility.</p>
 </section>
 <section id="locales-under-windows" class="level3 subsection" data-number="7.1.2">
@@ -284,8 +291,8 @@ ul.task-list{list-style: none;}
 </section>
 <section id="localization-of-messages" class="level2 section page-columns page-full" data-number="7.2">
 <h2 class="section anchored" data-number="7.2" data-anchor-id="localization-of-messages"><span class="header-section-number">7.2</span> Localization of messages</h2>
-<div class="page-columns page-full"><p>The preferred language for messages is by default taken from the locale. This can be overridden first by the setting of the environment variable <code>LANGUAGE</code> and then<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> by the environment variables <code>LC_ALL</code>, <code>LC_MESSAGES</code> and <code>LANG</code>. (The last three are normally used to set the locale and so should not be needed, but the first is only used to select the language for messages.) The code tries hard to map locales to languages, but on some systems (notably Windows) the locale names needed for the environment variable <code>LC_ALL</code> do not all correspond to XPG language names and so <code>LANGUAGE</code> may need to be set. (One example is <code>LC_ALL=es</code> on Windows which sets the locale to Estonian and the language to Spanish.)</p><div class="no-row-height column-margin column-container"><li id="fn2" role="doc-endnote"><p><sup>2</sup>&nbsp;On some systems setting <code>LC_ALL</code> or <code>LC_MESSAGES</code> to <code>C</code> disables <code>LANGUAGE</code>.</p></li></div></div>
-<div class="page-columns page-full"><p>It is usually possible to change the language once R is running <em>via</em> (not Windows) <code>Sys.setlocale("LC_MESSAGES", "new_locale")</code>, or by setting an environment variable such as <code>LANGUAGE</code>, <em>provided</em><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> the language you are changing to can be output in the current character set. But this is OS-specific, and has been known to stop working on an OS upgrade. Note that translated messages may be cached, so attempting to change the language of an error that has already been output in another language may not work.</p><div class="no-row-height column-margin column-container"><li id="fn3" role="doc-endnote"><p><sup>3</sup>&nbsp;If you try changing from French to Russian except in a UTF-8 locale, you may find messages change to English.</p></li></div></div>
+<div class="page-columns page-full"><p>The preferred language for messages is by default taken from the locale. This can be overridden first by the setting of the environment variable <code>LANGUAGE</code> and then<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> by the environment variables <code>LC_ALL</code>, <code>LC_MESSAGES</code> and <code>LANG</code>. (The last three are normally used to set the locale and so should not be needed, but the first is only used to select the language for messages.) The code tries hard to map locales to languages, but on some systems (notably Windows) the locale names needed for the environment variable <code>LC_ALL</code> do not all correspond to XPG language names and so <code>LANGUAGE</code> may need to be set. (One example is <code>LC_ALL=es</code> on Windows which sets the locale to Estonian and the language to Spanish.)</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;On some systems setting <code>LC_ALL</code> or <code>LC_MESSAGES</code> to <code>C</code> disables <code>LANGUAGE</code>.</p></li></div></div>
+<div class="page-columns page-full"><p>It is usually possible to change the language once R is running <em>via</em> (not Windows) <code>Sys.setlocale("LC_MESSAGES", "new_locale")</code>, or by setting an environment variable such as <code>LANGUAGE</code>, <em>provided</em><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> the language you are changing to can be output in the current character set. But this is OS-specific, and has been known to stop working on an OS upgrade. Note that translated messages may be cached, so attempting to change the language of an error that has already been output in another language may not work.</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;If you try changing from French to Russian except in a UTF-8 locale, you may find messages change to English.</p></li></div></div>
 <p>Messages are divided into <em>domains</em>, and translations may be available for some or all messages in a domain. R makes use of the following domains.</p>
 <ul>
 <li>Domain <code>R</code> for the C-level error and warning messages from the R interpreter.</li>
@@ -296,9 +303,9 @@ ul.task-list{list-style: none;}
 <p>Dividing up the messages in this way allows R to be extensible: as packages are loaded, their message translation catalogues can be loaded too.</p>
 <p>R can be built without support for translations, but it is enabled by default.</p>
 <p>R-level and C-level domains are subtly different, for example in the way strings are canonicalized before being passed for translation.</p>
-<div class="page-columns page-full"><p>Translations are looked for by domain according to the currently specified language, as specifically as possible, so for example an Austrian (<code>de_AT</code>) translation catalogue will be used in preference to a generic German one (<code>de</code>) for an Austrian user. However, if a specific translation catalogue exists but does not contain a translation, the less specific catalogues are consulted. For example, R has catalogues for <code>en_GB</code> that translate the Americanisms (e.g., <code>gray</code>) in the standard messages into English.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> Two other examples: there are catalogues for <code>es</code>, which is Spanish as written in Spain and these will by default also be used in Spanish-speaking Latin American countries, and also for <code>pt_BR</code>, which are used for Brazilian locales but not for locales specifying Portugal.</p><div class="no-row-height column-margin column-container"><li id="fn4" role="doc-endnote"><p><sup>4</sup>&nbsp;the language written in England: some people living in the USA appropriate this name for their language.</p></li></div></div>
+<div class="page-columns page-full"><p>Translations are looked for by domain according to the currently specified language, as specifically as possible, so for example an Austrian (<code>de_AT</code>) translation catalogue will be used in preference to a generic German one (<code>de</code>) for an Austrian user. However, if a specific translation catalogue exists but does not contain a translation, the less specific catalogues are consulted. For example, R has catalogues for <code>en_GB</code> that translate the Americanisms (e.g., <code>gray</code>) in the standard messages into English.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> Two other examples: there are catalogues for <code>es</code>, which is Spanish as written in Spain and these will by default also be used in Spanish-speaking Latin American countries, and also for <code>pt_BR</code>, which are used for Brazilian locales but not for locales specifying Portugal.</p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;the language written in England: some people living in the USA appropriate this name for their language.</p></li></div></div>
 <p>Translations in the right language but the wrong charset are made use of by on-the-fly re-encoding. The <code>LANGUAGE</code> variable (only) can be a colon-separated list, for example <code>se:de</code>, giving a set of languages in decreasing order of preference. One special value is <code>en@quot</code>, which can be used in a UTF-8 locale to have American error messages with pairs of single quotes translated to Unicode directional quotes.</p>
-<div class="page-columns page-full"><p>If no suitable translation catalogue is found or a particular message is not translated in any suitable catalogue, ‘English’<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> is used.</p><div class="no-row-height column-margin column-container"><li id="fn5" role="doc-endnote"><p><sup>5</sup>&nbsp;with Americanisms.</p></li></div></div>
+<div class="page-columns page-full"><p>If no suitable translation catalogue is found or a particular message is not translated in any suitable catalogue, ‘English’<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> is used.</p><div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;with Americanisms.</p></li></div></div>
 <p>See <a href="https://developer.r-project.org/Translations30.html" class="uri">https://developer.r-project.org/Translations30.html</a> for how to prepare and install translation catalogues.</p>
 
 
@@ -375,7 +382,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

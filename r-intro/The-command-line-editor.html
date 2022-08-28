@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.38">
+<meta name="generator" content="quarto-1.1.149">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -53,7 +58,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -66,7 +71,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -128,9 +133,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="./index.html">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: An Introduction to R</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -311,17 +318,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preliminaries" id="toc-preliminaries" class="nav-link active" data-scroll-target="#preliminaries"> <span class="header-section-number">17.1</span> Preliminaries</a></li>
-  <li><a href="#editing-actions" id="toc-editing-actions" class="nav-link" data-scroll-target="#editing-actions"> <span class="header-section-number">17.2</span> Editing actions</a></li>
-  <li><a href="#command-line-editor-summary" id="toc-command-line-editor-summary" class="nav-link" data-scroll-target="#command-line-editor-summary"> <span class="header-section-number">17.3</span> Command-line editor summary</a>
+  <li><a href="#preliminaries" id="toc-preliminaries" class="nav-link active" data-scroll-target="#preliminaries"><span class="toc-section-number">17.1</span>  Preliminaries</a></li>
+  <li><a href="#editing-actions" id="toc-editing-actions" class="nav-link" data-scroll-target="#editing-actions"><span class="toc-section-number">17.2</span>  Editing actions</a></li>
+  <li><a href="#command-line-editor-summary" id="toc-command-line-editor-summary" class="nav-link" data-scroll-target="#command-line-editor-summary"><span class="toc-section-number">17.3</span>  Command-line editor summary</a>
   <ul class="collapse">
-  <li><a href="#command-recall-and-vertical-motion" id="toc-command-recall-and-vertical-motion" class="nav-link" data-scroll-target="#command-recall-and-vertical-motion"> <span class="header-section-number">17.3.1</span> Command recall and vertical motion</a></li>
-  <li><a href="#horizontal-motion-of-the-cursor" id="toc-horizontal-motion-of-the-cursor" class="nav-link" data-scroll-target="#horizontal-motion-of-the-cursor"> <span class="header-section-number">17.3.2</span> Horizontal motion of the cursor</a></li>
-  <li><a href="#editing-and-re-submission" id="toc-editing-and-re-submission" class="nav-link" data-scroll-target="#editing-and-re-submission"> <span class="header-section-number">17.3.3</span> Editing and re-submission</a></li>
+  <li><a href="#command-recall-and-vertical-motion" id="toc-command-recall-and-vertical-motion" class="nav-link" data-scroll-target="#command-recall-and-vertical-motion"><span class="toc-section-number">17.3.1</span>  Command recall and vertical motion</a></li>
+  <li><a href="#horizontal-motion-of-the-cursor" id="toc-horizontal-motion-of-the-cursor" class="nav-link" data-scroll-target="#horizontal-motion-of-the-cursor"><span class="toc-section-number">17.3.2</span>  Horizontal motion of the cursor</a></li>
+  <li><a href="#editing-and-re-submission" id="toc-editing-and-re-submission" class="nav-link" data-scroll-target="#editing-and-re-submission"><span class="toc-section-number">17.3.3</span>  Editing and re-submission</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -348,11 +355,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="preliminaries" class="level2 appendixsection page-columns page-full" data-number="17.1">
 <h2 class="appendixsection anchored" data-number="17.1" data-anchor-id="preliminaries"><span class="header-section-number">17.1</span> Preliminaries</h2>
 <p>When the GNU <strong>readline</strong> library is available at the time R is configured for compilation under UNIX, an inbuilt command line editor allowing recall, editing and re-submission of prior commands is used. Note that other versions of <strong>readline</strong> exist and may be used by the inbuilt command line editor: this is most common on macOS. You can find out which version (if any) is available by running <code>extSoftVersion()</code> in an R session.</p>
-<div class="page-columns page-full"><p>It can be disabled (useful for usage with ESS <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>) using the startup option <code>--no-readline</code>.</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;The ‘Emacs Speaks Statistics’ package; see the URL <a href="https://ESS.R-project.org/" class="uri">https://ESS.R-project.org/</a></p></li></div></div>
+<div class="page-columns page-full"><p>It can be disabled (useful for usage with ESS <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>) using the startup option <code>--no-readline</code>.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;The ‘Emacs Speaks Statistics’ package; see the URL <a href="https://ESS.R-project.org/" class="uri">https://ESS.R-project.org/</a></p></li></div></div>
 <p>Windows versions of R have somewhat simpler command-line editing: see <code>Console</code> under the <code>Help</code> menu of the GUI, and the file <code>README.Rterm</code> for command-line editing under <code>Rterm.exe</code>.</p>
-<div class="page-columns page-full"><p>When using R with GNU<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> <strong>readline</strong> capabilities, the functions described below are available, as well as others (probably) documented in <code>man readline</code> or <code>info readline</code> on your system.</p><div class="no-row-height column-margin column-container"><li id="fn2" role="doc-endnote"><p><sup>2</sup>&nbsp;It is possible to build R using an emulation of GNU <strong>readline</strong>, such as one based on NetBSD’s <strong>editline</strong> (also known as <strong>libedit</strong>), in which case only a subset of the capabilities may be provided.</p></li></div></div>
-<div class="page-columns page-full"><p>Many of these use either Control or Meta characters. Control characters, such as <kbd>Control-m</kbd>, are obtained by holding the CTRL down while you press the m key, and are written as <kbd>C-m</kbd> below. Meta characters, such as <kbd>Meta-b</kbd>, are typed by holding down META<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> and pressing b, and written as <kbd>M-b</kbd> in the following. If your terminal does not have a META key enabled, you can still type Meta characters using two-character sequences starting with <kbd>ESC</kbd>. Thus, to enter <kbd>M-b</kbd>, you could type ESCb. The <kbd>ESC</kbd> character sequences are also allowed on terminals with real Meta keys. Note that case is significant for Meta characters.</p><div class="no-row-height column-margin column-container"><li id="fn3" role="doc-endnote"><p><sup>3</sup>&nbsp;On a PC keyboard this is usually the Alt key, occasionally the ‘Windows’ key. On a Mac keyboard normally no meta key is available.</p></li></div></div>
-<div class="page-columns page-full"><p>Some but not all versions<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> of <strong>readline</strong> will recognize resizing of the terminal window so this is best avoided.</p><div class="no-row-height column-margin column-container"><li id="fn4" role="doc-endnote"><p><sup>4</sup>&nbsp;In particular, not versions 6.3 or later: this is worked around as from R 3.4.0.</p></li></div></div>
+<div class="page-columns page-full"><p>When using R with GNU<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> <strong>readline</strong> capabilities, the functions described below are available, as well as others (probably) documented in <code>man readline</code> or <code>info readline</code> on your system.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;It is possible to build R using an emulation of GNU <strong>readline</strong>, such as one based on NetBSD’s <strong>editline</strong> (also known as <strong>libedit</strong>), in which case only a subset of the capabilities may be provided.</p></li></div></div>
+<div class="page-columns page-full"><p>Many of these use either Control or Meta characters. Control characters, such as <kbd>Control-m</kbd>, are obtained by holding the CTRL down while you press the m key, and are written as <kbd>C-m</kbd> below. Meta characters, such as <kbd>Meta-b</kbd>, are typed by holding down META<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> and pressing b, and written as <kbd>M-b</kbd> in the following. If your terminal does not have a META key enabled, you can still type Meta characters using two-character sequences starting with <kbd>ESC</kbd>. Thus, to enter <kbd>M-b</kbd>, you could type ESCb. The <kbd>ESC</kbd> character sequences are also allowed on terminals with real Meta keys. Note that case is significant for Meta characters.</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;On a PC keyboard this is usually the Alt key, occasionally the ‘Windows’ key. On a Mac keyboard normally no meta key is available.</p></li></div></div>
+<div class="page-columns page-full"><p>Some but not all versions<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> of <strong>readline</strong> will recognize resizing of the terminal window so this is best avoided.</p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;In particular, not versions 6.3 or later: this is worked around as from R 3.4.0.</p></li></div></div>
 </section>
 <section id="editing-actions" class="level2 appendixsection" data-number="17.2">
 <h2 class="appendixsection anchored" data-number="17.2" data-anchor-id="editing-actions"><span class="header-section-number">17.2</span> Editing actions</h2>
@@ -539,7 +546,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.38">
+<meta name="generator" content="quarto-1.1.149">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -53,7 +58,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -66,7 +71,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -128,9 +133,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="./index.html">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: R Language Definition</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -271,38 +278,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-parsing-process" id="toc-the-parsing-process" class="nav-link active" data-scroll-target="#the-parsing-process"> <span class="header-section-number">10.1</span> The parsing process</a>
+  <li><a href="#the-parsing-process" id="toc-the-parsing-process" class="nav-link active" data-scroll-target="#the-parsing-process"><span class="toc-section-number">10.1</span>  The parsing process</a>
   <ul class="collapse">
-  <li><a href="#modes-of-parsing" id="toc-modes-of-parsing" class="nav-link" data-scroll-target="#modes-of-parsing"> <span class="header-section-number">10.1.1</span> Modes of parsing</a></li>
-  <li><a href="#internal-representation" id="toc-internal-representation" class="nav-link" data-scroll-target="#internal-representation"> <span class="header-section-number">10.1.2</span> Internal representation</a></li>
-  <li><a href="#deparsing" id="toc-deparsing" class="nav-link" data-scroll-target="#deparsing"> <span class="header-section-number">10.1.3</span> Deparsing</a></li>
+  <li><a href="#modes-of-parsing" id="toc-modes-of-parsing" class="nav-link" data-scroll-target="#modes-of-parsing"><span class="toc-section-number">10.1.1</span>  Modes of parsing</a></li>
+  <li><a href="#internal-representation" id="toc-internal-representation" class="nav-link" data-scroll-target="#internal-representation"><span class="toc-section-number">10.1.2</span>  Internal representation</a></li>
+  <li><a href="#deparsing" id="toc-deparsing" class="nav-link" data-scroll-target="#deparsing"><span class="toc-section-number">10.1.3</span>  Deparsing</a></li>
   </ul></li>
-  <li><a href="#comments" id="toc-comments" class="nav-link" data-scroll-target="#comments"> <span class="header-section-number">10.2</span> Comments</a></li>
-  <li><a href="#tokens" id="toc-tokens" class="nav-link" data-scroll-target="#tokens"> <span class="header-section-number">10.3</span> Tokens</a>
+  <li><a href="#comments" id="toc-comments" class="nav-link" data-scroll-target="#comments"><span class="toc-section-number">10.2</span>  Comments</a></li>
+  <li><a href="#tokens" id="toc-tokens" class="nav-link" data-scroll-target="#tokens"><span class="toc-section-number">10.3</span>  Tokens</a>
   <ul class="collapse">
-  <li><a href="#constants" id="toc-constants" class="nav-link" data-scroll-target="#constants"> <span class="header-section-number">10.3.1</span> Constants</a></li>
-  <li><a href="#identifiers" id="toc-identifiers" class="nav-link" data-scroll-target="#identifiers"> <span class="header-section-number">10.3.2</span> Identifiers</a></li>
-  <li><a href="#reserved-words" id="toc-reserved-words" class="nav-link" data-scroll-target="#reserved-words"> <span class="header-section-number">10.3.3</span> Reserved words</a></li>
-  <li><a href="#special-operators" id="toc-special-operators" class="nav-link" data-scroll-target="#special-operators"> <span class="header-section-number">10.3.4</span> Special operators</a></li>
-  <li><a href="#separators" id="toc-separators" class="nav-link" data-scroll-target="#separators"> <span class="header-section-number">10.3.5</span> Separators</a></li>
-  <li><a href="#operator-tokens" id="toc-operator-tokens" class="nav-link" data-scroll-target="#operator-tokens"> <span class="header-section-number">10.3.6</span> Operator tokens</a></li>
-  <li><a href="#grouping" id="toc-grouping" class="nav-link" data-scroll-target="#grouping"> <span class="header-section-number">10.3.7</span> Grouping</a></li>
-  <li><a href="#indexing-tokens" id="toc-indexing-tokens" class="nav-link" data-scroll-target="#indexing-tokens"> <span class="header-section-number">10.3.8</span> Indexing tokens</a></li>
+  <li><a href="#constants" id="toc-constants" class="nav-link" data-scroll-target="#constants"><span class="toc-section-number">10.3.1</span>  Constants</a></li>
+  <li><a href="#identifiers" id="toc-identifiers" class="nav-link" data-scroll-target="#identifiers"><span class="toc-section-number">10.3.2</span>  Identifiers</a></li>
+  <li><a href="#reserved-words" id="toc-reserved-words" class="nav-link" data-scroll-target="#reserved-words"><span class="toc-section-number">10.3.3</span>  Reserved words</a></li>
+  <li><a href="#special-operators" id="toc-special-operators" class="nav-link" data-scroll-target="#special-operators"><span class="toc-section-number">10.3.4</span>  Special operators</a></li>
+  <li><a href="#separators" id="toc-separators" class="nav-link" data-scroll-target="#separators"><span class="toc-section-number">10.3.5</span>  Separators</a></li>
+  <li><a href="#operator-tokens" id="toc-operator-tokens" class="nav-link" data-scroll-target="#operator-tokens"><span class="toc-section-number">10.3.6</span>  Operator tokens</a></li>
+  <li><a href="#grouping" id="toc-grouping" class="nav-link" data-scroll-target="#grouping"><span class="toc-section-number">10.3.7</span>  Grouping</a></li>
+  <li><a href="#indexing-tokens" id="toc-indexing-tokens" class="nav-link" data-scroll-target="#indexing-tokens"><span class="toc-section-number">10.3.8</span>  Indexing tokens</a></li>
   </ul></li>
-  <li><a href="#expressions" id="toc-expressions" class="nav-link" data-scroll-target="#expressions"> <span class="header-section-number">10.4</span> Expressions</a>
+  <li><a href="#expressions" id="toc-expressions" class="nav-link" data-scroll-target="#expressions"><span class="toc-section-number">10.4</span>  Expressions</a>
   <ul class="collapse">
-  <li><a href="#function-calls" id="toc-function-calls" class="nav-link" data-scroll-target="#function-calls"> <span class="header-section-number">10.4.1</span> Function calls</a></li>
-  <li><a href="#infix-and-prefix-operators" id="toc-infix-and-prefix-operators" class="nav-link" data-scroll-target="#infix-and-prefix-operators"> <span class="header-section-number">10.4.2</span> Infix and prefix operators</a></li>
-  <li><a href="#index-constructions" id="toc-index-constructions" class="nav-link" data-scroll-target="#index-constructions"> <span class="header-section-number">10.4.3</span> Index constructions</a></li>
-  <li><a href="#compound-expressions" id="toc-compound-expressions" class="nav-link" data-scroll-target="#compound-expressions"> <span class="header-section-number">10.4.4</span> Compound expressions</a></li>
-  <li><a href="#flow-control-elements" id="toc-flow-control-elements" class="nav-link" data-scroll-target="#flow-control-elements"> <span class="header-section-number">10.4.5</span> Flow control elements</a></li>
-  <li><a href="#function-definitions" id="toc-function-definitions" class="nav-link" data-scroll-target="#function-definitions"> <span class="header-section-number">10.4.6</span> Function definitions</a></li>
+  <li><a href="#function-calls" id="toc-function-calls" class="nav-link" data-scroll-target="#function-calls"><span class="toc-section-number">10.4.1</span>  Function calls</a></li>
+  <li><a href="#infix-and-prefix-operators" id="toc-infix-and-prefix-operators" class="nav-link" data-scroll-target="#infix-and-prefix-operators"><span class="toc-section-number">10.4.2</span>  Infix and prefix operators</a></li>
+  <li><a href="#index-constructions" id="toc-index-constructions" class="nav-link" data-scroll-target="#index-constructions"><span class="toc-section-number">10.4.3</span>  Index constructions</a></li>
+  <li><a href="#compound-expressions" id="toc-compound-expressions" class="nav-link" data-scroll-target="#compound-expressions"><span class="toc-section-number">10.4.4</span>  Compound expressions</a></li>
+  <li><a href="#flow-control-elements" id="toc-flow-control-elements" class="nav-link" data-scroll-target="#flow-control-elements"><span class="toc-section-number">10.4.5</span>  Flow control elements</a></li>
+  <li><a href="#function-definitions" id="toc-function-definitions" class="nav-link" data-scroll-target="#function-definitions"><span class="toc-section-number">10.4.6</span>  Function definitions</a></li>
   </ul></li>
-  <li><a href="#directives" id="toc-directives" class="nav-link" data-scroll-target="#directives"> <span class="header-section-number">10.5</span> Directives</a></li>
+  <li><a href="#directives" id="toc-directives" class="nav-link" data-scroll-target="#directives"><span class="toc-section-number">10.5</span>  Directives</a></li>
   </ul>
 </nav>
     </div>
@@ -481,7 +488,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="separators" class="level3 subsection page-columns page-full" data-number="10.3.5">
 <h3 class="subsection anchored" data-number="10.3.5" data-anchor-id="separators"><span class="header-section-number">10.3.5</span> Separators</h3>
-<div class="page-columns page-full"><p>Although not strictly tokens, stretches of whitespace characters (spaces, tabs and formfeeds, on Windows and UTF-8 locales other Unicode whitespace characters<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>) serve to delimit tokens in case of ambiguity, (compare <code>x&lt;-5</code> and <code>x &lt; -5</code>).</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;such as <code>U+A0</code>, non-breaking space, and <code>U+3000</code>, ideographic space.</p></li></div></div>
+<div class="page-columns page-full"><p>Although not strictly tokens, stretches of whitespace characters (spaces, tabs and formfeeds, on Windows and UTF-8 locales other Unicode whitespace characters<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>) serve to delimit tokens in case of ambiguity, (compare <code>x&lt;-5</code> and <code>x &lt; -5</code>).</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;such as <code>U+A0</code>, non-breaking space, and <code>U+3000</code>, ideographic space.</p></li></div></div>
 <p>Newlines have a function which is a combination of token separator and expression terminator. If an expression can terminate at the end of the line the parser will assume it does so, otherwise the newline is treated as whitespace. Semicolons (<code>;</code>) may be used to separate elementary expressions on the same line.</p>
 <p>Special rules apply to the <code>else</code> keyword: inside a compound expression, a newline before <code>else</code> is discarded, whereas at the outermost level, the newline terminates the <code>if</code> construction and a subsequent <code>else</code> causes a syntax error. This somewhat anomalous behaviour occurs because R should be usable in interactive mode and then it must decide whether the input expression is complete, incomplete, or invalid as soon as the user presses RET.</p>
 <p>The comma (<code>,</code>) is used to separate function arguments and multiple indices.</p>
@@ -714,7 +721,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

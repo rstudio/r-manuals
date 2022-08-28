@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.38">
+<meta name="generator" content="quarto-1.1.149">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -53,7 +58,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -66,7 +71,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -128,9 +133,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="./index.html">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: R Data Import/Export</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -271,16 +278,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#imports" id="toc-imports" class="nav-link active" data-scroll-target="#imports"> <span class="header-section-number">1.1</span> Imports</a>
+  <li><a href="#imports" id="toc-imports" class="nav-link active" data-scroll-target="#imports"><span class="toc-section-number">1.1</span>  Imports</a>
   <ul class="collapse">
-  <li><a href="#encodings" id="toc-encodings" class="nav-link" data-scroll-target="#encodings"> <span class="header-section-number">1.1.1</span> Encodings</a></li>
+  <li><a href="#encodings" id="toc-encodings" class="nav-link" data-scroll-target="#encodings"><span class="toc-section-number">1.1.1</span>  Encodings</a></li>
   </ul></li>
-  <li><a href="#export-to-text-files" id="toc-export-to-text-files" class="nav-link" data-scroll-target="#export-to-text-files"> <span class="header-section-number">1.2</span> Export to text files</a></li>
-  <li><a href="#xml" id="toc-xml" class="nav-link" data-scroll-target="#xml"> <span class="header-section-number">1.3</span> XML</a></li>
+  <li><a href="#export-to-text-files" id="toc-export-to-text-files" class="nav-link" data-scroll-target="#export-to-text-files"><span class="toc-section-number">1.2</span>  Export to text files</a></li>
+  <li><a href="#xml" id="toc-xml" class="nav-link" data-scroll-target="#xml"><span class="toc-section-number">1.3</span>  XML</a></li>
   </ul>
 </nav>
     </div>
@@ -325,7 +332,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>   with CRLF line terminators</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>intro<span class="op">.</span>dat<span class="op">:</span> UTF<span class="op">-</span><span class="dv">8</span> Unicode text</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>intro<span class="op">.</span>dat<span class="op">:</span> UTF<span class="op">-</span><span class="dv">8</span> Unicode <span class="op">(</span>with BOM<span class="op">)</span> text</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="page-columns page-full"><p>Modern Unix-alike systems, including macOS, are likely to produce UTF-8 files. Windows may produce what it calls ‘Unicode’ files (<code>UCS-2LE</code> or just possibly <code>UTF-16LE</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>). Otherwise most files will be in a 8-bit encoding unless from a Chinese/Japanese/Korean locale (which have a wide range of encodings in common use). It is not possible to automatically detect with certainty which 8-bit encoding (although guesses may be possible and <code>file</code> may guess as it did in the example above), so you may simply have to ask the originator for some clues (e.g.&nbsp;‘Russian on Windows’).</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;the distinction is subtle, <a href="https://en.wikipedia.org/wiki/UTF-16/UCS-2" class="uri">https://en.wikipedia.org/wiki/UTF-16/UCS-2</a>, and the use of surrogate pairs is very rare.</p></li></div></div>
+<div class="page-columns page-full"><p>Modern Unix-alike systems, including macOS, are likely to produce UTF-8 files. Windows may produce what it calls ‘Unicode’ files (<code>UCS-2LE</code> or just possibly <code>UTF-16LE</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>). Otherwise most files will be in a 8-bit encoding unless from a Chinese/Japanese/Korean locale (which have a wide range of encodings in common use). It is not possible to automatically detect with certainty which 8-bit encoding (although guesses may be possible and <code>file</code> may guess as it did in the example above), so you may simply have to ask the originator for some clues (e.g.&nbsp;‘Russian on Windows’).</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;the distinction is subtle, <a href="https://en.wikipedia.org/wiki/UTF-16/UCS-2" class="uri">https://en.wikipedia.org/wiki/UTF-16/UCS-2</a>, and the use of surrogate pairs is very rare.</p></li></div></div>
 <p>‘BOMs’ (Byte Order Marks, <a href="https://en.wikipedia.org/wiki/Byte_order_mark" class="uri">https://en.wikipedia.org/wiki/Byte_order_mark</a>) cause problems for Unicode files. In the Unix world BOMs are rarely used, whereas in the Windows world they almost always are for UCS-2/UTF-16 files, and often are for UTF-8 files. The <code>file</code> utility will not even recognize UCS-2 files without a BOM, but many other utilities will refuse to read files with a BOM and the IANA standards for <code>UTF-16LE</code> and <code>UTF-16BE</code> prohibit it. We have too often been reduced to looking at the file with the command-line utility <code>od</code> or a hex editor to work out its encoding.</p>
 <p>Note that <code>utf8</code> is not a valid encoding name (<code>UTF-8</code> is), and <code>macintosh</code> is the most portable name for what is sometimes called ‘Mac Roman’ encoding.</p>
 </section>
@@ -368,7 +375,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Text files do not contain metadata on their encodings, so for non-ASCII data the file needs to be targetted to the application intended to read it. All of these functions can write to a <em>connection</em> which allows an encoding to be specified for the file, and <code>write.table</code> has a <code>fileEncoding</code> argument to make this easier.</p>
 <p>The hard part is to know what file encoding to use. For use on Windows, it is best to use what Windows calls ‘Unicode’<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, that is <code>"UTF-16LE"</code>. Using UTF-8 is a good way to make portable files that will not easily be confused with any other encoding, but even macOS applications (where UTF-8 is the system encoding) may not recognize them, and Windows applications are most unlikely to. Apparently Excel:mac 2004/8 expected <code>.csv</code> files in <code>"macroman"</code> encoding (the encoding used in much earlier versions of Mac OS).</p></li>
 </ol>
-<div class="no-row-height column-margin column-container"><li id="fn2" role="doc-endnote"><p><sup>2</sup>&nbsp;Even then, Windows applications may expect a Byte Order Mark which the implementation of <code>iconv</code> used by R may or may not add depending on the platform.</p></li></div><p>Function <code>write.matrix</code> in package <a href="https://CRAN.R-project.org/package=MASS"><strong>MASS</strong></a> provides a specialized interface for writing matrices, with the option of writing them in blocks and thereby reducing memory usage.</p>
+<div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;Even then, Windows applications may expect a Byte Order Mark which the implementation of <code>iconv</code> used by R may or may not add depending on the platform.</p></li></div><p>Function <code>write.matrix</code> in package <a href="https://CRAN.R-project.org/package=MASS"><strong>MASS</strong></a> provides a specialized interface for writing matrices, with the option of writing them in blocks and thereby reducing memory usage.</p>
 <p>It is possible to use <code>sink</code> to divert the standard R output to a file, and thereby capture the output of (possibly implicit) <code>print</code> statements. This is not usually the most efficient route, and the <code>options(width)</code> setting may need to be increased.</p>
 <p>Function <code>write.foreign</code> in package <a href="https://CRAN.R-project.org/package=foreign"><strong>foreign</strong></a> uses <code>write.table</code> to produce a text file and also writes a code file that will read this text file into another statistical package. There is currently support for export to <code>SAS</code>, <code>SPSS</code> and <code>Stata</code>.</p>
 </section>
@@ -456,7 +463,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.38">
+<meta name="generator" content="quarto-1.1.149">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -53,7 +58,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -66,7 +71,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -128,9 +133,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="./index.html">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: Writing R Extensions</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -261,32 +268,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#rd-format" id="toc-rd-format" class="nav-link active" data-scroll-target="#rd-format"> <span class="header-section-number">2.1</span> Rd format</a>
+  <li><a href="#rd-format" id="toc-rd-format" class="nav-link active" data-scroll-target="#rd-format"><span class="toc-section-number">2.1</span>  Rd format</a>
   <ul class="collapse">
-  <li><a href="#documenting-functions" id="toc-documenting-functions" class="nav-link" data-scroll-target="#documenting-functions"> <span class="header-section-number">2.1.1</span> Documenting functions</a></li>
-  <li><a href="#documenting-data-sets" id="toc-documenting-data-sets" class="nav-link" data-scroll-target="#documenting-data-sets"> <span class="header-section-number">2.1.2</span> Documenting data sets</a></li>
-  <li><a href="#documenting-s4-classes-and-methods" id="toc-documenting-s4-classes-and-methods" class="nav-link" data-scroll-target="#documenting-s4-classes-and-methods"> <span class="header-section-number">2.1.3</span> Documenting S4 classes and methods</a></li>
-  <li><a href="#documenting-packages" id="toc-documenting-packages" class="nav-link" data-scroll-target="#documenting-packages"> <span class="header-section-number">2.1.4</span> Documenting packages</a></li>
+  <li><a href="#documenting-functions" id="toc-documenting-functions" class="nav-link" data-scroll-target="#documenting-functions"><span class="toc-section-number">2.1.1</span>  Documenting functions</a></li>
+  <li><a href="#documenting-data-sets" id="toc-documenting-data-sets" class="nav-link" data-scroll-target="#documenting-data-sets"><span class="toc-section-number">2.1.2</span>  Documenting data sets</a></li>
+  <li><a href="#documenting-s4-classes-and-methods" id="toc-documenting-s4-classes-and-methods" class="nav-link" data-scroll-target="#documenting-s4-classes-and-methods"><span class="toc-section-number">2.1.3</span>  Documenting S4 classes and methods</a></li>
+  <li><a href="#documenting-packages" id="toc-documenting-packages" class="nav-link" data-scroll-target="#documenting-packages"><span class="toc-section-number">2.1.4</span>  Documenting packages</a></li>
   </ul></li>
-  <li><a href="#sectioning" id="toc-sectioning" class="nav-link" data-scroll-target="#sectioning"> <span class="header-section-number">2.2</span> Sectioning</a></li>
-  <li><a href="#marking-text" id="toc-marking-text" class="nav-link" data-scroll-target="#marking-text"> <span class="header-section-number">2.3</span> Marking text</a></li>
-  <li><a href="#lists-and-tables" id="toc-lists-and-tables" class="nav-link" data-scroll-target="#lists-and-tables"> <span class="header-section-number">2.4</span> Lists and tables</a></li>
-  <li><a href="#cross-references" id="toc-cross-references" class="nav-link" data-scroll-target="#cross-references"> <span class="header-section-number">2.5</span> Cross-references</a></li>
-  <li><a href="#mathematics" id="toc-mathematics" class="nav-link" data-scroll-target="#mathematics"> <span class="header-section-number">2.6</span> Mathematics</a></li>
-  <li><a href="#figures" id="toc-figures" class="nav-link" data-scroll-target="#figures"> <span class="header-section-number">2.7</span> Figures</a></li>
-  <li><a href="#insertions" id="toc-insertions" class="nav-link" data-scroll-target="#insertions"> <span class="header-section-number">2.8</span> Insertions</a></li>
-  <li><a href="#indices" id="toc-indices" class="nav-link" data-scroll-target="#indices"> <span class="header-section-number">2.9</span> Indices</a></li>
-  <li><a href="#platform-specific-documentation" id="toc-platform-specific-documentation" class="nav-link" data-scroll-target="#platform-specific-documentation"> <span class="header-section-number">2.10</span> Platform-specific documentation</a></li>
-  <li><a href="#conditional-text" id="toc-conditional-text" class="nav-link" data-scroll-target="#conditional-text"> <span class="header-section-number">2.11</span> Conditional text</a></li>
-  <li><a href="#dynamic-pages" id="toc-dynamic-pages" class="nav-link" data-scroll-target="#dynamic-pages"> <span class="header-section-number">2.12</span> Dynamic pages</a></li>
-  <li><a href="#user-defined-macros" id="toc-user-defined-macros" class="nav-link" data-scroll-target="#user-defined-macros"> <span class="header-section-number">2.13</span> User-defined macros</a></li>
-  <li><a href="#encoding" id="toc-encoding" class="nav-link" data-scroll-target="#encoding"> <span class="header-section-number">2.14</span> Encoding</a></li>
-  <li><a href="#processing-documentation-files" id="toc-processing-documentation-files" class="nav-link" data-scroll-target="#processing-documentation-files"> <span class="header-section-number">2.15</span> Processing documentation files</a></li>
-  <li><a href="#editing-rd-files" id="toc-editing-rd-files" class="nav-link" data-scroll-target="#editing-rd-files"> <span class="header-section-number">2.16</span> Editing Rd files</a></li>
+  <li><a href="#sectioning" id="toc-sectioning" class="nav-link" data-scroll-target="#sectioning"><span class="toc-section-number">2.2</span>  Sectioning</a></li>
+  <li><a href="#marking-text" id="toc-marking-text" class="nav-link" data-scroll-target="#marking-text"><span class="toc-section-number">2.3</span>  Marking text</a></li>
+  <li><a href="#lists-and-tables" id="toc-lists-and-tables" class="nav-link" data-scroll-target="#lists-and-tables"><span class="toc-section-number">2.4</span>  Lists and tables</a></li>
+  <li><a href="#cross-references" id="toc-cross-references" class="nav-link" data-scroll-target="#cross-references"><span class="toc-section-number">2.5</span>  Cross-references</a></li>
+  <li><a href="#mathematics" id="toc-mathematics" class="nav-link" data-scroll-target="#mathematics"><span class="toc-section-number">2.6</span>  Mathematics</a></li>
+  <li><a href="#figures" id="toc-figures" class="nav-link" data-scroll-target="#figures"><span class="toc-section-number">2.7</span>  Figures</a></li>
+  <li><a href="#insertions" id="toc-insertions" class="nav-link" data-scroll-target="#insertions"><span class="toc-section-number">2.8</span>  Insertions</a></li>
+  <li><a href="#indices" id="toc-indices" class="nav-link" data-scroll-target="#indices"><span class="toc-section-number">2.9</span>  Indices</a></li>
+  <li><a href="#platform-specific-documentation" id="toc-platform-specific-documentation" class="nav-link" data-scroll-target="#platform-specific-documentation"><span class="toc-section-number">2.10</span>  Platform-specific documentation</a></li>
+  <li><a href="#conditional-text" id="toc-conditional-text" class="nav-link" data-scroll-target="#conditional-text"><span class="toc-section-number">2.11</span>  Conditional text</a></li>
+  <li><a href="#dynamic-pages" id="toc-dynamic-pages" class="nav-link" data-scroll-target="#dynamic-pages"><span class="toc-section-number">2.12</span>  Dynamic pages</a></li>
+  <li><a href="#user-defined-macros" id="toc-user-defined-macros" class="nav-link" data-scroll-target="#user-defined-macros"><span class="toc-section-number">2.13</span>  User-defined macros</a></li>
+  <li><a href="#encoding" id="toc-encoding" class="nav-link" data-scroll-target="#encoding"><span class="toc-section-number">2.14</span>  Encoding</a></li>
+  <li><a href="#processing-documentation-files" id="toc-processing-documentation-files" class="nav-link" data-scroll-target="#processing-documentation-files"><span class="toc-section-number">2.15</span>  Processing documentation files</a></li>
+  <li><a href="#editing-rd-files" id="toc-editing-rd-files" class="nav-link" data-scroll-target="#editing-rd-files"><span class="toc-section-number">2.16</span>  Editing Rd files</a></li>
   </ul>
 </nav>
     </div>
@@ -359,7 +366,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 </div>
 <p>An <code>Rd</code> file consists of three parts. The header gives basic information about the name of the file, the topics documented, a title, a short textual description and R usage information for the objects documented. The body gives further information (for example, on the function’s arguments and return value, as in the above example). Finally, there is an optional footer with keyword information. The header is mandatory.</p>
-<div class="page-columns page-full"><p>Information is given within a series of <em>sections</em> with standard names (and user-defined sections are also allowed). Unless otherwise specified<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> these should occur only once in an <code>Rd</code> file (in any order), and the processing software will retain only the first occurrence of a standard section in the file, with a warning.</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;e.g.&nbsp;<code>\alias</code>, <code>\keyword</code> and <code>\note</code> sections.</p></li></div></div>
+<div class="page-columns page-full"><p>Information is given within a series of <em>sections</em> with standard names (and user-defined sections are also allowed). Unless otherwise specified<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> these should occur only once in an <code>Rd</code> file (in any order), and the processing software will retain only the first occurrence of a standard section in the file, with a warning.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;e.g.&nbsp;<code>\alias</code>, <code>\keyword</code> and <code>\note</code> sections.</p></li></div></div>
 <p>See <a href="https://developer.r-project.org/Rds.html">“Guidelines for Rd files”</a> for guidelines for writing documentation in <code>Rd</code> format which should be useful for package writers. The R generic function <code>prompt</code> is used to construct a bare-bones <code>Rd</code> file ready for manual editing. Methods are defined for documenting functions (which fill in the proper function and argument names) and data frames. There are also functions <code>promptData</code>, <code>promptPackage</code>, <code>promptClass</code>, and <code>promptMethods</code> for other types of <code>Rd</code> file.</p>
 <p>The general syntax of <code>Rd</code> files is summarized below. For a detailed technical discussion of current <code>Rd</code> syntax, see <a href="https://developer.r-project.org/parseRd.pdf">“Parsing Rd files”</a>.</p>
 <p><code>Rd</code> files consist of four types of text input. The most common is LaTeX-like, with the backslash used as a prefix on markup (e.g. <code>\alias</code>), and braces used to indicate arguments (e.g.&nbsp;<code>{load}</code>). The least common type of text is ‘verbatim’ text, where no markup other than the comment marker (<code>%</code>) is processed. There is also a rare variant of ‘verbatim’ text (used in <code>\eqn</code>, <code>\deqn</code>, <code>\figure</code>, and <code>\newcommand</code>) where comment markers need not be escaped. The final type is R-like, intended for R code, but allowing some embedded macros. Quoted strings within R-like text are handled specially: regular character escapes such as <code>\n</code> may be entered as-is. Only markup starting with <code>\l</code> (e.g. <code>\link</code>) or <code>\v</code> (e.g.&nbsp;<code>\var</code>) will be recognized within quoted strings. The rarely used vertical tab <code>\v</code> must be entered as <code>\\v</code>.</p>
@@ -372,7 +379,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <dt><var>\name{``name</var><code>}</code></dt>
 <dd class="page-columns page-full">
 <p><span id="index-_005cname"></span></p>
-<div class="page-columns page-full"><p><var>name</var> typically<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> is the basename of the <code>Rd</code> file containing the documentation. It is the “name” of the <code>Rd</code> object represented by the file and has to be unique in a package. To avoid problems with indexing the package manual, it may not contain <code>!</code> <code>|</code> nor <code>@</code>, and to avoid possible problems with the HTML help system it should not contain <code>/</code> nor a space. (LaTeX special characters are allowed, but may not be collated correctly in the index.) There can only be one <code>\name</code> entry in a file, and it must not contain any markup. Entries in the package manual will be in alphabetic<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> order of the <code>\name</code> entries.</p><div class="no-row-height column-margin column-container"><li id="fn2" role="doc-endnote"><p><sup>2</sup>&nbsp;There can be exceptions: for example <code>Rd</code> files are not allowed to start with a dot, and have to be uniquely named on a case-insensitive file system.</p></li><li id="fn3" role="doc-endnote"><p><sup>3</sup>&nbsp;in the current locale, and with special treatment for LaTeX special characters and with any <var>pkgname</var><code>-package</code> topic moved to the top of the list.</p></li></div></div>
+<div class="page-columns page-full"><p><var>name</var> typically<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> is the basename of the <code>Rd</code> file containing the documentation. It is the “name” of the <code>Rd</code> object represented by the file and has to be unique in a package. To avoid problems with indexing the package manual, it may not contain <code>!</code> <code>|</code> nor <code>@</code>, and to avoid possible problems with the HTML help system it should not contain <code>/</code> nor a space. (LaTeX special characters are allowed, but may not be collated correctly in the index.) There can only be one <code>\name</code> entry in a file, and it must not contain any markup. Entries in the package manual will be in alphabetic<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> order of the <code>\name</code> entries.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;There can be exceptions: for example <code>Rd</code> files are not allowed to start with a dot, and have to be uniquely named on a case-insensitive file system.</p></li><li id="fn3"><p><sup>3</sup>&nbsp;in the current locale, and with special treatment for LaTeX special characters and with any <var>pkgname</var><code>-package</code> topic moved to the top of the list.</p></li></div></div>
 </dd>
 <dt><var>\alias{``topic</var><code>}</code></dt>
 <dd>
@@ -457,7 +464,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Description of the function’s return value.</p>
 <p>If a list with multiple values is returned, you can use entries of the form</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\item</span>{comp_i}{Description of comp_i.}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="page-columns page-full"><p>for each component of the list returned. Optional text may precede<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> this list (see for example the help for <code>rle</code>). Note that <code>\value</code> is implicitly a <code>\describe</code> environment, so that environment should not be used for listing components, just individual <code>\item{}{}</code> entries.</p><div class="no-row-height column-margin column-container"><li id="fn4" role="doc-endnote"><p><sup>4</sup>&nbsp;Text between or after list items is discouraged.</p></li></div></div>
+<div class="page-columns page-full"><p>for each component of the list returned. Optional text may precede<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> this list (see for example the help for <code>rle</code>). Note that <code>\value</code> is implicitly a <code>\describe</code> environment, so that environment should not be used for listing components, just individual <code>\item{}{}</code> entries.</p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;Text between or after list items is discouraged.</p></li></div></div>
 </dd>
 <dt><code>\references{…}</code></dt>
 <dd>
@@ -677,7 +684,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <dt><var>\url{``uniform_resource_locator</var><code>}</code></dt>
 <dd class="page-columns page-full">
 <p><span id="index-_005curl"></span></p>
-<div class="page-columns page-full"><p>Indicate a uniform resource locator (URL) for the World Wide Web. The argument is handled as ‘verbatim’ text (with percent and braces escaped by backslash), and rendered as a hyperlink in HTML and PDF conversion. Linefeeds are removed, and leading and trailing whitespace<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> is removed. See <a href="Creating-R-packages.html#specifying-urls">Specifying URLs</a>.</p><div class="no-row-height column-margin column-container"><li id="fn5" role="doc-endnote"><p><sup>5</sup>&nbsp;as defined by the R function <code>trimws</code>.</p></li></div></div>
+<div class="page-columns page-full"><p>Indicate a uniform resource locator (URL) for the World Wide Web. The argument is handled as ‘verbatim’ text (with percent and braces escaped by backslash), and rendered as a hyperlink in HTML and PDF conversion. Linefeeds are removed, and leading and trailing whitespace<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> is removed. See <a href="Creating-R-packages.html#specifying-urls">Specifying URLs</a>.</p><div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;as defined by the R function <code>trimws</code>.</p></li></div></div>
 <p>Displayed using <code>typewriter</code> font where possible.</p>
 </dd>
 <dt><var>\href{``uniform_resource_locator</var><var>}{``text</var><code>}</code></dt>
@@ -689,7 +696,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <dt><var>\var{``metasyntactic_variable</var><code>}</code></dt>
 <dd class="page-columns page-full">
 <p><span id="index-_005cvar"></span></p>
-<div class="page-columns page-full"><p>Indicate a metasyntactic variable. In some cases this will be rendered distinctly, e.g.&nbsp;in italic, but not in all<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>. LaTeX-like.</p><div class="no-row-height column-margin column-container"><li id="fn6" role="doc-endnote"><p><sup>6</sup>&nbsp;Currently it is rendered differently only in HTML conversions, and LaTeX conversion outside <code>\usage</code> and <code>\examples</code> environments.</p></li></div></div>
+<div class="page-columns page-full"><p>Indicate a metasyntactic variable. In some cases this will be rendered distinctly, e.g.&nbsp;in italic, but not in all<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>. LaTeX-like.</p><div class="no-row-height column-margin column-container"><li id="fn6"><p><sup>6</sup>&nbsp;Currently it is rendered differently only in HTML conversions, and LaTeX conversion outside <code>\usage</code> and <code>\examples</code> environments.</p></li></div></div>
 </dd>
 <dt><var>\env{``environment_variable</var><code>}</code></dt>
 <dd>
@@ -796,10 +803,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="insertions" class="level2 section page-columns page-full" data-number="2.8">
 <h2 class="section anchored" data-number="2.8" data-anchor-id="insertions"><span class="header-section-number">2.8</span> Insertions</h2>
-<div class="page-columns page-full"><p>Use <code>\R</code> for the R system itself. Use <code>\dots</code> for the dots in function argument lists <code>…</code>, and <code>\ldots</code> for ellipsis dots in ordinary text.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> These can be followed by <code>{}</code>, and should be unless followed by whitespace.</p><div class="no-row-height column-margin column-container"><li id="fn7" role="doc-endnote"><p><sup>7</sup>&nbsp;There is only a fine distinction between <code>\dots</code> and <code>\ldots</code>. It is technically incorrect to use <code>\ldots</code> in code blocks and <code>tools::checkRd</code> will warn about this—on the other hand the current converters treat them the same way in code blocks, and elsewhere apart from the small distinction between the two in LaTeX.</p></li></div></div>
+<div class="page-columns page-full"><p>Use <code>\R</code> for the R system itself. Use <code>\dots</code> for the dots in function argument lists <code>…</code>, and <code>\ldots</code> for ellipsis dots in ordinary text.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> These can be followed by <code>{}</code>, and should be unless followed by whitespace.</p><div class="no-row-height column-margin column-container"><li id="fn7"><p><sup>7</sup>&nbsp;There is only a fine distinction between <code>\dots</code> and <code>\ldots</code>. It is technically incorrect to use <code>\ldots</code> in code blocks and <code>tools::checkRd</code> will warn about this—on the other hand the current converters treat them the same way in code blocks, and elsewhere apart from the small distinction between the two in LaTeX.</p></li></div></div>
 <p>After an unescaped <code>%</code>, you can put your own comments regarding the help text. The rest of the line (but not the newline at the end) will be completely disregarded. Therefore, you can also use it to make part of the “help” invisible.</p>
 <p>You can produce a backslash (<code>\</code>) by escaping it by another backslash. (Note that <code>\cr</code> is used for generating line breaks.)</p>
-<div class="page-columns page-full"><p>The “comment” character <code>%</code> and unpaired braces<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> <em>almost always</em> need to be escaped by <code>\</code>, and <code>\\</code> can be used for backslash and needs to be when there are two or more adjacent backslashes. In R-like code quoted strings are handled slightly differently; see <a href="https://developer.r-project.org/parseRd.pdf">“Parsing Rd files”</a> for details – in particular braces should not be escaped in quoted strings.</p><div class="no-row-height column-margin column-container"><li id="fn8" role="doc-endnote"><p><sup>8</sup>&nbsp;See the examples section in the file <code>Paren.Rd</code> for an example.</p></li></div></div>
+<div class="page-columns page-full"><p>The “comment” character <code>%</code> and unpaired braces<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> <em>almost always</em> need to be escaped by <code>\</code>, and <code>\\</code> can be used for backslash and needs to be when there are two or more adjacent backslashes. In R-like code quoted strings are handled slightly differently; see <a href="https://developer.r-project.org/parseRd.pdf">“Parsing Rd files”</a> for details – in particular braces should not be escaped in quoted strings.</p><div class="no-row-height column-margin column-container"><li id="fn8"><p><sup>8</sup>&nbsp;See the examples section in the file <code>Paren.Rd</code> for an example.</p></li></div></div>
 <p>All of <code>% { } \</code> should be escaped in LaTeX-like text.</p>
 <p>Text which might need to be represented differently in different encodings should be marked by <code>\enc</code>, e.g.&nbsp;<code>\enc{Jöreskog}{Joreskog}</code> (with no whitespace between the braces) where the first argument will be used where encodings are allowed and the second should be ASCII (and is used for e.g.&nbsp;the text conversion in locales that cannot represent the encoded form). (This is intended to be used for individual words, not whole sentences or paragraphs.)</p>
 </section>
@@ -899,7 +906,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="section anchored" data-number="2.14" data-anchor-id="encoding"><span class="header-section-number">2.14</span> Encoding</h2>
 <p>Rd files are text files and so it is impossible to deduce the encoding they are written in unless ASCII: files with 8-bit characters could be UTF-8, Latin-1, Latin-9, KOI8-R, EUC-JP, <em>etc</em>. So an <code>\encoding{}</code> section must be used to specify the encoding if it is not ASCII. (The <code>\encoding{}</code> section must be on a line by itself, and in particular one containing no non-ASCII characters. The encoding declared in the <code>DESCRIPTION</code> file will be used if none is declared in the file.) The <code>Rd</code> files are converted to UTF-8 before parsing and so the preferred encoding for the files themselves is now UTF-8.</p>
 <p>Wherever possible, avoid non-ASCII chars in <code>Rd</code> files, and even symbols such as <code>&lt;</code>, <code>&gt;</code>, <code>$</code>, <code>^</code>, <code>&amp;</code>, <code>|</code>, <code>@</code>, <code>~</code>, and <code>*</code> outside ‘verbatim’ environments (since they may disappear in fonts designed to render text). (Function <code>showNonASCIIfile</code> in package <strong>tools</strong> can help in finding non-ASCII bytes in the files.)</p>
-<div class="page-columns page-full"><p>For convenience, encoding names <code>latin1</code> and <code>latin2</code> are always recognized: these and <code>UTF-8</code> are likely to work fairly widely. However, this does not mean that all characters in UTF-8 will be recognized, and the coverage of non-Latin characters<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> is fairly low. Using LaTeX <code>inputenx</code> (see <code>?Rd2pdf</code> in R) will give greater coverage of UTF-8.</p><div class="no-row-height column-margin column-container"><li id="fn9" role="doc-endnote"><p><sup>9</sup>&nbsp;R 2.9.0 added support for UTF-8 Cyrillic characters in LaTeX, but on some OSes this will need Cyrillic support added to LaTeX, so environment variable <code>_R_CYRILLIC_TEX_</code> may need to be set to a non-empty value to enable this.</p></li></div></div>
+<div class="page-columns page-full"><p>For convenience, encoding names <code>latin1</code> and <code>latin2</code> are always recognized: these and <code>UTF-8</code> are likely to work fairly widely. However, this does not mean that all characters in UTF-8 will be recognized, and the coverage of non-Latin characters<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> is fairly low. Using LaTeX <code>inputenx</code> (see <code>?Rd2pdf</code> in R) will give greater coverage of UTF-8.</p><div class="no-row-height column-margin column-container"><li id="fn9"><p><sup>9</sup>&nbsp;R 2.9.0 added support for UTF-8 Cyrillic characters in LaTeX, but on some OSes this will need Cyrillic support added to LaTeX, so environment variable <code>_R_CYRILLIC_TEX_</code> may need to be set to a non-empty value to enable this.</p></li></div></div>
 <p>The <code>\enc</code> command (see <a href="#insertions">Insertions</a>) can be used to provide transliterations which will be used in conversions that do not support the declared encoding.</p>
 <p>The LaTeX conversion converts the file to UTF-8 from the declared encoding, and includes a</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\inputencoding</span>{utf8}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -999,7 +1006,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

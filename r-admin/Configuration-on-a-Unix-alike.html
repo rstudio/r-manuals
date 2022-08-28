@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.38">
+<meta name="generator" content="quarto-1.1.149">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -53,7 +58,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -66,7 +71,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -128,9 +133,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="./index.html">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: R Installation and Administration</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -281,24 +288,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#configuration-options" id="toc-configuration-options" class="nav-link active" data-scroll-target="#configuration-options"> <span class="header-section-number">11.1</span> Configuration options</a></li>
-  <li><a href="#internationalization-support" id="toc-internationalization-support" class="nav-link" data-scroll-target="#internationalization-support"> <span class="header-section-number">11.2</span> Internationalization support</a></li>
-  <li><a href="#configuration-variables" id="toc-configuration-variables" class="nav-link" data-scroll-target="#configuration-variables"> <span class="header-section-number">11.3</span> Configuration variables</a>
+  <li><a href="#configuration-options" id="toc-configuration-options" class="nav-link active" data-scroll-target="#configuration-options"><span class="toc-section-number">11.1</span>  Configuration options</a></li>
+  <li><a href="#internationalization-support" id="toc-internationalization-support" class="nav-link" data-scroll-target="#internationalization-support"><span class="toc-section-number">11.2</span>  Internationalization support</a></li>
+  <li><a href="#configuration-variables" id="toc-configuration-variables" class="nav-link" data-scroll-target="#configuration-variables"><span class="toc-section-number">11.3</span>  Configuration variables</a>
   <ul class="collapse">
-  <li><a href="#setting-paper-size" id="toc-setting-paper-size" class="nav-link" data-scroll-target="#setting-paper-size"> <span class="header-section-number">11.3.1</span> Setting paper size</a></li>
-  <li><a href="#setting-the-browsers" id="toc-setting-the-browsers" class="nav-link" data-scroll-target="#setting-the-browsers"> <span class="header-section-number">11.3.2</span> Setting the browsers</a></li>
-  <li><a href="#compilation-flags" id="toc-compilation-flags" class="nav-link" data-scroll-target="#compilation-flags"> <span class="header-section-number">11.3.3</span> Compilation flags</a></li>
-  <li><a href="#making-manuals" id="toc-making-manuals" class="nav-link" data-scroll-target="#making-manuals"> <span class="header-section-number">11.3.4</span> Making manuals</a></li>
+  <li><a href="#setting-paper-size" id="toc-setting-paper-size" class="nav-link" data-scroll-target="#setting-paper-size"><span class="toc-section-number">11.3.1</span>  Setting paper size</a></li>
+  <li><a href="#setting-the-browsers" id="toc-setting-the-browsers" class="nav-link" data-scroll-target="#setting-the-browsers"><span class="toc-section-number">11.3.2</span>  Setting the browsers</a></li>
+  <li><a href="#compilation-flags" id="toc-compilation-flags" class="nav-link" data-scroll-target="#compilation-flags"><span class="toc-section-number">11.3.3</span>  Compilation flags</a></li>
+  <li><a href="#making-manuals" id="toc-making-manuals" class="nav-link" data-scroll-target="#making-manuals"><span class="toc-section-number">11.3.4</span>  Making manuals</a></li>
   </ul></li>
-  <li><a href="#setting-the-shell" id="toc-setting-the-shell" class="nav-link" data-scroll-target="#setting-the-shell"> <span class="header-section-number">11.4</span> Setting the shell</a></li>
-  <li><a href="#using-make" id="toc-using-make" class="nav-link" data-scroll-target="#using-make"> <span class="header-section-number">11.5</span> Using make</a></li>
-  <li><a href="#using-fortran" id="toc-using-fortran" class="nav-link" data-scroll-target="#using-fortran"> <span class="header-section-number">11.6</span> Using Fortran</a></li>
-  <li><a href="#compile-and-load-flags" id="toc-compile-and-load-flags" class="nav-link" data-scroll-target="#compile-and-load-flags"> <span class="header-section-number">11.7</span> Compile and load flags</a></li>
-  <li><a href="#maintainer-mode" id="toc-maintainer-mode" class="nav-link" data-scroll-target="#maintainer-mode"> <span class="header-section-number">11.8</span> Maintainer mode</a></li>
+  <li><a href="#setting-the-shell" id="toc-setting-the-shell" class="nav-link" data-scroll-target="#setting-the-shell"><span class="toc-section-number">11.4</span>  Setting the shell</a></li>
+  <li><a href="#using-make" id="toc-using-make" class="nav-link" data-scroll-target="#using-make"><span class="toc-section-number">11.5</span>  Using make</a></li>
+  <li><a href="#using-fortran" id="toc-using-fortran" class="nav-link" data-scroll-target="#using-fortran"><span class="toc-section-number">11.6</span>  Using Fortran</a></li>
+  <li><a href="#compile-and-load-flags" id="toc-compile-and-load-flags" class="nav-link" data-scroll-target="#compile-and-load-flags"><span class="toc-section-number">11.7</span>  Compile and load flags</a></li>
+  <li><a href="#maintainer-mode" id="toc-maintainer-mode" class="nav-link" data-scroll-target="#maintainer-mode"><span class="toc-section-number">11.8</span>  Maintainer mode</a></li>
   </ul>
 </nav>
     </div>
@@ -362,8 +369,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </dl>
 <p>You can use <code>--without-foo</code> or <code>--disable-foo</code> for the negatives.</p>
 <p>You will want to use <code>--disable-R-profiling</code> if you are building a profiled executable of R (e.g.&nbsp;with <code>-pg)</code>. Support for R profiling requires OS support for POSIX threads (<em>aka</em> <code>pthreads</code>), which are available on all mainstream Unix-alike platforms.</p>
-<div class="page-columns page-full"><p>Flag <code>--enable-R-shlib</code> causes the make process to build R as a dynamic (shared) library, typically called <code>libR.so</code>, and link the main R executable <code>R.bin</code> against that library. This can only be done if all the code (including system libraries) can be compiled into a dynamic library, and there may be a performance<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> penalty. So you probably only want this if you will be using an application which embeds R. Note that C code in packages installed on an R system linked with <code>--enable-R-shlib</code> is linked against the dynamic library and so such packages cannot be used from an R system built in the default way. Also, because packages are linked against R they are on some OSes also linked against the dynamic libraries R itself is linked against, and this can lead to symbol conflicts.</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;We have measured 15–20% on <code>i686</code> Linux and around 10% on <code>x86_64</code> Linux.</p></li></div></div>
-<div class="page-columns page-full"><p>For maximally effective use of <code>valgrind</code>, R should be compiled with valgrind instrumentation. The <code>configure</code> option is <var>--with-valgrind-instrumentation=``level</var>, where <var>level</var> is 0, 1 or 2. (Level 0 is the default and does not add anything.) The system headers for <code>valgrind</code> can be requested by option <code>--with-system-valgrind-headers</code>: they will be used if present (on Linux they may be in a separate package such as <strong>valgrind-devel</strong>). Note though that there is no guarantee that the code in R will be compatible with very old<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> or future <code>valgrind</code> headers.</p><div class="no-row-height column-margin column-container"><li id="fn2" role="doc-endnote"><p><sup>2</sup>&nbsp;We believe that versions 3.4.0 to 3.15.0 are compatible.</p></li></div></div>
+<div class="page-columns page-full"><p>Flag <code>--enable-R-shlib</code> causes the make process to build R as a dynamic (shared) library, typically called <code>libR.so</code>, and link the main R executable <code>R.bin</code> against that library. This can only be done if all the code (including system libraries) can be compiled into a dynamic library, and there may be a performance<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> penalty. So you probably only want this if you will be using an application which embeds R. Note that C code in packages installed on an R system linked with <code>--enable-R-shlib</code> is linked against the dynamic library and so such packages cannot be used from an R system built in the default way. Also, because packages are linked against R they are on some OSes also linked against the dynamic libraries R itself is linked against, and this can lead to symbol conflicts.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;We have measured 15–20% on <code>i686</code> Linux and around 10% on <code>x86_64</code> Linux.</p></li></div></div>
+<div class="page-columns page-full"><p>For maximally effective use of <code>valgrind</code>, R should be compiled with valgrind instrumentation. The <code>configure</code> option is <var>--with-valgrind-instrumentation=``level</var>, where <var>level</var> is 0, 1 or 2. (Level 0 is the default and does not add anything.) The system headers for <code>valgrind</code> can be requested by option <code>--with-system-valgrind-headers</code>: they will be used if present (on Linux they may be in a separate package such as <strong>valgrind-devel</strong>). Note though that there is no guarantee that the code in R will be compatible with very old<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> or future <code>valgrind</code> headers.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;We believe that versions 3.4.0 to 3.15.0 are compatible.</p></li></div></div>
 <p>If you need to re-configure R with different options you may need to run <code>make clean</code> or even <code>make distclean</code> before doing so.</p>
 <p>The <code>configure</code> script has other generic options added by <code>autoconf</code> and which are not supported for R: in particular building for one architecture on a different host is not possible.</p>
 </section>
@@ -509,10 +516,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="maintainer-mode" class="level2 section page-columns page-full" data-number="11.8">
 <h2 class="section anchored" data-number="11.8" data-anchor-id="maintainer-mode"><span class="header-section-number">11.8</span> Maintainer mode</h2>
 <p>There are several files that are part of the R sources but can be re-generated from their own sources by configuring with option <code>--enable-maintainer-mode</code> and then running <code>make</code> in the build directory. This requires other tools to be installed, discussed in the rest of this section.</p>
-<div class="page-columns page-full"><p>File <code>configure</code> is created from <code>configure.ac</code> and the files under <code>m4</code> by <code>autoconf</code> and <code>aclocal</code> (part of the <strong>automake</strong> package). There is a formal version requirement on <code>autoconf</code> of 2.69 or later, but it is unlikely that anything other than the most recent versions<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> have been thoroughly tested.</p><div class="no-row-height column-margin column-container"><li id="fn3" role="doc-endnote"><p><sup>3</sup>&nbsp;at the time of revision of this para in late 2021, <strong>autoconf-2.71</strong> and <strong>automake-1.16.5</strong>.</p></li></div></div>
+<div class="page-columns page-full"><p>File <code>configure</code> is created from <code>configure.ac</code> and the files under <code>m4</code> by <code>autoconf</code> and <code>aclocal</code> (part of the <strong>automake</strong> package). There is a formal version requirement on <code>autoconf</code> of 2.69 or later, but it is unlikely that anything other than the most recent versions<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> have been thoroughly tested.</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;at the time of revision of this para in late 2021, <strong>autoconf-2.71</strong> and <strong>automake-1.16.5</strong>.</p></li></div></div>
 <p>File <code>src/include/config.h</code> is created by <code>autoheader</code> (part of <strong>autoconf</strong>).</p>
 <p>Grammar files <code>*.y</code> are converted to C sources by an implementation of <code>yacc</code>, usually <code>bison -y</code>: these are found in <code>src/main</code> and <code>src/library/tools/src</code>. It is known that earlier versions of <code>bison</code> generate code which reads (and in some cases writes) outside array bounds: <code>bison</code> 2.6.1 was found to be satisfactory.</p>
-<div class="page-columns page-full"><p>The ultimate sources for package <strong>compiler</strong> are in its <code>noweb</code> directory. To re-create the sources from <code>src/library/compiler/noweb/compiler.nw</code>, the command <code>notangle</code> is required. Some Linux distributions include this command in package <strong>noweb</strong>. It can also be installed from the sources at <a href="https://www.cs.tufts.edu/~nr/noweb/" class="uri">https://www.cs.tufts.edu/~nr/noweb/</a><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. The package sources are only re-created even in maintainer mode if <code>src/library/compiler/noweb/compiler.nw</code> has been updated.</p><div class="no-row-height column-margin column-container"><li id="fn4" role="doc-endnote"><p><sup>4</sup>&nbsp;The links there have proved difficult to access, in which case grab the copy made available at <a href="https://developer.r-project.org/noweb-2.11b.tgz" class="uri">https://developer.r-project.org/noweb-2.11b.tgz</a>.</p></li></div></div>
+<div class="page-columns page-full"><p>The ultimate sources for package <strong>compiler</strong> are in its <code>noweb</code> directory. To re-create the sources from <code>src/library/compiler/noweb/compiler.nw</code>, the command <code>notangle</code> is required. Some Linux distributions include this command in package <strong>noweb</strong>. It can also be installed from the sources at <a href="https://www.cs.tufts.edu/~nr/noweb/" class="uri">https://www.cs.tufts.edu/~nr/noweb/</a><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. The package sources are only re-created even in maintainer mode if <code>src/library/compiler/noweb/compiler.nw</code> has been updated.</p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;The links there have proved difficult to access, in which case grab the copy made available at <a href="https://developer.r-project.org/noweb-2.11b.tgz" class="uri">https://developer.r-project.org/noweb-2.11b.tgz</a>.</p></li></div></div>
 
 
 </section>
@@ -588,7 +595,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

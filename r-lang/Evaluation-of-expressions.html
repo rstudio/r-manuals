@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.38">
+<meta name="generator" content="quarto-1.1.149">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -53,7 +58,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -66,7 +71,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -128,9 +133,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="./index.html">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: R Language Definition</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -271,46 +278,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#simple-evaluation" id="toc-simple-evaluation" class="nav-link active" data-scroll-target="#simple-evaluation"> <span class="header-section-number">3.1</span> Simple evaluation</a>
+  <li><a href="#simple-evaluation" id="toc-simple-evaluation" class="nav-link active" data-scroll-target="#simple-evaluation"><span class="toc-section-number">3.1</span>  Simple evaluation</a>
   <ul class="collapse">
-  <li><a href="#constants" id="toc-constants" class="nav-link" data-scroll-target="#constants"> <span class="header-section-number">3.1.1</span> Constants</a></li>
-  <li><a href="#symbol-lookup" id="toc-symbol-lookup" class="nav-link" data-scroll-target="#symbol-lookup"> <span class="header-section-number">3.1.2</span> Symbol lookup</a></li>
-  <li><a href="#function-calls" id="toc-function-calls" class="nav-link" data-scroll-target="#function-calls"> <span class="header-section-number">3.1.3</span> Function calls</a></li>
-  <li><a href="#operators" id="toc-operators" class="nav-link" data-scroll-target="#operators"> <span class="header-section-number">3.1.4</span> Operators</a></li>
+  <li><a href="#constants" id="toc-constants" class="nav-link" data-scroll-target="#constants"><span class="toc-section-number">3.1.1</span>  Constants</a></li>
+  <li><a href="#symbol-lookup" id="toc-symbol-lookup" class="nav-link" data-scroll-target="#symbol-lookup"><span class="toc-section-number">3.1.2</span>  Symbol lookup</a></li>
+  <li><a href="#function-calls" id="toc-function-calls" class="nav-link" data-scroll-target="#function-calls"><span class="toc-section-number">3.1.3</span>  Function calls</a></li>
+  <li><a href="#operators" id="toc-operators" class="nav-link" data-scroll-target="#operators"><span class="toc-section-number">3.1.4</span>  Operators</a></li>
   </ul></li>
-  <li><a href="#control-structures" id="toc-control-structures" class="nav-link" data-scroll-target="#control-structures"> <span class="header-section-number">3.2</span> Control structures</a>
+  <li><a href="#control-structures" id="toc-control-structures" class="nav-link" data-scroll-target="#control-structures"><span class="toc-section-number">3.2</span>  Control structures</a>
   <ul class="collapse">
-  <li><a href="#if" id="toc-if" class="nav-link" data-scroll-target="#if"> <span class="header-section-number">3.2.1</span> if</a></li>
-  <li><a href="#looping" id="toc-looping" class="nav-link" data-scroll-target="#looping"> <span class="header-section-number">3.2.2</span> Looping</a></li>
-  <li><a href="#repeat" id="toc-repeat" class="nav-link" data-scroll-target="#repeat"> <span class="header-section-number">3.2.3</span> repeat</a></li>
-  <li><a href="#while" id="toc-while" class="nav-link" data-scroll-target="#while"> <span class="header-section-number">3.2.4</span> while</a></li>
-  <li><a href="#for" id="toc-for" class="nav-link" data-scroll-target="#for"> <span class="header-section-number">3.2.5</span> for</a></li>
-  <li><a href="#switch" id="toc-switch" class="nav-link" data-scroll-target="#switch"> <span class="header-section-number">3.2.6</span> switch</a></li>
+  <li><a href="#if" id="toc-if" class="nav-link" data-scroll-target="#if"><span class="toc-section-number">3.2.1</span>  if</a></li>
+  <li><a href="#looping" id="toc-looping" class="nav-link" data-scroll-target="#looping"><span class="toc-section-number">3.2.2</span>  Looping</a></li>
+  <li><a href="#repeat" id="toc-repeat" class="nav-link" data-scroll-target="#repeat"><span class="toc-section-number">3.2.3</span>  repeat</a></li>
+  <li><a href="#while" id="toc-while" class="nav-link" data-scroll-target="#while"><span class="toc-section-number">3.2.4</span>  while</a></li>
+  <li><a href="#for" id="toc-for" class="nav-link" data-scroll-target="#for"><span class="toc-section-number">3.2.5</span>  for</a></li>
+  <li><a href="#switch" id="toc-switch" class="nav-link" data-scroll-target="#switch"><span class="toc-section-number">3.2.6</span>  switch</a></li>
   </ul></li>
-  <li><a href="#elementary-arithmetic-operations" id="toc-elementary-arithmetic-operations" class="nav-link" data-scroll-target="#elementary-arithmetic-operations"> <span class="header-section-number">3.3</span> Elementary arithmetic operations</a>
+  <li><a href="#elementary-arithmetic-operations" id="toc-elementary-arithmetic-operations" class="nav-link" data-scroll-target="#elementary-arithmetic-operations"><span class="toc-section-number">3.3</span>  Elementary arithmetic operations</a>
   <ul class="collapse">
-  <li><a href="#recycling-rules" id="toc-recycling-rules" class="nav-link" data-scroll-target="#recycling-rules"> <span class="header-section-number">3.3.1</span> Recycling rules</a></li>
-  <li><a href="#propagation-of-names" id="toc-propagation-of-names" class="nav-link" data-scroll-target="#propagation-of-names"> <span class="header-section-number">3.3.2</span> Propagation of names</a></li>
-  <li><a href="#dimensional-attributes" id="toc-dimensional-attributes" class="nav-link" data-scroll-target="#dimensional-attributes"> <span class="header-section-number">3.3.3</span> Dimensional attributes</a></li>
-  <li><a href="#na-handling" id="toc-na-handling" class="nav-link" data-scroll-target="#na-handling"> <span class="header-section-number">3.3.4</span> NA handling</a></li>
+  <li><a href="#recycling-rules" id="toc-recycling-rules" class="nav-link" data-scroll-target="#recycling-rules"><span class="toc-section-number">3.3.1</span>  Recycling rules</a></li>
+  <li><a href="#propagation-of-names" id="toc-propagation-of-names" class="nav-link" data-scroll-target="#propagation-of-names"><span class="toc-section-number">3.3.2</span>  Propagation of names</a></li>
+  <li><a href="#dimensional-attributes" id="toc-dimensional-attributes" class="nav-link" data-scroll-target="#dimensional-attributes"><span class="toc-section-number">3.3.3</span>  Dimensional attributes</a></li>
+  <li><a href="#na-handling" id="toc-na-handling" class="nav-link" data-scroll-target="#na-handling"><span class="toc-section-number">3.3.4</span>  NA handling</a></li>
   </ul></li>
-  <li><a href="#indexing" id="toc-indexing" class="nav-link" data-scroll-target="#indexing"> <span class="header-section-number">3.4</span> Indexing</a>
+  <li><a href="#indexing" id="toc-indexing" class="nav-link" data-scroll-target="#indexing"><span class="toc-section-number">3.4</span>  Indexing</a>
   <ul class="collapse">
-  <li><a href="#indexing-by-vectors" id="toc-indexing-by-vectors" class="nav-link" data-scroll-target="#indexing-by-vectors"> <span class="header-section-number">3.4.1</span> Indexing by vectors</a></li>
-  <li><a href="#indexing-matrices-and-arrays" id="toc-indexing-matrices-and-arrays" class="nav-link" data-scroll-target="#indexing-matrices-and-arrays"> <span class="header-section-number">3.4.2</span> Indexing matrices and arrays</a></li>
-  <li><a href="#indexing-other-structures" id="toc-indexing-other-structures" class="nav-link" data-scroll-target="#indexing-other-structures"> <span class="header-section-number">3.4.3</span> Indexing other structures</a></li>
-  <li><a href="#subset-assignment" id="toc-subset-assignment" class="nav-link" data-scroll-target="#subset-assignment"> <span class="header-section-number">3.4.4</span> Subset assignment</a></li>
+  <li><a href="#indexing-by-vectors" id="toc-indexing-by-vectors" class="nav-link" data-scroll-target="#indexing-by-vectors"><span class="toc-section-number">3.4.1</span>  Indexing by vectors</a></li>
+  <li><a href="#indexing-matrices-and-arrays" id="toc-indexing-matrices-and-arrays" class="nav-link" data-scroll-target="#indexing-matrices-and-arrays"><span class="toc-section-number">3.4.2</span>  Indexing matrices and arrays</a></li>
+  <li><a href="#indexing-other-structures" id="toc-indexing-other-structures" class="nav-link" data-scroll-target="#indexing-other-structures"><span class="toc-section-number">3.4.3</span>  Indexing other structures</a></li>
+  <li><a href="#subset-assignment" id="toc-subset-assignment" class="nav-link" data-scroll-target="#subset-assignment"><span class="toc-section-number">3.4.4</span>  Subset assignment</a></li>
   </ul></li>
-  <li><a href="#scope-of-variables" id="toc-scope-of-variables" class="nav-link" data-scroll-target="#scope-of-variables"> <span class="header-section-number">3.5</span> Scope of variables</a>
+  <li><a href="#scope-of-variables" id="toc-scope-of-variables" class="nav-link" data-scroll-target="#scope-of-variables"><span class="toc-section-number">3.5</span>  Scope of variables</a>
   <ul class="collapse">
-  <li><a href="#global-environment" id="toc-global-environment" class="nav-link" data-scroll-target="#global-environment"> <span class="header-section-number">3.5.1</span> Global environment</a></li>
-  <li><a href="#lexical-environment" id="toc-lexical-environment" class="nav-link" data-scroll-target="#lexical-environment"> <span class="header-section-number">3.5.2</span> Lexical environment</a></li>
-  <li><a href="#the-call-stack" id="toc-the-call-stack" class="nav-link" data-scroll-target="#the-call-stack"> <span class="header-section-number">3.5.3</span> The call stack</a></li>
-  <li><a href="#search-path" id="toc-search-path" class="nav-link" data-scroll-target="#search-path"> <span class="header-section-number">3.5.4</span> Search path</a></li>
+  <li><a href="#global-environment" id="toc-global-environment" class="nav-link" data-scroll-target="#global-environment"><span class="toc-section-number">3.5.1</span>  Global environment</a></li>
+  <li><a href="#lexical-environment" id="toc-lexical-environment" class="nav-link" data-scroll-target="#lexical-environment"><span class="toc-section-number">3.5.2</span>  Lexical environment</a></li>
+  <li><a href="#the-call-stack" id="toc-the-call-stack" class="nav-link" data-scroll-target="#the-call-stack"><span class="toc-section-number">3.5.3</span>  The call stack</a></li>
+  <li><a href="#search-path" id="toc-search-path" class="nav-link" data-scroll-target="#search-path"><span class="toc-section-number">3.5.4</span>  Search path</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -518,7 +525,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="control-structures" class="level2 section page-columns page-full" data-number="3.2">
 <h2 class="section anchored" data-number="3.2" data-anchor-id="control-structures"><span class="header-section-number">3.2</span> Control structures</h2>
-<div class="page-columns page-full"><p>Computation in R consists of sequentially evaluating <em>statements</em>. Statements, such as <code>x&lt;-1:10</code> or <code>mean(y)</code>, can be separated by either a semi-colon or a new line. Whenever the evaluator is presented with a syntactically complete statement that statement is evaluated and the <em>value</em> returned. The result of evaluating a statement can be referred to as the value of the statement<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> The value can always be assigned to a symbol.</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;Evaluation always takes place in an environment. See <a href="#scope-of-variables">Scope of variables</a> for more details.</p></li></div></div>
+<div class="page-columns page-full"><p>Computation in R consists of sequentially evaluating <em>statements</em>. Statements, such as <code>x&lt;-1:10</code> or <code>mean(y)</code>, can be separated by either a semi-colon or a new line. Whenever the evaluator is presented with a syntactically complete statement that statement is evaluated and the <em>value</em> returned. The result of evaluating a statement can be referred to as the value of the statement<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> The value can always be assigned to a symbol.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Evaluation always takes place in an environment. See <a href="#scope-of-variables">Scope of variables</a> for more details.</p></li></div></div>
 <p>Both semicolons and new lines can be used to separate statements. A semicolon always indicates the end of a statement while a new line <em>may</em> indicate the end of a statement. If the current statement is not syntactically complete new lines are simply ignored by the evaluator. If the session is interactive the prompt changes from <code>&gt;</code> to <code>+</code>.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="dv">0</span>; x <span class="sc">+</span> <span class="dv">5</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">5</span></span>
@@ -557,7 +564,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="looping" class="level3 subsection page-columns page-full" data-number="3.2.2">
 <h3 class="subsection anchored" data-number="3.2.2" data-anchor-id="looping"><span class="header-section-number">3.2.2</span> Looping</h3>
-<div class="page-columns page-full"><p>R has three statements that provide explicit looping.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> They are <code>for</code>, <code>while</code> and <code>repeat</code>. The two built-in constructs, <code>next</code> and <code>break</code>, provide additional control over the evaluation. R provides other functions for implicit looping such as <code>tapply</code>, <code>apply</code>, and <code>lapply</code>. In addition many operations, especially arithmetic ones, are vectorized so you may not need to use a loop.</p><div class="no-row-height column-margin column-container"><li id="fn2" role="doc-endnote"><p><sup>2</sup>&nbsp;Looping is the repeated evaluation of a statement or block of statements.</p></li></div></div>
+<div class="page-columns page-full"><p>R has three statements that provide explicit looping.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> They are <code>for</code>, <code>while</code> and <code>repeat</code>. The two built-in constructs, <code>next</code> and <code>break</code>, provide additional control over the evaluation. R provides other functions for implicit looping such as <code>tapply</code>, <code>apply</code>, and <code>lapply</code>. In addition many operations, especially arithmetic ones, are vectorized so you may not need to use a loop.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;Looping is the repeated evaluation of a statement or block of statements.</p></li></div></div>
 <p>There are two statements that can be used to explicitly control looping. They are <code>break</code> and <code>next</code>. The <code>break</code> statement causes an exit from the innermost loop that is currently being executed. The <code>next</code> statement immediately causes control to return to the start of the loop. The next iteration of the loop (if there is one) is then executed. No statement below <code>next</code> in the current loop is evaluated.</p>
 <p>The value returned by a loop statement is always <code>NULL</code> and is returned invisibly.</p>
 </section>
@@ -918,7 +925,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

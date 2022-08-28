@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.38">
+<meta name="generator" content="quarto-1.1.149">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -53,7 +58,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -66,7 +71,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -128,9 +133,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="./index.html">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: An Introduction to R</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -311,17 +318,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-read.table-function" id="toc-the-read.table-function" class="nav-link active" data-scroll-target="#the-read.table-function"> <span class="header-section-number">7.1</span> The <code>read.table()</code> function</a></li>
-  <li><a href="#the-scan-function" id="toc-the-scan-function" class="nav-link" data-scroll-target="#the-scan-function"> <span class="header-section-number">7.2</span> The <code>scan()</code> function</a></li>
-  <li><a href="#accessing-builtin-datasets" id="toc-accessing-builtin-datasets" class="nav-link" data-scroll-target="#accessing-builtin-datasets"> <span class="header-section-number">7.3</span> Accessing builtin datasets</a>
+  <li><a href="#the-read.table-function" id="toc-the-read.table-function" class="nav-link active" data-scroll-target="#the-read.table-function"><span class="toc-section-number">7.1</span>  The <code>read.table()</code> function</a></li>
+  <li><a href="#the-scan-function" id="toc-the-scan-function" class="nav-link" data-scroll-target="#the-scan-function"><span class="toc-section-number">7.2</span>  The <code>scan()</code> function</a></li>
+  <li><a href="#accessing-builtin-datasets" id="toc-accessing-builtin-datasets" class="nav-link" data-scroll-target="#accessing-builtin-datasets"><span class="toc-section-number">7.3</span>  Accessing builtin datasets</a>
   <ul class="collapse">
-  <li><a href="#loading-data-from-other-r-packages" id="toc-loading-data-from-other-r-packages" class="nav-link" data-scroll-target="#loading-data-from-other-r-packages"> <span class="header-section-number">7.3.1</span> Loading data from other R packages</a></li>
+  <li><a href="#loading-data-from-other-r-packages" id="toc-loading-data-from-other-r-packages" class="nav-link" data-scroll-target="#loading-data-from-other-r-packages"><span class="toc-section-number">7.3.1</span>  Loading data from other R packages</a></li>
   </ul></li>
-  <li><a href="#editing-data" id="toc-editing-data" class="nav-link" data-scroll-target="#editing-data"> <span class="header-section-number">7.4</span> Editing data</a></li>
+  <li><a href="#editing-data" id="toc-editing-data" class="nav-link" data-scroll-target="#editing-data"><span class="toc-section-number">7.4</span>  Editing data</a></li>
   </ul>
 </nav>
     </div>
@@ -344,7 +351,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<div class="page-columns page-full"><p>Large data objects will usually be read as values from external files rather than entered during an R session at the keyboard. R input facilities are simple and their requirements are fairly strict and even rather inflexible. There is a clear presumption by the designers of R that you will be able to modify your input files using other tools, such as file editors or Perl<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> to fit in with the requirements of R. Generally this is very simple.</p><div class="no-row-height column-margin column-container"><li id="fn1" role="doc-endnote"><p><sup>1</sup>&nbsp;Under UNIX, the utilities <code>sed</code> or<code>awk</code> can be used.</p></li></div></div>
+<div class="page-columns page-full"><p>Large data objects will usually be read as values from external files rather than entered during an R session at the keyboard. R input facilities are simple and their requirements are fairly strict and even rather inflexible. There is a clear presumption by the designers of R that you will be able to modify your input files using other tools, such as file editors or Perl<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> to fit in with the requirements of R. Generally this is very simple.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Under UNIX, the utilities <code>sed</code> or<code>awk</code> can be used.</p></li></div></div>
 <p>If variables are to be held mainly in data frames, as we strongly suggest they should be, an entire data frame can be read directly with the <code>read.table()</code> function. There is also a more primitive input function, <code>scan()</code>, that can be called directly.</p>
 <p>For more details on importing data into R and also exporting data, see the <em>R Data Import/Export</em> manual.</p>
 <section id="the-read.table-function" class="level2 section" data-number="7.1">
@@ -521,7 +528,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
