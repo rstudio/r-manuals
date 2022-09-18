@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.189">
+<meta name="generator" content="quarto-1.1.251">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -397,7 +397,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> R_Free<span class="op">(</span>any <span class="op">*</span>p<span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>providing analogues of <code>calloc</code>, <code>realloc</code> and <code>free</code>. If there is an error during allocation it is handled by R, so if these return the memory has been successfully allocated or freed. <code>R_Free</code> will set the pointer <var>p</var> to <code>NULL</code>. (Some but not all versions of S did so.)</p>
 <p>Users should arrange to <code>R_Free</code> this memory when no longer needed, including on error or user interrupt. This can often be done most conveniently from an <code>on.exit</code> action in the calling R function – see <code>pwilcox</code> for an example.</p>
-<div class="page-columns page-full"><p>Do not assume that memory allocated by <code>R_Calloc</code>/<code>R_Realloc</code> comes from the same pool as used by <code>malloc</code>:<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>in particular do not use <code>free</code> or <code>strdup</code> with it.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;That was not the case on Windows prior to R 4.2.0.</p></li></div></div>
+<div class="page-columns page-full"><p>Do not assume that memory allocated by <code>R_Calloc</code>/<code>R_Realloc</code> comes from the same pool as used by <code>malloc</code>:<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> in particular do not use <code>free</code> or <code>strdup</code> with it.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;That was not the case on Windows prior to R 4.2.0.</p></li></div></div>
 <p>Memory obtained by these macros should be aligned in the same way as <code>malloc</code>, that is ‘suitably aligned for any kind of variable’.</p>
 <p>Historically the macros <code>Calloc</code>, <code>Free</code> and <code>Realloc</code> were used, and these remain available unless <code>STRICT_R_HEADERS</code> was defined prior to the inclusion of the header.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> <span class="op">*</span> CallocCharBuf<span class="op">(</span><span class="dt">size_t</span> n<span class="op">)</span></span>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.189">
+<meta name="generator" content="quarto-1.1.251">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -423,6 +423,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This has to be used in conjunction with a Fortran compiler: the <code>configure</code> code will remove <code>-lgcc</code> from <code>FLIBS</code>, which is needed for some versions of <code>gfortran</code>.</p>
 <p>The current out-of-the-box default for <code>clang++</code> is to use the C++ runtime from the installed <code>g++</code>. Using the runtime from the <a href="https://libcxx.llvm.org/"><code>libc++</code></a> project (Fedora RPM <code>libcxx-devel</code>) <em>via</em> <code>-stdlib=libc++</code> has also been tested.</p>
 <div class="page-columns page-full"><p>Recent versions have (optional when built) OpenMP support.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;This also needs the OpenMP runtime which has sometimes been distributed separately.</p></li></div></div>
+<p>It is recommended to use C flag <code>-Wno-strict-prototypes</code> with <code>clang</code> 15.0.0 and later. Builds without <code>--enable-R-shlib</code> have needed <code>CPICFLAGS</code>. <code>FPICFLAGS</code> and <code>CXXFICFLAGS</code> overridden as <code>-fPIC</code>.</p>
 </section>
 <section id="intel-compilers" class="level3 subsection" data-number="12.2.2">
 <h3 class="subsection anchored" data-number="12.2.2" data-anchor-id="intel-compilers"><span class="header-section-number">12.2.2</span> Intel compilers</h3>
