@@ -725,6 +725,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <dd>
 <p>Check whether <code>news()</code> can successfully read package news in plain text (file <code>NEWS</code>) format. Default: false (but true for CRAN submission checks).</p>
 </dd>
+<dt><code>_R_WIN_CHECK_INVALID_PARAMETERS_</code></dt>
+<dd>
+<p>Check whether arguments passed to the Windows C runtime are valid. When enabled and a C runtime function is called with an invalid parameter, R prints diagnostic information and unconditionally terminates. By default, R for Windows following MinGW-W64 default causes UCRT to ignore invalid parameters, but they may cause R to abort e.g.&nbsp;when R is embedded into applications built with a different compiler toolchain. One may set the value to <code>"watson"</code> for interactive debugging on Windows via <code>_invoke_watson</code>. Default: disabled.</p>
+</dd>
 </dl>
 <div class="page-columns page-full"><p>The following variables control checks for undeclared/unconditional use of other packages. They work by setting up a temporary library directory and setting <code>.libPaths()</code> to just that and <code>.Library</code>, so are only effective if additional packages are installed somewhere other than <code>.Library</code>. The temporary library is populated by symbolic links<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> to installed packages not also in <code>.Library</code>.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;under Windows, junction points, or copies if environment variable <code>R_WIN_NO_JUNCTIONS</code> has a non-empty value.</p></li></div></div>
 <dl>
