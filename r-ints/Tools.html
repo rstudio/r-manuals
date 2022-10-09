@@ -605,9 +605,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <dt><code>_R_CHECK_COMPILATION_FLAGS_</code></dt>
 <dd>
 <p>If the package is installed and has C/C++/Fortran code, check the install log for non-portable flags (for example those added to <code>src/Makevars</code> during configuration). Currently <code>-W</code> flags are reported, except <code>-Wall</code>, <code>-Wextra</code> and <code>-Weverything</code>, and flags which appear to be attempts to suppress warnings are highlighted. See ‘Writing R Extensions’ for the rationale of this check (and why even <code>-Werror</code> is unsafe).</p>
-<p>Environment variable <code>_R_CHECK_COMPILATION_FLAGS_KNOWN_</code> can be set to a space-separated set of flags which come from the R build used for testing (flags such as <code>-Wall</code> and <code>-Wextra</code> are already known). For example, for CRAN build of R &gt;= 4.0.0 on macOS one could use</p>
+<p>Environment variable <code>_R_CHECK_COMPILATION_FLAGS_KNOWN_</code> can be set to a space-separated set of flags which come from the R build used for testing (flags such as <code>-Wall</code> and <code>-Wextra</code> are already known). For example, for CRAN builds of R &gt;= 4.0.0 on macOS one could use</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>_R_CHECK_COMPILATION_FLAGS_KNOWN_<span class="ot">=</span><span class="st">"-mmacosx-version-min=10.13"</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Default: false (but true for CRAN submission checks).</p>
+<p>Default: unset.</p>
 </dd>
 <dt><code>_R_CHECK_R_DEPENDS_</code></dt>
 <dd>
