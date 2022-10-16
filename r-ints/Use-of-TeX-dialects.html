@@ -241,7 +241,7 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Various dialects of TeX are used for different purposes in R. The policy is that manuals be written in <code>texinfo</code>, and for convenience the main and Windows FAQs are also. This has the advantage that is is easy to produce HTML and plain text versions as well as typeset manuals.</p>
+<p>Various dialects of TeX are used for different purposes in R. The policy is that manuals be written in <code>texinfo</code>, and for convenience the main and Windows FAQs are also. This has the advantage that it is easy to produce HTML and plain text versions as well as typeset manuals.</p>
 <p>LaTeX is not used directly, but rather as an intermediate format for typeset help documents and for vignettes.</p>
 <p>Care needs to be taken about the assumptions made about the R user’s system: it may not have either <code>texinfo</code> or a TeX system installed. We have attempted to abstract out the cross-platform differences, and almost all the setting of typeset documents is done by <code>tools::texi2dvi</code>. This is used for offline printing of help documents, preparing vignettes and for package manuals via <code>R CMD Rd2pdf</code>. It is not currently used for the R manuals created in directory <code>doc/manual</code>.</p>
 <p><code>tools::texi2dvi</code> makes use of a system command <code>texi2dvi</code> where available. On a Unix-alike this is usually part of <code>texinfo</code>, whereas on Windows if it exists at all it would be an executable, part of MiKTeX. If none is available, the R code runs a sequence of <code>(pdf)latex</code>, <code>bibtex</code> and <code>makeindex</code> commands.</p>
