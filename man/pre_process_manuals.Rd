@@ -10,5 +10,7 @@ pre_process_manuals(destdir = "data")
 \item{destdir}{Destination directory}
 }
 \description{
-At the moment the only pre-processing is to remove \verb{@group} statements.  In PDF format this ensures line breaks don't occur in the middle of code blocks, but in HTML this causes multiple \code{pre} statements.
+At the moment the only pre-processing is to remove \verb{@group} statements.
+In PDF format this ensures line breaks don't occur in the middle of code blocks,
+but in HTML this causes multiple \code{pre} statements.
 }

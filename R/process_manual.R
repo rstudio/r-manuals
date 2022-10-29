@@ -1,14 +1,23 @@
-#' Process manual source file to prepare book to build
+#' Process manual source file to prepare book to build.
 #'
-#' This function will download, process and convert the source `.texi` files
-#' so that all the necessary structure and files are there to build the book with Quarto
+#' Downloads, pre-processes and converts the source `.texi` files into the necessary
+#' structure and files are there to build the book with Quarto
 #'
 #' @param manual Name of the manual to download and process (a `.texi`) file
-#' @param folder sub-folder for intermediaries files per manual. Default to name of manual
-#' @param manuals_folder folder where all the intermediary folders are stored. `manuals_folder` is the parent `folder`.
+#'
+#' @param folder sub-folder for intermediaries files per manual. Default to name
+#'   of manual
+#'
+#' @param manuals_folder folder where all the intermediary folders are stored.
+#'   `manuals_folder` is the parent `folder`.
+#'
 #' @param .make_info If TRUE, convert `.texi` to `.html`
+#'
 #' @param .download If TRUE, download the manual files
-#' @param .quicktest If TRUE, removes some of the HTML files after `makeinfo` step, for faster quarto rendering on partial site
+#'
+#' @param .quicktest If TRUE, removes some of the HTML files after `makeinfo`
+#'   step, for faster quarto rendering on partial site
+#'
 #' @param verbose If TRUE, prints progress messages
 #'
 #' @return NULL.
@@ -22,15 +31,20 @@ process_manual <- function(manual = "R-exts.texi",
                            verbose = TRUE) {
   cli::cli_h2("Processing {manual}")
 
+
   data_folder <- glue::glue("{manuals_folder}/{folder}/data")
   prep_folder <- glue::glue("{manuals_folder}/{folder}/prep")
   book_folder <- glue::glue("{manuals_folder}/{folder}/book")
   docs_folder <- glue::glue("{manuals_folder}/{folder}/docs")
 
-  # Download the .text files from github
-  if (.download) {
+  # Download the .texi files from github
+
+  downloads_empty <- length(fs::dir_ls(data_folder)) == 0
+
+  if (downloads_empty || .download) {
     download_manuals(manual = manual, destdir = data_folder)
   }
+  # browser()
 
   # Compile the .texi to HTML
   if (.make_info) {
@@ -63,10 +77,14 @@ process_manual <- function(manual = "R-exts.texi",
 
   # copy markdown files to book folder
   if (.quicktest) {
-    fs::dir_ls(prep_folder, glob = "*.md")[1:3] %>%
-      fs::file_copy(book_folder, overwrite = TRUE)
+    md_files <- fs::dir_ls(prep_folder, glob = "*.md")
+    n_max <- min(length(md_files), 3)
+    if (n_max > 0 ) {
+      md_files[1:n_max] %>%
+        fs::file_copy(book_folder, overwrite = TRUE)
+    }
   } else {
-    fs::dir_ls(prep_folder, glob = "*.md") %>%
+    md_files %>%
       fs::file_copy(book_folder, overwrite = TRUE)
   }
 
@@ -82,6 +100,7 @@ process_manual <- function(manual = "R-exts.texi",
 
   # copy template files to book folder
 
+  # browser()
   glue_quarto_yaml(
     manual = folder,
     template = "book_template/_quarto.yml", verbose = verbose
