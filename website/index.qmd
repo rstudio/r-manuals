@@ -11,7 +11,7 @@ execute:
 ```{r, message = FALSE}
 library(htmltools)
 library(fs)
-devtools::load_all(here::here())
+pkgload::load_all(here::here())
 ```
 
 
