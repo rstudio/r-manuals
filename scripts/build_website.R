@@ -6,7 +6,8 @@ stop_if_makeinfo_not_installed()
 
 ##### Process Manuals ----------------
 #
-# This will download source file and create the intermediate structure and files to build the book
+# This will download source file and create the intermediate structure
+# and files to build the book
 #
 # folder structure:
 #
@@ -33,6 +34,8 @@ stop_if_makeinfo_not_installed()
 #
 
 # Determine the correct sequence for navbar links, etc.
+1
+
 all_manuals <- c(
   "r-intro",
   "r-data",
@@ -55,8 +58,7 @@ manuals <- c(
   NULL
 )
 
-# purrr::walk(manuals, process_manual, .quicktest = TRUE)
-purrr::walk(manuals, process_manual)
+purrr::walk(manuals, process_manual, .quicktest = FALSE)
 
 
 # Build each book --------------
@@ -75,7 +77,10 @@ build_a_book <- function(x, index, all_manuals) {
   navbar <- purrr::imap(index2, ~ {
     list(
       href = .x,
-      text = extract_title_from_index(glue::glue("manuals/{name}/prep/index.html", name = .y))
+      text = extract_title_from_index(
+        glue::glue("manuals/{name}/prep/index.html", 
+        name = .y)
+        )
     )
   })
 
