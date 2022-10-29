@@ -1,0 +1,49 @@
+/*-- scss:defaults --*/
+
+/*-- scss:rules --*/
+
+/* Definition lists */
+
+dt {
+  font-weight: 100;
+}
+
+dd p {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+/* Add border around some specific CodeBlock */
+
+div.blockquotes-block {
+  > blockquote {
+    > table {
+        border: .15rem solid $secondary;
+        td {
+          padding: 0;
+          div.sourceCode{
+            margin: 0 0;
+          }
+        }
+
+      }
+    border: none;
+  }
+}
+
+.navbar-nav .nav-item > .nav-link {
+    border-radius: .5rem;
+    padding: 0.5rem;
+}
+
+.navbar-dark .navbar-nav .nav-item > .nav-link.active, .navbar-light .navbar-nav .nav-item > .nav-link.active{
+    background: rgba(220,220,220,0.3);
+}
+
+.navbar-nav .nav-item > .nav-link {
+    border-radius: .5rem;
+    padding: 0.5rem;
+}
+
+
+
