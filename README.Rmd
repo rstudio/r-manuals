@@ -38,6 +38,10 @@ Background information
 -   Since it is possible to render a `texinfo` document to HTML
 -   Once in HTML format, you can use `pandoc` to convert the HTML to markdown, manipulate the markdown and then re-convert to HTML
 
+## Building the manuals
+
+The build script is in the file `scripts/build_website.R`.
+
 ## In more detail
 
 For each manual:
@@ -49,11 +53,11 @@ For each manual:
 -   Include the markdown files in a quarto book template
 -   Render the manual to quarto
 
-Then combine the various quarto books into a quarto website
+Then combine the various quarto books into a quarto website.
 
 ## Note about installing `makeinfo`
 
-On Linux, you can easily install the `makeinfo` utility using `sudo apt install texinfo`
+On Linux, you can easily install the `makeinfo` utility using `sudo apt install texinfo`.
 
 On Windows, `makeinfo` is installed as part of [RTools40](https://cran.r-project.org/bin/windows/Rtools/rtools40.html).
 

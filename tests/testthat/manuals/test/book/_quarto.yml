@@ -1,0 +1,47 @@
+project:
+  type: book
+  output-dir: "../docs"
+
+book:
+  title: "R Manuals :: An Introduction to R"
+  page-footer:
+    right: "Built using [Quarto](https://quarto.org)"
+    left: "A re-styled version of the original R manuals at <https://cran.r-project.org/manuals.html>"
+  navbar:
+    background: primary
+    right:
+    - href: index.qmd
+      text: Home
+    - text: Manuals
+      menu:
+      - href: r-intro/index.html
+        text: An Introduction to R
+      - href: r-data/index.html
+        text: R Data Import/Export
+      - href: r-admin/index.html
+        text: R Installation and Administration
+      - href: r-exts/index.html
+        text: Writing R Extensions
+      - href: r-ints/index.html
+        text: R Internals
+      - href: r-lang/index.html
+        text: R Language Definition
+    - href: about.qmd
+      text: About
+  chapters:
+      - index.md
+      - Preface.md
+      - Introduction-and-preliminaries.md
+      - Simple-manipulations-numbers-and-vectors.md
+      - Concept-index.md
+      - References.md
+
+reference-location: margin
+
+format:
+  html:
+    theme:
+      - cosmo
+      - custom.scss
+    link-external-icon: true
+    link-external-newwindow: true

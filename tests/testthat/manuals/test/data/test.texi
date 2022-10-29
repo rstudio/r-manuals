@@ -1,0 +1,1181 @@
+\input texinfo
+@c %**start of header
+@setfilename R-intro.info
+@settitle An Introduction to R
+@setchapternewpage on
+@c %**end of header
+
+@c Authors: If you edit/add @example(s) ,  please keep
+@c  ./R-intro.R   up-to-date !
+@c  ~~~~~~~~~~~
+@syncodeindex fn vr
+
+
+@dircategory Programming
+@direntry
+* R Introduction: (R-intro).    An introduction to R.
+@end direntry
+
+@finalout
+
+@include R-defs.texi
+@include version.texi
+
+@copying
+This manual is for R, version @value{VERSION}.
+
+Copyright @copyright{} 1990 W.@: N.@: Venables@*
+Copyright @copyright{} 1992 W.@: N.@: Venables & D.@: M.@: Smith@*
+Copyright @copyright{} 1997 R.@: Gentleman & R.@: Ihaka@*
+Copyright @copyright{} 1997, 1998 M.@: Maechler@*
+@Rcopyright{1999}
+
+@quotation
+@permission{}
+@end quotation
+@end copying
+
+
+@c <FIXME>
+@c Apparently AUCTeX 11.06 has a problem with '@appendixsection' entries
+@c when updating nodes---the equivalent '@appendixsec' seems to work.
+@c Hence changed (temporarily?) ...
+@c </FIXME>
+
+@c <NOTE>
+@c Conversion to PDF fails if sectioning titles contain (user-defined)
+@c macros such as @R{}.  Hence in section titles we changed @R{} to R.
+@c Revert when this is fixed.
+@c </NOTE>
+
+@titlepage
+@title An Introduction to R
+@subtitle Notes on @R{}: A Programming Environment for Data Analysis and Graphics
+@subtitle Version @value{VERSION}
+@author W. N. Venables, D. M. Smith
+@author and the R Core Team
+@page
+@vskip 0pt plus 1filll
+@insertcopying
+@end titlepage
+
+@ifplaintext
+@insertcopying
+@end ifplaintext
+
+@contents
+
+@ifnottex
+@node Top, Preface, (dir), (dir)
+@top An Introduction to R
+
+This is an introduction to R (``GNU S''), a language and environment for
+statistical computing and graphics.  R is similar to the
+award-winning@footnote{ACM Software Systems award, 1998:
+@uref{https://awards.acm.org/award_winners/chambers_6640862.cfm}.} S
+system, which was developed at Bell Laboratories by John Chambers et al.
+It provides a wide variety of statistical and graphical techniques
+(linear and nonlinear modelling, statistical tests, time series
+analysis, classification, clustering, ...).
+
+This manual provides information on data types, programming elements,
+statistical modelling and graphics.
+
+@insertcopying
+
+@end ifnottex
+
+@menu
+* Preface::                     
+* Introduction and preliminaries::  
+* Simple manipulations numbers and vectors::  
+* Objects::                     
+* Factors::                     
+* Arrays and matrices::         
+* Lists and data frames::       
+* Reading data from files::     
+* Probability distributions::   
+* Loops and conditional execution::  
+* Writing your own functions::  
+* Statistical models in R::     
+* Graphics::                    
+* Packages::                    
+* OS facilities::               
+* A sample session::            
+* Invoking R::                  
+* The command-line editor::     
+* Function and variable index::  
+* Concept index::               
+* References::                  
+@end menu
+
+@node Preface, Introduction and preliminaries, Top, Top
+@unnumbered Preface
+
+This introduction to @R{} is derived from an original set of notes
+describing the @Sl{} and @SPLUS{} environments written in 1990--2 by
+Bill Venables and David M. Smith when at the University of Adelaide.  We
+have made a number of small changes to reflect differences between the
+@R{} and @Sl{} programs, and expanded some of the material.
+
+We would like to extend warm thanks to Bill Venables (and David Smith)
+for granting permission to distribute this modified version of the notes
+in this way, and for being a supporter of @R{} from way back.
+
+Comments and corrections are always welcome.  Please address email
+correspondence to @email{R-help@@R-project.org}.
+
+@subheading Suggestions to the reader
+
+Most @R{} novices will start with the introductory session in Appendix
+A.  This should give some familiarity with the style of @R{} sessions
+and more importantly some instant feedback on what actually happens.
+
+
+@menu
+* Introduction and preliminaries::
+@end menu
+
+@node Introduction and preliminaries, Simple manipulations numbers and vectors, Preface, Top
+@chapter Introduction and preliminaries
+
+@menu
+* The R environment::           
+* Related software and documentation::  
+* R and statistics::            
+* R and the window system::     
+* Using R interactively::       
+* Getting help::                
+* R commands; case sensitivity etc::  
+* Recall and correction of previous commands::  
+* Executing commands from or diverting output to a file::  
+* Data permanency and removing objects::  
+@end menu
+
+@node The R environment, Related software and documentation, Introduction and preliminaries, Introduction and preliminaries
+@section The R environment
+
+@R{} is an integrated suite of software facilities for data
+manipulation, calculation and graphical display.  Among other things it
+has
+
+@itemize @bullet
+@item
+an effective data handling and storage facility,
+@item
+a suite of operators for calculations on arrays, in particular matrices,
+@item
+a large, coherent, integrated collection of intermediate tools for data
+analysis,
+@item
+graphical facilities for data analysis and display either directly at
+the computer or on hardcopy, and
+@item
+a well developed, simple and effective programming language (called `S')
+which includes conditionals, loops, user defined recursive functions and
+input and output facilities.  (Indeed most of the system supplied
+functions are themselves written in the @Sl{} language.)
+@end itemize
+
+The term ``environment'' is intended to characterize it as a fully
+planned and coherent system, rather than an incremental accretion of
+very specific and inflexible tools, as is frequently the case with other
+data analysis software.
+
+@R{} is very much a vehicle for newly developing methods of interactive
+data analysis.  It has developed rapidly, and has been extended by a
+large collection of @emph{packages}.  However, most programs written in
+@R{} are essentially ephemeral, written for a single piece of data
+analysis.
+
+@node Related software and documentation, R and statistics, The R environment, Introduction and preliminaries
+@section Related software and documentation
+
+@R{} can be regarded as an implementation of the @Sl{} language which
+was developed at Bell Laboratories by Rick Becker, John Chambers and
+Allan Wilks, and also forms the basis of the @SPLUS{} systems.
+
+The evolution of the @Sl{} language is characterized by four books by
+John Chambers and coauthors.  For @R{}, the basic reference is @emph{The
+New @Sl{} Language: A Programming Environment for Data Analysis and
+Graphics} by Richard A.@: Becker, John M.@: Chambers and Allan R.@:
+Wilks.  The new features of the 1991 release of @Sl{}
+@c (@Sl{} version 3) JMC says the 1988 version is S3.
+are covered in @emph{Statistical Models in @Sl{}} edited by John M.@:
+Chambers and Trevor J.@: Hastie.  The formal methods and classes of the
+@pkg{methods} package are based on those described in @emph{Programming
+with Data} by John M.@: Chambers.  @xref{References}, for precise
+references.
+
+There are now a number of books which describe how to use @R{} for data
+analysis and statistics, and documentation for @Sl{}/@SPLUS{} can
+typically be used with @R{}, keeping the differences between the @Sl{}
+implementations in mind.  @xref{What documentation exists for R?, , ,
+R-FAQ, The R statistical system FAQ}.
+
+@node R and statistics, R and the window system, Related software and documentation, Introduction and preliminaries
+@section R and statistics
+@cindex Packages
+
+Our introduction to the @R{} environment did not mention
+@emph{statistics}, yet many people use @R{} as a statistics system.  We
+prefer to think of it of an environment within which many classical and
+modern statistical techniques have been implemented.  A few of these are
+built into the base @R{} environment, but many are supplied as
+@emph{packages}.  There are about 25 packages supplied with @R{} (called
+``standard'' and ``recommended'' packages) and many more are available
+through the @acronym{CRAN} family of Internet sites (via
+@uref{https://CRAN.R-project.org}) and elsewhere. 
+
+Most classical statistics and much of the latest methodology is
+available for use with @R{}, but users may need to be prepared to do a
+little work to find it.
+
+There is an important difference in philosophy between @Sl{} (and hence
+@R{}) and the other main statistical systems.  In @Sl{} a statistical
+analysis is normally done as a series of steps, with intermediate
+results being stored in objects.  Thus whereas SAS and SPSS will give
+copious output from a regression or discriminant analysis, @R{} will
+give minimal output and store the results in a fit object for subsequent
+interrogation by further @R{} functions.
+
+@node R and the window system, Using R interactively, R and statistics, Introduction and preliminaries
+@section R and the window system
+
+The most convenient way to use @R{} is at a graphics workstation running
+a windowing system.  This guide is aimed at users who have this
+facility.  In particular we will occasionally refer to the use of @R{}
+on an X window system although the vast bulk of what is said applies
+generally to any implementation of the @R{} environment.
+
+Most users will find it necessary to interact directly with the
+operating system on their computer from time to time.  In this guide, we
+mainly discuss interaction with the operating system on UNIX machines.
+If you are running @R{} under Windows or macOS you will need to make
+some small adjustments.
+
+Setting up a workstation to take full advantage of the customizable
+features of @R{} is a straightforward if somewhat tedious procedure, and
+will not be considered further here.  Users in difficulty should seek
+local expert help.
+
+@node Using R interactively, Getting help, R and the window system, Introduction and preliminaries
+@section Using R interactively
+
+When you use the @R{} program it issues a prompt when it expects input
+commands.  The default prompt is @samp{@code{>}}, which on UNIX might be
+the same as the shell prompt, and so it may appear that nothing is
+happening.  However, as we shall see, it is easy to change to a
+different @R{} prompt if you wish.  We will assume that the UNIX shell
+prompt is @samp{@code{$}}.
+
+In using @R{} under UNIX the suggested procedure for the first occasion
+is as follows:
+
+@enumerate
+@item
+Create a separate sub-directory, say @file{work}, to hold data files on
+which you will use @R{} for this problem.  This will be the working
+directory whenever you use @R{} for this particular problem.
+
+@example
+$ mkdir work
+$ cd work
+@end example
+
+@item
+Start the @R{} program with the command
+
+@example
+$ R
+@end example
+
+@item
+At this point @R{} commands may be issued (see later).
+
+@item
+To quit the @R{} program the command is
+
+@example
+> q()
+@end example
+
+At this point you will be asked whether you want to save the data from
+your @R{} session.  On some systems this will bring up a dialog box, and
+on others you will receive a text prompt to which you can respond
+@kbd{yes}, @kbd{no} or @kbd{cancel} (a single letter abbreviation will
+do) to save the data before quitting, quit without saving, or return to
+the @R{} session.  Data which is saved will be available in future @R{}
+sessions.
+
+@end enumerate
+
+Further @R{} sessions are simple.
+
+@enumerate
+
+@item
+Make @file{work} the working directory and start the program as before:
+
+@example
+$ cd work
+$ R
+@end example
+
+@item
+Use the @R{} program, terminating with the @code{q()} command at the end
+of the session.
+
+@end enumerate
+
+To use @R{} under Windows the procedure to
+follow is basically the same.  Create a folder as the working directory,
+and set that in the @file{Start In} field in your @R{} shortcut.
+Then launch @R{} by double clicking on the icon.
+
+@node Getting help, R commands; case sensitivity etc, Using R interactively, Introduction and preliminaries
+@section Getting help with functions and features
+@findex help
+
+@R{} has an inbuilt help facility similar to the @code{man} facility of
+UNIX.  To get more information on any specific named function, for
+example @code{solve}, the command is
+
+@example
+> help(solve)
+@end example
+@findex help
+
+An alternative is
+
+@example
+> ?solve
+@end example
+@findex ?
+
+For a feature specified by special characters, the argument must be
+enclosed in double or single quotes, making it a ``character string'':
+This is also necessary for a few words with syntactic meaning including
+@code{if}, @code{for} and @code{function}.
+
+@example
+> help("[[")
+@end example
+
+Either form of quote mark may be used to escape the other, as in the
+string @code{"It's important"}.  Our convention is to use
+double quote marks for preference.
+
+On most @R{} installations help is available in @HTML{} format by
+running
+
+@example
+> help.start()
+@end example
+@findex help.start
+
+@noindent
+which will launch a Web browser that allows the help pages to be browsed
+with hyperlinks.  On UNIX, subsequent help requests are sent to the
+@HTML{}-based help system.  The `Search Engine and Keywords' link in the
+page loaded by @code{help.start()} is particularly useful as it is
+contains a high-level concept list which searches though available
+functions.  It can be a great way to get your bearings quickly and to
+understand the breadth of what @R{} has to offer.
+
+@findex help.search
+The @code{help.search} command (alternatively @code{??}) 
+allows searching for help in various
+ways. For example,
+
+@example
+> ??solve
+@end example
+@findex ??
+
+Try @code{?help.search} for details and more examples.
+
+The examples on a help topic can normally be run by
+
+@example
+> example(@var{topic})
+@end example
+@findex example
+
+Windows versions of @R{} have other optional help systems: use
+
+@example
+> ?help
+@end example
+
+@noindent
+for further details.
+
+@node R commands; case sensitivity etc, Recall and correction of previous commands, Getting help, Introduction and preliminaries
+@section R commands, case sensitivity, etc.
+
+Technically @R{} is an @emph{expression language} with a very simple
+syntax.  It is @emph{case sensitive} as are most UNIX based packages, so
+@code{A} and @code{a} are different symbols and would refer to different
+variables.  The set of symbols which can be used in @R{} names depends
+on the operating system and country within which @R{} is being run
+(technically on the @emph{locale} in use).  Normally all alphanumeric
+symbols are allowed@footnote{For portable @R{} code (including that to
+be used in @R{} packages) only A--Za--z0--9 should be used.} (and in
+some countries this includes accented letters) plus @samp{@code{.}} and
+@samp{@code{_}}, with the restriction that a name must start with
+@samp{@code{.}} or a letter, and if it starts with @samp{@code{.}} the
+second character must not be a digit.  Names are effectively
+unlimited in length.
+
+Elementary commands consist of either @emph{expressions} or
+@emph{assignments}.  If an expression is given as a command, it is
+evaluated, printed (unless specifically made invisible), and the value
+is lost.  An assignment also evaluates an expression and passes the
+value to a variable but the result is not automatically printed.
+
+Commands are separated either by a semi-colon (@samp{@code{;}}), or by a
+newline.  Elementary commands can be grouped together into one compound
+expression by braces (@samp{@code{@{}} and @samp{@code{@}}}).
+@emph{Comments} can be put almost@footnote{@strong{not} inside strings,
+nor within the argument list of a function definition} anywhere,
+starting with a hashmark (@samp{@code{#}}), everything to the end of the
+line is a comment.
+
+If a command is not complete at the end of a line, @R{} will
+give a different prompt, by default
+
+@example
++
+@end example
+
+@noindent
+on second and subsequent lines and continue to read input until the
+command is syntactically complete.  This prompt may be changed by the
+user.  We will generally omit the continuation prompt
+and indicate continuation by simple indenting.
+
+Command lines entered at the console are limited@footnote{some of the
+consoles will not allow you to enter more, and amongst those which do
+some will silently discard the excess and some will use it as the start
+of the next line.} to about 4095 bytes (not characters).
+
+@node Recall and correction of previous commands, Executing commands from or diverting output to a file, R commands; case sensitivity etc, Introduction and preliminaries
+@section Recall and correction of previous commands
+
+Under many versions of UNIX and on Windows, @R{} provides a mechanism
+for recalling and re-executing previous commands.  The vertical arrow
+keys on the keyboard can be used to scroll forward and backward through
+a @emph{command history}.  Once a command is located in this way, the
+cursor can be moved within the command using the horizontal arrow keys,
+and characters can be removed with the @key{DEL} key or added with the
+other keys.  More details are provided later.
+
+The recall and editing capabilities under UNIX are highly customizable.
+You can find out how to do this by reading the manual entry for the
+@strong{readline} library.
+
+Alternatively, the Emacs text editor provides more general support
+mechanisms (via @acronym{ESS}, @emph{Emacs Speaks Statistics}) for
+working interactively with @R{}.  @xref{R and Emacs, , , R-FAQ, The R
+statistical system FAQ}.
+
+@node Executing commands from or diverting output to a file, Data permanency and removing objects, Recall and correction of previous commands, Introduction and preliminaries
+@section Executing commands from or diverting output to a file
+@cindex Diverting input and output
+
+If commands@footnote{of unlimited length.} are stored in an external
+file, say @file{commands.R} in the working directory @file{work}, they
+may be executed at any time in an @R{} session with the command
+
+@example
+> source("commands.R")
+@end example
+@findex source
+
+For Windows @strong{Source} is also available on the
+@strong{File} menu.  The function @code{sink},
+
+@example
+> sink("record.lis")
+@end example
+@findex sink
+
+@noindent
+will divert all subsequent output from the console to an external file,
+@file{record.lis}.  The command
+
+@example
+> sink()
+@end example
+
+@noindent
+restores it to the console once again.
+
+@node Data permanency and removing objects,  , Executing commands from or diverting output to a file, Introduction and preliminaries
+@section Data permanency and removing objects
+
+The entities that @R{} creates and manipulates are known as
+@emph{objects}.  These may be variables, arrays of numbers, character
+strings, functions, or more general structures built from such
+components.
+
+During an @R{} session, objects are created and stored by name (we
+discuss this process in the next section).  The @R{} command
+
+@example
+> objects()
+@end example
+
+@noindent
+(alternatively, @code{ls()}) can be used to display the names of (most
+of) the objects which are currently stored within @R{}.  The collection
+of objects currently stored is called the @emph{workspace}.
+@cindex Workspace
+
+To remove objects the function @code{rm} is available:
+
+@example
+> rm(x, y, z, ink, junk, temp, foo, bar)
+@end example
+@findex rm
+@cindex Removing objects
+
+All objects created during an @R{} session can be stored permanently in
+a file for use in future @R{} sessions.  At the end of each @R{} session
+you are given the opportunity to save all the currently available
+objects.  If you indicate that you want to do this, the objects are
+written to a file called @file{.RData}@footnote{The leading ``dot'' in
+this file name makes it @emph{invisible} in normal file listings in
+UNIX, and in default GUI file listings on macOS and Windows.} in the
+current directory, and the command lines used in the session are saved
+to a file called @file{.Rhistory}.
+
+When @R{} is started at later time from the same directory it reloads
+the workspace from this file.  At the same time the associated commands
+history is reloaded.
+
+It is recommended that you should use separate working directories for
+analyses conducted with @R{}.  It is quite common for objects with names
+@code{x} and @code{y} to be created during an analysis.  Names like this
+are often meaningful in the context of a single analysis, but it can be
+quite hard to decide what they might be when the several analyses have
+been conducted in the same directory.
+
+@node Simple manipulations numbers and vectors, Introduction and preliminaries, Top
+@chapter Simple manipulations; numbers and vectors
+@cindex Vectors
+
+@menu
+* Vectors and assignment::      
+* Vector arithmetic::           
+* Generating regular sequences::  
+* Logical vectors::             
+* Missing values::              
+* Character vectors::           
+* Index vectors::               
+* Other types of objects::      
+@end menu
+
+@node Vectors and assignment, Vector arithmetic, Simple manipulations numbers and vectors, Simple manipulations numbers and vectors
+@section Vectors and assignment
+
+@R{} operates on named @emph{data structures}.  The simplest such
+structure is the numeric @emph{vector}, which is a single entity
+consisting of an ordered collection of numbers.  To set up a vector
+named @code{x}, say, consisting of five numbers, namely 10.4, 5.6, 3.1,
+6.4 and 21.7, use the @R{} command
+
+@example
+> x <- c(10.4, 5.6, 3.1, 6.4, 21.7)
+@end example
+@findex c
+@findex vector
+
+This is an @emph{assignment} statement using the @emph{function}
+@code{c()} which in this context can take an arbitrary number of vector
+@emph{arguments} and whose value is a vector got by concatenating its
+arguments end to end.
+
+A number occurring by itself in an expression is taken as a vector of
+length one.
+
+Notice that the assignment operator (@samp{@code{<-}}), which consists
+of the two characters @samp{@code{<}} (``less than'') and
+@samp{@code{-}} (``minus'') occurring strictly side-by-side and it
+`points' to the object receiving the value of the expression.
+In most contexts the @samp{@code{=}} operator can be used as an alternative.
+@c In this text, the assignment operator is printed as @samp{<-}, rather
+@c than ``@code{<-}''.
+@cindex Assignment
+
+Assignment can also be made using the function @code{assign()}.  An
+equivalent way of making the same assignment as above is with:
+
+@example
+> assign("x", c(10.4, 5.6, 3.1, 6.4, 21.7))
+@end example
+
+@noindent
+The usual operator, @code{<-}, can be thought of as a syntactic
+short-cut to this.
+
+Assignments can also be made in the other direction, using the obvious
+change in the assignment operator.  So the same assignment could be made
+using
+
+@example
+> c(10.4, 5.6, 3.1, 6.4, 21.7) -> x
+@end example
+
+If an expression is used as a complete command, the value is printed
+@emph{and lost}@footnote{Actually, it is still available as
+@code{.Last.value} before any other statements are executed.}.  So now if we
+were to use the command
+
+@example
+> 1/x
+@end example
+
+@noindent
+the reciprocals of the five values would be printed at the terminal (and
+the value of @code{x}, of course, unchanged).
+
+The further assignment
+
+@example
+> y <- c(x, 0, x)
+@end example
+
+@noindent
+would create a vector @code{y} with 11 entries consisting of two copies
+of @code{x} with a zero in the middle place.
+
+@node Vector arithmetic, Generating regular sequences, Vectors and assignment, Simple manipulations numbers and vectors
+@section Vector arithmetic
+
+Vectors can be used in arithmetic expressions, in which case the
+operations are performed element by element.  Vectors occurring in the
+same expression need not all be of the same length.  If they are not,
+the value of the expression is a vector with the same length as the
+longest vector which occurs in the expression.  Shorter vectors in the
+expression are @emph{recycled} as often as need be (perhaps
+fractionally) until they match the length of the longest vector.  In
+particular a constant is simply repeated.  So with the above assignments
+the command
+@cindex Recycling rule
+
+@example
+> v <- 2*x + y + 1
+@end example
+
+@noindent
+generates a new vector @code{v} of length 11 constructed by adding
+together, element by element, @code{2*x} repeated 2.2 times, @code{y}
+repeated just once, and @code{1} repeated 11 times.
+
+@cindex Arithmetic functions and operators
+The elementary arithmetic operators are the usual @code{+}, @code{-},
+@code{*}, @code{/} and @code{^} for raising to a power.
+@findex +
+@findex -
+@findex *
+@findex /
+@findex ^
+In addition all of the common arithmetic functions are available.
+@code{log}, @code{exp}, @code{sin}, @code{cos}, @code{tan}, @code{sqrt},
+and so on, all have their usual meaning.
+@findex log
+@findex exp
+@findex sin
+@findex cos
+@findex tan
+@findex sqrt
+@code{max} and @code{min} select the largest and smallest elements of a
+vector respectively.
+@findex max
+@findex min
+@code{range} is a function whose value is a vector of length two, namely
+@code{c(min(x), max(x))}.
+@findex range
+@code{length(x)} is the number of elements in @code{x},
+@findex length
+@code{sum(x)} gives the total of the elements in @code{x},
+@findex sum
+and @code{prod(x)} their product.
+@findex prod
+
+Two statistical functions are @code{mean(x)} which calculates the sample
+mean, which is the same as @code{sum(x)/length(x)},
+@findex mean
+and @code{var(x)} which gives
+
+@example
+sum((x-mean(x))^2)/(length(x)-1)
+@end example
+@findex var
+
+@noindent
+or sample variance.  If the argument to @code{var()} is an
+@math{n}-by-@math{p} matrix the value is a @math{p}-by-@math{p} sample
+covariance matrix got by regarding the rows as independent
+@math{p}-variate sample vectors.
+
+@code{sort(x)} returns a vector of the same size as @code{x} with the
+elements arranged in increasing order; however there are other more
+flexible sorting facilities available (see @code{order()} or
+@code{sort.list()} which produce a permutation to do the sorting).
+@findex sort
+@findex order
+
+Note that @code{max} and @code{min} select the largest and smallest
+values in their arguments, even if they are given several vectors.  The
+@emph{parallel} maximum and minimum functions @code{pmax} and
+@code{pmin} return a vector (of length equal to their longest argument)
+that contains in each element the largest (smallest) element in that
+position in any of the input vectors.
+@findex pmax
+@findex pmin
+
+For most purposes the user will not be concerned if the ``numbers'' in a
+numeric vector are integers, reals or even complex.  Internally
+calculations are done as double precision real numbers, or double
+precision complex numbers if the input data are complex.
+
+To work with complex numbers, supply an explicit complex part.  Thus
+
+@example
+sqrt(-17)
+@end example
+
+@noindent
+will give @code{NaN} and a warning, but
+
+@example
+sqrt(-17+0i)
+@end example
+
+@noindent
+will do the computations as complex numbers.
+
+@menu
+* Generating regular sequences::
+@end menu
+
+@node Generating regular sequences, Logical vectors, Vector arithmetic, Simple manipulations numbers and vectors
+@section Generating regular sequences
+@cindex Regular sequences
+
+@R{} has a number of facilities for generating commonly used sequences
+of numbers.  For example @code{1:30} is the vector @code{c(1, 2,
+@dots{}, 29, 30)}.
+@c <NOTE>
+@c Info cannot handle ':' as an index entry.
+@ifnotinfo
+@findex :
+@end ifnotinfo
+@c </NOTE>
+The colon operator has high priority within an expression, so, for
+example @code{2*1:15} is the vector @code{c(2, 4, @dots{}, 28, 30)}.
+Put @code{n <- 10} and compare the sequences @code{1:n-1} and
+@code{1:(n-1)}.
+
+The construction @code{30:1} may be used to generate a sequence
+backwards.
+
+@findex seq
+The function @code{seq()} is a more general facility for generating
+sequences.  It has five arguments, only some of which may be specified
+in any one call.  The first two arguments, if given, specify the
+beginning and end of the sequence, and if these are the only two
+arguments given the result is the same as the colon operator.  That is
+@code{seq(2,10)} is the same vector as @code{2:10}.
+
+Arguments to @code{seq()}, and to many other @R{} functions, can also
+be given in named form, in which case the order in which they appear is
+irrelevant.  The first two arguments may be named
+@code{from=@var{value}} and @code{to=@var{value}}; thus
+@code{seq(1,30)}, @code{seq(from=1, to=30)} and @code{seq(to=30,
+from=1)} are all the same as @code{1:30}.  The next two arguments to
+@code{seq()} may be named @code{by=@var{value}} and
+@code{length=@var{value}}, which specify a step size and a length for
+the sequence respectively.  If neither of these is given, the default
+@code{by=1} is assumed.
+
+For example
+
+@example
+> seq(-5, 5, by=.2) -> s3
+@end example
+
+@noindent
+generates in @code{s3} the vector @code{c(-5.0, -4.8, -4.6, @dots{},
+4.6, 4.8, 5.0)}.  Similarly
+
+@example
+> s4 <- seq(length=51, from=-5, by=.2)
+@end example
+
+@noindent
+generates the same vector in @code{s4}.
+
+The fifth argument may be named @code{along=@var{vector}}, which is
+normally used as the only argument to create the sequence @code{1, 2,
+@dots{}, length(@var{vector})}, or the empty sequence if the vector is
+empty (as it can be).
+
+A related function is @code{rep()}
+@findex rep
+which can be used for replicating an object in various complicated ways.
+The simplest form is
+
+@example
+> s5 <- rep(x, times=5)
+@end example
+
+@noindent
+which will put five copies of @code{x} end-to-end in @code{s5}.  Another
+useful version is
+
+@example
+> s6 <- rep(x, each=5)
+@end example
+
+@noindent
+which repeats each element of @code{x} five times before moving on to
+the next.
+
+@node Logical vectors, Missing values, Generating regular sequences, Simple manipulations numbers and vectors
+@section Logical vectors
+
+As well as numerical vectors, @R{} allows manipulation of logical
+quantities.  The elements of a logical vector can have the values
+@code{TRUE}, @code{FALSE}, and @code{NA} (for ``not available'', see
+below).  The first two are often abbreviated as @code{T} and @code{F},
+respectively.  Note however that @code{T} and @code{F} are just
+variables which are set to @code{TRUE} and @code{FALSE} by default, but
+are not reserved words and hence can be overwritten by the user.  Hence,
+you should always use @code{TRUE} and @code{FALSE}.
+@findex FALSE
+@findex TRUE
+@findex F
+@findex T
+
+Logical vectors are generated by @emph{conditions}.  For example
+
+@example
+> temp <- x > 13
+@end example
+
+@noindent
+sets @code{temp} as a vector of the same length as @code{x} with values
+@code{FALSE} corresponding to elements of @code{x} where the condition
+is @emph{not} met and @code{TRUE} where it is.
+
+The logical operators are @code{<}, @code{<=}, @code{>}, @code{>=},
+@code{==} for exact equality and @code{!=} for inequality.
+@findex <
+@findex <=
+@findex >
+@findex >=
+@findex ==
+@findex !=
+In addition if @code{c1} and @code{c2} are logical expressions, then
+@w{@code{c1 & c2}} is their intersection (@emph{``and''}), @w{@code{c1 | c2}}
+is their union (@emph{``or''}), and @code{!c1} is the negation of
+@code{c1}.
+@findex !
+@findex |
+@findex &
+
+Logical vectors may be used in ordinary arithmetic, in which case they
+are @emph{coerced} into numeric vectors, @code{FALSE} becoming @code{0}
+and @code{TRUE} becoming @code{1}.  However there are situations where
+logical vectors and their coerced numeric counterparts are not
+equivalent, for example see the next subsection.
+
+@node Missing values, Character vectors, Logical vectors, Simple manipulations numbers and vectors
+@section Missing values
+@cindex Missing values
+
+In some cases the components of a vector may not be completely
+known.  When an element or value is ``not available'' or a ``missing
+value'' in the statistical sense, a place within a vector may be
+reserved for it by assigning it the special value @code{NA}.
+@findex NA
+In general any operation on an @code{NA} becomes an @code{NA}.  The
+motivation for this rule is simply that if the specification of an
+operation is incomplete, the result cannot be known and hence is not
+available.
+
+@findex is.na
+The function @code{is.na(x)} gives a logical vector of the same size as
+@code{x} with value @code{TRUE} if and only if the corresponding element
+in @code{x} is @code{NA}.
+
+@example
+> z <- c(1:3,NA);  ind <- is.na(z)
+@end example
+
+Notice that the logical expression @code{x == NA} is quite different
+from @code{is.na(x)} since @code{NA} is not really a value but a marker
+for a quantity that is not available.  Thus @code{x == NA} is a vector
+of the same length as @code{x} @emph{all} of whose values are @code{NA}
+as the logical expression itself is incomplete and hence undecidable.
+
+Note that there is a second kind of ``missing'' values which are
+produced by numerical computation, the so-called @emph{Not a Number},
+@code{NaN},
+@findex NaN
+values.  Examples are
+
+@example
+> 0/0
+@end example
+
+@noindent
+or
+
+@example
+> Inf - Inf
+@end example
+
+@noindent
+which both give @code{NaN} since the result cannot be defined sensibly.
+
+In summary, @code{is.na(xx)} is @code{TRUE} @emph{both} for @code{NA}
+and @code{NaN} values.  To differentiate these, @code{is.nan(xx)} is only
+@code{TRUE} for @code{NaN}s.
+@findex is.nan
+
+Missing values are sometimes printed as @code{<NA>} when character
+vectors are printed without quotes.
+
+@node Character vectors, Index vectors, Missing values, Simple manipulations numbers and vectors
+@section Character vectors
+@cindex Character vectors
+
+Character quantities and character vectors are used frequently in @R{},
+for example as plot labels.  Where needed they are denoted by a sequence
+of characters delimited by the double quote character, e.g.,
+@code{"x-values"}, @code{"New iteration results"}.
+
+Character strings are entered using either matching double (@code{"}) or
+single (@code{'}) quotes, but are printed using double quotes (or
+sometimes without quotes).  They use C-style escape sequences, using
+@code{\} as the escape character, so @code{\} is entered and printed as
+@code{\\}, and inside double quotes @code{"} is entered as @code{\"}.
+Other useful escape sequences are @code{\n}, newline, @code{\t}, tab and
+@code{\b}, backspace---see @command{?Quotes} for a full list.
+
+Character vectors may be concatenated into a vector by the @code{c()}
+function; examples of their use will emerge frequently.
+@findex c
+
+@findex paste
+The @code{paste()} function takes an arbitrary number of arguments and
+concatenates them one by one into character strings.  Any numbers given
+among the arguments are coerced into character strings in the evident
+way, that is, in the same way they would be if they were printed.  The
+arguments are by default separated in the result by a single blank
+character, but this can be changed by the named argument,
+@code{sep=@var{string}}, which changes it to @code{@var{string}},
+possibly empty.
+
+For example
+
+@example
+> labs <- paste(c("X","Y"), 1:10, sep="")
+@end example
+
+@noindent
+makes @code{labs} into the character vector
+
+@example
+c("X1", "Y2", "X3", "Y4", "X5", "Y6", "X7", "Y8", "X9", "Y10")
+@end example
+
+Note particularly that recycling of short lists takes place here too;
+thus @code{c("X", "Y")} is repeated 5 times to match the sequence
+@code{1:10}.
+@footnote{@code{paste(..., collapse=@var{ss})} joins the
+arguments into a single character string putting @var{ss} in between, e.g.,
+@code{ss <- "|"}.  There are more tools for character manipulation, see the help
+for @code{sub} and @code{substring}.}
+
+@node Index vectors, Other types of objects, Character vectors, Simple manipulations numbers and vectors
+@section Index vectors; selecting and modifying subsets of a data set
+@cindex Indexing vectors
+
+Subsets of the elements of a vector may be selected by appending to the
+name of the vector an @emph{index vector} in square brackets.  More
+generally any expression that evaluates to a vector may have subsets of
+its elements similarly selected by appending an index vector in square
+brackets immediately after the expression.
+
+@c FIXME: Add a forward reference to  subset()  here
+@c FIXME  and  add a paragraph about subset() {which needs to come after
+@c FIXME  data frames ...
+
+Such index vectors can be any of four distinct types.
+
+@enumerate
+
+@item
+@strong{A logical vector}.  In this case the index vector is recycled to the
+same length as the vector from which elements are to be selected.
+Values corresponding to @code{TRUE} in the index vector are selected and
+those corresponding to @code{FALSE} are omitted.  For example
+
+@example
+> y <- x[!is.na(x)]
+@end example
+
+@noindent
+creates (or re-creates) an object @code{y} which will contain the
+non-missing values of @code{x}, in the same order.  Note that if
+@code{x} has missing values, @code{y} will be shorter than @code{x}.
+Also
+
+@example
+> (x+1)[(!is.na(x)) & x>0] -> z
+@end example
+
+@noindent
+creates an object @code{z} and places in it the values of the vector
+@code{x+1} for which the corresponding value in @code{x} was both
+non-missing and positive.
+
+@item
+@strong{A vector of positive integral quantities}.  In this case the
+values in the index vector must lie in the set @{1, 2, @dots{},
+@code{length(x)}@}.  The corresponding elements of the vector are
+selected and concatenated, @emph{in that order}, in the result.  The
+index vector can be of any length and the result is of the same length
+as the index vector.  For example @code{x[6]} is the sixth component of
+@code{x} and
+
+@example
+> x[1:10]
+@end example
+
+@noindent
+selects the first 10 elements of @code{x} (assuming @code{length(x)} is
+not less than 10).  Also
+
+@example
+> c("x","y")[rep(c(1,2,2,1), times=4)]
+@end example
+
+@noindent
+(an admittedly unlikely thing to do) produces a character vector of
+length 16 consisting of @code{"x", "y", "y", "x"} repeated four times.
+
+@item
+@strong{A vector of negative integral quantities}.  Such an index vector
+specifies the values to be @emph{excluded} rather than included.  Thus
+
+@example
+> y <- x[-(1:5)]
+@end example
+
+@noindent
+gives @code{y} all but the first five elements of @code{x}.
+
+@item
+@strong{A vector of character strings}.  This possibility only applies
+where an object has a @code{names} attribute to identify its components.
+In this case a sub-vector of the names vector may be used in the same way
+as the positive integral labels in item 2 further above.
+
+@example
+> fruit <- c(5, 10, 1, 20)
+> names(fruit) <- c("orange", "banana", "apple", "peach")
+> lunch <- fruit[c("apple","orange")]
+@end example
+
+The advantage is that alphanumeric @emph{names} are often easier to
+remember than @emph{numeric indices}.  This option is particularly
+useful in connection with data frames, as we shall see later.
+
+@end enumerate
+
+An indexed expression can also appear on the receiving end of an
+assignment, in which case the assignment operation is performed
+@emph{only on those elements of the vector}.  The expression must be of
+the form @code{vector[@var{index_vector}]} as having an arbitrary
+expression in place of the vector name does not make much sense here.
+
+For example
+
+@example
+> x[is.na(x)] <- 0
+@end example
+
+@noindent
+replaces any missing values in @code{x} by zeros and
+
+@example
+> y[y < 0] <- -y[y < 0]
+@end example
+
+@noindent
+has the same effect as
+
+@example
+> y <- abs(y)
+@end example
+
+@node Other types of objects,  , Index vectors, Simple manipulations numbers and vectors
+@section Other types of objects
+
+Vectors are the most important type of object in @R{}, but there are
+several others which we will meet more formally in later sections.
+
+@itemize @bullet
+@item
+@emph{matrices} or more generally @emph{arrays} are multi-dimensional
+generalizations of vectors.  In fact, they @emph{are} vectors that can
+be indexed by two or more indices and will be printed in special ways.
+
+@item
+@emph{factors} provide compact ways to handle categorical data.
+
+@item
+@emph{lists} are a general form of vector in which the various elements
+need not be of the same type, and are often themselves vectors or lists.
+Lists provide a convenient way to return the results of a statistical
+computation. 
+
+@item
+@emph{data frames} are matrix-like structures, in which the columns can
+be of different types.  Think of data frames as `data matrices' with one
+row per observational unit but with (possibly) both numerical and
+categorical variables.  Many experiments are best described by data
+frames: the treatments are categorical but the response is numeric.
+
+@end itemize
+
+
+@node Concept index, References, Top
+@appendix Concept index
+
+@printindex cp
+
+@node References,  , Concept index, Top
+@appendix References
+
+D.@: M.@: Bates and  D.@: G.@: Watts (1988), @emph{Nonlinear Regression
+Analysis and Its Applications.} John Wiley & Sons, New York.
+
+@noindent
+Richard A.@: Becker, John M.@: Chambers and Allan R.@: Wilks (1988),
+@emph{The New S Language.} Chapman & Hall, New York.
+This book is often called the ``@emph{Blue Book}''.
+
+@noindent
+John M.@: Chambers and Trevor J.@: Hastie eds. (1992),
+@emph{Statistical Models in S.} Chapman & Hall, New York.
+This is also called the ``@emph{White Book}''.
+
+@bye
