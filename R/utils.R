@@ -34,6 +34,7 @@ glue_quarto_yaml <- function(
 
   manual <- glue::glue("manuals/{manual}/prep/index.html", manual = manual)
 
+  # browser()
   chapters <-
     xml2::read_html(manual) %>%
     xml_find_all("//div/ul/li/a") %>%

@@ -16,7 +16,7 @@ make_info(manual, input_dir = "data", output_dir = "temp", verbose = FALSE)
 \item{verbose}{If TRUE, prints progress messages}
 }
 \value{
-Runs makeinfo and generates html files
+Runs \code{makeinfo} and generates html files
 }
 \description{
 Make manual from \code{.texi} file using \code{makeinfo}

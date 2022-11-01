@@ -76,9 +76,9 @@ process_manual <- function(manual = "R-exts.texi",
   fs::dir_ls(book_folder, glob = "*.html") %>% fs::file_delete()
 
   # copy markdown files to book folder
+  md_files <- fs::dir_ls(prep_folder, glob = "*.md")
   if (.quicktest) {
-    md_files <- fs::dir_ls(prep_folder, glob = "*.md")
-    n_max <- min(length(md_files), 3)
+    n_max <- min(length(md_files), 9)
     if (n_max > 0 ) {
       md_files[1:n_max] %>%
         fs::file_copy(book_folder, overwrite = TRUE)
