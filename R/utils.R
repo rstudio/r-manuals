@@ -9,6 +9,22 @@ extract_title_from_index <- function(filename) {
     .[1]
 }
 
+
+is_appendix <- function(manual, manual_path = "manuals"){
+  book_path <- fs::path(manual_path, manual, "prep")
+  z <- fs::dir_ls(book_path, glob = "*.md") %>%
+    purrr::map_lgl(~{
+      read_lines(.) %>%
+        stringr::str_detect("\\{.*? *\\.(appendix|unnumbered)\\}") %>%
+        any()
+    }
+    )
+  names(z) <- names(z) %>% fs::path_file()
+  z["index.md"] <- FALSE
+  z["Acknowledgements.md"] <- FALSE
+  z
+}
+
 #' Glue elements intro quarto yaml file.
 #'
 #' @param manual Name of the manual to download and process (a `.texi`) file
@@ -32,10 +48,10 @@ glue_quarto_yaml <- function(
     readr::read_lines(template) %>%
     paste(collapse = "\n")
 
+  manual_name <- manual
   manual <- glue::glue("manuals/{manual}/prep/index.html", manual = manual)
 
-  # browser()
-  chapters <-
+  all_chapters <-
     xml2::read_html(manual) %>%
     xml_find_all("//div/ul/li/a") %>%
     xml_attr("href") %>%
@@ -44,11 +60,18 @@ glue_quarto_yaml <- function(
     sub(".html$", ".md", .) %>%
     gsub("_002d", "-", .)
 
+  isa <- is_appendix(manual_name) %>% .[all_chapters]
+  chapters <- all_chapters[!isa]
+  appendices <- all_chapters[unname(isa)]
+
   title <- extract_title_from_index(manual)
+
+  # browser()
 
   glue::glue(
     template,
-    chapters = paste0(paste("      -", chapters), collapse = "\n"),
+    chapters   = paste0(paste("      -", chapters), collapse = "\n"),
+    appendices = paste0(paste("      -", appendices), collapse = "\n"),
     title = title
   )
 }

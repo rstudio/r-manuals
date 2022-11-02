@@ -6,6 +6,7 @@ href <- function(href, text) {
   list(href = href, text = text)
 }
 
+
 #' Build a book
 #'
 #' @param x
@@ -21,19 +22,9 @@ update_quarto_yaml <- function(x, index, all_manuals) {
   yaml_file <- fs::path(book, "_quarto.yml")
   manual <- fs::path_file(x)
 
-  # browser()
   index2 <-
     # gsub("index.html", "index.md", index)
     gsub(glue::glue("../{name}/index.html", name = manual), "index.md", index)
-
-  # navbar <-
-  #   index2 %>%
-  #   purrr::imap(
-  #     ~ href(.x,
-  #            extract_title_from_index(
-  #              glue::glue("manuals/{name}/prep/index.html", name = .y)
-  #            )
-  #     ))
 
   navbar <-
     index2 %>%
@@ -45,14 +36,11 @@ update_quarto_yaml <- function(x, index, all_manuals) {
                glue::glue("manuals/{name}/prep/index.html", name = .y)
              )
       ))
-  # browser()
-
-
-
   navbar <- navbar[all_manuals]
-  # navbar <- navbar[!is.null(navbar)]
   navbar <- unname(navbar)
   navbar <- navbar[!vapply(navbar, is.null, FUN.VALUE = logical(1))]
+
+  # browser()
 
   yaml <- yaml::read_yaml(yaml_file)
   yaml$book$navbar$right <- c(
@@ -60,6 +48,13 @@ update_quarto_yaml <- function(x, index, all_manuals) {
     list(list(text = "Manuals", menu = navbar)),
     list(list(href = "../about.html", text = "About"))
   )
+  appendices <- yaml$book$appendices
+  yaml$book$appendices <- if(length(appendices) == 1) {
+    list(appendices)
+  } else {
+    appendices
+  }
+
   yaml::write_yaml(yaml, yaml_file)
   xfun::gsub_file(yaml_file, "\\syes\\s*$", " true")
   xfun::gsub_file(yaml_file, "\\sno\\s*$", " false")
@@ -102,3 +97,4 @@ build_books <- function(manuals_folder = "manuals", manuals, all_manuals) {
     quarto::quarto_render(fs::path(.x, "book"), as_job = FALSE)
   })
 }
+

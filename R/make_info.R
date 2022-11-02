@@ -50,17 +50,15 @@ make_info <- function(manual, input_dir = "data", output_dir = "temp",
     msg_done = "Running makeinfo"
     )
 
+
+  args <- glue::glue(
+    " --no-headers --no-number-sections --no-node-files --split=chapter",
+    " --html --output={output_dir} {filename}"
+  )
+
  if (.Platform$OS.type == "windows") {
-   system2(
-     "perl",
-     args = c(
-       file.path(dirname(Sys.which("make")), "makeinfo"),
-       glue::glue(
-         " --no-headers --no-number-sections --no-node-files --split=chapter",
-         " --html --output={output_dir} {filename}"
-       )
-     )
-   )
+   file_path <- file.path(dirname(Sys.which("make")), "makeinfo")
+   system2("perl", args = c(file_path, args))
    # browser()
    filename <- sub(".texi", "", manual)
    to_file <- glue::glue("{output_dir}/index.html")
@@ -71,14 +69,7 @@ make_info <- function(manual, input_dir = "data", output_dir = "temp",
      )
    }
  } else {
-  system2(
-    "makeinfo",
-    args = glue::glue(
-      " --no-headers --no-number-sections --no-node-files --split=chapter",
-      " --html --output={output_dir} {filename}"
-      )
-    )
-
+  system2("makeinfo", args = args)
  }
 }
 

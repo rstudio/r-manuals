@@ -64,11 +64,12 @@ process_manual <- function(manual = "R-exts.texi",
     fs::dir_ls(prep_folder, glob = "*_002d*") %>%
       fs::file_move(new_path = gsub("_002d", "-", .))
 
-    convert_to_md(path = prep_folder, verbose = verbose)
   } else {
     fs::dir_create(prep_folder)
   }
 
+  # convert to markdown and fix conversion errors
+  convert_to_md(path = prep_folder, verbose = verbose)
 
   fs::dir_create(book_folder)
   # delete all markdown files in book folder
@@ -100,12 +101,16 @@ process_manual <- function(manual = "R-exts.texi",
 
   # copy template files to book folder
 
-  # browser()
   glue_quarto_yaml(
     manual = folder,
-    template = "book_template/_quarto.yml", verbose = verbose
+    template = "book_template/_quarto.yml",
+    verbose = verbose
   ) %>%
     readr::write_lines(file = glue::glue("{book_folder}/_quarto.yml"))
+
+
+  # browser()
+  regex_replace_md(path = book_folder)
 
   fs::file_copy("book_template/custom.scss", book_folder, overwrite = TRUE)
   invisible()
