@@ -4,7 +4,7 @@
 \alias{build_books}
 \title{Build books.}
 \usage{
-build_books(manuals_folder = "manuals", manuals, all_manuals)
+build_books(manuals_folder = "manuals", manuals, all_manuals, verbose = TRUE)
 }
 \arguments{
 \item{manuals_folder}{Defaults to \code{manuals}}

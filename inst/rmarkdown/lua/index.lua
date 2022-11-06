@@ -30,7 +30,7 @@ Pandoc = function(doc)
 end
 
 
-function replace (el)
+local replace = function(el)
   if vars[el.text] then
     return pandoc.Span(vars[el.text])
   else

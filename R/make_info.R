@@ -74,7 +74,7 @@ make_info <- function(manual, input_dir = "data", output_dir = "temp",
 }
 
 
-# totod
+# todo
 # In the original makefile they use the option -D UseExternalXrefs
 # This seems to define external references to other manuals
 

@@ -101,12 +101,12 @@ process_manual <- function(manual = "R-exts.texi",
 
   # copy template files to book folder
 
-  glue_quarto_yaml(
-    manual = folder,
-    template = "book_template/_quarto.yml",
-    verbose = verbose
-  ) %>%
-    readr::write_lines(file = glue::glue("{book_folder}/_quarto.yml"))
+  # glue_quarto_yaml(
+  #   manual = folder,
+  #   template = "book_template/_quarto.yml",
+  #   verbose = verbose
+  # ) %>%
+  #   readr::write_lines(file = glue::glue("{book_folder}/_quarto.yml"))
 
 
   # browser()
