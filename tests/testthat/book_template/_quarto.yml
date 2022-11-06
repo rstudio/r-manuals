@@ -30,7 +30,6 @@ book:
       text: About
   chapters:
 {chapters}
-{appendices}
 
 reference-location: margin
 

@@ -1,6 +1,7 @@
 -- for debugging purpose
 local debug_mode = os.getenv("DEBUG_PANDOC_LUA") == "TRUE"
-local function print_debug(label,obj,iter)
+-- local debug_mode = TRUE
+function print_debug(label,obj,iter)
     obj = obj or nil
     iter = iter or pairs
     label = label or ""
@@ -20,7 +21,7 @@ local function print_debug(label,obj,iter)
 end
 
 -- Determines if item is in a list (table) of items
-in_list = function(item, table)
+local in_list = function(item, table)
   local valid = {}
   for i = 1, #table do valid[table[i]] = true end
   if valid[item] then return true else return false end
@@ -40,6 +41,13 @@ Blocks = function(blocks)
   return blocks
 end
 
+Span = function(el)
+  -- Ensure empty spans show up in 
+  if pandoc.utils.stringify(el.content) == "" and el.identifier ~= nil then
+    el.content = {""}
+  end
+  return el
+end
 
 Div = function(el)
   local classes = el.classes
@@ -49,7 +57,9 @@ Div = function(el)
      in_list("Contents_element", classes) then
     return pandoc.Plain("")
   elseif in_list("top", classes) or
-         in_list("example", classes) then
+         in_list("example", classes) or
+         in_list("section", classes) or
+         in_list("chapter", classes) then
     return el.content
   elseif el.classes[1] == "footnote" then
     local new = pandoc.walk_block(el, {
@@ -58,10 +68,17 @@ Div = function(el)
         return el
       end,
       Header = function(el)
-        return {}
+        return {el.content}
       end
     })
     return new.content
+  end
+end
+
+Header = function(el)
+  if el.level <4 then
+    el.identifier = ""
+    return el
   end
 end
 
@@ -78,7 +95,7 @@ local scan = function(text, words)
 end
 
 local split = function(s, delim)
-    res = {}
+    local res = {}
     for m in s:gmatch(delim) do
         table.insert(res, m)
     end
@@ -169,8 +186,6 @@ CodeBlock = function(el)
 
   -- uncategorized
   else
-    -- print("---")
-    -- print(el.text)
     el.classes[1] = "R"
   end
   return el

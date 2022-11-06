@@ -2,7 +2,7 @@
 % Please edit documentation in R/process_manual.R
 \name{process_manual}
 \alias{process_manual}
-\title{Process manual source file to prepare book to build}
+\title{Process manual source file to prepare book to build.}
 \usage{
 process_manual(
   manual = "R-exts.texi",
@@ -17,11 +17,14 @@ process_manual(
 \arguments{
 \item{manual}{Name of the manual to download and process (a \code{.texi}) file}
 
-\item{folder}{sub-folder for intermediaries files per manual. Default to name of manual}
+\item{folder}{sub-folder for intermediaries files per manual. Default to name
+of manual}
 
-\item{manuals_folder}{folder where all the intermediary folders are stored. \code{manuals_folder} is the parent \code{folder}.}
+\item{manuals_folder}{folder where all the intermediary folders are stored.
+\code{manuals_folder} is the parent \code{folder}.}
 
-\item{.quicktest}{If TRUE, removes some of the HTML files after \code{makeinfo} step, for faster quarto rendering on partial site}
+\item{.quicktest}{If TRUE, removes some of the HTML files after \code{makeinfo}
+step, for faster quarto rendering on partial site}
 
 \item{.make_info}{If TRUE, convert \code{.texi} to \code{.html}}
 
@@ -33,6 +36,6 @@ process_manual(
 NULL.
 }
 \description{
-This function will download, process and convert the source \code{.texi} files
-so that all the necessary structure and files are there to build the book with Quarto
+Downloads, pre-processes and converts the source \code{.texi} files into the necessary
+structure and files are there to build the book with Quarto
 }

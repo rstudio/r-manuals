@@ -3,7 +3,7 @@ project:
   output-dir: "../docs"
 
 book:
-  title: "R Manuals :: {title}"
+  title: "R Manuals :: An Introduction to R"
   page-footer:
     right: "Built using [Quarto](https://quarto.org)"
     left: "A re-styled version of the original R manuals at <https://cran.r-project.org/manuals.html>"
@@ -29,8 +29,12 @@ book:
     - href: about.qmd
       text: About
   chapters:
-{chapters}
-{appendices}
+      - index.md
+      - Preface.md
+      - Introduction-and-preliminaries.md
+      - Simple-manipulations-numbers-and-vectors.md
+      - Concept-index.md
+      - References.md
 
 reference-location: margin
 

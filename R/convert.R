@@ -1,3 +1,10 @@
+make_lua_filter <- function(filter) {
+  rmarkdown::pandoc_lua_filter_args(
+    rmarkdown::pkg_file_lua(filter, package = "rmanuals")
+  )
+}
+
+
 #' Convert intermediate HTML to markdown, using a lua filter
 #'
 #' @param input_file Name of input file
@@ -15,11 +22,6 @@ convert_html_to_md <- function(input_file, verbose = FALSE) {
   temp_html <- tempfile(fileext = ".html")
   temp_md <- tempfile(fileext = ".md")
 
-  make_lua_filter <- function(filter) {
-    rmarkdown::pandoc_lua_filter_args(
-      rmarkdown::pkg_file_lua(filter, package = "rmanuals")
-    )
-  }
 
   lua_filters <- make_lua_filter("filter.lua")
 
@@ -38,7 +40,7 @@ convert_html_to_md <- function(input_file, verbose = FALSE) {
 
     pandoc_convert(
       temp_html,
-      output = temp_md,
+      output = output_file,
       from = "html",
       to = "markdown+definition_lists",
       options = c(
@@ -49,36 +51,17 @@ convert_html_to_md <- function(input_file, verbose = FALSE) {
       verbose = verbose
     )
 
-  temp_md %>%
-    read_lines() %>%
-    # remove empty hyperlinks [](...)
-    gsub("^\\[\\]\\{.*?\\}$", "", .)  %>%
-    # remove {.sample}
-    gsub("\\{\\.sample\\}", "", .) %>%
-    # fix footnote cross-references
-    gsub("\\[\\^(\\d+)\\^\\]\\(#FOOT\\d+\\)\\{#DOCF\\d+\\}", "[^\\1]", .) %>%
-    gsub("\\[\\^(\\d+)\\^\\]\\(#FOOT\\d+\\)\\{#DOCF\\d+\\}", "[^\\1]", .) %>%
-    gsub("\\[\\((\\d+)\\)\\]\\(#DOCF\\d+\\)\\{#FOOT\\d+\\}", "[^\\1]", .) %>%
-    gsub("\\[\\((\\d+)\\)\\]\\(#DOCF\\d+\\)\\{#FOOT\\d+\\}", "[^\\1]:", .) %>%
-    # Fix function definition lists
-    gsub("^(Function: .*)\\\\$", "\\1\n:    \n", .) %>%
-    gsub("^(`.*`)\\\\$", "\\1\n:    \n", .) %>%
-    # Fix indented codeblocks by adding a newline in front of them
-    gsub("(^    ``` c)", "\n\\1", .) %>%
-    # remove quote around backticks
-    gsub("('`|`')", "`", .) %>%
-    # insert missing colon in footnote references
-    gsub("^(\\[\\^\\d+\\])$", "\\1:", .) %>%
-    write_lines(path = output_file)
+    # browser()
 
-  # Remove Table of Contents heading from index.md
-  if (basename(input_file) == "index.html") {
-    read_lines(output_file) %>%
-      sub("^Table of Contents \\{.*\\}$", "", .) %>%
-      write_lines(output_file)
-  }
 
-  invisible()
+    # Remove Table of Contents heading from index.md
+    if (basename(input_file) == "index.html") {
+      read_lines(output_file) %>%
+        sub("^Table of Contents \\{.*\\}$", "", .) %>%
+        write_lines(output_file)
+    }
+
+    invisible()
 
 }
 
@@ -119,5 +102,57 @@ convert_to_md <- function(path = "temp", verbose = FALSE) {
   }
   cli::cli_progress_done()
   cli::cli_alert_success("Converted all HTML files to markdown")
+  invisible()
+}
+
+
+
+regex_replace_md <- function(path = "temp", verbose = TRUE) {
+  file_list <- fs::dir_ls(path = path, glob = "*.md")
+
+  # browser()
+
+  if (verbose) cli::cli_progress_bar("Replacing regular expressions")
+
+  # create progress bar
+  for (filename in file_list) {
+    # message(filename)
+    filename %>%
+      read_lines() %>%
+      # remove empty hyperlinks [](...)
+      gsub("^\\[\\]\\{.*?\\}$", "", .)  %>%
+      # remove {.sample}
+      gsub("`\\{\\.variable\\}`", "", .) %>%
+      gsub("\\{\\.variable\\}", "", .) %>%
+      gsub("`\\{\\.sample\\}`", "", .) %>%
+      gsub("\\{\\.sample\\}", "", .) %>%
+      # fix footnote cross-references
+      gsub("\\[\\^(\\d+)\\^\\]\\(#FOOT\\d+\\)\\{#DOCF\\d+\\}", "[^\\1]", .) %>%
+      gsub("\\[\\^(\\d+)\\^\\]\\(#FOOT\\d+\\)\\{#DOCF\\d+\\}", "[^\\1]", .) %>%
+      gsub("\\[\\((\\d+)\\)\\]\\(#DOCF\\d+\\)\\{#FOOT\\d+\\}", "[^\\1]", .) %>%
+      gsub("\\[\\((\\d+)\\)\\]\\(#DOCF\\d+\\)\\{#FOOT\\d+\\}", "[^\\1]", .) %>%
+      # Fix function definition lists
+      gsub("^(Function: .*)\\\\$", "\\1\n:    \n", .) %>%
+      gsub("^(`.*`)\\\\$", "\\1\n:    \n", .) %>%
+      # Fix indented codeblocks by adding a newline in front of them
+      gsub("(^\\s{4}``` [c|R]$)", "\n\\1", .) %>%
+      gsub("(^\\s{8}``` [c|R]$)", "\n\\1", .) %>%
+      # remove quote around backticks
+      gsub("('`|`')", "`", .) %>%
+      # insert missing colon in footnote references
+      gsub("^(\\[\\^\\d+\\])$", "\\1:", .) %>%
+      # replace double backtick `` occurrences
+      # gsub(r"{(?<!`)``(?!`)}", "", ., perl = TRUE) %>%
+      # replace ellipsis
+      gsub("…", "...", .) %>%
+      # remove named sections
+      gsub("(^#+ .*?) {#.*? \\.(.*)}$", "\\1", ., perl = TRUE) %>%
+      # remove spurious named code fences
+      # gsub("^::: {.* \\.(chapter|(sub)*section|appendix(sec)*(tion)*|unnumbered)}", "::: {}", ., perl = TRUE) %>%
+
+      # remember to remove this line and deal with it using Lua filters.
+      gsub("^:::.*$", "", .) %>%
+      readr::write_lines(file = filename)
+  }
   invisible()
 }
