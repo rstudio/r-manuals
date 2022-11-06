@@ -26,10 +26,10 @@ jobs:
       #     mkdir -p ~/.local/bin
       #     ln -s $(dirname $(readlink -f  $(which quarto)))"/pandoc" ~/.local/bin/pandoc
       #     /opt/quarto/bin/tools/pandoc --version
-      
+
       - name: Install pandoc
         run: |
-          DEB=pandoc-2.19-1-amd64.deb
+          DEB=pandoc-2.19-2-amd64.deb
           wget https://github.com/jgm/pandoc/releases/download/2.19/$DEB
           sudo dpkg -i $DEB
           pandoc --version

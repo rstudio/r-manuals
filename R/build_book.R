@@ -7,33 +7,22 @@ href <- function(href, text) {
 }
 
 
-# is_appendix <- function(manual, manual_path = "manuals"){
-#   browser()
-#   book_path <- fs::path(manual_path, manual, "prep")
-#   z <- fs::dir_ls(book_path, glob = "*.md") %>%
-#     purrr::map_lgl(~{
-#       read_lines(.) %>%
-#         # stringr::str_detect("\\{.*? *\\.(appendix|unnumbered)\\}") %>%
-#         stringr::str_detect("\\{.*? *\\.(appendix)\\}") %>%
-#         any()
-#     }
-#     )
-#   names(z) <- names(z) %>% fs::path_file()
-#   z["index.md"] <- FALSE
-#   z["Acknowledgements.md"] <- FALSE
-#   z
-# }
-
 appendices <- function(manual, manual_path = "manuals") {
   texi <- fs::path(manual_path, manual, "data", glue::glue("{manual}.texi"))
-  read_lines(texi) %>%
+  z <- read_lines(texi) %>%
     stringr::str_extract("^@appendix (.*)$") %>%
     na.omit() %>%
     c() %>%
-    gsub("[[:punct:]]", "", .) %>%
-    gsub("appendix ", "", .) %>%
-    gsub("[[:space:]]", "-", .) %>%
-    paste0(., ".md")
+    # replace all punctuation except hyphen
+    gsub(r"([!\"#$%&'()*+,./:;<=>?@[\\]^_`\{|\}~])", "", .) %>%
+    gsub("@appendix ", "", .) %>%
+    gsub("[[:space:]]", "-", .)
+
+  if (length(z)) {
+    paste0(z, ".md")
+  } else {
+    z
+  }
 }
 
 
@@ -72,22 +61,26 @@ glue_quarto_yaml <- function(
     sub(".html$", ".md", .) %>%
     gsub("_002d", "-", .)
 
-  # isa <- is_appendix(manual_name) %>% .[all_chapters]
-  # chapters <- all_chapters[!isa]
-  # appendices <- all_chapters[unname(isa)]
-
-  # browser()
   appendices <- appendices(manual_name, manual_path = "manuals")
+
   chapters <- setdiff(all_chapters, appendices)
 
   title <- extract_title_from_index(manual)
 
+  appendices <- if (length(appendices)) {
+    appx <- paste0(paste("      -", appendices), collapse = "\n")
+    paste0("  appendices:\n", appx, collapse = "\n")
+  } else {
+    character()
+  }
+
+  # browser()
   # browser()
 
   glue::glue(
     template,
     chapters   = paste0(paste("      -", chapters), collapse = "\n"),
-    appendices = paste0(paste("      -", appendices), collapse = "\n"),
+    appendices = appendices,
     title = title
   )
 }
