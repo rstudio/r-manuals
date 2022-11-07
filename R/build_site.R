@@ -15,6 +15,7 @@ build_main_website <- function(manuals_folder = "manuals") {
 
   site_output <- "website/_site"
   unlink(site_output, recursive = TRUE)
+  fs::dir_create(site_output)
 
   cli::cli_alert_info("Tweaking {.file .quarto.yml} file")
   yaml <- yaml::read_yaml("website/_quarto.yml")
