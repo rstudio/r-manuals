@@ -17,7 +17,7 @@ build_main_website <- function(manuals_folder = "manuals") {
   unlink(site_output, recursive = TRUE)
   fs::dir_create(site_output)
 
-  cli::cli_alert_info("Tweaking {.file .quarto.yml} file")
+  cli::cli_progress_step("Tweaking {.file .quarto.yml} file")
   yaml <- yaml::read_yaml("website/_quarto.yml")
 
   index <- purrr::map(books, ~ {
@@ -41,12 +41,12 @@ build_main_website <- function(manuals_folder = "manuals") {
   xfun::gsub_file("website/_quarto.yml", "\\syes\\s*$", " true")
   xfun::gsub_file("website/_quarto.yml", "\\sno\\s*$", " false")
 
-  cli::cli_alert_info("Running quarto to build website")
-  res <- quarto::quarto_render("website", as_job = FALSE)
-
+  cli::cli_progress_step("Running quarto to build website")
+  res <- quarto::quarto_render("website", as_job = FALSE, quiet = TRUE)
 
 
   # Move books after quarto render because it will now clean output folder `_site` by default
+  cli::cli_progress_step("Moving books to site output")
   purrr::walk(books, ~ {
     fs::dir_copy(
       .x,
@@ -55,6 +55,6 @@ build_main_website <- function(manuals_folder = "manuals") {
     )
   })
 
-  cli::cli_alert_info("Done.")
+  cli::cli_progress_step("Done.")
   invisible(res)
 }
