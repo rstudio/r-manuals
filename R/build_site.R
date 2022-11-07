@@ -48,8 +48,11 @@ build_main_website <- function(manuals_folder = "manuals") {
   # Move books after quarto render because it will now clean output folder `_site` by default
   purrr::walk(books, ~ {
     new_path <- fs::path(site_output, fs::path_file(fs::path_dir(.x)))
-    fs::dir_create(new_path)
     cli::cli_progress_step("Moving book from {.x} to {new_path}")
+    if (!dir.exists(.x)) 
+    message(dir(dirname(.x)))
+    stop("Dir doesn't exist")
+    fs::dir_create(new_path)
     fs::dir_copy(.x, new_path, overwrite = TRUE)
   })
 
