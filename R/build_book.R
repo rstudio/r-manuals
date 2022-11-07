@@ -74,8 +74,8 @@ glue_quarto_yaml <- function(
     character()
   }
 
-  # browser()
-  # browser()
+
+
 
   glue::glue(
     template,
@@ -102,7 +102,7 @@ update_quarto_yaml <- function(x, index, all_manuals, verbose = FALSE) {
   yaml_file <- fs::path(book, "_quarto.yml")
   manual <- fs::path_file(x)
 
-  # browser()
+
   glue_quarto_yaml(manual = manual, verbose = verbose) %>%
     readr::write_lines(file = glue::glue("{x}/book/_quarto.yml"))
 
@@ -124,7 +124,7 @@ update_quarto_yaml <- function(x, index, all_manuals, verbose = FALSE) {
   navbar <- unname(navbar)
   navbar <- navbar[!vapply(navbar, is.null, FUN.VALUE = logical(1))]
 
-  # browser()
+
 
   yaml <- yaml::read_yaml(yaml_file)
   yaml$book$navbar$right <- c(
@@ -169,7 +169,7 @@ build_books <- function(manuals_folder = "manuals", manuals, all_manuals, verbos
 
   cli::cli_h2("Building book...")
 
-  # browser()
+
   index <- fs::path(manuals_folder, fs::path_file(all_manuals), "prep/index.html")
   names(index) <- fs::path_file(all_manuals)
 

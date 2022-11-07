@@ -51,7 +51,7 @@ convert_html_to_md <- function(input_file, verbose = FALSE) {
       verbose = verbose
     )
 
-    # browser()
+    # 
 
 
     # Remove Table of Contents heading from index.md
@@ -110,7 +110,7 @@ convert_to_md <- function(path = "temp", verbose = FALSE) {
 regex_replace_md <- function(path = "temp", verbose = TRUE) {
   file_list <- fs::dir_ls(path = path, glob = "*.md")
 
-  # browser()
+
 
   if (verbose) cli::cli_progress_bar("Replacing regular expressions")
 

@@ -43,7 +43,7 @@ build_main_website <- function(manuals_folder = "manuals") {
   cli::cli_alert_info("Running quarto to build website")
   res <- quarto::quarto_render("website", as_job = FALSE)
 
-  # browser()
+
 
   # Move books after quarto render because it will now clean output folder `_site` by default
   purrr::walk(books, ~ {

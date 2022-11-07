@@ -39,12 +39,13 @@ process_manual <- function(manual = "R-exts.texi",
 
   # Download the .texi files from github
 
-  downloads_empty <- length(fs::dir_ls(data_folder)) == 0
+  downloads_empty <- !fs::dir_exists(data_folder) ||
+    length(fs::dir_ls(data_folder)) == 0
 
   if (downloads_empty || .download) {
     download_manuals(manual = manual, destdir = data_folder)
   }
-  # browser()
+
 
   # Compile the .texi to HTML
   if (.make_info) {
@@ -109,7 +110,7 @@ process_manual <- function(manual = "R-exts.texi",
   #   readr::write_lines(file = glue::glue("{book_folder}/_quarto.yml"))
 
 
-  # browser()
+
   regex_replace_md(path = book_folder)
 
   fs::file_copy("book_template/custom.scss", book_folder, overwrite = TRUE)

@@ -59,7 +59,7 @@ make_info <- function(manual, input_dir = "data", output_dir = "temp",
  if (.Platform$OS.type == "windows") {
    file_path <- file.path(dirname(Sys.which("make")), "makeinfo")
    system2("perl", args = c(file_path, args))
-   # browser()
+   # 
    filename <- sub(".texi", "", manual)
    to_file <- glue::glue("{output_dir}/index.html")
    if (!fs::file_exists(to_file)) {
