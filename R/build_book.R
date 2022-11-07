@@ -8,7 +8,8 @@ href <- function(href, text) {
 
 
 appendices <- function(manual, manual_path = "manuals") {
-  texi <- fs::path(manual_path, manual, "data", glue::glue("{manual}.texi"))
+  texi <- fs::dir_ls(fs::path(manual_path, manual, "data"),
+                     regexp = glue::glue("(?i){manual}.texi"), perl = TRUE)
   z <- read_lines(texi) %>%
     stringr::str_extract("^@appendix (.*)$") %>%
     na.omit() %>%
@@ -51,6 +52,7 @@ glue_quarto_yaml <- function(
 
   manual_name <- manual
   manual <- glue::glue("manuals/{manual}/prep/index.html", manual = manual)
+
 
   all_chapters <-
     xml2::read_html(manual) %>%
