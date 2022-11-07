@@ -50,11 +50,11 @@ all_manuals <- c(
 # For production, should be identical to all_manuals.
 manuals <- c(
   "R-intro.texi",
-  "R-data.texi",
-  "R-admin.texi",
+  # "R-data.texi",
+  # "R-admin.texi",
   "R-exts.texi",
-  "R-lang.texi",
-  "R-ints.texi",
+  # "R-lang.texi",
+  # "R-ints.texi",
   NULL
 )
 
