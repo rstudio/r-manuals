@@ -100,19 +100,11 @@ process_manual <- function(manual = "R-exts.texi",
     )
   }
 
-  # copy template files to book folder
 
-  # glue_quarto_yaml(
-  #   manual = folder,
-  #   template = "book_template/_quarto.yml",
-  #   verbose = verbose
-  # ) %>%
-  #   readr::write_lines(file = glue::glue("{book_folder}/_quarto.yml"))
-
-
-
+  # replace regular expressions
   regex_replace_md(path = book_folder)
 
+  # copy template files to book folder
   fs::file_copy("book_template/custom.scss", book_folder, overwrite = TRUE)
   invisible()
 }

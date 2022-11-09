@@ -106,26 +106,15 @@ convert_to_md <- function(path = "temp", verbose = FALSE) {
 }
 
 
-
-regex_replace_md <- function(path = "temp", verbose = TRUE) {
-  file_list <- fs::dir_ls(path = path, glob = "*.md")
-
-
-
-  if (verbose) cli::cli_progress_bar("Replacing regular expressions")
-
-  # create progress bar
-  for (filename in file_list) {
-    # message(filename)
-    filename %>%
-      read_lines() %>%
+regex_replace <- function(x) {
+  x %>%
       # remove empty hyperlinks [](...)
       gsub("^\\[\\]\\{.*?\\}$", "", .)  %>%
       # remove {.sample}
-      gsub("`\\{\\.variable\\}`", "", .) %>%
-      gsub("\\{\\.variable\\}", "", .) %>%
-      gsub("`\\{\\.sample\\}`", "", .) %>%
-      gsub("\\{\\.sample\\}", "", .) %>%
+      gsub("`{.variable}`", "", ., fixed = TRUE) %>%
+      gsub("{.variable}", "", ., fixed = TRUE) %>%
+      gsub("`{.sample}`", "", ., fixed = TRUE) %>%
+      gsub("{.sample}", "", ., fixed = TRUE) %>%
       # fix footnote cross-references
       gsub("\\[\\^(\\d+)\\^\\]\\(#FOOT\\d+\\)\\{#DOCF\\d+\\}", "[^\\1]", .) %>%
       gsub("\\[\\^(\\d+)\\^\\]\\(#FOOT\\d+\\)\\{#DOCF\\d+\\}", "[^\\1]", .) %>%
@@ -142,16 +131,27 @@ regex_replace_md <- function(path = "temp", verbose = TRUE) {
       # insert missing colon in footnote references
       gsub("^(\\[\\^\\d+\\])$", "\\1:", .) %>%
       # replace double backtick `` occurrences
-      # gsub(r"{(?<!`)``(?!`)}", "", ., perl = TRUE) %>%
+      gsub(r"{(?<!`)``(?!`)}", "", ., perl = TRUE) %>%
       # replace ellipsis
       gsub("…", "...", .) %>%
       # remove named sections
       gsub("(^#+ .*?) {#.*? \\.(.*)}$", "\\1", ., perl = TRUE) %>%
-      # remove spurious named code fences
-      # gsub("^::: {.* \\.(chapter|(sub)*section|appendix(sec)*(tion)*|unnumbered)}", "::: {}", ., perl = TRUE) %>%
 
       # remember to remove this line and deal with it using Lua filters.
-      gsub("^:::.*$", "", .) %>%
+      gsub("^:::.*$", "", .)
+}
+
+regex_replace_md <- function(path = "temp", verbose = TRUE) {
+  file_list <- fs::dir_ls(path = path, glob = "*.md")
+  # browser()
+
+  if (verbose) cli::cli_progress_bar("Replacing regular expressions")
+
+  # create progress bar
+  for (filename in file_list) {
+    filename %>%
+      read_lines() %>%
+      regex_replace() %>% 
       readr::write_lines(file = filename)
   }
   invisible()
