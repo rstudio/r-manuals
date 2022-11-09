@@ -162,7 +162,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">R Installation and Administration</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./index.html">
+    <a class="dropdown-item" href="./../r-exts/index.html">
  <span class="dropdown-text">Writing R Extensions</span></a>
   </li>  
         <li>
@@ -301,7 +301,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="debugging" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging</span></span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging</span></h1>
 </div>
 
 
@@ -544,7 +544,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>After a GC all free nodes that are not of type <code>NEWSXP</code> are marked as type <code>FREESXP</code> and their previous type is recorded.</li>
 <li>Most calls to accessor functions check their <code>SEXP</code> inputs and <code>SEXP</code> outputs and signal an error if a <code>FREESXP</code> is found. The address of the node and the old type are included in the error message.</li>
 </ul>
-<p><code>R CMD check --use-gct</code> can be set to use <var>gctorture2(``n</var><code>)</code> rather than <code>gctorture(TRUE)</code> by setting environment variable <code>_R_CHECK_GCT_N_</code> to a positive integer value to be used as <var>n</var>.</p>
+<p><code>R CMD check --use-gct</code> can be set to use <code>gctorture2(``n)</code> rather than <code>gctorture(TRUE)</code> by setting environment variable <code>_R_CHECK_GCT_N_</code> to a positive integer value to be used as <code>n</code>.</p>
 <p>Used with a debugger and with <code>gctorture</code> or <code>gctorture2</code> this mechanism can be helpful in isolating memory protect problems.</p>
 </section>
 <section id="using-valgrind" class="level3 subsection page-columns page-full" data-number="4.3.2">
@@ -553,7 +553,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>R <span class="sc">-</span>d valgrind <span class="sc">--</span>vanilla <span class="sc">&lt;</span> mypkg<span class="sc">-</span>Ex.R</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>R <span class="sc">-</span>d <span class="st">"valgrind --tool=memcheck --leak-check=full"</span> <span class="sc">--</span>vanilla <span class="sc">&lt;</span> mypkg<span class="sc">-</span>Ex.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>where <code>mypkg-Ex.R</code> is a set of examples, e.g.&nbsp;the file created in <code>mypkg.Rcheck</code> by <code>R CMD check</code>. Occasionally this reports memory reads of ‘uninitialised values’ that are the result of compiler optimization, so can be worth checking under an unoptimized compile: for maximal information use a build with debugging symbols. We know there will be some small memory leaks from <code>readline</code> and R itself — these are memory areas that are in use right up to the end of the R session. Expect this to run around 20x slower than without <code>valgrind</code>, and in some cases much slower than that. Several versions of <code>valgrind</code> were not happy with some optimized BLASes that use CPU-specific instructions so you may need to build a version of R specifically to use with <code>valgrind</code>.</p>
-<div class="page-columns page-full"><p>On platforms where <code>valgrind</code> is installed you can build a version of R with extra instrumentation to help <code>valgrind</code> detect errors in the use of memory allocated from the R heap. The <code>configure</code> option is <var>--with-valgrind-instrumentation=``level</var>, where <var>level</var> is 0, 1 or 2. Level 0 is the default and does not add anything. Level 1 will detect some uses<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> of uninitialised memory and has little impact on speed (compared to level 0). Level 2 will detect many other memory-use bugs<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> but make R much slower when running under <code>valgrind</code>. Using this in conjunction with <code>gctorture</code> can be even more effective (and even slower).</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;Those in some numeric, logical, integer, raw, complex vectors and in memory allocated by <code>R_alloc</code>.</p></li><li id="fn4"><p><sup>4</sup>&nbsp;including using the data sections of R vectors after they are freed.</p></li></div></div>
+<div class="page-columns page-full"><p>On platforms where <code>valgrind</code> is installed you can build a version of R with extra instrumentation to help <code>valgrind</code> detect errors in the use of memory allocated from the R heap. The <code>configure</code> option is <code>--with-valgrind-instrumentation=level</code>, where <code>level</code> is 0, 1 or 2. Level 0 is the default and does not add anything. Level 1 will detect some uses<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> of uninitialised memory and has little impact on speed (compared to level 0). Level 2 will detect many other memory-use bugs<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> but make R much slower when running under <code>valgrind</code>. Using this in conjunction with <code>gctorture</code> can be even more effective (and even slower).</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;Those in some numeric, logical, integer, raw, complex vectors and in memory allocated by <code>R_alloc</code>.</p></li><li id="fn4"><p><sup>4</sup>&nbsp;including using the data sections of R vectors after they are freed.</p></li></div></div>
 <p>An example of <code>valgrind</code> output is</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">==</span><span class="dv">12539</span><span class="sc">==</span> Invalid read of size <span class="dv">4</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="sc">==</span><span class="dv">12539</span><span class="sc">==</span>    at <span class="dv">0x1CDF6CBE</span><span class="sc">:</span> <span class="fu">csc_compTr</span> (Mutils.c<span class="sc">:</span><span class="dv">273</span>)</span>
@@ -738,7 +738,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a><span class="op">...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In many cases it is possible to attach a debugger to a running process: this is helpful if an alternative front-end is in use or to investigate a task that seems to be taking far too long. This is done by something like</p>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>gdb <span class="sc">-</span>p pid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>where <var>pid</var> is the id of the R executable or front-end process and can be found from within a running R process by calling <code>Sys.getpid()</code> or from a process monitor. This stops the process so its state can be examined: use <code>continue</code> to resume execution.</p>
+<p>where <code>pid</code> is the id of the R executable or front-end process and can be found from within a running R process by calling <code>Sys.getpid()</code> or from a process monitor. This stops the process so its state can be examined: use <code>continue</code> to resume execution.</p>
 <p>Some “tricks” worth knowing follow:</p>
 <section id="finding-entry-points-in-dynamically-loaded-code" class="level3 subsection" data-number="4.4.1">
 <h3 class="subsection anchored" data-number="4.4.1" data-anchor-id="finding-entry-points-in-dynamically-loaded-code"><span class="header-section-number">4.4.1</span> Finding entry points in dynamically loaded code</h3>
@@ -755,7 +755,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="inspecting-r-objects-when-debugging" class="level3 subsection" data-number="4.4.2">
 <h3 class="subsection anchored" data-number="4.4.2" data-anchor-id="inspecting-r-objects-when-debugging"><span class="header-section-number">4.4.2</span> Inspecting R objects when debugging</h3>
-<p>The key to inspecting R objects from compiled code is the function <var>PrintValue(SEXP ``s</var><code>)</code> which uses the normal R printing mechanisms to print the R object pointed to by <var>s</var>, or the safer version <var>R_PV(SEXP ``s</var><code>)</code> which will only print ‘objects’.</p>
+<p>The key to inspecting R objects from compiled code is the function <code>PrintValue(SEXP ``s)</code> which uses the normal R printing mechanisms to print the R object pointed to by <code>s</code>, or the safer version <code>R_PV(SEXP ``s)</code> which will only print ‘objects’.</p>
 <p>One way to make use of <code>PrintValue</code> is to insert suitable calls into the code to be debugged.</p>
 <p>Another way is to call <code>R_PV</code> from the symbolic debugger. (<code>PrintValue</code> is hidden as <code>Rf_PrintValue</code>.) For example, from <code>gdb</code> we can use</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>(gdb) p <span class="fu">R_PV</span>(ab)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -892,6 +892,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>      *ipvtwk), wk(ikwk), wk(iwork1), wk(iwork2), info)</span>
 <span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>                                                                        1</span>
 <span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>Warning: Type mismatch in argument 'jpvt' at (1); passed REAL(8) to INTEGER(4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Footnotes</p>
 
 
 </section>

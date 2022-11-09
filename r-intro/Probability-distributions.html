@@ -150,7 +150,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
         <li>
-    <a class="dropdown-item" href="./index.html">
+    <a class="dropdown-item" href="./../r-intro/index.html">
  <span class="dropdown-text">An Introduction to R</span></a>
   </li>  
         <li>
@@ -283,36 +283,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./OS-facilities.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">OS facilities</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./A-sample-session.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">A sample session</span></a>
+  <a href="./A-sample-session.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">A sample session</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Invoking-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Invoking R</span></a>
+  <a href="./Invoking-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Invoking R</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./The-command-line-editor.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">The command-line editor</span></a>
+  <a href="./The-command-line-editor.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">The command-line editor</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Function and variable index</span></a>
+  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Function and variable index</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Concept index</span></a>
+  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Concept index</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">References</span></a>
+  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">References</span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -333,7 +343,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="probability-distributions" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Probability distributions</span></span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Probability distributions</span></h1>
 </div>
 
 
@@ -350,7 +360,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="r-as-a-set-of-statistical-tables" class="level2 section" data-number="8.1">
 <h2 class="section anchored" data-number="8.1" data-anchor-id="r-as-a-set-of-statistical-tables"><span class="header-section-number">8.1</span> R as a set of statistical tables</h2>
 <p>One convenient use of R is to provide a comprehensive set of statistical tables. Functions are provided to evaluate the cumulative distribution function P(X &lt;= x), the probability density function and the quantile function (given <em>q</em>, the smallest <em>x</em> such that P(X &lt;= x) &gt; q), and to simulate from the distribution.</p>
-<div class="blockquotes-block">
 <blockquote class="blockquote">
 <table class="table">
 <thead>
@@ -459,11 +468,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </blockquote>
-</div>
-<p>Prefix the name given here by <code>d</code> for the density, <code>p</code> for the CDF, <code>q</code> for the quantile function and <code>r</code> for simulation (<em>r</em>andom deviates). The first argument is <code>x</code> for <var>d``xxx</var>, <code>q</code> for <var>p``xxx</var>, <code>p</code> for <var>q``xxx</var> and <code>n</code> for <var>r``xxx</var> (except for <code>rhyper</code>, <code>rsignrank</code> and <code>rwilcox</code>, for which it is <code>nn</code>). In not quite all cases is the non-centrality parameter <code>ncp</code> currently available: see the on-line help for details.</p>
-<p>The <var>p``xxx</var> and <var>q``xxx</var> functions all have logical arguments <code>lower.tail</code> and <code>log.p</code> and the <var>d``xxx</var> ones have <code>log</code>. This allows, e.g., getting the cumulative (or “integrated”) <em>hazard</em> function, H(t) = - log(1 - F(t)), by</p>
+<p>Prefix the name given here by <code>d</code> for the density, <code>p</code> for the CDF, <code>q</code> for the quantile function and <code>r</code> for simulation (<em>r</em>andom deviates). The first argument is <code>x</code> for <code>d``xxx</code>, <code>q</code> for <code>p``xxx</code>, <code>p</code> for <code>q``xxx</code> and <code>n</code> for <code>r``xxx</code> (except for <code>rhyper</code>, <code>rsignrank</code> and <code>rwilcox</code>, for which it is <code>nn</code>). In not quite all cases is the non-centrality parameter <code>ncp</code> currently available: see the on-line help for details.</p>
+<p>The <code>p``xxx</code> and <code>q``xxx</code> functions all have logical arguments <code>lower.tail</code> and <code>log.p</code> and the <code>d``xxx</code> ones have <code>log</code>. This allows, e.g., getting the cumulative (or “integrated”) <em>hazard</em> function, H(t) = - log(1 - F(t)), by</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a> <span class="sc">-</span> <span class="fu">pxxx</span>(t, ..., <span class="at">lower.tail =</span> <span class="cn">FALSE</span>, <span class="at">log.p =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>or more accurate log-likelihoods (by <var>d``xxx</var><code>(..., log = TRUE)</code>), directly.</p>
+<p>or more accurate log-likelihoods (by <code>d``xxx(..., log = TRUE)</code>), directly.</p>
 <p>In addition there are functions <code>ptukey</code> and <code>qtukey</code> for the distribution of the studentized range of samples from a normal distribution, and <code>dmultinom</code> and <code>rmultinom</code> for the multinomial distribution. Further distributions are available in contributed packages, notably <a href="https://CRAN.R-project.org/package=SuppDists"><strong>SuppDists</strong></a>.</p>
 <p>Here are some examples</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> ## <span class="dv">2</span><span class="op">-</span>tailed p<span class="op">-</span>value <span class="cf">for</span> t distribution</span>

@@ -95,7 +95,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">R Data Import/Export</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./index.html">
+    <a class="dropdown-item" href="./../r-admin/index.html">
  <span class="dropdown-text">R Installation and Administration</span></a>
   </li>  
         <li>
@@ -192,21 +192,6 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Essential-and-useful-other-programs-under-a-Unix-alike.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Essential and useful other programs under a Unix-alike</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Configuration-on-a-Unix-alike.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Configuration on a Unix-alike</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Platform-notes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Platform notes</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link">Function and variable index</a>
   </div>
 </li>
@@ -220,6 +205,31 @@ ul.task-list li input[type="checkbox"] {
   <a href="./Environment-variable-index.html" class="sidebar-item-text sidebar-link">Environment variable index</a>
   </div>
 </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Essential-and-useful-other-programs-under-a-Unix-alike.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Essential and useful other programs under a Unix-alike</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Configuration-on-a-Unix-alike.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Configuration on a Unix-alike</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Platform-notes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Platform notes</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -232,7 +242,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="choosing-between-32--and-64-bit-builds" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Choosing between 32- and 64-bit builds</span></span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Choosing between 32- and 64-bit builds</span></h1>
 </div>
 
 
@@ -259,6 +269,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p>So, for speed you may want to use a 32-bit build (especially on a laptop), but to handle large datasets (and perhaps large files) a 64-bit build. You can often build both and install them in the same place: See <a href="Installing-R-under-Unix-alikes.html#sub-architectures">Sub-architectures</a>. (This is done for the Windows binary distributions.)</p>
 <p>Even on 64-bit builds of R there are limits on the size of R objects (see <code>help("Memory-limits")</code>), some of which stem from the use of 32-bit integers (especially in Fortran code). For example, each dimension of an array is limited to <em>2^{31} - 1</em>.</p>
+<p>Footnotes</p>
 
 
 

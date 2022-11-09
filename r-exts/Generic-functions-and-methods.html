@@ -162,7 +162,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">R Installation and Administration</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./index.html">
+    <a class="dropdown-item" href="./../r-exts/index.html">
  <span class="dropdown-text">Writing R Extensions</span></a>
   </li>  
         <li>
@@ -281,7 +281,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="generic-functions-and-methods" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Generic functions and methods</span></span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Generic functions and methods</span></h1>
 </div>
 
 
@@ -297,7 +297,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <p>R programmers will often want to add methods for existing generic functions, and may want to add new generic functions or make existing functions generic. In this chapter we give guidelines for doing so, with examples of the problems caused by not adhering to them.</p>
 <p>This chapter only covers the ‘informal’ class system copied from S3, and not with the S4 (formal) methods of package <strong>methods</strong>.</p>
-<p>First, a <em>caveat</em>: a function named <var>gen</var><var>.``cl</var> will be invoked by the generic <var>gen</var> for class <var>cl</var>, so do not name functions in this style unless they are intended to be methods.</p>
+<p>First, a <em>caveat</em>: a function named <code>gen.``cl</code> will be invoked by the generic <code>gen</code> for class <code>cl</code>, so do not name functions in this style unless they are intended to be methods.</p>
 <p>The key function for methods is <code>NextMethod</code>, which dispatches the next method. It is quite typical for a method function to make a few changes to its arguments, dispatch to the next method, receive the results and modify them a little. An example is</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>t.data.frame <span class="ot">&lt;-</span> <span class="cf">function</span>(x)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>{</span>
@@ -307,9 +307,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Note that the example above works because there is a <em>next</em> method, the default method, not that a new method is selected when the class is changed.</p>
 <p><em>Any</em> method a programmer writes may be invoked from another method by <code>NextMethod</code>, <em>with the arguments appropriate to the previous method</em>. Further, the programmer cannot predict which method <code>NextMethod</code> will pick (it might be one not yet dreamt of), and the end user calling the generic needs to be able to pass arguments to the next method. For this to work</p>
 <blockquote class="blockquote">
-<p><em>A method must have all the arguments of the generic, including <code>…</code> if the generic does.</em></p>
+<p><em>A method must have all the arguments of the generic, including <code>...</code> if the generic does.</em></p>
 </blockquote>
-<p>It is a grave misunderstanding to think that a method needs only to accept the arguments it needs. The original S version of <code>predict.lm</code> did not have a <code>…</code> argument, although <code>predict</code> did. It soon became clear that <code>predict.glm</code> needed an argument <code>dispersion</code> to handle over-dispersion. As <code>predict.lm</code> had neither a <code>dispersion</code> nor a <code>…</code> argument, <code>NextMethod</code> could no longer be used. (The legacy, two direct calls to <code>predict.lm</code>, lives on in <code>predict.glm</code> in R, which is based on the workaround for S3 written by Venables &amp; Ripley.)</p>
+<p>It is a grave misunderstanding to think that a method needs only to accept the arguments it needs. The original S version of <code>predict.lm</code> did not have a <code>...</code> argument, although <code>predict</code> did. It soon became clear that <code>predict.glm</code> needed an argument <code>dispersion</code> to handle over-dispersion. As <code>predict.lm</code> had neither a <code>dispersion</code> nor a <code>...</code> argument, <code>NextMethod</code> could no longer be used. (The legacy, two direct calls to <code>predict.lm</code>, lives on in <code>predict.glm</code> in R, which is based on the workaround for S3 written by Venables &amp; Ripley.)</p>
 <p>Further, the user is entitled to use positional matching when calling the generic, and the arguments to a method called by <code>UseMethod</code> are those of the call to the generic. Thus</p>
 <blockquote class="blockquote">
 <p><em>A method must have arguments in exactly the same order as the generic.</em></p>
@@ -334,8 +334,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Only add parameters and defaults to the generic if they make sense in all possible methods implementing it.</p>
 <section id="adding-new-generics" class="level2 section" data-number="7.1">
 <h2 class="section anchored" data-number="7.1" data-anchor-id="adding-new-generics"><span class="header-section-number">7.1</span> Adding new generics</h2>
-<p>When creating a new generic function, bear in mind that its argument list will be the maximal set of arguments for methods, including those written elsewhere years later. So choosing a good set of arguments may well be an important design issue, and there need to be good arguments <em>not</em> to include a <code>…</code> argument.</p>
-<p>If a <code>…</code> argument is supplied, some thought should be given to its position in the argument sequence. Arguments which follow <code>…</code> must be named in calls to the function, and they must be named in full (partial matching is suppressed after <code>…</code>). Formal arguments before <code>…</code> can be partially matched, and so may ‘swallow’ actual arguments intended for <code>…</code>. Although it is commonplace to make the <code>…</code> argument the last one, that is not always the right choice.</p>
+<p>When creating a new generic function, bear in mind that its argument list will be the maximal set of arguments for methods, including those written elsewhere years later. So choosing a good set of arguments may well be an important design issue, and there need to be good arguments <em>not</em> to include a <code>...</code> argument.</p>
+<p>If a <code>...</code> argument is supplied, some thought should be given to its position in the argument sequence. Arguments which follow <code>...</code> must be named in calls to the function, and they must be named in full (partial matching is suppressed after <code>...</code>). Formal arguments before <code>...</code> can be partially matched, and so may ‘swallow’ actual arguments intended for <code>...</code>. Although it is commonplace to make the <code>...</code> argument the last one, that is not always the right choice.</p>
 <p>Sometimes package writers want to make generic a function in the base package, and request a change in R. This may be justifiable, but making a function generic with the old definition as the default method does have a small performance cost. It is never necessary, as a package can take over a function in the base package and make it generic by something like</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>(object, ...) <span class="fu">UseMethod</span>(<span class="st">"foo"</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>foo.default <span class="ot">&lt;-</span> <span class="cf">function</span>(object, ...) base<span class="sc">::</span><span class="fu">foo</span>(object)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

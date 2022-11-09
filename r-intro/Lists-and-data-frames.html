@@ -150,7 +150,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
         <li>
-    <a class="dropdown-item" href="./index.html">
+    <a class="dropdown-item" href="./../r-intro/index.html">
  <span class="dropdown-text">An Introduction to R</span></a>
   </li>  
         <li>
@@ -283,36 +283,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./OS-facilities.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">OS facilities</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./A-sample-session.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">A sample session</span></a>
+  <a href="./A-sample-session.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">A sample session</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Invoking-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Invoking R</span></a>
+  <a href="./Invoking-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Invoking R</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./The-command-line-editor.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">The command-line editor</span></a>
+  <a href="./The-command-line-editor.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">The command-line editor</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Function and variable index</span></a>
+  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Function and variable index</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Concept index</span></a>
+  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Concept index</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">References</span></a>
+  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">References</span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -343,7 +353,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="lists-and-data-frames" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lists and data frames</span></span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lists and data frames</span></h1>
 </div>
 
 
@@ -375,15 +385,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>Lst$child.ages[1]</code> is the same as <code>Lst[[4]][1]</code> and is the number <code>4</code>.</p>
 <p>Additionally, one can also use the names of the list components in double square brackets, i.e., <code>Lst[["name"]]</code> is the same as <code>Lst$name</code>. This is especially useful, when the name of the component to be extracted is stored in another variable as in</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="st">"name"</span>; Lst[[x]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>It is very important to distinguish <code>Lst[[1]]</code> from <code>Lst[1]</code>. <var>[[``…</var><code>]]</code> is the operator used to select a single element, whereas <var>[``…</var><code>]</code> is a general subscripting operator. Thus the former is the <em>first object in the list</em> <code>Lst</code>, and if it is a named list the name is <em>not</em> included. The latter is a <em>sublist of the list <code>Lst</code> consisting of the first entry only. If it is a named list, the names are transferred to the sublist.</em></p>
+<p>It is very important to distinguish <code>Lst[[1]]</code> from <code>Lst[1]</code>. <code>[[``...]]</code> is the operator used to select a single element, whereas <code>[``...]</code> is a general subscripting operator. Thus the former is the <em>first object in the list</em> <code>Lst</code>, and if it is a named list the name is <em>not</em> included. The latter is a <em>sublist of the list <code>Lst</code> consisting of the first entry only. If it is a named list, the names are transferred to the sublist.</em></p>
 <p>The names of components may be abbreviated down to the minimum number of letters needed to identify them uniquely. Thus <code>Lst$coefficients</code> may be minimally specified as <code>Lst$coe</code> and <code>Lst$covariance</code> as <code>Lst$cov</code>.</p>
 <p>The vector of names is in fact simply an attribute of the list like any other and may be handled as such. Other structures besides lists may, of course, similarly be given a <em>names</em> attribute also.</p>
 </section>
 <section id="constructing-and-modifying-lists" class="level2 section" data-number="6.2">
 <h2 class="section anchored" data-number="6.2" data-anchor-id="constructing-and-modifying-lists"><span class="header-section-number">6.2</span> Constructing and modifying lists</h2>
 <p>New lists may be formed from existing objects by the function <code>list()</code>. An assignment of the form</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Lst <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">name_1=</span>object_1, …, <span class="at">name_m=</span>object_m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>sets up a list <code>Lst</code> of <em>m</em> components using <var>object_1</var>, …, <var>object_m</var> for the components and giving them names as specified by the argument names, (which can be freely chosen). If these names are omitted, the components are numbered only. The components used to form the list are <em>copied</em> when forming the new list and the originals are not affected.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Lst <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">name_1=</span>object_1, ..., <span class="at">name_m=</span>object_m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>sets up a list <code>Lst</code> of <em>m</em> components using <code>object_1</code>, …, <code>object_m</code> for the components and giving them names as specified by the argument names, (which can be freely chosen). If these names are omitted, the components are numbered only. The components used to form the list are <em>copied</em> when forming the new list and the originals are not affected.</p>
 <p>Lists, like any subscripted object, can be extended by specifying additional components. For example</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> Lst[<span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">matrix=</span>Mat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="concatenating-lists" class="level3 subsection" data-number="6.2.1">
@@ -459,6 +469,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">detach</span>(<span class="st">"lentils"</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">search</span>()</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">".GlobalEnv"</span>   <span class="st">"Autoloads"</span>    <span class="st">"package:base"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Footnotes</p>
 
 
 </section>

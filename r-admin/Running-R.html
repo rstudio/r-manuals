@@ -95,7 +95,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">R Data Import/Export</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./index.html">
+    <a class="dropdown-item" href="./../r-admin/index.html">
  <span class="dropdown-text">R Installation and Administration</span></a>
   </li>  
         <li>
@@ -192,21 +192,6 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Essential-and-useful-other-programs-under-a-Unix-alike.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Essential and useful other programs under a Unix-alike</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Configuration-on-a-Unix-alike.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Configuration on a Unix-alike</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Platform-notes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Platform notes</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link">Function and variable index</a>
   </div>
 </li>
@@ -220,6 +205,31 @@ ul.task-list li input[type="checkbox"] {
   <a href="./Environment-variable-index.html" class="sidebar-item-text sidebar-link">Environment variable index</a>
   </div>
 </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Essential-and-useful-other-programs-under-a-Unix-alike.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Essential and useful other programs under a Unix-alike</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Configuration-on-a-Unix-alike.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Configuration on a Unix-alike</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Platform-notes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Platform notes</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -232,7 +242,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="running-r" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Running R</span></span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Running R</span></h1>
 </div>
 
 
@@ -248,10 +258,11 @@ ul.task-list li input[type="checkbox"] {
 
 <p>How to start R and what command-line options are available is discussed in <a href="https://cran.r-project.org/doc/manuals/R-intro.html#Invoking-R">Invoking R</a> in An Introduction to R.</p>
 <div class="page-columns page-full"><p>You should ensure that the shell has set adequate resource limits: R expects a stack size of at least 8MB and to be able to open at least 256 file descriptors. (Any modern OS should have default limits at least as large as these, but apparently NetBSD may not. Use the shell command <code>ulimit</code> (<code>sh</code>/<code>bash</code>) or <code>limit</code> (<code>csh</code>/<code>tcsh</code>) to check.) For some compilers<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> and packages a larger stack size has been needed: 20-25MB has sufficed to date.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Including GCC 9 on Linux.</p></li></div></div>
-<p>R makes use of a number of environment variables, the default values of many of which are set in file <var>R_HOME</var><code>/etc/Renviron</code> (there are none set by default on Windows and hence no such file). These are set at <code>configure</code> time, and you would not normally want to change them – a possible exception is <code>R_PAPERSIZE</code> (see <a href="Configuration-on-a-Unix-alike.html#setting-paper-size">Setting paper size</a>). The paper size will be deduced from the <code>LC_PAPER</code> locale category if it exists and <code>R_PAPERSIZE</code> is unset, and this will normally produce the right choice from <code>a4</code> and <code>letter</code> on modern Unix-alikes (but can always be overridden by setting <code>R_PAPERSIZE</code>).</p>
+<p>R makes use of a number of environment variables, the default values of many of which are set in file <code>R_HOME/etc/Renviron</code> (there are none set by default on Windows and hence no such file). These are set at <code>configure</code> time, and you would not normally want to change them – a possible exception is <code>R_PAPERSIZE</code> (see <a href="Configuration-on-a-Unix-alike.html#setting-paper-size">Setting paper size</a>). The paper size will be deduced from the <code>LC_PAPER</code> locale category if it exists and <code>R_PAPERSIZE</code> is unset, and this will normally produce the right choice from <code>a4</code> and <code>letter</code> on modern Unix-alikes (but can always be overridden by setting <code>R_PAPERSIZE</code>).</p>
 <p>Various environment variables can be set to determine where R creates its per-session temporary directory. The environment variables <code>TMPDIR</code>, <code>TMP</code> and <code>TEMP</code> are searched in turn and the first one which is set and points to a writable area is used. If none do, the final default is <code>/tmp</code> on Unix-alikes and the value of <code>R_USER</code> on Windows. The path should be an absolute path not containing spaces (and it is best to avoid non-alphanumeric characters such as <code>+</code>).</p>
 <p>Some Unix-alike systems are set up to remove files and directories periodically from <code>/tmp</code>, for example by a <code>cron</code> job running <code>tmpwatch</code>. Set <code>TMPDIR</code> to another directory before starting long-running jobs on such a system.</p>
 <p>Note that <code>TMPDIR</code> will be used to execute <code>configure</code> scripts when installing packages, so if <code>/tmp</code> has been mounted as <code>noexec</code>, <code>TMPDIR</code> needs to be set to a directory from which execution is allowed.</p>
+<p>Footnotes</p>
 
 
 

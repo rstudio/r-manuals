@@ -150,7 +150,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
         <li>
-    <a class="dropdown-item" href="./index.html">
+    <a class="dropdown-item" href="./../r-intro/index.html">
  <span class="dropdown-text">An Introduction to R</span></a>
   </li>  
         <li>
@@ -283,36 +283,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./OS-facilities.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">OS facilities</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./A-sample-session.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">A sample session</span></a>
+  <a href="./A-sample-session.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">A sample session</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Invoking-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Invoking R</span></a>
+  <a href="./Invoking-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Invoking R</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./The-command-line-editor.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">The command-line editor</span></a>
+  <a href="./The-command-line-editor.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">The command-line editor</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Function and variable index</span></a>
+  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Function and variable index</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Concept index</span></a>
+  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Concept index</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">References</span></a>
+  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">References</span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -336,7 +346,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="grouping-loops-and-conditional-execution" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Grouping, loops and conditional execution</span></span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Grouping, loops and conditional execution</span></h1>
 </div>
 
 
@@ -353,7 +363,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="grouped-expressions" class="level2 section" data-number="9.1">
 <h2 class="section anchored" data-number="9.1" data-anchor-id="grouped-expressions"><span class="header-section-number">9.1</span> Grouped expressions</h2>
 <p>R is an expression language in the sense that its only command type is a function or expression which returns a result. Even an assignment is an expression whose result is the value assigned, and it may be used wherever any expression may be used; in particular multiple assignments are possible.</p>
-<p>Commands may be grouped together in braces, <var>{``expr_1</var><var>; ``…</var><var>; ``expr_m</var><code>}</code>, in which case the value of the group is the result of the last expression in the group evaluated. Since such a group is also an expression it may, for example, be itself included in parentheses and used as part of an even larger expression, and so on.</p>
+<p>Commands may be grouped together in braces, <code>{``expr_1; ``...; ``expr_m}</code>, in which case the value of the group is the result of the last expression in the group evaluated. Since such a group is also an expression it may, for example, be itself included in parentheses and used as part of an even larger expression, and so on.</p>
 </section>
 <section id="control-statements" class="level2 section page-columns page-full" data-number="9.2">
 <h2 class="section anchored" data-number="9.2" data-anchor-id="control-statements"><span class="header-section-number">9.2</span> Control statements</h2>
@@ -361,7 +371,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="subsection anchored" data-number="9.2.1" data-anchor-id="conditional-execution-if-statements"><span class="header-section-number">9.2.1</span> Conditional execution: <code>if</code> statements</h3>
 <p>The language has available a conditional construction of the form</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="cf">if</span> (expr_1) expr_2 <span class="cf">else</span> expr_3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>where <var>expr_1</var> must evaluate to a single logical value and the result of the entire expression is then evident.</p>
+<p>where <code>expr_1</code> must evaluate to a single logical value and the result of the entire expression is then evident.</p>
 <p>The “short-circuit” operators <code>&amp;&amp;</code> and <code>||</code> are often used as part of the condition in an <code>if</code> statement. Whereas <code>&amp;</code> and <code>|</code> apply element-wise to vectors, <code>&amp;&amp;</code> and <code>||</code> apply to vectors of length one, and only evaluate their second argument if necessary.</p>
 <p>There is a vectorized version of the <code>if</code>/<code>else</code> construct, the <code>ifelse</code> function. This has the form <code>ifelse(condition, a, b)</code> and returns a vector of the same length as <code>condition</code>, with elements <code>a[i]</code> if <code>condition[i]</code> is true, otherwise <code>b[i]</code> (where <code>a</code> and <code>b</code> are recycled as necessary).</p>
 </section>
@@ -369,7 +379,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="subsection anchored" data-number="9.2.2" data-anchor-id="repetitive-execution-for-loops-repeat-and-while"><span class="header-section-number">9.2.2</span> Repetitive execution: <code>for</code> loops, <code>repeat</code> and <code>while</code></h3>
 <p>There is also a <code>for</code> loop construction which has the form</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="cf">for</span> (name <span class="cf">in</span> expr_1) expr_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>where <var>name</var> is the loop variable. <var>expr_1</var> is a vector expression, (often a sequence like <code>1:20</code>), and <var>expr_2</var> is often a grouped expression with its sub-expressions written in terms of the dummy <em>name</em>. <var>expr_2</var> is repeatedly evaluated as <var>name</var> ranges through the values in the vector result of <var>expr_1</var>.</p>
+<p>where <code>name</code> is the loop variable. <code>expr_1</code> is a vector expression, (often a sequence like <code>1:20</code>), and <code>expr_2</code> is often a grouped expression with its sub-expressions written in terms of the dummy <em>name</em>. <code>expr_2</code> is repeatedly evaluated as <code>name</code> ranges through the values in the vector result of <code>expr_1</code>.</p>
 <div class="page-columns page-full"><p>As an example, suppose <code>ind</code> is a vector of class indicators and we wish to produce separate plots of <code>y</code> versus <code>x</code> within classes. One possibility here is to use <code>coplot()</code>,<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> which will produce an array of plots corresponding to each level of the factor. Another way to do this, now putting all plots on the one display, is as follows:</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;to be discussed later, or use <code>xyplot</code> from package <a href="https://CRAN.R-project.org/package=lattice"><strong>lattice</strong></a>.</p></li></div></div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> xc <span class="ot">&lt;-</span> <span class="fu">split</span>(x, ind)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> yc <span class="ot">&lt;-</span> <span class="fu">split</span>(y, ind)</span>
@@ -389,6 +399,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The <code>break</code> statement can be used to terminate any loop, possibly abnormally. This is the only way to terminate <code>repeat</code> loops.</p>
 <p>The <code>next</code> statement can be used to discontinue one particular cycle and skip to the “next”.</p>
 <p>Control statements are most often used in connection with <em>functions</em> which are discussed in <a href="Writing-your-own-functions.html#writing-your-own-functions">Writing your own functions</a>, and where more examples will emerge.</p>
+<p>Footnotes</p>
 
 
 </section>

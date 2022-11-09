@@ -150,7 +150,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
         <li>
-    <a class="dropdown-item" href="./index.html">
+    <a class="dropdown-item" href="./../r-intro/index.html">
  <span class="dropdown-text">An Introduction to R</span></a>
   </li>  
         <li>
@@ -283,36 +283,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./OS-facilities.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">OS facilities</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./A-sample-session.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">A sample session</span></a>
+  <a href="./A-sample-session.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">A sample session</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Invoking-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Invoking R</span></a>
+  <a href="./Invoking-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Invoking R</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./The-command-line-editor.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">The command-line editor</span></a>
+  <a href="./The-command-line-editor.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">The command-line editor</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Function and variable index</span></a>
+  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Function and variable index</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Concept index</span></a>
+  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Concept index</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">References</span></a>
+  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">References</span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -361,7 +371,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="graphical-procedures" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Graphical procedures</span></span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Graphical procedures</span></h1>
 </div>
 
 
@@ -393,37 +403,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="subsection anchored" data-number="12.1.1" data-anchor-id="the-plot-function"><span class="header-section-number">12.1.1</span> The <code>plot()</code> function</h3>
 <p>One of the most frequently used plotting functions in R is the <code>plot()</code> function. This is a <em>generic</em> function: the type of plot produced is dependent on the type or <em>class</em> of the first argument.</p>
 <dl>
-<dt><var>plot(``x</var><var>, ``y</var><code>)</code></dt>
+<dt><code>plot(``x, ``y)</code></dt>
 <dd>
 
 </dd>
-<dt><var>plot(``xy</var><code>)</code></dt>
+<dt><code>plot(``xy)</code></dt>
 <dd>
-<p>If <var>x</var> and <var>y</var> are vectors, <var>plot(``x</var><var>, ``y</var><code>)</code> produces a scatterplot of <var>y</var> against <var>x</var>. The same effect can be produced by supplying one argument (second form) as either a list containing two elements <var>x</var> and <var>y</var> or a two-column matrix.</p>
+<p>If <code>x</code> and <code>y</code> are vectors, <code>plot(``x, ``y)</code> produces a scatterplot of <code>y</code> against <code>x</code>. The same effect can be produced by supplying one argument (second form) as either a list containing two elements <code>x</code> and <code>y</code> or a two-column matrix.</p>
 </dd>
-<dt><var>plot(``x</var><code>)</code></dt>
+<dt><code>plot(``x)</code></dt>
 <dd>
-<p>If <var>x</var> is a time series, this produces a time-series plot. If <var>x</var> is a numeric vector, it produces a plot of the values in the vector against their index in the vector. If <var>x</var> is a complex vector, it produces a plot of imaginary versus real parts of the vector elements.</p>
+<p>If <code>x</code> is a time series, this produces a time-series plot. If <code>x</code> is a numeric vector, it produces a plot of the values in the vector against their index in the vector. If <code>x</code> is a complex vector, it produces a plot of imaginary versus real parts of the vector elements.</p>
 </dd>
-<dt><var>plot(``f</var><code>)</code></dt>
+<dt><code>plot(``f)</code></dt>
 <dd>
 
 </dd>
-<dt><var>plot(``f</var><var>, ``y</var><code>)</code></dt>
+<dt><code>plot(``f, ``y)</code></dt>
 <dd>
-<p><var>f</var> is a factor object, <var>y</var> is a numeric vector. The first form generates a bar plot of <var>f</var>; the second form produces boxplots of <var>y</var> for each level of <var>f</var>.</p>
+<p><code>f</code> is a factor object, <code>y</code> is a numeric vector. The first form generates a bar plot of <code>f</code>; the second form produces boxplots of <code>y</code> for each level of <code>f</code>.</p>
 </dd>
-<dt><var>plot(``df</var><code>)</code></dt>
+<dt><code>plot(``df)</code></dt>
 <dd>
 
 </dd>
-<dt><var>plot(~ ``expr</var><code>)</code></dt>
+<dt><code>plot(~ ``expr)</code></dt>
 <dd>
 
 </dd>
-<dt><var>plot(``y</var><var>~ ``expr</var><code>)</code></dt>
+<dt><code>plot(``y ~ ``expr)</code></dt>
 <dd>
-<p><var>df</var> is a data frame, <var>y</var> is any object, <var>expr</var> is a list of object names separated by <code>+</code> (e.g., <code>a + b + c</code>). The first two forms produce distributional plots of the variables in a data frame (first form) or of a number of named objects (second form). The third form plots <var>y</var> against every object named in <var>expr</var>.</p>
+<p><code>df</code> is a data frame, <code>y</code> is any object, <code>expr</code> is a list of object names separated by <code>+</code> (e.g., <code>a + b + c</code>). The first two forms produce distributional plots of the variables in a data frame (first form) or of a number of named objects (second form). The third form plots <code>y</code> against every object named in <code>expr</code>.</p>
 </dd>
 </dl>
 </section>
@@ -460,29 +470,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <dd>
 
 </dd>
-<dt><var>hist(x, nclass=``n</var><code>)</code></dt>
+<dt><code>hist(x, nclass=``n)</code></dt>
 <dd>
 
 </dd>
-<dt><var>hist(x, breaks=``b</var><code>, …)</code></dt>
+<dt><code>hist(x, breaks=``b, ...)</code></dt>
 <dd>
 <p><span id="index-hist-1"></span></p>
 <p>Produces a histogram of the numeric vector <code>x</code>. A sensible number of classes is usually chosen, but a recommendation can be given with the <code>nclass=</code> argument. Alternatively, the breakpoints can be specified exactly with the <code>breaks=</code> argument. If the <code>probability=TRUE</code> argument is given, the bars represent relative frequencies divided by bin width instead of counts.</p>
 </dd>
-<dt><code>dotchart(x, …)</code></dt>
+<dt><code>dotchart(x, ...)</code></dt>
 <dd>
 <p><span id="index-dotchart"></span></p>
 <p>Constructs a dotchart of the data in <code>x</code>. In a dotchart the <em>y</em>-axis gives a labelling of the data in <code>x</code> and the <em>x</em>-axis gives its value. For example it allows easy visual selection of all data entries with values lying in specified ranges.</p>
 </dd>
-<dt><code>image(x, y, z, …)</code></dt>
+<dt><code>image(x, y, z, ...)</code></dt>
 <dd>
 
 </dd>
-<dt><code>contour(x, y, z, …)</code></dt>
+<dt><code>contour(x, y, z, ...)</code></dt>
 <dd>
 
 </dd>
-<dt><code>persp(x, y, z, …)</code></dt>
+<dt><code>persp(x, y, z, ...)</code></dt>
 <dd>
 <p><span id="index-image"></span></p>
 <p>Plots of three variables. The <code>image</code> plot draws a grid of rectangles using different colours to represent the value of <code>z</code>, the <code>contour</code> plot draws contour lines to represent the value of <code>z</code>, and the <code>persp</code> plot draws a 3D surface.</p>
@@ -548,16 +558,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </dd>
 </dl>
 </dd>
-</dl>
-<p><var>xlab=``string</var><br>
-<var>ylab=``string</var></p>
-<p>: Axis labels for the <em>x</em> and <em>y</em> axes. Use these arguments to change the default labels, usually the names of the objects used in the call to the high-level plotting function.</p>
-<dl>
-<dt><var>main=``string</var></dt>
+<dt><code>xlab=``string</code></dt>
+<dd>
+
+</dd>
+<dt><code>ylab=``string</code></dt>
+<dd>
+<p>Axis labels for the <em>x</em> and <em>y</em> axes. Use these arguments to change the default labels, usually the names of the objects used in the call to the high-level plotting function.</p>
+</dd>
+<dt><code>main=``string</code></dt>
 <dd>
 <p>Figure title, placed at the top of the plot in a large font.</p>
 </dd>
-<dt><var>sub=``string</var></dt>
+<dt><code>sub=``string</code></dt>
 <dd>
 <p>Sub-title, placed just below the <em>x</em>-axis in a smaller font.</p>
 </dd>
@@ -578,7 +591,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span id="index-points"></span></p>
 <p>Adds points or connected lines to the current plot. <code>plot()</code>s <code>type=</code> argument can also be passed to these functions (and defaults to <code>"p"</code> for <code>points()</code> and <code>"l"</code> for <code>lines()</code>.)</p>
 </dd>
-<dt><code>text(x, y, labels, …)</code></dt>
+<dt><code>text(x, y, labels, ...)</code></dt>
 <dd>
 <p><span id="index-text"></span></p>
 <p>Add text to a plot at points given by <code>x, y</code>. Normally <code>labels</code> is an integer or character vector in which case <code>labels[i]</code> is plotted at point <code>(x[i], y[i])</code>. The default is <code>1:length(x)</code>.</p>
@@ -590,46 +603,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <dd>
 
 </dd>
-<dt><var>abline(h=``y</var><code>)</code></dt>
+<dt><code>abline(h=``y)</code></dt>
 <dd>
 
 </dd>
-<dt><var>abline(v=``x</var><code>)</code></dt>
+<dt><code>abline(v=``x)</code></dt>
 <dd>
 
 </dd>
-<dt><var>abline(``lm.obj</var><code>)</code></dt>
+<dt><code>abline(``lm.obj)</code></dt>
 <dd>
 <p><span id="index-abline"></span></p>
-<p>Adds a line of slope <code>b</code> and intercept <code>a</code> to the current plot. <var>h=``y</var> may be used to specify <em>y</em>-coordinates for the heights of horizontal lines to go across a plot, and <var>v=``x</var> similarly for the <em>x</em>-coordinates for vertical lines. Also <var>lm.obj</var> may be list with a <code>coefficients</code> component of length 2 (such as the result of model-fitting functions,) which are taken as an intercept and slope, in that order.</p>
+<p>Adds a line of slope <code>b</code> and intercept <code>a</code> to the current plot. <code>h=``y</code> may be used to specify <em>y</em>-coordinates for the heights of horizontal lines to go across a plot, and <code>v=``x</code> similarly for the <em>x</em>-coordinates for vertical lines. Also <code>lm.obj</code> may be list with a <code>coefficients</code> component of length 2 (such as the result of model-fitting functions,) which are taken as an intercept and slope, in that order.</p>
 </dd>
-<dt><code>polygon(x, y, …)</code></dt>
+<dt><code>polygon(x, y, ...)</code></dt>
 <dd>
 <p><span id="index-polygon"></span></p>
 <p>Draws a polygon defined by the ordered vertices in (<code>x</code>, <code>y</code>) and (optionally) shade it in with hatch lines, or fill it if the graphics device allows the filling of figures.</p>
 </dd>
-<dt><code>legend(x, y, legend, …)</code></dt>
+<dt><code>legend(x, y, legend, ...)</code></dt>
 <dd>
 <p><span id="index-legend"></span></p>
-<p>Adds a legend to the current plot at the specified position. Plotting characters, line styles, colors etc., are identified with the labels in the character vector <code>legend</code>. At least one other argument <var>v</var> (a vector the same length as <code>legend</code>) with the corresponding values of the plotting unit must also be given, as follows:</p>
+<p>Adds a legend to the current plot at the specified position. Plotting characters, line styles, colors etc., are identified with the labels in the character vector <code>legend</code>. At least one other argument <code>v</code> (a vector the same length as <code>legend</code>) with the corresponding values of the plotting unit must also be given, as follows:</p>
 <dl>
-<dt><var>legend( , fill=``v</var><code>)</code></dt>
+<dt><code>legend( , fill=``v)</code></dt>
 <dd>
 <p>Colors for filled boxes</p>
 </dd>
-<dt><var>legend( , col=``v</var><code>)</code></dt>
+<dt><code>legend( , col=``v)</code></dt>
 <dd>
 <p>Colors in which points or lines will be drawn</p>
 </dd>
-<dt><var>legend( , lty=``v</var><code>)</code></dt>
+<dt><code>legend( , lty=``v)</code></dt>
 <dd>
 <p>Line styles</p>
 </dd>
-<dt><var>legend( , lwd=``v</var><code>)</code></dt>
+<dt><code>legend( , lwd=``v)</code></dt>
 <dd>
 <p>Line widths</p>
 </dd>
-<dt><var>legend( , pch=``v</var><code>)</code></dt>
+<dt><code>legend( , pch=``v)</code></dt>
 <dd>
 <p>Plotting characters (character vector)</p>
 </dd>
@@ -640,7 +653,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span id="index-title"></span></p>
 <p>Adds a title <code>main</code> to the top of the current plot in a large font and (optionally) a sub-title <code>sub</code> at the bottom in a smaller font.</p>
 </dd>
-<dt><code>axis(side, …)</code></dt>
+<dt><code>axis(side, ...)</code></dt>
 <dd>
 <p><span id="index-axis"></span></p>
 <p>Adds an axis to the current plot on the side given by the first argument (1 to 4, counting clockwise from the bottom.) Other arguments control the positioning of the axis within or beside the plot, and tick positions and labels. Useful for adding custom axes after calling <code>plot()</code> with the <code>axes=FALSE</code> argument.</p>
@@ -721,11 +734,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Setting graphics parameters with the <code>par()</code> function changes the value of the parameters <em>permanently</em>, in the sense that all future calls to graphics functions (on the current device) will be affected by the new value. You can think of setting graphics parameters in this way as setting “default” values for the parameters, which will be used by all graphics functions unless an alternative value is given.</p>
 <p>Note that calls to <code>par()</code> <em>always</em> affect the global values of graphics parameters, even when <code>par()</code> is called from within a function. This is often undesirable behavior—usually we want to set some graphics parameters, do some plotting, and then restore the original values so as not to affect the user’s R session. You can restore the initial values by saving the result of <code>par()</code> when making changes, and restoring the initial values when plotting is complete.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> oldpar <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">col=</span><span class="dv">4</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  … plotting commands …</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  ... plotting commands ...</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">par</span>(oldpar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="page-columns page-full"><p>To save and restore <em>all</em> settable<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> graphical parameters use</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Some graphics parameters such as the size of the current device are for information only.</p></li></div></div>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> oldpar <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">no.readonly=</span><span class="cn">TRUE</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  … plotting commands …</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  ... plotting commands ...</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">par</span>(oldpar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="temporary-changes-arguments-to-graphics-functions" class="level3 subsection" data-number="12.4.2">
@@ -741,9 +754,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The following sections detail many of the commonly-used graphical parameters. The R help documentation for the <code>par()</code> function provides a more concise summary; this is provided as a somewhat more detailed alternative.</p>
 <p>Graphics parameters will be presented in the following form:</p>
 <dl>
-<dt><var>name</var><var>=``value</var></dt>
+<dt><code>name=``value</code></dt>
 <dd>
-<p>A description of the parameter’s effect. <var>name</var> is the name of the parameter, that is, the argument name to use in calls to <code>par()</code> or a graphics function. <var>value</var> is a typical value you might use when setting the parameter.</p>
+<p>A description of the parameter’s effect. <code>name</code> is the name of the parameter, that is, the argument name to use in calls to <code>par()</code> or a graphics function. <code>value</code> is a typical value you might use when setting the parameter.</p>
 </dd>
 </dl>
 <p>Note that <code>axes</code> is <strong>not</strong> a graphics parameter but an argument to a few <code>plot</code> methods: see <code>xaxt</code> and <code>yaxt</code>.</p>
@@ -1035,7 +1048,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <dd>
 
 </dd>
-<dt><code>…</code></dt>
+<dt><code>...</code></dt>
 <dd>
 <p>Each new call to a device driver function opens a new graphics device, thus extending by one the device list. This device becomes the current device, to which graphics output will be sent.</p>
 </dd>
@@ -1053,23 +1066,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span id="index-dev_002enext"></span></p>
 <p>Returns the number and name of the graphics device next to, or previous to the current device, respectively.</p>
 </dd>
-<dt><var>dev.set(which=``k</var><code>)</code></dt>
+<dt><code>dev.set(which=``k)</code></dt>
 <dd>
 <p><span id="index-dev_002eset"></span></p>
-<p>Can be used to change the current graphics device to the one at position <var>k</var> of the device list. Returns the number and label of the device.</p>
+<p>Can be used to change the current graphics device to the one at position <code>k</code> of the device list. Returns the number and label of the device.</p>
 </dd>
-<dt><var>dev.off(``k</var><code>)</code></dt>
+<dt><code>dev.off(``k)</code></dt>
 <dd>
 <p><span id="index-dev_002eoff"></span></p>
-<p>Terminate the graphics device at point <var>k</var> of the device list. For some devices, such as <code>postscript</code> devices, this will either print the file immediately or correctly complete the file for later printing, depending on how the device was initiated.</p>
+<p>Terminate the graphics device at point <code>k</code> of the device list. For some devices, such as <code>postscript</code> devices, this will either print the file immediately or correctly complete the file for later printing, depending on how the device was initiated.</p>
 </dd>
-<dt><var>dev.copy(device, …, which=``k</var><code>)</code></dt>
+<dt><code>dev.copy(device, ..., which=``k)</code></dt>
 <dd>
 
 </dd>
-<dt><var>dev.print(device, …, which=``k</var><code>)</code></dt>
+<dt><code>dev.print(device, ..., which=``k)</code></dt>
 <dd>
-<p>Make a copy of the device <var>k</var>. Here <code>device</code> is a device function, such as <code>postscript</code>, with extra arguments, if needed, specified by <code>…</code>. <code>dev.print</code> is similar, but the copied device is immediately closed, so that end actions, such as printing hardcopies, are immediately performed.</p>
+<p>Make a copy of the device <code>k</code>. Here <code>device</code> is a device function, such as <code>postscript</code>, with extra arguments, if needed, specified by <code>...</code>. <code>dev.print</code> is similar, but the copied device is immediately closed, so that end actions, such as printing hardcopies, are immediately performed.</p>
 </dd>
 <dt><code>graphics.off()</code></dt>
 <dd>
@@ -1086,6 +1099,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <p>and these can be accessed from R via the package <a href="https://CRAN.R-project.org/package=rggobi"><strong>rggobi</strong></a>, described at <a href="http://ggobi.org/rggobi.html" class="uri">http://ggobi.org/rggobi.html</a>.</p>
 <p>Also, package <a href="https://CRAN.R-project.org/package=rgl"><strong>rgl</strong></a> provides ways to interact with 3D plots, for example of surfaces.</p>
+<p>Footnotes</p>
 
 
 </section>

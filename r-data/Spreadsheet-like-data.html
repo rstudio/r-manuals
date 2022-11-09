@@ -154,7 +154,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">An Introduction to R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./index.html">
+    <a class="dropdown-item" href="./../r-data/index.html">
  <span class="dropdown-text">R Data Import/Export</span></a>
   </li>  
         <li>
@@ -260,11 +260,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">References</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link">Function and variable index</a>
   </div>
 </li>
@@ -273,6 +268,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./Concept-index.html" class="sidebar-item-text sidebar-link">Concept index</a>
   </div>
 </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">References</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -296,7 +306,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="spreadsheet-like-data" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Spreadsheet-like data</span></span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Spreadsheet-like data</span></h1>
 </div>
 
 
@@ -355,7 +365,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>If it is known that there will be no comments in the data file, it is safer (and may be faster) to use <code>comment.char = ""</code>.</p></li>
 <li><p><strong>Escapes</strong></p>
 <p>Many OSes have conventions for using backslash as an escape character in text files, but Windows does not (and uses backslash in path names). It is optional in R whether such conventions are applied to data files.</p>
-<p>Both <code>read.table</code> and <code>scan</code> have a logical argument <code>allowEscapes</code>. This is false by default, and backslashes are then only interpreted as (under circumstances described above) escaping quotes. If this set to be true, C-style escapes are interpreted, namely the control characters <code>\a, \b, \f, \n, \r, \t, \v</code> and octal and hexadecimal representations like <code>\040</code> and <code>\0x2A</code>. Any other escaped character is treated as itself, including backslash. Note that Unicode escapes such as <var>\u``xxxx</var> are never interpreted.</p></li>
+<p>Both <code>read.table</code> and <code>scan</code> have a logical argument <code>allowEscapes</code>. This is false by default, and backslashes are then only interpreted as (under circumstances described above) escaping quotes. If this set to be true, C-style escapes are interpreted, namely the control characters <code>\a, \b, \f, \n, \r, \t, \v</code> and octal and hexadecimal representations like <code>\040</code> and <code>\0x2A</code>. Any other escaped character is treated as itself, including backslash. Note that Unicode escapes such as <code>\u``xxxx</code> are never interpreted.</p></li>
 <li><p><strong>Encoding</strong></p>
 <p>This can be specified by the <code>fileEncoding</code> argument, for example</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fileEncoding <span class="ot">=</span> <span class="st">"UCS-2LE"</span>    <span class="co"># Windows 'Unicode' files</span></span>
@@ -481,6 +491,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The printed representation is clearly more useful than displaying the data as a 3-dimensional array.</p>
 <p>There is also a function <code>read.ftable</code> for reading in flat-like contingency tables from files. This has additional arguments for dealing with variants on how exactly the information on row and column variables names and levels is represented. The help page for <code>read.ftable</code> has some useful examples. The flat tables can be converted to standard contingency tables in array form using <code>as.table</code>.</p>
 <p>Note that flat tables are characterized by their “ragged” display of row (and maybe also column) labels. If the full grid of levels of the row variables is given, one should instead use <code>read.table</code> to read in the data, and create the contingency table from this using <code>xtabs</code>.</p>
+<p>Footnotes</p>
 
 
 </section>

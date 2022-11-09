@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R Manuals :: R Installation and Administration - 11&nbsp; Configuration on a Unix-alike</title>
+<title>R Manuals :: R Installation and Administration - Appendix B — Configuration on a Unix-alike</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -158,7 +158,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">R Data Import/Export</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./index.html">
+    <a class="dropdown-item" href="./../r-admin/index.html">
  <span class="dropdown-text">R Installation and Administration</span></a>
   </li>  
         <li>
@@ -185,7 +185,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Configuration on a Unix-alike</span></h1>
+      <h1 class="quarto-secondary-nav-title">Appendix B — Configuration on a Unix-alike</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -255,21 +255,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Essential-and-useful-other-programs-under-a-Unix-alike.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Essential and useful other programs under a Unix-alike</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Configuration-on-a-Unix-alike.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Configuration on a Unix-alike</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Platform-notes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Platform notes</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link">Function and variable index</a>
   </div>
 </li>
@@ -283,6 +268,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./Environment-variable-index.html" class="sidebar-item-text sidebar-link">Environment variable index</a>
   </div>
 </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Essential-and-useful-other-programs-under-a-Unix-alike.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Essential and useful other programs under a Unix-alike</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Configuration-on-a-Unix-alike.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Configuration on a Unix-alike</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Platform-notes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Platform notes</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -292,20 +302,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#configuration-options" id="toc-configuration-options" class="nav-link active" data-scroll-target="#configuration-options"><span class="toc-section-number">11.1</span>  Configuration options</a></li>
-  <li><a href="#internationalization-support" id="toc-internationalization-support" class="nav-link" data-scroll-target="#internationalization-support"><span class="toc-section-number">11.2</span>  Internationalization support</a></li>
-  <li><a href="#configuration-variables" id="toc-configuration-variables" class="nav-link" data-scroll-target="#configuration-variables"><span class="toc-section-number">11.3</span>  Configuration variables</a>
+  <li><a href="#configuration-options" id="toc-configuration-options" class="nav-link active" data-scroll-target="#configuration-options"><span class="toc-section-number">B.1</span>  Configuration options</a></li>
+  <li><a href="#internationalization-support" id="toc-internationalization-support" class="nav-link" data-scroll-target="#internationalization-support"><span class="toc-section-number">B.2</span>  Internationalization support</a></li>
+  <li><a href="#configuration-variables" id="toc-configuration-variables" class="nav-link" data-scroll-target="#configuration-variables"><span class="toc-section-number">B.3</span>  Configuration variables</a>
   <ul class="collapse">
-  <li><a href="#setting-paper-size" id="toc-setting-paper-size" class="nav-link" data-scroll-target="#setting-paper-size"><span class="toc-section-number">11.3.1</span>  Setting paper size</a></li>
-  <li><a href="#setting-the-browsers" id="toc-setting-the-browsers" class="nav-link" data-scroll-target="#setting-the-browsers"><span class="toc-section-number">11.3.2</span>  Setting the browsers</a></li>
-  <li><a href="#compilation-flags" id="toc-compilation-flags" class="nav-link" data-scroll-target="#compilation-flags"><span class="toc-section-number">11.3.3</span>  Compilation flags</a></li>
-  <li><a href="#making-manuals" id="toc-making-manuals" class="nav-link" data-scroll-target="#making-manuals"><span class="toc-section-number">11.3.4</span>  Making manuals</a></li>
+  <li><a href="#setting-paper-size" id="toc-setting-paper-size" class="nav-link" data-scroll-target="#setting-paper-size"><span class="toc-section-number">B.3.1</span>  Setting paper size</a></li>
+  <li><a href="#setting-the-browsers" id="toc-setting-the-browsers" class="nav-link" data-scroll-target="#setting-the-browsers"><span class="toc-section-number">B.3.2</span>  Setting the browsers</a></li>
+  <li><a href="#compilation-flags" id="toc-compilation-flags" class="nav-link" data-scroll-target="#compilation-flags"><span class="toc-section-number">B.3.3</span>  Compilation flags</a></li>
+  <li><a href="#making-manuals" id="toc-making-manuals" class="nav-link" data-scroll-target="#making-manuals"><span class="toc-section-number">B.3.4</span>  Making manuals</a></li>
   </ul></li>
-  <li><a href="#setting-the-shell" id="toc-setting-the-shell" class="nav-link" data-scroll-target="#setting-the-shell"><span class="toc-section-number">11.4</span>  Setting the shell</a></li>
-  <li><a href="#using-make" id="toc-using-make" class="nav-link" data-scroll-target="#using-make"><span class="toc-section-number">11.5</span>  Using make</a></li>
-  <li><a href="#using-fortran" id="toc-using-fortran" class="nav-link" data-scroll-target="#using-fortran"><span class="toc-section-number">11.6</span>  Using Fortran</a></li>
-  <li><a href="#compile-and-load-flags" id="toc-compile-and-load-flags" class="nav-link" data-scroll-target="#compile-and-load-flags"><span class="toc-section-number">11.7</span>  Compile and load flags</a></li>
-  <li><a href="#maintainer-mode" id="toc-maintainer-mode" class="nav-link" data-scroll-target="#maintainer-mode"><span class="toc-section-number">11.8</span>  Maintainer mode</a></li>
+  <li><a href="#setting-the-shell" id="toc-setting-the-shell" class="nav-link" data-scroll-target="#setting-the-shell"><span class="toc-section-number">B.4</span>  Setting the shell</a></li>
+  <li><a href="#using-make" id="toc-using-make" class="nav-link" data-scroll-target="#using-make"><span class="toc-section-number">B.5</span>  Using make</a></li>
+  <li><a href="#using-fortran" id="toc-using-fortran" class="nav-link" data-scroll-target="#using-fortran"><span class="toc-section-number">B.6</span>  Using Fortran</a></li>
+  <li><a href="#compile-and-load-flags" id="toc-compile-and-load-flags" class="nav-link" data-scroll-target="#compile-and-load-flags"><span class="toc-section-number">B.7</span>  Compile and load flags</a></li>
+  <li><a href="#maintainer-mode" id="toc-maintainer-mode" class="nav-link" data-scroll-target="#maintainer-mode"><span class="toc-section-number">B.8</span>  Maintainer mode</a></li>
   </ul>
 </nav>
     </div>
@@ -314,7 +324,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="configuration-on-a-unix-alike" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Configuration on a Unix-alike</span></span></h1>
+<h1 class="title d-none d-lg-block">Appendix B — Configuration on a Unix-alike</h1>
 </div>
 
 
@@ -328,8 +338,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="configuration-options" class="level2 section page-columns page-full" data-number="11.1">
-<h2 class="section anchored" data-number="11.1" data-anchor-id="configuration-options"><span class="header-section-number">11.1</span> Configuration options</h2>
+<section id="configuration-options" class="level2 section page-columns page-full" data-number="B.1">
+<h2 class="section anchored" data-number="B.1" data-anchor-id="configuration-options"><span class="header-section-number">B.1</span> Configuration options</h2>
 <p><code>configure</code> has many options: running</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>.<span class="sc">/</span>configure <span class="sc">--</span>help</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>will give a list. Probably the most important ones not covered elsewhere are (defaults in brackets)</p>
@@ -338,13 +348,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <dd>
 <p>use the X Window System [yes]</p>
 </dd>
-<dt><var>--x-includes=``DIR</var></dt>
+<dt><code>--x-includes=DIR</code></dt>
 <dd>
-<p>X include files are in <var>DIR</var></p>
+<p>X include files are in <code>DIR</code></p>
 </dd>
-<dt><var>--x-libraries=``DIR</var></dt>
+<dt><code>--x-libraries=DIR</code></dt>
 <dd>
-<p>X library files are in <var>DIR</var></p>
+<p>X library files are in <code>DIR</code></p>
 </dd>
 <dt><code>--with-readline</code></dt>
 <dd>
@@ -370,18 +380,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>You can use <code>--without-foo</code> or <code>--disable-foo</code> for the negatives.</p>
 <p>You will want to use <code>--disable-R-profiling</code> if you are building a profiled executable of R (e.g.&nbsp;with <code>-pg)</code>. Support for R profiling requires OS support for POSIX threads (<em>aka</em> <code>pthreads</code>), which are available on all mainstream Unix-alike platforms.</p>
 <div class="page-columns page-full"><p>Flag <code>--enable-R-shlib</code> causes the make process to build R as a dynamic (shared) library, typically called <code>libR.so</code>, and link the main R executable <code>R.bin</code> against that library. This can only be done if all the code (including system libraries) can be compiled into a dynamic library, and there may be a performance<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> penalty. So you probably only want this if you will be using an application which embeds R. Note that C code in packages installed on an R system linked with <code>--enable-R-shlib</code> is linked against the dynamic library and so such packages cannot be used from an R system built in the default way. Also, because packages are linked against R they are on some OSes also linked against the dynamic libraries R itself is linked against, and this can lead to symbol conflicts.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;We have measured 15–20% on <code>i686</code> Linux and around 10% on <code>x86_64</code> Linux.</p></li></div></div>
-<div class="page-columns page-full"><p>For maximally effective use of <code>valgrind</code>, R should be compiled with valgrind instrumentation. The <code>configure</code> option is <var>--with-valgrind-instrumentation=``level</var>, where <var>level</var> is 0, 1 or 2. (Level 0 is the default and does not add anything.) The system headers for <code>valgrind</code> can be requested by option <code>--with-system-valgrind-headers</code>: they will be used if present (on Linux they may be in a separate package such as <strong>valgrind-devel</strong>). Note though that there is no guarantee that the code in R will be compatible with very old<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> or future <code>valgrind</code> headers.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;We believe that versions 3.4.0 to 3.15.0 are compatible.</p></li></div></div>
+<div class="page-columns page-full"><p>For maximally effective use of <code>valgrind</code>, R should be compiled with valgrind instrumentation. The <code>configure</code> option is <code>--with-valgrind-instrumentation=level</code>, where <code>level</code> is 0, 1 or 2. (Level 0 is the default and does not add anything.) The system headers for <code>valgrind</code> can be requested by option <code>--with-system-valgrind-headers</code>: they will be used if present (on Linux they may be in a separate package such as <strong>valgrind-devel</strong>). Note though that there is no guarantee that the code in R will be compatible with very old<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> or future <code>valgrind</code> headers.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;We believe that versions 3.4.0 to 3.15.0 are compatible.</p></li></div></div>
 <p>If you need to re-configure R with different options you may need to run <code>make clean</code> or even <code>make distclean</code> before doing so.</p>
 <p>The <code>configure</code> script has other generic options added by <code>autoconf</code> and which are not supported for R: in particular building for one architecture on a different host is not possible.</p>
 </section>
-<section id="internationalization-support" class="level2 section" data-number="11.2">
-<h2 class="section anchored" data-number="11.2" data-anchor-id="internationalization-support"><span class="header-section-number">11.2</span> Internationalization support</h2>
+<section id="internationalization-support" class="level2 section" data-number="B.2">
+<h2 class="section anchored" data-number="B.2" data-anchor-id="internationalization-support"><span class="header-section-number">B.2</span> Internationalization support</h2>
 <p>Translation of messages is supported via GNU <code>gettext</code> unless disabled by the configure option <code>--disable-nls</code>. The <code>configure</code> report will show <code>NLS</code> as one of the ‘Additional capabilities’ if support has been compiled in, and running in an English locale (but not the <code>C</code> locale) will include</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>  Natural language support but running <span class="cf">in</span> an English locale</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>in the greeting on starting R.</p>
 </section>
-<section id="configuration-variables" class="level2 section" data-number="11.3">
-<h2 class="section anchored" data-number="11.3" data-anchor-id="configuration-variables"><span class="header-section-number">11.3</span> Configuration variables</h2>
+<section id="configuration-variables" class="level2 section" data-number="B.3">
+<h2 class="section anchored" data-number="B.3" data-anchor-id="configuration-variables"><span class="header-section-number">B.3</span> Configuration variables</h2>
 <p>If you need or want to set certain configure variables to something other than their default, you can do that by either editing the file <code>config.site</code> (which documents many of the variables you might want to set: others can be seen in file <code>etc/Renviron.in</code>) or on the command line as</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>.<span class="sc">/</span>configure VAR<span class="ot">=</span>value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If you are building in a directory different from the sources, there can be copies of <code>config.site</code> in the source and the build directories, and both will be read (in that order). In addition, if there is a file <code>~/.R/config</code>, it is read between the <code>config.site</code> files in the source and the build directories.</p>
@@ -389,39 +399,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>These variables are <em>precious</em>, implying that they do not have to be exported to the environment, are kept in the cache even if not specified on the command line, checked for consistency between two configure runs (provided that caching is used), and are kept during automatic reconfiguration as if having been passed as command line arguments, even if no cache is used.</p>
 <p>See the variable output section of <code>configure --help</code> for a list of all these variables.</p>
 <p>If you find you need to alter configure variables, it is worth noting that some settings may be cached in the file <code>config.cache</code>, and it is a good idea to remove that file (if it exists) before re-configuring. Note that caching is turned <em>off</em> by default: use the command line option <code>--config-cache</code> (or <code>-C</code>) to enable caching.</p>
-<section id="setting-paper-size" class="level3 subsection" data-number="11.3.1">
-<h3 class="subsection anchored" data-number="11.3.1" data-anchor-id="setting-paper-size"><span class="header-section-number">11.3.1</span> Setting paper size</h3>
+<section id="setting-paper-size" class="level3 subsection" data-number="B.3.1">
+<h3 class="subsection anchored" data-number="B.3.1" data-anchor-id="setting-paper-size"><span class="header-section-number">B.3.1</span> Setting paper size</h3>
 <p>One common variable to change is <code>R_PAPERSIZE</code>, which defaults to <code>a4</code>, not <code>letter</code>. (Valid values are <code>a4</code>, <code>letter</code>, <code>legal</code> and <code>executive</code>.)</p>
 <p>This is used both when configuring R to set the default, and when running R to override the default. It is also used to set the paper size when making PDF manuals.</p>
 <p>The configure default will most often be <code>a4</code> if <code>R_PAPERSIZE</code> is unset. (If the program <code>paperconf</code> is found, present in many Linux distributions, or the environment variable <code>PAPERSIZE</code> is set, these are used to produce the default.)</p>
 </section>
-<section id="setting-the-browsers" class="level3 subsection" data-number="11.3.2">
-<h3 class="subsection anchored" data-number="11.3.2" data-anchor-id="setting-the-browsers"><span class="header-section-number">11.3.2</span> Setting the browsers</h3>
+<section id="setting-the-browsers" class="level3 subsection" data-number="B.3.2">
+<h3 class="subsection anchored" data-number="B.3.2" data-anchor-id="setting-the-browsers"><span class="header-section-number">B.3.2</span> Setting the browsers</h3>
 <p>Another precious variable is <code>R_BROWSER</code>, the default HTML browser, which should take a value of an executable in the user’s path or specify a full path.</p>
 <p>Its counterpart for PDF files is <code>R_PDFVIEWER</code>.</p>
 </section>
-<section id="compilation-flags" class="level3 subsection" data-number="11.3.3">
-<h3 class="subsection anchored" data-number="11.3.3" data-anchor-id="compilation-flags"><span class="header-section-number">11.3.3</span> Compilation flags</h3>
+<section id="compilation-flags" class="level3 subsection" data-number="B.3.3">
+<h3 class="subsection anchored" data-number="B.3.3" data-anchor-id="compilation-flags"><span class="header-section-number">B.3.3</span> Compilation flags</h3>
 <p>If you have libraries and header files, e.g., for GNU readline, in non-system directories, use the variables <code>LDFLAGS</code> (for libraries, using <code>-L</code> flags to be passed to the linker) and <code>CPPFLAGS</code> (for header files, using <code>-I</code> flags to be passed to the C/C++ preprocessors), respectively, to specify these locations. These default to <code>-L/usr/local/lib</code> (<code>LDFLAGS</code>, <code>-L/usr/local/lib64</code> on most 64-bit Linux OSes) and <code>-I/usr/local/include</code> (<code>CPPFLAGS</code>, but note that on most systems <code>/usr/local/include</code> is regarded as a system include directory and so instances in that macro will be skipped) to catch the most common cases. If libraries are still not found, then maybe your compiler/linker does not support re-ordering of <code>-L</code> and <code>-l</code> flags. In this case, use a different compiler (or a front-end shell script which does the re-ordering).</p>
 <p>These flags can also be used to build a faster-running version of R. On most platforms using <code>gcc</code>, having <code>-O3</code> in <code>CFLAGS</code> and <code>FFLAGS</code> produces worthwhile performance gains with <code>gcc</code> and <code>gfortran</code>, but may result in a less reliable build (both segfaults and incorrect numeric computations have been seen). On systems using the GNU linker (especially those using R as a shared library), it is likely that including <code>-Wl,-O1</code> in <code>LDFLAGS</code> is worthwhile, and <code>'-Bdirect,--hash-style=both,-Wl,-O1</code>’ is recommended at <a href="https://lwn.net/Articles/192624/" class="uri">https://lwn.net/Articles/192624/</a>. Tuning compilation to a specific CPU family (e.g.&nbsp;<code>-mtune=native</code> for <code>gcc</code>) can give worthwhile performance gains, especially on older architectures such as <code>ix86</code>.</p>
 </section>
-<section id="making-manuals" class="level3 subsection" data-number="11.3.4">
-<h3 class="subsection anchored" data-number="11.3.4" data-anchor-id="making-manuals"><span class="header-section-number">11.3.4</span> Making manuals</h3>
+<section id="making-manuals" class="level3 subsection" data-number="B.3.4">
+<h3 class="subsection anchored" data-number="B.3.4" data-anchor-id="making-manuals"><span class="header-section-number">B.3.4</span> Making manuals</h3>
 <p>The default settings for making the manuals are controlled by <code>R_RD4PDF</code> and <code>R_PAPERSIZE</code>.</p>
 </section>
 </section>
-<section id="setting-the-shell" class="level2 section" data-number="11.4">
-<h2 class="section anchored" data-number="11.4" data-anchor-id="setting-the-shell"><span class="header-section-number">11.4</span> Setting the shell</h2>
+<section id="setting-the-shell" class="level2 section" data-number="B.4">
+<h2 class="section anchored" data-number="B.4" data-anchor-id="setting-the-shell"><span class="header-section-number">B.4</span> Setting the shell</h2>
 <p>By default the shell scripts such as <code>R</code> will be <code>#!/bin/sh</code> scripts (or using the <code>SHELL</code> chosen by <code>configure</code>). This is almost always satisfactory, but on a few systems <code>/bin/sh</code> is not a Bourne shell or clone, and the shell to be used can be changed by setting the configure variable <code>R_SHELL</code> to a suitable value (a full path to a shell, e.g. <code>/usr/local/bin/bash</code>).</p>
 </section>
-<section id="using-make" class="level2 section" data-number="11.5">
-<h2 class="section anchored" data-number="11.5" data-anchor-id="using-make"><span class="header-section-number">11.5</span> Using make</h2>
+<section id="using-make" class="level2 section" data-number="B.5">
+<h2 class="section anchored" data-number="B.5" data-anchor-id="using-make"><span class="header-section-number">B.5</span> Using make</h2>
 <p>To build in a separate directory you need a <code>make</code> that supports the <code>VPATH</code> variable, for example GNU <code>make</code> and <code>dmake</code>.</p>
 <p>If you want to use a <code>make</code> by another name, for example if your GNU <code>make</code> is called <code>gmake</code>, you need to set the variable <code>MAKE</code> at configure time, for example</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>.<span class="sc">/</span>configure MAKE<span class="ot">=</span>gmake</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="using-fortran" class="level2 section" data-number="11.6">
-<h2 class="section anchored" data-number="11.6" data-anchor-id="using-fortran"><span class="header-section-number">11.6</span> Using Fortran</h2>
+<section id="using-fortran" class="level2 section" data-number="B.6">
+<h2 class="section anchored" data-number="B.6" data-anchor-id="using-fortran"><span class="header-section-number">B.6</span> Using Fortran</h2>
 <p>To compile R, you need a Fortran 90 compiler. The current default is to search for <code>gfortran</code>, <code>g95</code>, <code>xlf95</code> <code>f95</code>, <code>fort</code>, <code>ifort</code>, <code>ifc</code>, <code>efc</code>, <code>pgfortran</code>, <code>pgf95</code> <code>lf95</code>, <code>ftn</code>, <code>nagfor</code>, <code>xlf90</code>, <code>f90</code>, <code>pgf90</code>, <code>pghpf</code>, <code>epcf90</code>. (Note that these are searched for by name, without checking the standard of Fortran they support.) The command and flags used should support fixed-form Fortran with extension <code>.f</code>: in the unusual case that a specific flag is needed for free-form Fortran with extension <code>.f90</code> or <code>.f95</code>, this can be specified as part of <code>FCFLAGS</code>.</p>
 <p>The search mechanism can be changed using the configure variable <code>FC</code> which specifies the command that runs the Fortran compiler. If your Fortran compiler is in a non-standard location, you should set the environment variable <code>PATH</code> accordingly before running <code>configure</code>, or use the configure variable <code>FC</code> to specify its full path.</p>
 <p>If your Fortran libraries are in slightly peculiar places, you should also look at <code>LD_LIBRARY_PATH</code> (or your system’s equivalent) to make sure that all libraries are on this path.</p>
@@ -430,8 +440,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Some of the Fortran code makes use of <code>DOUBLE COMPLEX</code> and <code>COMPLEX*16</code> variables. This is checked for at configure time, as well as its equivalence to the <code>Rcomplex</code> C structure defined in <code>R_ext/Complex.h</code>.</p>
 <p><code>gfortran</code>&nbsp;10 by default gives a compilation error for the previously widespread practice of passing a Fortran array element where an array is expected, or a scalar instead of a length-one array. See <a href="https://gcc.gnu.org/gcc-10/porting_to.html" class="uri">https://gcc.gnu.org/gcc-10/porting_to.html</a>. <code>gfortran</code>&nbsp;12 errors in more cases of this.</p>
 </section>
-<section id="compile-and-load-flags" class="level2 section" data-number="11.7">
-<h2 class="section anchored" data-number="11.7" data-anchor-id="compile-and-load-flags"><span class="header-section-number">11.7</span> Compile and load flags</h2>
+<section id="compile-and-load-flags" class="level2 section" data-number="B.7">
+<h2 class="section anchored" data-number="B.7" data-anchor-id="compile-and-load-flags"><span class="header-section-number">B.7</span> Compile and load flags</h2>
 <p>A wide range of flags can be set in the file <code>config.site</code> or as configure variables on the command line. We have already mentioned</p>
 <dl>
 <dt><code>CPPFLAGS</code></dt>
@@ -513,13 +523,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Beware</strong>: it may be necessary to set <code>CFLAGS</code> and <code>FFLAGS</code> in ways compatible with the libraries to be used: one possible issue is the alignment of doubles, another is the way structures are passed.</p>
 <p>On some platforms <code>configure</code> will select additional flags for <code>CFLAGS</code>, <code>CPPFLAGS</code> and <code>LIBS</code> in <code>R_XTRA_CFLAGS</code> (and so on). These are for options which are always required, for example to force IEC&nbsp;60559 compliance.</p>
 </section>
-<section id="maintainer-mode" class="level2 section page-columns page-full" data-number="11.8">
-<h2 class="section anchored" data-number="11.8" data-anchor-id="maintainer-mode"><span class="header-section-number">11.8</span> Maintainer mode</h2>
+<section id="maintainer-mode" class="level2 section page-columns page-full" data-number="B.8">
+<h2 class="section anchored" data-number="B.8" data-anchor-id="maintainer-mode"><span class="header-section-number">B.8</span> Maintainer mode</h2>
 <p>There are several files that are part of the R sources but can be re-generated from their own sources by configuring with option <code>--enable-maintainer-mode</code> and then running <code>make</code> in the build directory. This requires other tools to be installed, discussed in the rest of this section.</p>
 <div class="page-columns page-full"><p>File <code>configure</code> is created from <code>configure.ac</code> and the files under <code>m4</code> by <code>autoconf</code> and <code>aclocal</code> (part of the <strong>automake</strong> package). There is a formal version requirement on <code>autoconf</code> of 2.69 or later, but it is unlikely that anything other than the most recent versions<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> have been thoroughly tested.</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;at the time of revision of this para in late 2021, <strong>autoconf-2.71</strong> and <strong>automake-1.16.5</strong>.</p></li></div></div>
 <p>File <code>src/include/config.h</code> is created by <code>autoheader</code> (part of <strong>autoconf</strong>).</p>
 <p>Grammar files <code>*.y</code> are converted to C sources by an implementation of <code>yacc</code>, usually <code>bison -y</code>: these are found in <code>src/main</code> and <code>src/library/tools/src</code>. It is known that earlier versions of <code>bison</code> generate code which reads (and in some cases writes) outside array bounds: <code>bison</code> 2.6.1 was found to be satisfactory.</p>
 <div class="page-columns page-full"><p>The ultimate sources for package <strong>compiler</strong> are in its <code>noweb</code> directory. To re-create the sources from <code>src/library/compiler/noweb/compiler.nw</code>, the command <code>notangle</code> is required. Some Linux distributions include this command in package <strong>noweb</strong>. It can also be installed from the sources at <a href="https://www.cs.tufts.edu/~nr/noweb/" class="uri">https://www.cs.tufts.edu/~nr/noweb/</a><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. The package sources are only re-created even in maintainer mode if <code>src/library/compiler/noweb/compiler.nw</code> has been updated.</p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;The links there have proved difficult to access, in which case grab the copy made available at <a href="https://developer.r-project.org/noweb-2.11b.tgz" class="uri">https://developer.r-project.org/noweb-2.11b.tgz</a>.</p></li></div></div>
+<p>Footnotes</p>
 
 
 </section>
@@ -643,12 +654,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./Essential-and-useful-other-programs-under-a-Unix-alike.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Essential and useful other programs under a Unix-alike</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Essential and useful other programs under a Unix-alike</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./Platform-notes.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Platform notes</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Platform notes</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

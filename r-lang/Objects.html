@@ -166,7 +166,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">Writing R Extensions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./index.html">
+    <a class="dropdown-item" href="./../r-lang/index.html">
  <span class="dropdown-text">R Language Definition</span></a>
   </li>  
         <li>
@@ -268,11 +268,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./Concept-Index.html" class="sidebar-item-text sidebar-link">Concept Index</a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">References</span></a>
+  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">References</span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -320,7 +330,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="objects" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Objects</span></span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Objects</span></h1>
 </div>
 
 
@@ -337,7 +347,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In every computer language variables provide a means of accessing the data stored in memory. R does not provide direct access to the computer’s memory but rather provides a number of specialized data structures we will refer to as objects. These objects are referred to through symbols or variables. In R, however, the symbols are themselves objects and can be manipulated in the same way as any other object. This is different from many other languages and has wide ranging effects.</p>
 <p>In this chapter we provide preliminary descriptions of the various data structures provided in R. More detailed discussions of many of them will be found in the subsequent chapters. The R specific function <code>typeof</code> returns the <em>type</em> of an R object. Note that in the C code underlying R, all objects are pointers to a structure with typedef <code>SEXPREC</code>; the different R data types are represented in C by <code>SEXPTYPE</code>, which determines how the information in the various parts of the structure is used.</p>
 <p>The following table describes the possible values returned by <code>typeof</code> and what they are.</p>
-<div class="blockquotes-block">
 <blockquote class="blockquote">
 <table class="table">
 <tbody>
@@ -440,7 +449,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </blockquote>
-</div>
 <p>Users cannot easily get hold of objects of types marked with a ‘***’.</p>
 <p>Function <code>mode</code> gives information about the <em>mode</em> of an object in the sense of Becker, Chambers &amp; Wilks (1988), and is more compatible with other implementations of the S language. Finally, the function <code>storage.mode</code> returns the <em>storage mode</em> of its argument in the sense of Becker et al.&nbsp;(1988). It is generally used when calling functions written in another language, such as C or FORTRAN, to ensure that R objects have the data type expected by the routine being called. (In the S language, vectors with integer or real values are both of mode <code>"numeric"</code>, so their storage modes need to be distinguished.)</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> x <span class="op">&lt;-</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span></span>
@@ -457,7 +465,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="subsection anchored" data-number="2.1.1" data-anchor-id="vectors"><span class="header-section-number">2.1.1</span> Vectors</h3>
 <p>Vectors can be thought of as contiguous cells containing data. Cells are accessed through indexing operations such as <code>x[5]</code>. More details are given in <a href="Evaluation-of-expressions.html#indexing">Indexing</a>.</p>
 <p>R has six basic (‘atomic’) vector types: logical, integer, real, complex, string (or character) and raw. The modes and storage modes for the different vector types are listed in the following table.</p>
-<div class="blockquotes-block">
 <blockquote class="blockquote">
 <table class="table">
 <thead>
@@ -501,7 +508,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </blockquote>
-</div>
 <p>Single numbers, such as <code>4.2</code>, and strings, such as <code>"four point two"</code> are still vectors, of length 1; there are no more basic types. Vectors with length zero are possible (and useful).</p>
 <p>String vectors have mode and storage mode <code>"character"</code>. A single element of a character vector is often referred to as a <em>character string</em>.</p>
 </section>
@@ -528,7 +534,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="function-objects" class="level3 subsection" data-number="2.1.6">
 <h3 class="subsection anchored" data-number="2.1.6" data-anchor-id="function-objects"><span class="header-section-number">2.1.6</span> Function objects</h3>
-<p>In R functions are objects and can be manipulated in much the same way as any other object. Functions (or more precisely, function closures) have three basic components: a formal argument list, a body and an environment. The argument list is a comma-separated list of arguments. An argument can be a symbol, or a <var>symbol</var><var>= ``default</var>’ construct, or the special argument <code>...</code>. The second form of argument is used to specify a default value for an argument. This value will be used if the function is called without any value specified for that argument. The <code>...</code> argument is special and can contain any number of arguments. It is generally used if the number of arguments is unknown or in cases where the arguments will be passed on to another function.</p>
+<p>In R functions are objects and can be manipulated in much the same way as any other object. Functions (or more precisely, function closures) have three basic components: a formal argument list, a body and an environment. The argument list is a comma-separated list of arguments. An argument can be a symbol, or a <code>symbol = default</code> construct, or the special argument <code>...</code>. The second form of argument is used to specify a default value for an argument. This value will be used if the function is called without any value specified for that argument. The <code>...</code> argument is special and can contain any number of arguments. It is generally used if the number of arguments is unknown or in cases where the arguments will be passed on to another function.</p>
 <p>The body is a parsed R statement. It is usually a collection of statements in braces but it can be a single statement, a symbol or even a constant.</p>
 <p>A function’s environment is the environment that was active at the time that the function was created. Any symbols bound in that environment are <em>captured</em> and available to the function. This combination of the code of the function and the bindings in its environment is called a ‘function closure’, a term from functional programming theory. In this document we generally use the term ‘function’, but use ‘closure’ to emphasize the importance of the attached environment.</p>
 <p>It is possible to extract and manipulate the three parts of a closure object using <code>formals</code>, <code>body</code>, and <code>environment</code> constructs (all three can also be used on the left hand side of assignments). The last of these can be used to remove unwanted environment capture.</p>
@@ -632,6 +638,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Data frames are the R structures which most closely mimic the SAS or SPSS data set, i.e.&nbsp;a “cases by variables” matrix of data.</p>
 <p>A data frame is a list of vectors, factors, and/or matrices all having the same length (number of rows in the case of matrices). In addition, a data frame generally has a <code>names</code> attribute labeling the variables and a <code>row.names</code> attribute for labeling the cases.</p>
 <p>A data frame can contain a list that is the same length as the other components. The list can contain elements of differing lengths thereby providing a data structure for ragged arrays. However, as of this writing such arrays are not generally handled correctly.</p>
+<p>Footnotes</p>
 
 
 </section>

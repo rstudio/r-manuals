@@ -150,7 +150,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
         <li>
-    <a class="dropdown-item" href="./index.html">
+    <a class="dropdown-item" href="./../r-intro/index.html">
  <span class="dropdown-text">An Introduction to R</span></a>
   </li>  
         <li>
@@ -283,36 +283,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./OS-facilities.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">OS facilities</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./A-sample-session.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">A sample session</span></a>
+  <a href="./A-sample-session.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">A sample session</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Invoking-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Invoking R</span></a>
+  <a href="./Invoking-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Invoking R</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./The-command-line-editor.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">The command-line editor</span></a>
+  <a href="./The-command-line-editor.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">The command-line editor</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Function and variable index</span></a>
+  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Function and variable index</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Concept index</span></a>
+  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Concept index</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">References</span></a>
+  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">References</span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -338,7 +348,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="simple-manipulations-numbers-and-vectors" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Simple manipulations; numbers and vectors</span></span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Simple manipulations; numbers and vectors</span></h1>
 </div>
 
 
@@ -391,16 +401,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="generating-regular-sequences" class="level2 section" data-number="2.3">
 <h2 class="section anchored" data-number="2.3" data-anchor-id="generating-regular-sequences"><span class="header-section-number">2.3</span> Generating regular sequences</h2>
-<p>R has a number of facilities for generating commonly used sequences of numbers. For example <code>1:30</code> is the vector <code>c(1, 2, …, 29, 30)</code>. The colon operator has high priority within an expression, so, for example <code>2*1:15</code> is the vector <code>c(2, 4, …, 28, 30)</code>. Put <code>n &lt;- 10</code> and compare the sequences <code>1:n-1</code> and <code>1:(n-1)</code>.</p>
+<p>R has a number of facilities for generating commonly used sequences of numbers. For example <code>1:30</code> is the vector <code>c(1, 2, ..., 29, 30)</code>. The colon operator has high priority within an expression, so, for example <code>2*1:15</code> is the vector <code>c(2, 4, ..., 28, 30)</code>. Put <code>n &lt;- 10</code> and compare the sequences <code>1:n-1</code> and <code>1:(n-1)</code>.</p>
 <p>The construction <code>30:1</code> may be used to generate a sequence backwards.</p>
 <p>The function <code>seq()</code> is a more general facility for generating sequences. It has five arguments, only some of which may be specified in any one call. The first two arguments, if given, specify the beginning and end of the sequence, and if these are the only two arguments given the result is the same as the colon operator. That is <code>seq(2,10)</code> is the same vector as <code>2:10</code>.</p>
-<p>Arguments to <code>seq()</code>, and to many other R functions, can also be given in named form, in which case the order in which they appear is irrelevant. The first two arguments may be named <var>from=``value</var> and <var>to=``value</var>; thus <code>seq(1,30)</code>, <code>seq(from=1, to=30)</code> and <code>seq(to=30, from=1)</code> are all the same as <code>1:30</code>. The next two arguments to <code>seq()</code> may be named <var>by=``value</var> and <var>length=``value</var>, which specify a step size and a length for the sequence respectively. If neither of these is given, the default <code>by=1</code> is assumed.</p>
+<p>Arguments to <code>seq()</code>, and to many other R functions, can also be given in named form, in which case the order in which they appear is irrelevant. The first two arguments may be named <code>from=``value</code> and <code>to=``value</code>; thus <code>seq(1,30)</code>, <code>seq(from=1, to=30)</code> and <code>seq(to=30, from=1)</code> are all the same as <code>1:30</code>. The next two arguments to <code>seq()</code> may be named <code>by=``value</code> and <code>length=``value</code>, which specify a step size and a length for the sequence respectively. If neither of these is given, the default <code>by=1</code> is assumed.</p>
 <p>For example</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">by=</span>.<span class="dv">2</span>) <span class="ot">-&gt;</span> s3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>generates in <code>s3</code> the vector <code>c(-5.0, -4.8, -4.6, …, 4.6, 4.8, 5.0)</code>. Similarly</p>
+<p>generates in <code>s3</code> the vector <code>c(-5.0, -4.8, -4.6, ..., 4.6, 4.8, 5.0)</code>. Similarly</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> s4 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">length=</span><span class="dv">51</span>, <span class="at">from=</span><span class="sc">-</span><span class="dv">5</span>, <span class="at">by=</span>.<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>generates the same vector in <code>s4</code>.</p>
-<p>The fifth argument may be named <var>along=``vector</var>, which is normally used as the only argument to create the sequence <var>1, 2, …, length(``vector</var><code>)</code>, or the empty sequence if the vector is empty (as it can be).</p>
+<p>The fifth argument may be named <code>along=``vector</code>, which is normally used as the only argument to create the sequence <code>1, 2, ..., length(``vector)</code>, or the empty sequence if the vector is empty (as it can be).</p>
 <p>A related function is <code>rep()</code> which can be used for replicating an object in various complicated ways. The simplest form is</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> s5 <span class="ot">&lt;-</span> <span class="fu">rep</span>(x, <span class="at">times=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>which will put five copies of <code>x</code> end-to-end in <code>s5</code>. Another useful version is</p>
@@ -435,12 +445,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Character quantities and character vectors are used frequently in R, for example as plot labels. Where needed they are denoted by a sequence of characters delimited by the double quote character, e.g., <code>"x-values"</code>, <code>"New iteration results"</code>.</p>
 <p>Character strings are entered using either matching double (<code>"</code>) or single (`<code>) quotes, but are printed using double quotes (or sometimes without quotes). They use C-style escape sequences, using</code>` as the escape character, so <code>\</code> is entered and printed as <code>\\</code>, and inside double quotes <code>"</code> is entered as <code>\"</code>. Other useful escape sequences are <code>\n</code>, newline, <code>\t</code>, tab and <code>\b</code>, backspace—see <code>?Quotes</code> for a full list.</p>
 <p>Character vectors may be concatenated into a vector by the <code>c()</code> function; examples of their use will emerge frequently.</p>
-<p>The <code>paste()</code> function takes an arbitrary number of arguments and concatenates them one by one into character strings. Any numbers given among the arguments are coerced into character strings in the evident way, that is, in the same way they would be if they were printed. The arguments are by default separated in the result by a single blank character, but this can be changed by the named argument, <var>sep=``string</var>, which changes it to <var>string</var>, possibly empty.</p>
+<p>The <code>paste()</code> function takes an arbitrary number of arguments and concatenates them one by one into character strings. Any numbers given among the arguments are coerced into character strings in the evident way, that is, in the same way they would be if they were printed. The arguments are by default separated in the result by a single blank character, but this can be changed by the named argument, <code>sep=``string</code>, which changes it to <code>string</code>, possibly empty.</p>
 <p>For example</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> labs <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="fu">c</span>(<span class="st">"X"</span>,<span class="st">"Y"</span>), <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">sep=</span><span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>makes <code>labs</code> into the character vector</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"X1"</span>, <span class="st">"Y2"</span>, <span class="st">"X3"</span>, <span class="st">"Y4"</span>, <span class="st">"X5"</span>, <span class="st">"Y6"</span>, <span class="st">"X7"</span>, <span class="st">"Y8"</span>, <span class="st">"X9"</span>, <span class="st">"Y10"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="page-columns page-full"><p>Note particularly that recycling of short lists takes place here too; thus <code>c("X", "Y")</code> is repeated 5 times to match the sequence <code>1:10</code>. <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;<var>paste(..., collapse=``ss</var><code>)</code> joins the arguments into a single character string putting <var>ss</var> in between, e.g., <code>ss &lt;- "|"</code>. There are more tools for character manipulation, see the help for <code>sub</code> and <code>substring</code>.</p></li></div></div>
+<div class="page-columns page-full"><p>Note particularly that recycling of short lists takes place here too; thus <code>c("X", "Y")</code> is repeated 5 times to match the sequence <code>1:10</code>. <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>:</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;<code>paste(..., collapse=``ss)</code> joins the arguments into a single character string putting <code>ss</code> in between, e.g., <code>ss &lt;- "|"</code>. There are more tools for character manipulation, see the help for <code>sub</code> and <code>substring</code>.</p></li></div></div>
 </section>
 <section id="index-vectors-selecting-and-modifying-subsets-of-a-data-set" class="level2 section" data-number="2.7">
 <h2 class="section anchored" data-number="2.7" data-anchor-id="index-vectors-selecting-and-modifying-subsets-of-a-data-set"><span class="header-section-number">2.7</span> Index vectors; selecting and modifying subsets of a data set</h2>
@@ -466,7 +476,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> lunch <span class="ot">&lt;-</span> fruit[<span class="fu">c</span>(<span class="st">"apple"</span>,<span class="st">"orange"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The advantage is that alphanumeric <em>names</em> are often easier to remember than <em>numeric indices</em>. This option is particularly useful in connection with data frames, as we shall see later.</p></li>
 </ol>
-<p>An indexed expression can also appear on the receiving end of an assignment, in which case the assignment operation is performed <em>only on those elements of the vector</em>. The expression must be of the form <var>vector[``index_vector</var><code>]</code> as having an arbitrary expression in place of the vector name does not make much sense here.</p>
+<p>An indexed expression can also appear on the receiving end of an assignment, in which case the assignment operation is performed <em>only on those elements of the vector</em>. The expression must be of the form <code>vector[``index_vector]</code> as having an arbitrary expression in place of the vector name does not make much sense here.</p>
 <p>For example</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x[<span class="fu">is.na</span>(x)] <span class="ot">&lt;-</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>replaces any missing values in <code>x</code> by zeros and</p>
@@ -484,6 +494,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><em>data frames</em> are matrix-like structures, in which the columns can be of different types. Think of data frames as ‘data matrices’ with one row per observational unit but with (possibly) both numerical and categorical variables. Many experiments are best described by data frames: the treatments are categorical but the response is numeric. See <a href="Lists-and-data-frames.html#data-frames">Data frames</a>.</li>
 <li><em>functions</em> are themselves objects in R which can be stored in the project’s workspace. This provides a simple and convenient way to extend R. See <a href="Writing-your-own-functions.html#writing-your-own-functions">Writing your own functions</a>.</li>
 </ul>
+<p>Footnotes</p>
 
 
 </section>

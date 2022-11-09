@@ -95,7 +95,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">R Data Import/Export</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./index.html">
+    <a class="dropdown-item" href="./../r-admin/index.html">
  <span class="dropdown-text">R Installation and Administration</span></a>
   </li>  
         <li>
@@ -192,21 +192,6 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Essential-and-useful-other-programs-under-a-Unix-alike.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Essential and useful other programs under a Unix-alike</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Configuration-on-a-Unix-alike.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Configuration on a Unix-alike</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Platform-notes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Platform notes</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link">Function and variable index</a>
   </div>
 </li>
@@ -220,6 +205,31 @@ ul.task-list li input[type="checkbox"] {
   <a href="./Environment-variable-index.html" class="sidebar-item-text sidebar-link">Environment variable index</a>
   </div>
 </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Essential-and-useful-other-programs-under-a-Unix-alike.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Essential and useful other programs under a Unix-alike</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Configuration-on-a-Unix-alike.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Configuration on a Unix-alike</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Platform-notes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Platform notes</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -244,7 +254,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="internationalization-and-localization" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Internationalization and Localization</span></span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Internationalization and Localization</span></h1>
 </div>
 
 
@@ -296,8 +306,8 @@ ul.task-list li input[type="checkbox"] {
 <p>Messages are divided into <em>domains</em>, and translations may be available for some or all messages in a domain. R makes use of the following domains.</p>
 <ul>
 <li>Domain <code>R</code> for the C-level error and warning messages from the R interpreter.</li>
-<li>Domain <var>R-``pkg</var> for the R <code>stop</code>, <code>warning</code> and <code>message</code> messages in each package, including <code>R-base</code> for the <strong>base</strong> package.</li>
-<li>Domain <var>pkg</var> for the C-level messages in each package.</li>
+<li>Domain <code>R-``pkg</code> for the R <code>stop</code>, <code>warning</code> and <code>message</code> messages in each package, including <code>R-base</code> for the <strong>base</strong> package.</li>
+<li>Domain <code>pkg</code> for the C-level messages in each package.</li>
 <li>Domain <code>RGui</code> for the menus etc of the R for Windows GUI front-end.</li>
 </ul>
 <p>Dividing up the messages in this way allows R to be extensible: as packages are loaded, their message translation catalogues can be loaded too.</p>
@@ -307,6 +317,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Translations in the right language but the wrong charset are made use of by on-the-fly re-encoding. The <code>LANGUAGE</code> variable (only) can be a colon-separated list, for example <code>se:de</code>, giving a set of languages in decreasing order of preference. One special value is <code>en@quot</code>, which can be used in a UTF-8 locale to have American error messages with pairs of single quotes translated to Unicode directional quotes.</p>
 <div class="page-columns page-full"><p>If no suitable translation catalogue is found or a particular message is not translated in any suitable catalogue, ‘English’<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> is used.</p><div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;with Americanisms.</p></li></div></div>
 <p>See <a href="https://developer.r-project.org/Translations30.html" class="uri">https://developer.r-project.org/Translations30.html</a> for how to prepare and install translation catalogues.</p>
+<p>Footnotes</p>
 
 
 </section>

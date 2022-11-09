@@ -166,7 +166,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">Writing R Extensions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./index.html">
+    <a class="dropdown-item" href="./../r-lang/index.html">
  <span class="dropdown-text">R Language Definition</span></a>
   </li>  
         <li>
@@ -268,11 +268,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./Concept-Index.html" class="sidebar-item-text sidebar-link">Concept Index</a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">References</span></a>
+  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">References</span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -327,7 +337,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="evaluation-of-expressions" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Evaluation of expressions</span></span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Evaluation of expressions</span></h1>
 </div>
 
 
@@ -386,7 +396,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Expressions can be grouped using parentheses, mixed with function calls, and assigned to variables in a straightforward manner</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (a <span class="sc">+</span> <span class="fu">log</span>(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>R contains a number of operators. They are listed in the table below.</p>
-<div class="blockquotes-block">
 <blockquote class="blockquote">
 <table class="table">
 <tbody>
@@ -427,8 +436,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td style="text-align: left;">Exponentiation, binary</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><var>%``x</var><code>%</code></td>
-<td style="text-align: left;">Special binary operators, <var>x</var> can be replaced by any valid name</td>
+<td style="text-align: left;"><code>%``x%</code> Special binar</td>
+<td style="text-align: left;">y operators, <code>x</code> can be replaced by any valid name</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><code>%%</code></td>
@@ -505,7 +514,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </blockquote>
-</div>
 <p>Except for the syntax, there is no difference between applying an operator and calling a function. In fact, <code>x + y</code> can equivalently be written <code>`+`(x, y)</code>. Notice that since <code>+</code> is a non-standard function name, it needs to be quoted.</p>
 <p>R deals with entire vectors of data at a time, and most of the elementary operators and basic mathematical functions like <code>log</code> are vectorized (as indicated in the table above). This means that e.g. adding two vectors of the same length will create a vector containing the element-wise sums, implicitly looping over the vector index. This applies also to other operators like <code>-</code>, <code>*</code>, and <code>/</code> as well as to higher dimensional structures. Notice in particular that multiplying two matrices does not produce the usual matrix product (the <code>%*%</code> operator exists for that purpose). Some finer points relating to vectorized operations will be discussed in <a href="#elementary-arithmetic-operations">Elementary arithmetic operations</a>.</p>
 <p>To access individual elements of an atomic vector, one generally uses the <code>x[i]</code> construction.</p>
@@ -545,11 +553,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    statement2</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    statement3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>First, <var>statement1</var> is evaluated to yield <var>value1</var>. If <var>value1</var> is a logical vector with first element <code>TRUE</code> then <var>statement2</var> is evaluated. If the first element of <var>value1</var> is <code>FALSE</code> then <var>statement3</var> is evaluated. If <var>value1</var> is a numeric vector then <var>statement3</var> is evaluated when the first element of <var>value1</var> is zero and otherwise <var>statement2</var> is evaluated. Only the first element of <var>value1</var> is used. All other elements are ignored. If <var>value1</var> has any type other than a logical or a numeric vector an error is signalled.</p>
+<p>First, <code>statement1</code> is evaluated to yield <code>value1</code>. If <code>value1</code> is a logical vector with first element <code>TRUE</code> then <code>statement2</code> is evaluated. If the first element of <code>value1</code> is <code>FALSE</code> then <code>statement3</code> is evaluated. If <code>value1</code> is a numeric vector then <code>statement3</code> is evaluated when the first element of <code>value1</code> is zero and otherwise <code>statement2</code> is evaluated. Only the first element of <code>value1</code> is used. All other elements are ignored. If <code>value1</code> has any type other than a logical or a numeric vector an error is signalled.</p>
 <p><code>if</code>/<code>else</code> statements can be used to avoid numeric problems such as taking the logarithm of a negative number. Because <code>if</code>/<code>else</code> statements are the same as other statements you can assign the value of them. The two examples below are equivalent.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="cf">if</span>( <span class="fu">any</span>(x <span class="sc">&lt;=</span> <span class="dv">0</span>) ) y <span class="ot">&lt;-</span> <span class="fu">log</span>(<span class="dv">1</span><span class="sc">+</span>x) <span class="cf">else</span> y <span class="ot">&lt;-</span> <span class="fu">log</span>(x)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y <span class="ot">&lt;-</span> <span class="cf">if</span>( <span class="fu">any</span>(x <span class="sc">&lt;=</span> <span class="dv">0</span>) ) <span class="fu">log</span>(<span class="dv">1</span><span class="sc">+</span>x) <span class="cf">else</span> <span class="fu">log</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The <code>else</code> clause is optional. The statement <code>if(any(x &lt;= 0)) x &lt;- x[x &lt;= 0]</code> is valid. When the <code>if</code> statement is not in a block the <code>else</code>, if present, must appear on the same line as the end of <var>statement2</var>. Otherwise the new line at the end of <var>statement2</var> completes the <code>if</code> and yields a syntactically complete statement that is evaluated. A simple solution is to use a compound statement wrapped in braces, putting the <code>else</code> on the same line as the closing brace that marks the end of the statement.</p>
+<p>The <code>else</code> clause is optional. The statement <code>if(any(x &lt;= 0)) x &lt;- x[x &lt;= 0]</code> is valid. When the <code>if</code> statement is not in a block the <code>else</code>, if present, must appear on the same line as the end of <code>statement2</code>. Otherwise the new line at the end of <code>statement2</code> completes the <code>if</code> and yields a syntactically complete statement that is evaluated. A simple solution is to use a compound statement wrapped in braces, putting the <code>else</code> on the same line as the closing brace that marks the end of the statement.</p>
 <p><code>if</code>/<code>else</code> statements can be nested.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> ( statement1 ) {</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    statement2</span>
@@ -559,8 +567,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    statement6</span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span></span>
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    statement8</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>One of the even numbered statements will be evaluated and the resulting value returned. If the optional <code>else</code> clause is omitted and all the odd numbered <var>statement</var>s evaluate to <code>FALSE</code> no statement will be evaluated and <code>NULL</code> is returned.</p>
-<p>The odd numbered <var>statement</var>s are evaluated, in order, until one evaluates to <code>TRUE</code> and then the associated even numbered <var>statement</var> is evaluated. In this example, <var>statement6</var> will only be evaluated if <var>statement1</var> is <code>FALSE</code> and <var>statement3</var> is <code>FALSE</code> and <var>statement5</var> is <code>TRUE</code>. There is no limit to the number of <code>else if</code> clauses that are permitted.</p>
+<p>One of the even numbered statements will be evaluated and the resulting value returned. If the optional <code>else</code> clause is omitted and all the odd numbered <code>statement</code>s evaluate to <code>FALSE</code> no statement will be evaluated and <code>NULL</code> is returned.</p>
+<p>The odd numbered <code>statement</code>s are evaluated, in order, until one evaluates to <code>TRUE</code> and then the associated even numbered <code>statement</code> is evaluated. In this example, <code>statement6</code> will only be evaluated if <code>statement1</code> is <code>FALSE</code> and <code>statement3</code> is <code>FALSE</code> and <code>statement5</code> is <code>TRUE</code>. There is no limit to the number of <code>else if</code> clauses that are permitted.</p>
 </section>
 <section id="looping" class="level3 subsection page-columns page-full" data-number="3.2.2">
 <h3 class="subsection anchored" data-number="3.2.2" data-anchor-id="looping"><span class="header-section-number">3.2.2</span> Looping</h3>
@@ -572,27 +580,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="subsection anchored" data-number="3.2.3" data-anchor-id="repeat"><span class="header-section-number">3.2.3</span> repeat</h3>
 <p>The <code>repeat</code> statement causes repeated evaluation of the body until a break is specifically requested. This means that you need to be careful when using <code>repeat</code> because of the danger of an infinite loop. The syntax of the <code>repeat</code> loop is</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">repeat</span> statement</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>When using <code>repeat</code>, <var>statement</var> must be a block statement. You need to both perform some computation and test whether or not to break from the loop and usually this requires two statements.</p>
+<p>When using <code>repeat</code>, <code>statement</code> must be a block statement. You need to both perform some computation and test whether or not to break from the loop and usually this requires two statements.</p>
 </section>
 <section id="while" class="level3 subsection" data-number="3.2.4">
 <h3 class="subsection anchored" data-number="3.2.4" data-anchor-id="while"><span class="header-section-number">3.2.4</span> while</h3>
 <p>The <code>while</code> statement is very similar to the <code>repeat</code> statement. The syntax of the <code>while</code> loop is</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> ( statement1 ) statement2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>where <var>statement1</var> is evaluated and if its value is <code>TRUE</code> then <var>statement2</var> is evaluated. This process continues until <var>statement1</var> evaluates to <code>FALSE</code>.</p>
+<p>where <code>statement1</code> is evaluated and if its value is <code>TRUE</code> then <code>statement2</code> is evaluated. This process continues until <code>statement1</code> evaluates to <code>FALSE</code>.</p>
 </section>
 <section id="for" class="level3 subsection" data-number="3.2.5">
 <h3 class="subsection anchored" data-number="3.2.5" data-anchor-id="for"><span class="header-section-number">3.2.5</span> for</h3>
 <p>The syntax of the <code>for</code> loop is</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ( name <span class="cf">in</span> vector )</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>   statement1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>where <var>vector</var> can be either a vector or a list. For each element in <var>vector</var> the variable <var>name</var> is set to the value of that element and <var>statement1</var> is evaluated. A side effect is that the variable <var>name</var> still exists after the loop has concluded and it has the value of the last element of <var>vector</var> that the loop was evaluated for.</p>
+<p>where <code>vector</code> can be either a vector or a list. For each element in <code>vector</code> the variable <code>name</code> is set to the value of that element and <code>statement1</code> is evaluated. A side effect is that the variable <code>name</code> still exists after the loop has concluded and it has the value of the last element of <code>vector</code> that the loop was evaluated for.</p>
 </section>
 <section id="switch" class="level3 subsection" data-number="3.2.6">
 <h3 class="subsection anchored" data-number="3.2.6" data-anchor-id="switch"><span class="header-section-number">3.2.6</span> switch</h3>
 <p>Technically speaking, <code>switch</code> is just another function, but its semantics are close to those of control structures of other programming languages.</p>
 <p>The syntax is</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">switch</span> (statement, list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>where the elements of <var>list</var> may be named. First, <var>statement</var> is evaluated and the result, <var>value</var>, obtained. If <var>value</var> is a number between 1 and the length of <var>list</var> then the corresponding element of <var>list</var> is evaluated and the result returned. If <var>value</var> is too large or too small <code>NULL</code> is returned.</p>
+<p>where the elements of <code>list</code> may be named. First, <code>statement</code> is evaluated and the result, <code>value</code>, obtained. If <code>value</code> is a number between 1 and the length of <code>list</code> then the corresponding element of <code>list</code> is evaluated and the result returned. If <code>value</code> is too large or too small <code>NULL</code> is returned.</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="dv">3</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="cf">switch</span>(x, <span class="dv">2</span><span class="sc">+</span><span class="dv">2</span>, <span class="fu">mean</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>), <span class="fu">rnorm</span>(<span class="dv">5</span>))</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>]  <span class="fl">2.2903605</span>  <span class="fl">2.3271663</span> <span class="sc">-</span><span class="fl">0.7060073</span>  <span class="fl">1.3622045</span> <span class="sc">-</span><span class="fl">0.2892720</span></span>
@@ -600,7 +608,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="fl">5.5</span></span>
 <span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="cf">switch</span>(<span class="dv">6</span>, <span class="dv">2</span><span class="sc">+</span><span class="dv">2</span>, <span class="fu">mean</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>), <span class="fu">rnorm</span>(<span class="dv">5</span>))</span>
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="cn">NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If <var>value</var> is a character vector then the element of <code>...</code> with a name that exactly matches <var>value</var> is evaluated. If there is no match a single unnamed argument will be used as a default. If no default is specified, <code>NULL</code> is returned.</p>
+<p>If <code>value</code> is a character vector then the element of <code>...</code> with a name that exactly matches <code>value</code> is evaluated. If there is no match a single unnamed argument will be used as a default. If no default is specified, <code>NULL</code> is returned.</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y <span class="ot">&lt;-</span> <span class="st">"fruit"</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="cf">switch</span>(y, <span class="at">fruit =</span> <span class="st">"banana"</span>, <span class="at">vegetable =</span> <span class="st">"broccoli"</span>, <span class="st">"Neither"</span>)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"banana"</span></span>
@@ -849,6 +857,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In addition to the evaluation environment structure, R has a search path of environments which are searched for variables not found elsewhere. This is used for two things: packages of functions and attached user data.</p>
 <p>The first element of the search path is the global environment and the last is the base package. An <code>Autoloads</code> environment is used for holding proxy objects that may be loaded on demand. Other environments are inserted in the path using <code>attach</code> or <code>library</code>.</p>
 <p>Packages which have a <em>namespace</em> have a different search path. When a search for an R object is started from an object in such a package, the package itself is searched first, then its imports, then the base namespace and finally the global environment and the rest of the regular search path. The effect is that references to other objects in the same package will be resolved to the package, and objects cannot be masked by objects of the same name in the global environment or in other packages.</p>
+<p>Footnotes</p>
 
 
 </section>

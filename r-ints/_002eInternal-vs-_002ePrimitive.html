@@ -170,7 +170,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">R Language Definition</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./index.html">
+    <a class="dropdown-item" href="./../r-ints/index.html">
  <span class="dropdown-text">R Internals</span></a>
   </li>  
     </ul>
@@ -299,7 +299,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="internal-vs-.primitive" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>.Internal</code> vs <code>.Primitive</code></span></span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>.Internal</code> vs <code>.Primitive</code></span></h1>
 </div>
 
 
@@ -327,71 +327,86 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>However, for reasons of convenience and also efficiency (as there is some overhead in using the <code>.Internal</code> interface wrapped in a function closure), the primitive functions are exceptions that can be accessed directly. And of course, primitive functions are needed for basic operations—for example <code>.Internal</code> is itself a primitive. Note that primitive functions make no use of R code, and hence are very different from the usual interpreted functions. In particular, <code>formals</code> and <code>body</code> return <code>NULL</code> for such objects, and argument matching can be handled differently. For some primitives (including <code>call</code>, <code>switch</code>, <code>.C</code> and <code>.subset</code>) positional matching is important to avoid partial matching of the first argument.</p>
 <p>The list of primitive functions is subject to change; currently, it includes the following.</p>
 <ol type="1">
-<li><p>“Special functions” which really are <em>language</em> elements, but implemented as primitive functions: <code>R     {       (         if     for      while  repeat  break  next     return  function  quote  switch</code></p></li>
+<li><p>“Special functions” which really are <em>language</em> elements, but implemented as primitive functions:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>{       (         <span class="cf">if</span>     <span class="cf">for</span>      <span class="cf">while</span>  <span class="cf">repeat</span>  <span class="cf">break</span>  <span class="cf">next</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>return  <span class="cf">function</span>  quote  <span class="cf">switch</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Language elements and basic <em>operator</em>s (i.e., functions usually <em>not</em> called as <code>foo(a, b, ...)</code>) for subsetting, assignment, arithmetic, comparison and logic:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>               [    [[    <span class="sc">$</span>    <span class="er">@</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;</span><span class="sc">-</span>   <span class="er">&lt;&lt;</span><span class="sc">-</span>  <span class="er">=</span>    [<span class="ot">&lt;-</span>  [[<span class="ot">&lt;-</span>  <span class="er">$&lt;</span><span class="sc">-</span>  <span class="er">@&lt;</span><span class="sc">-</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>    <span class="sc">-</span>    <span class="er">*</span>    <span class="er">/</span>     <span class="er">^</span>    <span class="sc">%%</span>   <span class="sc">%*%</span>  <span class="sc">%/%</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;</span>    <span class="er">&lt;=</span>   <span class="er">==</span>   <span class="er">!=</span>    <span class="er">&gt;=</span>   <span class="er">&gt;</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="er">|</span>    <span class="er">||</span>   <span class="er">&amp;</span>    <span class="er">&amp;&amp;</span>    <span class="sc">!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>               [    [[    <span class="sc">$</span>    <span class="er">@</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;</span><span class="sc">-</span>   <span class="er">&lt;&lt;</span><span class="sc">-</span>  <span class="er">=</span>    [<span class="ot">&lt;-</span>  [[<span class="ot">&lt;-</span>  <span class="er">$&lt;</span><span class="sc">-</span>  <span class="er">@&lt;</span><span class="sc">-</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>    <span class="sc">-</span>    <span class="er">*</span>    <span class="er">/</span>     <span class="er">^</span>    <span class="sc">%%</span>   <span class="sc">%*%</span>  <span class="sc">%/%</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="er">&lt;</span>    <span class="er">&lt;=</span>   <span class="er">==</span>   <span class="er">!=</span>    <span class="er">&gt;=</span>   <span class="er">&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="er">|</span>    <span class="er">||</span>   <span class="er">&amp;</span>    <span class="er">&amp;&amp;</span>    <span class="sc">!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>When the arithmetic, comparison and logical operators are called as functions, any argument names are discarded so positional matching is used.</p></li>
 <li><p>“Low level” 0– and 1–argument functions which belong to one of the following groups of functions:</p>
 <ol type="a">
 <li><p>Basic mathematical functions with a single argument, i.e.,</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>abs     sign    sqrt</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>floor   ceiling</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>exp     expm1</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>log2    log10   log1p</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>cos     sin     tan</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>acos    asin    atan</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>cosh    sinh    tanh</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>acosh   asinh   atanh</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>cospi   sinpi   tanpi</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>gamma   lgamma  digamma trigamma</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>cumsum  cumprod cummax  cummin</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>Im  Re  Arg  Conj  Mod</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>abs     sign    sqrt</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>floor   ceiling</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>exp     expm1</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>log2    log10   log1p</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>cos     sin     tan</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>acos    asin    atan</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>cosh    sinh    tanh</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>acosh   asinh   atanh</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>cospi   sinpi   tanpi</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>gamma   lgamma  digamma trigamma</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>cumsum  cumprod cummax  cummin</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>Im  Re  Arg  Conj  Mod</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>log</code> is a primitive function of one or two arguments with named argument matching.</p>
 <p><code>trunc</code> is a difficult case: it is a primitive that can have one or more arguments: the default method handled in the primitive has only one.</p></li>
-<li><p>Functions rarely used outside of “programming” (i.e., mostly used inside other functions), such as <code>c     nargs          missing        on.exit        interactive     as.call        as.character   as.complex     as.double     as.environment as.integer     as.logical     as.raw     is.array       is.atomic      is.call        is.character     is.complex     is.double      is.environment is.expression     is.finite      is.function    is.infinite    is.integer     is.language    is.list        is.logical     is.matrix     is.na          is.name        is.nan         is.null     is.numeric     is.object      is.pairlist    is.raw     is.real        is.recursive   is.single      is.symbol     baseenv        emptyenv       globalenv      pos.to.env     unclass        invisible      seq_along      seq_len</code></p></li>
-<li><p>The programming and session management utilities <code>R     browser  proc.time  gc.time tracemem retracemem untracemem</code></p></li>
+<li><p>Functions rarely used outside of “programming” (i.e., mostly used inside other functions), such as</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>nargs          missing        on<span class="op">.</span>exit        interactive</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>as<span class="op">.</span>call        as<span class="op">.</span>character   as<span class="op">.</span><span class="dt">complex</span>     as<span class="op">.</span><span class="dt">double</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>as<span class="op">.</span>environment as<span class="op">.</span>integer     as<span class="op">.</span>logical     as<span class="op">.</span>raw</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>is<span class="op">.</span>array       is<span class="op">.</span>atomic      is<span class="op">.</span>call        is<span class="op">.</span>character</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>is<span class="op">.</span><span class="dt">complex</span>     is<span class="op">.</span><span class="dt">double</span>      is<span class="op">.</span>environment is<span class="op">.</span>expression</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>is<span class="op">.</span>finite      is<span class="op">.</span>function    is<span class="op">.</span>infinite    is<span class="op">.</span>integer</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>is<span class="op">.</span>language    is<span class="op">.</span>list        is<span class="op">.</span>logical     is<span class="op">.</span>matrix</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>is<span class="op">.</span>na          is<span class="op">.</span>name        is<span class="op">.</span>nan         is<span class="op">.</span>null</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>is<span class="op">.</span>numeric     is<span class="op">.</span>object      is<span class="op">.</span>pairlist    is<span class="op">.</span>raw</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>is<span class="op">.</span>real        is<span class="op">.</span>recursive   is<span class="op">.</span>single      is<span class="op">.</span>symbol</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>baseenv        emptyenv       globalenv      pos<span class="op">.</span>to<span class="op">.</span>env</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>unclass        invisible      seq_along      seq_len</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>The programming and session management utilities</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>browser  proc.time  gc.time tracemem retracemem untracemem</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol></li>
 <li><p>The following basic replacement and extractor functions</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>length      length<span class="ot">&lt;-</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>class       class<span class="ot">&lt;-</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>oldClass    oldClass<span class="ot">&lt;-</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>attr        attr<span class="ot">&lt;-</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>attributes  attributes<span class="ot">&lt;-</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>names       names<span class="ot">&lt;-</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>dim         dim<span class="ot">&lt;-</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>dimnames    dimnames<span class="ot">&lt;-</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>            environment<span class="ot">&lt;-</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>            levels<span class="ot">&lt;-</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>            storage.mode<span class="ot">&lt;-</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>length      length<span class="ot">&lt;-</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>class       class<span class="ot">&lt;-</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>oldClass    oldClass<span class="ot">&lt;-</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>attr        attr<span class="ot">&lt;-</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>attributes  attributes<span class="ot">&lt;-</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>names       names<span class="ot">&lt;-</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>dim         dim<span class="ot">&lt;-</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>dimnames    dimnames<span class="ot">&lt;-</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>            environment<span class="ot">&lt;-</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>            levels<span class="ot">&lt;-</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>            storage.mode<span class="ot">&lt;-</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Note that optimizing <code>NAMED = 1</code> is only effective within a primitive (as the closure wrapper of a <code>.Internal</code> will set <code>NAMED = NAMEDMAX</code> when the promise to the argument is evaluated) and hence replacement functions should where possible be primitive to avoid copying (at least in their default methods). [The <code>NAMED</code> mechanism has been replaced by reference counting.]</p></li>
 <li><p>The following functions are primitive for efficiency reasons:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">:</span>           <span class="op">~</span>           c           list</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>call        expression  substitute</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>UseMethod   standardGeneric</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="op">.</span>C          <span class="op">.</span>Fortran   <span class="op">.</span>Call        <span class="op">.</span>External</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>round       signif      rep         seq<span class="op">.</span><span class="dt">int</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">:</span>           <span class="op">~</span>           c           list</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>call        expression  substitute</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>UseMethod   standardGeneric</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="op">.</span>C          <span class="op">.</span>Fortran   <span class="op">.</span>Call        <span class="op">.</span>External</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>round       signif      rep         seq<span class="op">.</span><span class="dt">int</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>as well as the following internal-use-only functions</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>.Primitive      .Internal</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>.Call.graphics  .External.graphics</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>.subset         .subset2</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>.primTrace      .primUntrace</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>lazyLoadDBfetch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>.Primitive      .Internal</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>.Call.graphics  .External.graphics</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>.subset         .subset2</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>.primTrace      .primUntrace</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>lazyLoadDBfetch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
 <p>The multi-argument primitives</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>call       <span class="cf">switch</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>.C         .Fortran   .Call       .External</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>call       <span class="cf">switch</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>.C         .Fortran   .Call       .External</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>intentionally use positional matching, and need to do so to avoid partial matching to their first argument. They do check that the first argument is unnamed or for the first two, partially matches the formal argument name. On the other hand,</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>attr       attr<span class="op">&lt;-</span>     browser     rememtrace substitute  UseMethod</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>log        round      signif      rep        seq<span class="op">.</span><span class="dt">int</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>attr       attr<span class="op">&lt;-</span>     browser     rememtrace substitute  UseMethod</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>log        round      signif      rep        seq<span class="op">.</span><span class="dt">int</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>manage their own argument matching and do work in the standard way.</p>
 <p>All the one-argument primitives check that if they are called with a named argument that this (partially) matches the name given in the documentation: this is also done for replacement functions with one argument plus <code>value</code>.</p>
 <p>The net effect is that argument matching for primitives intended for end-user use <em>as functions</em> is done in the same way as for interpreted functions except for the six exceptions where positional matching is required.</p>
@@ -412,8 +427,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Prototypes are available for the primitive functions and operators, and these are used for printing, <code>args</code> and package checking (e.g.&nbsp;by <code>tools::checkS3methods</code> and by package <a href="https://CRAN.R-project.org/package=codetools"><strong>codetools</strong></a>). There are two environments in the <strong>base</strong> package (and namespace), <code>.GenericArgsEnv</code> for those primitives which are internal S3 generics, and <code>.ArgsEnv</code> for the rest. Those environments contain closures with the same names as the primitives, formal arguments derived (manually) from the help pages, a body which is a suitable call to <code>UseMethod</code> or <code>NULL</code> and environment the base namespace.</p>
 <p>The C code for <code>print.default</code> and <code>args</code> uses the closures in these environments in preference to the definitions in base (as primitives).</p>
 <p>The QC function <code>undoc</code> checks that all the functions prototyped in these environments are currently primitive, and that the primitives not included are better thought of as language elements (at the time of writing</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>  <span class="er">$&lt;</span><span class="sc">-</span>  <span class="er">&amp;&amp;</span>  (  <span class="sc">:</span>  <span class="er">@</span>  <span class="er">@&lt;</span><span class="sc">-</span>  [  [[  [[<span class="ot">&lt;-</span>  [<span class="ot">&lt;-</span>  {  <span class="sc">||</span>  <span class="er">~</span>  <span class="er">&lt;</span><span class="sc">-</span>  <span class="er">&lt;&lt;</span><span class="sc">-</span>  <span class="er">=</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="cf">break</span>  <span class="cf">for</span> <span class="cf">function</span>  <span class="cf">if</span>  <span class="cf">next</span>  <span class="cf">repeat</span>  return  <span class="cf">while</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>  <span class="er">$&lt;</span><span class="sc">-</span>  <span class="er">&amp;&amp;</span>  (  <span class="sc">:</span>  <span class="er">@</span>  <span class="er">@&lt;</span><span class="sc">-</span>  [  [[  [[<span class="ot">&lt;-</span>  [<span class="ot">&lt;-</span>  {  <span class="sc">||</span>  <span class="er">~</span>  <span class="er">&lt;</span><span class="sc">-</span>  <span class="er">&lt;&lt;</span><span class="sc">-</span>  <span class="er">=</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="cf">break</span>  <span class="cf">for</span> <span class="cf">function</span>  <span class="cf">if</span>  <span class="cf">next</span>  <span class="cf">repeat</span>  return  <span class="cf">while</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>). One could argue about <code>~</code>, but it is known to the parser and has semantics quite unlike a normal function. And <code>:</code> is documented with different argument names in its two meanings.</p>
 <p>The QC functions <code>codoc</code> and <code>checkS3methods</code> also make use of these environments (effectively placing them in front of base in the search path), and hence the formals of the functions they contain are checked against the help pages by <code>codoc</code>. However, there are two problems with the generic primitives. The first is that many of the operators are part of the S3 group generic <code>Ops</code> and that defines their arguments to be <code>e1</code> and <code>e2</code>: although it would be very unusual, an operator could be called as e.g.&nbsp;<code>"+"(e1=a, e2=b)</code> and if method dispatch occurred to a closure, there would be an argument name mismatch. So the definitions in environment <code>.GenericArgsEnv</code> have to use argument names <code>e1</code> and <code>e2</code> even though the traditional documentation is in terms of <code>x</code> and <code>y</code>: <code>codoc</code> makes the appropriate adjustment via <code>tools:::.make_S3_primitive_generic_env</code>. The second discrepancy is with the <code>Math</code> group generics, where the group generic is defined with argument list <code>(x, ...)</code>, but most of the members only allow one argument when used as the default method (and <code>round</code> and <code>signif</code> allow two as default methods): again fix-ups are used.</p>
 <p>Those primitives which are in <code>.GenericArgsEnv</code> are checked (via <code>tests/primitives.R</code>) to be generic <em>via</em> defining methods for them, and a check is made that the remaining primitives are probably not generic, by setting a method and checking it is not dispatched to (but this can fail for other reasons). However, there is no certain way to know that if other <code>.Internal</code> or primitive functions are not internally generic except by reading the source code.</p>

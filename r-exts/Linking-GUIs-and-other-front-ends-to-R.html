@@ -162,7 +162,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">R Installation and Administration</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./index.html">
+    <a class="dropdown-item" href="./../r-exts/index.html">
  <span class="dropdown-text">Writing R Extensions</span></a>
   </li>  
         <li>
@@ -294,7 +294,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="linking-guis-and-other-front-ends-to-r" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linking GUIs and other front-ends to R</span></span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linking GUIs and other front-ends to R</span></h1>
 </div>
 
 
@@ -313,7 +313,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="embedding-r-under-unix-alikes" class="level2 section page-columns page-full" data-number="8.1">
 <h2 class="section anchored" data-number="8.1" data-anchor-id="embedding-r-under-unix-alikes"><span class="header-section-number">8.1</span> Embedding R under Unix-alikes</h2>
 <div class="page-columns page-full"><p>R can be built as a shared library<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> if configured with <code>--enable-R-shlib</code>. This shared library can be used to run R from alternative front-end programs. We will assume this has been done for the rest of this section. Also, it can be built as a static library if configured with <code>--enable-R-static-lib</code>, and that can be used in a very similar way (at least on Linux: on other platforms one needs to ensure that all the symbols exported by <code>libR.a</code> are linked into the front-end).</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;In the parlance of macOS this is a <em>dynamic</em> library, and is the normal way to build R on that platform.</p></li></div></div>
-<p>The command-line R front-end, <var>R_HOME</var><code>/bin/exec/R</code>, is one such example, and the former GNOME (see package <strong>gnomeGUI</strong> on CRAN’s <code>Archive</code> area) and macOS consoles are others. The source for <var>R_HOME</var><code>/bin/exec/R</code> is in file <code>src/main/Rmain.c</code> and is very simple</p>
+<p>The command-line R front-end, <code>R_HOME/bin/exec/R</code>, is one such example, and the former GNOME (see package <strong>gnomeGUI</strong> on CRAN’s <code>Archive</code> area) and macOS consoles are others. The source for <code>R_HOME/bin/exec/R</code> is in file <code>src/main/Rmain.c</code> and is very simple</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> Rf_initialize_R<span class="op">(</span><span class="dt">int</span> ac<span class="op">,</span> <span class="dt">char</span> <span class="op">**</span>av<span class="op">);</span> <span class="co">/* in ../unix/system.c */</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> Rf_mainloop<span class="op">();</span>                     <span class="co">/* in main.c */</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -326,16 +326,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    Rf_mainloop<span class="op">();</span> <span class="co">/* does not return */</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>indeed, misleadingly simple. Remember that <var>R_HOME</var><code>/bin/exec/R</code> is run from a shell script <var>R_HOME</var><code>/bin/R</code> which sets up the environment for the executable, and this is used for</p>
+<p>indeed, misleadingly simple. Remember that <code>R_HOME/bin/exec/R</code> is run from a shell script <code>R_HOME/bin/R</code> which sets up the environment for the executable, and this is used for</p>
 <ul>
 <li>Setting <code>R_HOME</code> and checking it is valid, as well as the path <code>R_SHARE_DIR</code> and <code>R_DOC_DIR</code> to the installed <code>share</code> and <code>doc</code> directory trees. Also setting <code>R_ARCH</code> if needed.</li>
-<li>Setting <code>LD_LIBRARY_PATH</code> to include the directories used in linking R. This is recorded as the default setting of <code>R_LD_LIBRARY_PATH</code> in the shell script <var>R_HOME</var><var>/etc``R_ARCH</var><code>/ldpaths</code>.</li>
+<li>Setting <code>LD_LIBRARY_PATH</code> to include the directories used in linking R. This is recorded as the default setting of <code>R_LD_LIBRARY_PATH</code> in the shell script <code>R_HOME/etcR_ARCH/ldpaths</code>.</li>
 <li>Processing some of the arguments, for example to run R under a debugger and to launch alternative front-ends to provide GUIs.</li>
 </ul>
 <p>The first two of these can be achieved for your front-end by running it <em>via</em> <code>R CMD</code>. So, for example</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> CMD /usr/local/lib/R/bin/exec/R</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> CMD exec/R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>will both work in a standard R installation. (<code>R CMD</code> looks first for executables in <var>R_HOME</var><code>/bin</code>. These command-lines need modification if a sub-architecture is in use.) If you do not want to run your front-end in this way, you need to ensure that <code>R_HOME</code> is set and <code>LD_LIBRARY_PATH</code> is suitable. (The latter might well be, but modern Unix/Linux systems do not normally include <code>/usr/local/lib</code> (<code>/usr/local/lib64</code> on some architectures), and R does look there for system components.)</p>
+<p>will both work in a standard R installation. (<code>R CMD</code> looks first for executables in <code>R_HOME/bin</code>. These command-lines need modification if a sub-architecture is in use.) If you do not want to run your front-end in this way, you need to ensure that <code>R_HOME</code> is set and <code>LD_LIBRARY_PATH</code> is suitable. (The latter might well be, but modern Unix/Linux systems do not normally include <code>/usr/local/lib</code> (<code>/usr/local/lib64</code> on some architectures), and R does look there for system components.)</p>
 <div class="page-columns page-full"><p>The other senses in which this example is too simple are that all the internal defaults are used and that control is handed over to the R main loop. There are a number of small examples<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> in the <code>tests/Embedding</code> directory. These make use of <code>Rf_initEmbeddedR</code> in <code>src/main/Rembedded.c</code>, and essentially use</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;but these are not part of the automated test procedures and so little tested.</p></li></div></div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Rembedded.h&gt;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -429,29 +429,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="dt">void</span> <span class="op">(*</span>ptr_R_ProcessEvents<span class="op">)();</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>which allow standard R callbacks to be redirected to your GUI. What these do is generally documented in the file <code>src/unix/system.txt</code>.</p>
 <dl>
-<dt>Function: <em>void</em> <strong>R_ShowMessage</strong> <em>(char *<var>message</var>)</em></dt>
+<dt>Function: <em>void</em> <strong>R_ShowMessage</strong> <em>(char *<code>message</code>)</em></dt>
 <dd>
 <p>This should display the message, which may have multiple lines: it should be brought to the user’s attention immediately.</p>
 </dd>
 </dl>
 <!-- -->
 <dl>
-<dt>Function: <em>void</em> <strong>R_Busy</strong> <em>(int <var>which</var>)</em></dt>
+<dt>Function: <em>void</em> <strong>R_Busy</strong> <em>(int <code>which</code>)</em></dt>
 <dd>
-<p>This function invokes actions (such as change of cursor) when R embarks on an extended computation (<var>which</var><code>=1</code>) and when such a state terminates (<var>which</var><code>=0</code>).</p>
+<p>This function invokes actions (such as change of cursor) when R embarks on an extended computation (<code>which=1</code>) and when such a state terminates (<code>which=0</code>).</p>
 </dd>
 </dl>
 <!-- -->
 <dl>
-<dt>Function: <em>int</em> <strong>R_ReadConsole</strong> <em>(const char *<var>prompt</var>, unsigned char *<var>buf</var>, int <var>buflen</var>, int <var>hist</var>)</em></dt>
+<dt>Function: <em>int</em> <strong>R_ReadConsole</strong> <em>(const char *<code>prompt</code>, unsigned char *<code>buf</code>, int <code>buflen</code>, int <code>hist</code>)</em></dt>
 <dd>
 
 </dd>
-<dt>Function: <em>void</em> <strong>R_WriteConsole</strong> <em>(const char *<var>buf</var>, int <var>buflen</var>)</em></dt>
+<dt>Function: <em>void</em> <strong>R_WriteConsole</strong> <em>(const char *<code>buf</code>, int <code>buflen</code>)</em></dt>
 <dd>
 
 </dd>
-<dt>Function: <em>void</em> <strong>R_WriteConsoleEx</strong> <em>(const char *<var>buf</var>, int <var>buflen</var>, int <var>otype</var>)</em></dt>
+<dt>Function: <em>void</em> <strong>R_WriteConsoleEx</strong> <em>(const char *<code>buf</code>, int <code>buflen</code>, int <code>otype</code>)</em></dt>
 <dd>
 
 </dd>
@@ -466,8 +466,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <dt>Function: <em>void</em> <strong>R_ClearerrConsole</strong> <em>()</em></dt>
 <dd>
 <p>These functions interact with a console.</p>
-<p><code>R_ReadConsole</code> prints the given prompt at the console and then does a <code>fgets(3)</code>–like operation, transferring up to <var>buflen</var> characters into the buffer <var>buf</var>. The last two bytes should be set to <code>"\n\0"</code> to preserve sanity. If <var>hist</var> is non-zero, then the line should be added to any command history which is being maintained. The return value is 0 is no input is available and &gt;0 otherwise.</p>
-<p><code>R_WriteConsoleEx</code> writes the given buffer to the console, <var>otype</var> specifies the output type (regular output or warning/error). Call to <code>R_WriteConsole(buf, buflen)</code> is equivalent to <code>R_WriteConsoleEx(buf, buflen, 0)</code>. To ensure backward compatibility of the callbacks, <code>ptr_R_WriteConsoleEx</code> is used only if <code>ptr_R_WriteConsole</code> is set to <code>NULL</code>. To ensure that <code>stdout()</code> and <code>stderr()</code> connections point to the console, set the corresponding files to <code>NULL</code> <em>via</em></p>
+<p><code>R_ReadConsole</code> prints the given prompt at the console and then does a <code>fgets(3)</code>–like operation, transferring up to <code>buflen</code> characters into the buffer <code>buf</code>. The last two bytes should be set to <code>"\n\0"</code> to preserve sanity. If <code>hist</code> is non-zero, then the line should be added to any command history which is being maintained. The return value is 0 is no input is available and &gt;0 otherwise.</p>
+<p><code>R_WriteConsoleEx</code> writes the given buffer to the console, <code>otype</code> specifies the output type (regular output or warning/error). Call to <code>R_WriteConsole(buf, buflen)</code> is equivalent to <code>R_WriteConsoleEx(buf, buflen, 0)</code>. To ensure backward compatibility of the callbacks, <code>ptr_R_WriteConsoleEx</code> is used only if <code>ptr_R_WriteConsole</code> is set to <code>NULL</code>. To ensure that <code>stdout()</code> and <code>stderr()</code> connections point to the console, set the corresponding files to <code>NULL</code> <em>via</em></p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>      R_Outputfile <span class="ot">=</span> <span class="cn">NULL</span>;</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>      R_Consolefile <span class="ot">=</span> <span class="cn">NULL</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>R_ResetConsole</code> is called when the system is reset after an error. <code>R_FlushConsole</code> is called to flush any pending output to the system console. <code>R_ClearerrConsole</code> clears any errors associated with reading from the console.</p>
@@ -475,30 +475,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </dl>
 <!-- -->
 <dl>
-<dt>Function: <em>int</em> <strong>R_ShowFiles</strong> <em>(int <var>nfile</var>, const char **<var>file</var>, const char **<var>headers</var>, const char *<var>wtitle</var>, Rboolean <var>del</var>, const char *<var>pager</var>)</em></dt>
+<dt>Function: <em>int</em> <strong>R_ShowFiles</strong> <em>(int <code>nfile</code>, const char **<code>file</code>, const char **<code>headers</code>, const char *<code>wtitle</code>, Rboolean <code>del</code>, const char *<code>pager</code>)</em></dt>
 <dd>
 <p>This function is used to display the contents of files.</p>
 </dd>
 </dl>
 <!-- -->
 <dl>
-<dt>Function: <em>int</em> <strong>R_ChooseFile</strong> <em>(int <var>new</var>, char *<var>buf</var>, int <var>len</var>)</em></dt>
+<dt>Function: <em>int</em> <strong>R_ChooseFile</strong> <em>(int <code>new</code>, char *<code>buf</code>, int <code>len</code>)</em></dt>
 <dd>
-<p>Choose a file and return its name in <var>buf</var> of length <var>len</var>. Return value is 0 for success, &gt; 0 otherwise.</p>
+<p>Choose a file and return its name in <code>buf</code> of length <code>len</code>. Return value is 0 for success, &gt; 0 otherwise.</p>
 </dd>
 </dl>
 <!-- -->
 <dl>
-<dt>Function: <em>int</em> <strong>R_EditFile</strong> <em>(const char *<var>buf</var>)</em></dt>
+<dt>Function: <em>int</em> <strong>R_EditFile</strong> <em>(const char *<code>buf</code>)</em></dt>
 <dd>
 <p>Send a file to an editor window.</p>
 </dd>
 </dl>
 <!-- -->
 <dl>
-<dt>Function: <em>int</em> <strong>R_EditFiles</strong> <em>(int <var>nfile</var>, const char **<var>file</var>, const char **<var>title</var>, const char *<var>editor</var>)</em></dt>
+<dt>Function: <em>int</em> <strong>R_EditFiles</strong> <em>(int <code>nfile</code>, const char **<code>file</code>, const char **<code>title</code>, const char *<code>editor</code>)</em></dt>
 <dd>
-<p>Send <var>nfile</var> files to an editor, with titles possibly to be used for the editor window(s).</p>
+<p>Send <code>nfile</code> files to an editor, with titles possibly to be used for the editor window(s).</p>
 </dd>
 </dl>
 <!-- -->
@@ -534,7 +534,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </dl>
 <!-- -->
 <dl>
-<dt>Function: <em>void</em> <strong>R_Suicide</strong> <em>(const char *<var>message</var>)</em></dt>
+<dt>Function: <em>void</em> <strong>R_Suicide</strong> <em>(const char *<code>message</code>)</em></dt>
 <dd>
 <p>This should abort R as rapidly as possible, displaying the message. A possible implementation is</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> R_Suicide <span class="op">(</span><span class="dt">const</span> <span class="dt">char</span> <span class="op">*</span>message<span class="op">)</span></span>
@@ -548,7 +548,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </dl>
 <!-- -->
 <dl>
-<dt>Function: <em>void</em> <strong>R_CleanUp</strong> <em>(SA_TYPE <var>saveact</var>, int <var>status</var>, int <var>RunLast</var>)</em></dt>
+<dt>Function: <em>void</em> <strong>R_CleanUp</strong> <em>(SA_TYPE <code>saveact</code>, int <code>status</code>, int <code>RunLast</code>)</em></dt>
 <dd>
 <p>This function invokes any actions which occur at system termination. It needs to be quite complex:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Rinterface.h&gt;</span></span>
@@ -659,7 +659,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>There is a version of the Unix-alike interface calling</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> Rf_initEmbeddedR<span class="op">(</span><span class="dt">int</span> ac<span class="op">,</span> <span class="dt">char</span> <span class="op">**</span>av<span class="op">);</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> Rf_endEmbeddedR<span class="op">(</span><span class="dt">int</span> fatal<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>which is an entry point in <code>R.dll</code>. Examples of its use (and a suitable <code>Makefile.win</code>) can be found in the <code>tests/Embedding</code> directory of the sources. You may need to ensure that <var>R_HOME</var><code>/bin</code> is in your <code>PATH</code> so the R DLLs are found.</p>
+<p>which is an entry point in <code>R.dll</code>. Examples of its use (and a suitable <code>Makefile.win</code>) can be found in the <code>tests/Embedding</code> directory of the sources. You may need to ensure that <code>R_HOME/bin</code> is in your <code>PATH</code> so the R DLLs are found.</p>
 <p>Examples of calling <code>R.dll</code> directly are provided in the directory <code>src/gnuwin32/front-ends</code>, including a simple command-line front end <code>rtest.c</code> whose code is</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define Win32</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;windows.h&gt;</span></span>
@@ -797,6 +797,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>If the desired architecture is known, look in <code>Software\R-core\R32</code> or <code>Software\R-core\R64</code>, and if that does not exist or the architecture is immaterial, in <code>Software\R-core\R</code>.</li>
 <li>If key <code>InstallPath</code> exists then this is <code>R_HOME</code> (recorded using backslashes). If it does not, look for version-specific keys like <code>2.11.0 alpha</code>, pick the latest (which is of itself a complicated algorithm as <code>2.11.0 patched &gt; 2.11.0 &gt; 2.11.0 alpha &gt; 2.8.1</code>) and use its value for <code>InstallPath</code>.</li>
 </ul>
+<p>Footnotes</p>
 
 
 </section>

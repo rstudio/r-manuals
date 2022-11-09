@@ -158,7 +158,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">R Data Import/Export</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./index.html">
+    <a class="dropdown-item" href="./../r-admin/index.html">
  <span class="dropdown-text">R Installation and Administration</span></a>
   </li>  
         <li>
@@ -255,21 +255,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Essential-and-useful-other-programs-under-a-Unix-alike.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Essential and useful other programs under a Unix-alike</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Configuration-on-a-Unix-alike.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Configuration on a Unix-alike</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Platform-notes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Platform notes</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link">Function and variable index</a>
   </div>
 </li>
@@ -283,6 +268,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./Environment-variable-index.html" class="sidebar-item-text sidebar-link">Environment variable index</a>
   </div>
 </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Essential-and-useful-other-programs-under-a-Unix-alike.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Essential and useful other programs under a Unix-alike</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Configuration-on-a-Unix-alike.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Configuration on a Unix-alike</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Platform-notes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Platform notes</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -305,7 +315,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="obtaining-r" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Obtaining R</span></span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Obtaining R</span></h1>
 </div>
 
 
@@ -322,7 +332,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Sources, binaries and documentation for R can be obtained via CRAN, the “Comprehensive R Archive Network” whose current members are listed at <a href="https://CRAN.R-project.org/mirrors.html" class="uri">https://CRAN.R-project.org/mirrors.html</a>.</p>
 <section id="getting-and-unpacking-the-sources" class="level2 section page-columns page-full" data-number="1.1">
 <h2 class="section anchored" data-number="1.1" data-anchor-id="getting-and-unpacking-the-sources"><span class="header-section-number">1.1</span> Getting and unpacking the sources</h2>
-<p>The simplest way is to download the most recent <var>R-``x</var><var>.``y</var><var>.``z</var><code>.tar.gz</code> file, and unpack it with</p>
+<p>The simplest way is to download the most recent <code>R-x.y.z.tar.gz</code> file, and unpack it with</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xf</span> R-x.y.z.tar.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="page-columns page-full"><p>on systems that have a suitable<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> <code>tar</code> installed. On other systems you need to have the <code>gzip</code> program installed, when you can use</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;e.g.&nbsp;GNU <code>tar</code> version 1.15 or later, or that from the <code>libarchive</code> (as used on macOS) or ‘Heirloom Toolchest’ distributions.</p></li></div></div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gzip</span> <span class="at">-dc</span> R-x.y.z.tar.gz <span class="kw">|</span> <span class="fu">tar</span> <span class="at">-xf</span> <span class="at">-</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -338,16 +348,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The tarballs are available from <a href="https://stat.ethz.ch/R/daily/" class="uri">https://stat.ethz.ch/R/daily/</a>. Download <code>R-patched.tar.gz</code> or <code>R-devel.tar.gz</code> (or the <code>.tar.bz2</code> versions) and unpack as described in the previous section. They are built in exactly the same way as distributions of R releases.</p>
 <section id="using-subversion-and-rsync" class="level3 subsection page-columns page-full" data-number="1.2.1">
 <h3 class="subsection anchored" data-number="1.2.1" data-anchor-id="using-subversion-and-rsync"><span class="header-section-number">1.2.1</span> Using Subversion and rsync</h3>
-<p>Sources are also available via <a href="https://svn.R-project.org/R/" class="uri">https://svn.R-project.org/R/</a>, the R Subversion repository. If you have a Subversion client (see <a href="https://subversion.apache.org/" class="uri">https://subversion.apache.org/</a>), you can check out and update the current <code>r-devel</code> from <a href="https://svn.r-project.org/R/trunk/" class="uri">https://svn.r-project.org/R/trunk/</a> and the current <code>r-patched</code> from <var>https://svn.r-project.org/R/branches/R-``x</var><var>-``y</var><code>-branch/</code> (where <var>x</var> and <var>y</var> are the major and minor number of the current released version of R). E.g., use</p>
+<p>Sources are also available via <a href="https://svn.R-project.org/R/" class="uri">https://svn.R-project.org/R/</a>, the R Subversion repository. If you have a Subversion client (see <a href="https://subversion.apache.org/" class="uri">https://subversion.apache.org/</a>), you can check out and update the current <code>r-devel</code> from <a href="https://svn.r-project.org/R/trunk/" class="uri">https://svn.r-project.org/R/trunk/</a> and the current <code>r-patched</code> from <code>https://svn.r-project.org/R/branches/R-x-y-branch/</code> (where <code>x</code> and <code>y</code> are the major and minor number of the current released version of R). E.g., use</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>svn checkout https<span class="sc">:</span><span class="er">//</span>svn.r<span class="sc">-</span>project.org<span class="sc">/</span>R<span class="sc">/</span>trunk<span class="sc">/</span> path</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>to check out <code>r-devel</code> into directory <var>path</var> (which will be created if necessary). The alpha, beta and RC versions of an upcoming <var>x.y.0</var> release are available from <var>https://svn.r-project.org/R/branches/R-``x</var><var>-``y</var><code>-branch/</code> in the four-week period prior to the release.</p>
+<p>to check out <code>r-devel</code> into directory <code>path</code> (which will be created if necessary). The alpha, beta and RC versions of an upcoming <code>x.y.0</code> release are available from <code>https://svn.r-project.org/R/branches/R-x-y-branch/</code> in the four-week period prior to the release.</p>
 <div class="page-columns page-full"><p>Note that <code>https:</code> is required<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, and that the SSL certificate for the Subversion server of the R project should be recognized as from a trusted source.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;for some Subversion clients <code>http:</code> may appear to work, but requires continual redirection.</p></li></div></div>
 <p>Note that retrieving the sources by e.g.&nbsp;<code>wget -r</code> or <code>svn export</code> from that URL will not work (and will give a error early in the <code>make</code> process): the Subversion information is needed to build R.</p>
 <p>The Subversion repository does not contain the current sources for the recommended packages, which can be obtained by <code>rsync</code> or downloaded from CRAN. To use <code>rsync</code> to install the appropriate sources for the recommended packages, run <code>./tools/rsync-recommended</code> from the top-level directory of the R sources.</p>
-<p>If downloading manually from CRAN, do ensure that you have the correct versions of the recommended packages: if the number in the file <code>VERSION</code> is <var>x</var><var>.``y</var><var>.``z</var>’ you need to download the contents of <var>https://CRAN.R-project.org/src/contrib/``dir</var>’, where <var>dir</var> is <var>x</var><var>.``y</var><var>.``z</var><code>/Recommended</code> for r-devel or <var>x</var><var>.``y</var><code>-patched/Recommended</code> for r-patched, respectively, to directory <code>src/library/Recommended</code> in the sources you have unpacked. After downloading manually you need to execute <code>tools/link-recommended</code> from the top level of the sources to make the requisite links in <code>src/library/Recommended</code>. A suitable incantation from the top level of the R sources using <code>wget</code> might be (for the correct value of <var>dir</var>)</p>
+<p>If downloading manually from CRAN, do ensure that you have the correct versions of the recommended packages: if the number in the file <code>VERSION</code> is <code>x.y.z</code> you need to download the contents of <code>https://CRAN.R-project.org/src/contrib/dir</code>, where <code>dir</code> is <code>x.y.z/Recommended</code> for r-devel or <code>x.y-patched/Recommended</code> for r-patched, respectively, to directory <code>src/library/Recommended</code> in the sources you have unpacked. After downloading manually you need to execute <code>tools/link-recommended</code> from the top level of the sources to make the requisite links in <code>src/library/Recommended</code>. A suitable incantation from the top level of the R sources using <code>wget</code> might be (for the correct value of <code>dir</code>)</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>wget <span class="sc">-</span>r <span class="sc">-</span>l1 <span class="sc">--</span>no<span class="sc">-</span>parent <span class="sc">-</span>A\<span class="sc">*</span>.gz <span class="sc">-</span>nd <span class="sc">-</span>P src<span class="sc">/</span>library<span class="sc">/</span>Recommended \</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  https<span class="sc">:</span><span class="er">//</span>CRAN.R<span class="sc">-</span>project.org<span class="sc">/</span>src<span class="sc">/</span>contrib<span class="sc">/</span>dir</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>.<span class="sc">/</span>tools<span class="sc">/</span>link<span class="sc">-</span>recommended</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Footnotes</p>
 
 
 </section>

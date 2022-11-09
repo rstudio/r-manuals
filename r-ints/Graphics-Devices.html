@@ -170,7 +170,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">R Language Definition</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./index.html">
+    <a class="dropdown-item" href="./../r-ints/index.html">
  <span class="dropdown-text">R Internals</span></a>
   </li>  
     </ul>
@@ -313,7 +313,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="graphics" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Graphics</span></span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Graphics</span></h1>
 </div>
 
 
@@ -557,9 +557,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="section anchored" data-number="6.2" data-anchor-id="colours"><span class="header-section-number">6.2</span> Colours</h2>
 <p>Devices receive colours as a <code>typedef</code> <code>rcolor</code> (an <code>unsigned int</code>) defined in the header <code>R_ext/GraphicsEngine.h</code>). The 4 bytes are <em>R</em> ,<em>G</em>, <em>B</em> and <em>alpha</em> from least to most significant. So each of RGB has 256 levels of luminosity from 0 to 255. The alpha byte represents opacity, so value 255 is fully opaque and 0 fully transparent: many but not all devices handle semi-transparent colours.</p>
 <p>Colors can be created in C via the macro <code>R_RGBA</code>, and a set of macros are defined in <code>R_ext/GraphicsDevice.h</code> to extract the various components.</p>
-<p>Colours in the base graphics system were originally adopted from S (and before that the GRZ library from Bell Labs), with the concept of a (variable-sized) palette of colours referenced by numbers <var>1...``N</var>’ plus <code>0</code> (the background colour of the current device). R introduced the idea of referring to colours by character strings, either in the forms <code>#RRGGBB</code> or <code>#RRGGBBAA</code> (representing the bytes in hex) as given by function <code>rgb()</code> or via names: the 657 known names are given in the character vector <code>colors</code> and in a table in file <code>colors.c</code> in package <strong>grDevices</strong>. Note that semi-transparent colours are not ‘premultiplied’, so 50% transparent white is <code>#ffffff80</code>.</p>
+<p>Colours in the base graphics system were originally adopted from S (and before that the GRZ library from Bell Labs), with the concept of a (variable-sized) palette of colours referenced by numbers <code>1...N</code> plus <code>0</code> (the background colour of the current device). R introduced the idea of referring to colours by character strings, either in the forms <code>#RRGGBB</code> or <code>#RRGGBBAA</code> (representing the bytes in hex) as given by function <code>rgb()</code> or via names: the 657 known names are given in the character vector <code>colors</code> and in a table in file <code>colors.c</code> in package <strong>grDevices</strong>. Note that semi-transparent colours are not ‘premultiplied’, so 50% transparent white is <code>#ffffff80</code>.</p>
 <p>Integer or character <code>NA</code> colours are mapped internally to transparent white, as is the character string <code>"NA"</code>.</p>
-<p>Negative colour numbers are an error. Colours greater than <var>N</var>’ are wrapped around, so that for example with the default palette of size 8, colour <code>10</code> is colour <code>2</code> in the palette.</p>
+<p>Negative colour numbers are an error. Colours greater than <code>N</code> are wrapped around, so that for example with the default palette of size 8, colour <code>10</code> is colour <code>2</code> in the palette.</p>
 <p>Integer colours have been used more widely than the base graphics sub-system, as they are supported by package <strong>grid</strong> and hence by <a href="https://CRAN.R-project.org/package=lattice"><strong>lattice</strong></a> and <a href="https://CRAN.R-project.org/package=ggplot2"><strong>ggplot2</strong></a>. (They are also used by package <a href="https://CRAN.R-project.org/package=rgl"><strong>rgl</strong></a>.) <strong>grid</strong> did re-define colour <code>0</code> to be transparent white, but <a href="https://CRAN.R-project.org/package=rgl"><strong>rgl</strong></a> used <code>col2rgb</code> and hence the background colour of base graphics.</p>
 <p>Note that positive integer colours refer to the current palette and colour <code>0</code> to the current device (and a device is opened if needs be). These are mapped to type <code>rcolor</code> at the time of use: this matters when re-playing the display list, e.g.&nbsp;when a device is resized or <code>dev.copy</code> is used. The palette should be thought of as per-session: it is stored in package <strong>grDevices</strong>.</p>
 <p>The convention is that devices use the colorspace ‘sRGB’. This is an industry standard: it is used by Web browsers and JPEGs from all but high-end digital cameras. The interpretation is a matter for graphics devices and for code that manipulates colours, but not for the graphics engine or subsystems.</p>
@@ -591,6 +591,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="grid-graphics" class="level2 section" data-number="6.4">
 <h2 class="section anchored" data-number="6.4" data-anchor-id="grid-graphics"><span class="header-section-number">6.4</span> Grid graphics</h2>
 <p>[At least pointers to documentation.]</p>
+<p>Footnotes</p>
 
 
 </section>

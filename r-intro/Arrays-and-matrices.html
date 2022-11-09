@@ -150,7 +150,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manuals</a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
         <li>
-    <a class="dropdown-item" href="./index.html">
+    <a class="dropdown-item" href="./../r-intro/index.html">
  <span class="dropdown-text">An Introduction to R</span></a>
   </li>  
         <li>
@@ -283,36 +283,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./OS-facilities.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">OS facilities</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./A-sample-session.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">A sample session</span></a>
+  <a href="./A-sample-session.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">A sample session</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Invoking-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Invoking R</span></a>
+  <a href="./Invoking-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Invoking R</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./The-command-line-editor.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">The command-line editor</span></a>
+  <a href="./The-command-line-editor.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">The command-line editor</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Function and variable index</span></a>
+  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Function and variable index</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Concept index</span></a>
+  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Concept index</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">References</span></a>
+  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">References</span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -353,7 +363,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="arrays-and-matrices" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Arrays and matrices</span></span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Arrays and matrices</span></h1>
 </div>
 
 
@@ -376,7 +386,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>gives it the <em>dim</em> attribute that allows it to be treated as a <em>3</em> by <em>5</em> by <em>100</em> array.</p>
 <p>Other functions such as <code>matrix()</code> and <code>array()</code> are available for simpler and more natural looking assignments, as we shall see in <a href="#the-array_0028_0029-function">The array() function</a>.</p>
 <p>The values in the data vector give the values in the array in the same order as they would occur in FORTRAN, that is “column major order,” with the first subscript moving fastest and the last subscript slowest.</p>
-<p>For example if the dimension vector for an array, say <code>a</code>, is <code>c(3,4,2)</code> then there are 3 * 4 * 2 = 24 entries in <code>a</code> and the data vector holds them in the order <code>a[1,1,1], a[2,1,1], …, a[2,4,2], a[3,4,2]</code>.</p>
+<p>For example if the dimension vector for an array, say <code>a</code>, is <code>c(3,4,2)</code> then there are 3 * 4 * 2 = 24 entries in <code>a</code> and the data vector holds them in the order <code>a[1,1,1], a[2,1,1], ..., a[2,4,2], a[3,4,2]</code>.</p>
 <p>Arrays can be one-dimensional: such arrays are usually treated in the same way as vectors (including when printing), but the exceptions can cause confusion.</p>
 </section>
 <section id="array-indexing.-subsections-of-an-array" class="level2 section" data-number="5.2">
@@ -559,8 +569,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="section anchored" data-number="5.8" data-anchor-id="forming-partitioned-matrices-cbind-and-rbind"><span class="header-section-number">5.8</span> Forming partitioned matrices, <code>cbind()</code> and <code>rbind()</code></h2>
 <p>As we have already seen informally, matrices can be built up from other vectors and matrices by the functions <code>cbind()</code> and <code>rbind()</code>. Roughly <code>cbind()</code> forms matrices by binding together matrices horizontally, or column-wise, and <code>rbind()</code> vertically, or row-wise.</p>
 <p>In the assignment</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> X <span class="ot">&lt;-</span> <span class="fu">cbind</span>(arg_1, arg_2, arg_3, …)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>the arguments to <code>cbind()</code> must be either vectors of any length, or matrices with the same column size, that is the same number of rows. The result is a matrix with the concatenated arguments <var>arg_1</var>, <var>arg_2</var>, … forming the columns.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> X <span class="ot">&lt;-</span> <span class="fu">cbind</span>(arg_1, arg_2, arg_3, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>the arguments to <code>cbind()</code> must be either vectors of any length, or matrices with the same column size, that is the same number of rows. The result is a matrix with the concatenated arguments <code>arg_1</code>, <code>arg_2</code>, … forming the columns.</p>
 <p>If some of the arguments to <code>cbind()</code> are vectors they may be shorter than the column size of any matrices present, in which case they are cyclically extended to match the matrix column size (or the length of the longest vector if no matrices are given).</p>
 <p>The function <code>rbind()</code> does the corresponding operation for rows. In this case any vector argument, possibly cyclically extended, are of course taken as row vectors.</p>
 <p>Suppose <code>X1</code> and <code>X2</code> have the same number of rows. To combine these by columns into a matrix <code>X</code>, together with an initial column of <code>1</code>s we can use</p>
@@ -594,6 +604,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">55</span>,<span class="dv">65</span>]   <span class="dv">0</span>   <span class="dv">3</span>  <span class="dv">1</span>   <span class="dv">3</span>  <span class="dv">2</span>   <span class="dv">2</span>   <span class="dv">2</span>  <span class="dv">1</span></span>
 <span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">65</span>,<span class="dv">75</span>]   <span class="dv">0</span>   <span class="dv">1</span>  <span class="dv">0</span>   <span class="dv">0</span>  <span class="dv">0</span>   <span class="dv">0</span>   <span class="dv">1</span>  <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Extension to higher-way frequency tables is immediate.</p>
+<p>Footnotes</p>
 
 
 </section>

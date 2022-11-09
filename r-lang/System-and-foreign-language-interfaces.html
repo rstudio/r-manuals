@@ -103,7 +103,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Writing R Extensions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./index.html">
+    <a class="dropdown-item" href="./../r-lang/index.html">
  <span class="dropdown-text">R Language Definition</span></a>
   </li>  
         <li>
@@ -205,11 +205,21 @@ ul.task-list li input[type="checkbox"] {
   <a href="./Concept-Index.html" class="sidebar-item-text sidebar-link">Concept Index</a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">References</span></a>
+  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">References</span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -230,7 +240,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="system-and-foreign-language-interfaces" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">System and foreign language interfaces</span></span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">System and foreign language interfaces</span></h1>
 </div>
 
 
@@ -249,7 +259,6 @@ ul.task-list li input[type="checkbox"] {
 <p>Access to the operating system shell is via the R function <code>system</code>. The details will differ by platform (see the on-line help), and about all that can safely be assumed is that the first argument will be a string <code>command</code> that will be passed for execution (not necessarily by a shell) and the second argument will be <code>internal</code> which if true will collect the output of the command into an R character vector.</p>
 <p>The functions <code>system.time</code> and <code>proc.time</code> are available for timing (although the information available may be limited on non-Unix-like platforms).</p>
 <p>Information from the operating system environment can be accessed and manipulated with</p>
-<div class="blockquotes-block">
 <blockquote class="blockquote">
 <table class="table">
 <tbody>
@@ -284,9 +293,7 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 </blockquote>
-</div>
 <p>A uniform set of file access functions is provided on all platforms:</p>
-<div class="blockquotes-block">
 <blockquote class="blockquote">
 <table class="table">
 <tbody>
@@ -337,9 +344,7 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 </blockquote>
-</div>
 <p>There are also functions for manipulating file names and paths in a platform-independent way.</p>
-<div class="blockquotes-block">
 <blockquote class="blockquote">
 <table class="table">
 <tbody>
@@ -362,7 +367,6 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 </blockquote>
-</div>
 </section>
 <section id="foreign-language-interfaces" class="level2 section" data-number="7.2">
 <h2 class="section anchored" data-number="7.2" data-anchor-id="foreign-language-interfaces"><span class="header-section-number">7.2</span> Foreign language interfaces</h2>

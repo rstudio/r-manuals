@@ -154,7 +154,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">An Introduction to R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./index.html">
+    <a class="dropdown-item" href="./../r-data/index.html">
  <span class="dropdown-text">R Data Import/Export</span></a>
   </li>  
         <li>
@@ -260,11 +260,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">References</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link">Function and variable index</a>
   </div>
 </li>
@@ -273,6 +268,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./Concept-index.html" class="sidebar-item-text sidebar-link">Concept index</a>
   </div>
 </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">References</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -301,7 +311,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="relational-databases" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Relational databases</span></span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Relational databases</span></h1>
 </div>
 
 
@@ -361,7 +371,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="subsection anchored" data-number="4.2.2" data-anchor-id="data-types"><span class="header-section-number">4.2.2</span> Data types</h3>
 <p>Data can be stored in a database in various data types. The range of data types is DBMS-specific, but the SQL standard defines many types, including the following that are widely implemented (often not by the SQL name).</p>
 <dl>
-<dt><var>float(``p</var><code>)</code></dt>
+<dt><code>float(``p)</code></dt>
 <dd>
 <p>Real number, with optional precision. Often called <code>real</code> or <code>double</code> or <code>double precision</code>.</p>
 </dd>
@@ -373,11 +383,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <dd>
 <p>16-bit integer</p>
 </dd>
-<dt><var>character(``n</var><code>)</code></dt>
+<dt><code>character(``n)</code></dt>
 <dd>
 <p>fixed-length character string. Often called <code>char</code>.</p>
 </dd>
-<dt><var>character varying(``n</var><code>)</code></dt>
+<dt><code>character varying(``n)</code></dt>
 <dd>
 <p>variable-length character string. Often called <code>varchar</code>. Almost always has a limit of 255 chars.</p>
 </dd>
@@ -510,6 +520,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> sh1 <span class="op">&lt;-</span> sqlFetch<span class="op">(</span>channel<span class="op">,</span> <span class="st">"Sheet1"</span><span class="op">)</span></span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> sh1 <span class="op">&lt;-</span> sqlQuery<span class="op">(</span>channel<span class="op">,</span> <span class="st">"select * from [Sheet1$]"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Notice that the specification of the table is different from the name returned by <code>sqlTables</code>: <code>sqlFetch</code> is able to map the differences.</p>
+<p>Footnotes</p>
 
 
 </section>

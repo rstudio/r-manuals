@@ -166,7 +166,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="dropdown-text">Writing R Extensions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./index.html">
+    <a class="dropdown-item" href="./../r-lang/index.html">
  <span class="dropdown-text">R Language Definition</span></a>
   </li>  
         <li>
@@ -268,11 +268,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./Concept-Index.html" class="sidebar-item-text sidebar-link">Concept Index</a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">References</span></a>
+  <a href="./References.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">References</span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -303,7 +313,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="functions" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Functions</span></span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Functions</span></h1>
 </div>
 
 
@@ -326,7 +336,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The syntax for writing a function is</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span> ( arglist ) body</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The first component of the function declaration is the keyword <code>function</code> which indicates to R that you want to create a function.</p>
-<p>An argument list is a comma separated list of formal arguments. A formal argument can be a symbol, a statement of the form <var>symbol</var><var>= ``expression</var>’, or the special formal argument <code>...</code>.</p>
+<p>An argument list is a comma separated list of formal arguments. A formal argument can be a symbol, a statement of the form <code>symbol = expression</code>, or the special formal argument <code>...</code>.</p>
 <p>The <em>body</em> can be any valid R expression. Generally, the body is a group of expressions contained in curly braces (<code>{</code> and <code>}</code>).</p>
 <p>Generally functions are assigned to symbols but they don’t need to be. The value returned by the call to <code>function</code> is a function. If this is not given a name it is referred to as an anonymous function. Anonymous functions are most frequently used as arguments to other functions such as the <code>apply</code> family or <code>outer</code>.</p>
 <p>Here is a simple function: <code>echo &lt;- function(x) print(x)</code>. So <code>echo</code> is a function that takes a single argument and when <code>echo</code> is invoked it prints its argument.</p>
@@ -334,7 +344,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="arguments" class="level3 subsection" data-number="4.1.2">
 <h3 class="subsection anchored" data-number="4.1.2" data-anchor-id="arguments"><span class="header-section-number">4.1.2</span> Arguments</h3>
 <p>The formal arguments to the function define the variables whose values will be supplied at the time the function is invoked. The names of these arguments can be used within the function body where they obtain the value supplied at the time of function invocation.</p>
-<p>Default values for arguments can be specified using the special form <var>name</var><var>= ``expression</var>’. In this case, if the user does not specify a value for the argument when the function is invoked the expression will be associated with the corresponding symbol. When a value is needed the <var>expression</var> is evaluated in the evaluation frame of the function.</p>
+<p>Default values for arguments can be specified using the special form <code>name = expression</code>. In this case, if the user does not specify a value for the argument when the function is invoked the expression will be associated with the corresponding symbol. When a value is needed the <code>expression</code> is evaluated in the evaluation frame of the function.</p>
 <p>Default behaviours can also be specified by using the function <code>missing</code>. When <code>missing</code> is called with the name of a formal argument it returns <code>TRUE</code> if the formal argument was not matched with any actual argument and has not been subsequently modified in the body of the function. An argument that is <code>missing</code> will thus have its default value, if any. The <code>missing</code> function does not force evaluation of the argument.</p>
 <p>The special type of argument <code>...</code> can contain any number of supplied arguments. It is used for a variety of purposes. It allows you to write a function that takes an arbitrary number of arguments. It can be used to absorb some arguments into an intermediate function which can then be extracted by functions called subsequently.</p>
 </section>

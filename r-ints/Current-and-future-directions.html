@@ -107,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">R Language Definition</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./index.html">
+    <a class="dropdown-item" href="./../r-ints/index.html">
  <span class="dropdown-text">R Internals</span></a>
   </li>  
     </ul>
@@ -235,7 +235,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="current-and-future-directions" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Current and future directions</span></span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Current and future directions</span></h1>
 </div>
 
 
@@ -286,6 +286,7 @@ ul.task-list li input[type="checkbox"] {
 <p>There are exceptions: for example some complex LAPACK auxiliary routines do use a single <code>INTEGER</code> index and hence overflow silently and segfault or give incorrect results. One example seen was <code>svd()</code> on a complex matrix.</p>
 <p>Since this is implementation-dependent, it is possible that optimized BLAS and LAPACK may have further restrictions: a segfault have been reported from <code>svd()</code> using ATLAS on <code>x86_64</code> Linux.</p>
 <p>For matrix algebra on large matrices one almost certainly wants a machine with a lot of RAM (100s of gigabytes), many cores and a multi-threaded BLAS.</p>
+<p>Footnotes</p>
 
 
 </section>

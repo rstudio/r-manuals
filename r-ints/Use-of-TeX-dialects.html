@@ -107,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">R Language Definition</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./index.html">
+    <a class="dropdown-item" href="./../r-ints/index.html">
  <span class="dropdown-text">R Internals</span></a>
   </li>  
     </ul>
@@ -227,7 +227,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="use-of-tex-dialects" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Use of TeX dialects</span></span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Use of TeX dialects</span></h1>
 </div>
 
 
@@ -247,6 +247,7 @@ ul.task-list li input[type="checkbox"] {
 <p><code>tools::texi2dvi</code> makes use of a system command <code>texi2dvi</code> where available. On a Unix-alike this is usually part of <code>texinfo</code>, whereas on Windows if it exists at all it would be an executable, part of MiKTeX. If none is available, the R code runs a sequence of <code>(pdf)latex</code>, <code>bibtex</code> and <code>makeindex</code> commands.</p>
 <div class="page-columns page-full"><p>This process has been rather vulnerable to the versions of the external software used: particular issues have been <code>texi2dvi</code> and <code>texinfo.tex</code> updates, mismatches between the two<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, versions of the LaTeX package <code>hyperref</code> and quirks in index production. The licenses used for LaTeX and latterly <code>texinfo</code> prohibit us from including ‘known good’ versions in the R distribution.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Linux distributions tend to unbundle <code>texinfo.tex</code> from <code>texinfo</code>.</p></li></div></div>
 <p>On a Unix-alike <code>configure</code> looks for the executables for TeX and friends and if found records the absolute paths in the system <code>Renviron</code> file. This used to record <code>false</code> if no command was found, but it nowadays records the name for looking up on the path at run time. The latter can be important for binary distributions: one does not want to be tied to, for example, TeX Live 2007.</p>
+<p>Footnotes</p>
 
 
 
