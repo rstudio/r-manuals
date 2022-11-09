@@ -374,12 +374,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="subsection anchored" data-number="2.1.1" data-anchor-id="documenting-functions"><span class="header-section-number">2.1.1</span> Documenting functions</h3>
 <p>The basic markup commands used for documenting R objects (in particular, functions) are given in this subsection.</p>
 <dl class="page-columns page-full">
-<dt><code>\name{``name}</code></dt>
+<dt><code>\name{name}</code></dt>
 <dd class="page-columns page-full">
 <p><span id="index-_005cname"></span></p>
 <div class="page-columns page-full"><p><code>name</code> typically<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> is the basename of the <code>Rd</code> file containing the documentation. It is the “name” of the <code>Rd</code> object represented by the file and has to be unique in a package. To avoid problems with indexing the package manual, it may not contain <code>!</code> <code>|</code> nor <code>@</code>, and to avoid possible problems with the HTML help system it should not contain <code>/</code> nor a space. (LaTeX special characters are allowed, but may not be collated correctly in the index.) There can only be one <code>\name</code> entry in a file, and it must not contain any markup. Entries in the package manual will be in alphabetic<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> order of the <code>\name</code> entries.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;There can be exceptions: for example <code>Rd</code> files are not allowed to start with a dot, and have to be uniquely named on a case-insensitive file system.</p></li><li id="fn3"><p><sup>3</sup>&nbsp;in the current locale, and with special treatment for LaTeX special characters and with any <code>pkgname-package</code> topic moved to the top of the list.</p></li></div></div>
 </dd>
-<dt><code>\alias{``topic}</code></dt>
+<dt><code>\alias{topic}</code></dt>
 <dd>
 <p><span id="index-_005calias"></span></p>
 <p>The <code>\alias</code> sections specify all “topics” the file documents. This information is collected into index data bases for lookup by the on-line (plain text and HTML) help systems. The <code>topic</code> can contain spaces, but (for historical reasons) leading and trailing spaces will be stripped. Percent and left brace need to be escaped by a backslash.</p>
@@ -393,7 +393,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Also, it is often convenient to have several different ways to refer to an R object, and an <code>\alias</code> does not need to be the name of an object.</p>
 <p>Note that the <code>\name</code> is not necessarily a topic documented, and if so desired it needs to have an explicit <code>\alias</code> entry (as in this example).</p>
 </dd>
-<dt><code>\title{``Title}</code></dt>
+<dt><code>\title{Title}</code></dt>
 <dd>
 <p><span id="index-_005ctitle"></span></p>
 <p>Title information for the <code>Rd</code> file. This should be capitalized and not end in a period; try to limit its length to at most 65 characters for widest compatibility.</p>
@@ -405,7 +405,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span id="index-_005cdescription"></span></p>
 <p>A short description of what the function(s) do(es) (one paragraph, a few lines only). (If a description is too long and cannot easily be shortened, the file probably tries to document too much at once.) This is mandatory except for package-overview files.</p>
 </dd>
-<dt><code>\usage{``fun(``arg1, ``arg2, ...)}</code></dt>
+<dt><code>\usage{fun(arg1, arg2, ...)}</code></dt>
 <dd>
 <p><span id="index-_005cusage"></span></p>
 <p>One or more lines showing the synopsis of the function(s) and variables documented in the file. These are set in typewriter font. This is an R-like command.</p>
@@ -416,7 +416,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\preformatted</span>{abline(a, b, ...)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>......</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Use <code>\method{``generic}{``class}</code> to indicate the name of an S3 method for the generic function <code>generic</code> for objects inheriting from class <code>"``class"</code>. In the printed versions, this will come out as <code>generic</code> (reflecting the understanding that methods should not be invoked directly but <em>via</em> method dispatch), but <code>codoc()</code> and other QC tools always have access to the full name.</p>
+<p>Use <code>\method{generic}{class}</code> to indicate the name of an S3 method for the generic function <code>generic</code> for objects inheriting from class <code>"class"</code>. In the printed versions, this will come out as <code>generic</code> (reflecting the understanding that methods should not be invoked directly but <em>via</em> method dispatch), but <code>codoc()</code> and other QC tools always have access to the full name.</p>
 <p>For example, <code>print.ts.Rd</code> contains</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>\usage<span class="op">{</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>\method<span class="op">{</span>print<span class="op">}{</span>ts<span class="op">}(</span>x<span class="op">,</span> calendar<span class="op">,</span> \dots<span class="op">)</span></span>
@@ -426,7 +426,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>     <span class="er">## S3 method for class 'ts':</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>     print<span class="op">(</span>x<span class="op">,</span> calendar<span class="op">,</span> <span class="op">...)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Usage for replacement functions should be given in the style of <code>dim(x) &lt;- value</code> rather than explicitly indicating the name of the replacement function (<span class="nolinebreak"><code>"dim&lt;-"</code></span> in the above). Similarly, one can use <code>\method{``generic}{``class}(``arglist) &lt;- value</code> to indicate the usage of an S3 replacement method for the generic replacement function <code>"``generic&lt;-"</code> for objects inheriting from class <code>"``class"</code>.</p>
+<p>Usage for replacement functions should be given in the style of <code>dim(x) &lt;- value</code> rather than explicitly indicating the name of the replacement function (<span class="nolinebreak"><code>"dim&lt;-"</code></span> in the above). Similarly, one can use <code>\method{generic}{class}(arglist) &lt;- value</code> to indicate the usage of an S3 replacement method for the generic replacement function <code>"generic&lt;-"</code> for objects inheriting from class <code>"class"</code>.</p>
 <p>Usage for S3 methods for extracting or replacing parts of an object, S3 methods for members of the Ops group, and S3 methods for user-defined (binary) infix operators (<code>%xxx%</code>) follows the above rules, using the appropriate function names. E.g., <code>Extract.factor.Rd</code> contains</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>\usage{</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>\method{[}{factor}(x, \dots, <span class="at">drop =</span> <span class="cn">FALSE</span>)</span>
@@ -509,7 +509,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="do">## IGNORE_RDIFF_END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>is ignored when comparing check output to reference output (a <code>-Ex.Rout.save</code> file). This markup can also be used for scripts under <code>tests</code>.</p>
 </dd>
-<dt><code>\keyword{``key}</code></dt>
+<dt><code>\keyword{key}</code></dt>
 <dd>
 <p>There can be zero or more <code>\keyword</code> sections per file. Each <code>\keyword</code> section should specify a single keyword, preferably one of the standard keywords as listed in file <code>KEYWORDS</code> in the R documentation directory (default <code>R_HOME/doc</code>). Use e.g.&nbsp;<code>RShowDoc("KEYWORDS")</code> to inspect the standard keywords from within R. There can be more than one <code>\keyword</code> entry if the R object being documented falls into more than one category, or none.</p>
 <p>Do strongly consider using <code>\concept</code> (see <a href="#indices">Indices</a>) instead of <code>\keyword</code> if you are about to use more than very few non-standard keywords.</p>
@@ -569,10 +569,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </dl>
 <p>Note also that when documenting data set <code>bar</code>,</p>
 <ul>
-<li>The <code>\usage</code> entry is always <code>bar</code> or (for packages which do not use lazy-loading of data) <code>data(``bar)</code>. (In particular, only document a <em>single</em> data object per <code>Rd</code> file.)</li>
+<li>The <code>\usage</code> entry is always <code>bar</code> or (for packages which do not use lazy-loading of data) <code>data(bar)</code>. (In particular, only document a <em>single</em> data object per <code>Rd</code> file.)</li>
 <li>The <code>\keyword</code> entry should always be <code>datasets</code>.</li>
 </ul>
-<p>If <code>bar</code> is a data frame, documenting it as a data set can be initiated <em>via</em> <code>prompt(``bar)</code>. Otherwise, the <code>promptData</code> function may be used.</p>
+<p>If <code>bar</code> is a data frame, documenting it as a data set can be initiated <em>via</em> <code>prompt(bar)</code>. Otherwise, the <code>promptData</code> function may be used.</p>
 </section>
 <section id="documenting-s4-classes-and-methods" class="level3 subsection" data-number="2.1.3">
 <h3 class="subsection anchored" data-number="2.1.3" data-anchor-id="documenting-s4-classes-and-methods"><span class="header-section-number">2.1.3</span> Documenting S4 classes and methods</h3>
@@ -589,15 +589,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="documenting-packages" class="level3 subsection" data-number="2.1.4">
 <h3 class="subsection anchored" data-number="2.1.4" data-anchor-id="documenting-packages"><span class="header-section-number">2.1.4</span> Documenting packages</h3>
-<p>Packages may have an overview help page with an <code>\alias</code> <code>pkgname-package</code>, e.g.&nbsp;<code>utils-package</code> for the <strong>utils</strong> package, when <code>package?``pkgname</code> will open that help page. If a topic named <code>pkgname</code> does not exist in another <code>Rd</code> file, it is helpful to use this as an additional <code>\alias</code>.</p>
-<p>Skeletons of documentation for a package can be generated using the function <code>promptPackage()</code>. If the <code>final = LIBS</code> argument is used, then the <code>Rd</code> file will be generated in final form, containing the information that would be produced up to <code>library(help = ``pkgname)</code>. Otherwise (the default) comments will be inserted giving suggestions for content.</p>
+<p>Packages may have an overview help page with an <code>\alias</code> <code>pkgname-package</code>, e.g.&nbsp;<code>utils-package</code> for the <strong>utils</strong> package, when <code>package?pkgname</code> will open that help page. If a topic named <code>pkgname</code> does not exist in another <code>Rd</code> file, it is helpful to use this as an additional <code>\alias</code>.</p>
+<p>Skeletons of documentation for a package can be generated using the function <code>promptPackage()</code>. If the <code>final = LIBS</code> argument is used, then the <code>Rd</code> file will be generated in final form, containing the information that would be produced up to <code>library(help = pkgname)</code>. Otherwise (the default) comments will be inserted giving suggestions for content.</p>
 <p>Apart from the mandatory <code>\name</code> and <code>\title</code> and the <code>pkgname-package</code> alias, the only requirement for the package overview page is that it include a <code>\docType{package}</code> statement. All other content is optional. We suggest that it should be a short overview, to give a reader unfamiliar with the package enough information to get started. More extensive documentation is better placed into a package vignette (see <a href="Creating-R-packages.html#writing-package-vignettes">Writing package vignettes</a>) and referenced from this page, or into individual man pages for the functions, datasets, or classes.</p>
 </section>
 </section>
 <section id="sectioning" class="level2 section" data-number="2.2">
 <h2 class="section anchored" data-number="2.2" data-anchor-id="sectioning"><span class="header-section-number">2.2</span> Sectioning</h2>
 <p>To begin a new paragraph or leave a blank line in an example, just insert an empty line (as in (La)TeX). To break a line, use <code>\cr</code>.</p>
-<p>In addition to the predefined sections (such as <code>\description{}</code>, <code>\value{}</code>, etc.), you can “define” arbitrary ones by <code>\section{``section_title}{...}</code>. For example</p>
+<p>In addition to the predefined sections (such as <code>\description{}</code>, <code>\value{}</code>, etc.), you can “define” arbitrary ones by <code>\section{section_title}{...}</code>. For example</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\section</span>{Warning}{</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  You must not call this function unless ...</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -609,25 +609,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="section anchored" data-number="2.3" data-anchor-id="marking-text"><span class="header-section-number">2.3</span> Marking text</h2>
 <p>The following logical markup commands are available for emphasizing or quoting text.</p>
 <dl>
-<dt><code>\emph{``text}</code></dt>
+<dt><code>\emph{text}</code></dt>
 <dd>
 <span id="index-_005cemph"></span>
 </dd>
-<dt><code>\strong{``text}</code></dt>
+<dt><code>\strong{text}</code></dt>
 <dd>
 <p><span id="index-_005cstrong"></span></p>
 <p>Emphasize <code>text</code> using <em>italic</em> and <strong>bold</strong> font if possible; <code>\strong</code> is regarded as stronger (more emphatic).</p>
 </dd>
-<dt><code>\bold{``text}</code></dt>
+<dt><code>\bold{text}</code></dt>
 <dd>
 <p><span id="index-_005cbold"></span></p>
 <p>Set <code>text</code> in <strong>bold</strong> font where possible.</p>
 </dd>
-<dt><code>\sQuote{``text}</code></dt>
+<dt><code>\sQuote{text}</code></dt>
 <dd>
 <span id="index-_005csQuote"></span>
 </dd>
-<dt><code>\dQuote{``text}</code></dt>
+<dt><code>\dQuote{text}</code></dt>
 <dd>
 <p><span id="index-_005cdQuote"></span></p>
 <p>Portably single or double quote <code>text</code> (without hard-wiring the characters used for quotation marks).</p>
@@ -636,90 +636,90 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Each of the above commands takes LaTeX-like input, so other macros may be used within <code>text</code>.</p>
 <p>The following logical markup commands are available for indicating specific kinds of text. Except as noted, these take ‘verbatim’ text input, and so other macros may not be used within them. Some characters will need to be escaped (see <a href="#insertions">Insertions</a>).</p>
 <dl class="page-columns page-full">
-<dt><code>\code{``text}</code></dt>
+<dt><code>\code{text}</code></dt>
 <dd>
 <p><span id="index-_005ccode"></span></p>
 <p>Indicate text that is a literal example of a piece of an R program, e.g., a fragment of R code or the name of an R object. Text is entered in R-like syntax, and displayed using <code>typewriter</code> font where possible. Macros <code>\var</code> and <code>\link</code> are interpreted within <code>text</code>.</p>
 </dd>
-<dt><code>\preformatted{``text}</code></dt>
+<dt><code>\preformatted{text}</code></dt>
 <dd>
 <p><span id="index-_005cpreformatted"></span></p>
 <p>Indicate text that is a literal example of a piece of a program. Text is displayed using <code>typewriter</code> font where possible. Formatting, e.g.&nbsp;line breaks, is preserved. (Note that this includes a line break after the initial {, so typically text should start on the same line as the command.)</p>
 <p>Due to limitations in LaTeX as of this writing, this macro may not be nested within other markup macros other than <code>\dQuote</code> and <code>\sQuote</code>, as errors or bad formatting may result.</p>
 </dd>
-<dt><code>\kbd{``keyboard-characters}</code></dt>
+<dt><code>\kbd{keyboard-characters}</code></dt>
 <dd>
 <p><span id="index-_005ckbd"></span></p>
 <p>Indicate keyboard input, using <kbd>slanted typewriter</kbd> font if possible, so users can distinguish the characters they are supposed to type from computer output. Text is entered ‘verbatim’.</p>
 </dd>
-<dt><code>\samp{``text}</code></dt>
+<dt><code>\samp{text}</code></dt>
 <dd>
 <p><span id="index-_005csamp"></span></p>
 <p>Indicate text that is a literal example of a sequence of characters, entered ‘verbatim’. No wrapping or reformatting will occur. Displayed using <code>typewriter</code> font where possible.</p>
 </dd>
-<dt><code>\verb{``text}</code></dt>
+<dt><code>\verb{text}</code></dt>
 <dd>
 <p><span id="index-_005cverb"></span></p>
 <p>Indicate text that is a literal example of a sequence of characters, with no interpretation of e.g.&nbsp;<code>\var</code>, but which will be included within word-wrapped text. Displayed using <code>typewriter</code> font if possible.</p>
 </dd>
-<dt><code>\pkg{``package_name}</code></dt>
+<dt><code>\pkg{package_name}</code></dt>
 <dd>
 <p><span id="index-_005cpkg"></span></p>
 <p>Indicate the name of an R package. LaTeX-like.</p>
 </dd>
-<dt><code>\file{``file_name}</code></dt>
+<dt><code>\file{file_name}</code></dt>
 <dd>
 <p><span id="index-_005cfile"></span></p>
 <p>Indicate the name of a file. Text is LaTeX-like, so backslash needs to be escaped. Displayed using a distinct font where possible.</p>
 </dd>
-<dt><code>\email{``email_address}</code></dt>
+<dt><code>\email{email_address}</code></dt>
 <dd>
 <p><span id="index-_005cemail"></span></p>
 <p>Indicate an electronic mail address. LaTeX-like, will be rendered as a hyperlink in HTML and PDF conversion. Displayed using <code>typewriter</code> font where possible.</p>
 </dd>
-<dt><code>\url{``uniform_resource_locator}</code></dt>
+<dt><code>\url{uniform_resource_locator}</code></dt>
 <dd class="page-columns page-full">
 <p><span id="index-_005curl"></span></p>
 <div class="page-columns page-full"><p>Indicate a uniform resource locator (URL) for the World Wide Web. The argument is handled as ‘verbatim’ text (with percent and braces escaped by backslash), and rendered as a hyperlink in HTML and PDF conversion. Linefeeds are removed, and leading and trailing whitespace<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> is removed. See <a href="Creating-R-packages.html#specifying-urls">Specifying URLs</a>.</p><div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;as defined by the R function <code>trimws</code>.</p></li></div></div>
 <p>Displayed using <code>typewriter</code> font where possible.</p>
 </dd>
-<dt><code>\href{``uniform_resource_locator}{``text}</code></dt>
+<dt><code>\href{uniform_resource_locator}{text}</code></dt>
 <dd>
 <p><span id="index-_005chref"></span></p>
 <p>Indicate a hyperlink to the World Wide Web. The first argument is handled as ‘verbatim’ text (with percent and braces escaped by backslash) and is used as the URL in the hyperlink, with the second argument of LaTeX-like text displayed to the user. Linefeeds are removed from the first argument, and leading and trailing whitespace is removed.</p>
 <p>Note that RFC3986-encoded URLs (e.g.&nbsp;using <code>%28VS.85%29</code> in place of <code>(VS.85)</code>) may not work correctly in versions of R before 3.1.3 and are best avoided—use <code>URLdecode()</code> to decode them.</p>
 </dd>
-<dt><code>\var{``metasyntactic_variable}</code></dt>
+<dt><code>\var{metasyntactic_variable}</code></dt>
 <dd class="page-columns page-full">
 <p><span id="index-_005cvar"></span></p>
 <div class="page-columns page-full"><p>Indicate a metasyntactic variable. In some cases this will be rendered distinctly, e.g.&nbsp;in italic, but not in all<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>. LaTeX-like.</p><div class="no-row-height column-margin column-container"><li id="fn6"><p><sup>6</sup>&nbsp;Currently it is rendered differently only in HTML conversions, and LaTeX conversion outside <code>\usage</code> and <code>\examples</code> environments.</p></li></div></div>
 </dd>
-<dt><code>\env{``environment_variable}</code></dt>
+<dt><code>\env{environment_variable}</code></dt>
 <dd>
 <p><span id="index-_005cenv"></span></p>
 <p>Indicate an environment variable. ‘Verbatim’. Displayed using <code>typewriter</code> font where possible</p>
 </dd>
-<dt><code>\option{``option}</code></dt>
+<dt><code>\option{option}</code></dt>
 <dd>
 <p><span id="index-_005coption"></span></p>
 <p>Indicate a command-line option. ‘Verbatim’. Displayed using <code>typewriter</code> font where possible.</p>
 </dd>
-<dt><code>\command{``command_name}</code></dt>
+<dt><code>\command{command_name}</code></dt>
 <dd>
 <p><span id="index-_005ccommand"></span></p>
 <p>Indicate the name of a command. LaTeX-like, so <code>\var</code> is interpreted. Displayed using <code>typewriter</code> font where possible.</p>
 </dd>
-<dt><code>\dfn{``term}</code></dt>
+<dt><code>\dfn{term}</code></dt>
 <dd>
 <p><span id="index-_005cdfn"></span></p>
 <p>Indicate the introductory or defining use of a term. LaTeX-like.</p>
 </dd>
-<dt><code>\cite{``reference}</code></dt>
+<dt><code>\cite{reference}</code></dt>
 <dd>
 <p><span id="index-_005ccite"></span></p>
 <p>Indicate a reference without a direct cross-reference <em>via</em> <code>\link</code> (see <a href="#cross-references">Cross-references</a>), such as the name of a book. LaTeX-like.</p>
 </dd>
-<dt><code>\acronym{``acronym}</code></dt>
+<dt><code>\acronym{acronym}</code></dt>
 <dd>
 <p><span id="index-_005cacronym"></span></p>
 <p>Indicate an acronym (an abbreviation written in all capital letters), such as GNU. LaTeX-like.</p>
@@ -752,18 +752,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="cross-references" class="level2 section" data-number="2.5">
 <h2 class="section anchored" data-number="2.5" data-anchor-id="cross-references"><span class="header-section-number">2.5</span> Cross-references</h2>
-<p>The markup <code>\link{``foo}</code> (usually in the combination <code>\code{\link{``foo}}</code>) produces a hyperlink to the help for <code>foo</code>. Here <code>foo</code> is a <em>topic</em>, that is the argument of <code>\alias</code> markup in another <code>Rd</code> file (possibly in another package). Hyperlinks are supported in some of the formats to which <code>Rd</code> files are converted, for example HTML and PDF, but ignored in others, e.g.&nbsp;the text format.</p>
+<p>The markup <code>\link{foo}</code> (usually in the combination <code>\code{\link{foo}}</code>) produces a hyperlink to the help for <code>foo</code>. Here <code>foo</code> is a <em>topic</em>, that is the argument of <code>\alias</code> markup in another <code>Rd</code> file (possibly in another package). Hyperlinks are supported in some of the formats to which <code>Rd</code> files are converted, for example HTML and PDF, but ignored in others, e.g.&nbsp;the text format.</p>
 <p>One main usage of <code>\link</code> is in the <code>\seealso</code> section of the help page, see <a href="#rd-format">Rd format</a>.</p>
 <p>Note that whereas leading and trailing spaces are stripped when extracting a topic from a <code>\alias</code>, they are not stripped when looking up the topic of a <code>\link</code>.</p>
-<p>You can specify a link to a different topic than its name by <code>\link[=``dest]{``name}</code> which links to topic <code>dest</code> with name <code>name</code>. This can be used to refer to the documentation for S3/4 classes, for example <code>\code{"\link[=abc-class]{abc}"}</code> would be a way to refer to the documentation of an S4 class <code>"abc"</code> defined in your package, and <code>\code{"\link[=terms.object]{terms}"}</code> to the S3 <code>"terms"</code> class (in package <strong>stats</strong>). To make these easy to read in the source file, <code>\code{"\linkS4class{abc}"}</code> expands to the form given above.</p>
-<p>There are two other forms with an optional argument, specified as <code>\link[``pkg]{``foo}</code> and <code>\link[``pkg:bar]{``foo}</code>, to link to topics <code>foo</code> and <code>bar</code> respectively in the package <strong><code>pkg</code></strong>. They are currently only used in HTML help (and ignored for hyperlinks in LaTeX conversions of help pages). One should be careful about topics containing special characters (such as arithmetic operators) as they may result in unresolvable links, and preferably use a safer alias in the same help page.</p>
-<p>Historically (before R version 4.1.0), links of the form <code>\link[``pkg]{``foo}</code> and <code>\link[``pkg:bar]{``foo}</code> used to be interpreted as links to <em>files</em> <code>foo.html</code> and <code>bar.html</code> in package <strong><code>pkg</code></strong>, respectively. For this reason, the HTML help system looks for file <code>foo.html</code> in package <strong><code>pkg</code></strong> if it does not find topic <code>foo</code>, and then searches for the topic in other installed packages. To test that links work both with both old and new systems, the pre-4.1.0 behaviour can be restored by setting the environment variable <code>_R_HELP_LINKS_TO_TOPICS_=false</code>.</p>
+<p>You can specify a link to a different topic than its name by <code>\link[=dest]{name}</code> which links to topic <code>dest</code> with name <code>name</code>. This can be used to refer to the documentation for S3/4 classes, for example <code>\code{"\link[=abc-class]{abc}"}</code> would be a way to refer to the documentation of an S4 class <code>"abc"</code> defined in your package, and <code>\code{"\link[=terms.object]{terms}"}</code> to the S3 <code>"terms"</code> class (in package <strong>stats</strong>). To make these easy to read in the source file, <code>\code{"\linkS4class{abc}"}</code> expands to the form given above.</p>
+<p>There are two other forms with an optional argument, specified as <code>\link[pkg]{foo}</code> and <code>\link[pkg:bar]{foo}</code>, to link to topics <code>foo</code> and <code>bar</code> respectively in the package <strong><code>pkg</code></strong>. They are currently only used in HTML help (and ignored for hyperlinks in LaTeX conversions of help pages). One should be careful about topics containing special characters (such as arithmetic operators) as they may result in unresolvable links, and preferably use a safer alias in the same help page.</p>
+<p>Historically (before R version 4.1.0), links of the form <code>\link[pkg]{foo}</code> and <code>\link[pkg:bar]{foo}</code> used to be interpreted as links to <em>files</em> <code>foo.html</code> and <code>bar.html</code> in package <strong><code>pkg</code></strong>, respectively. For this reason, the HTML help system looks for file <code>foo.html</code> in package <strong><code>pkg</code></strong> if it does not find topic <code>foo</code>, and then searches for the topic in other installed packages. To test that links work both with both old and new systems, the pre-4.1.0 behaviour can be restored by setting the environment variable <code>_R_HELP_LINKS_TO_TOPICS_=false</code>.</p>
 <p>Packages referred to by these ‘other forms’ should be declared in the <code>DESCRIPTION</code> file, in the <code>Depends</code>, <code>Imports</code>, <code>Suggests</code> or <code>Enhances</code> fields.</p>
 </section>
 <section id="mathematics" class="level2 section" data-number="2.6">
 <h2 class="section anchored" data-number="2.6" data-anchor-id="mathematics"><span class="header-section-number">2.6</span> Mathematics</h2>
-<p>Mathematical formulae should be set beautifully for printed documentation yet we still want something useful for text and HTML online help. To this end, the two commands <code>\eqn{``latex}{``ascii}</code> and <code>\deqn{``latex}{``ascii}</code> are used. Whereas <code>\eqn</code> is used for “inline” formulae (corresponding to TeX’s <code>$...$</code>), <code>\deqn</code> gives “displayed equations” (as in LaTeX’s <code>displaymath</code> environment, or TeX’s <code>$$...$$</code>). Both arguments are treated as ‘verbatim’ text.</p>
-<p>Both commands can also be used as <code>\eqn{``latexascii}</code> (only <em>one</em> argument) which then is used for both <code>latex</code> and <code>ascii</code>. No whitespace is allowed between command and the first argument, nor between the first and second arguments.</p>
+<p>Mathematical formulae should be set beautifully for printed documentation yet we still want something useful for text and HTML online help. To this end, the two commands <code>\eqn{latex}{ascii}</code> and <code>\deqn{latex}{ascii}</code> are used. Whereas <code>\eqn</code> is used for “inline” formulae (corresponding to TeX’s <code>$...$</code>), <code>\deqn</code> gives “displayed equations” (as in LaTeX’s <code>displaymath</code> environment, or TeX’s <code>$$...$$</code>). Both arguments are treated as ‘verbatim’ text.</p>
+<p>Both commands can also be used as <code>\eqn{latexascii}</code> (only <em>one</em> argument) which then is used for both <code>latex</code> and <code>ascii</code>. No whitespace is allowed between command and the first argument, nor between the first and second arguments.</p>
 <p>The following example is from <code>Poisson.Rd</code>:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\deqn</span>{p(x) = <span class="fu">\frac</span>{<span class="fu">\lambda</span>^x e^{-<span class="fu">\lambda</span>}}{x!}}{<span class="co">%</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>        p(x) = <span class="fu">\lambda</span>^x exp(-<span class="fu">\lambda</span>)/x!}</span>
@@ -789,8 +789,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="figures" class="level2 section" data-number="2.7">
 <h2 class="section anchored" data-number="2.7" data-anchor-id="figures"><span class="header-section-number">2.7</span> Figures</h2>
 <p>To include figures in help pages, use the <code>\figure</code> markup. There are three forms.</p>
-<p>The two commonly used simple forms are <code>\figure{``filename}</code> and <code>\figure{``filename}{``alternate text}</code>. This will include a copy of the figure in either HTML or LaTeX output. In text output, the alternate text will be displayed instead. (When the second argument is omitted, the filename will be used.) Both the filename and the alternate text will be parsed verbatim, and should not include special characters that are significant in HTML or LaTeX.</p>
-<p>The expert form is <code>\figure{``filename}{options: ``string}</code>. (The word <code>options:</code> must be typed exactly as shown and followed by at least one space.) In this form, the <code>string</code> is copied into the HTML <code>img</code> tag as attributes following the <code>src</code> attribute, or into the second argument of the <code>\Figure</code> macro in LaTeX, which by default is used as options to an <code>\includegraphics</code> call. As it is unlikely that any single string would suffice for both display modes, the expert form would normally be wrapped in conditionals. It is up to the author to make sure that legal HTML/LaTeX is used. For example, to include a logo in both HTML (using the simple form) and LaTeX (using the expert form), the following could be used:</p>
+<p>The two commonly used simple forms are <code>\figure{filename}</code> and <code>\figure{filename}{alternate text}</code>. This will include a copy of the figure in either HTML or LaTeX output. In text output, the alternate text will be displayed instead. (When the second argument is omitted, the filename will be used.) Both the filename and the alternate text will be parsed verbatim, and should not include special characters that are significant in HTML or LaTeX.</p>
+<p>The expert form is <code>\figure{filename}{options: string}</code>. (The word <code>options:</code> must be typed exactly as shown and followed by at least one space.) In this form, the <code>string</code> is copied into the HTML <code>img</code> tag as attributes following the <code>src</code> attribute, or into the second argument of the <code>\Figure</code> macro in LaTeX, which by default is used as options to an <code>\includegraphics</code> call. As it is unlikely that any single string would suffice for both display modes, the expert form would normally be wrapped in conditionals. It is up to the author to make sure that legal HTML/LaTeX is used. For example, to include a logo in both HTML (using the simple form) and LaTeX (using the expert form), the following could be used:</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\if</span>{html}{<span class="fu">\figure</span>{Rlogo.svg}{options: width=100 alt="R logo"}}</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\if</span>{latex}{<span class="fu">\figure</span>{Rlogo.pdf}{options: width=0.5in}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The files containing the figures should be stored in the directory <code>man/figures</code>. Files with extensions <code>.jpg</code>, <code>.jpeg</code>, <code>.pdf</code>, <code>.png</code> and <code>.svg</code> from that directory will be copied to the <code>help/figures</code> directory at install time. (Figures in PDF format will not display in most HTML browsers, but might be the best choice in reference manuals.) Specify the filename relative to <code>man/figures</code> in the <code>\figure</code> directive.</p>
@@ -831,9 +831,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="conditional-text" class="level2 section" data-number="2.11">
 <h2 class="section anchored" data-number="2.11" data-anchor-id="conditional-text"><span class="header-section-number">2.11</span> Conditional text</h2>
-<p>Occasionally the best content for one output format is different from the best content for another. For this situation, the <code>\if{``format}{``text}</code> or <code>\ifelse{``format}{``text}{``alternate}</code> markup is used. Here <code>format</code> is a comma separated list of formats in which the <code>text</code> should be rendered. The <code>alternate</code> will be rendered if the format does not match. Both <code>text</code> and <code>alternate</code> may be any sequence of text and markup.</p>
+<p>Occasionally the best content for one output format is different from the best content for another. For this situation, the <code>\if{format}{text}</code> or <code>\ifelse{format}{text}{alternate}</code> markup is used. Here <code>format</code> is a comma separated list of formats in which the <code>text</code> should be rendered. The <code>alternate</code> will be rendered if the format does not match. Both <code>text</code> and <code>alternate</code> may be any sequence of text and markup.</p>
 <p>Currently the following formats are recognized: <code>example</code>, <code>html</code>, <code>latex</code> and <code>text</code>. These select output for the corresponding targets. (Note that <code>example</code> refers to extracted example code rather than the displayed example in some other format.) Also accepted are <code>TRUE</code> (matching all formats) and <code>FALSE</code> (matching no formats). These could be the output of the <code>\Sexpr</code> macro (see <a href="#dynamic-pages">Dynamic pages</a>).</p>
-<p>The <code>\out{``literal}</code> macro would usually be used within the <code>text</code> part of <code>\if{``format}{``text}</code>. It causes the renderer to output the literal text exactly, with no attempt to escape special characters. For example, use the following to output the markup necessary to display the Greek letter in LaTeX or HTML, and the text string <code>alpha</code> in other formats:</p>
+<p>The <code>\out{literal}</code> macro would usually be used within the <code>text</code> part of <code>\if{format}{text}</code>. It causes the renderer to output the literal text exactly, with no attempt to escape special characters. For example, use the following to output the markup necessary to display the Greek letter in LaTeX or HTML, and the text string <code>alpha</code> in other formats:</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\ifelse</span>{latex}{<span class="fu">\out</span>{<span class="ss">$</span><span class="sc">\alpha</span><span class="ss">$</span>}}{<span class="fu">\ifelse</span>{html}{<span class="fu">\out</span>{&amp;alpha;}}{alpha}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="dynamic-pages" class="level2 section" data-number="2.12">
@@ -880,7 +880,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>when parsed.</p>
 <p>Some macros that might be of general use are:</p>
 <dl>
-<dt><code>\CRANpkg{``pkg}</code></dt>
+<dt><code>\CRANpkg{pkg}</code></dt>
 <dd>
 <p>A package on CRAN</p>
 </dd>
@@ -888,7 +888,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <dd>
 <p>A single space (used after a period that does not end a sentence).</p>
 </dd>
-<dt><code>\doi{``numbers}</code></dt>
+<dt><code>\doi{numbers}</code></dt>
 <dd>
 <p>A digital object identifier (DOI).</p>
 </dd>
@@ -915,7 +915,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Using <code>R CMD Rdconv</code> one can convert R documentation format to other formats, or extract the executable examples for run-time testing. The currently supported conversions are to plain text, HTML and LaTeX as well as extraction of the examples.</p>
 <p><code>R CMD Rd2pdf</code> generates PDF output from documentation in <code>Rd</code> files, which can be specified either explicitly or by the path to a directory with the sources of a package. In the latter case, a reference manual for all documented objects in the package is created, including the information in the <code>DESCRIPTION</code> files.</p>
 <p><code>R CMD Sweave</code> and <code>R CMD Stangle</code> process vignette-like documentation files (e.g.&nbsp;Sweave vignettes with extension <code>.Snw</code> or <code>.Rnw</code>, or other non-Sweave vignettes). <code>R CMD Stangle</code> is used to extract the R code fragments.</p>
-<p>The exact usage and a detailed list of available options for all of these commands can be obtained by running <code>R CMD ``command --help</code>, e.g., <kbd>R CMD Rdconv --help</kbd>. All available commands can be listed using <kbd>R --help</kbd> (or <kbd>Rcmd --help</kbd> under Windows).</p>
+<p>The exact usage and a detailed list of available options for all of these commands can be obtained by running <code>R CMD command --help</code>, e.g., <kbd>R CMD Rdconv --help</kbd>. All available commands can be listed using <kbd>R --help</kbd> (or <kbd>Rcmd --help</kbd> under Windows).</p>
 <p>All of these work under Windows. You may need to have installed the the tools to build packages from source as described in the “R Installation and Administration” manual, although typically all that is needed is a LaTeX installation.</p>
 </section>
 <section id="editing-rd-files" class="level2 section" data-number="2.16">

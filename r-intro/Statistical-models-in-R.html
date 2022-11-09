@@ -507,39 +507,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The <em>formula operators</em> are similar in effect to the Wilkinson and Rogers notation used by such programs as Glim and Genstat. One inevitable change is that the operator <code>.</code> becomes <code>:</code> since the period is a valid name character in R.</p>
 <p>The notation is summarized below (based on Chambers &amp; Hastie, 1992, p.29):</p>
 <dl>
-<dt><code>Y ~ ``M</code></dt>
+<dt><code>Y ~ M</code></dt>
 <dd>
 <p><code>Y</code> is modeled as <code>M</code>.</p>
 </dd>
-<dt><code>M_1 + ``M_2</code></dt>
+<dt><code>M_1 + M_2</code></dt>
 <dd>
 <p>Include <code>M_1</code> and <code>M_2</code>.</p>
 </dd>
-<dt><code>M_1 - ``M_2</code></dt>
+<dt><code>M_1 - M_2</code></dt>
 <dd>
 <p>Include <code>M_1</code> leaving out terms of <code>M_2</code>.</p>
 </dd>
-<dt><code>M_1 : ``M_2</code></dt>
+<dt><code>M_1 : M_2</code></dt>
 <dd>
 <p>The tensor product of <code>M_1</code> and <code>M_2</code>. If both terms are factors, then the “subclasses” factor.</p>
 </dd>
-<dt><code>M_1 %in% ``M_2</code></dt>
+<dt><code>M_1 %in% M_2</code></dt>
 <dd>
-<p>Similar to <code>M_1:``M_2</code>, but with a different coding.</p>
+<p>Similar to <code>M_1:M_2</code>, but with a different coding.</p>
 </dd>
-<dt><code>M_1 * ``M_2</code></dt>
+<dt><code>M_1 * M_2</code></dt>
 <dd>
-<p><code>M_1 + ``M_2 + ``M_1:``M_2</code>.</p>
+<p><code>M_1 + M_2 + M_1:M_2</code>.</p>
 </dd>
-<dt><code>M_1 / ``M_2</code></dt>
+<dt><code>M_1 / M_2</code></dt>
 <dd>
-<p><code>M_1 + ``M_2 %in% ``M_1</code>.</p>
+<p><code>M_1 + M_2 %in% M_1</code>.</p>
 </dd>
-<dt><code>M^``n</code></dt>
+<dt><code>M^n</code></dt>
 <dd>
 <p>All terms in <code>M</code> together with “interactions” up to order <code>n</code></p>
 </dd>
-<dt><code>I(``M)</code></dt>
+<dt><code>I(M)</code></dt>
 <dd>
 <p>Insulate <code>M</code>. Inside <code>M</code> all operators have their normal arithmetic meaning, and that term appears in the model matrix.</p>
 </dd>
@@ -578,34 +578,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>anova   effects    labels       proj     vcov</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>coef    family     plot         residuals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>A brief description of the most commonly used ones is given below.</p>
-<p><code>anova(``object_1, ``object_2)</code></p>
+<p><code>anova(object_1, object_2)</code></p>
 <p>Compare a submodel with an outer model and produce an analysis of variance table.</p>
-<p><code>coef(``object)</code></p>
+<p><code>coef(object)</code></p>
 <p>Extract the regression coefficient (matrix).</p>
-<p>Long form: <code>coefficients(``object)</code>.</p>
-<p><code>deviance(``object)</code></p>
+<p>Long form: <code>coefficients(object)</code>.</p>
+<p><code>deviance(object)</code></p>
 <p>Residual sum of squares, weighted if appropriate.</p>
-<p><code>formula(``object)</code></p>
+<p><code>formula(object)</code></p>
 <p>Extract the model formula.</p>
-<p><code>plot(``object)</code></p>
+<p><code>plot(object)</code></p>
 <p>Produce four plots, showing residuals, fitted values and some diagnostics.</p>
-<p><code>predict(``object, newdata=``data.frame)</code></p>
+<p><code>predict(object, newdata=data.frame)</code></p>
 <p>The data frame supplied must have variables specified with the same labels as the original. The value is a vector or matrix of predicted values corresponding to the determining variable values in <code>data.frame</code>.</p>
-<p><code>print(``object)</code></p>
+<p><code>print(object)</code></p>
 <p>Print a concise version of the object. Most often used implicitly.</p>
-<p><code>residuals(``object)</code></p>
+<p><code>residuals(object)</code></p>
 <p>Extract the (matrix of) residuals, weighted as appropriate.</p>
-<p>Short form: <code>resid(``object)</code>.</p>
-<p><code>step(``object)</code></p>
+<p>Short form: <code>resid(object)</code>.</p>
+<p><code>step(object)</code></p>
 <p>Select a suitable model by adding or dropping terms and preserving hierarchies. The model with the smallest value of AIC (Akaike’s An Information Criterion) discovered in the stepwise search is returned.</p>
-<p><code>summary(``object)</code></p>
+<p><code>summary(object)</code></p>
 <p>Print a comprehensive summary of the results of the regression analysis.</p>
-<p><code>vcov(``object)</code></p>
+<p><code>vcov(object)</code></p>
 <p>Returns the variance-covariance matrix of the main parameters of a fitted model object.</p>
 </section>
 <section id="analysis-of-variance-and-model-comparison" class="level2 section" data-number="11.4">
 <h2 class="section anchored" data-number="11.4" data-anchor-id="analysis-of-variance-and-model-comparison"><span class="header-section-number">11.4</span> Analysis of variance and model comparison</h2>
-<p>The model fitting function <code>aov(``formula, data=``data.frame)</code> operates at the simplest level in a very similar way to the function <code>lm()</code>, and most of the generic functions listed in the table in <a href="#generic-functions-for-extracting-model-information">Generic functions for extracting model information</a> apply.</p>
+<p>The model fitting function <code>aov(formula, data=data.frame)</code> operates at the simplest level in a very similar way to the function <code>lm()</code>, and most of the generic functions listed in the table in <a href="#generic-functions-for-extracting-model-information">Generic functions for extracting model information</a> apply.</p>
 <p>It should be noted that in addition <code>aov()</code> allows an analysis of models with multiple error strata such as split plot experiments, or balanced incomplete block designs with recovery of inter-block information. The model formula</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>response <span class="sc">~</span> mean.formula <span class="sc">+</span> <span class="fu">Error</span>(strata.formula)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>specifies a multi-stratum experiment with error strata defined by the <code>strata.formula</code>. In the simplest case, <code>strata.formula</code> is simply a factor, when it defines a two strata experiment, namely between and within the levels of the factor.</p>

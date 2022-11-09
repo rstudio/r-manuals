@@ -393,7 +393,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Up-to-date information on the currently accepted formats can be found by <code>?NumericConstants</code>.</p>
 <p>Complex constants have the form of a decimal numeric constant followed by <code>i</code>. Notice that only purely imaginary numbers are actual constants, other complex numbers are parsed a unary or binary operations on numeric and imaginary numbers.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Valid complex constants<span class="sc">:</span> 2i <span class="fl">4.1</span>i <span class="fl">1e-2</span>i</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>String constants are delimited by a pair of single (`<code>') or double (</code>“`) quotes and can contain all other printable characters. Quotes and other special characters within strings are specified using <em>escape sequences</em>:</p>
+<p>String constants are delimited by a pair of single (’) or double (<code>"</code>) quotes and can contain all other printable characters. Quotes and other special characters within strings are specified using <em>escape sequences</em>:</p>
 <dl>
 <dt><code>\</code></dt>
 <dd>
@@ -435,19 +435,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <dd>
 <p>backslash itself</p>
 </dd>
-<dt><code>\``nnn</code></dt>
+<dt><code>\nnn</code></dt>
 <dd>
 <p>character with given octal code – sequences of one, two or three digits in the range <code>0 ... 7</code> are accepted.</p>
 </dd>
-<dt><code>\x``nn</code></dt>
+<dt><code>\xnn</code></dt>
 <dd>
 <p>character with given hex code – sequences of one or two hex digits (with entries <code>0 ... 9 A ... F a ... f</code>).</p>
 </dd>
-<dt><code>\u``nnnn \u{``nnnn}</code></dt>
+<dt><code>\unnnn \u{nnnn}</code></dt>
 <dd>
 <p>(where multibyte locales are supported, otherwise an error). Unicode character with given hex code – sequences of up to four hex digits. The character needs to be valid in the current locale.</p>
 </dd>
-<dt><code>\U``nnnnnnnn \U{``nnnnnnnn}</code></dt>
+<dt><code>\Unnnnnnnn \U{nnnnnnnn}</code></dt>
 <dd>
 <p>(where multibyte locales are supported, otherwise an error). Unicode character with given hex code – sequences of up to eight hex digits.</p>
 </dd>
@@ -564,7 +564,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>a text string (ditto, but handy if the function has a name which is not a valid identifier)</li>
 <li>an expression (which should evaluate to a function object)</li>
 </ul>
-<p>Each argument can be tagged (<code>tag=``expr</code>), or just be a simple expression. It can also be empty or it can be one of the special tokens <code>...</code>, <code>..2</code>, etc.</p>
+<p>Each argument can be tagged (<code>tag=expr</code>), or just be a simple expression. It can also be empty or it can be one of the special tokens <code>...</code>, <code>..2</code>, etc.</p>
 <p>A tag can be an identifier or a text string.</p>
 <p>Examples:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(x)</span>

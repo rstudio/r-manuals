@@ -436,8 +436,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td style="text-align: left;">Exponentiation, binary</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>%``x%</code> Special binar</td>
-<td style="text-align: left;">y operators, <code>x</code> can be replaced by any valid name</td>
+<td style="text-align: left;"><code>%x%</code> Special binary</td>
+<td style="text-align: left;">operators, <code>x</code> can be replaced by any valid name</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><code>%%</code></td>
@@ -514,7 +514,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </blockquote>
-<p>Except for the syntax, there is no difference between applying an operator and calling a function. In fact, <code>x + y</code> can equivalently be written <code>`+`(x, y)</code>. Notice that since <code>+</code> is a non-standard function name, it needs to be quoted.</p>
+<p>Except for the syntax, there is no difference between applying an operator and calling a function. In fact, <code>x + y</code> can equivalently be written <code>+</code>(x, y) . Notice that since <code>+</code> is a non-standard function name, it needs to be quoted.</p>
 <p>R deals with entire vectors of data at a time, and most of the elementary operators and basic mathematical functions like <code>log</code> are vectorized (as indicated in the table above). This means that e.g. adding two vectors of the same length will create a vector containing the element-wise sums, implicitly looping over the vector index. This applies also to other operators like <code>-</code>, <code>*</code>, and <code>/</code> as well as to higher dimensional structures. Notice in particular that multiplying two matrices does not produce the usual matrix product (the <code>%*%</code> operator exists for that purpose). Some finer points relating to vectorized operations will be discussed in <a href="#elementary-arithmetic-operations">Elementary arithmetic operations</a>.</p>
 <p>To access individual elements of an atomic vector, one generally uses the <code>x[i]</code> construction.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">5</span>)</span>
@@ -527,7 +527,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x<span class="sc">$</span>prompt</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"&gt; "</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Indexing constructs can also appear on the right hand side of an assignment.</p>
-<p>Like the other operators, indexing is really done by functions, and one could have used <code>`[`(x, 2)</code> instead of <code>x[2]</code>.</p>
+<p>Like the other operators, indexing is really done by functions, and one could have used <code>[</code>(x, 2) instead of <code>x[2]</code>.</p>
 <p>R’s indexing operations contain many advanced features which are further described in <a href="#indexing">Indexing</a>.</p>
 </section>
 </section>
@@ -729,7 +729,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span> <span class="ot">&lt;-</span> x</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">"[&lt;-"</span>(<span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span>, <span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">value=</span><span class="dv">13</span><span class="sc">:</span><span class="dv">15</span>)</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="st">`</span><span class="at">*tmp*</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Note that the index is first converted to a numeric index and then the elements are replaced sequentially along the numeric index, as if a <code>for</code> loop had been used. Any existing variable called <code>`*tmp*`</code> will be overwritten and deleted, and this variable name should not be used in code.</p>
+<p>Note that the index is first converted to a numeric index and then the elements are replaced sequentially along the numeric index, as if a <code>for</code> loop had been used. Any existing variable called <code>*tmp*</code> will be overwritten and deleted, and this variable name should not be used in code.</p>
 <p>The same mechanism can be applied to functions other than <code>[</code>. The replacement function has the same name with <code>&lt;-</code> pasted on. Its last argument, which must be called <code>value</code>, is the new value to be assigned. For example,</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(x) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"a"</span>,<span class="st">"b"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>is equivalent to</p>

@@ -373,7 +373,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>A function is defined by an assignment of the form</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> name <span class="ot">&lt;-</span> <span class="cf">function</span>(arg_1, arg_2, ...) expression</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The <code>expression</code> is an R expression, (usually a grouped expression), that uses the arguments, <code>arg_i</code>, to calculate a value. The value of the expression is the value returned for the function.</p>
-<p>A call to the function then usually takes the form <code>name(``expr_1, ``expr_2, ...)</code> and may occur anywhere a function call is legitimate.</p>
+<p>A call to the function then usually takes the form <code>name(expr_1, expr_2, ...)</code> and may occur anywhere a function call is legitimate.</p>
 <section id="simple-examples" class="level2 section page-columns page-full" data-number="10.1">
 <h2 class="section anchored" data-number="10.1" data-anchor-id="simple-examples"><span class="header-section-number">10.1</span> Simple examples</h2>
 <p>As a first example, consider a function to calculate the two sample <em>t</em>-statistic, showing “all the steps”. This is an artificial example, of course, since there are other, simpler ways of achieving the same end.</p>
@@ -410,7 +410,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="named-arguments-and-defaults" class="level2 section" data-number="10.3">
 <h2 class="section anchored" data-number="10.3" data-anchor-id="named-arguments-and-defaults"><span class="header-section-number">10.3</span> Named arguments and defaults</h2>
-<p>As first noted in <a href="Simple-manipulations-numbers-and-vectors.html#generating-regular-sequences">Generating regular sequences</a>, if arguments to called functions are given in the “<code>name=``object</code>” form, they may be given in any order. Furthermore the argument sequence may begin in the unnamed, positional form, and specify named arguments after the positional arguments.</p>
+<p>As first noted in <a href="Simple-manipulations-numbers-and-vectors.html#generating-regular-sequences">Generating regular sequences</a>, if arguments to called functions are given in the “<code>name=object</code>” form, they may be given in any order. Furthermore the argument sequence may begin in the unnamed, positional form, and specify named arguments after the positional arguments.</p>
 <p>Thus if there is a function <code>fun1</code> defined by</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> fun1 <span class="ot">&lt;-</span> <span class="cf">function</span>(data, data.frame, graph, limit) {</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    [<span class="cf">function</span> body omitted]</span>
@@ -637,7 +637,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>    z <span class="ot">&lt;-</span> object<span class="sc">$</span>coef</span>
 <span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>    z[<span class="sc">!</span><span class="fu">is.na</span>(z)]</span>
 <span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>A function named <code>gen.``cl</code> will be invoked by the generic <code>gen</code> for class <code>cl</code>, so do not name functions in this style unless they are intended to be methods.</p>
+<p>A function named <code>gen.cl</code> will be invoked by the generic <code>gen</code> for class <code>cl</code>, so do not name functions in this style unless they are intended to be methods.</p>
 <p>The reader is referred to the <em>R Language Definition</em> for a more complete discussion of this mechanism.</p>
 <p>Footnotes</p>
 

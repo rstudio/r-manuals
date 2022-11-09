@@ -307,7 +307,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The behavior of <code>R CMD check</code> can be controlled through a variety of command line arguments and environment variables.</p>
 <p>There is an internal <code>--install=value</code> command line argument not shown by <code>R CMD check --help</code>, with possible values</p>
 <dl>
-<dt><code>check:``file</code></dt>
+<dt><code>check:file</code></dt>
 <dd>
 <p>Assume that installation was already performed with stdout/stderr to <code>file</code>, the contents of which need to be checked (without repeating the installation). This is useful for checks applied by repository maintainers: it reduces the check time by the installation time given that the package has already been installed. In this case, one also needs to specify <em>where</em> the package was installed to using command line option <code>--library</code>.</p>
 </dd>
@@ -508,7 +508,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </dd>
 <dt><code>_R_CHECK_CODETOOLS_PROFILE_</code></dt>
 <dd>
-<p>A string with comma-separated <code>name=``value</code> pairs (with <code>value</code> a logical constant) giving additional arguments for the <a href="https://CRAN.R-project.org/package=codetools"><strong>codetools</strong></a> functions used for analyzing package code. E.g., use <code>_R_CHECK_CODETOOLS_PROFILE_="suppressLocalUnused=FALSE"</code> to turn off suppressing warnings about unused local variables. Default: no additional arguments, corresponding to using <code>skipWith = TRUE</code>, <code>suppressPartialMatchArgs = FALSE</code> and <code>suppressLocalUnused = TRUE</code>.</p>
+<p>A string with comma-separated <code>name=value</code> pairs (with <code>value</code> a logical constant) giving additional arguments for the <a href="https://CRAN.R-project.org/package=codetools"><strong>codetools</strong></a> functions used for analyzing package code. E.g., use <code>_R_CHECK_CODETOOLS_PROFILE_="suppressLocalUnused=FALSE"</code> to turn off suppressing warnings about unused local variables. Default: no additional arguments, corresponding to using <code>skipWith = TRUE</code>, <code>suppressPartialMatchArgs = FALSE</code> and <code>suppressLocalUnused = TRUE</code>.</p>
 </dd>
 <dt><code>_R_CHECK_CRAN_INCOMING_</code></dt>
 <dd>
@@ -560,7 +560,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </dd>
 <dt><code>_R_CHECK_GCT_N_</code></dt>
 <dd>
-<p>Should the <code>--use-gct</code> use <code>gctorture2(``n)</code> rather than <code>gctorture(TRUE)</code>? Use a positive integer to enable this. Default: <code>0</code>.</p>
+<p>Should the <code>--use-gct</code> use <code>gctorture2(n)</code> rather than <code>gctorture(TRUE)</code>? Use a positive integer to enable this. Default: <code>0</code>.</p>
 </dd>
 <dt><code>_R_CHECK_LIMIT_CORES_</code></dt>
 <dd>
@@ -695,7 +695,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </dd>
 <dt><code>_R_CHECK_XREFS_PKGS_ARE_DECLARED_</code></dt>
 <dd>
-<p>Check if packages used in ‘anchored’ cross-references in <code>.Rd</code> files (those of the form <code>\link[``pkg]{``foo}</code> and <code>\link[``pkg:bar]{``foo}</code>) are declared in the <code>DESCRIPTION</code> file and so these links can be checked. Default: false.</p>
+<p>Check if packages used in ‘anchored’ cross-references in <code>.Rd</code> files (those of the form <code>\link[pkg]{foo}</code> and <code>\link[pkg:bar]{foo}</code>) are declared in the <code>DESCRIPTION</code> file and so these links can be checked. Default: false.</p>
 </dd>
 <dt><code>_R_CHECK_XREFS_MIND_SUSPECT_ANCHORS_</code></dt>
 <dd>

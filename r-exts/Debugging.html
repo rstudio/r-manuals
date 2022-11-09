@@ -544,7 +544,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>After a GC all free nodes that are not of type <code>NEWSXP</code> are marked as type <code>FREESXP</code> and their previous type is recorded.</li>
 <li>Most calls to accessor functions check their <code>SEXP</code> inputs and <code>SEXP</code> outputs and signal an error if a <code>FREESXP</code> is found. The address of the node and the old type are included in the error message.</li>
 </ul>
-<p><code>R CMD check --use-gct</code> can be set to use <code>gctorture2(``n)</code> rather than <code>gctorture(TRUE)</code> by setting environment variable <code>_R_CHECK_GCT_N_</code> to a positive integer value to be used as <code>n</code>.</p>
+<p><code>R CMD check --use-gct</code> can be set to use <code>gctorture2(n)</code> rather than <code>gctorture(TRUE)</code> by setting environment variable <code>_R_CHECK_GCT_N_</code> to a positive integer value to be used as <code>n</code>.</p>
 <p>Used with a debugger and with <code>gctorture</code> or <code>gctorture2</code> this mechanism can be helpful in isolating memory protect problems.</p>
 </section>
 <section id="using-valgrind" class="level3 subsection page-columns page-full" data-number="4.3.2">
@@ -755,7 +755,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="inspecting-r-objects-when-debugging" class="level3 subsection" data-number="4.4.2">
 <h3 class="subsection anchored" data-number="4.4.2" data-anchor-id="inspecting-r-objects-when-debugging"><span class="header-section-number">4.4.2</span> Inspecting R objects when debugging</h3>
-<p>The key to inspecting R objects from compiled code is the function <code>PrintValue(SEXP ``s)</code> which uses the normal R printing mechanisms to print the R object pointed to by <code>s</code>, or the safer version <code>R_PV(SEXP ``s)</code> which will only print ‘objects’.</p>
+<p>The key to inspecting R objects from compiled code is the function <code>PrintValue(SEXP s)</code> which uses the normal R printing mechanisms to print the R object pointed to by <code>s</code>, or the safer version <code>R_PV(SEXP s)</code> which will only print ‘objects’.</p>
 <p>One way to make use of <code>PrintValue</code> is to insert suitable calls into the code to be debugged.</p>
 <p>Another way is to call <code>R_PV</code> from the symbolic debugger. (<code>PrintValue</code> is hidden as <code>Rf_PrintValue</code>.) For example, from <code>gdb</code> we can use</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>(gdb) p <span class="fu">R_PV</span>(ab)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

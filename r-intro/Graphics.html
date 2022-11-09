@@ -403,35 +403,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="subsection anchored" data-number="12.1.1" data-anchor-id="the-plot-function"><span class="header-section-number">12.1.1</span> The <code>plot()</code> function</h3>
 <p>One of the most frequently used plotting functions in R is the <code>plot()</code> function. This is a <em>generic</em> function: the type of plot produced is dependent on the type or <em>class</em> of the first argument.</p>
 <dl>
-<dt><code>plot(``x, ``y)</code></dt>
+<dt><code>plot(x, y)</code></dt>
 <dd>
 
 </dd>
-<dt><code>plot(``xy)</code></dt>
+<dt><code>plot(xy)</code></dt>
 <dd>
-<p>If <code>x</code> and <code>y</code> are vectors, <code>plot(``x, ``y)</code> produces a scatterplot of <code>y</code> against <code>x</code>. The same effect can be produced by supplying one argument (second form) as either a list containing two elements <code>x</code> and <code>y</code> or a two-column matrix.</p>
+<p>If <code>x</code> and <code>y</code> are vectors, <code>plot(x, y)</code> produces a scatterplot of <code>y</code> against <code>x</code>. The same effect can be produced by supplying one argument (second form) as either a list containing two elements <code>x</code> and <code>y</code> or a two-column matrix.</p>
 </dd>
-<dt><code>plot(``x)</code></dt>
+<dt><code>plot(x)</code></dt>
 <dd>
 <p>If <code>x</code> is a time series, this produces a time-series plot. If <code>x</code> is a numeric vector, it produces a plot of the values in the vector against their index in the vector. If <code>x</code> is a complex vector, it produces a plot of imaginary versus real parts of the vector elements.</p>
 </dd>
-<dt><code>plot(``f)</code></dt>
+<dt><code>plot(f)</code></dt>
 <dd>
 
 </dd>
-<dt><code>plot(``f, ``y)</code></dt>
+<dt><code>plot(f, y)</code></dt>
 <dd>
 <p><code>f</code> is a factor object, <code>y</code> is a numeric vector. The first form generates a bar plot of <code>f</code>; the second form produces boxplots of <code>y</code> for each level of <code>f</code>.</p>
 </dd>
-<dt><code>plot(``df)</code></dt>
+<dt><code>plot(df)</code></dt>
 <dd>
 
 </dd>
-<dt><code>plot(~ ``expr)</code></dt>
+<dt><code>plot(~ expr)</code></dt>
 <dd>
 
 </dd>
-<dt><code>plot(``y ~ ``expr)</code></dt>
+<dt><code>plot(y ~ expr)</code></dt>
 <dd>
 <p><code>df</code> is a data frame, <code>y</code> is any object, <code>expr</code> is a list of object names separated by <code>+</code> (e.g., <code>a + b + c</code>). The first two forms produce distributional plots of the variables in a data frame (first form) or of a number of named objects (second form). The third form plots <code>y</code> against every object named in <code>expr</code>.</p>
 </dd>
@@ -470,11 +470,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <dd>
 
 </dd>
-<dt><code>hist(x, nclass=``n)</code></dt>
+<dt><code>hist(x, nclass=n)</code></dt>
 <dd>
 
 </dd>
-<dt><code>hist(x, breaks=``b, ...)</code></dt>
+<dt><code>hist(x, breaks=b, ...)</code></dt>
 <dd>
 <p><span id="index-hist-1"></span></p>
 <p>Produces a histogram of the numeric vector <code>x</code>. A sensible number of classes is usually chosen, but a recommendation can be given with the <code>nclass=</code> argument. Alternatively, the breakpoints can be specified exactly with the <code>breaks=</code> argument. If the <code>probability=TRUE</code> argument is given, the bars represent relative frequencies divided by bin width instead of counts.</p>
@@ -558,19 +558,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </dd>
 </dl>
 </dd>
-<dt><code>xlab=``string</code></dt>
+<dt><code>xlab=string</code></dt>
 <dd>
 
 </dd>
-<dt><code>ylab=``string</code></dt>
+<dt><code>ylab=string</code></dt>
 <dd>
 <p>Axis labels for the <em>x</em> and <em>y</em> axes. Use these arguments to change the default labels, usually the names of the objects used in the call to the high-level plotting function.</p>
 </dd>
-<dt><code>main=``string</code></dt>
+<dt><code>main=string</code></dt>
 <dd>
 <p>Figure title, placed at the top of the plot in a large font.</p>
 </dd>
-<dt><code>sub=``string</code></dt>
+<dt><code>sub=string</code></dt>
 <dd>
 <p>Sub-title, placed just below the <em>x</em>-axis in a smaller font.</p>
 </dd>
@@ -603,18 +603,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <dd>
 
 </dd>
-<dt><code>abline(h=``y)</code></dt>
+<dt><code>abline(h=y)</code></dt>
 <dd>
 
 </dd>
-<dt><code>abline(v=``x)</code></dt>
+<dt><code>abline(v=x)</code></dt>
 <dd>
 
 </dd>
-<dt><code>abline(``lm.obj)</code></dt>
+<dt><code>abline(lm.obj)</code></dt>
 <dd>
 <p><span id="index-abline"></span></p>
-<p>Adds a line of slope <code>b</code> and intercept <code>a</code> to the current plot. <code>h=``y</code> may be used to specify <em>y</em>-coordinates for the heights of horizontal lines to go across a plot, and <code>v=``x</code> similarly for the <em>x</em>-coordinates for vertical lines. Also <code>lm.obj</code> may be list with a <code>coefficients</code> component of length 2 (such as the result of model-fitting functions,) which are taken as an intercept and slope, in that order.</p>
+<p>Adds a line of slope <code>b</code> and intercept <code>a</code> to the current plot. <code>h=y</code> may be used to specify <em>y</em>-coordinates for the heights of horizontal lines to go across a plot, and <code>v=x</code> similarly for the <em>x</em>-coordinates for vertical lines. Also <code>lm.obj</code> may be list with a <code>coefficients</code> component of length 2 (such as the result of model-fitting functions,) which are taken as an intercept and slope, in that order.</p>
 </dd>
 <dt><code>polygon(x, y, ...)</code></dt>
 <dd>
@@ -626,23 +626,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span id="index-legend"></span></p>
 <p>Adds a legend to the current plot at the specified position. Plotting characters, line styles, colors etc., are identified with the labels in the character vector <code>legend</code>. At least one other argument <code>v</code> (a vector the same length as <code>legend</code>) with the corresponding values of the plotting unit must also be given, as follows:</p>
 <dl>
-<dt><code>legend( , fill=``v)</code></dt>
+<dt><code>legend( , fill=v)</code></dt>
 <dd>
 <p>Colors for filled boxes</p>
 </dd>
-<dt><code>legend( , col=``v)</code></dt>
+<dt><code>legend( , col=v)</code></dt>
 <dd>
 <p>Colors in which points or lines will be drawn</p>
 </dd>
-<dt><code>legend( , lty=``v)</code></dt>
+<dt><code>legend( , lty=v)</code></dt>
 <dd>
 <p>Line styles</p>
 </dd>
-<dt><code>legend( , lwd=``v)</code></dt>
+<dt><code>legend( , lwd=v)</code></dt>
 <dd>
 <p>Line widths</p>
 </dd>
-<dt><code>legend( , pch=``v)</code></dt>
+<dt><code>legend( , pch=v)</code></dt>
 <dd>
 <p>Plotting characters (character vector)</p>
 </dd>
@@ -754,7 +754,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The following sections detail many of the commonly-used graphical parameters. The R help documentation for the <code>par()</code> function provides a more concise summary; this is provided as a somewhat more detailed alternative.</p>
 <p>Graphics parameters will be presented in the following form:</p>
 <dl>
-<dt><code>name=``value</code></dt>
+<dt><code>name=value</code></dt>
 <dd>
 <p>A description of the parameter’s effect. <code>name</code> is the name of the parameter, that is, the argument name to use in calls to <code>par()</code> or a graphics function. <code>value</code> is a typical value you might use when setting the parameter.</p>
 </dd>
@@ -1066,21 +1066,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span id="index-dev_002enext"></span></p>
 <p>Returns the number and name of the graphics device next to, or previous to the current device, respectively.</p>
 </dd>
-<dt><code>dev.set(which=``k)</code></dt>
+<dt><code>dev.set(which=k)</code></dt>
 <dd>
 <p><span id="index-dev_002eset"></span></p>
 <p>Can be used to change the current graphics device to the one at position <code>k</code> of the device list. Returns the number and label of the device.</p>
 </dd>
-<dt><code>dev.off(``k)</code></dt>
+<dt><code>dev.off(k)</code></dt>
 <dd>
 <p><span id="index-dev_002eoff"></span></p>
 <p>Terminate the graphics device at point <code>k</code> of the device list. For some devices, such as <code>postscript</code> devices, this will either print the file immediately or correctly complete the file for later printing, depending on how the device was initiated.</p>
 </dd>
-<dt><code>dev.copy(device, ..., which=``k)</code></dt>
+<dt><code>dev.copy(device, ..., which=k)</code></dt>
 <dd>
 
 </dd>
-<dt><code>dev.print(device, ..., which=``k)</code></dt>
+<dt><code>dev.print(device, ..., which=k)</code></dt>
 <dd>
 <p>Make a copy of the device <code>k</code>. Here <code>device</code> is a device function, such as <code>postscript</code>, with extra arguments, if needed, specified by <code>...</code>. <code>dev.print</code> is similar, but the copied device is immediately closed, so that end actions, such as printing hardcopies, are immediately performed.</p>
 </dd>
