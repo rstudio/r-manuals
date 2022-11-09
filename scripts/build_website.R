@@ -6,8 +6,8 @@ stop_if_makeinfo_not_installed()
 
 ##### Process Manuals ----------------
 #
-# This will download source file and create the intermediate structure
-# and files to build the book
+# This downloads source files and creates the intermediate structure
+# and files to build the books
 #
 # folder structure:
 #
@@ -34,7 +34,6 @@ stop_if_makeinfo_not_installed()
 #
 
 # Determine the correct sequence for navbar links, etc.
-1
 
 all_manuals <- c(
   "r-intro",
@@ -42,7 +41,8 @@ all_manuals <- c(
   "r-admin",
   "r-exts",
   "r-lang",
-  "r-ints"
+  "r-ints",
+  NULL
 )
 
 # Determine which manuals to build.
@@ -50,11 +50,11 @@ all_manuals <- c(
 # For production, should be identical to all_manuals.
 manuals <- c(
   "R-intro.texi",
-  # "R-data.texi",
-  # "R-admin.texi",
+  "R-data.texi",
+  "R-admin.texi",
   "R-exts.texi",
-  # "R-lang.texi",
-  # "R-ints.texi",
+  "R-lang.texi",
+  "R-ints.texi",
   NULL
 )
 
@@ -67,11 +67,10 @@ build_books(manuals = manuals, all_manuals = all_manuals)
 
 # Build website --------------
 #
-# This will build the main website with a shared navbar with all the book
-#
-# website is in `website` folder and will be build in `website/_site`
+# Builds the main website with a shared navbar with all the books
+# Final output is in `website/_site`
 
 
-build_main_website()
+build_main_website(all_manuals = all_manuals)
 
-if (!on_ci) servr::httd("website/_site")
+# if (!on_ci) servr::httd("website/_site")

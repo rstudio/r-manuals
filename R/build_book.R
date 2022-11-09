@@ -69,21 +69,10 @@ glue_quarto_yaml <- function(
 
   title <- extract_title_from_index(manual)
 
-  appendices <- if (length(appendices)) {
-    appx <- paste0(paste("      -", appendices), collapse = "\n")
-    paste0("  appendices:\n", appx, collapse = "\n")
-  } else {
-    character()
-  }
-
-
-
-
-  glue::glue(
-    template,
-    chapters   = paste0(paste("      -", chapters), collapse = "\n"),
-    appendices = appendices,
-    title = title
+  list(
+    title = title,
+    chapters = chapters,
+    appendices = appendices
   )
 }
 
@@ -105,18 +94,14 @@ update_quarto_yaml <- function(x, index, all_manuals, verbose = FALSE) {
   manual <- fs::path_file(x)
 
 
-  glue_quarto_yaml(manual = manual, verbose = verbose) %>%
-    readr::write_lines(file = glue::glue("{x}/book/_quarto.yml"))
-
   index2 <-
-    # gsub("index.html", "index.md", index)
     gsub(glue::glue("../{name}/index.html", name = manual), "index.md", index)
 
+  # update navbar
   navbar <-
     index2 %>%
     purrr::imap(
       ~ href(
-        # fs::path(manual, "index.html")
         fs::path("../", glue::glue("{name}", name = .y), "index.html"),
              extract_title_from_index(
                glue::glue("manuals/{name}/prep/index.html", name = .y)
@@ -126,20 +111,30 @@ update_quarto_yaml <- function(x, index, all_manuals, verbose = FALSE) {
   navbar <- unname(navbar)
   navbar <- navbar[!vapply(navbar, is.null, FUN.VALUE = logical(1))]
 
+  template  <-  "book_template/_quarto.yml"
+  yaml <- yaml::read_yaml(template)
 
-
-  yaml <- yaml::read_yaml(yaml_file)
   yaml$book$navbar$right <- c(
     list(list(href = "../index.html", text = "Home")),
     list(list(text = "Manuals", menu = navbar)),
     list(list(href = "../about.html", text = "About"))
   )
-  appendices <- yaml$book$appendices
-  yaml$book$appendices <- if(length(appendices) == 1) {
-    list(appendices)
-  } else {
-    appendices
+
+  # update chapters and appendices
+  glue_values <- glue_quarto_yaml(manual = manual, verbose = verbose)
+
+  appendices <- glue_values$appendices
+  if (length(appendices)) {
+    yaml$book$appendices <- if (length(appendices) == 1) {
+      list(appendices)
+    } else {
+      appendices
+    }
   }
+
+  yaml$book$chapters  <- glue_values$chapters
+
+  yaml$book$title <- glue::glue("R Manuals :: {title}", title = glue_values$title)
 
   yaml::write_yaml(yaml, yaml_file)
   xfun::gsub_file(yaml_file, "\\syes\\s*$", " true")
@@ -155,12 +150,14 @@ update_quarto_yaml <- function(x, index, all_manuals, verbose = FALSE) {
 #'
 #' @param manuals_folder Defaults to `manuals`
 #' @param manuals Vector of manuals to build, e.g. `"R-intro.texi"`
-#' @param all_manuals Vector of all manuals, e.g. `c("R-intro.texi", "R-data.texi")`
+#' @param all_manuals Vector of all manuals, e.g.
+#'   `c("R-intro.texi", "R-data.texi")`
 #'
 #' @return NULL
 #' @export
 #'
-build_books <- function(manuals_folder = "manuals", manuals, all_manuals, verbose = TRUE) {
+build_books <- function(manuals_folder = "manuals", manuals, all_manuals,
+                        verbose = TRUE) {
   if (!missing(manuals) && !is.null(manuals)) {
     manuals <- tolower(gsub("\\.texi", "", manuals))
     manuals <- file.path(manuals_folder, manuals)
@@ -172,12 +169,15 @@ build_books <- function(manuals_folder = "manuals", manuals, all_manuals, verbos
   cli::cli_h2("Building book...")
 
 
-  index <- fs::path(manuals_folder, fs::path_file(all_manuals), "prep/index.html")
+  index <- fs::path(manuals_folder, fs::path_file(all_manuals),
+                    "prep/index.html")
   names(index) <- fs::path_file(all_manuals)
 
+  # update the quarto yaml
+  purrr::walk(manuals, update_quarto_yaml, index = index,
+              all_manuals = all_manuals, verbose = verbose)
 
-  purrr::walk(manuals, update_quarto_yaml, index = index, all_manuals = all_manuals, verbose = verbose)
-
+  # build the book
   purrr::walk(manuals, ~ {
     cli::cli_progress_step("Building book {.file {.x}}.\n")
     message()

@@ -29,8 +29,7 @@ book:
     - href: about.qmd
       text: About
   chapters:
-{chapters}
-{appendices}
+  - chapters
 
 reference-location: margin
 
