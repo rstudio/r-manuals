@@ -14,8 +14,8 @@ appendices <- function(manual, manual_path = "manuals") {
     stringr::str_extract("^@appendix (.*)$") %>%
     na.omit() %>%
     c() %>%
-    # replace all punctuation except hyphen
-    gsub(r"([!\"#$%&'()*+,./:;<=>?@[\\]^_`\{|\}~])", "", .) %>%
+    # replace all punctuation except hyphen and underscore
+    gsub(r"([!\"#$%&'()*+,./:;<=>?@[\\]^`\{|\}~])", "", .) %>%
     gsub("@appendix ", "", .) %>%
     gsub("[[:space:]]", "-", .)
 
