@@ -734,6 +734,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <dd>
 <p>Check whether arguments passed to the Windows C runtime are valid. When enabled and a C runtime function is called with an invalid parameter, R prints diagnostic information and unconditionally terminates. By default, R for Windows following MinGW-W64 default causes UCRT to ignore invalid parameters, but they may cause R to abort e.g.&nbsp;when R is embedded into applications built with a different compiler toolchain. One may set the value to <code>"watson"</code> for interactive debugging on Windows via <code>_invoke_watson</code>. Default: disabled.</p>
 </dd>
+<dt><code>_R_CHECK_BROWSER_NONINTERACTIVE_</code></dt>
+<dd>
+<p>If set to a true value, trap non-interactive debugger invocations. These are most likely caused by leftover <code>browser()</code> statements in package code. Default: unset (but true for CRAN submission checks).</p>
+</dd>
 </dl>
 <div class="page-columns page-full"><p>The following variables control checks for undeclared/unconditional use of other packages. They work by setting up a temporary library directory and setting <code>.libPaths()</code> to just that and <code>.Library</code>, so are only effective if additional packages are installed somewhere other than <code>.Library</code>. The temporary library is populated by symbolic links<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> to installed packages not also in <code>.Library</code>.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;under Windows, junction points, or copies if environment variable <code>R_WIN_NO_JUNCTIONS</code> has a non-empty value.</p></li></div></div>
 <dl>
@@ -816,7 +820,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>_R_CHECK_CODE_CLASS_IS_STRING_<span class="ot">=</span>true</span>
 <span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>_R_CHECK_RD_VALIDATE_RD2HTML_<span class="ot">=</span>true</span>
 <span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>_R_CHECK_RD_MATH_RENDERING_<span class="ot">=</span>true</span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>_R_CHECK_NEWS_IN_PLAIN_TEXT_<span class="ot">=</span>true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>_R_CHECK_NEWS_IN_PLAIN_TEXT_<span class="ot">=</span>true</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>_R_CHECK_BROWSER_NONINTERACTIVE_<span class="ot">=</span>true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>These are turned on by <code>R CMD check --as-cran</code>: the incoming checks also use</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>_R_CHECK_FORCE_SUGGESTS_<span class="ot">=</span><span class="cn">FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>since some packages do suggest other packages not available on CRAN or other commonly-used repositories.</p>
