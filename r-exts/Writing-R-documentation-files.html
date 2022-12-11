@@ -379,14 +379,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="subsection anchored" data-number="2.1.1" data-anchor-id="documenting-functions"><span class="header-section-number">2.1.1</span> Documenting functions</h3>
 <p>The basic markup commands used for documenting R objects (in particular, functions) are given in this subsection.</p>
 <dl class="page-columns page-full">
-<dt><code>\name{name}</code></dt>
+<dt><code>\name{name}</code> <a href="#index-_005cname" class="copiable-anchor">¶</a></dt>
 <dd class="page-columns page-full">
-<p><span id="index-_005cname"></span></p>
 <div class="page-columns page-full"><p><code>name</code> typically<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> is the basename of the <code>Rd</code> file containing the documentation. It is the “name” of the <code>Rd</code> object represented by the file and has to be unique in a package. To avoid problems with indexing the package manual, it may not contain <code>!</code> <code>|</code> nor <code>@</code>, and to avoid possible problems with the HTML help system it should not contain <code>/</code> nor a space. (LaTeX special characters are allowed, but may not be collated correctly in the index.) There can only be one <code>\name</code> entry in a file, and it must not contain any markup. Entries in the package manual will be in alphabetic<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> order of the <code>\name</code> entries.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;There can be exceptions: for example <code>Rd</code> files are not allowed to start with a dot, and have to be uniquely named on a case-insensitive file system.</p></li><li id="fn3"><p><sup>3</sup>&nbsp;in the current locale, and with special treatment for LaTeX special characters and with any <code>pkgname-package</code> topic moved to the top of the list.</p></li></div></div>
 </dd>
-<dt><code>\alias{topic}</code></dt>
+<dt><code>\alias{topic}</code> <a href="#index-_005calias" class="copiable-anchor">¶</a></dt>
 <dd>
-<p><span id="index-_005calias"></span></p>
 <p>The <code>\alias</code> sections specify all “topics” the file documents. This information is collected into index data bases for lookup by the on-line (plain text and HTML) help systems. The <code>topic</code> can contain spaces, but (for historical reasons) leading and trailing spaces will be stripped. Percent and left brace need to be escaped by a backslash.</p>
 <p>There may be several <code>\alias</code> entries. Quite often it is convenient to document several R objects in one file. For example, file <code>Normal.Rd</code> documents the density, distribution function, quantile function and generation of random variates for the normal distribution, and hence starts with</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\name</span>{Normal}</span>
@@ -398,21 +396,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Also, it is often convenient to have several different ways to refer to an R object, and an <code>\alias</code> does not need to be the name of an object.</p>
 <p>Note that the <code>\name</code> is not necessarily a topic documented, and if so desired it needs to have an explicit <code>\alias</code> entry (as in this example).</p>
 </dd>
-<dt><code>\title{Title}</code></dt>
+<dt><code>\title{Title}</code> <a href="#index-_005ctitle" class="copiable-anchor">¶</a></dt>
 <dd>
-<p><span id="index-_005ctitle"></span></p>
 <p>Title information for the <code>Rd</code> file. This should be capitalized and not end in a period; try to limit its length to at most 65 characters for widest compatibility.</p>
 <p>Markup is supported in the text, but use of characters other than English text and punctuation (e.g., <code>&lt;</code>) may limit portability.</p>
 <p>There must be one (and only one) <code>\title</code> section in a help file.</p>
 </dd>
-<dt><code>\description{...}</code></dt>
+<dt><code>\description{...}</code> <a href="#index-_005cdescription" class="copiable-anchor">¶</a></dt>
 <dd>
-<p><span id="index-_005cdescription"></span></p>
 <p>A short description of what the function(s) do(es) (one paragraph, a few lines only). (If a description is too long and cannot easily be shortened, the file probably tries to document too much at once.) This is mandatory except for package-overview files.</p>
 </dd>
-<dt><code>\usage{fun(arg1, arg2, ...)}</code></dt>
+<dt><code>\usage{fun(arg1, arg2, ...)}</code> <a href="#index-_005cusage" class="copiable-anchor">¶</a></dt>
 <dd>
-<p><span id="index-_005cusage"></span></p>
 <p>One or more lines showing the synopsis of the function(s) and variables documented in the file. These are set in typewriter font. This is an R-like command.</p>
 <p>The usage information specified should match the function definition <em>exactly</em> (such that automatic checking for consistency between code and documentation is possible).</p>
 <p>To indicate that a function can be used in several different ways, depending on the named arguments specified, use section <code>\details</code>. E.g., <code>abline.Rd</code> contains</p>
@@ -449,34 +444,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>     x[...] <span class="ot">&lt;-</span> value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>\S3method</code> is accepted as an alternative to <code>\method</code>.</p>
 </dd>
-<dt><code>\arguments{...}</code></dt>
+<dt><code>\arguments{...}</code> <a href="#index-_005carguments" class="copiable-anchor">¶</a></dt>
 <dd>
-<p><span id="index-_005carguments"></span></p>
 <p>Description of the function’s arguments, using an entry of the form</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\item</span>{arg_i}{Description of arg_i.}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>for each element of the argument list. (Note that there is no whitespace between the three parts of the entry.) There may be optional text outside the <code>\item</code> entries, for example to give general information about groups of parameters.</p>
 </dd>
-<dt><code>\details{...}</code></dt>
+<dt><code>\details{...}</code> <a href="#index-_005cdetails" class="copiable-anchor">¶</a></dt>
 <dd>
-<p><span id="index-_005cdetails"></span></p>
 <p>A detailed if possible precise description of the functionality provided, extending the basic information in the <code>\description</code> slot.</p>
 </dd>
-<dt><code>\value{...}</code></dt>
+<dt><code>\value{...}</code> <a href="#index-_005cvalue" class="copiable-anchor">¶</a></dt>
 <dd class="page-columns page-full">
-<p><span id="index-_005cvalue"></span></p>
 <p>Description of the function’s return value.</p>
 <p>If a list with multiple values is returned, you can use entries of the form</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\item</span>{comp_i}{Description of comp_i.}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="page-columns page-full"><p>for each component of the list returned. Optional text may precede<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> this list (see for example the help for <code>rle</code>). Note that <code>\value</code> is implicitly a <code>\describe</code> environment, so that environment should not be used for listing components, just individual <code>\item{}{}</code> entries.</p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;Text between or after list items is discouraged.</p></li></div></div>
 </dd>
-<dt><code>\references{...}</code></dt>
+<dt><code>\references{...}</code> <a href="#index-_005creferences" class="copiable-anchor">¶</a></dt>
 <dd>
-<p><span id="index-_005creferences"></span></p>
 <p>A section with references to the literature. Use <code>\url{}</code> or <code>\href{}{}</code> for web pointers, and <code>\doi{}</code> for DOIs (this needs R &gt;= 3.3, see <a href="#user-defined-macros">User-defined macros</a> for more info).</p>
 </dd>
-<dt><code>\note{...}</code></dt>
+<dt><code>\note{...}</code> <a href="#index-_005cnote" class="copiable-anchor">¶</a></dt>
 <dd>
-<p><span id="index-_005cnote"></span></p>
 <p>Use this for a special note you want to have pointed out. Multiple <code>\note</code> sections are allowed, but might be confusing to the end users.</p>
 <p>For example, <code>pie.Rd</code> contains</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\note</span>{</span>
@@ -486,14 +476,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  ......</span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </dd>
-<dt><code>\author{...}</code></dt>
+<dt><code>\author{...}</code> <a href="#index-_005cauthor" class="copiable-anchor">¶</a></dt>
 <dd>
-<p><span id="index-_005cauthor"></span></p>
 <p>Information about the author(s) of the <code>Rd</code> file. Use <code>\email{}</code> without extra delimiters (such as <code>( )</code> or <code>&lt; &gt;</code>) to specify email addresses, or <code>\url{}</code> or <code>\href{}{}</code> for web pointers.</p>
 </dd>
-<dt><code>\seealso{...}</code></dt>
+<dt><code>\seealso{...}</code> <a href="#index-_005cseealso" class="copiable-anchor">¶</a></dt>
 <dd>
-<p><span id="index-_005cseealso"></span></p>
 <p>Pointers to related R objects, using <code>\code{\link{...}}</code> to refer to them (<code>\code</code> is the correct markup for R object names, and <code>\link</code> produces hyperlinks in output formats which support this. See <a href="#marking-text">Marking text</a>, and <a href="#cross-references">Cross-references</a>).</p>
 </dd>
 <dt><code>\examples{...}</code></dt>
@@ -561,14 +549,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <dd>
 <p>Indicates the “type” of the documentation object. Always <code>data</code> for data sets, and <code>package</code> for <code>pkg-package.Rd</code> overview files. Documentation for S4 methods and classes uses <code>methods</code> (from <code>promptMethods()</code>) and <code>class</code> (from <code>promptClass()</code>).</p>
 </dd>
-<dt><code>\format{...}</code></dt>
+<dt><code>\format{...}</code> <a href="#index-_005cformat" class="copiable-anchor">¶</a></dt>
 <dd>
-<p><span id="index-_005cformat"></span></p>
 <p>A description of the format of the data set (as a vector, matrix, data frame, time series, …). For matrices and data frames this should give a description of each column, preferably as a list or table. See <a href="#lists-and-tables">Lists and tables</a>, for more information.</p>
 </dd>
-<dt><code>\source{...}</code></dt>
+<dt><code>\source{...}</code> <a href="#index-_005csource" class="copiable-anchor">¶</a></dt>
 <dd>
-<p><span id="index-_005csource"></span></p>
 <p>Details of the original source (a reference or URL, see <a href="Creating-R-packages.html#specifying-urls">Specifying URLs</a>). In addition, section <code>\references</code> could give secondary sources and usages.</p>
 </dd>
 </dl>
@@ -614,119 +600,99 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="section anchored" data-number="2.3" data-anchor-id="marking-text"><span class="header-section-number">2.3</span> Marking text</h2>
 <p>The following logical markup commands are available for emphasizing or quoting text.</p>
 <dl>
-<dt><code>\emph{text}</code></dt>
+<dt><code>\emph{text}</code> <a href="#index-_005cstrong" class="copiable-anchor">¶</a></dt>
 <dd>
 <span id="index-_005cemph"></span>
 </dd>
 <dt><code>\strong{text}</code></dt>
 <dd>
-<p><span id="index-_005cstrong"></span></p>
 <p>Emphasize <code>text</code> using <em>italic</em> and <strong>bold</strong> font if possible; <code>\strong</code> is regarded as stronger (more emphatic).</p>
 </dd>
-<dt><code>\bold{text}</code></dt>
+<dt><code>\bold{text}</code> <a href="#index-_005cbold" class="copiable-anchor">¶</a></dt>
 <dd>
-<p><span id="index-_005cbold"></span></p>
 <p>Set <code>text</code> in <strong>bold</strong> font where possible.</p>
 </dd>
-<dt><code>\sQuote{text}</code></dt>
+<dt><code>\sQuote{text}</code> <a href="#index-_005cdquote" class="copiable-anchor">¶</a></dt>
 <dd>
 <span id="index-_005csQuote"></span>
 </dd>
 <dt><code>\dQuote{text}</code></dt>
 <dd>
-<p><span id="index-_005cdQuote"></span></p>
 <p>Portably single or double quote <code>text</code> (without hard-wiring the characters used for quotation marks).</p>
 </dd>
 </dl>
 <p>Each of the above commands takes LaTeX-like input, so other macros may be used within <code>text</code>.</p>
 <p>The following logical markup commands are available for indicating specific kinds of text. Except as noted, these take ‘verbatim’ text input, and so other macros may not be used within them. Some characters will need to be escaped (see <a href="#insertions">Insertions</a>).</p>
 <dl class="page-columns page-full">
-<dt><code>\code{text}</code></dt>
+<dt><code>\code{text}</code> <a href="#index-_005ccode" class="copiable-anchor">¶</a></dt>
 <dd>
-<p><span id="index-_005ccode"></span></p>
 <p>Indicate text that is a literal example of a piece of an R program, e.g., a fragment of R code or the name of an R object. Text is entered in R-like syntax, and displayed using <code>typewriter</code> font where possible. Macros <code>\var</code> and <code>\link</code> are interpreted within <code>text</code>.</p>
 </dd>
-<dt><code>\preformatted{text}</code></dt>
+<dt><code>\preformatted{text}</code> <a href="#index-_005cpreformatted" class="copiable-anchor">¶</a></dt>
 <dd>
-<p><span id="index-_005cpreformatted"></span></p>
 <p>Indicate text that is a literal example of a piece of a program. Text is displayed using <code>typewriter</code> font where possible. Formatting, e.g.&nbsp;line breaks, is preserved. (Note that this includes a line break after the initial {, so typically text should start on the same line as the command.)</p>
 <p>Due to limitations in LaTeX as of this writing, this macro may not be nested within other markup macros other than <code>\dQuote</code> and <code>\sQuote</code>, as errors or bad formatting may result.</p>
 </dd>
-<dt><code>\kbd{keyboard-characters}</code></dt>
+<dt><code>\kbd{keyboard-characters}</code> <a href="#index-_005ckbd" class="copiable-anchor">¶</a></dt>
 <dd>
-<p><span id="index-_005ckbd"></span></p>
 <p>Indicate keyboard input, using <kbd>slanted typewriter</kbd> font if possible, so users can distinguish the characters they are supposed to type from computer output. Text is entered ‘verbatim’.</p>
 </dd>
-<dt><code>\samp{text}</code></dt>
+<dt><code>\samp{text}</code> <a href="#index-_005csamp" class="copiable-anchor">¶</a></dt>
 <dd>
-<p><span id="index-_005csamp"></span></p>
 <p>Indicate text that is a literal example of a sequence of characters, entered ‘verbatim’. No wrapping or reformatting will occur. Displayed using <code>typewriter</code> font where possible.</p>
 </dd>
-<dt><code>\verb{text}</code></dt>
+<dt><code>\verb{text}</code> <a href="#index-_005cverb" class="copiable-anchor">¶</a></dt>
 <dd>
-<p><span id="index-_005cverb"></span></p>
 <p>Indicate text that is a literal example of a sequence of characters, with no interpretation of e.g.&nbsp;<code>\var</code>, but which will be included within word-wrapped text. Displayed using <code>typewriter</code> font if possible.</p>
 </dd>
-<dt><code>\pkg{package_name}</code></dt>
+<dt><code>\pkg{package_name}</code> <a href="#index-_005cpkg" class="copiable-anchor">¶</a></dt>
 <dd>
-<p><span id="index-_005cpkg"></span></p>
 <p>Indicate the name of an R package. LaTeX-like.</p>
 </dd>
-<dt><code>\file{file_name}</code></dt>
+<dt><code>\file{file_name}</code> <a href="#index-_005cfile" class="copiable-anchor">¶</a></dt>
 <dd>
-<p><span id="index-_005cfile"></span></p>
 <p>Indicate the name of a file. Text is LaTeX-like, so backslash needs to be escaped. Displayed using a distinct font where possible.</p>
 </dd>
-<dt><code>\email{email_address}</code></dt>
+<dt><code>\email{email_address}</code> <a href="#index-_005cemail" class="copiable-anchor">¶</a></dt>
 <dd>
-<p><span id="index-_005cemail"></span></p>
 <p>Indicate an electronic mail address. LaTeX-like, will be rendered as a hyperlink in HTML and PDF conversion. Displayed using <code>typewriter</code> font where possible.</p>
 </dd>
-<dt><code>\url{uniform_resource_locator}</code></dt>
+<dt><code>\url{uniform_resource_locator}</code> <a href="#index-_005curl" class="copiable-anchor">¶</a></dt>
 <dd class="page-columns page-full">
-<p><span id="index-_005curl"></span></p>
 <div class="page-columns page-full"><p>Indicate a uniform resource locator (URL) for the World Wide Web. The argument is handled as ‘verbatim’ text (with percent and braces escaped by backslash), and rendered as a hyperlink in HTML and PDF conversion. Linefeeds are removed, and leading and trailing whitespace<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> is removed. See <a href="Creating-R-packages.html#specifying-urls">Specifying URLs</a>.</p><div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;as defined by the R function <code>trimws</code>.</p></li></div></div>
 <p>Displayed using <code>typewriter</code> font where possible.</p>
 </dd>
-<dt><code>\href{uniform_resource_locator}{text}</code></dt>
+<dt><code>\href{uniform_resource_locator}{text}</code> <a href="#index-_005chref" class="copiable-anchor">¶</a></dt>
 <dd>
-<p><span id="index-_005chref"></span></p>
 <p>Indicate a hyperlink to the World Wide Web. The first argument is handled as ‘verbatim’ text (with percent and braces escaped by backslash) and is used as the URL in the hyperlink, with the second argument of LaTeX-like text displayed to the user. Linefeeds are removed from the first argument, and leading and trailing whitespace is removed.</p>
 <p>Note that RFC3986-encoded URLs (e.g.&nbsp;using <code>%28VS.85%29</code> in place of <code>(VS.85)</code>) may not work correctly in versions of R before 3.1.3 and are best avoided—use <code>URLdecode()</code> to decode them.</p>
 </dd>
-<dt><code>\var{metasyntactic_variable}</code></dt>
+<dt><code>\var{metasyntactic_variable}</code> <a href="#index-_005cvar" class="copiable-anchor">¶</a></dt>
 <dd class="page-columns page-full">
-<p><span id="index-_005cvar"></span></p>
 <div class="page-columns page-full"><p>Indicate a metasyntactic variable. In some cases this will be rendered distinctly, e.g.&nbsp;in italic, but not in all<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>. LaTeX-like.</p><div class="no-row-height column-margin column-container"><li id="fn6"><p><sup>6</sup>&nbsp;Currently it is rendered differently only in HTML conversions, and LaTeX conversion outside <code>\usage</code> and <code>\examples</code> environments.</p></li></div></div>
 </dd>
-<dt><code>\env{environment_variable}</code></dt>
+<dt><code>\env{environment_variable}</code> <a href="#index-_005cenv" class="copiable-anchor">¶</a></dt>
 <dd>
-<p><span id="index-_005cenv"></span></p>
 <p>Indicate an environment variable. ‘Verbatim’. Displayed using <code>typewriter</code> font where possible</p>
 </dd>
-<dt><code>\option{option}</code></dt>
+<dt><code>\option{option}</code> <a href="#index-_005coption" class="copiable-anchor">¶</a></dt>
 <dd>
-<p><span id="index-_005coption"></span></p>
 <p>Indicate a command-line option. ‘Verbatim’. Displayed using <code>typewriter</code> font where possible.</p>
 </dd>
-<dt><code>\command{command_name}</code></dt>
+<dt><code>\command{command_name}</code> <a href="#index-_005ccommand" class="copiable-anchor">¶</a></dt>
 <dd>
-<p><span id="index-_005ccommand"></span></p>
 <p>Indicate the name of a command. LaTeX-like, so <code>\var</code> is interpreted. Displayed using <code>typewriter</code> font where possible.</p>
 </dd>
-<dt><code>\dfn{term}</code></dt>
+<dt><code>\dfn{term}</code> <a href="#index-_005cdfn" class="copiable-anchor">¶</a></dt>
 <dd>
-<p><span id="index-_005cdfn"></span></p>
 <p>Indicate the introductory or defining use of a term. LaTeX-like.</p>
 </dd>
-<dt><code>\cite{reference}</code></dt>
+<dt><code>\cite{reference}</code> <a href="#index-_005ccite" class="copiable-anchor">¶</a></dt>
 <dd>
-<p><span id="index-_005ccite"></span></p>
 <p>Indicate a reference without a direct cross-reference <em>via</em> <code>\link</code> (see <a href="#cross-references">Cross-references</a>), such as the name of a book. LaTeX-like.</p>
 </dd>
-<dt><code>\acronym{acronym}</code></dt>
+<dt><code>\acronym{acronym}</code> <a href="#index-_005cacronym" class="copiable-anchor">¶</a></dt>
 <dd>
-<p><span id="index-_005cacronym"></span></p>
 <p>Indicate an acronym (an abbreviation written in all capital letters), such as GNU. LaTeX-like.</p>
 </dd>
 </dl>
@@ -864,7 +830,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>- <code>stage=install</code> The macro is run when installing from source.</li>
 <li>- <code>stage=render</code> The macro is run when displaying the help page.</li>
 </ul>
-<p>Conditionals such as <code>#ifdef</code> (see <a href="#platform-specific-sections">Platform-specific sections</a>) are applied after the <code>build</code> macros but before the <code>install</code> macros. In some situations (e.g.&nbsp;installing directly from a source directory without a tarball, or building a binary package) the above description is not literally accurate, but authors can rely on the sequence being <code>build</code>, <code>#ifdef</code>, <code>install</code>, <code>render</code>, with all stages executed.</p>
+<p>Conditionals such as <code>#ifdef</code> (see <a href="#platform-specific-sections">Platform-specific documentation</a>) are applied after the <code>build</code> macros but before the <code>install</code> macros. In some situations (e.g.&nbsp;installing directly from a source directory without a tarball, or building a binary package) the above description is not literally accurate, but authors can rely on the sequence being <code>build</code>, <code>#ifdef</code>, <code>install</code>, <code>render</code>, with all stages executed.</p>
 <p>Code is only run once in each stage, so a <code>\Sexpr[results=rd]</code> macro can output an <code>\Sexpr</code> macro designed for a later stage, but not for the current one or any earlier stage.</p></li>
 <li><p><code>width, height, fig</code> These options are currently allowed but ignored.</p></li>
 </ul>
@@ -885,15 +851,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>when parsed.</p>
 <p>Some macros that might be of general use are:</p>
 <dl>
-<dt><code>\CRANpkg{pkg}</code></dt>
+<dt><code>\CRANpkg{pkg}</code> <a href="#index-_005ccranpkg_007bpkg_007d" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>A package on CRAN</p>
 </dd>
-<dt><code>\sspace</code></dt>
+<dt><code>\sspace</code> <a href="#index-_005csspace" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>A single space (used after a period that does not end a sentence).</p>
 </dd>
-<dt><code>\doi{numbers}</code></dt>
+<dt><code>\doi{numbers}</code> <a href="#index-_005cdoi_007bnumbers_007d" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>A digital object identifier (DOI).</p>
 </dd>

@@ -387,7 +387,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>makes <code>e</code> an empty vector structure of mode numeric. Similarly <code>character()</code> is a empty character vector, and so on. Once an object of any size has been created, new components may be added to it simply by giving it an index value outside its previous range. Thus</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> e[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="dv">17</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>now makes <code>e</code> a vector of length 3, (the first two components of which are at this point both <code>NA</code>). This applies to any structure at all, provided the mode of the additional component(s) agrees with the mode of the object in the first place.</p>
-<p>This automatic adjustment of lengths of an object is used often, for example in the <code>scan()</code> function for input. (see <a href="Reading-data-from-files.html#the-scan_0028_0029-function">The scan() function</a>.)</p>
+<p>This automatic adjustment of lengths of an object is used often, for example in the <code>scan()</code> function for input. (see <a href="Reading-data-from-files.html#the-scan_0028_0029-function">The <code>scan()</code> function</a>.)</p>
 <p>Conversely to truncate the size of an object requires only an assignment to do so. Hence if <code>alpha</code> is an object of length 10, then</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> alpha <span class="ot">&lt;-</span> alpha[<span class="dv">2</span> <span class="sc">*</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>makes it an object of length 5 consisting of just the former components with even index. (The old indices are not retained, of course.) We can then retain just the first three values by</p>
@@ -411,7 +411,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>will print it in data frame form, which is rather like a matrix, whereas</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> unclass<span class="op">(</span>winter<span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>will print it as an ordinary list. Only in rather special situations do you need to use this facility, but one is when you are learning to come to terms with the idea of class and generic functions.</p>
-<p>Generic functions and classes will be discussed further in <a href="Writing-your-own-functions.html#object-orientation">Object orientation</a>, but only briefly.</p>
+<p>Generic functions and classes will be discussed further in <a href="Writing-your-own-functions.html#object-orientation">Classes, generic functions and object orientation</a>, but only briefly.</p>
 <p>Footnotes</p>
 
 

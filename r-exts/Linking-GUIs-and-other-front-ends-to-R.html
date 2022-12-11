@@ -434,112 +434,112 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="dt">void</span> <span class="op">(*</span>ptr_R_ProcessEvents<span class="op">)();</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>which allow standard R callbacks to be redirected to your GUI. What these do is generally documented in the file <code>src/unix/system.txt</code>.</p>
 <dl>
-<dt>Function: <em>void</em> <strong>R_ShowMessage</strong> <em>(char *<code>message</code>)</em></dt>
+<dt><span class="category">Function:</span><em>void</em> <strong>R_ShowMessage</strong> <em>(char *<code>message</code>)</em> <a href="#index-r_showmessage" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>This should display the message, which may have multiple lines: it should be brought to the user’s attention immediately.</p>
 </dd>
 </dl>
 <!-- -->
 <dl>
-<dt>Function: <em>void</em> <strong>R_Busy</strong> <em>(int <code>which</code>)</em></dt>
+<dt><span class="category">Function:</span><em>void</em> <strong>R_Busy</strong> <em>(int <code>which</code>)</em> <a href="#index-r_busy" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>This function invokes actions (such as change of cursor) when R embarks on an extended computation (<code>which=1</code>) and when such a state terminates (<code>which=0</code>).</p>
 </dd>
 </dl>
 <!-- -->
-<dl>
-<dt>Function: <em>int</em> <strong>R_ReadConsole</strong> <em>(const char *<code>prompt</code>, unsigned char *<code>buf</code>, int <code>buflen</code>, int <code>hist</code>)</em></dt>
-<dd>
+<p><span class="category">Function:</span><em>int</em> <strong>R_ReadConsole</strong> <em>(const char *<code>prompt</code>, unsigned char *<code>buf</code>, int <code>buflen</code>, int <code>hist</code>)</em> <a href="#index-r_readconsole" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>void</em> <strong>R_WriteConsole</strong> <em>(const char *<code>buf</code>, int <code>buflen</code>)</em> <a href="#index-r_writeconsole" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>void</em> <strong>R_WriteConsoleEx</strong> <em>(const char *<code>buf</code>, int <code>buflen</code>, int <code>otype</code>)</em> <a href="#index-r_writeconsoleex" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>void</em> <strong>R_ResetConsole</strong> <em>()</em> <a href="#index-r_resetconsole" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>void</em> <strong>R_FlushConsole</strong> <em>()</em> <a href="#index-r_flushconsole" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>void</em> <strong>R_ClearerrConsole</strong> <em>()</em> <a href="#index-r_clearerrconsole" class="copiable-anchor">¶</a></p>
+<p>: These functions interact with a console.</p>
+<pre><code>`R_ReadConsole` prints the given prompt at the console and then does
+a `fgets(3)`--like operation, transferring up to `buflen`
+characters into the buffer `buf`. The last two bytes
+should be set to `"\n\0"` to preserve sanity. If
+`hist` is non-zero, then the line should be added to any
+command history which is being maintained. The return value is 0 is
+no input is available and \&gt;0 otherwise.
 
-</dd>
-<dt>Function: <em>void</em> <strong>R_WriteConsole</strong> <em>(const char *<code>buf</code>, int <code>buflen</code>)</em></dt>
-<dd>
+`R_WriteConsoleEx` writes the given buffer to the console,
+`otype` specifies the output type (regular output or
+warning/error). Call to `R_WriteConsole(buf, buflen)` is equivalent
+to `R_WriteConsoleEx(buf, buflen, 0)`. To ensure backward
+compatibility of the callbacks, `ptr_R_WriteConsoleEx` is used only
+if `ptr_R_WriteConsole` is set to `NULL`. To ensure that `stdout()`
+and `stderr()` connections point to the console, set the
+corresponding files to `NULL` *via*
 
-</dd>
-<dt>Function: <em>void</em> <strong>R_WriteConsoleEx</strong> <em>(const char *<code>buf</code>, int <code>buflen</code>, int <code>otype</code>)</em></dt>
-<dd>
 
-</dd>
-<dt>Function: <em>void</em> <strong>R_ResetConsole</strong> <em>()</em></dt>
-<dd>
+``` R
+      R_Outputfile = NULL;
+      R_Consolefile = NULL;
+```
 
-</dd>
-<dt>Function: <em>void</em> <strong>R_FlushConsole</strong> <em>()</em></dt>
-<dd>
-
-</dd>
-<dt>Function: <em>void</em> <strong>R_ClearerrConsole</strong> <em>()</em></dt>
-<dd>
-<p>These functions interact with a console.</p>
-<p><code>R_ReadConsole</code> prints the given prompt at the console and then does a <code>fgets(3)</code>–like operation, transferring up to <code>buflen</code> characters into the buffer <code>buf</code>. The last two bytes should be set to <code>"\n\0"</code> to preserve sanity. If <code>hist</code> is non-zero, then the line should be added to any command history which is being maintained. The return value is 0 is no input is available and &gt;0 otherwise.</p>
-<p><code>R_WriteConsoleEx</code> writes the given buffer to the console, <code>otype</code> specifies the output type (regular output or warning/error). Call to <code>R_WriteConsole(buf, buflen)</code> is equivalent to <code>R_WriteConsoleEx(buf, buflen, 0)</code>. To ensure backward compatibility of the callbacks, <code>ptr_R_WriteConsoleEx</code> is used only if <code>ptr_R_WriteConsole</code> is set to <code>NULL</code>. To ensure that <code>stdout()</code> and <code>stderr()</code> connections point to the console, set the corresponding files to <code>NULL</code> <em>via</em></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>      R_Outputfile <span class="ot">=</span> <span class="cn">NULL</span>;</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>      R_Consolefile <span class="ot">=</span> <span class="cn">NULL</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>R_ResetConsole</code> is called when the system is reset after an error. <code>R_FlushConsole</code> is called to flush any pending output to the system console. <code>R_ClearerrConsole</code> clears any errors associated with reading from the console.</p>
-</dd>
-</dl>
+`R_ResetConsole` is called when the system is reset after an error.
+`R_FlushConsole` is called to flush any pending output to the system
+console. `R_ClearerrConsole` clears any errors associated with
+reading from the console.</code></pre>
 <!-- -->
 <dl>
-<dt>Function: <em>int</em> <strong>R_ShowFiles</strong> <em>(int <code>nfile</code>, const char **<code>file</code>, const char **<code>headers</code>, const char *<code>wtitle</code>, Rboolean <code>del</code>, const char *<code>pager</code>)</em></dt>
+<dt><span class="category">Function:</span><em>int</em> <strong>R_ShowFiles</strong> <em>(int <code>nfile</code>, const char **<code>file</code>, const char **<code>headers</code>, const char *<code>wtitle</code>, Rboolean <code>del</code>, const char *<code>pager</code>)</em> <a href="#index-r_showfiles" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>This function is used to display the contents of files.</p>
 </dd>
 </dl>
 <!-- -->
 <dl>
-<dt>Function: <em>int</em> <strong>R_ChooseFile</strong> <em>(int <code>new</code>, char *<code>buf</code>, int <code>len</code>)</em></dt>
+<dt><span class="category">Function:</span><em>int</em> <strong>R_ChooseFile</strong> <em>(int <code>new</code>, char *<code>buf</code>, int <code>len</code>)</em> <a href="#index-r_choosefile" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Choose a file and return its name in <code>buf</code> of length <code>len</code>. Return value is 0 for success, &gt; 0 otherwise.</p>
 </dd>
 </dl>
 <!-- -->
 <dl>
-<dt>Function: <em>int</em> <strong>R_EditFile</strong> <em>(const char *<code>buf</code>)</em></dt>
+<dt><span class="category">Function:</span><em>int</em> <strong>R_EditFile</strong> <em>(const char *<code>buf</code>)</em> <a href="#index-r_editfile" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Send a file to an editor window.</p>
 </dd>
 </dl>
 <!-- -->
 <dl>
-<dt>Function: <em>int</em> <strong>R_EditFiles</strong> <em>(int <code>nfile</code>, const char **<code>file</code>, const char **<code>title</code>, const char *<code>editor</code>)</em></dt>
+<dt><span class="category">Function:</span><em>int</em> <strong>R_EditFiles</strong> <em>(int <code>nfile</code>, const char **<code>file</code>, const char **<code>title</code>, const char *<code>editor</code>)</em> <a href="#index-r_editfiles" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Send <code>nfile</code> files to an editor, with titles possibly to be used for the editor window(s).</p>
 </dd>
 </dl>
 <!-- -->
-<dl>
-<dt>Function: <em>SEXP</em> <strong>R_loadhistory</strong> <em>(SEXP, SEXP, SEXP, SEXP);</em></dt>
-<dd>
+<p><span class="category">Function:</span><em>SEXP</em> <strong>R_loadhistory</strong> <em>(SEXP, SEXP, SEXP, SEXP);</em> <a href="#index-r_loadhistory" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>SEXP</em> <strong>R_savehistory</strong> <em>(SEXP, SEXP, SEXP, SEXP);</em> <a href="#index-r_savehistory" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>SEXP</em> <strong>R_addhistory</strong> <em>(SEXP, SEXP, SEXP, SEXP);</em> <a href="#index-r_addhistory" class="copiable-anchor">¶</a></p>
+<p>: <code>.Internal</code> functions for <code>loadhistory</code>, <code>savehistory</code> and <code>timestamp</code>.</p>
+<pre><code>If the console has no history mechanism these can be as simple as
 
-</dd>
-<dt>Function: <em>SEXP</em> <strong>R_savehistory</strong> <em>(SEXP, SEXP, SEXP, SEXP);</em></dt>
-<dd>
 
-</dd>
-<dt>Function: <em>SEXP</em> <strong>R_addhistory</strong> <em>(SEXP, SEXP, SEXP, SEXP);</em></dt>
-<dd>
-<p><code>.Internal</code> functions for <code>loadhistory</code>, <code>savehistory</code> and <code>timestamp</code>.</p>
-<p>If the console has no history mechanism these can be as simple as</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>SEXP R_loadhistory <span class="op">(</span>SEXP call<span class="op">,</span> SEXP op<span class="op">,</span> SEXP args<span class="op">,</span> SEXP env<span class="op">)</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    errorcall<span class="op">(</span>call<span class="op">,</span> <span class="st">"loadhistory is not implemented"</span><span class="op">);</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> R_NilValue<span class="op">;</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>SEXP R_savehistory <span class="op">(</span>SEXP call<span class="op">,</span> SEXP op <span class="op">,</span> SEXP args<span class="op">,</span> SEXP env<span class="op">)</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    errorcall<span class="op">(</span>call<span class="op">,</span> <span class="st">"savehistory is not implemented"</span><span class="op">);</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> R_NilValue<span class="op">;</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>SEXP R_addhistory <span class="op">(</span>SEXP call<span class="op">,</span> SEXP op <span class="op">,</span> SEXP args<span class="op">,</span> SEXP env<span class="op">)</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> R_NilValue<span class="op">;</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The <code>R_addhistory</code> function should return silently if no history mechanism is present, as a user may be calling <code>timestamp</code> purely to write the time stamp to the console.</p>
-</dd>
-</dl>
+``` c
+SEXP R_loadhistory (SEXP call, SEXP op, SEXP args, SEXP env)
+{
+    errorcall(call, "loadhistory is not implemented");
+    return R_NilValue;
+}
+SEXP R_savehistory (SEXP call, SEXP op , SEXP args, SEXP env)
+{
+    errorcall(call, "savehistory is not implemented");
+    return R_NilValue;
+}
+SEXP R_addhistory (SEXP call, SEXP op , SEXP args, SEXP env)
+{
+    return R_NilValue;
+}
+```
+
+The `R_addhistory` function should return silently if no history
+mechanism is present, as a user may be calling `timestamp` purely to
+write the time stamp to the console.</code></pre>
 <!-- -->
 <dl>
-<dt>Function: <em>void</em> <strong>R_Suicide</strong> <em>(const char *<code>message</code>)</em></dt>
+<dt><span class="category">Function:</span><em>void</em> <strong>R_Suicide</strong> <em>(const char *<code>message</code>)</em> <a href="#index-r_suicide" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>This should abort R as rapidly as possible, displaying the message. A possible implementation is</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> R_Suicide <span class="op">(</span><span class="dt">const</span> <span class="dt">char</span> <span class="op">*</span>message<span class="op">)</span></span>
@@ -553,7 +553,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </dl>
 <!-- -->
 <dl>
-<dt>Function: <em>void</em> <strong>R_CleanUp</strong> <em>(SA_TYPE <code>saveact</code>, int <code>status</code>, int <code>RunLast</code>)</em></dt>
+<dt><span class="category">Function:</span><em>void</em> <strong>R_CleanUp</strong> <em>(SA_TYPE <code>saveact</code>, int <code>status</code>, int <code>RunLast</code>)</em> <a href="#index-r_cleanup" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>This function invokes any actions which occur at system termination. It needs to be quite complex:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Rinterface.h&gt;</span></span>
@@ -593,20 +593,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </dd>
 </dl>
 <p>These callbacks should never be changed in a running R session (and hence cannot be called from an extension package).</p>
-<dl>
-<dt>Function: <em>SEXP</em> <strong>R_dataentry</strong> <em>(SEXP, SEXP, SEXP, SEXP);</em></dt>
-<dd>
-
-</dd>
-<dt>Function: <em>SEXP</em> <strong>R_dataviewer</strong> <em>(SEXP, SEXP, SEXP, SEXP);</em></dt>
-<dd>
-
-</dd>
-<dt>Function: <em>SEXP</em> <strong>R_selectlist</strong> <em>(SEXP, SEXP, SEXP, SEXP);</em></dt>
-<dd>
-<p><code>.External</code> functions for <code>dataentry</code> (and <code>edit</code> on matrices and data frames), <code>View</code> and <code>select.list</code>. These can be changed if they are not currently in use.</p>
-</dd>
-</dl>
+<p><span class="category">Function:</span><em>SEXP</em> <strong>R_dataentry</strong> <em>(SEXP, SEXP, SEXP, SEXP);</em> <a href="#index-r_dataentry" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>SEXP</em> <strong>R_dataviewer</strong> <em>(SEXP, SEXP, SEXP, SEXP);</em> <a href="#index-r_dataviewer" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>SEXP</em> <strong>R_selectlist</strong> <em>(SEXP, SEXP, SEXP, SEXP);</em> <a href="#index-r_selectlist" class="copiable-anchor">¶</a></p>
+<p>: <code>.External</code> functions for <code>dataentry</code> (and <code>edit</code> on matrices and data frames), <code>View</code> and <code>select.list</code>. These can be changed if they are not currently in use.</p>
 </section>
 <section id="registering-symbols" class="level3 subsection" data-number="8.1.3">
 <h3 class="subsection anchored" data-number="8.1.3" data-anchor-id="registering-symbols"><span class="header-section-number">8.1.3</span> Registering symbols</h3>

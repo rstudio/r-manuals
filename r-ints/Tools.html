@@ -331,350 +331,350 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </dl>
 <p>The following environment variables can be used to customize the operation of <code>check</code>: a convenient place to set these is the check environment file (default, <code>~/.R/check.Renviron</code>).</p>
 <dl>
-<dt><code>_R_CHECK_ALL_NON_ISO_C_</code></dt>
+<dt><code>_R_CHECK_ALL_NON_ISO_C_</code> <a href="#index-_r_check_all_non_iso_c_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If true, do not ignore compiler (typically GCC) warnings about non ISO C code in <em>system</em> headers. Note that this may also show additional ISO C++ warnings. Default: false.</p>
 </dd>
-<dt><code>_R_CHECK_FORCE_SUGGESTS_</code></dt>
+<dt><code>_R_CHECK_FORCE_SUGGESTS_</code> <a href="#index-_r_check_force_suggests_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If true, give an error if suggested packages are not available. Default: true (but false for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_CHECK_RD_CONTENTS_</code></dt>
+<dt><code>_R_CHECK_RD_CONTENTS_</code> <a href="#index-_r_check_rd_contents_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If true, check <code>Rd</code> files for auto-generated content which needs editing, and missing argument documentation. Default: true.</p>
 </dd>
-<dt><code>_R_CHECK_RD_LINE_WIDTHS_</code></dt>
+<dt><code>_R_CHECK_RD_LINE_WIDTHS_</code> <a href="#index-_r_check_rd_line_widths_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If true, check <code>Rd</code> line widths in usage and examples sections. Default: false (but true for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_CHECK_RD_STYLE_</code></dt>
+<dt><code>_R_CHECK_RD_STYLE_</code> <a href="#index-_r_check_rd_style_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If true, check whether <code>Rd</code> usage entries for S3 methods use the full function name rather than the appropriate <code>\method</code> markup. Default: true.</p>
 </dd>
-<dt><code>_R_CHECK_RD_XREFS_</code></dt>
+<dt><code>_R_CHECK_RD_XREFS_</code> <a href="#index-_r_check_rd_xrefs_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If true, check the cross-references in <code>.Rd</code> files. Default: true.</p>
 </dd>
-<dt><code>_R_CHECK_SUBDIRS_NOCASE_</code></dt>
+<dt><code>_R_CHECK_SUBDIRS_NOCASE_</code> <a href="#index-_r_check_subdirs_nocase_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If true, check the case of directories such as <code>R</code> and <code>man</code>. Default: true.</p>
 </dd>
-<dt><code>_R_CHECK_SUBDIRS_STRICT_</code></dt>
+<dt><code>_R_CHECK_SUBDIRS_STRICT_</code> <a href="#index-_r_check_subdirs_strict_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Initial setting for <code>--check-subdirs</code>. Default: <code>default</code> (which checks only tarballs, and checks in the <code>src</code> only if there is no <code>configure</code> file).</p>
 </dd>
-<dt><code>_R_CHECK_USE_CODETOOLS_</code></dt>
+<dt><code>_R_CHECK_USE_CODETOOLS_</code> <a href="#index-_r_check_use_codetools_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If true, make use of the <a href="https://CRAN.R-project.org/package=codetools"><strong>codetools</strong></a> package, which provides a detailed analysis of visibility of objects (but may give false positives). Default: true (if recommended packages are installed).</p>
 </dd>
-<dt><code>_R_CHECK_USE_INSTALL_LOG_</code></dt>
+<dt><code>_R_CHECK_USE_INSTALL_LOG_</code> <a href="#index-_r_check_use_install_log_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If true, record the output from installing a package as part of its check to a log file (<code>00install.out</code> by default), even when running interactively. Default: true.</p>
 </dd>
-<dt><code>_R_CHECK_VIGNETTES_NLINES_</code></dt>
+<dt><code>_R_CHECK_VIGNETTES_NLINES_</code> <a href="#index-_r_check_vignettes_nlines_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Maximum number of lines to show from the bottom of the output when reporting errors in running or re-building vignettes. ( Value <code>0</code> means all lines will be shown.) Default: 10 for running, 25 for re-building.</p>
 </dd>
-<dt><code>_R_CHECK_CODOC_S4_METHODS_</code></dt>
+<dt><code>_R_CHECK_CODOC_S4_METHODS_</code> <a href="#index-_r_check_codoc_s4_methods_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Control whether <code>codoc()</code> testing is also performed on S4 methods. Default: true.</p>
 </dd>
-<dt><code>_R_CHECK_DOT_INTERNAL_</code></dt>
+<dt><code>_R_CHECK_DOT_INTERNAL_</code> <a href="#index-_r_check_dot_internal_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Control whether the package code is scanned for <code>.Internal</code> calls, which should only be used by base (and occasionally by recommended) packages. Default: true.</p>
 </dd>
-<dt><code>_R_CHECK_EXECUTABLES_</code></dt>
+<dt><code>_R_CHECK_EXECUTABLES_</code> <a href="#index-_r_check_executables_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Control checking for executable (binary) files. Default: true.</p>
 </dd>
-<dt><code>_R_CHECK_EXECUTABLES_EXCLUSIONS_</code></dt>
+<dt><code>_R_CHECK_EXECUTABLES_EXCLUSIONS_</code> <a href="#index-_r_check_executables_exclusions_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Control whether checking for executable (binary) files ignores files listed in the package’s <code>BinaryFiles</code> file. Default: true (but false for CRAN submission checks). However, most likely this package-level override mechanism will be removed eventually.</p>
 </dd>
-<dt><code>_R_CHECK_PERMISSIONS_</code></dt>
+<dt><code>_R_CHECK_PERMISSIONS_</code> <a href="#index-_r_check_permissions_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Control whether permissions of files should be checked. Default: true iff <code>.Platform$OS.type == "unix"</code>.</p>
 </dd>
-<dt><code>_R_CHECK_FF_CALLS_</code></dt>
+<dt><code>_R_CHECK_FF_CALLS_</code> <a href="#index-_r_check_ff_calls_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Allows turning off <code>checkFF()</code> testing. If set to <code>registration</code>, checks the registration information (number of arguments, correct choice of <code>.C/.Fortran/.Call/.External</code>) for such calls provided the package is installed. Default: true.</p>
 </dd>
-<dt><code>_R_CHECK_FF_DUP_</code></dt>
+<dt><code>_R_CHECK_FF_DUP_</code> <a href="#index-_r_check_ff_dup_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Controls <code>checkFF(check_DUP)</code> Default: true (and forced to be true for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_CHECK_LICENSE_</code></dt>
+<dt><code>_R_CHECK_LICENSE_</code> <a href="#index-_r_check_license_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Control whether/how license checks are performed. A possible value is <code>maybe</code> (warn in case of problems, but not about standardizable non-standard license specs). Default: true.</p>
 </dd>
-<dt><code>_R_CHECK_RD_EXAMPLES_T_AND_F_</code></dt>
+<dt><code>_R_CHECK_RD_EXAMPLES_T_AND_F_</code> <a href="#index-_r_check_rd_examples_t_and_f_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Control whether <code>check_T_and_F()</code> also looks for “bad” (global) <code>T</code>/<code>F</code> uses in examples. Off by default because this can result in false positives.</p>
 </dd>
-<dt><code>_R_CHECK_RD_CHECKRD_MINLEVEL_</code></dt>
+<dt><code>_R_CHECK_RD_CHECKRD_MINLEVEL_</code> <a href="#index-_r_check_rd_checkrd_minlevel_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Controls the minimum level for reporting warnings from <code>checkRd</code>. Default: -1.</p>
 </dd>
-<dt><code>_R_CHECK_XREFS_REPOSITORIES_</code></dt>
+<dt><code>_R_CHECK_XREFS_REPOSITORIES_</code> <a href="#index-_r_check_xrefs_repositories_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If set to a non-empty value, a space-separated list of repositories to use to determine known packages. Default: empty, when the CRAN and Bioconductor repositories known to R is used.</p>
 </dd>
-<dt><code>_R_CHECK_SRC_MINUS_W_IMPLICIT_</code></dt>
+<dt><code>_R_CHECK_SRC_MINUS_W_IMPLICIT_</code> <a href="#index-_r_check_src_minus_w_implicit_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Control whether installation output is checked for compilation warnings about implicit function declarations (as spotted by GCC with command line option <code>-Wimplicit-function-declaration</code>, which is implied by <code>-Wall</code>). NB: implicit function declarations are errors in some recent C compilers, including Apple <code>clang</code>. Default: true from R 4.2.0, previously false.</p>
 </dd>
-<dt><code>_R_CHECK_SRC_MINUS_W_UNUSED_</code></dt>
+<dt><code>_R_CHECK_SRC_MINUS_W_UNUSED_</code> <a href="#index-_r_check_src_minus_w_unused_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Control whether installation output is checked for compilation warnings about unused code constituents (as spotted by GCC with command line option <code>-Wunused</code>, which is implied by <code>-Wall</code>). Default: true.</p>
 </dd>
-<dt><code>_R_CHECK_WALL_FORTRAN_</code></dt>
+<dt><code>_R_CHECK_WALL_FORTRAN_</code> <a href="#index-_r_check_wall_fortran_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Control whether gfortran 4.0 or later <code>-Wall</code> warnings are used in the analysis of installation output. Default: false, even though the warnings are justifiable.</p>
 </dd>
-<dt><code>_R_CHECK_ASCII_CODE_</code></dt>
+<dt><code>_R_CHECK_ASCII_CODE_</code> <a href="#index-_r_check_ascii_code_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If true, check R code for non-ascii characters. Default: true.</p>
 </dd>
-<dt><code>_R_CHECK_ASCII_DATA_</code></dt>
+<dt><code>_R_CHECK_ASCII_DATA_</code> <a href="#index-_r_check_ascii_data_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If true, check data for non-ascii characters. <em>En route</em>, checks that all the datasets can be loaded and that their components can be accessed. Default: true.</p>
 </dd>
-<dt><code>_R_CHECK_COMPACT_DATA_</code></dt>
+<dt><code>_R_CHECK_COMPACT_DATA_</code> <a href="#index-_r_check_compact_data_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If true, check data for ascii and uncompressed saves, and also check if using <code>bzip2</code> or <code>xz</code> compression would be significantly better. Default: true.</p>
 </dd>
-<dt><code>_R_CHECK_SKIP_ARCH_</code></dt>
+<dt><code>_R_CHECK_SKIP_ARCH_</code> <a href="#index-_r_check_skip_arch_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Comma-separated list of architectures that will be omitted from checking in a multi-arch setup. Default: none.</p>
 </dd>
-<dt><code>_R_CHECK_SKIP_TESTS_ARCH_</code></dt>
+<dt><code>_R_CHECK_SKIP_TESTS_ARCH_</code> <a href="#index-_r_check_skip_tests_arch_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Comma-separated list of architectures that will be omitted from running tests in a multi-arch setup. Default: none.</p>
 </dd>
-<dt><code>_R_CHECK_SKIP_EXAMPLES_ARCH_</code></dt>
+<dt><code>_R_CHECK_SKIP_EXAMPLES_ARCH_</code> <a href="#index-_r_check_skip_examples_arch_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Comma-separated list of architectures that will be omitted from running examples in a multi-arch setup. Default: none.</p>
 </dd>
-<dt><code>_R_CHECK_VC_DIRS_</code></dt>
+<dt><code>_R_CHECK_VC_DIRS_</code> <a href="#index-_r_check_vc_dirs_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Should the unpacked package directory be checked for version-control directories (<code>CVS</code>, <code>.svn</code> …)? Default: true for tarballs.</p>
 </dd>
-<dt><code>_R_CHECK_PKG_SIZES_</code></dt>
+<dt><code>_R_CHECK_PKG_SIZES_</code> <a href="#index-_r_check_pkg_sizes_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Should <code>du</code> be used to find the installed sizes of packages? <code>R CMD check</code> does check for the availability of <code>du</code>. but this option allows the check to be overruled if an unsuitable command is found (including one that does not respect the <code>-k</code> flag to report in units of 1Kb, or reports in a different format – the GNU, macOS and Solaris <code>du</code> commands have been tested). Default: true if <code>du</code> is found.</p>
 </dd>
-<dt><code>_R_CHECK_PKG_SIZES_THRESHOLD_</code></dt>
+<dt><code>_R_CHECK_PKG_SIZES_THRESHOLD_</code> <a href="#index-_r_check_pkg_sizes_threshold_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Threshold used for <code>_R_CHECK_PKG_SIZES_</code> (in Mb). Default: 5</p>
 </dd>
-<dt><code>_R_CHECK_DOC_SIZES_</code></dt>
+<dt><code>_R_CHECK_DOC_SIZES_</code> <a href="#index-_r_check_doc_sizes_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Should <code>qpdf</code> be used to check the installed sizes of PDFs? Default: true if <code>qpdf</code> is found.</p>
 </dd>
-<dt><code>_R_CHECK_DOC_SIZES2_</code></dt>
+<dt><code>_R_CHECK_DOC_SIZES2_</code> <a href="#index-_r_check_doc_sizes2_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Should <code>gs</code> be used to check the installed sizes of PDFs? This is slower than (and in addition to) the previous check, but does detect figures with excessive detail (often hidden by over-plotting) or bitmap figures with too high a resolution. Requires that <code>R_GSCMD</code> is set to a valid program, or <code>gs</code> (or on Windows, <code>gswin32.exe</code> or <code>gswin64c.exe</code>) is on the path. Default: false (but true for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_CHECK_ALWAYS_LOG_VIGNETTE_OUTPUT_</code></dt>
+<dt><code>_R_CHECK_ALWAYS_LOG_VIGNETTE_OUTPUT_</code> <a href="#index-_r_check_always_log_vignette_output_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>By default the output from running the R code in the vignettes is kept only if there is an error. This also applies to the <code>build_vignettes.log</code> log from the re-building of vignettes. Default: false.</p>
 </dd>
-<dt><code>_R_CHECK_CLEAN_VIGN_TEST_</code></dt>
+<dt><code>_R_CHECK_CLEAN_VIGN_TEST_</code> <a href="#index-_r_check_clean_vign_test_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Should the <code>vign_test</code> directory be removed if the test is successful? Default: true.</p>
 </dd>
-<dt><code>_R_CHECK_REPLACING_IMPORTS_</code></dt>
+<dt><code>_R_CHECK_REPLACING_IMPORTS_</code> <a href="#index-_r_check_replacing_imports_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Should warnings about replacing imports be reported? These sometimes come from auto-generated <code>NAMESPACE</code> files in other packages, but most often from importing the whole of a namespace rather than using <code>importFrom</code>. Default: true.</p>
 </dd>
-<dt><code>_R_CHECK_UNSAFE_CALLS_</code></dt>
+<dt><code>_R_CHECK_UNSAFE_CALLS_</code> <a href="#index-_r_check_unsafe_calls_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Check for calls that appear to tamper with (or allow tampering with) already loaded code not from the current package: such calls may well contravene CRAN policies. Default: true.</p>
 </dd>
-<dt><code>_R_CHECK_TIMINGS_</code></dt>
+<dt><code>_R_CHECK_TIMINGS_</code> <a href="#index-_r_check_timings_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Optionally report timings for installation, examples, tests and running/re-building vignettes as part of the check log. The format is <code>[as/bs]</code> for the total CPU time (including child processes) <code>a</code> and elapsed time <code>b</code>, except on Windows, when it is <code>[bs]</code>. In most cases timings are only given for <code>OK</code> checks. Times with an elapsed component over 10 mins are reported in minutes (with abbreviation <code>m</code>). The value is the smallest numerical value in elapsed seconds that should be reported: non-numerical values indicate that no report is required, a value of <code>0</code> that a report is always required. Default: <code>""</code>. (<code>10</code> for CRAN checks unless set in the environment.)</p>
 </dd>
-<dt><code>_R_CHECK_EXAMPLE_TIMING_THRESHOLD_</code></dt>
+<dt><code>_R_CHECK_EXAMPLE_TIMING_THRESHOLD_</code> <a href="#index-_r_check_example_timing_threshold_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If timings are being recorded, set the threshold in seconds for reporting long-running examples (either user+system CPU time or elapsed time). Default: <code>"5"</code>.</p>
 </dd>
-<dt><code>_R_CHECK_EXAMPLE_TIMING_CPU_TO_ELAPSED_THRESHOLD_</code></dt>
+<dt><code>_R_CHECK_EXAMPLE_TIMING_CPU_TO_ELAPSED_THRESHOLD_</code> <a href="#index-_r_check_example_timing_cpu_to_elapsed_threshold_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>For checks with timings enabled, report examples where the ratio of CPU time to elapsed time exceeds this threshold (and the CPU time is at least one second). This can help detect the simultaneous use of multiple CPU cores. Default: <code>NA</code>.</p>
 </dd>
-<dt><code>_R_CHECK_TEST_TIMING_CPU_TO_ELAPSED_THRESHOLD_</code></dt>
+<dt><code>_R_CHECK_TEST_TIMING_CPU_TO_ELAPSED_THRESHOLD_</code> <a href="#index-_r_check_test_timing_cpu_to_elapsed_threshold_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Report for running an individual test if the ratio of CPU time to elapsed time exceeds this threshold (and the CPU time is at least one second). Not supported on Windows. Default: <code>NA</code>.</p>
 </dd>
-<dt><code>_R_CHECK_VIGNETTE_TIMING_CPU_TO_ELAPSED_THRESHOLD_</code></dt>
+<dt><code>_R_CHECK_VIGNETTE_TIMING_CPU_TO_ELAPSED_THRESHOLD_</code> <a href="#index-_r_check_vignette_timing_cpu_to_elapsed_threshold_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Report if when running/re-building vignettes (individually or in aggregate) the ratio of CPU time to elapsed time exceeds this threshold (and the CPU time is at least one second). Not supported on Windows. Default: <code>NA</code>.</p>
 </dd>
-<dt><code>_R_CHECK_CODETOOLS_PROFILE_</code></dt>
+<dt><code>_R_CHECK_CODETOOLS_PROFILE_</code> <a href="#index-_r_check_codetools_profile_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>A string with comma-separated <code>name=value</code> pairs (with <code>value</code> a logical constant) giving additional arguments for the <a href="https://CRAN.R-project.org/package=codetools"><strong>codetools</strong></a> functions used for analyzing package code. E.g., use <code>_R_CHECK_CODETOOLS_PROFILE_="suppressLocalUnused=FALSE"</code> to turn off suppressing warnings about unused local variables. Default: no additional arguments, corresponding to using <code>skipWith = TRUE</code>, <code>suppressPartialMatchArgs = FALSE</code> and <code>suppressLocalUnused = TRUE</code>.</p>
 </dd>
-<dt><code>_R_CHECK_CRAN_INCOMING_</code></dt>
+<dt><code>_R_CHECK_CRAN_INCOMING_</code> <a href="#index-_r_check_cran_incoming_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Check whether package is suitable for publication on CRAN. Default: false, except for CRAN submission checks.</p>
 </dd>
-<dt><code>_R_CHECK_CRAN_INCOMING_REMOTE_</code></dt>
+<dt><code>_R_CHECK_CRAN_INCOMING_REMOTE_</code> <a href="#index-_r_check_cran_incoming_remote_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Include checks that require remote access among the above. Default: same as <code>_R_CHECK_CRAN_INCOMING_</code></p>
 </dd>
-<dt><code>_R_CHECK_XREFS_USE_ALIASES_FROM_CRAN_</code></dt>
+<dt><code>_R_CHECK_XREFS_USE_ALIASES_FROM_CRAN_</code> <a href="#index-_r_check_xrefs_use_aliases_from_cran_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>When checking anchored Rd xrefs, use Rd aliases from the CRAN package web areas in addition to those in the packages installed locally. Default: false.</p>
 </dd>
-<dt><code>_R_SHLIB_BUILD_OBJECTS_SYMBOL_TABLES_</code></dt>
+<dt><code>_R_SHLIB_BUILD_OBJECTS_SYMBOL_TABLES_</code> <a href="#index-_r_shlib_build_objects_symbol_tables_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Make the checks of compiled code more accurate by recording the symbol tables for objects (<code>.o</code> files) at installation in a file <code>symbols.rds</code>. (Only currently supported on Linux, Solaris, macOS, Windows and FreeBSD.) Default: true.</p>
 </dd>
-<dt><code>_R_CHECK_CODE_ASSIGN_TO_GLOBALENV_</code></dt>
+<dt><code>_R_CHECK_CODE_ASSIGN_TO_GLOBALENV_</code> <a href="#index-_r_check_code_assign_to_globalenv_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Should the package code be checked for assignments to the global environment? Default: false (but true for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_CHECK_CODE_ATTACH_</code></dt>
+<dt><code>_R_CHECK_CODE_ATTACH_</code> <a href="#index-_r_check_code_attach_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Should the package code be checked for calls to <code>attach()</code>? Default: false (but true for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_CHECK_CODE_DATA_INTO_GLOBALENV_</code></dt>
+<dt><code>_R_CHECK_CODE_DATA_INTO_GLOBALENV_</code> <a href="#index-_r_check_code_data_into_globalenv_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Should the package code be checked for calls to <code>data()</code> which load into the global environment? Default: false (but true for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_CHECK_DOT_FIRSTLIB_</code></dt>
+<dt><code>_R_CHECK_DOT_FIRSTLIB_</code> <a href="#index-_r_check_dot_firstlib_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Should the package code be checked for the presence of the obsolete function <code>.First.lib()</code>? Default: false (but true for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_CHECK_DEPRECATED_DEFUNCT_</code></dt>
+<dt><code>_R_CHECK_DEPRECATED_DEFUNCT_</code> <a href="#index-_r_check_deprecated_defunct_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Should the package code be checked for the presence of recently deprecated or defunct functions (including completely removed functions). Also for platform-specific graphics devices. Default: false (but true for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_CHECK_SCREEN_DEVICE_</code></dt>
+<dt><code>_R_CHECK_SCREEN_DEVICE_</code> <a href="#index-_r_check_screen_device_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If set to <code>warn</code>, give a warning if examples etc open a screen device. If set to <code>stop</code>, give an error. Default: empty (but <code>stop</code> for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_CHECK_WINDOWS_DEVICE_</code></dt>
+<dt><code>_R_CHECK_WINDOWS_DEVICE_</code> <a href="#index-_r_check_windows_device_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If set to <code>stop</code>, give an error if a Windows-only device is used in example etc. This is only useful on Windows: the devices do not exist elsewhere. Default: empty (but <code>stop</code> for CRAN submission checks on Windows).</p>
 </dd>
-<dt><code>_R_CHECK_TOPLEVEL_FILES_</code></dt>
+<dt><code>_R_CHECK_TOPLEVEL_FILES_</code> <a href="#index-_r_check_toplevel_files_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Report on top-level files in the package sources that are not described in ‘Writing R Extensions’ nor are commonly understood (like <code>ChangeLog</code>). Variations on standard names (e.g. <code>COPYRIGHT</code>) are also reported. Default: false (but true for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_CHECK_GCT_N_</code></dt>
+<dt><code>_R_CHECK_GCT_N_</code> <a href="#index-_r_check_gct_n_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Should the <code>--use-gct</code> use <code>gctorture2(n)</code> rather than <code>gctorture(TRUE)</code>? Use a positive integer to enable this. Default: <code>0</code>.</p>
 </dd>
-<dt><code>_R_CHECK_LIMIT_CORES_</code></dt>
+<dt><code>_R_CHECK_LIMIT_CORES_</code> <a href="#index-_r_check_limit_cores_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If set, check the usage of too many cores in package <strong>parallel</strong>. If set to <code>warn</code> gives a warning, to <code>false</code> or <code>FALSE</code> the check is skipped, and any other non-empty value gives an error when more than 2 children are spawned. Default: unset (but <code>TRUE</code> for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_CHECK_CODE_USAGE_VIA_NAMESPACES_</code></dt>
+<dt><code>_R_CHECK_CODE_USAGE_VIA_NAMESPACES_</code> <a href="#index-_r_check_code_usage_via_namespaces_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If set, check code usage (via <a href="https://CRAN.R-project.org/package=codetools"><strong>codetools</strong></a>) directly on the package namespace without loading and attaching the package and its suggests and enhances. Default: true (and true for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_CHECK_CODE_USAGE_WITH_ONLY_BASE_ATTACHED_</code></dt>
+<dt><code>_R_CHECK_CODE_USAGE_WITH_ONLY_BASE_ATTACHED_</code> <a href="#index-_r_check_code_usage_with_only_base_attached_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If set, check code usage (via <a href="https://CRAN.R-project.org/package=codetools"><strong>codetools</strong></a>) with only the base package attached. Default: true.</p>
 </dd>
-<dt><code>_R_CHECK_EXIT_ON_FIRST_ERROR_</code></dt>
+<dt><code>_R_CHECK_EXIT_ON_FIRST_ERROR_</code> <a href="#index-_r_check_exit_on_first_error_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If set to a true value, the check will exit on the first error. Default: false.</p>
 </dd>
-<dt><code>_R_CHECK_S3_METHODS_NOT_REGISTERED_</code></dt>
+<dt><code>_R_CHECK_S3_METHODS_NOT_REGISTERED_</code> <a href="#index-_r_check_s3_methods_not_registered_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If set to a true value, report (apparent) S3 methods exported but not registered. Default: true.</p>
 </dd>
-<dt><code>_R_CHECK_OVERWRITE_REGISTERED_S3_METHODS_</code></dt>
+<dt><code>_R_CHECK_OVERWRITE_REGISTERED_S3_METHODS_</code> <a href="#index-_r_check_overwrite_registered_s3_methods_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If set to a true value, report already registered S3 methods in base/recommended packages which are overwritten when this package’s namespace is loaded. Default: false (but true for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_CHECK_TESTS_NLINES_</code></dt>
+<dt><code>_R_CHECK_TESTS_NLINES_</code> <a href="#index-_r_check_tests_nlines_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Number of trailing lines of test output to reproduce in the log. If <code>0</code> all lines except the R preamble are reproduced. Default: 13.</p>
 </dd>
-<dt><code>_R_CHECK_NATIVE_ROUTINE_REGISTRATION_</code></dt>
+<dt><code>_R_CHECK_NATIVE_ROUTINE_REGISTRATION_</code> <a href="#index-_r_check_native_routine_registration_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If set to a true value, report if the entry points to register native routines and to suppress dynamic search are not found in a package’s DLL. (<strong>NB:</strong> this requires system command <code>nm</code> to be on the <code>PATH</code>. On Windows, <code>objdump.exe</code> is first searched for in compiler toolchain specified via <code>Makeconf</code> (can be customized by environment variable <code>BINPREF</code>). If not found there, it must be on the <code>PATH</code>. On Unix this would be normal when using a package with compiled code (which are the only ones this checks), but Windows’ users should check. Default: false (but true for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_CHECK_NO_STOP_ON_TEST_ERROR_</code></dt>
+<dt><code>_R_CHECK_NO_STOP_ON_TEST_ERROR_</code> <a href="#index-_r_check_no_stop_on_test_error_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If set to a true value, do not stop running tests after first error (as if command line option <code>--no-stop-on-test-error</code> had been given). Default: false (but true for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_CHECK_PRAGMAS_</code></dt>
+<dt><code>_R_CHECK_PRAGMAS_</code> <a href="#index-_r_check_pragmas_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Run additional checks on the pragmas in C/C++ source code and headers. Default: false (but true for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_CHECK_COMPILATION_FLAGS_</code></dt>
+<dt><code>_R_CHECK_COMPILATION_FLAGS_</code> <a href="#index-_r_check_compilation_flags_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If the package is installed and has C/C++/Fortran code, check the install log for non-portable flags (for example those added to <code>src/Makevars</code> during configuration). Currently <code>-W</code> flags are reported, except <code>-Wall</code>, <code>-Wextra</code> and <code>-Weverything</code>, and flags which appear to be attempts to suppress warnings are highlighted. See ‘Writing R Extensions’ for the rationale of this check (and why even <code>-Werror</code> is unsafe).</p>
 <p>Environment variable <code>_R_CHECK_COMPILATION_FLAGS_KNOWN_</code> can be set to a space-separated set of flags which come from the R build used for testing (flags such as <code>-Wall</code> and <code>-Wextra</code> are already known). For example, for CRAN builds of R &gt;= 4.0.0 on macOS one could use</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>_R_CHECK_COMPILATION_FLAGS_KNOWN_<span class="ot">=</span><span class="st">"-mmacosx-version-min=10.13"</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Default: unset.</p>
 </dd>
-<dt><code>_R_CHECK_R_DEPENDS_</code></dt>
+<dt><code>_R_CHECK_R_DEPENDS_</code> <a href="#index-_r_check_r_depends_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Check that any dependence on R is not on a recent patch-level version such as <code>R (&gt;= 3.3.3)</code> since blocking installation of a package will also block its reverse dependencies. Possible values <code>"note"</code>, <code>"warn"</code> and logical values (where currently true values are equivalent to <code>"note"</code>). Default: false (but <code>"warn"</code> for <code>--as-cran</code>).</p>
 </dd>
-<dt><code>_R_CHECK_SERIALIZATION_</code></dt>
+<dt><code>_R_CHECK_SERIALIZATION_</code> <a href="#index-_r_check_serialization_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Check that serialized R objects in the package sources were serialized with version 2 and there is no dependence on <code>R &gt;= 3.5.0</code>. (Version 3 is in use as from R 3.5.0 but should only be used when necessary.) Default: false (but true for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_CHECK_R_ON_PATH_</code></dt>
+<dt><code>_R_CHECK_R_ON_PATH_</code> <a href="#index-_r_check_r_on_path_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>This checks if the package attempts to use <code>R</code> or <code>Rscript</code> from the path rather than that under test. It does so by putting scripts at the head of the path which print a message and fail. Default: false (but true for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_CHECK_PACKAGES_USED_IN_TESTS_USE_SUBDIRS_</code></dt>
+<dt><code>_R_CHECK_PACKAGES_USED_IN_TESTS_USE_SUBDIRS_</code> <a href="#index-_r_check_packages_used_in_tests_use_subdirs_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If set to a true value, also check the R code in common unit test subdirectories of <code>tests</code> for undeclared package dependencies. Default: false (but true for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_CHECK_SHLIB_OPENMP_FLAGS_</code></dt>
+<dt><code>_R_CHECK_SHLIB_OPENMP_FLAGS_</code> <a href="#index-_r_check_shlib_openmp_flags_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Check correct and portable use of <code>SHLIB_OPENMP_*FLAGS</code> in <code>src/Makevars</code> (and similar). Default: false (but true for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_CHECK_CONNECTIONS_LEFT_OPEN_</code></dt>
+<dt><code>_R_CHECK_CONNECTIONS_LEFT_OPEN_</code> <a href="#index-_r_check_connections_left_open_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>When checking examples, check for each example if connections are left open: if any are found, this is reported with a fatal error. NB: ‘connections’ includes most use of files and any parallel clusters which have not be stopped by <code>stopCluster()</code>. Default: false (but true for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_CHECK_FUTURE_FILE_TIMESTAMPS_</code></dt>
+<dt><code>_R_CHECK_FUTURE_FILE_TIMESTAMPS_</code> <a href="#index-_r_check_future_file_timestamps_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Check if any of the input files has a timestamp in the future (and to do so, checks that the system clock is correct to within 5 minutes). Default: false (but true for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_CHECK_LENGTH_1_CONDITION_</code></dt>
+<dt><code>_R_CHECK_LENGTH_1_CONDITION_</code> <a href="#index-_r_check_length_1_condition_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>No longer in use: conditions of length greater than one in <code>if</code> or <code>while</code> statements are now an error.</p>
 </dd>
-<dt><code>_R_CHECK_VIGNETTES_SKIP_RUN_MAYBE_</code></dt>
+<dt><code>_R_CHECK_VIGNETTES_SKIP_RUN_MAYBE_</code> <a href="#index-_r_check_vignettes_skip_run_maybe_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Should running the R code in the vignettes be skipped if vignette outputs are to be rebuilt (which will involve running that code). Default: false (but true for CRAN checking)</p>
 </dd>
-<dt><code>_R_CHECK_BUILD_VIGNETTES_SEPARATELY_</code></dt>
+<dt><code>_R_CHECK_BUILD_VIGNETTES_SEPARATELY_</code> <a href="#index-_r_check_build_vignettes_separately_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Prior to R 3.6.0, re-building the vignette outputs was done in a single R session which allowed accidental reliance of one vignette on another (for example, in the loading of packages). The current default is to use a separate session for each vignette; this option allows testing the older behaviour, Default: true</p>
 </dd>
-<dt><code>_R_CHECK_SYSTEM_CLOCK_</code></dt>
+<dt><code>_R_CHECK_SYSTEM_CLOCK_</code> <a href="#index-_r_check_system_clock_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>As part of the ‘checking for future file timestamps’ enabled by <code>--as-cran</code>, check the system clock against an external clock to catch errors such as the wrong day or even year. Not necessary on systems doing repeated checks. Default: true (but false for CRAN checking)</p>
 </dd>
-<dt><code>_R_CHECK_AUTOCONF_</code></dt>
+<dt><code>_R_CHECK_AUTOCONF_</code> <a href="#index-_r_check_autoconf_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>For packages with a <code>configure</code> file generated by GNU <code>autoconf</code> and either <code>configure.ac</code> or <code>configure,.in</code>, check that <code>autoreconf</code> can, if available, be run in a copy of the sources (this will detect missing source files and report <code>autoconf</code> warnings). Environment variable <code>AUTORECONf</code> controls the command used: it can give the full path to <code>autoreconf</code> (without spaces) and can include flags such as <code>--warnings=obsolete</code> (which is added for <code>autoreconf</code> version 2.68 or 2.69 and is the default for later versions). Default: false (but true for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_CHECK_DATALIST_</code></dt>
+<dt><code>_R_CHECK_DATALIST_</code> <a href="#index-_r_check_datalist_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Check whether file <code>data/datalist</code> is out-of-date. Default: false (but true for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_CHECK_THINGS_IN_CHECK_DIR_</code></dt>
+<dt><code>_R_CHECK_THINGS_IN_CHECK_DIR_</code> <a href="#index-_r_check_things_in_check_dir_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Check and report at the end of the check run if files have been left in the check directory. Default: false (but true for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_CHECK_THINGS_IN_TEMP_DIR_</code></dt>
+<dt><code>_R_CHECK_THINGS_IN_TEMP_DIR_</code> <a href="#index-_r_check_things_in_temp_dir_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Check and report at the end of tthe check run if files would have been left in the temporary directory (usually <code>/tmp</code> on a Unix-alike). It does this by setting the environment variable <code>TEMPDIR</code> to a subdirectory of the R session directory for the <code>check</code> process: if any files or directories are left there they are removed. Since some of these might be out of the user’s control, environment variable <code>_R_CHECK_THINGS_IN_TEMP_DIR_EXCLUDE_</code> can specify an (extended regex) pattern of file paths not to be reported – CRAN uses <code>^ompi.</code> for directories left behind by OpenMPI. There are rare instances where <code>TEMPDIR</code> is not respected and so files are left in <code>/tmp</code> (and not reported, but see the next item): one example is <code>/tmp/boost_interprocess</code> on some OSes. Default: false (but true for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_CHECK_THINGS_IN_OTHER_DIRS_</code></dt>
+<dt><code>_R_CHECK_THINGS_IN_OTHER_DIRS_</code> <a href="#index-_r_check_things_in_other_dirs_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Check and report at the end of the check run if new files or directories are created in a selected set of directories during the check run. (This is confined to files owned by the user running the check process.) Currently the directories monitored are the home directory, <code>/tmp</code> (excluding <code>RtmpXXXXXX</code> dirs), <code>/dav/shm</code>, <code>~/.cache</code> (recursively) and <code>~/.local/share</code> (recursively) or their equivalents on Windows and macOS (the directories in which the default settings for <code>tools::R_user_dir()</code> use a <code>R</code> subdirectory). Additional directories can be specified in environment variable <code>_R_CHECK_THINGS_IN_OTHER_DIRS_XTRA_</code>, separated by semicolons. Directories are reported with a trailing <code>/</code> on all platforms.</p>
 <p>Environment variable <code>_R_CHECK_THINGS_IN_OTHER_DIRS_EXCLUDE_</code> can specify an (extended regex) pattern of file paths not to be reported – this should match absolute file paths with home represented by <code>~</code>. For example, on a Linux system</p>
@@ -682,95 +682,89 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>matches cache directories used by Firefox and OpenGL (and their content). If the value starts with <code>@</code> it is considered as a filepath which is read with each line treated as a pattern to be matched.</p>
 <p>Note that other processes (include check runs in parallel) may create new files in these directories which will get reported. However, this optional check is very useful for narrowing down possible packages which are leaving behind unexpected files. Default: false</p>
 </dd>
-<dt><code>_R_CHECK_BASHISMS_</code></dt>
+<dt><code>_R_CHECK_BASHISMS_</code> <a href="#index-_r_check_bashisms_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Check the top-level scripts <code>configure</code> (unless generated by <code>autoconf</code>) and <code>cleanup</code> for non-Bourne-shell code, using the Perl script <code>checkbashisms</code> if available. This includes reporting scripts using the non-portable <code>#! /bin/bash</code>. (Script <code>checkbashisms</code> is available in most Linux distributions in a package named either <code>devscripts</code> or <code>devscripts-checkbashisms</code> and from <a href="https://sourceforge.net/projects/checkbaskisms/files" class="uri">https://sourceforge.net/projects/checkbaskisms/files</a>.) Default: false (but true for CRAN submission checks except on Windows).</p>
 </dd>
-<dt><code>_R_CHECK_ORPHANED_</code></dt>
+<dt><code>_R_CHECK_ORPHANED_</code> <a href="#index-_r_check_orphaned_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Check if dependencies are orphaned packages. As from R 4.1.0 this checks strict dependencies recursively, so will report any orphaned packages which are needed to attach the package by <code>library()</code> as well as any orphaned packages which are suggested. Default: false (but true for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_CHECK_EXCESSIVE_IMPORTS_</code></dt>
+<dt><code>_R_CHECK_EXCESSIVE_IMPORTS_</code> <a href="#index-_r_check_excessive_imports_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>A positive integer. If set, give a NOTE if the number of imports from non-base packages exceed this threshold. Large numbers of imports make a package vulnerable to any of them becoming unavailable. Default: unset (but 20 for CRAN submission checks)</p>
 </dd>
-<dt><code>_R_CHECK_DONTTEST_EXAMPLES_</code></dt>
+<dt><code>_R_CHECK_DONTTEST_EXAMPLES_</code> <a href="#index-_r_check_donttest_examples_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If true and examples are found with <code>\donttest</code> sections, the tests are run in one pass with these commented out and then in a second pass including the <code>\donttest</code> sections, (for the main architecture only). Only for the first pass are the results compared to any <code>.Rout.save</code> file and timings analysed. Overridden by <code>--run-donttest</code>. Default: false unless <code>--as-cran</code> is specified (which can be overridden by setting <code>_R_CHECK_DONTTEST_EXAMPLES_=false</code>).</p>
 </dd>
-<dt><code>_R_CHECK_XREFS_PKGS_ARE_DECLARED_</code></dt>
+<dt><code>_R_CHECK_XREFS_PKGS_ARE_DECLARED_</code> <a href="#index-_r_check_xrefs_pkgs_are_declared_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Check if packages used in ‘anchored’ cross-references in <code>.Rd</code> files (those of the form <code>\link[pkg]{foo}</code> and <code>\link[pkg:bar]{foo}</code>) are declared in the <code>DESCRIPTION</code> file and so these links can be checked. Default: false.</p>
 </dd>
-<dt><code>_R_CHECK_XREFS_MIND_SUSPECT_ANCHORS_</code></dt>
+<dt><code>_R_CHECK_XREFS_MIND_SUSPECT_ANCHORS_</code> <a href="#index-_r_check_xrefs_mind_suspect_anchors_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Check if package-anchored Rd cross-references are to <em>files</em> (and not aliases). Default: false.</p>
 </dd>
-<dt><code>_R_CHECK_BOGUS_RETURN_</code></dt>
+<dt><code>_R_CHECK_BOGUS_RETURN_</code> <a href="#index-_r_check_bogus_return_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If true and <code>_R_CHECK_USE_CODETOOLS_</code> is also true, functions are scanned for use of <code>return</code> rather than <code>return()</code>. Default: false (but true for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_CHECK_MATRIX_DATA_</code></dt>
+<dt><code>_R_CHECK_MATRIX_DATA_</code> <a href="#index-_r_check_matrix_data_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>By default, the check for a mismatch between the data length and the dimensions in a call to <code>matrix</code> gives a warning: setting this to a true value gives an error with a compact traceback. Default: false (but true for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_CHECK_CODE_CLASS_IS_STRING_</code></dt>
+<dt><code>_R_CHECK_CODE_CLASS_IS_STRING_</code> <a href="#index-_r_check_code_class_is_string_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Check if package code has <code>if()</code> condition which compare the class of an object to a string. See <a href="https://blog.r-project.org/2019/11/09/when-you-think-class.-think-again/" class="uri">https://blog.r-project.org/2019/11/09/when-you-think-class.-think-again/</a> why this is a bad idea. Default: false (but true for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_CHECK_RD_VALIDATE_RD2HTML_</code></dt>
+<dt><code>_R_CHECK_RD_VALIDATE_RD2HTML_</code> <a href="#index-_r_check_rd_validate_rd2html_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Check the validity of the package HTML help pages using HTML Tidy (<a href="https://www.html-tidy.org/" class="uri">https://www.html-tidy.org/</a>) (if a suitable version is available on the system path for executables or its path is specified by environment variable <code>R_TIDYCMD</code>). macOS users are advised to install 5.8.0 or later from <a href="https://binaries.html-tidy.org/" class="uri">https://binaries.html-tidy.org/</a>. Default: false (but true for CRAN submission checks). <code>--as-cran</code> can be overridden by setting this variable to a false value.</p>
 </dd>
-<dt><code>_R_CHECK_RD_MATH_RENDERING_</code></dt>
+<dt><code>_R_CHECK_RD_MATH_RENDERING_</code> <a href="#index-_r_check_rd_math_rendering_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Check whether HTML math rendering via KaTeX works (if package <a href="https://CRAN.R-project.org/package=V8"><strong>V8</strong></a> is available). See <a href="https://blog.r-project.org/2022/04/08/enhancements-to-html-documentation/" class="uri">https://blog.r-project.org/2022/04/08/enhancements-to-html-documentation/</a>. Default: false (but true for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_CHECK_NEWS_IN_PLAIN_TEXT_</code></dt>
+<dt><code>_R_CHECK_NEWS_IN_PLAIN_TEXT_</code> <a href="#index-_r_check_news_in_plain_text_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Check whether <code>news()</code> can successfully read package news in plain text (file <code>NEWS</code>) format. Default: false (but true for CRAN submission checks).</p>
 </dd>
-<dt><code>_R_WIN_CHECK_INVALID_PARAMETERS_</code></dt>
+<dt><code>_R_WIN_CHECK_INVALID_PARAMETERS_</code> <a href="#index-_r_win_check_invalid_parameters_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Check whether arguments passed to the Windows C runtime are valid. When enabled and a C runtime function is called with an invalid parameter, R prints diagnostic information and unconditionally terminates. By default, R for Windows following MinGW-W64 default causes UCRT to ignore invalid parameters, but they may cause R to abort e.g.&nbsp;when R is embedded into applications built with a different compiler toolchain. One may set the value to <code>"watson"</code> for interactive debugging on Windows via <code>_invoke_watson</code>. Default: disabled.</p>
 </dd>
-<dt><code>_R_CHECK_BROWSER_NONINTERACTIVE_</code></dt>
+<dt><code>_R_CHECK_BROWSER_NONINTERACTIVE_</code> <a href="#index-_r_check_browser_noninteractive_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If set to a true value, trap non-interactive debugger invocations. These are most likely caused by leftover <code>browser()</code> statements in package code. Default: unset (but true for CRAN submission checks).</p>
 </dd>
 </dl>
 <div class="page-columns page-full"><p>The following variables control checks for undeclared/unconditional use of other packages. They work by setting up a temporary library directory and setting <code>.libPaths()</code> to just that and <code>.Library</code>, so are only effective if additional packages are installed somewhere other than <code>.Library</code>. The temporary library is populated by symbolic links<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> to installed packages not also in <code>.Library</code>.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;under Windows, junction points, or copies if environment variable <code>R_WIN_NO_JUNCTIONS</code> has a non-empty value.</p></li></div></div>
 <dl>
-<dt><code>_R_CHECK_INSTALL_DEPENDS_</code></dt>
+<dt><code>_R_CHECK_INSTALL_DEPENDS_</code> <a href="#index-_r_check_install_depends_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If set to a true value and a test installation is to be done, this is done with a temporary library populated by all the Depends/Imports/LinkingTo packages. Default: false (but true for CRAN submission checks).</p>
 <p>Note that this is actually implemented in <code>R CMD INSTALL</code>, so it is available to those who first install recording to a log, then call <code>R CMD check</code>.</p>
 </dd>
-<dt><code>_R_CHECK_SUGGESTS_ONLY_</code></dt>
+<dt><code>_R_CHECK_SUGGESTS_ONLY_</code> <a href="#index-_r_check_suggests_only_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If set to a true value, running examples, tests and vignettes is done with a temporary library directory populated by all the Depends/Imports/Suggests packages. (As exceptions, packages in a <code>VignetteBuilder</code> field are always made available.) Default: false (but true for CRAN submission checks: some of the regular checks use true and some use false).</p>
 </dd>
-<dt><code>_R_CHECK_DEPENDS_ONLY_</code></dt>
+<dt><code>_R_CHECK_DEPENDS_ONLY_</code> <a href="#index-_r_check_depends_only_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>As for <code>_R_CHECK_SUGGESTS_ONLY_</code> but using only Depends/Imports (and the exceptions, including test-suite managers in <code>Suggests</code>). Default: false</p>
 </dd>
-<dt><code>_R_CHECK_DEPENDS_ONLY_DATA_</code></dt>
+<dt><code>_R_CHECK_DEPENDS_ONLY_DATA_</code> <a href="#index-_r_check_depends_only_data_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Apply <code>_R_CHECK_DEPENDS_ONLY_</code> only to the check of loading from the <code>data</code> directory, so checks if any dataset depends on packages which are in Suggests or undeclared. Default: false (but true for CRAN submission checks)</p>
 </dd>
-<dt><code>_R_CHECK_DEPENDS_ONLY_EXAMPLES_</code></dt>
-<dd>
-
-</dd>
-<dt><code>_R_CHECK_DEPENDS_ONLY_TESTS_</code></dt>
-<dd>
-
-</dd>
-<dt><code>_R_CHECK_DEPENDS_ONLY_VIGNETTES_</code></dt>
-<dd>
-<p>Apply <code>_R_CHECK_DEPENDS_ONLY_</code> only to the checking of examples, tests or vignettes. These can be used on their own, or with a false value to override <code>_R_CHECK_DEPENDS_ONLY_</code>. Default: the value of <code>_R_CHECK_DEPENDS_ONLY_</code> or false if that is unset.</p>
-</dd>
-<dt><code>_R_CHECK_NO_RECOMMENDED_</code></dt>
+</dl>
+<p><code>_R_CHECK_DEPENDS_ONLY_EXAMPLES_</code> <a href="#index-_r_check_depends_only_examples_" class="copiable-anchor">¶</a><br>
+<code>_R_CHECK_DEPENDS_ONLY_TESTS_</code> <a href="#index-_r_check_depends_only_tests_" class="copiable-anchor">¶</a><br>
+<code>_R_CHECK_DEPENDS_ONLY_VIGNETTES_</code> <a href="#index-_r_check_depends_only_vignettes_" class="copiable-anchor">¶</a></p>
+<p>: Apply <code>_R_CHECK_DEPENDS_ONLY_</code> only to the checking of examples, tests or vignettes. These can be used on their own, or with a false value to override <code>_R_CHECK_DEPENDS_ONLY_</code>. Default: the value of <code>_R_CHECK_DEPENDS_ONLY_</code> or false if that is unset.</p>
+<dl>
+<dt><code>_R_CHECK_NO_RECOMMENDED_</code> <a href="#index-_r_check_no_recommended_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If set to a true value, augment the previous checks to make recommended packages unavailable unless declared (even if installed in <code>.library</code>). Default: false (but true for CRAN submission checks).</p>
 <p>This may give false positives on code which uses <code>grDevices::densCols</code> and <code>stats:::.asSparse</code> / <code>stats:::.Diag</code> as these invoke <a href="https://CRAN.R-project.org/package=KernSmooth"><strong>KernSmooth</strong></a> and <a href="https://CRAN.R-project.org/package=Matrix"><strong>Matrix</strong></a> respectively. (Those in <strong>stats</strong> are called from various contrasts functions if <code>sparse = TRUE</code> is used.)</p>
@@ -827,35 +821,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>since some packages do suggest other packages not available on CRAN or other commonly-used repositories.</p>
 <p>Several environment variables can be used to set ‘timeouts’: limits for the elapsed time taken by the sub-processes used for parts of the checks. A value of <code>0</code> indicates no limit, and is the default. Character strings ending in <code>s</code>, <code>m</code> or <code>h</code> indicate a number of seconds, minutes or hours respectively: other values are interpreted as a whole number of seconds (with invalid inputs being treated as no limit).</p>
 <dl>
-<dt><code>_R_CHECK_ELAPSED_TIMEOUT_</code></dt>
+<dt><code>_R_CHECK_ELAPSED_TIMEOUT_</code> <a href="#index-_r_check_elapsed_timeout_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>The default timeout for sub-processes not otherwise mentioned, and the default value for all except <code>_R_CHECK_ONE_TEST_ELAPSED_TIMEOUT_</code>. (This is also used by <code>tools::check_packages_in_dir</code>.)</p>
 </dd>
-<dt><code>_R_CHECK_INSTALL_ELAPSED_TIMEOUT_</code></dt>
+<dt><code>_R_CHECK_INSTALL_ELAPSED_TIMEOUT_</code> <a href="#index-_r_check_install_elapsed_timeout_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Limit for when <code>R CMD INSTALL</code> is run by <code>check</code>.</p>
 </dd>
-<dt><code>_R_CHECK_EXAMPLES_ELAPSED_TIMEOUT_</code></dt>
+<dt><code>_R_CHECK_EXAMPLES_ELAPSED_TIMEOUT_</code> <a href="#index-_r_check_examples_elapsed_timeout_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Limit for running all the examples for one sub-architecture.</p>
 </dd>
-<dt><code>_R_CHECK_ONE_TEST_ELAPSED_TIMEOUT_</code></dt>
+<dt><code>_R_CHECK_ONE_TEST_ELAPSED_TIMEOUT_</code> <a href="#index-_r_check_one_test_elapsed_timeout_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Limit for running one test for one sub-architecture. Default <code>_R_CHECK_TESTS_ELAPSED_TIMEOUT_</code>.</p>
 </dd>
-<dt><code>_R_CHECK_TESTS_ELAPSED_TIMEOUT_</code></dt>
+<dt><code>_R_CHECK_TESTS_ELAPSED_TIMEOUT_</code> <a href="#index-_r_check_tests_elapsed_timeout_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Limit for running all the tests for one sub-architecture (and the default limit for running one test).</p>
 </dd>
-<dt><code>_R_CHECK_ONE_VIGNETTE_ELAPSED_TIMEOUT_</code></dt>
+<dt><code>_R_CHECK_ONE_VIGNETTE_ELAPSED_TIMEOUT_</code> <a href="#index-_r_check_one_vignette_elapsed_timeout_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Limit for running the R code in one vignette, including for re-building each vignette separately.</p>
 </dd>
-<dt><code>_R_CHECK_BUILD_VIGNETTES_ELAPSED_TIMEOUT_</code></dt>
+<dt><code>_R_CHECK_BUILD_VIGNETTES_ELAPSED_TIMEOUT_</code> <a href="#index-_r_check_build_vignettes_elapsed_timeout_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Limit for re-building all vignettes.</p>
 </dd>
-<dt><code>_R_CHECK_PKGMAN_ELAPSED_TIMEOUT_</code></dt>
+<dt><code>_R_CHECK_PKGMAN_ELAPSED_TIMEOUT_</code> <a href="#index-_r_check_pkgman_elapsed_timeout_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Limit for each attempt at building the PDF package manual.</p>
 </dd>
@@ -863,7 +857,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="page-columns page-full"><p>Another variable which enables stricter checks is to set <code>R_CHECK_CONSTANTS</code> to <code>5</code>. This checks that nothing<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> changes the values of ‘constants’<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> in R code. This is best used in conjunction with setting <code>R_JIT_STRATEGY</code> to <code>3</code>, which checks code on first use (by default most code is only checked after byte-compilation on second use). Unfortunately these checks slow down checking of examples, tests and vignettes, typically two-fold but in the worst cases at least a hundred-fold.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;The usual culprits are calls to compiled code <em>via</em> <code>.Call</code> or <code>.External</code> which alter their arguments.</p></li><li id="fn3"><p><sup>3</sup>&nbsp;things which the byte compiler assumes do not change, e.g.&nbsp;function bodies.</p></li></div></div>
 <p>The following environment variables can be used to customize the operation of <code>INSTALL</code>.</p>
 <dl>
-<dt><code>_R_INSTALL_LIBS_ONLY_FORCE_DEPENDS_IMPORTS_</code></dt>
+<dt><code>_R_INSTALL_LIBS_ONLY_FORCE_DEPENDS_IMPORTS_</code> <a href="#index-_r_install_libs_only_force_depends_imports_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If true, give an error if installing only package libraries via <code>--libs-only</code> and some package imported or depended on is not available. Default: true (false only for special applications, which analyze native code of packages).</p>
 </dd>
