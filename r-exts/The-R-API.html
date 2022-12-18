@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.2.280">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -1313,7 +1313,7 @@ with the same arguments, but all pointers.</code></pre>
 <p><code>R_UnwindProtect</code> can be used in two ways. The simper usage, suitable for use in C code, passes <code>NULL</code> for the <code>cont</code> argument. <code>R_UnwindProtect</code> will call <code>fun(data)</code>. If <code>fun</code> returns a value, then <code>R_UnwindProtect</code> calls <code>clean(cleandata, FALSE)</code> before returning the value returned by <code>fun</code>. If <code>fun</code> executes a non-local transfer of control, then <code>clean(cleandata, TRUE)</code> is called, and the non-local transfer of control is resumed.</p>
 <p>The second use pattern, suitable to support C++ stack unwinding, uses two additional functions:</p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>SEXP R_MakeUnwindCont<span class="op">();</span></span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> NORET R_ContinueUnwind<span class="op">(</span>SEXP cont<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>NORET <span class="dt">void</span> R_ContinueUnwind<span class="op">(</span>SEXP cont<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>R_MakeUnwindCont</code> allocates a <em>continuation token</em> <code>cont</code> to pass to <code>R_UnwindProtect</code>. This token should be protected with <code>PROTECT</code> before calling <code>R_UnwindProtect</code>. When the <code>clean</code> function is called with <code>jump == TRUE</code>, indicating that R is executing a non-local transfer of control, it can throw a C++ exception to a C++ <code>catch</code> outside the C++ code to be unwound, and then use the continuation token in the a call <code>R_ContinueUnwind(cont)</code> to resume the non-local transfer of control within R.</p>
 </section>
 <section id="allowing-interrupts" class="level2 section" data-number="6.13">

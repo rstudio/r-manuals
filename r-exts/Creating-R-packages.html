@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.2.280">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -1664,7 +1664,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Tests should use <code>options(warn = 1)</code> as reporting</p>
 <div class="sourceCode" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>There were <span class="dv">22</span> <span class="fu">warnings</span> (use <span class="fu">warnings</span>() to see them)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>is pointless, especially for automated checking systems.</p></li>
-<li><p>If your package uses dates/times, ensure that it works in all timezones, especially those near boundaries (problems have most often be seen in <code>Europe/London</code> (zero offset in Winter) and <code>Pacific/Auckland</code>, near enough the International Date line) and with offsets not in whole hours (Adelaide, Chatham Islands, …). More extreme examples are <code>Africa/Conakry</code> (permanent UTC), <code>Asia/Calcutta</code> (no DST, permaent half-hour offset) and <code>Pacific/Kiritimati]</code>(no DST, more than 12 hours ahead of UTC).</p></li>
+<li><p>If your package uses dates/times, ensure that it works in all timezones, especially those near boundaries (problems have most often be seen in <code>Europe/London</code> (zero offset in Winter) and <code>Pacific/Auckland</code>, near enough the International Date line) and with offsets not in whole hours (Adelaide, Chatham Islands, …). More extreme examples are <code>Africa/Conakry</code> (permanent UTC), <code>Asia/Calcutta</code> (no DST, permanent half-hour offset) and <code>Pacific/Kiritimati]</code>(no DST, more than 12 hours ahead of UTC).</p></li>
 </ul>
 <div class="no-row-height column-margin column-container"><li id="fn88"><p><sup>88</sup>&nbsp;Not doing so is the default on Windows, overridden for the R executables.</p></li><li id="fn89"><p><sup>89</sup>&nbsp;These are not needed for the default compiler settings on <code>x86_64</code> but are likely to be needed on <code>ix86</code>.</p></li></div><section id="pdf-size" class="level3 subsection page-columns page-full" data-number="1.6.1">
 <h3 class="subsection anchored" data-number="1.6.1" data-anchor-id="pdf-size"><span class="header-section-number">1.6.1</span> PDF size</h3>
