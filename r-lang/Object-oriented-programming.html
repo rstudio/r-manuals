@@ -417,7 +417,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </dd>
 </dl>
 <p>For operators in the Ops group a special method is invoked if the two operands taken together suggest a single method. Specifically, if both operands correspond to the same method or if one operand corresponds to a method that takes precedence over that of the other operand. If they do not suggest a single method then the default method is used. Either a group method or a class method dominates if the other operand has no corresponding method. A class method dominates a group method.</p>
-<p>When the group is Ops the special variable <code>.Method</code> is a string vector with two elements. The elements of <code>.Method</code> are set to the name of the method if the corresponding argument is a member of the class that was used to determine the method. Otherwise the corresponding element of <code>.Method</code> is set to the zero length string, <code>""</code>.</p>
+<p>When the group is Ops the special variable <code>.Method</code> is a character vector with two elements. The elements of <code>.Method</code> are set to the name of the method if the corresponding argument is a member of the class that was used to determine the method. Otherwise the corresponding element of <code>.Method</code> is set to the zero length string, <code>""</code>.</p>
 </section>
 <section id="writing-methods" class="level2 section" data-number="5.7">
 <h2 class="section anchored" data-number="5.7" data-anchor-id="writing-methods"><span class="header-section-number">5.7</span> Writing methods</h2>

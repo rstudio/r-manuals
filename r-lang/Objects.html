@@ -464,12 +464,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> storage<span class="op">.</span>mode<span class="op">(</span>x<span class="op">)</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="st">"integer"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>R objects are often coerced to different types during computations. There are also many functions available to perform explicit coercion. When programming in the R language the type of an object generally doesn’t affect the computations, however, when dealing with foreign languages or the operating system it is often necessary to ensure that an object is of the correct type.</p>
-<section id="basic-types" class="level2 section" data-number="2.1">
+<section id="basic-types" class="level2 section page-columns page-full" data-number="2.1">
 <h2 class="section anchored" data-number="2.1" data-anchor-id="basic-types"><span class="header-section-number">2.1</span> Basic types</h2>
-<section id="vectors" class="level3 subsection" data-number="2.1.1">
+<section id="vectors" class="level3 subsection page-columns page-full" data-number="2.1.1">
 <h3 class="subsection anchored" data-number="2.1.1" data-anchor-id="vectors"><span class="header-section-number">2.1.1</span> Vectors</h3>
 <p>Vectors can be thought of as contiguous cells containing data. Cells are accessed through indexing operations such as <code>x[5]</code>. More details are given in <a href="Evaluation-of-expressions.html#indexing">Indexing</a>.</p>
-<p>R has six basic (‘atomic’) vector types: logical, integer, real, complex, string (or character) and raw. The modes and storage modes for the different vector types are listed in the following table.</p>
+<p>R has six basic (‘atomic’) vector types: logical, integer, real, complex, character (in C aka ‘string’) and raw. The modes and storage modes for the different vector types are listed in the following table.</p>
 <blockquote class="blockquote">
 <table class="table">
 <thead>
@@ -514,7 +514,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 </blockquote>
 <p>Single numbers, such as <code>4.2</code>, and strings, such as <code>"four point two"</code> are still vectors, of length 1; there are no more basic types. Vectors with length zero are possible (and useful).</p>
-<p>String vectors have mode and storage mode <code>"character"</code>. A single element of a character vector is often referred to as a <em>character string</em>.</p>
+<div class="page-columns page-full"><p>A single element of a character vector is often referred to as a <em>character string</em> or short <em>string</em>. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Note that character vectors internally are <code>STRSXP</code> types and each element (we call <em>string</em> above) is of C type <code>CHARSXP</code> (with <em>internal only</em> <code>typeof(.) == "char"</code>, see <a href="#typeof-char">typeof-char</a>).</p></li></div></div>
 </section>
 <section id="lists" class="level3 subsection" data-number="2.1.2">
 <h3 class="subsection anchored" data-number="2.1.2" data-anchor-id="lists"><span class="header-section-number">2.1.2</span> Lists</h3>
@@ -614,7 +614,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="classes" class="level3 subsection page-columns page-full" data-number="2.2.4">
 <h3 class="subsection anchored" data-number="2.2.4" data-anchor-id="classes"><span class="header-section-number">2.2.4</span> Classes</h3>
-<div class="page-columns page-full"><p>R has an elaborate class system<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, principally controlled via the <code>class</code> attribute. This attribute is a character vector containing the list of classes that an object inherits from. This forms the basis of the “generic methods” functionality in R.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;actually two, but this draft manual predates the <strong>methods</strong> package.</p></li></div></div>
+<div class="page-columns page-full"><p>R has an elaborate class system<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, principally controlled via the <code>class</code> attribute. This attribute is a character vector containing the list of classes that an object inherits from. This forms the basis of the “generic methods” functionality in R.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;actually two, but this draft manual predates the <strong>methods</strong> package.</p></li></div></div>
 <p>This attribute can be accessed and manipulated virtually without restriction by users. There is no checking that an object actually contains the components that class methods expect. Thus, altering the <code>class</code> attribute should be done with caution, and when they are available specific creation and coercion functions should be preferred.</p>
 </section>
 <section id="time-series-attributes" class="level3 subsection" data-number="2.2.5">
