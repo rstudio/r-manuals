@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.280">
+<meta name="generator" content="quarto-1.2.313">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -857,7 +857,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="using-link-time-optimization" class="level2 section" data-number="4.5">
 <h2 class="section anchored" data-number="4.5" data-anchor-id="using-link-time-optimization"><span class="header-section-number">4.5</span> Using Link-time Optimization</h2>
-<p>Where supported, <em>link time optimization</em> provides a comprehensive way to check the consistency of calls between Fortran files or between C and Fortran. Use this <em>via</em> <code>R CMD INSTALL --use-LTO</code>.</p>
+<p>Where supported, <em>link time optimization</em> provides a comprehensive way to check the consistency of calls between Fortran files or between C and Fortran. Use this <em>via</em> <code>R CMD INSTALL --use-LTO</code> (but that does not apply if there is a <code>src/Makefile</code> file or a Windows analogue).</p>
 <p>To set up support on a Unix-alike, On Linux using GCC without building R with LTO support, it should suffice to set</p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>LTO_OPT <span class="ot">=</span> <span class="sc">-</span>flto</span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>LTO_FC_OPT <span class="ot">=</span> <span class="sc">-</span>flto</span>
@@ -897,6 +897,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>      *ipvtwk), wk(ikwk), wk(iwork1), wk(iwork2), info)</span>
 <span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>                                                                        1</span>
 <span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>Warning: Type mismatch in argument 'jpvt' at (1); passed REAL(8) to INTEGER(4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>On a Unix-alike for a package with a <code>src/Makefile</code> file, LTO can be enabled by including suitable flags in that file, for example</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>LTO <span class="ot">=</span> <span class="er">$</span>(LTO_OPT)</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>LTO_FC <span class="ot">=</span> <span class="er">$</span>(LTO_FC_OPT)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and ensuring these are used for compilation, for example as part of <code>CFLAGS</code>, <code>CXXFLAGS</code> or <code>FCFLAGS</code>. If <code>R CMD SHLIB</code> is used for compilation, add <code>--use-LTO</code> to its call.</p>
+<p>On Windows for a package with a <code>src/Makefile.ucrt</code> or <code>src/Makefile.win</code> file which includes <code>"${R_HOME}/etc${R_ARCH}/Makeconf"</code>, include</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>LTO <span class="ot">=</span> <span class="er">$</span>(LTO_OPT)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>or to always use LTO however R was built,</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>LTO <span class="ot">=</span> <span class="sc">-</span>flto</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Footnotes</p>
 
 

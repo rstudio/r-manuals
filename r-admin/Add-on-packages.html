@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.280">
+<meta name="generator" content="quarto-1.2.313">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -449,7 +449,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="subsection anchored" data-number="6.3.3" data-anchor-id="customizing-package-compilation"><span class="header-section-number">6.3.3</span> Customizing package compilation</h3>
 <div class="page-columns page-full"><p>The R system and package-specific compilation flags can be overridden or added to by setting the appropriate Make variables in the personal file <code>HOME/.R/Makevars-R_PLATFORM</code> (but <code>HOME/.R/Makevars.win</code> or <code>HOME/.R/Makevars.win64</code> on Windows), or if that does not exist, <code>HOME/.R/Makevars</code>, where <code>R_PLATFORM</code> is the platform for which R was built, as available in the <code>platform</code> component of the R variable <code>R.version</code>. The full path to an alternative personal file<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> can be specified <em>via</em> the environment variable <code>R_MAKEVARS_USER</code>.</p><div class="no-row-height column-margin column-container"><li id="fn8"><p><sup>8</sup>&nbsp;using a path containing spaces is likely to cause problems</p></li></div></div>
 <p>Package developers are encouraged to use this mechanism to enable a reasonable amount of diagnostic messaging (“warnings”) when compiling, such as e.g.&nbsp;<code>-Wall -pedantic</code> for tools from GCC, the GNU Compiler Collection, or for <code>clang</code>.</p>
-<p>Note that this mechanism can also be used when it necessary to change the optimization level whilst installing a particular package. For example</p>
+<p>Note that this mechanism can also be used when it is necessary to change the optimization level whilst installing a particular package. For example</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">## for C code</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="dt">CFLAGS </span><span class="ch">=</span><span class="st"> -g -O -mtune=native</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">## for C++ code</span></span>
