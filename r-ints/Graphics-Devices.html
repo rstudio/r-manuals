@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.313">
+<meta name="generator" content="quarto-1.2.329">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -448,6 +448,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol start="0" type="1">
 <li></li>
 </ol></li>
+<li>The <code>glyphs</code> component reports whether rendering glyphs (e.g., via <code>grid::grid.glyph()</code>) is supported. If the device supports rendering glyphs, this component should be set to 1. If the device does not provide support, this component should be set to 0.</li>
 </ul>
 <p>The graphics engine provides constants like <code>R_GE_capability_patterns</code> for selecting the appropriate component of the list of capabilities.</p>
 <p>It is valid (if unhelpful) for the device driver to return the list of capabilities unaltered.</p>
@@ -497,6 +498,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    dd<span class="op">-&gt;</span>yLineBias <span class="op">=</span> <span class="fl">0.2</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>It seems that <code>xCharOffset</code> is not currently used, and <code>yCharOffset</code> is used by the base graphics system to set vertical alignment in <code>text()</code> when <code>pos</code> is specified, and in <code>identify()</code>. It is occasionally used by the graphic engine when attempting exact centring of text, such as character string values of <code>pch</code> in <code>points()</code> or <code>grid.points()</code>—however, it is only used when precise character metric information is not available or for multi-line strings.</p>
 <p><code>yLineBias</code> is used in the base graphics system in <code>axis()</code> and <code>mtext()</code> to provide a default for their <code>padj</code> argument.</p>
+<p>From <code>R_GE_version</code> 16 (<code>R_GE_glyphs</code>), there is also a <code>glyph</code> callback.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> glyph<span class="op">(</span><span class="dt">int</span> n<span class="op">,</span> <span class="dt">int</span> <span class="op">*</span>glyphs<span class="op">,</span> <span class="dt">double</span> <span class="op">*</span>x<span class="op">,</span> <span class="dt">double</span> <span class="op">*</span>y<span class="op">,</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>               SEXP font<span class="op">,</span> <span class="dt">double</span> size<span class="op">,</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>               <span class="dt">int</span> colour<span class="op">,</span> <span class="dt">double</span> rot<span class="op">,</span> pDevDesc dd<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This instructs the device to draw a specific glyph within a given font, where the font is specified by filename (and index), with font family, weight, and style also provided as fallbacks.</p>
 </section>
 <section id="conventions" class="level3 subsection" data-number="6.1.4">
 <h3 class="subsection anchored" data-number="6.1.4" data-anchor-id="conventions"><span class="header-section-number">6.1.4</span> Conventions</h3>
@@ -517,11 +523,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="mode" class="level3 subsection" data-number="6.1.5">
 <h3 class="subsection anchored" data-number="6.1.5" data-anchor-id="mode"><span class="header-section-number">6.1.5</span> ‘Mode’</h3>
 <p>One of the device callbacks is a function <code>mode</code>, documented in the header as</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>     <span class="sc">*</span> device_Mode is called whenever the graphics engine</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>     <span class="sc">*</span> starts <span class="fu">drawing</span> (<span class="at">mode=</span><span class="dv">1</span>) or stops <span class="fu">drawing</span> (<span class="at">mode=</span><span class="dv">0</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>     <span class="sc">*</span> <span class="fu">GMode</span> (<span class="cf">in</span> graphics.c) also says that</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>     <span class="sc">*</span> mode <span class="ot">=</span> <span class="dv">2</span> (graphical input on) exists.</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>     <span class="sc">*</span> The device is not required to do anything</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>     <span class="sc">*</span> device_Mode is called whenever the graphics engine</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>     <span class="sc">*</span> starts <span class="fu">drawing</span> (<span class="at">mode=</span><span class="dv">1</span>) or stops <span class="fu">drawing</span> (<span class="at">mode=</span><span class="dv">0</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>     <span class="sc">*</span> <span class="fu">GMode</span> (<span class="cf">in</span> graphics.c) also says that</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>     <span class="sc">*</span> mode <span class="ot">=</span> <span class="dv">2</span> (graphical input on) exists.</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>     <span class="sc">*</span> The device is not required to do anything</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Since <code>mode = 2</code> has only recently been documented at device level. It could be used to change the graphics cursor, but devices currently do that in the <code>locator</code> callback. (In base graphics the mode is set for the duration of a <code>locator</code> call, but if <code>type != "n"</code> is switched back for each point whilst annotation is being done.)</p>
 <p>Many devices do indeed do nothing on this call, but some screen devices ensure that drawing is flushed to the screen when called with <code>mode = 0</code>. It is tempting to use it for some sort of buffering, but note that ‘drawing’ is interpreted at quite a low level and a typical single figure will stop and start drawing many times. The buffering introduced in the <code>X11()</code> device makes use of <code>mode = 0</code> to indicate activity: it updates the screen after <em>ca</em> 100ms of inactivity.</p>
 <p>This callback need not be supplied if it does nothing.</p>
