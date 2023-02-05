@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.329">
+<meta name="generator" content="quarto-1.2.335">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -703,7 +703,7 @@ write the time stamp to the console.</code></pre>
 <span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a>    structRstart rp<span class="op">;</span></span>
 <span id="cb19-47"><a href="#cb19-47" aria-hidden="true" tabindex="-1"></a>    Rstart Rp <span class="op">=</span> <span class="op">&amp;</span>rp<span class="op">;</span></span>
-<span id="cb19-48"><a href="#cb19-48" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> Rversion<span class="op">[</span><span class="dv">25</span><span class="op">],</span> <span class="op">*</span>RHome<span class="op">;</span></span>
+<span id="cb19-48"><a href="#cb19-48" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> Rversion<span class="op">[</span><span class="dv">25</span><span class="op">],</span> <span class="op">*</span>RHome<span class="op">,</span> <span class="op">*</span>RUser<span class="op">;</span></span>
 <span id="cb19-49"><a href="#cb19-49" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-50"><a href="#cb19-50" aria-hidden="true" tabindex="-1"></a>    sprintf<span class="op">(</span>Rversion<span class="op">,</span> <span class="st">"%s.%s"</span><span class="op">,</span> R_MAJOR<span class="op">,</span> R_MINOR<span class="op">);</span></span>
 <span id="cb19-51"><a href="#cb19-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>strcmp<span class="op">(</span>getDLLVersion<span class="op">(),</span> Rversion<span class="op">)</span> <span class="op">!=</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
@@ -718,41 +718,44 @@ write the time stamp to the console.</code></pre>
 <span id="cb19-60"><a href="#cb19-60" aria-hidden="true" tabindex="-1"></a>        exit<span class="op">(</span><span class="dv">1</span><span class="op">);</span></span>
 <span id="cb19-61"><a href="#cb19-61" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb19-62"><a href="#cb19-62" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>rhome <span class="op">=</span> RHome<span class="op">;</span></span>
-<span id="cb19-63"><a href="#cb19-63" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>home <span class="op">=</span> getRUser<span class="op">();</span></span>
-<span id="cb19-64"><a href="#cb19-64" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>CharacterMode <span class="op">=</span> LinkDLL<span class="op">;</span></span>
-<span id="cb19-65"><a href="#cb19-65" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>EmitEmbeddedUTF8 <span class="op">=</span> FALSE<span class="op">;</span></span>
-<span id="cb19-66"><a href="#cb19-66" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>ReadConsole <span class="op">=</span> myReadConsole<span class="op">;</span></span>
-<span id="cb19-67"><a href="#cb19-67" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>WriteConsole <span class="op">=</span> myWriteConsole<span class="op">;</span></span>
-<span id="cb19-68"><a href="#cb19-68" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>CallBack <span class="op">=</span> myCallBack<span class="op">;</span></span>
-<span id="cb19-69"><a href="#cb19-69" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>ShowMessage <span class="op">=</span> askok<span class="op">;</span></span>
-<span id="cb19-70"><a href="#cb19-70" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>YesNoCancel <span class="op">=</span> askyesnocancel<span class="op">;</span></span>
-<span id="cb19-71"><a href="#cb19-71" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>Busy <span class="op">=</span> myBusy<span class="op">;</span></span>
-<span id="cb19-72"><a href="#cb19-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-73"><a href="#cb19-73" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>R_Quiet <span class="op">=</span> TRUE<span class="op">;</span>        <span class="co">/* Default is FALSE */</span></span>
-<span id="cb19-74"><a href="#cb19-74" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>R_Interactive <span class="op">=</span> FALSE<span class="op">;</span> <span class="co">/* Default is TRUE */</span></span>
-<span id="cb19-75"><a href="#cb19-75" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>RestoreAction <span class="op">=</span> SA_RESTORE<span class="op">;</span></span>
-<span id="cb19-76"><a href="#cb19-76" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>SaveAction <span class="op">=</span> SA_NOSAVE<span class="op">;</span></span>
-<span id="cb19-77"><a href="#cb19-77" aria-hidden="true" tabindex="-1"></a>    R_SetParams<span class="op">(</span>Rp<span class="op">);</span></span>
-<span id="cb19-78"><a href="#cb19-78" aria-hidden="true" tabindex="-1"></a>    R_set_command_line_arguments<span class="op">(</span>argc<span class="op">,</span> argv<span class="op">);</span></span>
-<span id="cb19-79"><a href="#cb19-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-80"><a href="#cb19-80" aria-hidden="true" tabindex="-1"></a>    FlushConsoleInputBuffer<span class="op">(</span>GetStdHandle<span class="op">(</span>STD_INPUT_HANDLE<span class="op">));</span></span>
-<span id="cb19-81"><a href="#cb19-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-82"><a href="#cb19-82" aria-hidden="true" tabindex="-1"></a>    signal<span class="op">(</span>SIGBREAK<span class="op">,</span> my_onintr<span class="op">);</span></span>
-<span id="cb19-83"><a href="#cb19-83" aria-hidden="true" tabindex="-1"></a>    GA_initapp<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
-<span id="cb19-84"><a href="#cb19-84" aria-hidden="true" tabindex="-1"></a>    readconsolecfg<span class="op">();</span></span>
-<span id="cb19-85"><a href="#cb19-85" aria-hidden="true" tabindex="-1"></a>    setup_Rmainloop<span class="op">();</span></span>
-<span id="cb19-86"><a href="#cb19-86" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifdef SIMPLE_CASE</span></span>
-<span id="cb19-87"><a href="#cb19-87" aria-hidden="true" tabindex="-1"></a>    run_Rmainloop<span class="op">();</span></span>
-<span id="cb19-88"><a href="#cb19-88" aria-hidden="true" tabindex="-1"></a><span class="pp">#else</span></span>
-<span id="cb19-89"><a href="#cb19-89" aria-hidden="true" tabindex="-1"></a>    R_ReplDLLinit<span class="op">();</span></span>
-<span id="cb19-90"><a href="#cb19-90" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span><span class="op">(</span>R_ReplDLLdo1<span class="op">()</span> <span class="op">&gt;</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb19-91"><a href="#cb19-91" aria-hidden="true" tabindex="-1"></a><span class="co">/* add user actions here if desired */</span></span>
-<span id="cb19-92"><a href="#cb19-92" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb19-93"><a href="#cb19-93" aria-hidden="true" tabindex="-1"></a><span class="co">/* only get here on EOF (not q()) */</span></span>
-<span id="cb19-94"><a href="#cb19-94" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span>
-<span id="cb19-95"><a href="#cb19-95" aria-hidden="true" tabindex="-1"></a>    Rf_endEmbeddedR<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
-<span id="cb19-96"><a href="#cb19-96" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb19-97"><a href="#cb19-97" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-63"><a href="#cb19-63" aria-hidden="true" tabindex="-1"></a>    RUser <span class="op">=</span> getRUser<span class="op">();</span></span>
+<span id="cb19-64"><a href="#cb19-64" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>home <span class="op">=</span> RUser<span class="op">;</span></span>
+<span id="cb19-65"><a href="#cb19-65" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>CharacterMode <span class="op">=</span> LinkDLL<span class="op">;</span></span>
+<span id="cb19-66"><a href="#cb19-66" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>EmitEmbeddedUTF8 <span class="op">=</span> FALSE<span class="op">;</span></span>
+<span id="cb19-67"><a href="#cb19-67" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>ReadConsole <span class="op">=</span> myReadConsole<span class="op">;</span></span>
+<span id="cb19-68"><a href="#cb19-68" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>WriteConsole <span class="op">=</span> myWriteConsole<span class="op">;</span></span>
+<span id="cb19-69"><a href="#cb19-69" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>CallBack <span class="op">=</span> myCallBack<span class="op">;</span></span>
+<span id="cb19-70"><a href="#cb19-70" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>ShowMessage <span class="op">=</span> askok<span class="op">;</span></span>
+<span id="cb19-71"><a href="#cb19-71" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>YesNoCancel <span class="op">=</span> askyesnocancel<span class="op">;</span></span>
+<span id="cb19-72"><a href="#cb19-72" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>Busy <span class="op">=</span> myBusy<span class="op">;</span></span>
+<span id="cb19-73"><a href="#cb19-73" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-74"><a href="#cb19-74" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>R_Quiet <span class="op">=</span> TRUE<span class="op">;</span>        <span class="co">/* Default is FALSE */</span></span>
+<span id="cb19-75"><a href="#cb19-75" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>R_Interactive <span class="op">=</span> FALSE<span class="op">;</span> <span class="co">/* Default is TRUE */</span></span>
+<span id="cb19-76"><a href="#cb19-76" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>RestoreAction <span class="op">=</span> SA_RESTORE<span class="op">;</span></span>
+<span id="cb19-77"><a href="#cb19-77" aria-hidden="true" tabindex="-1"></a>    Rp<span class="op">-&gt;</span>SaveAction <span class="op">=</span> SA_NOSAVE<span class="op">;</span></span>
+<span id="cb19-78"><a href="#cb19-78" aria-hidden="true" tabindex="-1"></a>    R_SetParams<span class="op">(</span>Rp<span class="op">);</span></span>
+<span id="cb19-79"><a href="#cb19-79" aria-hidden="true" tabindex="-1"></a>    freeRUser<span class="op">(</span>RUser<span class="op">);</span></span>
+<span id="cb19-80"><a href="#cb19-80" aria-hidden="true" tabindex="-1"></a>    free_R_HOME<span class="op">(</span>RHome<span class="op">);</span></span>
+<span id="cb19-81"><a href="#cb19-81" aria-hidden="true" tabindex="-1"></a>    R_set_command_line_arguments<span class="op">(</span>argc<span class="op">,</span> argv<span class="op">);</span></span>
+<span id="cb19-82"><a href="#cb19-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-83"><a href="#cb19-83" aria-hidden="true" tabindex="-1"></a>    FlushConsoleInputBuffer<span class="op">(</span>GetStdHandle<span class="op">(</span>STD_INPUT_HANDLE<span class="op">));</span></span>
+<span id="cb19-84"><a href="#cb19-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-85"><a href="#cb19-85" aria-hidden="true" tabindex="-1"></a>    signal<span class="op">(</span>SIGBREAK<span class="op">,</span> my_onintr<span class="op">);</span></span>
+<span id="cb19-86"><a href="#cb19-86" aria-hidden="true" tabindex="-1"></a>    GA_initapp<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb19-87"><a href="#cb19-87" aria-hidden="true" tabindex="-1"></a>    readconsolecfg<span class="op">();</span></span>
+<span id="cb19-88"><a href="#cb19-88" aria-hidden="true" tabindex="-1"></a>    setup_Rmainloop<span class="op">();</span></span>
+<span id="cb19-89"><a href="#cb19-89" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifdef SIMPLE_CASE</span></span>
+<span id="cb19-90"><a href="#cb19-90" aria-hidden="true" tabindex="-1"></a>    run_Rmainloop<span class="op">();</span></span>
+<span id="cb19-91"><a href="#cb19-91" aria-hidden="true" tabindex="-1"></a><span class="pp">#else</span></span>
+<span id="cb19-92"><a href="#cb19-92" aria-hidden="true" tabindex="-1"></a>    R_ReplDLLinit<span class="op">();</span></span>
+<span id="cb19-93"><a href="#cb19-93" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span><span class="op">(</span>R_ReplDLLdo1<span class="op">()</span> <span class="op">&gt;</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb19-94"><a href="#cb19-94" aria-hidden="true" tabindex="-1"></a><span class="co">/* add user actions here if desired */</span></span>
+<span id="cb19-95"><a href="#cb19-95" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb19-96"><a href="#cb19-96" aria-hidden="true" tabindex="-1"></a><span class="co">/* only get here on EOF (not q()) */</span></span>
+<span id="cb19-97"><a href="#cb19-97" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span>
+<span id="cb19-98"><a href="#cb19-98" aria-hidden="true" tabindex="-1"></a>    Rf_endEmbeddedR<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb19-99"><a href="#cb19-99" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb19-100"><a href="#cb19-100" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The ideas are</p>
 <ul>
 <li>Check that the front-end and the linked <code>R.dll</code> match – other front-ends may allow a looser match.</li>
