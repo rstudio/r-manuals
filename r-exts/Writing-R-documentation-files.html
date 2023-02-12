@@ -639,11 +639,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </dd>
 <dt><code>\samp{text}</code> <a href="#index-_005csamp" class="copiable-anchor">¶</a></dt>
 <dd>
-<p>Indicate text that is a literal example of a sequence of characters, entered ‘verbatim’. No wrapping or reformatting will occur. Displayed using <code>typewriter</code> font where possible.</p>
+<p>Indicate text that is a literal example of a sequence of characters, entered ‘verbatim’, to be included within word-wrapped text. Displayed within single quotation marks and using <code>typewriter</code> font where possible.</p>
 </dd>
 <dt><code>\verb{text}</code> <a href="#index-_005cverb" class="copiable-anchor">¶</a></dt>
 <dd>
-<p>Indicate text that is a literal example of a sequence of characters, with no interpretation of e.g.&nbsp;<code>\var</code>, but which will be included within word-wrapped text. Displayed using <code>typewriter</code> font if possible.</p>
+<p>Indicate text that is a literal example of a sequence of characters, entered ‘verbatim’. No wrapping or reformatting will occur. Displayed using <code>typewriter</code> font where possible.</p>
 </dd>
 <dt><code>\pkg{package_name}</code> <a href="#index-_005cpkg" class="copiable-anchor">¶</a></dt>
 <dd>
@@ -823,7 +823,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>- <code>results=rd</code> The result is assumed to be a character vector containing markup to be passed to <code>parse_Rd()</code>, with the result inserted in place. This could be used to insert computed aliases, for instance. <code>parse_Rd()</code> is called first with <code>fragment = FALSE</code> to allow a single Rd section macro to be inserted. If that fails, it is called again with <code>fragment = TRUE</code>, the older behavior.</li>
 <li>- <code>results=hide</code> Insert no output.</li>
 </ul></li>
-<li><p><code>strip.white=TRUE</code> Remove leading and trailing white space from each line of output if <code>strip.white=TRUE</code>. With <code>strip.white=all</code>, also remove blank lines.</p></li>
+<li><p><code>strip.white=true</code> Remove leading and trailing blank lines in verbatim output if <code>strip.white=true</code> (or <code>TRUE</code>). With <code>strip.white=all</code>, remove all blank lines.</p></li>
 <li><p><code>stage=install</code> Control when this macro is run. Possible values are</p>
 <ul>
 <li>- <code>stage=build</code> The macro is run when building a source tarball.</li>
