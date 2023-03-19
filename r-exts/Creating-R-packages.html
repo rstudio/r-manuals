@@ -1163,6 +1163,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>suffices. On Unix (and on Windows from R 4.3.0) this can be simplified to</p>
 <div class="sourceCode" id="cb63"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX </span><span class="ch">=</span><span class="st"> </span><span class="ch">${</span><span class="dt">CXX14</span><span class="ch">}</span><span class="st"> </span><span class="ch">${</span><span class="dt">CXX14STD</span><span class="ch">}</span></span>
 <span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="dt">CXXFLAGS </span><span class="ch">=</span><span class="st"> </span><span class="ch">${</span><span class="dt">CXX14FLAGS</span><span class="ch">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>On a Unix-alike C++ compilation defaulted to C++11 from R 3.6.0, to C++14 from R 4.1.0 and to C++17 from R 4.3.0. However, only ‘if available’, so platforms using very old OSes might have used the previous default. Even older versions of R defaulted to the compiler’s default, almost certainly C++98 for compilers of comparable vintage.</p>
+<p>On Windows the default was changed from C++98 to C++11 in R 3.6.2, to C++14 in R 4.2.3 and to C++17 in R 4.3.0.</p>
+<p>The C++11 standard could be specified as from R 3.1.0 and C++14 or C++17 as from R 3.4.0 (although they may not have been supported by the compilers in use). C++11 support became mandatory in R 4.0.0.</p>
 </section>
 <section id="c-standards" class="level3 subsection" data-number="1.2.8">
 <h3 class="subsection anchored" data-number="1.2.8" data-anchor-id="c-standards"><span class="header-section-number">1.2.8</span> C standards</h3>
