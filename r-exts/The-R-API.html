@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.475">
+<meta name="generator" content="quarto-1.3.340">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -46,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -138,60 +109,67 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <span class="navbar-title">R Manuals :: Writing R Extensions</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./../index.html">
+    <a class="nav-link" href="./../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Manuals</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
         <li>
-    <a class="dropdown-item" href="./../r-intro/index.html">
+    <a class="dropdown-item" href="./../r-intro/index.html" rel="" target="">
  <span class="dropdown-text">An Introduction to R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-data/index.html">
+    <a class="dropdown-item" href="./../r-data/index.html" rel="" target="">
  <span class="dropdown-text">R Data Import/Export</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-admin/index.html">
+    <a class="dropdown-item" href="./../r-admin/index.html" rel="" target="">
  <span class="dropdown-text">R Installation and Administration</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-exts/index.html">
+    <a class="dropdown-item" href="./../r-exts/index.html" rel="" target="">
  <span class="dropdown-text">Writing R Extensions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-lang/index.html">
+    <a class="dropdown-item" href="./../r-lang/index.html" rel="" target="">
  <span class="dropdown-text">R Language Definition</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-ints/index.html">
+    <a class="dropdown-item" href="./../r-ints/index.html" rel="" target="">
  <span class="dropdown-text">R Internals</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./../about.html">
+    <a class="nav-link" href="./../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The R API: entry points for C code</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./The-R-API.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The R API: entry points for C code</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -199,122 +177,135 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-      <div class="mt-2 flex-shrink-0 align-items-center">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Writing R Extensions</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Writing R Extensions</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Acknowledgements.html" class="sidebar-item-text sidebar-link">Acknowledgements</a>
+  <a href="./Acknowledgements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acknowledgements</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Creating-R-packages.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Creating R packages</span></a>
+  <a href="./Creating-R-packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Creating R packages</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Writing-R-documentation-files.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Writing R documentation files</span></a>
+  <a href="./Writing-R-documentation-files.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Writing R documentation files</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Tidying-and-profiling-R-code.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Tidying and profiling R code</span></a>
+  <a href="./Tidying-and-profiling-R-code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Tidying and profiling R code</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Debugging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging</span></a>
+  <a href="./Debugging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./System-and-foreign-language-interfaces.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">System and foreign language interfaces</span></a>
+  <a href="./System-and-foreign-language-interfaces.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">System and foreign language interfaces</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./The-R-API.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The R API: entry points for C code</span></a>
+  <a href="./The-R-API.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The R API: entry points for C code</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Generic-functions-and-methods.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Generic functions and methods</span></a>
+  <a href="./Generic-functions-and-methods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Generic functions and methods</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Linking-GUIs-and-other-front-ends-to-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linking GUIs and other front-ends to R</span></a>
+  <a href="./Linking-GUIs-and-other-front-ends-to-R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linking GUIs and other front-ends to R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link">Function and variable index</a>
+  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Function and variable index</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link">Concept index</a>
+  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Concept index</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#memory-allocation" id="toc-memory-allocation" class="nav-link active" data-scroll-target="#memory-allocation"><span class="toc-section-number">6.1</span>  Memory allocation</a>
+  <li><a href="#memory-allocation" id="toc-memory-allocation" class="nav-link active" data-scroll-target="#memory-allocation"><span class="header-section-number">6.1</span> Memory allocation</a>
   <ul class="collapse">
-  <li><a href="#transient-storage-allocation" id="toc-transient-storage-allocation" class="nav-link" data-scroll-target="#transient-storage-allocation"><span class="toc-section-number">6.1.1</span>  Transient storage allocation</a></li>
-  <li><a href="#user-controlled-memory" id="toc-user-controlled-memory" class="nav-link" data-scroll-target="#user-controlled-memory"><span class="toc-section-number">6.1.2</span>  User-controlled memory</a></li>
+  <li><a href="#transient-storage-allocation" id="toc-transient-storage-allocation" class="nav-link" data-scroll-target="#transient-storage-allocation"><span class="header-section-number">6.1.1</span> Transient storage allocation</a></li>
+  <li><a href="#user-controlled-memory" id="toc-user-controlled-memory" class="nav-link" data-scroll-target="#user-controlled-memory"><span class="header-section-number">6.1.2</span> User-controlled memory</a></li>
   </ul></li>
-  <li><a href="#error-signaling" id="toc-error-signaling" class="nav-link" data-scroll-target="#error-signaling"><span class="toc-section-number">6.2</span>  Error signaling</a>
+  <li><a href="#error-signaling" id="toc-error-signaling" class="nav-link" data-scroll-target="#error-signaling"><span class="header-section-number">6.2</span> Error signaling</a>
   <ul class="collapse">
-  <li><a href="#error-signaling-from-fortran" id="toc-error-signaling-from-fortran" class="nav-link" data-scroll-target="#error-signaling-from-fortran"><span class="toc-section-number">6.2.1</span>  Error signaling from Fortran</a></li>
+  <li><a href="#error-signaling-from-fortran" id="toc-error-signaling-from-fortran" class="nav-link" data-scroll-target="#error-signaling-from-fortran"><span class="header-section-number">6.2.1</span> Error signaling from Fortran</a></li>
   </ul></li>
-  <li><a href="#random-number-generation" id="toc-random-number-generation" class="nav-link" data-scroll-target="#random-number-generation"><span class="toc-section-number">6.3</span>  Random number generation</a></li>
-  <li><a href="#missing-and-ieee-special-values" id="toc-missing-and-ieee-special-values" class="nav-link" data-scroll-target="#missing-and-ieee-special-values"><span class="toc-section-number">6.4</span>  Missing and IEEE special values</a></li>
-  <li><a href="#printing" id="toc-printing" class="nav-link" data-scroll-target="#printing"><span class="toc-section-number">6.5</span>  Printing</a>
+  <li><a href="#random-number-generation" id="toc-random-number-generation" class="nav-link" data-scroll-target="#random-number-generation"><span class="header-section-number">6.3</span> Random number generation</a></li>
+  <li><a href="#missing-and-ieee-special-values" id="toc-missing-and-ieee-special-values" class="nav-link" data-scroll-target="#missing-and-ieee-special-values"><span class="header-section-number">6.4</span> Missing and IEEE special values</a></li>
+  <li><a href="#printing" id="toc-printing" class="nav-link" data-scroll-target="#printing"><span class="header-section-number">6.5</span> Printing</a>
   <ul class="collapse">
-  <li><a href="#printing-from-fortran" id="toc-printing-from-fortran" class="nav-link" data-scroll-target="#printing-from-fortran"><span class="toc-section-number">6.5.1</span>  Printing from Fortran</a></li>
+  <li><a href="#printing-from-fortran" id="toc-printing-from-fortran" class="nav-link" data-scroll-target="#printing-from-fortran"><span class="header-section-number">6.5.1</span> Printing from Fortran</a></li>
   </ul></li>
-  <li><a href="#calling-c-from-fortran-and-vice-versa" id="toc-calling-c-from-fortran-and-vice-versa" class="nav-link" data-scroll-target="#calling-c-from-fortran-and-vice-versa"><span class="toc-section-number">6.6</span>  Calling C from Fortran and vice versa</a>
+  <li><a href="#calling-c-from-fortran-and-vice-versa" id="toc-calling-c-from-fortran-and-vice-versa" class="nav-link" data-scroll-target="#calling-c-from-fortran-and-vice-versa"><span class="header-section-number">6.6</span> Calling C from Fortran and vice versa</a>
   <ul class="collapse">
-  <li><a href="#fortran-character-strings" id="toc-fortran-character-strings" class="nav-link" data-scroll-target="#fortran-character-strings"><span class="toc-section-number">6.6.1</span>  Fortran character strings</a></li>
-  <li><a href="#fortran-logical" id="toc-fortran-logical" class="nav-link" data-scroll-target="#fortran-logical"><span class="toc-section-number">6.6.2</span>  Fortran LOGICAL</a></li>
-  <li><a href="#passing-functions" id="toc-passing-functions" class="nav-link" data-scroll-target="#passing-functions"><span class="toc-section-number">6.6.3</span>  Passing functions</a></li>
+  <li><a href="#fortran-character-strings" id="toc-fortran-character-strings" class="nav-link" data-scroll-target="#fortran-character-strings"><span class="header-section-number">6.6.1</span> Fortran character strings</a></li>
+  <li><a href="#fortran-logical" id="toc-fortran-logical" class="nav-link" data-scroll-target="#fortran-logical"><span class="header-section-number">6.6.2</span> Fortran LOGICAL</a></li>
+  <li><a href="#passing-functions" id="toc-passing-functions" class="nav-link" data-scroll-target="#passing-functions"><span class="header-section-number">6.6.3</span> Passing functions</a></li>
   </ul></li>
-  <li><a href="#numerical-analysis-subroutines" id="toc-numerical-analysis-subroutines" class="nav-link" data-scroll-target="#numerical-analysis-subroutines"><span class="toc-section-number">6.7</span>  Numerical analysis subroutines</a>
+  <li><a href="#numerical-analysis-subroutines" id="toc-numerical-analysis-subroutines" class="nav-link" data-scroll-target="#numerical-analysis-subroutines"><span class="header-section-number">6.7</span> Numerical analysis subroutines</a>
   <ul class="collapse">
-  <li><a href="#distribution-functions" id="toc-distribution-functions" class="nav-link" data-scroll-target="#distribution-functions"><span class="toc-section-number">6.7.1</span>  Distribution functions</a></li>
-  <li><a href="#mathematical-functions" id="toc-mathematical-functions" class="nav-link" data-scroll-target="#mathematical-functions"><span class="toc-section-number">6.7.2</span>  Mathematical functions</a></li>
-  <li><a href="#numerical-utilities" id="toc-numerical-utilities" class="nav-link" data-scroll-target="#numerical-utilities"><span class="toc-section-number">6.7.3</span>  Numerical Utilities</a></li>
-  <li><a href="#mathematical-constants" id="toc-mathematical-constants" class="nav-link" data-scroll-target="#mathematical-constants"><span class="toc-section-number">6.7.4</span>  Mathematical constants</a></li>
+  <li><a href="#distribution-functions" id="toc-distribution-functions" class="nav-link" data-scroll-target="#distribution-functions"><span class="header-section-number">6.7.1</span> Distribution functions</a></li>
+  <li><a href="#mathematical-functions" id="toc-mathematical-functions" class="nav-link" data-scroll-target="#mathematical-functions"><span class="header-section-number">6.7.2</span> Mathematical functions</a></li>
+  <li><a href="#numerical-utilities" id="toc-numerical-utilities" class="nav-link" data-scroll-target="#numerical-utilities"><span class="header-section-number">6.7.3</span> Numerical Utilities</a></li>
+  <li><a href="#mathematical-constants" id="toc-mathematical-constants" class="nav-link" data-scroll-target="#mathematical-constants"><span class="header-section-number">6.7.4</span> Mathematical constants</a></li>
   </ul></li>
-  <li><a href="#optimization" id="toc-optimization" class="nav-link" data-scroll-target="#optimization"><span class="toc-section-number">6.8</span>  Optimization</a></li>
-  <li><a href="#integration" id="toc-integration" class="nav-link" data-scroll-target="#integration"><span class="toc-section-number">6.9</span>  Integration</a></li>
-  <li><a href="#utility-functions" id="toc-utility-functions" class="nav-link" data-scroll-target="#utility-functions"><span class="toc-section-number">6.10</span>  Utility functions</a></li>
-  <li><a href="#re-encoding" id="toc-re-encoding" class="nav-link" data-scroll-target="#re-encoding"><span class="toc-section-number">6.11</span>  Re-encoding</a></li>
-  <li><a href="#condition-handling-and-cleanup-code" id="toc-condition-handling-and-cleanup-code" class="nav-link" data-scroll-target="#condition-handling-and-cleanup-code"><span class="toc-section-number">6.12</span>  Condition handling and cleanup code</a></li>
-  <li><a href="#allowing-interrupts" id="toc-allowing-interrupts" class="nav-link" data-scroll-target="#allowing-interrupts"><span class="toc-section-number">6.13</span>  Allowing interrupts</a></li>
-  <li><a href="#platform-and-version-information" id="toc-platform-and-version-information" class="nav-link" data-scroll-target="#platform-and-version-information"><span class="toc-section-number">6.14</span>  Platform and version information</a></li>
-  <li><a href="#inlining-c-functions" id="toc-inlining-c-functions" class="nav-link" data-scroll-target="#inlining-c-functions"><span class="toc-section-number">6.15</span>  Inlining C functions</a></li>
-  <li><a href="#controlling-visibility" id="toc-controlling-visibility" class="nav-link" data-scroll-target="#controlling-visibility"><span class="toc-section-number">6.16</span>  Controlling visibility</a></li>
-  <li><a href="#using-these-functions-in-your-own-c-code" id="toc-using-these-functions-in-your-own-c-code" class="nav-link" data-scroll-target="#using-these-functions-in-your-own-c-code"><span class="toc-section-number">6.17</span>  Using these functions in your own C code</a></li>
-  <li><a href="#organization-of-header-files" id="toc-organization-of-header-files" class="nav-link" data-scroll-target="#organization-of-header-files"><span class="toc-section-number">6.18</span>  Organization of header files</a></li>
+  <li><a href="#optimization" id="toc-optimization" class="nav-link" data-scroll-target="#optimization"><span class="header-section-number">6.8</span> Optimization</a></li>
+  <li><a href="#integration" id="toc-integration" class="nav-link" data-scroll-target="#integration"><span class="header-section-number">6.9</span> Integration</a></li>
+  <li><a href="#utility-functions" id="toc-utility-functions" class="nav-link" data-scroll-target="#utility-functions"><span class="header-section-number">6.10</span> Utility functions</a></li>
+  <li><a href="#re-encoding" id="toc-re-encoding" class="nav-link" data-scroll-target="#re-encoding"><span class="header-section-number">6.11</span> Re-encoding</a></li>
+  <li><a href="#condition-handling-and-cleanup-code" id="toc-condition-handling-and-cleanup-code" class="nav-link" data-scroll-target="#condition-handling-and-cleanup-code"><span class="header-section-number">6.12</span> Condition handling and cleanup code</a></li>
+  <li><a href="#allowing-interrupts" id="toc-allowing-interrupts" class="nav-link" data-scroll-target="#allowing-interrupts"><span class="header-section-number">6.13</span> Allowing interrupts</a></li>
+  <li><a href="#platform-and-version-information" id="toc-platform-and-version-information" class="nav-link" data-scroll-target="#platform-and-version-information"><span class="header-section-number">6.14</span> Platform and version information</a></li>
+  <li><a href="#inlining-c-functions" id="toc-inlining-c-functions" class="nav-link" data-scroll-target="#inlining-c-functions"><span class="header-section-number">6.15</span> Inlining C functions</a></li>
+  <li><a href="#controlling-visibility" id="toc-controlling-visibility" class="nav-link" data-scroll-target="#controlling-visibility"><span class="header-section-number">6.16</span> Controlling visibility</a></li>
+  <li><a href="#using-these-functions-in-your-own-c-code" id="toc-using-these-functions-in-your-own-c-code" class="nav-link" data-scroll-target="#using-these-functions-in-your-own-c-code"><span class="header-section-number">6.17</span> Using these functions in your own C code</a></li>
+  <li><a href="#organization-of-header-files" id="toc-organization-of-header-files" class="nav-link" data-scroll-target="#organization-of-header-files"><span class="header-section-number">6.18</span> Organization of header files</a></li>
   </ul>
 </nav>
     </div>
@@ -323,7 +314,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The R API: entry points for C code</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The R API: entry points for C code</span></h1>
 </div>
 
 
@@ -523,13 +514,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Note that this is not guaranteed to be portable, for the return conventions might not be compatible between the C and Fortran compilers used. (Passing values <em>via</em> arguments is safer.)</p>
 <p>The standard packages, for example <strong>stats</strong>, are a rich source of further examples.</p>
 <p>Where supported, <em>link time optimization</em> provides a reliable way to check the consistency of calls to C from Fortran or <em>vice versa</em>. See <a href="Debugging.html#using-link-time-optimization">Using Link-time Optimization</a>. One place where this occurs is the registration of <code>.Fortran</code> calls in C code (see <a href="System-and-foreign-language-interfaces.html#registering-native-routines">Registering native routines</a>). For example</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>init<span class="op">.</span>c<span class="op">:</span><span class="dv">10</span><span class="op">:</span><span class="dv">13</span><span class="op">:</span> warning<span class="op">:</span> type of 'vsom_' does not match original</span>
+<div class="sourceCode" id="cb20"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>init<span class="op">.</span>c<span class="op">:</span><span class="dv">10</span><span class="op">:</span><span class="dv">13</span><span class="op">:</span> warning<span class="op">:</span> type of <span class="ch">'v</span><span class="er">som_</span><span class="ch">'</span> does not match original</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a> declaration <span class="op">[-</span>Wlto<span class="op">-</span>type<span class="op">-</span>mismatch<span class="op">]</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">extern</span> <span class="dt">void</span> F77_NAME<span class="op">(</span>vsom<span class="op">)(</span><span class="dt">void</span> <span class="op">*,</span> <span class="dt">void</span> <span class="op">*,</span> <span class="dt">void</span> <span class="op">*,</span> <span class="dt">void</span> <span class="op">*,</span> </span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> <span class="op">*,</span> <span class="dt">void</span> <span class="op">*,</span> <span class="dt">void</span> <span class="op">*,</span> <span class="dt">void</span> <span class="op">*,</span> <span class="dt">void</span> <span class="op">*);</span></span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>vsom<span class="op">.</span>f90<span class="op">:</span><span class="dv">20</span><span class="op">:</span><span class="dv">33</span><span class="op">:</span> note<span class="op">:</span> type mismatch in parameter <span class="dv">9</span></span>
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>   subroutine vsom<span class="op">(</span>neurons<span class="op">,</span>dt<span class="op">,</span>dtrows<span class="op">,</span>dtcols<span class="op">,</span>xdim<span class="op">,</span>ydim<span class="op">,</span>alpha<span class="op">,</span>train<span class="op">)</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>vsom<span class="op">.</span>f90<span class="op">:</span><span class="dv">20</span><span class="op">:</span><span class="dv">33</span><span class="op">:</span> note<span class="op">:</span> 'vsom' was previously declared here</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>vsom<span class="op">.</span>f90<span class="op">:</span><span class="dv">20</span><span class="op">:</span><span class="dv">33</span><span class="op">:</span> note<span class="op">:</span> <span class="ch">'v</span><span class="er">som</span><span class="ch">'</span> was previously declared here</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>shows that a subroutine has been registered with 9 arguments (as that is what the <code>.Fortran</code> call used) but only has 8.</p>
 <section id="fortran-character-strings" class="level3 subsection" data-number="6.6.1">
 <h3 class="subsection anchored" data-number="6.6.1" data-anchor-id="fortran-character-strings"><span class="header-section-number">6.6.1</span> Fortran character strings</h3>
@@ -555,7 +546,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> cmsg<span class="op">[</span>msg_len<span class="op">+</span><span class="dv">1</span><span class="op">];</span></span>
 <span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    strncpy<span class="op">(</span>cmsg<span class="op">,</span> msg<span class="op">,</span> msg_len<span class="op">);</span></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    cmsg<span class="op">[</span>msg_len<span class="op">]</span> <span class="op">=</span> <span class="ch">'\0'</span><span class="op">;</span> <span class="co">// nul-terminate the string, to be sure</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    cmsg<span class="op">[</span>msg_len<span class="op">]</span> <span class="op">=</span> <span class="ch">'</span><span class="sc">\0</span><span class="ch">'</span><span class="op">;</span> <span class="co">// nul-terminate the string, to be sure</span></span>
 <span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">// do something with 'cmsg' </span></span>
 <span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>in code depending on <code>R(&gt;= 3.6.2)</code>. For earlier versions of R we could just assume that <code>msg</code> is nul-terminated (not guaranteed, but people have been getting away with it for many years), so the complete C side might be</p>
@@ -569,7 +560,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> cmsg<span class="op">[</span>msg_len<span class="op">+</span><span class="dv">1</span><span class="op">];</span></span>
 <span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    strncpy<span class="op">(</span>cmsg<span class="op">,</span> msg<span class="op">,</span> msg_len<span class="op">);</span></span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    cmsg<span class="op">[</span>msg_len<span class="op">]</span> <span class="op">=</span> <span class="ch">'\0'</span><span class="op">;</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    cmsg<span class="op">[</span>msg_len<span class="op">]</span> <span class="op">=</span> <span class="ch">'</span><span class="sc">\0</span><span class="ch">'</span><span class="op">;</span></span>
 <span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">// do something with 'cmsg' </span></span>
 <span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
 <span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="pp">#else</span></span>
@@ -583,7 +574,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb27"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>      module cfuncs</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>        use iso_c_binding<span class="op">,</span> only<span class="op">:</span> c_char<span class="op">,</span> c_null_char</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>        interface</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>          subroutine cmsg<span class="op">(</span>msg<span class="op">)</span> bind<span class="op">(</span>C<span class="op">,</span> name <span class="op">=</span> 'cmsg'<span class="op">)</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>          subroutine cmsg<span class="op">(</span>msg<span class="op">)</span> bind<span class="op">(</span>C<span class="op">,</span> name <span class="op">=</span> <span class="ch">'c</span><span class="er">msg</span><span class="ch">'</span><span class="op">)</span></span>
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>            use iso_c_binding<span class="op">,</span> only<span class="op">:</span> c_char</span>
 <span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>            character<span class="op">(</span>kind <span class="op">=</span> c_char<span class="op">)::</span> msg<span class="op">(*)</span></span>
 <span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>          end subroutine cmsg</span>
@@ -604,7 +595,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Passing a variable-length string from C to Fortran is trickier, but <a href="https://www.intel.com/content/www/us/en/docs/fortran-compiler/developer-guide-reference/2023-0/bind-c.html" class="uri">https://www.intel.com/content/www/us/en/docs/fortran-compiler/developer-guide-reference/2023-0/bind-c.html</a> provides a recipe. However, all the uses in BLAS and LAPACK are of a single character, and for these we can write a wrapper in Fortran along the lines of</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>      subroutine c_dgemm<span class="op">(</span>transa<span class="op">,</span> transb<span class="op">,</span> m<span class="op">,</span> n<span class="op">,</span> k<span class="op">,</span> alpha<span class="op">,</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>     <span class="op">+</span>     a<span class="op">,</span> lda<span class="op">,</span> b<span class="op">,</span> ldb<span class="op">,</span> beta<span class="op">,</span> c<span class="op">,</span> ldc<span class="op">)</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>     <span class="op">+</span>     bind<span class="op">(</span>C<span class="op">,</span> name <span class="op">=</span> 'Cdgemm'<span class="op">)</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>     <span class="op">+</span>     bind<span class="op">(</span>C<span class="op">,</span> name <span class="op">=</span> <span class="ch">'C</span><span class="er">dgemm</span><span class="ch">'</span><span class="op">)</span></span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>        use iso_c_binding<span class="op">,</span> only <span class="op">:</span> c_char<span class="op">,</span> c_int<span class="op">,</span> c_double</span>
 <span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>        character<span class="op">(</span>c_char<span class="op">),</span> intent<span class="op">(</span>in<span class="op">)</span> <span class="op">::</span> transa<span class="op">,</span> transb</span>
 <span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>        integer<span class="op">(</span>c_int<span class="op">),</span> intent<span class="op">(</span>in<span class="op">)</span> <span class="op">::</span> m<span class="op">,</span> n<span class="op">,</span> k<span class="op">,</span> lda<span class="op">,</span> ldb<span class="op">,</span> ldc</span>
@@ -906,7 +897,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <dd class="page-columns page-full">
 <p>Computes <code>cos(pi * x)</code> (where <code>pi</code> is 3.14159...), accurately, notably for half integer <code>x</code>.</p>
 <div class="page-columns page-full"><p>This might be provided by your platform<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>, in which case it is not included in <code>Rmath.h</code>, but is in <code>math.h</code> which <code>Rmath.h</code> includes. (Ensure that neither <code>math.h</code> nor <code>cmath</code> is included before <code>Rmath.h</code> or define</p><div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;It is an optional C11 extension.</p></li></div></div>
-<div class="sourceCode" id="cb39"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define __STDC_WANT_IEC_60559_FUNCS_EXT__ 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define __STDC_WANT_IEC_60559_FUNCS_EXT__ </span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>before the first inclusion.)</p>
 </dd>
 </dl>
@@ -1341,7 +1332,7 @@ with the same arguments, but all pointers.</code></pre>
 <span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifdef __GNUC__</span></span>
 <span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="co">// this covers gcc, clang, icc</span></span>
 <span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="pp"># undef alloca</span></span>
-<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a><span class="pp"># define alloca(x) __builtin_alloca((x))</span></span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a><span class="pp"># define alloca</span><span class="op">(</span><span class="pp">x</span><span class="op">)</span><span class="pp"> __builtin_alloca</span><span class="op">((</span><span class="pp">x</span><span class="op">))</span></span>
 <span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#elif defined(HAVE_ALLOCA_H)</span></span>
 <span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a><span class="co">// needed for native compilers on Solaris and AIX</span></span>
 <span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a><span class="pp"># include </span><span class="im">&lt;alloca.h&gt;</span></span>
@@ -1571,9 +1562,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1638,6 +1643,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -1681,7 +1772,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
-    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -1709,6 +1800,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
     <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
   </div>
 </footer>

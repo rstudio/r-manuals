@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.475">
+<meta name="generator" content="quarto-1.3.340">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -46,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -137,60 +108,67 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <span class="navbar-title">R Manuals :: R Installation and Administration</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./../index.html">
+    <a class="nav-link" href="./../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Manuals</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
         <li>
-    <a class="dropdown-item" href="./../r-intro/index.html">
+    <a class="dropdown-item" href="./../r-intro/index.html" rel="" target="">
  <span class="dropdown-text">An Introduction to R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-data/index.html">
+    <a class="dropdown-item" href="./../r-data/index.html" rel="" target="">
  <span class="dropdown-text">R Data Import/Export</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-admin/index.html">
+    <a class="dropdown-item" href="./../r-admin/index.html" rel="" target="">
  <span class="dropdown-text">R Installation and Administration</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-exts/index.html">
+    <a class="dropdown-item" href="./../r-exts/index.html" rel="" target="">
  <span class="dropdown-text">Writing R Extensions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-lang/index.html">
+    <a class="dropdown-item" href="./../r-lang/index.html" rel="" target="">
  <span class="dropdown-text">R Language Definition</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-ints/index.html">
+    <a class="dropdown-item" href="./../r-ints/index.html" rel="" target="">
  <span class="dropdown-text">R Internals</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./../about.html">
+    <a class="nav-link" href="./../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Appendix C — Platform notes</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Essential-and-useful-other-programs-under-a-Unix-alike.html">Appendices</a></li><li class="breadcrumb-item"><a href="./Platform-notes.html"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Platform notes</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -198,100 +176,117 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-      <div class="mt-2 flex-shrink-0 align-items-center">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">R Installation and Administration</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R Installation and Administration</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Obtaining-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Obtaining R</span></a>
+  <a href="./Obtaining-R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Obtaining R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Installing-R-under-Unix-alikes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Installing R under Unix-alikes</span></a>
+  <a href="./Installing-R-under-Unix-alikes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Installing R under Unix-alikes</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Installing-R-under-Windows.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Installing R under Windows</span></a>
+  <a href="./Installing-R-under-Windows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Installing R under Windows</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Installing-R-under-macOS.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Installing R under macOS</span></a>
+  <a href="./Installing-R-under-macOS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Installing R under macOS</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Running-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Running R</span></a>
+  <a href="./Running-R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Running R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Add-on-packages.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Add-on packages</span></a>
+  <a href="./Add-on-packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Add-on packages</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Internationalization.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Internationalization and Localization</span></a>
+  <a href="./Internationalization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Internationalization and Localization</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Choosing-between-32--and-64-bit-builds.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Choosing between 32- and 64-bit builds</span></a>
+  <a href="./Choosing-between-32--and-64-bit-builds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Choosing between 32- and 64-bit builds</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./The-standalone-Rmath-library.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The standalone Rmath library</span></a>
+  <a href="./The-standalone-Rmath-library.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The standalone Rmath library</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link">Function and variable index</a>
+  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Function and variable index</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link">Concept index</a>
+  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Concept index</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Environment-variable-index.html" class="sidebar-item-text sidebar-link">Environment variable index</a>
+  <a href="./Environment-variable-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Environment variable index</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Essential-and-useful-other-programs-under-a-Unix-alike.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Essential and useful other programs under a Unix-alike</span></a>
+  <a href="./Essential-and-useful-other-programs-under-a-Unix-alike.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Essential and useful other programs under a Unix-alike</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Configuration-on-a-Unix-alike.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Configuration on a Unix-alike</span></a>
+  <a href="./Configuration-on-a-Unix-alike.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Configuration on a Unix-alike</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Platform-notes.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Platform notes</span></a>
+  <a href="./Platform-notes.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Platform notes</span></span></a>
   </div>
 </li>
       </ul>
@@ -299,37 +294,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#x11-issues" id="toc-x11-issues" class="nav-link active" data-scroll-target="#x11-issues"><span class="toc-section-number">C.1</span>  X11 issues</a></li>
-  <li><a href="#linux" id="toc-linux" class="nav-link" data-scroll-target="#linux"><span class="toc-section-number">C.2</span>  Linux</a>
+  <li><a href="#x11-issues" id="toc-x11-issues" class="nav-link active" data-scroll-target="#x11-issues"><span class="header-section-number">C.1</span> X11 issues</a></li>
+  <li><a href="#linux" id="toc-linux" class="nav-link" data-scroll-target="#linux"><span class="header-section-number">C.2</span> Linux</a>
   <ul class="collapse">
-  <li><a href="#clang" id="toc-clang" class="nav-link" data-scroll-target="#clang"><span class="toc-section-number">C.2.1</span>  Clang</a></li>
-  <li><a href="#intel-compilers" id="toc-intel-compilers" class="nav-link" data-scroll-target="#intel-compilers"><span class="toc-section-number">C.2.2</span>  Intel compilers</a></li>
+  <li><a href="#clang" id="toc-clang" class="nav-link" data-scroll-target="#clang"><span class="header-section-number">C.2.1</span> Clang</a></li>
+  <li><a href="#intel-compilers" id="toc-intel-compilers" class="nav-link" data-scroll-target="#intel-compilers"><span class="header-section-number">C.2.2</span> Intel compilers</a></li>
   </ul></li>
-  <li><a href="#macos" id="toc-macos" class="nav-link" data-scroll-target="#macos"><span class="toc-section-number">C.3</span>  macOS</a>
+  <li><a href="#macos" id="toc-macos" class="nav-link" data-scroll-target="#macos"><span class="header-section-number">C.3</span> macOS</a>
   <ul class="collapse">
-  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites"><span class="toc-section-number">C.3.1</span>  Prerequisites</a></li>
-  <li><a href="#fortran-compiler" id="toc-fortran-compiler" class="nav-link" data-scroll-target="#fortran-compiler"><span class="toc-section-number">C.3.2</span>  Fortran compiler</a></li>
-  <li><a href="#cairo-graphics" id="toc-cairo-graphics" class="nav-link" data-scroll-target="#cairo-graphics"><span class="toc-section-number">C.3.3</span>  Cairo graphics</a></li>
-  <li><a href="#other-cc-compilers" id="toc-other-cc-compilers" class="nav-link" data-scroll-target="#other-cc-compilers"><span class="toc-section-number">C.3.4</span>  Other C/C++ compilers</a></li>
-  <li><a href="#other-libraries" id="toc-other-libraries" class="nav-link" data-scroll-target="#other-libraries"><span class="toc-section-number">C.3.5</span>  Other libraries</a></li>
-  <li><a href="#tcltk-headers-and-libraries" id="toc-tcltk-headers-and-libraries" class="nav-link" data-scroll-target="#tcltk-headers-and-libraries"><span class="toc-section-number">C.3.6</span>  Tcl/Tk headers and libraries</a></li>
-  <li><a href="#java" id="toc-java" class="nav-link" data-scroll-target="#java"><span class="toc-section-number">C.3.7</span>  Java</a></li>
-  <li><a href="#frameworks" id="toc-frameworks" class="nav-link" data-scroll-target="#frameworks"><span class="toc-section-number">C.3.8</span>  Frameworks</a></li>
-  <li><a href="#building-r.app" id="toc-building-r.app" class="nav-link" data-scroll-target="#building-r.app"><span class="toc-section-number">C.3.9</span>  Building R.app</a></li>
-  <li><a href="#building-binary-packages" id="toc-building-binary-packages" class="nav-link" data-scroll-target="#building-binary-packages"><span class="toc-section-number">C.3.10</span>  Building binary packages</a></li>
-  <li><a href="#building-for-intel-on-arm64" id="toc-building-for-intel-on-arm64" class="nav-link" data-scroll-target="#building-for-intel-on-arm64"><span class="toc-section-number">C.3.11</span>  Building for Intel on <code>arm64</code></a></li>
-  <li><a href="#installer" id="toc-installer" class="nav-link" data-scroll-target="#installer"><span class="toc-section-number">C.3.12</span>  Installer</a></li>
+  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites"><span class="header-section-number">C.3.1</span> Prerequisites</a></li>
+  <li><a href="#fortran-compiler" id="toc-fortran-compiler" class="nav-link" data-scroll-target="#fortran-compiler"><span class="header-section-number">C.3.2</span> Fortran compiler</a></li>
+  <li><a href="#cairo-graphics" id="toc-cairo-graphics" class="nav-link" data-scroll-target="#cairo-graphics"><span class="header-section-number">C.3.3</span> Cairo graphics</a></li>
+  <li><a href="#other-cc-compilers" id="toc-other-cc-compilers" class="nav-link" data-scroll-target="#other-cc-compilers"><span class="header-section-number">C.3.4</span> Other C/C++ compilers</a></li>
+  <li><a href="#other-libraries" id="toc-other-libraries" class="nav-link" data-scroll-target="#other-libraries"><span class="header-section-number">C.3.5</span> Other libraries</a></li>
+  <li><a href="#tcltk-headers-and-libraries" id="toc-tcltk-headers-and-libraries" class="nav-link" data-scroll-target="#tcltk-headers-and-libraries"><span class="header-section-number">C.3.6</span> Tcl/Tk headers and libraries</a></li>
+  <li><a href="#java" id="toc-java" class="nav-link" data-scroll-target="#java"><span class="header-section-number">C.3.7</span> Java</a></li>
+  <li><a href="#frameworks" id="toc-frameworks" class="nav-link" data-scroll-target="#frameworks"><span class="header-section-number">C.3.8</span> Frameworks</a></li>
+  <li><a href="#building-r.app" id="toc-building-r.app" class="nav-link" data-scroll-target="#building-r.app"><span class="header-section-number">C.3.9</span> Building R.app</a></li>
+  <li><a href="#building-binary-packages" id="toc-building-binary-packages" class="nav-link" data-scroll-target="#building-binary-packages"><span class="header-section-number">C.3.10</span> Building binary packages</a></li>
+  <li><a href="#building-for-intel-on-arm64" id="toc-building-for-intel-on-arm64" class="nav-link" data-scroll-target="#building-for-intel-on-arm64"><span class="header-section-number">C.3.11</span> Building for Intel on <code>arm64</code></a></li>
+  <li><a href="#installer" id="toc-installer" class="nav-link" data-scroll-target="#installer"><span class="header-section-number">C.3.12</span> Installer</a></li>
   </ul></li>
-  <li><a href="#freebsd" id="toc-freebsd" class="nav-link" data-scroll-target="#freebsd"><span class="toc-section-number">C.4</span>  FreeBSD</a></li>
-  <li><a href="#openbsd" id="toc-openbsd" class="nav-link" data-scroll-target="#openbsd"><span class="toc-section-number">C.5</span>  OpenBSD</a></li>
-  <li><a href="#cygwin" id="toc-cygwin" class="nav-link" data-scroll-target="#cygwin"><span class="toc-section-number">C.6</span>  Cygwin</a></li>
-  <li><a href="#new-platforms" id="toc-new-platforms" class="nav-link" data-scroll-target="#new-platforms"><span class="toc-section-number">C.7</span>  New platforms</a></li>
+  <li><a href="#freebsd" id="toc-freebsd" class="nav-link" data-scroll-target="#freebsd"><span class="header-section-number">C.4</span> FreeBSD</a></li>
+  <li><a href="#openbsd" id="toc-openbsd" class="nav-link" data-scroll-target="#openbsd"><span class="header-section-number">C.5</span> OpenBSD</a></li>
+  <li><a href="#cygwin" id="toc-cygwin" class="nav-link" data-scroll-target="#cygwin"><span class="header-section-number">C.6</span> Cygwin</a></li>
+  <li><a href="#new-platforms" id="toc-new-platforms" class="nav-link" data-scroll-target="#new-platforms"><span class="header-section-number">C.7</span> New platforms</a></li>
   </ul>
 </nav>
     </div>
@@ -338,7 +334,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Appendix C — Platform notes</h1>
+<h1 class="title">Appendix C — Platform notes</h1>
 </div>
 
 
@@ -473,12 +469,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The instructions here are for Intel 64-bit (<code>x86_64</code>) or ‘Apple Silicon’ (<code>arm64</code>) builds on macOS 11 (Big Sur), 12 (Monterey) and 13 (Ventura). (They may well work on Intel macOS 10.14 or 10.15, but are untested there.)</p>
 <section id="prerequisites" class="level3 subsection page-columns page-full" data-number="C.3.1">
 <h3 class="subsection anchored" data-number="C.3.1" data-anchor-id="prerequisites"><span class="header-section-number">C.3.1</span> Prerequisites</h3>
-<p>The Intel components install into <code>/usr/local</code>, the <code>arm64</code> ones into <code>/opt/R/arm64</code> which may not exist so it it is simplest to first create that directory and adjust its ownership if desired:</p>
+<p>The Intel components install into <code>/opt/R/x86_64</code>, the <code>arm64</code> ones into <code>/opt/R/arm64</code> which may not exist so it it is simplest to first create that directory and adjust its ownership if desired:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkdir <span class="at">-p</span> /opt/R/arm64</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chown <span class="at">-R</span> <span class="va">$USER</span> /opt/R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>and add <code>/opt/R/arm64/bin</code> to your path.</p>
 <p>Define an appropriate variable in your Terminal:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>set LOCAL<span class="ot">=</span><span class="er">/</span>usr<span class="sc">/</span>local <span class="co"># Intel</span></span>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>set LOCAL<span class="ot">=</span><span class="er">//</span>opt<span class="sc">/</span>R<span class="sc">/</span>x86_64 <span class="co"># Intel</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>set LOCAL<span class="ot">=</span><span class="er">/</span>opt<span class="sc">/</span>R<span class="sc">/</span>arm64 <span class="co"># Apple Silicon</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>to use the code snippets here.</p>
 <p>The following are essential to build R:</p>
@@ -488,13 +484,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The Command Line Tools provide C and C++ compilers derived from LLVM’s <code>clang</code> but nowadays known as ‘Apple clang’ with different versioning (so Apple clang 14 is unrelated to LLVM clang 14).</p></li>
 <li><p>A Fortran compiler. See <a href="#fortran-compilers">Fortran compiler</a>.</p></li>
 <li><p>Binary components <code>pcre2</code><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> and <code>xz</code> (for <code>liblzma</code>) from <a href="https://mac.r-project.org/bin/" class="uri">https://mac.r-project.org/bin/</a>. There is an R script there to help with installing all the needed components. (At the time of writing <code>install.libs("r-base-dev")</code> installed neither <code>readline5</code> nor those needed to support Pango.)</p>
+<p>Intel users want the <code>darwin20</code> components: the <code>darwin17</code> ones are for macOS 10.13–10.15.</p>
 <p>Or this can be done manually, by for example</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-OL</span> https://mac.r-project.org/bin/darwin17/x86_64/pcre2-10.39-darwin.17-x86_64.tar.xz</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> tar <span class="at">-xvzf</span> pcre2-10.39-darwin.17-x86_64.tar.gz <span class="at">-C</span> /</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-OL</span> https://mac.r-project.org/bin/darwin17/x86_64/xz-5.2.5-darwin.17-x86_64.tar.xz</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> tar <span class="at">-xvzf</span> xz-5.2.5-darwin.17-x86_64.tar.xz <span class="at">-C</span> /</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>(<code>sudo</code> is not needed if your account owns <code>/usr/local</code> or <code>/opt/R/arm64</code> as appropriate.)</p>
-<p>Messages like <code>usr/local/: Can't restore time</code> should be ignored.</p></li>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-OL</span> https://mac.r-project.org/bin/darwin20/x86_64/pcre2-10.42-darwin.20-x86_64.tar.xz</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> tar <span class="at">-xvzf</span> pcre2-10.42-darwin.20-x86_64.tar.gz <span class="at">-C</span> /</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-OL</span> https://mac.r-project.org/bin/darwin20/x86_64/xz-5.4.2-darwin.20-x86_64.tar.xz</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> tar <span class="at">-xvzf</span> xz-5.4.2-darwin.20-x86_64.tar.xz <span class="at">-C</span> /</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>(<code>sudo</code> is not needed if your account owns <code>/opt/R/x86_64</code> or <code>/opt/R/arm64</code> as appropriate.)</p>
+<p>Messages like <code>opt/R/: Can't restore time</code> should be ignored.</p></li>
 </ul>
 <div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;If compiling it from source on <code>arm64</code>, <code>pcre2</code> (at least up to version 10.39) needs to be built without JIT support (the default) as the R build segfaults if that is enabled, so do run <code>make check</code> on your build.</p></li></div><p>and desirable</p>
 <ul>
@@ -537,13 +534,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>If building software or installing source packages with <code>cmake</code> (or a non-Apple <code>make</code>) for ‘Apple Silicon’ ensure it contains the <code>arm64</code> architecture (use <code>file</code> to be sure). Running Apple compilers from an <code>x86_64</code> executable will generate <code>x86_64</code> code ….</p>
 <p>Updating an <code>arm64</code> build may fail because of the bug described at <a href="https://openradar.appspot.com/FB8914243" class="uri">https://openradar.appspot.com/FB8914243</a> but <em>ab initio</em> builds work. This has been far rarer since macOS 13.</p>
 <div class="page-columns page-full"><p>If you are using the macOS 13 SDK<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>, you may need to add something like <code>-mmacosx-version-min=12.0</code> to <code>CFLAGS</code>.</p><div class="no-row-height column-margin column-container"><li id="fn7"><p><sup>7</sup>&nbsp;ls -l <code>xcrun -show-sdk-path</code> in a terminal will show you which SDK is selected.</p></li></div></div>
+<p>Linker warnings like</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>ld<span class="sc">:</span> warning<span class="sc">:</span> could not create compact unwind <span class="cf">for</span> _sort_<span class="sc">:</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>   register <span class="dv">26</span> saved somewhere other than <span class="cf">in</span> frame</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>ld<span class="sc">:</span> warning<span class="sc">:</span> ld<span class="sc">:</span> warning<span class="sc">:</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>   could not create compact unwind <span class="cf">for</span> _arcoef_<span class="sc">:</span> registers <span class="dv">23</span> and <span class="dv">24</span> not saved contiguously <span class="cf">in</span> frame</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>ld<span class="sc">:</span> warning<span class="sc">:</span> could not create compact unwind <span class="cf">for</span> ___emutls_get_address<span class="sc">:</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>   registers <span class="dv">23</span> and <span class="dv">24</span> not saved contiguously <span class="cf">in</span> frame</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>can be ignored. These stem from compiled Fortran code, including its run-time libraries.</p>
 <div class="page-columns page-full"><p>The default security settings can make it difficult to install Apple packages which have not been ‘notarized’<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> by Apple. And not just packages, as this has been seen for executables contained in tarballs/zipfiles (for example, for <code>pandoc</code>). Usually one can use <code>Open With</code> (Control/right/two-finger-click in Finder), then select <code>Installer</code> and <code>Open</code> if you get a further warning message. This sometimes applies also to ‘nightly builds’ from <a href="https://mac.R-project.org/" class="uri">https://mac.R-project.org/</a>.</p><div class="no-row-height column-margin column-container"><li id="fn8"><p><sup>8</sup>&nbsp;See <a href="https://developer.apple.com/documentation/xcode/notarizing_macos_software_before_distribution" class="uri">https://developer.apple.com/documentation/xcode/notarizing_macos_software_before_distribution</a>.</p></li></div></div>
 <p>If you run into problems with ‘quarantine’ for tarballs downloaded in a browser, consider using <code>curl -OL</code> to download (as illustrated above) or <code>xattr -c</code> to remove extended attributes.</p>
 <p><code>configure</code> defaults to <code>--with-internal-tzcode</code> on macOS. The native implementation used to be unusable on earlier versions (with a 32-bit <code>time_t</code> and/or timezone tables missing information beyond the 32-bit range). For, e.g., macOS 12.6, option <code>--without-internal-tzcode</code> can be used to override this and R contains sufficient workarounds (for example, the native code fails to recognize dates with a negative <code>tm_year</code>, that is dates before 1900) for R to pass its checks. However, there are discrepancies, notably in Europe in the 1900s and 1940s, even though the Olson database contains the correct information.</p>
 </section>
 <section id="fortran-compiler" class="level3 subsection" data-number="C.3.2">
 <h3 class="subsection anchored" data-number="C.3.2" data-anchor-id="fortran-compiler"><span class="header-section-number">C.3.2</span> Fortran compiler</h3>
-<p>There is ‘universal’ (Intel and <code>arm64</code>) build of <code>gfortran</code> 12.2 at <a href="https://github.com/R-macos/gcc-12-branch/releases/tag/12.2-darwin-r0.1" class="uri">https://github.com/R-macos/gcc-12-branch/releases/tag/12.2-darwin-r0.1</a>. This installs into <code>/opt/gfortran</code>.</p>
+<p>There is ‘universal’ (Intel and <code>arm64</code>) build of <code>gfortran</code> 12.2 at <a href="https://mac.r-project.org/tools/gfortran-12.2-universal.pkg" class="uri">https://mac.r-project.org/tools/gfortran-12.2-universal.pkg</a>. This installs into <code>/opt/gfortran</code>.</p>
 <p>The <code>/opt/gfortran/SDK</code> symlink should point to the desired path to the SDK (defaults to the command line tools SDK). This can be updated by running <code>/opt/gfortran/bin/gfortran-update-sdk</code> or manually. If the symlink is broken, the driver will issue a warning and use <code>xcrun -show-sdk-path</code> to try to find an SDK and use its path. (The SDK path is used when using <code>gfortran</code> to link, so not when building R but when installing a few packages.)</p>
 </section>
 <section id="cairo-graphics" class="level3 subsection" data-number="C.3.3">
@@ -551,12 +556,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Cairo-based graphics devices such as <code>cairo_ps</code>, <code>cairo_pdf</code>, <code>X11(type = "cairo")</code> and the Cairo-based types of devices <code>bmp</code> <code>jpeg</code>, <code>png</code> and <code>tiff</code> are not the default on macOS, and much less used than the Quartz-based devices. However, the only SVG device in the R distribution, <code>svg</code>, is based on Cairo.</p>
 <p>Support for Cairo is optional and can be added in several ways, all of which need <code>pkg-config</code>. <code>configure</code> will add Cairo support if <code>pkg-config</code> finds package <code>cairo</code> unless <code>--without-cairo</code> is used.</p>
 <p>A way to statically link Cairo is by downloading and unpacking components <code>cairo</code>, <code>fontconfig</code>, <code>freetype</code>, <code>pixman</code> and <code>zlib-system-stub</code> (and do not have <code>/opt/X11/lib/pkgconfig</code> in <code>PKG_CONFIG_PATH</code>). Some static builds of <code>fontconfig</code> need <code>libxml2</code> (from component <code>xml2</code>) and others <code>expat</code>, supplied by macOS but needing a file <code>$LOCAL/lib/pkgconfig/expat.pc</code> along the lines of</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>Name<span class="sc">:</span> expat</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>Version<span class="sc">:</span> <span class="dv">2</span>.<span class="fl">2.8</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>Description<span class="sc">:</span> expat XML parser</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>URL<span class="sc">:</span> http<span class="sc">:</span><span class="er">//</span>www.libexpat.org</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>Libs<span class="sc">:</span> <span class="sc">-</span>lexpat</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>Cflags<span class="sc">:</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>Name<span class="sc">:</span> expat</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>Version<span class="sc">:</span> <span class="dv">2</span>.<span class="fl">2.8</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>Description<span class="sc">:</span> expat XML parser</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>URL<span class="sc">:</span> http<span class="sc">:</span><span class="er">//</span>www.libexpat.org</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>Libs<span class="sc">:</span> <span class="sc">-</span>lexpat</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>Cflags<span class="sc">:</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Note that the list of components is liable to change: running <code>pkg-config cairo --exists --print-errors</code> should tell you if any others are required.</p>
 <p>The best font experience of Cairo graphics will be to use it in combination with Pango which will match that supported on most other Unix-alikes. <code>configure</code> uses <code>pkg-config</code> to determine if all the external software required by both Pango and Cairo is available: running <code>pkg-config pangocairo --exists --print-errors</code> should show if the installation suffices and if not, what is missing. At the time of writing using pre-built components <code>cairo</code>, <code>fontconfig</code>, <code>freetype</code>, <code>ffi</code>, <code>fribidi</code>, <code>gettext</code>, <code>icu</code>, <code>glib</code>, <code>harfbuzz</code>, <code>pango</code>, <code>pcre</code>, <code>pixman</code> and <code>xml2</code> sufficed.</p>
 </section>
@@ -564,29 +569,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="subsection anchored" data-number="C.3.4" data-anchor-id="other-cc-compilers"><span class="header-section-number">C.3.4</span> Other C/C++ compilers</h3>
 <p>Other distributions of <code>clang</code> may be available from <a href="https://github.com/llvm/llvm-project/releases/" class="uri">https://github.com/llvm/llvm-project/releases/</a> (recently only for <code>arm64</code> and usually unsigned/not notarized which makes them hard to use). In particular, these include support for OpenMP which Apple <code>clang</code> does not. Some of these have included support for the ASAN and UBSAN sanitizers.</p>
 <p>Suppose one of these distributions is installed under <code>$LOCAL/llvm</code>. Use a file <code>config.site</code> containing</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>CC<span class="op">=</span><span class="st">"$LOCAL/llvm/bin/clang -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>CXX<span class="op">=</span><span class="st">"$LOCAL/llvm/bin/clang++ -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>OBJC<span class="op">=</span>$CC</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>FC<span class="op">=</span>$LOCAL<span class="op">/</span>gfortran<span class="op">/</span>bin<span class="op">/</span>gfortran</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>LDFLAGS<span class="op">=</span><span class="st">"-L$LOCAL/llvm/lib -L$LOCAL/lib"</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>R_LD_LIBRARY_PATH<span class="op">=</span>$LOCAL<span class="op">/</span>llvm<span class="op">/</span>lib<span class="op">:</span>$LOCAL<span class="op">/</span>lib</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>CC<span class="op">=</span><span class="st">"$LOCAL/llvm/bin/clang -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>CXX<span class="op">=</span><span class="st">"$LOCAL/llvm/bin/clang++ -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>OBJC<span class="op">=</span>$CC</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>FC<span class="op">=</span>$LOCAL<span class="op">/</span>gfortran<span class="op">/</span>bin<span class="op">/</span>gfortran</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>LDFLAGS<span class="op">=</span><span class="st">"-L$LOCAL/llvm/lib -L$LOCAL/lib"</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>R_LD_LIBRARY_PATH<span class="op">=</span>$LOCAL<span class="op">/</span>llvm<span class="op">/</span>lib<span class="op">:</span>$LOCAL<span class="op">/</span>lib</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Should the location of the SDK change (or where Xcode provides the SDK rather than the Command Line Tools), it can be found by running <code>xcrun -show-sdk-path</code>.</p>
 <p>The care to specify library paths is to ensure that the OpenMP runtime library, here <code>$LOCAL/llvm/lib/libomp.dylib</code>, is found when needed. If this works, you should see the line</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>checking whether OpenMP SIMD reduction is supported... yes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>checking whether OpenMP SIMD reduction is supported... yes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>in the <code>configure</code> output. Also, <code>R_LD_LIBRARY_PATH</code> needs to be set to find the latest version of the C++ run-time libraries rather than the system ones.</p>
 <div class="page-columns page-full"><p>It is usually possible to build R with GCC (built from the sources, from a <code>gfortran</code> distribution, from Homebrew, …). When last tested<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> it was not possible to use <code>gcc</code> to build the <code>quartz()</code> device, so <code>configure --without-aqua</code> may be required.</p><div class="no-row-height column-margin column-container"><li id="fn9"><p><sup>9</sup>&nbsp;with <code>gcc</code> 10.2.</p></li></div></div>
+<p>It usually possible to add some OpenMP support to the Apple <code>clang</code> compilers: see <a href="https://mac.r-project.org/openmp/" class="uri">https://mac.r-project.org/openmp/</a>. Note that that approach is somewhat fragile as it needs a <code>libomp.dylib</code> library matching the version of the compiler used—and for example at the time of writing none was offered for the current compilers in Xcode/CLT 14.3.</p>
 </section>
 <section id="other-libraries" class="level3 subsection page-columns page-full" data-number="C.3.5">
 <h3 class="subsection anchored" data-number="C.3.5" data-anchor-id="other-libraries"><span class="header-section-number">C.3.5</span> Other libraries</h3>
 <p>Pre-compiled versions of many of the <a href="Essential-and-useful-other-programs-under-a-Unix-alike.html#useful-libraries-and-programs">Useful libraries and programs</a> are available from <a href="https://mac.r-project.org/bin//" class="uri">https://mac.r-project.org/bin//</a>.</p>
 <div class="page-columns page-full"><p>The <code>Accelerate</code> library<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> can be used <em>via</em> the configuration option</p><div class="no-row-height column-margin column-container"><li id="fn10"><p><sup>10</sup>&nbsp;<a href="https://developer.apple.com/documentation/accelerate" class="uri">https://developer.apple.com/documentation/accelerate</a>.</p></li></div></div>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="sc">--</span>with<span class="sc">-</span>blas<span class="ot">=</span><span class="st">"-framework Accelerate"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="sc">--</span>with<span class="sc">-</span>blas<span class="ot">=</span><span class="st">"-framework Accelerate"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="page-columns page-full"><p>to provide potentially higher-performance versions of the BLAS and LAPACK routines.<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> his also includes a full LAPACK which can be used <em>via</em> <code>--with-lapack</code>: however, the version of LAPACK it contains has often been seriously old (and is not used unless <code>--with-lapack</code> is specified). Some CRAN builds of R can be switched<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> to use Accelerate’s BLAS.</p><div class="no-row-height column-margin column-container"><li id="fn11"><p><sup>11</sup>&nbsp;It has been reported that for some non-Apple toolchains <code>CPPFLAGS</code> needed to contain <code>-D__ACCELERATE__</code>: not needed for <code>clang</code> from LLVM.</p></li><li id="fn12"><p><sup>12</sup>&nbsp;<a href="https://cran.r-project.org/bin/macosx/RMacOSX-FAQ.html#Which-BLAS-is-used-and-how-can-it-be-changed_003f" class="uri">https://cran.r-project.org/bin/macosx/RMacOSX-FAQ.html#Which-BLAS-is-used-and-how-can-it-be-changed_003f</a></p></li></div></div>
 <div class="page-columns page-full"><p>As from macOS 13.3, the BLAS and LAPACK libraries under the Accelerate framework are ‘now inline with reference version 3.9.1’.<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a> However, this has been done by naming new entry points and so only accessible <em>via</em> their C headers.</p><div class="no-row-height column-margin column-container"><li id="fn13"><p><sup>13</sup>&nbsp;Released 2021-04-01.</p></li></div></div>
 <p>Threading in Accelerate is controlled by ‘Grand Central Dispatch’ and is said not to need user control. Test <code>nls.R</code> in package <strong>stats</strong> has often failed with the Accelerate BLAS on Intel macOS.</p>
 <p>Looking at the top of <code>/Library/Frameworks/R.framework/Resources/etc/Makeconf</code> will show the compilers and configuration options used for the CRAN binary package for R: at the time of writing the non-default options</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="sc">--</span>enable<span class="sc">-</span>memory<span class="sc">-</span>profiling <span class="sc">--</span>enable<span class="sc">-</span>R<span class="sc">-</span>framework</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="sc">--</span>x<span class="sc">-</span>libraries<span class="ot">=</span><span class="er">/</span>opt<span class="sc">/</span>X11<span class="sc">/</span>lib <span class="sc">--</span>x<span class="sc">-</span>includes<span class="ot">=</span><span class="er">/</span>opt<span class="sc">/</span>X11<span class="sc">/</span>include</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="sc">--</span>enable<span class="sc">-</span>memory<span class="sc">-</span>profiling <span class="sc">--</span>enable<span class="sc">-</span>R<span class="sc">-</span>framework</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="sc">--</span>x<span class="sc">-</span>libraries<span class="ot">=</span><span class="er">/</span>opt<span class="sc">/</span>X11<span class="sc">/</span>lib <span class="sc">--</span>x<span class="sc">-</span>includes<span class="ot">=</span><span class="er">/</span>opt<span class="sc">/</span>X11<span class="sc">/</span>include</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>were used. (<code>--enable-R-framework</code> implies <code>--enable-R-shlib</code>.)</p>
 <div class="page-columns page-full"><p>The main TeX implementation used by the developers is MacTeX<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> (<a href="https://www.tug.org/mactex/" class="uri">https://www.tug.org/mactex/</a>): the full installation is about 8.5GB, but a much smaller version (‘Basic TeX’) is available at <a href="https://www.tug.org/mactex/morepackages.html" class="uri">https://www.tug.org/mactex/morepackages.html</a> to which you will need to add some packages to build R, e.g.&nbsp;for the 2022 version we needed to add<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a> <strong>helvetic</strong>, <strong>inconsolata</strong> and <strong>texinfo</strong> which brought this to about 310MB.<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a> <code>TeX Live Utility</code> (available <em>via</em> the MacTeX front page) provides a graphical means to manage TeX packages. These contain executables which run natively on both <code>x86_64</code> and <code>arm64</code>.</p><div class="no-row-height column-margin column-container"><li id="fn14"><p><sup>14</sup>&nbsp;An essentially equivalent TeX installation can be obtained by the Unix TeX Live installation scripts.</p></li><li id="fn15"><p><sup>15</sup>&nbsp;E.g. <em>via</em> <code>tlmgr install helvetic inconsolata texinfo</code> .</p></li><li id="fn16"><p><sup>16</sup>&nbsp;Adding all the packages needed to check CRAN increased this to about 600MB.</p></li></div></div>
 <p>Checking packages thoroughly requires ghostscript (part of the full MacTeX distribution or separately from <a href="https://www.tug.org/mactex/morepackages.html" class="uri">https://www.tug.org/mactex/morepackages.html</a>) and <code>qpdf</code> (from <a href="https://mac.r-project.org/bin//" class="uri">https://mac.r-project.org/bin//</a>, a version of which is in the <code>bin</code> directory of a binary installation of R, usually <code>/Library/Frameworks/R.framework/Resources/bin/qpdf</code>).</p>
@@ -597,17 +603,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="tcltk-headers-and-libraries" class="level3 subsection page-columns page-full" data-number="C.3.6">
 <h3 class="subsection anchored" data-number="C.3.6" data-anchor-id="tcltk-headers-and-libraries"><span class="header-section-number">C.3.6</span> Tcl/Tk headers and libraries</h3>
 <div class="page-columns page-full"><p>If you plan to use the <code>tcltk</code> package for R, you will need to install a distribution of Tcl/Tk. There are two alternatives. If you use <span class="small">R.APP</span> you will want to use X11-based Tcl/Tk (as used on other Unix-alikes), which is installed under <code>$LOCAL/lib</code> as part of the CRAN binary for R.<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a> This may need <code>configure</code> options</p><div class="no-row-height column-margin column-container"><li id="fn17"><p><sup>17</sup>&nbsp;Just that component can be selected from the installer for R: at the ‘Installation Type’ screen select ‘Customise’ and then just the ‘Tcl/Tk 8.6.11’ component.</p></li></div></div>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="sc">--</span>with<span class="sc">-</span>tcltk<span class="ot">=</span><span class="er">$</span>LOCAL<span class="sc">/</span>lib</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="sc">--</span>with<span class="sc">-</span>tcltk<span class="ot">=</span><span class="er">$</span>LOCAL<span class="sc">/</span>lib</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>or</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="sc">--</span>with<span class="sc">-</span>tcl<span class="sc">-</span>config<span class="ot">=</span><span class="er">$</span>LOCAL<span class="sc">/</span>lib<span class="sc">/</span>tclConfig.sh</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="sc">--</span>with<span class="sc">-</span>tk<span class="sc">-</span>config<span class="ot">=</span><span class="er">$</span>LOCAL<span class="sc">/</span>lib<span class="sc">/</span>tkConfig.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="sc">--</span>with<span class="sc">-</span>tcl<span class="sc">-</span>config<span class="ot">=</span><span class="er">$</span>LOCAL<span class="sc">/</span>lib<span class="sc">/</span>tclConfig.sh</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="sc">--</span>with<span class="sc">-</span>tk<span class="sc">-</span>config<span class="ot">=</span><span class="er">$</span>LOCAL<span class="sc">/</span>lib<span class="sc">/</span>tkConfig.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Note that this requires a matching XQuartz installation.</p>
 <div class="page-columns page-full"><p>There is also a native (‘Aqua’) version of Tcl/Tk which produces widgets in the native macOS style: this will not work with <span class="small">R.APP</span> because of conflicts over the macOS menu, but for those only using command-line R this provides a much more intuitive interface to Tk for experienced Mac users. Earlier versions of macOS came with an Aqua Tcl/Tk distribution but these were often not at all recent versions of Tcl/Tk. It is better to install Tcl/Tk 8.6.x from the sources<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a> or a binary distribution from <a href="https://www.activestate.com/products/tcl/" class="uri">https://www.activestate.com/products/tcl/</a>. For the latter, configure R with</p><div class="no-row-height column-margin column-container"><li id="fn18"><p><sup>18</sup>&nbsp;Configure Tk with <code>--enable-aqua</code>.</p></li></div></div>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="sc">--</span>with<span class="sc">-</span>tcl<span class="sc">-</span>config<span class="ot">=</span><span class="er">/</span>Library<span class="sc">/</span>Frameworks<span class="sc">/</span>Tcl.framework<span class="sc">/</span>tclConfig.sh </span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="sc">--</span>with<span class="sc">-</span>tk<span class="sc">-</span>config<span class="ot">=</span><span class="er">/</span>Library<span class="sc">/</span>Frameworks<span class="sc">/</span>Tk.framework<span class="sc">/</span>tkConfig.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="sc">--</span>with<span class="sc">-</span>tcl<span class="sc">-</span>config<span class="ot">=</span><span class="er">/</span>Library<span class="sc">/</span>Frameworks<span class="sc">/</span>Tcl.framework<span class="sc">/</span>tclConfig.sh </span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="sc">--</span>with<span class="sc">-</span>tk<span class="sc">-</span>config<span class="ot">=</span><span class="er">/</span>Library<span class="sc">/</span>Frameworks<span class="sc">/</span>Tk.framework<span class="sc">/</span>tkConfig.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If you need to find out which distribution of Tk is in use at run time, use</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tcltk)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tclvalue</span>(<span class="fu">.Tcl</span>(<span class="st">"tk windowingsystem"</span>))  <span class="co"># "x11" or "aqua"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tcltk)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tclvalue</span>(<span class="fu">.Tcl</span>(<span class="st">"tk windowingsystem"</span>))  <span class="co"># "x11" or "aqua"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Note that some Tcl/Tk extensions only support the X11 interface: this includes <code>Tktable</code> and the CRAN package <a href="https://CRAN.R-project.org/package=tkrplot"><strong>tkrplot</strong></a>.</p>
 </section>
 <section id="java" class="level3 subsection page-columns page-full" data-number="C.3.7">
@@ -615,14 +621,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="page-columns page-full"><p>macOS does not comes with an installed Java runtime (JRE) and a macOS upgrade may remove one if already installed: it is intended to be installed at first use. Check if a JRE is installed by running <code>java -version</code> in a <code>Terminal</code> window: if Java is not installed<a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a> this should prompt you to install it.<a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a> Builds of OpenJDK may also be available, e.g.&nbsp;from <a href="https://adoptium.net">Adoptium</a>, <a href="https://www.azul.com/downloads/zulu-community/">Azul</a> or <a href="https://jdk.java.net/" class="uri">https://jdk.java.net/</a>. We recommend you install a version with long-term support, e.g.&nbsp;11 or 17 or (expected in 2023-09) 21 but not 12–16 nor 18–20 which have/had a 6-month lifetime. (Note that these sources may use unusual designations for Intel macOS builds such as <code>x86 64-bit</code> and <code>x64</code>.)</p><div class="no-row-height column-margin column-container"><li id="fn19"><p><sup>19</sup>&nbsp;In the unlikely event that the version reported does not start with <code>1.8.0</code>, <code>11</code> or higher you need to update your Java.</p></li><li id="fn20"><p><sup>20</sup>&nbsp;Not at the time of writing for <code>arm64</code>.</p></li></div></div>
 <p>Binary distributions of R are built against a specific version (e.g. 11.0.6 or 17.0.1) of Java so <code>sudo R CMD javareconf</code> will likely be needed to be run before using Java-using packages.</p>
 <p>To see what compatible versions of Java are currently installed, run the appropriate one of</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="sc">/</span>usr<span class="sc">/</span>libexec<span class="sc">/</span>java_home <span class="sc">-</span>V <span class="sc">-</span>a x86_64</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="sc">/</span>usr<span class="sc">/</span>libexec<span class="sc">/</span>java_home <span class="sc">-</span>V <span class="sc">-</span>a arm64</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="sc">/</span>usr<span class="sc">/</span>libexec<span class="sc">/</span>java_home <span class="sc">-</span>V <span class="sc">-</span>a x86_64</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="sc">/</span>usr<span class="sc">/</span>libexec<span class="sc">/</span>java_home <span class="sc">-</span>V <span class="sc">-</span>a arm64</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>If needed, set the environment variable <code>JAVA_HOME</code> to choose between these, both when R is built from the sources and when <code>R CMD javareconf</code> is run.</p>
 <p>Configuring and building R both looks for a JRE and for support for compiling JNI programs (used to install packages <a href="https://CRAN.R-project.org/package=rJava"><strong>rJava</strong></a> and <a href="https://CRAN.R-project.org/package=JavaGD"><strong>JavaGD</strong></a>); the latter requires a JDK (Java SDK). Most distributions of Java 9 or later are of a full JDK.</p>
 <p>The build process tries to fathom out what JRE/JDK to use, but it may need some help, e.g.&nbsp;by setting environment variable <code>JAVA_HOME</code>. To select a build from <a href="https://adoptium.net">Adoptium</a> set e.g.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>JAVA_HOME<span class="ot">=</span><span class="er">/</span>Library<span class="sc">/</span>Java<span class="sc">/</span>JavaVirtualMachines<span class="sc">/</span>termurin<span class="fl">-17.</span>jdk<span class="sc">/</span>Contents<span class="sc">/</span>Home</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>JAVA_HOME<span class="ot">=</span><span class="er">/</span>Library<span class="sc">/</span>Java<span class="sc">/</span>JavaVirtualMachines<span class="sc">/</span>termurin<span class="fl">-17.</span>jdk<span class="sc">/</span>Contents<span class="sc">/</span>Home</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>in <code>config.site</code>. For Java 17 from <a href="https://jdk.java.net/" class="uri">https://jdk.java.net/</a> (which is no longer available), use</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>JAVA_HOME<span class="ot">=</span><span class="er">/</span>path<span class="sc">/</span>to<span class="sc">/</span>jdk<span class="fl">-17.</span>jdk<span class="sc">/</span>Contents<span class="sc">/</span>Home</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>JAVA_HOME<span class="ot">=</span><span class="er">/</span>path<span class="sc">/</span>to<span class="sc">/</span>jdk<span class="fl">-17.</span>jdk<span class="sc">/</span>Contents<span class="sc">/</span>Home</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>For an <code>arm64</code> build, the earliest Java version which is officially supported is 17. The currently simplest way to install Java is from <a href="https://adoptium.net">Adoptium</a> (who call the architecture <code>aarch64</code>): this installs into an Apple-standard location and so works with <code>/usr/bin/java</code>. Other builds are available from <a href="https://www.azul.com/downloads/zulu-community/?os=macos&amp;architecture=arm-64-bit&amp;package=jdk" class="uri">https://www.azul.com/downloads/zulu-community/?os=macos&amp;architecture=arm-64-bit&amp;package=jdk</a> and from OpenJDK at <a href="https://jdk.java.net/" class="uri">https://jdk.java.net/</a>, for which <code>JAVA_HOME</code> may need to be set both when configuring R and at runtime.</p>
 <p>To use Java (specifically, binary package <a href="https://CRAN.R-project.org/package=rJava"><strong>rJava</strong></a>) with a CRAN (<code>x86_64</code>) binary distribution of R on <code>arm64</code> macOS, install an Intel build of a Java JRE from one of the sites linked above, then run <code>sudo R CMD javareconf</code>.</p>
 <p>Note that it is necessary to set the environment variable <code>NOAWT</code> to <code>1</code> to install many of the Java-using packages.</p>
@@ -630,19 +636,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="frameworks" class="level3 subsection" data-number="C.3.8">
 <h3 class="subsection anchored" data-number="C.3.8" data-anchor-id="frameworks"><span class="header-section-number">C.3.8</span> Frameworks</h3>
 <p>The CRAN build of R is installed as a framework, which is selected by the option</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>.<span class="sc">/</span>configure <span class="sc">--</span>enable<span class="sc">-</span>R<span class="sc">-</span>framework</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>.<span class="sc">/</span>configure <span class="sc">--</span>enable<span class="sc">-</span>R<span class="sc">-</span>framework</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>(This is intended to be used with an Apple toolchain: others may not support frameworks correctly but those from LLVM do.)</p>
 <p>It is only needed if you want to build R for use with the <span class="small">R.APP</span> console, and implies <code>--enable-R-shlib</code> to build R as a dynamic library. This option configures R to be built and installed as a framework called <code>R.framework</code>. The default installation path for <code>R.framework</code> is <code>/Library/Frameworks</code> but this can be changed at configure time by specifying the flag <code>--enable-R-framework[=DIR]</code> (or <code>--prefix</code>) or at install time <em>via</em></p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>make prefix<span class="ot">=</span><span class="er">/</span>where<span class="sc">/</span>you<span class="sc">/</span>want<span class="sc">/</span>R.framework<span class="sc">/</span>to<span class="sc">/</span>go install</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>make prefix<span class="ot">=</span><span class="er">/</span>where<span class="sc">/</span>you<span class="sc">/</span>want<span class="sc">/</span>R.framework<span class="sc">/</span>to<span class="sc">/</span>go install</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Note that installation as a framework is non-standard (especially to a non-standard location) and Unix utilities may not support it (e.g.&nbsp;the <code>pkg-config</code> file <code>libR.pc</code> will be put somewhere unknown to <code>pkg-config</code>).</p>
 </section>
 <section id="building-r.app" class="level3 subsection" data-number="C.3.9">
 <h3 class="subsection anchored" data-number="C.3.9" data-anchor-id="building-r.app"><span class="header-section-number">C.3.9</span> Building R.app</h3>
 <p>Building the <span class="small">R.APP</span> GUI console is a separate project, using Xcode. Before compiling <span class="small">R.APP</span> make sure the current version of R is installed in <code>/Library/Frameworks/R.framework</code> and is working at the command-line (this can be a binary install).</p>
 <p>The current sources can be checked out by</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>svn co https<span class="sc">:</span><span class="er">//</span>svn.r<span class="sc">-</span>project.org<span class="sc">/</span>R<span class="sc">-</span>packages<span class="sc">/</span>trunk<span class="sc">/</span>Mac<span class="sc">-</span>GUI</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>svn co https<span class="sc">:</span><span class="er">//</span>svn.r<span class="sc">-</span>project.org<span class="sc">/</span>R<span class="sc">-</span>packages<span class="sc">/</span>trunk<span class="sc">/</span>Mac<span class="sc">-</span>GUI</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>and built by loading the <code>R.xcodeproj</code> project (select the <code>R</code> target and a suitable configuration), or from the command-line by e.g.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>xcodebuild <span class="sc">-</span>target R <span class="sc">-</span>configuration Release</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>xcodebuild <span class="sc">-</span>target R <span class="sc">-</span>configuration Release</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>See also the <code>INSTALL</code> file in the checkout or directly at <a href="https://svn.r-project.org/R-packages/trunk/Mac-GUI/INSTALL" class="uri">https://svn.r-project.org/R-packages/trunk/Mac-GUI/INSTALL</a>.</p>
 <p><span class="small">R.APP</span> does not need to be installed in any specific way. Building <span class="small">R.APP</span> results in the <span class="small">R.APP</span> bundle which appears as one R icon. This application bundle can be run anywhere and it is customary to place it in the <code>/Applications</code> folder.</p>
 </section>
@@ -651,40 +657,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>CRAN macOS binary packages are distributed as tarballs with suffix <code>.tgz</code> to distinguish them from source tarballs. One can <code>tar</code> an existing installed package, or use <code>R CMD INSTALL --build</code>.</p>
 <p>However, there are some important details.</p>
 <ul>
-<li><p>Current CRAN macOS distributions are targeted at Big Sur so it is wise to ensure that the compilers generate code that will run on Big Sur or later. With the recommended compilers we can use <code>makefile     CC="clang -mmacosx-version-min=11.0"     CXX="clang++ -mmacosx-version-min=11.0"     FC="/usr/local/gfortran/bin/gfortran -mmacosx-version-min=11.0"</code></p></li>
+<li><p>Current CRAN macOS distributions are targeted at Big Sur so it is wise to ensure that the compilers generate code that will run on Big Sur or later. With the recommended compilers we can use</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="dt">CC</span><span class="ch">=</span><span class="st">"clang -mmacosx-version-min=11.0"</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX</span><span class="ch">=</span><span class="st">"clang++ -mmacosx-version-min=11.0"</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="dt">FC</span><span class="ch">=</span><span class="st">"/opt//gfortran/bin/gfortran -mmacosx-version-min=11.0"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>or set the environment variable</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>export MACOSX_DEPLOYMENT_TARGET<span class="ot">=</span><span class="fl">11.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Using the flag <code>-Werror=partial-availability</code> can help trigger compilation errors on functionality not in Big Sur.</p></li>
-<li><p>Check that any compiled code is not dynamically linked to libraries only on your machine, for example by using <code>otool -L</code> or <code>objdump -macho -dylibs-used</code>. This can include C++ and Fortran run-time libraries under <code>/usr/local/lib</code> or <code>/opt/R/arm64/lib</code>: one can use <code>install_name_tool</code> to point these at system versions or those shipped with R, for example</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>install_name_tool <span class="sc">-</span>change <span class="sc">/</span>usr<span class="sc">/</span>local<span class="sc">/</span>llvm<span class="sc">/</span>lib<span class="sc">/</span>libc<span class="sc">++</span>.<span class="fl">1.</span>dylib \</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="sc">/</span>usr<span class="sc">/</span>lib<span class="sc">/</span>libc<span class="sc">++</span>.<span class="fl">1.</span>dylib \</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>pkg.so</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>install_name_tool <span class="sc">-</span>change</span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>opt<span class="sc">/</span>gfortran<span class="sc">/</span>lib<span class="sc">/</span>gcc<span class="sc">/</span>aarch64<span class="sc">-</span>apple<span class="sc">-</span>darwin20<span class="fl">.0</span><span class="sc">/</span><span class="dv">12</span>.<span class="fl">2.0</span><span class="sc">/</span>libgfortran.<span class="fl">5.</span>dylib \</span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="sc">/</span>Library<span class="sc">/</span>Frameworks<span class="sc">/</span>R.framework<span class="sc">/</span>Resources<span class="sc">/</span>lib<span class="sc">/</span>libgfortran.<span class="fl">5.</span>dylib \</span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>pkg.so</span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>install_name_tool <span class="sc">-</span>change</span>
-<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>opt<span class="sc">/</span>gfortran<span class="sc">/</span>lib<span class="sc">/</span>gcc<span class="sc">/</span>aarch64<span class="sc">-</span>apple<span class="sc">-</span>darwin20<span class="fl">.0</span><span class="sc">/</span><span class="dv">12</span>.<span class="fl">2.0</span><span class="sc">/</span>libquadmath.<span class="fl">0.</span>dylib \</span>
-<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a><span class="sc">/</span>Library<span class="sc">/</span>Frameworks<span class="sc">/</span>R.framework<span class="sc">/</span>Resources<span class="sc">/</span>lib<span class="sc">/</span>libquadmath.<span class="fl">0.</span>dylib \</span>
-<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>pkg.so</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<li><p>Check that any compiled code is not dynamically linked to libraries only on your machine, for example by using <code>otool -L</code> or <code>objdump -macho -dylibs-used</code>. This can include C++ and Fortran run-time libraries under <code>/opt/R/x86_64/lib</code> or <code>/opt/R/arm64/lib</code>: one can use <code>install_name_tool</code> to point these at system versions or those shipped with R, for example</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>install_name_tool <span class="sc">-</span>change <span class="sc">/</span>usr<span class="sc">/</span>local<span class="sc">/</span>llvm<span class="sc">/</span>lib<span class="sc">/</span>libc<span class="sc">++</span>.<span class="fl">1.</span>dylib \</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="sc">/</span>usr<span class="sc">/</span>lib<span class="sc">/</span>libc<span class="sc">++</span>.<span class="fl">1.</span>dylib \</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>pkg.so</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>install_name_tool <span class="sc">-</span>change</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="sc">/</span>opt<span class="sc">/</span>gfortran<span class="sc">/</span>lib<span class="sc">/</span>gcc<span class="sc">/</span>aarch64<span class="sc">-</span>apple<span class="sc">-</span>darwin20<span class="fl">.0</span><span class="sc">/</span><span class="dv">12</span>.<span class="fl">2.0</span><span class="sc">/</span>libgfortran.<span class="fl">5.</span>dylib \</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="sc">/</span>Library<span class="sc">/</span>Frameworks<span class="sc">/</span>R.framework<span class="sc">/</span>Resources<span class="sc">/</span>lib<span class="sc">/</span>libgfortran.<span class="fl">5.</span>dylib \</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>pkg.so</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>install_name_tool <span class="sc">-</span>change</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a><span class="sc">/</span>opt<span class="sc">/</span>gfortran<span class="sc">/</span>lib<span class="sc">/</span>gcc<span class="sc">/</span>aarch64<span class="sc">-</span>apple<span class="sc">-</span>darwin20<span class="fl">.0</span><span class="sc">/</span><span class="dv">12</span>.<span class="fl">2.0</span><span class="sc">/</span>libquadmath.<span class="fl">0.</span>dylib \</span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a><span class="sc">/</span>Library<span class="sc">/</span>Frameworks<span class="sc">/</span>R.framework<span class="sc">/</span>Resources<span class="sc">/</span>lib<span class="sc">/</span>libquadmath.<span class="fl">0.</span>dylib \</span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>pkg.so</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>(where the details depend on the compilers and CRAN macOS R release).</p></li>
 <li><p>For C++ code there is the possibility that calls will be generated to entry points not in the system <code>/usr/lib/libc++.1.dylib</code>. The previous step allows this to be tested against the system library on the build OS, but not against earlier ones. It may be possible to circumvent that by static linking to <code>libc++.a</code> and <code>libc++abi.a</code> by something like</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>SHLIB_CXXLD <span class="op">=</span> <span class="op">/</span>usr<span class="op">/</span>local<span class="op">/</span>llvm<span class="op">/</span>bin<span class="op">/</span>clang</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>PKG_LIBS <span class="op">=</span> <span class="op">/</span>usr<span class="op">/</span>local<span class="op">/</span>llvm<span class="op">/</span>lib<span class="op">/</span>libc<span class="op">++.</span>a <span class="op">/</span>usr<span class="op">/</span>local<span class="op">/</span>llvm<span class="op">/</span>lib<span class="op">/</span>libc<span class="op">++</span>abi<span class="op">.</span>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>in <code>src/Makevars</code>. It would also be possible to static link the Fortran runtime libraries <code>/usr/local/gfortran/lib/libgfortran.a</code> and <code>/usr/local/gfortran/lib/libquadmath.a</code> should the Fortran compiler have later versions (but <code>gfortran</code> 8–12 all have version <code>5</code>).</p></li>
+<div class="sourceCode" id="cb45"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>SHLIB_CXXLD <span class="op">=</span> <span class="op">/</span>usr<span class="op">/</span>local<span class="op">/</span>llvm<span class="op">/</span>bin<span class="op">/</span>clang</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>PKG_LIBS <span class="op">=</span> <span class="op">/</span>usr<span class="op">/</span>local<span class="op">/</span>llvm<span class="op">/</span>lib<span class="op">/</span>libc<span class="op">++.</span>a <span class="op">/</span>usr<span class="op">/</span>local<span class="op">/</span>llvm<span class="op">/</span>lib<span class="op">/</span>libc<span class="op">++</span>abi<span class="op">.</span>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>in <code>src/Makevars</code>. It would also be possible to static link the Fortran runtime libraries <code>libgfortran.a</code> and <code>libquadmath.a</code> should the Fortran compiler have later versions (but <code>gfortran</code> 8–13 all have version <code>5</code>).</p></li>
 </ul>
 <p>The CRAN binary packages are built with the Apple compiler on the oldest supported version of macOS, which avoids the first two and any issues with C++ libraries.</p>
 </section>
 <section id="building-for-intel-on-arm64" class="level3 subsection" data-number="C.3.11">
 <h3 class="subsection anchored" data-number="C.3.11" data-anchor-id="building-for-intel-on-arm64"><span class="header-section-number">C.3.11</span> Building for Intel on <code>arm64</code></h3>
 <p>Should one want to build R for Intel on an <code>arm64</code> Big Sur Mac, add the target for the C and C++ compilers:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="dt">CC</span><span class="ch">=</span><span class="st">"clang -arch x86_64</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="dt">OBJC</span><span class="ch">=$C</span><span class="st">C</span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX</span><span class="ch">=</span><span class="st">"clang++ -arch x86_64"</span></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="dt">FC</span><span class="ch">=</span><span class="st">"/opt//gfortran/bin/gfortran -arch x86_64 -mtune=native -mmacosx-version-min=11"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>and install the Fortran compiler and external software described above for Intel builds (and have <code>/usr/local/bin</code> before <code>/opt/R/arm64/bin</code> in your path).</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="dt">CC</span><span class="ch">=</span><span class="st">"clang -arch x86_64</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="dt">OBJC</span><span class="ch">=$C</span><span class="st">C</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX</span><span class="ch">=</span><span class="st">"clang++ -arch x86_64"</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="dt">FC</span><span class="ch">=</span><span class="st">"/opt//gfortran/bin/gfortran -arch x86_64 -mtune=native -mmacosx-version-min=11"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and install the Fortran compiler and external software described above for Intel builds (and have <code>/opt/R/x86_64/bin</code> before <code>/opt/R/arm64/bin</code> in your path).</p>
 <p>To set the correct architecture (which will be auto-detected as <code>aarch64</code>), use something like</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="sc">/</span>path<span class="sc">/</span>to<span class="sc">/</span>configure <span class="sc">--</span>build<span class="ot">=</span>x86_64<span class="sc">-</span>apple<span class="sc">-</span>darwin20</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="sc">/</span>path<span class="sc">/</span>to<span class="sc">/</span>configure <span class="sc">--</span>build<span class="ot">=</span>x86_64<span class="sc">-</span>apple<span class="sc">-</span>darwin20</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="installer" class="level3 subsection" data-number="C.3.12">
 <h3 class="subsection anchored" data-number="C.3.12" data-anchor-id="installer"><span class="header-section-number">C.3.12</span> Installer</h3>
@@ -748,9 +759,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -815,6 +840,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -858,7 +969,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
-    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -883,6 +994,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
     <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
   </div>
 </footer>

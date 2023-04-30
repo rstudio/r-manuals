@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.475">
+<meta name="generator" content="quarto-1.3.340">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -46,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -138,60 +109,67 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <span class="navbar-title">R Manuals :: R Installation and Administration</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./../index.html">
+    <a class="nav-link" href="./../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Manuals</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
         <li>
-    <a class="dropdown-item" href="./../r-intro/index.html">
+    <a class="dropdown-item" href="./../r-intro/index.html" rel="" target="">
  <span class="dropdown-text">An Introduction to R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-data/index.html">
+    <a class="dropdown-item" href="./../r-data/index.html" rel="" target="">
  <span class="dropdown-text">R Data Import/Export</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-admin/index.html">
+    <a class="dropdown-item" href="./../r-admin/index.html" rel="" target="">
  <span class="dropdown-text">R Installation and Administration</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-exts/index.html">
+    <a class="dropdown-item" href="./../r-exts/index.html" rel="" target="">
  <span class="dropdown-text">Writing R Extensions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-lang/index.html">
+    <a class="dropdown-item" href="./../r-lang/index.html" rel="" target="">
  <span class="dropdown-text">R Language Definition</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-ints/index.html">
+    <a class="dropdown-item" href="./../r-ints/index.html" rel="" target="">
  <span class="dropdown-text">R Internals</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./../about.html">
+    <a class="nav-link" href="./../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Add-on packages</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Add-on-packages.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Add-on packages</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -199,100 +177,117 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-      <div class="mt-2 flex-shrink-0 align-items-center">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">R Installation and Administration</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R Installation and Administration</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Obtaining-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Obtaining R</span></a>
+  <a href="./Obtaining-R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Obtaining R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Installing-R-under-Unix-alikes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Installing R under Unix-alikes</span></a>
+  <a href="./Installing-R-under-Unix-alikes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Installing R under Unix-alikes</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Installing-R-under-Windows.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Installing R under Windows</span></a>
+  <a href="./Installing-R-under-Windows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Installing R under Windows</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Installing-R-under-macOS.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Installing R under macOS</span></a>
+  <a href="./Installing-R-under-macOS.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Installing R under macOS</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Running-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Running R</span></a>
+  <a href="./Running-R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Running R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Add-on-packages.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Add-on packages</span></a>
+  <a href="./Add-on-packages.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Add-on packages</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Internationalization.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Internationalization and Localization</span></a>
+  <a href="./Internationalization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Internationalization and Localization</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Choosing-between-32--and-64-bit-builds.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Choosing between 32- and 64-bit builds</span></a>
+  <a href="./Choosing-between-32--and-64-bit-builds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Choosing between 32- and 64-bit builds</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./The-standalone-Rmath-library.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The standalone Rmath library</span></a>
+  <a href="./The-standalone-Rmath-library.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The standalone Rmath library</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link">Function and variable index</a>
+  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Function and variable index</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link">Concept index</a>
+  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Concept index</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Environment-variable-index.html" class="sidebar-item-text sidebar-link">Environment variable index</a>
+  <a href="./Environment-variable-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Environment variable index</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Essential-and-useful-other-programs-under-a-Unix-alike.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Essential and useful other programs under a Unix-alike</span></a>
+  <a href="./Essential-and-useful-other-programs-under-a-Unix-alike.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Essential and useful other programs under a Unix-alike</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Configuration-on-a-Unix-alike.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Configuration on a Unix-alike</span></a>
+  <a href="./Configuration-on-a-Unix-alike.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Configuration on a Unix-alike</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Platform-notes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Platform notes</span></a>
+  <a href="./Platform-notes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Platform notes</span></span></a>
   </div>
 </li>
       </ul>
@@ -300,27 +295,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#default-packages" id="toc-default-packages" class="nav-link active" data-scroll-target="#default-packages"><span class="toc-section-number">6.1</span>  Default packages</a></li>
-  <li><a href="#managing-libraries" id="toc-managing-libraries" class="nav-link" data-scroll-target="#managing-libraries"><span class="toc-section-number">6.2</span>  Managing libraries</a></li>
-  <li><a href="#installing-packages" id="toc-installing-packages" class="nav-link" data-scroll-target="#installing-packages"><span class="toc-section-number">6.3</span>  Installing packages</a>
+  <li><a href="#default-packages" id="toc-default-packages" class="nav-link active" data-scroll-target="#default-packages"><span class="header-section-number">6.1</span> Default packages</a></li>
+  <li><a href="#managing-libraries" id="toc-managing-libraries" class="nav-link" data-scroll-target="#managing-libraries"><span class="header-section-number">6.2</span> Managing libraries</a></li>
+  <li><a href="#installing-packages" id="toc-installing-packages" class="nav-link" data-scroll-target="#installing-packages"><span class="header-section-number">6.3</span> Installing packages</a>
   <ul class="collapse">
-  <li><a href="#windows" id="toc-windows" class="nav-link" data-scroll-target="#windows"><span class="toc-section-number">6.3.1</span>  Windows</a></li>
-  <li><a href="#macos" id="toc-macos" class="nav-link" data-scroll-target="#macos"><span class="toc-section-number">6.3.2</span>  macOS</a></li>
-  <li><a href="#customizing-package-compilation" id="toc-customizing-package-compilation" class="nav-link" data-scroll-target="#customizing-package-compilation"><span class="toc-section-number">6.3.3</span>  Customizing package compilation</a></li>
-  <li><a href="#multiple-sub-architectures" id="toc-multiple-sub-architectures" class="nav-link" data-scroll-target="#multiple-sub-architectures"><span class="toc-section-number">6.3.4</span>  Multiple sub-architectures</a></li>
-  <li><a href="#byte-compilation" id="toc-byte-compilation" class="nav-link" data-scroll-target="#byte-compilation"><span class="toc-section-number">6.3.5</span>  Byte-compilation</a></li>
-  <li><a href="#external-software" id="toc-external-software" class="nav-link" data-scroll-target="#external-software"><span class="toc-section-number">6.3.6</span>  External software</a></li>
+  <li><a href="#windows" id="toc-windows" class="nav-link" data-scroll-target="#windows"><span class="header-section-number">6.3.1</span> Windows</a></li>
+  <li><a href="#macos" id="toc-macos" class="nav-link" data-scroll-target="#macos"><span class="header-section-number">6.3.2</span> macOS</a></li>
+  <li><a href="#customizing-package-compilation" id="toc-customizing-package-compilation" class="nav-link" data-scroll-target="#customizing-package-compilation"><span class="header-section-number">6.3.3</span> Customizing package compilation</a></li>
+  <li><a href="#multiple-sub-architectures" id="toc-multiple-sub-architectures" class="nav-link" data-scroll-target="#multiple-sub-architectures"><span class="header-section-number">6.3.4</span> Multiple sub-architectures</a></li>
+  <li><a href="#byte-compilation" id="toc-byte-compilation" class="nav-link" data-scroll-target="#byte-compilation"><span class="header-section-number">6.3.5</span> Byte-compilation</a></li>
+  <li><a href="#external-software" id="toc-external-software" class="nav-link" data-scroll-target="#external-software"><span class="header-section-number">6.3.6</span> External software</a></li>
   </ul></li>
-  <li><a href="#updating-packages" id="toc-updating-packages" class="nav-link" data-scroll-target="#updating-packages"><span class="toc-section-number">6.4</span>  Updating packages</a></li>
-  <li><a href="#removing-packages" id="toc-removing-packages" class="nav-link" data-scroll-target="#removing-packages"><span class="toc-section-number">6.5</span>  Removing packages</a></li>
-  <li><a href="#setting-up-a-package-repository" id="toc-setting-up-a-package-repository" class="nav-link" data-scroll-target="#setting-up-a-package-repository"><span class="toc-section-number">6.6</span>  Setting up a package repository</a></li>
-  <li><a href="#checking-installed-source-packages" id="toc-checking-installed-source-packages" class="nav-link" data-scroll-target="#checking-installed-source-packages"><span class="toc-section-number">6.7</span>  Checking installed source packages</a></li>
+  <li><a href="#updating-packages" id="toc-updating-packages" class="nav-link" data-scroll-target="#updating-packages"><span class="header-section-number">6.4</span> Updating packages</a></li>
+  <li><a href="#removing-packages" id="toc-removing-packages" class="nav-link" data-scroll-target="#removing-packages"><span class="header-section-number">6.5</span> Removing packages</a></li>
+  <li><a href="#setting-up-a-package-repository" id="toc-setting-up-a-package-repository" class="nav-link" data-scroll-target="#setting-up-a-package-repository"><span class="header-section-number">6.6</span> Setting up a package repository</a></li>
+  <li><a href="#checking-installed-source-packages" id="toc-checking-installed-source-packages" class="nav-link" data-scroll-target="#checking-installed-source-packages"><span class="header-section-number">6.7</span> Checking installed source packages</a></li>
   </ul>
 </nav>
     </div>
@@ -329,7 +325,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Add-on packages</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Add-on packages</span></h1>
 </div>
 
 
@@ -404,7 +400,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="subsection anchored" data-number="6.3.2" data-anchor-id="macos"><span class="header-section-number">6.3.2</span> macOS</h3>
 <p>On macOS <code>install.packages</code> works as it does on other Unix-alike systems, but there is an additional type <code>mac.binary</code> (available for the CRAN distribution but not when compiling R from source) which can be passed to <code>install.packages</code> in order to download and install binary packages from a suitable repository. These binary package files for macOS have the extension <code>.tgz</code>. The <span class="small">R.APP</span> GUI provides menus for installation of either binary or source packages, from CRAN, other repositories or local files.</p>
 <p>On R builds using binary packages, the default is type <code>both</code>: this looks first at the list of binary packages available for your version of R and installs the latest versions (if any). If no binary version is available or the source version is newer, it will install the source versions of packages without compiled C/C++/Fortran code and offer to do so for those with, if <code>make</code> is available.</p>
-<p>Note that most binary packages which include compiled code are tied to a particular series (e.g.&nbsp;R 4.2.x or 4.3.x) of R.</p>
+<p>Note that most binary packages which include compiled code are tied to a particular series (e.g.&nbsp;R 4.4.x or 4.3.x) of R.</p>
 <p>Installing source packages which do not contain compiled code should work with no additional tools. For others you will need the ‘Command Line Tools’ for <code>Xcode</code> and compilers which match those used to build R: see <a href="Platform-notes.html#macos">macOS</a>.</p>
 <p>Package <a href="https://CRAN.R-project.org/package=rJava"><strong>rJava</strong></a> and those which depend on it need a Java runtime installed and several packages need X11 installed, including those using Tk. See <a href="Platform-notes.html#macos">macOS</a> and <a href="Platform-notes.html#java-_0028macos_0029">Java</a>. Package <a href="https://CRAN.R-project.org/package=rjags"><strong>rjags</strong></a> needs a build of JAGS installed under <code>/usr/local</code>, such as those at <a href="https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Mac%20OS%20X/" class="uri">https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Mac%20OS%20X/</a>.</p>
 <p>Tcl/Tk extension <code>BWidget</code> used to be distributed with R but no longer is; <code>Tktable</code> has been distributed with most versions of R (but not 4.0.0 and not <code>arm64</code> builds of 4.1.0 or 4.1.1).</p>
@@ -424,11 +420,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX14FLAGS </span><span class="ch">=</span><span class="st"> </span><span class="ch">$C</span><span class="st">XXFLAGS</span></span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX17FLAGS </span><span class="ch">=</span><span class="st"> </span><span class="ch">$C</span><span class="st">XXFLAGS</span></span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX20FLAGS </span><span class="ch">=</span><span class="st"> </span><span class="ch">$C</span><span class="st">XXFLAGS</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>(long lines split for the manual only) and a particular Intel <code>gfortran</code> by</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>FC <span class="ot">=</span> <span class="er">/</span>usr<span class="sc">/</span>local<span class="sc">/</span>gfortran<span class="sc">/</span>bin<span class="sc">/</span>gfortran</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>FLIBS <span class="ot">=</span> <span class="sc">-</span>L<span class="sc">/</span>usr<span class="sc">/</span>local<span class="sc">/</span>gfortran<span class="sc">/</span>lib<span class="sc">/</span>gcc<span class="sc">/</span>x86_64<span class="sc">-</span>apple<span class="sc">-</span>darwin18<span class="sc">/</span><span class="dv">12</span>.<span class="fl">2.0</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span>L<span class="sc">/</span>usr<span class="sc">/</span>local<span class="sc">/</span>gfortran<span class="sc">/</span>lib <span class="sc">-</span>lgfortran <span class="sc">-</span>lquadmath <span class="sc">-</span>lm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>(with lines broken here for legibility). If that <code>clang</code> build supports OpenMP, you can add</p>
+<p>(long lines split for the manual only) and for the current macOS distribution of <code>gfortran</code> at <a href="https://mac.r-project.org/tools/" class="uri">https://mac.r-project.org/tools/</a></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>FC <span class="ot">=</span> <span class="er">/</span>opt<span class="sc">/</span>gfortran<span class="sc">/</span>bin<span class="sc">/</span>gfortran</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>(arm64)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>FLIBS <span class="ot">=</span>  <span class="sc">-</span>L<span class="sc">/</span>opt<span class="sc">/</span>gfortran<span class="sc">/</span>lib<span class="sc">/</span>gcc<span class="sc">/</span>aarch64<span class="sc">-</span>apple<span class="sc">-</span>darwin20<span class="fl">.0</span><span class="sc">/</span><span class="dv">12</span>.<span class="fl">2.0</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span>L<span class="sc">/</span>opt<span class="sc">/</span>gfortran<span class="sc">/</span>lib <span class="sc">-</span>lgfortran <span class="sc">-</span>lemutls_w <span class="sc">-</span>lquadmath</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>(Intel)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>FLIBS <span class="ot">=</span>  <span class="sc">-</span>L<span class="sc">/</span>opt<span class="sc">/</span>gfortran<span class="sc">/</span>lib<span class="sc">/</span>gcc<span class="sc">/</span>x86_64<span class="sc">-</span>apple<span class="sc">-</span>darwin20<span class="fl">.0</span><span class="sc">/</span><span class="dv">12</span>.<span class="fl">2.0</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span>L<span class="sc">/</span>opt<span class="sc">/</span>gfortran<span class="sc">/</span>lib <span class="sc">-</span>lgfortran <span class="sc">-</span>lquadmath</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>(line broken here for the manual only).</p>
+<p>If that <code>clang</code> build supports OpenMP, you can add</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">SHLIB_OPENMP_CFLAGS </span><span class="ch">=</span><span class="st"> -fopenmp</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="dt">SHLIB_OPENMP_CXXFLAGS </span><span class="ch">=</span><span class="st"> -fopenmp</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>to compile OpenMP-using packages. It will also be necessary to arrange for the <code>libomp.dylib</code> library to be found at both install time and run time, for example by copying/linking it somewhere that is searched such as <code>/usr/local/lib</code>.</p>
@@ -459,11 +460,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">## for C17 code</span></span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="dt">C17FLAGS </span><span class="ch">=</span><span class="st"> -g -O -mtune=native -Wno-strict-prototypes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Note that if you have specified a non-default C++ or C standard, you need to set the flag(s) appropriate to that standard.</p>
-<p>Another use is to override the settings in a binary installation of R. For example, to use a different Fortran compiler on Intel macOS</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>FC <span class="ot">=</span> <span class="er">/</span>usr<span class="sc">/</span>local<span class="sc">/</span>gfortran<span class="sc">/</span>bin<span class="sc">/</span>gfortran</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>FLIBS <span class="ot">=</span> <span class="sc">-</span>L<span class="sc">/</span>usr<span class="sc">/</span>local<span class="sc">/</span>gfortran<span class="sc">/</span>lib<span class="sc">/</span>gcc<span class="sc">/</span>x86_64<span class="sc">-</span>apple<span class="sc">-</span>darwin16<span class="sc">/</span><span class="dv">6</span>.<span class="fl">3.0</span> </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span>L<span class="sc">/</span>usr<span class="sc">/</span>local<span class="sc">/</span>gfortran<span class="sc">/</span>lib <span class="sc">-</span>lgfortran <span class="sc">-</span>lquadmath <span class="sc">-</span>lm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>(line split for legibility here).</p>
+<p>Another use is to override the settings in a binary installation of R. For example, for the current distribution of <code>gfortran</code> at <a href="https://mac.r-project.org/tools/" class="uri">https://mac.r-project.org/tools/</a></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>FC <span class="ot">=</span> <span class="er">/</span>opt<span class="sc">/</span>gfortran<span class="sc">/</span>bin<span class="sc">/</span>gfortran</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>(arm64)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>FLIBS <span class="ot">=</span>  <span class="sc">-</span>L<span class="sc">/</span>opt<span class="sc">/</span>gfortran<span class="sc">/</span>lib<span class="sc">/</span>gcc<span class="sc">/</span>aarch64<span class="sc">-</span>apple<span class="sc">-</span>darwin20<span class="fl">.0</span><span class="sc">/</span><span class="dv">12</span>.<span class="fl">2.0</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span>L<span class="sc">/</span>opt<span class="sc">/</span>gfortran<span class="sc">/</span>lib <span class="sc">-</span>lgfortran <span class="sc">-</span>lemutls_w <span class="sc">-</span>lquadmath</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>(Intel)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>FLIBS <span class="ot">=</span>  <span class="sc">-</span>L<span class="sc">/</span>opt<span class="sc">/</span>gfortran<span class="sc">/</span>lib<span class="sc">/</span>gcc<span class="sc">/</span>x86_64<span class="sc">-</span>apple<span class="sc">-</span>darwin20<span class="fl">.0</span><span class="sc">/</span><span class="dv">12</span>.<span class="fl">2.0</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span>L<span class="sc">/</span>opt<span class="sc">/</span>gfortran<span class="sc">/</span>lib <span class="sc">-</span>lgfortran <span class="sc">-</span>lquadmath</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>(line broken here for the manual only).</p>
 <p>There is also provision for a site-wide <code>Makevars.site</code> file under <code>R_HOME/etc</code> (in a sub-architecture-specific directory if appropriate). This is read immediately after <code>Makeconf</code>, and the path to an alternative file can be specified by environment variable <code>R_MAKEVARS_SITE</code>.</p>
 <p>Note that these mechanisms do not work with packages which fail to pass settings down to sub-makes, perhaps reading <code>etc/Makeconf</code> in makefiles in subdirectories. Fortunately such packages are unusual.</p>
 </section>
@@ -582,9 +587,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -649,6 +668,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -692,7 +797,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
-    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -720,6 +825,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
     <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
   </div>
 </footer>

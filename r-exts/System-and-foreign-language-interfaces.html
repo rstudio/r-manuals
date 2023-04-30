@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.475">
+<meta name="generator" content="quarto-1.3.340">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -46,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -138,60 +109,67 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <span class="navbar-title">R Manuals :: Writing R Extensions</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./../index.html">
+    <a class="nav-link" href="./../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Manuals</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
         <li>
-    <a class="dropdown-item" href="./../r-intro/index.html">
+    <a class="dropdown-item" href="./../r-intro/index.html" rel="" target="">
  <span class="dropdown-text">An Introduction to R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-data/index.html">
+    <a class="dropdown-item" href="./../r-data/index.html" rel="" target="">
  <span class="dropdown-text">R Data Import/Export</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-admin/index.html">
+    <a class="dropdown-item" href="./../r-admin/index.html" rel="" target="">
  <span class="dropdown-text">R Installation and Administration</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-exts/index.html">
+    <a class="dropdown-item" href="./../r-exts/index.html" rel="" target="">
  <span class="dropdown-text">Writing R Extensions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-lang/index.html">
+    <a class="dropdown-item" href="./../r-lang/index.html" rel="" target="">
  <span class="dropdown-text">R Language Definition</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-ints/index.html">
+    <a class="dropdown-item" href="./../r-ints/index.html" rel="" target="">
  <span class="dropdown-text">R Internals</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./../about.html">
+    <a class="nav-link" href="./../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">System and foreign language interfaces</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./System-and-foreign-language-interfaces.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">System and foreign language interfaces</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -199,138 +177,151 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-      <div class="mt-2 flex-shrink-0 align-items-center">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Writing R Extensions</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Writing R Extensions</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Acknowledgements.html" class="sidebar-item-text sidebar-link">Acknowledgements</a>
+  <a href="./Acknowledgements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acknowledgements</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Creating-R-packages.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Creating R packages</span></a>
+  <a href="./Creating-R-packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Creating R packages</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Writing-R-documentation-files.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Writing R documentation files</span></a>
+  <a href="./Writing-R-documentation-files.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Writing R documentation files</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Tidying-and-profiling-R-code.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Tidying and profiling R code</span></a>
+  <a href="./Tidying-and-profiling-R-code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Tidying and profiling R code</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Debugging.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging</span></a>
+  <a href="./Debugging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./System-and-foreign-language-interfaces.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">System and foreign language interfaces</span></a>
+  <a href="./System-and-foreign-language-interfaces.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">System and foreign language interfaces</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./The-R-API.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The R API: entry points for C code</span></a>
+  <a href="./The-R-API.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The R API: entry points for C code</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Generic-functions-and-methods.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Generic functions and methods</span></a>
+  <a href="./Generic-functions-and-methods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Generic functions and methods</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Linking-GUIs-and-other-front-ends-to-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linking GUIs and other front-ends to R</span></a>
+  <a href="./Linking-GUIs-and-other-front-ends-to-R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linking GUIs and other front-ends to R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link">Function and variable index</a>
+  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Function and variable index</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link">Concept index</a>
+  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Concept index</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#operating-system-access" id="toc-operating-system-access" class="nav-link active" data-scroll-target="#operating-system-access"><span class="toc-section-number">5.1</span>  Operating system access</a></li>
-  <li><a href="#interface-functions-.c-and-.fortran" id="toc-interface-functions-.c-and-.fortran" class="nav-link" data-scroll-target="#interface-functions-.c-and-.fortran"><span class="toc-section-number">5.2</span>  Interface functions <code>.C</code> and <code>.Fortran</code></a></li>
-  <li><a href="#dyn.load-and-dyn.unload" id="toc-dyn.load-and-dyn.unload" class="nav-link" data-scroll-target="#dyn.load-and-dyn.unload"><span class="toc-section-number">5.3</span>  <code>dyn.load</code> and <code>dyn.unload</code></a></li>
-  <li><a href="#registering-native-routines" id="toc-registering-native-routines" class="nav-link" data-scroll-target="#registering-native-routines"><span class="toc-section-number">5.4</span>  Registering native routines</a>
+  <li><a href="#operating-system-access" id="toc-operating-system-access" class="nav-link active" data-scroll-target="#operating-system-access"><span class="header-section-number">5.1</span> Operating system access</a></li>
+  <li><a href="#interface-functions-.c-and-.fortran" id="toc-interface-functions-.c-and-.fortran" class="nav-link" data-scroll-target="#interface-functions-.c-and-.fortran"><span class="header-section-number">5.2</span> Interface functions <code>.C</code> and <code>.Fortran</code></a></li>
+  <li><a href="#dyn.load-and-dyn.unload" id="toc-dyn.load-and-dyn.unload" class="nav-link" data-scroll-target="#dyn.load-and-dyn.unload"><span class="header-section-number">5.3</span> <code>dyn.load</code> and <code>dyn.unload</code></a></li>
+  <li><a href="#registering-native-routines" id="toc-registering-native-routines" class="nav-link" data-scroll-target="#registering-native-routines"><span class="header-section-number">5.4</span> Registering native routines</a>
   <ul class="collapse">
-  <li><a href="#speed-considerations" id="toc-speed-considerations" class="nav-link" data-scroll-target="#speed-considerations"><span class="toc-section-number">5.4.1</span>  Speed considerations</a></li>
-  <li><a href="#example-converting-a-package-to-use-registration" id="toc-example-converting-a-package-to-use-registration" class="nav-link" data-scroll-target="#example-converting-a-package-to-use-registration"><span class="toc-section-number">5.4.2</span>  Example: converting a package to use registration</a></li>
-  <li><a href="#linking-to-native-routines-in-other-packages" id="toc-linking-to-native-routines-in-other-packages" class="nav-link" data-scroll-target="#linking-to-native-routines-in-other-packages"><span class="toc-section-number">5.4.3</span>  Linking to native routines in other packages</a></li>
+  <li><a href="#speed-considerations" id="toc-speed-considerations" class="nav-link" data-scroll-target="#speed-considerations"><span class="header-section-number">5.4.1</span> Speed considerations</a></li>
+  <li><a href="#example-converting-a-package-to-use-registration" id="toc-example-converting-a-package-to-use-registration" class="nav-link" data-scroll-target="#example-converting-a-package-to-use-registration"><span class="header-section-number">5.4.2</span> Example: converting a package to use registration</a></li>
+  <li><a href="#linking-to-native-routines-in-other-packages" id="toc-linking-to-native-routines-in-other-packages" class="nav-link" data-scroll-target="#linking-to-native-routines-in-other-packages"><span class="header-section-number">5.4.3</span> Linking to native routines in other packages</a></li>
   </ul></li>
-  <li><a href="#creating-shared-objects" id="toc-creating-shared-objects" class="nav-link" data-scroll-target="#creating-shared-objects"><span class="toc-section-number">5.5</span>  Creating shared objects</a></li>
-  <li><a href="#interfacing-c-code" id="toc-interfacing-c-code" class="nav-link" data-scroll-target="#interfacing-c-code"><span class="toc-section-number">5.6</span>  Interfacing C++ code</a>
+  <li><a href="#creating-shared-objects" id="toc-creating-shared-objects" class="nav-link" data-scroll-target="#creating-shared-objects"><span class="header-section-number">5.5</span> Creating shared objects</a></li>
+  <li><a href="#interfacing-c-code" id="toc-interfacing-c-code" class="nav-link" data-scroll-target="#interfacing-c-code"><span class="header-section-number">5.6</span> Interfacing C++ code</a>
   <ul class="collapse">
-  <li><a href="#external-c-code" id="toc-external-c-code" class="nav-link" data-scroll-target="#external-c-code"><span class="toc-section-number">5.6.1</span>  External C++ code</a></li>
+  <li><a href="#external-c-code" id="toc-external-c-code" class="nav-link" data-scroll-target="#external-c-code"><span class="header-section-number">5.6.1</span> External C++ code</a></li>
   </ul></li>
-  <li><a href="#fortran-io" id="toc-fortran-io" class="nav-link" data-scroll-target="#fortran-io"><span class="toc-section-number">5.7</span>  Fortran I/O</a></li>
-  <li><a href="#linking-to-other-packages" id="toc-linking-to-other-packages" class="nav-link" data-scroll-target="#linking-to-other-packages"><span class="toc-section-number">5.8</span>  Linking to other packages</a>
+  <li><a href="#fortran-io" id="toc-fortran-io" class="nav-link" data-scroll-target="#fortran-io"><span class="header-section-number">5.7</span> Fortran I/O</a></li>
+  <li><a href="#linking-to-other-packages" id="toc-linking-to-other-packages" class="nav-link" data-scroll-target="#linking-to-other-packages"><span class="header-section-number">5.8</span> Linking to other packages</a>
   <ul class="collapse">
-  <li><a href="#unix-alikes" id="toc-unix-alikes" class="nav-link" data-scroll-target="#unix-alikes"><span class="toc-section-number">5.8.1</span>  Unix-alikes</a></li>
-  <li><a href="#windows" id="toc-windows" class="nav-link" data-scroll-target="#windows"><span class="toc-section-number">5.8.2</span>  Windows</a></li>
+  <li><a href="#unix-alikes" id="toc-unix-alikes" class="nav-link" data-scroll-target="#unix-alikes"><span class="header-section-number">5.8.1</span> Unix-alikes</a></li>
+  <li><a href="#windows" id="toc-windows" class="nav-link" data-scroll-target="#windows"><span class="header-section-number">5.8.2</span> Windows</a></li>
   </ul></li>
-  <li><a href="#handling-r-objects-in-c" id="toc-handling-r-objects-in-c" class="nav-link" data-scroll-target="#handling-r-objects-in-c"><span class="toc-section-number">5.9</span>  Handling R objects in C</a>
+  <li><a href="#handling-r-objects-in-c" id="toc-handling-r-objects-in-c" class="nav-link" data-scroll-target="#handling-r-objects-in-c"><span class="header-section-number">5.9</span> Handling R objects in C</a>
   <ul class="collapse">
-  <li><a href="#handling-the-effects-of-garbage-collection" id="toc-handling-the-effects-of-garbage-collection" class="nav-link" data-scroll-target="#handling-the-effects-of-garbage-collection"><span class="toc-section-number">5.9.1</span>  Handling the effects of garbage collection</a></li>
-  <li><a href="#allocating-storage" id="toc-allocating-storage" class="nav-link" data-scroll-target="#allocating-storage"><span class="toc-section-number">5.9.2</span>  Allocating storage</a></li>
-  <li><a href="#details-of-r-types" id="toc-details-of-r-types" class="nav-link" data-scroll-target="#details-of-r-types"><span class="toc-section-number">5.9.3</span>  Details of R types</a></li>
-  <li><a href="#attributes" id="toc-attributes" class="nav-link" data-scroll-target="#attributes"><span class="toc-section-number">5.9.4</span>  Attributes</a></li>
-  <li><a href="#classes" id="toc-classes" class="nav-link" data-scroll-target="#classes"><span class="toc-section-number">5.9.5</span>  Classes</a></li>
-  <li><a href="#handling-lists" id="toc-handling-lists" class="nav-link" data-scroll-target="#handling-lists"><span class="toc-section-number">5.9.6</span>  Handling lists</a></li>
-  <li><a href="#handling-character-data" id="toc-handling-character-data" class="nav-link" data-scroll-target="#handling-character-data"><span class="toc-section-number">5.9.7</span>  Handling character data</a></li>
-  <li><a href="#finding-and-setting-variables" id="toc-finding-and-setting-variables" class="nav-link" data-scroll-target="#finding-and-setting-variables"><span class="toc-section-number">5.9.8</span>  Finding and setting variables</a></li>
-  <li><a href="#some-convenience-functions" id="toc-some-convenience-functions" class="nav-link" data-scroll-target="#some-convenience-functions"><span class="toc-section-number">5.9.9</span>  Some convenience functions</a></li>
-  <li><a href="#semi-internal-convenience-functions" id="toc-semi-internal-convenience-functions" class="nav-link" data-scroll-target="#semi-internal-convenience-functions"><span class="toc-section-number">5.9.10</span>  Semi-internal convenience functions</a></li>
-  <li><a href="#named-objects-and-copying" id="toc-named-objects-and-copying" class="nav-link" data-scroll-target="#named-objects-and-copying"><span class="toc-section-number">5.9.11</span>  Named objects and copying</a></li>
+  <li><a href="#handling-the-effects-of-garbage-collection" id="toc-handling-the-effects-of-garbage-collection" class="nav-link" data-scroll-target="#handling-the-effects-of-garbage-collection"><span class="header-section-number">5.9.1</span> Handling the effects of garbage collection</a></li>
+  <li><a href="#allocating-storage" id="toc-allocating-storage" class="nav-link" data-scroll-target="#allocating-storage"><span class="header-section-number">5.9.2</span> Allocating storage</a></li>
+  <li><a href="#details-of-r-types" id="toc-details-of-r-types" class="nav-link" data-scroll-target="#details-of-r-types"><span class="header-section-number">5.9.3</span> Details of R types</a></li>
+  <li><a href="#attributes" id="toc-attributes" class="nav-link" data-scroll-target="#attributes"><span class="header-section-number">5.9.4</span> Attributes</a></li>
+  <li><a href="#classes" id="toc-classes" class="nav-link" data-scroll-target="#classes"><span class="header-section-number">5.9.5</span> Classes</a></li>
+  <li><a href="#handling-lists" id="toc-handling-lists" class="nav-link" data-scroll-target="#handling-lists"><span class="header-section-number">5.9.6</span> Handling lists</a></li>
+  <li><a href="#handling-character-data" id="toc-handling-character-data" class="nav-link" data-scroll-target="#handling-character-data"><span class="header-section-number">5.9.7</span> Handling character data</a></li>
+  <li><a href="#finding-and-setting-variables" id="toc-finding-and-setting-variables" class="nav-link" data-scroll-target="#finding-and-setting-variables"><span class="header-section-number">5.9.8</span> Finding and setting variables</a></li>
+  <li><a href="#some-convenience-functions" id="toc-some-convenience-functions" class="nav-link" data-scroll-target="#some-convenience-functions"><span class="header-section-number">5.9.9</span> Some convenience functions</a></li>
+  <li><a href="#semi-internal-convenience-functions" id="toc-semi-internal-convenience-functions" class="nav-link" data-scroll-target="#semi-internal-convenience-functions"><span class="header-section-number">5.9.10</span> Semi-internal convenience functions</a></li>
+  <li><a href="#named-objects-and-copying" id="toc-named-objects-and-copying" class="nav-link" data-scroll-target="#named-objects-and-copying"><span class="header-section-number">5.9.11</span> Named objects and copying</a></li>
   </ul></li>
-  <li><a href="#interface-functions-.call-and-.external" id="toc-interface-functions-.call-and-.external" class="nav-link" data-scroll-target="#interface-functions-.call-and-.external"><span class="toc-section-number">5.10</span>  Interface functions <code>.Call</code> and <code>.External</code></a>
+  <li><a href="#interface-functions-.call-and-.external" id="toc-interface-functions-.call-and-.external" class="nav-link" data-scroll-target="#interface-functions-.call-and-.external"><span class="header-section-number">5.10</span> Interface functions <code>.Call</code> and <code>.External</code></a>
   <ul class="collapse">
-  <li><a href="#calling-.call" id="toc-calling-.call" class="nav-link" data-scroll-target="#calling-.call"><span class="toc-section-number">5.10.1</span>  Calling <code>.Call</code></a></li>
-  <li><a href="#calling-.external" id="toc-calling-.external" class="nav-link" data-scroll-target="#calling-.external"><span class="toc-section-number">5.10.2</span>  Calling <code>.External</code></a></li>
-  <li><a href="#missing-and-special-values" id="toc-missing-and-special-values" class="nav-link" data-scroll-target="#missing-and-special-values"><span class="toc-section-number">5.10.3</span>  Missing and special values</a></li>
+  <li><a href="#calling-.call" id="toc-calling-.call" class="nav-link" data-scroll-target="#calling-.call"><span class="header-section-number">5.10.1</span> Calling <code>.Call</code></a></li>
+  <li><a href="#calling-.external" id="toc-calling-.external" class="nav-link" data-scroll-target="#calling-.external"><span class="header-section-number">5.10.2</span> Calling <code>.External</code></a></li>
+  <li><a href="#missing-and-special-values" id="toc-missing-and-special-values" class="nav-link" data-scroll-target="#missing-and-special-values"><span class="header-section-number">5.10.3</span> Missing and special values</a></li>
   </ul></li>
-  <li><a href="#evaluating-r-expressions-from-c" id="toc-evaluating-r-expressions-from-c" class="nav-link" data-scroll-target="#evaluating-r-expressions-from-c"><span class="toc-section-number">5.11</span>  Evaluating R expressions from C</a>
+  <li><a href="#evaluating-r-expressions-from-c" id="toc-evaluating-r-expressions-from-c" class="nav-link" data-scroll-target="#evaluating-r-expressions-from-c"><span class="header-section-number">5.11</span> Evaluating R expressions from C</a>
   <ul class="collapse">
-  <li><a href="#zero-finding" id="toc-zero-finding" class="nav-link" data-scroll-target="#zero-finding"><span class="toc-section-number">5.11.1</span>  Zero-finding</a></li>
-  <li><a href="#calculating-numerical-derivatives" id="toc-calculating-numerical-derivatives" class="nav-link" data-scroll-target="#calculating-numerical-derivatives"><span class="toc-section-number">5.11.2</span>  Calculating numerical derivatives</a></li>
+  <li><a href="#zero-finding" id="toc-zero-finding" class="nav-link" data-scroll-target="#zero-finding"><span class="header-section-number">5.11.1</span> Zero-finding</a></li>
+  <li><a href="#calculating-numerical-derivatives" id="toc-calculating-numerical-derivatives" class="nav-link" data-scroll-target="#calculating-numerical-derivatives"><span class="header-section-number">5.11.2</span> Calculating numerical derivatives</a></li>
   </ul></li>
-  <li><a href="#parsing-r-code-from-c" id="toc-parsing-r-code-from-c" class="nav-link" data-scroll-target="#parsing-r-code-from-c"><span class="toc-section-number">5.12</span>  Parsing R code from C</a>
+  <li><a href="#parsing-r-code-from-c" id="toc-parsing-r-code-from-c" class="nav-link" data-scroll-target="#parsing-r-code-from-c"><span class="header-section-number">5.12</span> Parsing R code from C</a>
   <ul class="collapse">
-  <li><a href="#accessing-source-references" id="toc-accessing-source-references" class="nav-link" data-scroll-target="#accessing-source-references"><span class="toc-section-number">5.12.1</span>  Accessing source references</a></li>
+  <li><a href="#accessing-source-references" id="toc-accessing-source-references" class="nav-link" data-scroll-target="#accessing-source-references"><span class="header-section-number">5.12.1</span> Accessing source references</a></li>
   </ul></li>
-  <li><a href="#external-pointers-and-weak-references" id="toc-external-pointers-and-weak-references" class="nav-link" data-scroll-target="#external-pointers-and-weak-references"><span class="toc-section-number">5.13</span>  External pointers and weak references</a>
+  <li><a href="#external-pointers-and-weak-references" id="toc-external-pointers-and-weak-references" class="nav-link" data-scroll-target="#external-pointers-and-weak-references"><span class="header-section-number">5.13</span> External pointers and weak references</a>
   <ul class="collapse">
-  <li><a href="#an-example" id="toc-an-example" class="nav-link" data-scroll-target="#an-example"><span class="toc-section-number">5.13.1</span>  An example</a></li>
+  <li><a href="#an-example" id="toc-an-example" class="nav-link" data-scroll-target="#an-example"><span class="header-section-number">5.13.1</span> An example</a></li>
   </ul></li>
-  <li><a href="#vector-accessor-functions" id="toc-vector-accessor-functions" class="nav-link" data-scroll-target="#vector-accessor-functions"><span class="toc-section-number">5.14</span>  Vector accessor functions</a></li>
-  <li><a href="#character-encoding-issues" id="toc-character-encoding-issues" class="nav-link" data-scroll-target="#character-encoding-issues"><span class="toc-section-number">5.15</span>  Character encoding issues</a></li>
+  <li><a href="#vector-accessor-functions" id="toc-vector-accessor-functions" class="nav-link" data-scroll-target="#vector-accessor-functions"><span class="header-section-number">5.14</span> Vector accessor functions</a></li>
+  <li><a href="#character-encoding-issues" id="toc-character-encoding-issues" class="nav-link" data-scroll-target="#character-encoding-issues"><span class="header-section-number">5.15</span> Character encoding issues</a></li>
   </ul>
 </nav>
     </div>
@@ -339,7 +330,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">System and foreign language interfaces</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">System and foreign language interfaces</span></h1>
 </div>
 
 
@@ -423,7 +414,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> nab <span class="op">=</span> <span class="op">*</span>na <span class="op">+</span> <span class="op">*</span>nb <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> nab<span class="op">;</span> i<span class="op">++)</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        ab<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> <span class="fl">0.0</span><span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        ab<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> <span class="dv">0</span><span class="er">.0</span><span class="op">;</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="op">*</span>na<span class="op">;</span> i<span class="op">++)</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> <span class="op">*</span>nb<span class="op">;</span> j<span class="op">++)</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>            ab<span class="op">[</span>i <span class="op">+</span> j<span class="op">]</span> <span class="op">+=</span> a<span class="op">[</span>i<span class="op">]</span> <span class="op">*</span> b<span class="op">[</span>j<span class="op">];</span></span>
@@ -639,7 +630,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb22"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span><span class="pp"> </span><span class="co">// for NULL</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;R_ext/Rdynload.h&gt;</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define CALLDEF(name, n)  {#name, (DL_FUNC) &amp;name, n}</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#define CALLDEF</span><span class="op">(</span><span class="pp">name</span><span class="op">,</span><span class="pp"> n</span><span class="op">)</span><span class="pp">  </span><span class="op">{#</span><span class="pp">name</span><span class="op">,</span><span class="pp"> </span><span class="op">(</span><span class="pp">DL_FUNC</span><span class="op">)</span><span class="pp"> </span><span class="op">&amp;</span><span class="pp">name</span><span class="op">,</span><span class="pp"> n</span><span class="op">}</span></span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="dt">static</span> <span class="dt">const</span> R_CallMethodDef R_CallDef<span class="op">[]</span> <span class="op">=</span> <span class="op">{</span></span>
 <span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>   CALLDEF<span class="op">(</span>spline_basis<span class="op">,</span> <span class="op">?),</span></span>
@@ -730,7 +721,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"splines.h"</span></span>
 <span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define CALLDEF(name, n)  {#name, (DL_FUNC) &amp;name, n}</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define CALLDEF</span><span class="op">(</span><span class="pp">name</span><span class="op">,</span><span class="pp"> n</span><span class="op">)</span><span class="pp">  </span><span class="op">{#</span><span class="pp">name</span><span class="op">,</span><span class="pp"> </span><span class="op">(</span><span class="pp">DL_FUNC</span><span class="op">)</span><span class="pp"> </span><span class="op">&amp;</span><span class="pp">name</span><span class="op">,</span><span class="pp"> n</span><span class="op">}</span></span>
 <span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="dt">static</span> <span class="dt">const</span> R_CallMethodDef R_CallDef<span class="op">[]</span> <span class="op">=</span> <span class="op">{</span></span>
 <span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>    CALLDEF<span class="op">(</span>spline_basis<span class="op">,</span> <span class="dv">4</span><span class="op">),</span></span>
@@ -920,20 +911,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="subsection anchored" data-number="5.8.1" data-anchor-id="unix-alikes"><span class="header-section-number">5.8.1</span> Unix-alikes</h3>
 <p>It is possible to link a shared object in package <strong>packA</strong> to a library provided by package <strong>packB</strong> under limited circumstances on a Unix-alike OS. There are severe portability issues, so this is not recommended for a distributed package.</p>
 <p>This is easiest if <strong>packB</strong> provides a static library <code>packB/lib/libpackB.a</code>. (Note using directory <code>lib</code> rather than <code>libs</code> is conventional, and architecture-specific sub-directories may be needed and are assumed in the sample code below. The code in the static library will need to be compiled with <code>PIC</code> flags on platforms where it matters.) Then as the code from package <strong>packB</strong> is incorporated when package <strong>packA</strong> is installed, we only need to find the static library at install time for package <strong>packA</strong>. The only issue is to find package <strong>packB</strong>, and for that we can ask R by something like (long lines broken for display here)</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>PKGB_PATH<span class="op">=</span>`echo 'library<span class="op">(</span>packB<span class="op">);</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  cat<span class="op">(</span>system<span class="op">.</span>file<span class="op">(</span><span class="st">"lib"</span><span class="op">,</span>  package<span class="op">=</span><span class="st">"packB"</span><span class="op">,</span> mustWork<span class="op">=</span>TRUE<span class="op">))</span>' \</span>
+<div class="sourceCode" id="cb48"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>PKGB_PATH<span class="op">=</span>`echo <span class="ch">'l</span><span class="er">ibrary(packB);</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  cat<span class="op">(</span>system<span class="op">.</span>file<span class="op">(</span><span class="st">"lib"</span><span class="op">,</span>  package<span class="op">=</span><span class="st">"packB"</span><span class="op">,</span> mustWork<span class="op">=</span>TRUE<span class="op">))</span><span class="ch">' </span><span class="er">\</span></span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a> <span class="op">|</span> <span class="st">"${R_HOME}/bin/R"</span> <span class="op">--</span>vanilla <span class="op">--</span>no<span class="op">-</span>echo`</span>
 <span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>PKG_LIBS<span class="op">=</span><span class="st">"$(PKGB_PATH)$(R_ARCH)/libpackB.a"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>For a dynamic library <code>packB/lib/libpackB.so</code> (<code>packB/lib/libpackB.dylib</code> on macOS: note that you cannot link to a shared object, <code>.so</code>, on that platform) we could use</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>PKGB_PATH<span class="op">=</span>`echo 'library<span class="op">(</span>packB<span class="op">);</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  cat<span class="op">(</span>system<span class="op">.</span>file<span class="op">(</span><span class="st">"lib"</span><span class="op">,</span> package<span class="op">=</span><span class="st">"packB"</span><span class="op">,</span> mustWork<span class="op">=</span>TRUE<span class="op">))</span>' \</span>
+<div class="sourceCode" id="cb49"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>PKGB_PATH<span class="op">=</span>`echo <span class="ch">'l</span><span class="er">ibrary(packB);</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  cat<span class="op">(</span>system<span class="op">.</span>file<span class="op">(</span><span class="st">"lib"</span><span class="op">,</span> package<span class="op">=</span><span class="st">"packB"</span><span class="op">,</span> mustWork<span class="op">=</span>TRUE<span class="op">))</span><span class="ch">' </span><span class="er">\</span></span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a> <span class="op">|</span> <span class="st">"${R_HOME}/bin/R"</span> <span class="op">--</span>vanilla <span class="op">--</span>no<span class="op">-</span>echo`</span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>PKG_LIBS<span class="op">=-</span>L<span class="st">"$(PKGB_PATH)$(R_ARCH)"</span> <span class="op">-</span>lpackB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>PKG_LIBS<span class="op">=-</span><span class="st">L"$(PKGB_PATH)$(R_ARCH)"</span> <span class="op">-</span>lpackB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="page-columns page-full"><p>This will work for installation, but very likely not when package <code>packB</code> is loaded, as the path to package <strong>packB</strong>’s <code>lib</code> directory is not in the <code>ld.so</code><a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a> search path. You can arrange to put it there <strong>before</strong> R is launched by setting (on some platforms) <code>LD_RUN_PATH</code> or <code>LD_LIBRARY_PATH</code> or adding to the <code>ld.so</code> cache (see <code>man ldconfig</code>). On platforms that support it, the path to the directory containing the dynamic library can be hardcoded at install time (which assumes that the location of package <strong>packB</strong> will not be changed nor the package updated to a changed API). On systems with the <code>gcc</code> or <code>clang</code> and the GNU linker (e.g.&nbsp;Linux) and some others this can be done by e.g.</p><div class="no-row-height column-margin column-container"><li id="fn13"><p><sup>13</sup>&nbsp;<code>dyld</code> on macOS, and <code>DYLD_LIBRARY_PATHS</code> below.</p></li></div></div>
-<div class="sourceCode" id="cb50"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>PKGB_PATH<span class="op">=</span>`echo 'library<span class="op">(</span>packB<span class="op">);</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  cat<span class="op">(</span>system<span class="op">.</span>file<span class="op">(</span><span class="st">"lib"</span><span class="op">,</span> package<span class="op">=</span><span class="st">"packB"</span><span class="op">,</span> mustWork<span class="op">=</span>TRUE<span class="op">)))</span>' \</span>
+<div class="sourceCode" id="cb50"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>PKGB_PATH<span class="op">=</span>`echo <span class="ch">'l</span><span class="er">ibrary(packB);</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  cat<span class="op">(</span>system<span class="op">.</span>file<span class="op">(</span><span class="st">"lib"</span><span class="op">,</span> package<span class="op">=</span><span class="st">"packB"</span><span class="op">,</span> mustWork<span class="op">=</span>TRUE<span class="op">)))</span><span class="ch">' </span><span class="er">\</span></span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a> <span class="op">|</span> <span class="st">"${R_HOME}/bin/R"</span> <span class="op">--</span>vanilla <span class="op">--</span>no<span class="op">-</span>echo`</span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>PKG_LIBS<span class="op">=-</span>L<span class="st">"$(PKGB_PATH)$(R_ARCH)"</span> <span class="op">-</span>Wl<span class="op">,-</span>rpath<span class="op">,</span><span class="st">"$(PKGB_PATH)$(R_ARCH)"</span> <span class="op">-</span>lpackB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>PKG_LIBS<span class="op">=-</span><span class="st">L"$(PKGB_PATH)$(R_ARCH)"</span> <span class="op">-</span>Wl<span class="op">,-</span>rpath<span class="op">,</span><span class="st">"$(PKGB_PATH)$(R_ARCH)"</span> <span class="op">-</span>lpackB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Some other systems (e.g.&nbsp;Solaris with its native linker) use <code>-Rdir</code> rather than <code>-rpath,dir</code> (and this is accepted by the compiler as well as the linker).</p>
 <p>It may be possible to figure out what is required semi-automatically from the result of <code>R CMD libtool --config</code> (look for <code>hardcode</code>).</p>
 <p>Making headers provided by package <strong>packB</strong> available to the code to be compiled in package <strong>packA</strong> can be done by the <code>LinkingTo</code> mechanism (see <a href="#registering-native-routines">Registering native routines</a>).</p>
@@ -948,10 +939,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This needs an entry in <code>Makevars.win</code> or <code>Makevars.ucrt</code> of the form</p>
 <div class="sourceCode" id="cb51"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>PKG_LIBS<span class="op">=</span> <span class="op">-</span>L<span class="op">&lt;</span>something<span class="op">&gt;</span> <span class="op">-</span>lexB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>and one possibility is that <code>&lt;something&gt;</code> is the path to the installed <code>pkgB/libs</code> directory. To find that we need to ask R where it is by something like</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>PKGB_PATH<span class="op">=</span>`echo 'library<span class="op">(</span>packB<span class="op">);</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  cat<span class="op">(</span>system<span class="op">.</span>file<span class="op">(</span><span class="st">"libs"</span><span class="op">,</span> package<span class="op">=</span><span class="st">"packB"</span><span class="op">,</span> mustWork<span class="op">=</span>TRUE<span class="op">))</span>' \</span>
+<div class="sourceCode" id="cb52"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>PKGB_PATH<span class="op">=</span>`echo <span class="ch">'l</span><span class="er">ibrary(packB);</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  cat<span class="op">(</span>system<span class="op">.</span>file<span class="op">(</span><span class="st">"libs"</span><span class="op">,</span> package<span class="op">=</span><span class="st">"packB"</span><span class="op">,</span> mustWork<span class="op">=</span>TRUE<span class="op">))</span><span class="ch">' </span><span class="er">\</span></span>
 <span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a> <span class="op">|</span> rterm <span class="op">--</span>vanilla <span class="op">--</span>no<span class="op">-</span>echo`</span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>PKG_LIBS<span class="op">=</span> <span class="op">-</span>L<span class="st">"$(PKGB_PATH)$(R_ARCH)"</span> <span class="op">-</span>lexB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>PKG_LIBS<span class="op">=</span> <span class="op">-</span><span class="st">L"$(PKGB_PATH)$(R_ARCH)"</span> <span class="op">-</span>lexB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Another possibility is to use an import library, shipping with package <strong>packA</strong> an exports file <code>exB.def</code>. Then <code>Makevars.win</code> (or <code>Makevars.ucrt</code>) could contain</p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>PKG_LIBS<span class="op">=</span> <span class="op">-</span>L<span class="op">.</span> <span class="op">-</span>lexB</span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1241,7 +1232,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(!</span>isEnvironment<span class="op">(</span>rho<span class="op">))</span></span>
 <span id="cb73-8"><a href="#cb73-8" aria-hidden="true" tabindex="-1"></a>        error<span class="op">(</span><span class="st">"rho should be an environment"</span><span class="op">);</span></span>
 <span id="cb73-9"><a href="#cb73-9" aria-hidden="true" tabindex="-1"></a>    ans <span class="op">=</span> findVar<span class="op">(</span>installChar<span class="op">(</span>STRING_ELT<span class="op">(</span>name<span class="op">,</span> <span class="dv">0</span><span class="op">)),</span> rho<span class="op">);</span></span>
-<span id="cb73-10"><a href="#cb73-10" aria-hidden="true" tabindex="-1"></a>    Rprintf<span class="op">(</span><span class="st">"first value is %f</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span> REAL<span class="op">(</span>ans<span class="op">)[</span><span class="dv">0</span><span class="op">]);</span></span>
+<span id="cb73-10"><a href="#cb73-10" aria-hidden="true" tabindex="-1"></a>    Rprintf<span class="op">(</span><span class="st">"first value is </span><span class="sc">%f\n</span><span class="st">"</span><span class="op">,</span> REAL<span class="op">(</span>ans<span class="op">)[</span><span class="dv">0</span><span class="op">]);</span></span>
 <span id="cb73-11"><a href="#cb73-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> R_NilValue<span class="op">;</span></span>
 <span id="cb73-12"><a href="#cb73-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The main work is done by <code>findVar</code>, but to use it we need to install <code>name</code> as a name in the symbol table. As we wanted the value for internal use, we return <code>NULL</code>.</p>
@@ -1370,7 +1361,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb84-12"><a href="#cb84-12" aria-hidden="true" tabindex="-1"></a>    na <span class="op">=</span> length<span class="op">(</span>a<span class="op">);</span> nb <span class="op">=</span> length<span class="op">(</span>b<span class="op">);</span> nab <span class="op">=</span> na <span class="op">+</span> nb <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
 <span id="cb84-13"><a href="#cb84-13" aria-hidden="true" tabindex="-1"></a>    ab <span class="op">=</span> PROTECT<span class="op">(</span>allocVector<span class="op">(</span>REALSXP<span class="op">,</span> nab<span class="op">));</span></span>
 <span id="cb84-14"><a href="#cb84-14" aria-hidden="true" tabindex="-1"></a>    xa <span class="op">=</span> REAL<span class="op">(</span>a<span class="op">);</span> xb <span class="op">=</span> REAL<span class="op">(</span>b<span class="op">);</span> xab <span class="op">=</span> REAL<span class="op">(</span>ab<span class="op">);</span></span>
-<span id="cb84-15"><a href="#cb84-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> nab<span class="op">;</span> i<span class="op">++)</span> xab<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> <span class="fl">0.0</span><span class="op">;</span></span>
+<span id="cb84-15"><a href="#cb84-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> nab<span class="op">;</span> i<span class="op">++)</span> xab<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> <span class="dv">0</span><span class="er">.0</span><span class="op">;</span></span>
 <span id="cb84-16"><a href="#cb84-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> na<span class="op">;</span> i<span class="op">++)</span></span>
 <span id="cb84-17"><a href="#cb84-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> nb<span class="op">;</span> j<span class="op">++)</span> xab<span class="op">[</span>i <span class="op">+</span> j<span class="op">]</span> <span class="op">+=</span> xa<span class="op">[</span>i<span class="op">]</span> <span class="op">*</span> xb<span class="op">[</span>j<span class="op">];</span></span>
 <span id="cb84-18"><a href="#cb84-18" aria-hidden="true" tabindex="-1"></a>    UNPROTECT<span class="op">(</span><span class="dv">3</span><span class="op">);</span></span>
@@ -1414,29 +1405,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb89-6"><a href="#cb89-6" aria-hidden="true" tabindex="-1"></a>            isNull<span class="op">(</span>TAG<span class="op">(</span>args<span class="op">))</span> <span class="op">?</span> <span class="st">""</span> <span class="op">:</span> CHAR<span class="op">(</span>PRINTNAME<span class="op">(</span>TAG<span class="op">(</span>args<span class="op">)));</span></span>
 <span id="cb89-7"><a href="#cb89-7" aria-hidden="true" tabindex="-1"></a>        SEXP el <span class="op">=</span> CAR<span class="op">(</span>args<span class="op">);</span></span>
 <span id="cb89-8"><a href="#cb89-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>length<span class="op">(</span>el<span class="op">)</span> <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb89-9"><a href="#cb89-9" aria-hidden="true" tabindex="-1"></a>            Rprintf<span class="op">(</span><span class="st">"[%d] '%s' R type, length 0</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span> i<span class="op">+</span><span class="dv">1</span><span class="op">,</span> name<span class="op">);</span></span>
+<span id="cb89-9"><a href="#cb89-9" aria-hidden="true" tabindex="-1"></a>            Rprintf<span class="op">(</span><span class="st">"[</span><span class="sc">%d</span><span class="st">] '</span><span class="sc">%s</span><span class="st">' R type, length 0</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span> i<span class="op">+</span><span class="dv">1</span><span class="op">,</span> name<span class="op">);</span></span>
 <span id="cb89-10"><a href="#cb89-10" aria-hidden="true" tabindex="-1"></a>           <span class="cf">continue</span><span class="op">;</span></span>
 <span id="cb89-11"><a href="#cb89-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
 <span id="cb89-12"><a href="#cb89-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">switch</span><span class="op">(</span>TYPEOF<span class="op">(</span>el<span class="op">))</span> <span class="op">{</span></span>
 <span id="cb89-13"><a href="#cb89-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> REALSXP<span class="op">:</span></span>
-<span id="cb89-14"><a href="#cb89-14" aria-hidden="true" tabindex="-1"></a>            Rprintf<span class="op">(</span><span class="st">"[%d] '%s' %f</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span> i<span class="op">+</span><span class="dv">1</span><span class="op">,</span> name<span class="op">,</span> REAL<span class="op">(</span>el<span class="op">)[</span><span class="dv">0</span><span class="op">]);</span></span>
+<span id="cb89-14"><a href="#cb89-14" aria-hidden="true" tabindex="-1"></a>            Rprintf<span class="op">(</span><span class="st">"[</span><span class="sc">%d</span><span class="st">] '</span><span class="sc">%s</span><span class="st">' </span><span class="sc">%f\n</span><span class="st">"</span><span class="op">,</span> i<span class="op">+</span><span class="dv">1</span><span class="op">,</span> name<span class="op">,</span> REAL<span class="op">(</span>el<span class="op">)[</span><span class="dv">0</span><span class="op">]);</span></span>
 <span id="cb89-15"><a href="#cb89-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
 <span id="cb89-16"><a href="#cb89-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> LGLSXP<span class="op">:</span></span>
 <span id="cb89-17"><a href="#cb89-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> INTSXP<span class="op">:</span></span>
-<span id="cb89-18"><a href="#cb89-18" aria-hidden="true" tabindex="-1"></a>            Rprintf<span class="op">(</span><span class="st">"[%d] '%s' %d</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span> i<span class="op">+</span><span class="dv">1</span><span class="op">,</span> name<span class="op">,</span> INTEGER<span class="op">(</span>el<span class="op">)[</span><span class="dv">0</span><span class="op">]);</span></span>
+<span id="cb89-18"><a href="#cb89-18" aria-hidden="true" tabindex="-1"></a>            Rprintf<span class="op">(</span><span class="st">"[</span><span class="sc">%d</span><span class="st">] '</span><span class="sc">%s</span><span class="st">' </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> i<span class="op">+</span><span class="dv">1</span><span class="op">,</span> name<span class="op">,</span> INTEGER<span class="op">(</span>el<span class="op">)[</span><span class="dv">0</span><span class="op">]);</span></span>
 <span id="cb89-19"><a href="#cb89-19" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
 <span id="cb89-20"><a href="#cb89-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> CPLXSXP<span class="op">:</span></span>
 <span id="cb89-21"><a href="#cb89-21" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
 <span id="cb89-22"><a href="#cb89-22" aria-hidden="true" tabindex="-1"></a>            Rcomplex cpl <span class="op">=</span> COMPLEX<span class="op">(</span>el<span class="op">)[</span><span class="dv">0</span><span class="op">];</span></span>
-<span id="cb89-23"><a href="#cb89-23" aria-hidden="true" tabindex="-1"></a>            Rprintf<span class="op">(</span><span class="st">"[%d] '%s' %f + %fi</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span> i<span class="op">+</span><span class="dv">1</span><span class="op">,</span> name<span class="op">,</span> cpl<span class="op">.</span>r<span class="op">,</span> cpl<span class="op">.</span>i<span class="op">);</span></span>
+<span id="cb89-23"><a href="#cb89-23" aria-hidden="true" tabindex="-1"></a>            Rprintf<span class="op">(</span><span class="st">"[</span><span class="sc">%d</span><span class="st">] '</span><span class="sc">%s</span><span class="st">' </span><span class="sc">%f</span><span class="st"> + </span><span class="sc">%f</span><span class="st">i</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span> i<span class="op">+</span><span class="dv">1</span><span class="op">,</span> name<span class="op">,</span> cpl<span class="op">.</span>r<span class="op">,</span> cpl<span class="op">.</span>i<span class="op">);</span></span>
 <span id="cb89-24"><a href="#cb89-24" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
 <span id="cb89-25"><a href="#cb89-25" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
 <span id="cb89-26"><a href="#cb89-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> STRSXP<span class="op">:</span></span>
-<span id="cb89-27"><a href="#cb89-27" aria-hidden="true" tabindex="-1"></a>            Rprintf<span class="op">(</span><span class="st">"[%d] '%s' %s</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span> i<span class="op">+</span><span class="dv">1</span><span class="op">,</span> name<span class="op">,</span></span>
+<span id="cb89-27"><a href="#cb89-27" aria-hidden="true" tabindex="-1"></a>            Rprintf<span class="op">(</span><span class="st">"[</span><span class="sc">%d</span><span class="st">] '</span><span class="sc">%s</span><span class="st">' </span><span class="sc">%s\n</span><span class="st">"</span><span class="op">,</span> i<span class="op">+</span><span class="dv">1</span><span class="op">,</span> name<span class="op">,</span></span>
 <span id="cb89-28"><a href="#cb89-28" aria-hidden="true" tabindex="-1"></a>                   CHAR<span class="op">(</span>STRING_ELT<span class="op">(</span>el<span class="op">,</span> <span class="dv">0</span><span class="op">)));</span></span>
 <span id="cb89-29"><a href="#cb89-29" aria-hidden="true" tabindex="-1"></a>           <span class="cf">break</span><span class="op">;</span></span>
 <span id="cb89-30"><a href="#cb89-30" aria-hidden="true" tabindex="-1"></a>        <span class="cf">default</span><span class="op">:</span></span>
-<span id="cb89-31"><a href="#cb89-31" aria-hidden="true" tabindex="-1"></a>            Rprintf<span class="op">(</span><span class="st">"[%d] '%s' R type</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span> i<span class="op">+</span><span class="dv">1</span><span class="op">,</span> name<span class="op">);</span></span>
+<span id="cb89-31"><a href="#cb89-31" aria-hidden="true" tabindex="-1"></a>            Rprintf<span class="op">(</span><span class="st">"[</span><span class="sc">%d</span><span class="st">] '</span><span class="sc">%s</span><span class="st">' R type</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span> i<span class="op">+</span><span class="dv">1</span><span class="op">,</span> name<span class="op">);</span></span>
 <span id="cb89-32"><a href="#cb89-32" aria-hidden="true" tabindex="-1"></a>       <span class="op">}</span></span>
 <span id="cb89-33"><a href="#cb89-33" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb89-34"><a href="#cb89-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> R_NilValue<span class="op">;</span></span>
@@ -1570,18 +1561,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb100-23"><a href="#cb100-23" aria-hidden="true" tabindex="-1"></a>           tol <span class="op">=</span> REAL<span class="op">(</span>stol<span class="op">)[</span><span class="dv">0</span><span class="op">];</span></span>
 <span id="cb100-24"><a href="#cb100-24" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> f0<span class="op">,</span> f1<span class="op">,</span> fc<span class="op">,</span> xc<span class="op">;</span></span>
 <span id="cb100-25"><a href="#cb100-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb100-26"><a href="#cb100-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>tol <span class="op">&lt;=</span> <span class="fl">0.0</span><span class="op">)</span> error<span class="op">(</span><span class="st">"non-positive tol value"</span><span class="op">);</span></span>
+<span id="cb100-26"><a href="#cb100-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>tol <span class="op">&lt;=</span> <span class="dv">0</span><span class="er">.0</span><span class="op">)</span> error<span class="op">(</span><span class="st">"non-positive tol value"</span><span class="op">);</span></span>
 <span id="cb100-27"><a href="#cb100-27" aria-hidden="true" tabindex="-1"></a>    f0 <span class="op">=</span> feval<span class="op">(</span>x0<span class="op">,</span> f<span class="op">,</span> rho<span class="op">);</span> f1 <span class="op">=</span> feval<span class="op">(</span>x1<span class="op">,</span> f<span class="op">,</span> rho<span class="op">);</span></span>
-<span id="cb100-28"><a href="#cb100-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>f0 <span class="op">==</span> <span class="fl">0.0</span><span class="op">)</span> <span class="cf">return</span> mkans<span class="op">(</span>x0<span class="op">);</span></span>
-<span id="cb100-29"><a href="#cb100-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>f1 <span class="op">==</span> <span class="fl">0.0</span><span class="op">)</span> <span class="cf">return</span> mkans<span class="op">(</span>x1<span class="op">);</span></span>
-<span id="cb100-30"><a href="#cb100-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>f0<span class="op">*</span>f1 <span class="op">&gt;</span> <span class="fl">0.0</span><span class="op">)</span> error<span class="op">(</span><span class="st">"x[0] and x[1] have the same sign"</span><span class="op">);</span></span>
+<span id="cb100-28"><a href="#cb100-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>f0 <span class="op">==</span> <span class="dv">0</span><span class="er">.0</span><span class="op">)</span> <span class="cf">return</span> mkans<span class="op">(</span>x0<span class="op">);</span></span>
+<span id="cb100-29"><a href="#cb100-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>f1 <span class="op">==</span> <span class="dv">0</span><span class="er">.0</span><span class="op">)</span> <span class="cf">return</span> mkans<span class="op">(</span>x1<span class="op">);</span></span>
+<span id="cb100-30"><a href="#cb100-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>f0<span class="op">*</span>f1 <span class="op">&gt;</span> <span class="dv">0</span><span class="er">.0</span><span class="op">)</span> error<span class="op">(</span><span class="st">"x[0] and x[1] have the same sign"</span><span class="op">);</span></span>
 <span id="cb100-31"><a href="#cb100-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb100-32"><a href="#cb100-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(;;)</span> <span class="op">{</span></span>
-<span id="cb100-33"><a href="#cb100-33" aria-hidden="true" tabindex="-1"></a>        xc <span class="op">=</span> <span class="fl">0.5</span><span class="op">*(</span>x0<span class="op">+</span>x1<span class="op">);</span></span>
+<span id="cb100-33"><a href="#cb100-33" aria-hidden="true" tabindex="-1"></a>        xc <span class="op">=</span> <span class="dv">0</span><span class="er">.5</span><span class="op">*(</span>x0<span class="op">+</span>x1<span class="op">);</span></span>
 <span id="cb100-34"><a href="#cb100-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span><span class="op">(</span>fabs<span class="op">(</span>x0<span class="op">-</span>x1<span class="op">)</span> <span class="op">&lt;</span> tol<span class="op">)</span> <span class="cf">return</span>  mkans<span class="op">(</span>xc<span class="op">);</span></span>
 <span id="cb100-35"><a href="#cb100-35" aria-hidden="true" tabindex="-1"></a>        fc <span class="op">=</span> feval<span class="op">(</span>xc<span class="op">,</span> f<span class="op">,</span> rho<span class="op">);</span></span>
 <span id="cb100-36"><a href="#cb100-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span><span class="op">(</span>fc <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="cf">return</span>  mkans<span class="op">(</span>xc<span class="op">);</span></span>
-<span id="cb100-37"><a href="#cb100-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span><span class="op">(</span>f0<span class="op">*</span>fc <span class="op">&gt;</span> <span class="fl">0.0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb100-37"><a href="#cb100-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span><span class="op">(</span>f0<span class="op">*</span>fc <span class="op">&gt;</span> <span class="dv">0</span><span class="er">.0</span><span class="op">)</span> <span class="op">{</span></span>
 <span id="cb100-38"><a href="#cb100-38" aria-hidden="true" tabindex="-1"></a>            x0 <span class="op">=</span> xc<span class="op">;</span> f0 <span class="op">=</span> fc<span class="op">;</span></span>
 <span id="cb100-39"><a href="#cb100-39" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
 <span id="cb100-40"><a href="#cb100-40" aria-hidden="true" tabindex="-1"></a>            x1 <span class="op">=</span> xc<span class="op">;</span> f1 <span class="op">=</span> fc<span class="op">;</span></span>
@@ -1717,7 +1708,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb112-14"><a href="#cb112-14" aria-hidden="true" tabindex="-1"></a>        cmdexpr <span class="op">=</span> PROTECT<span class="op">(</span>R_ParseVector<span class="op">(</span>cmdSexp<span class="op">,</span> <span class="op">-</span><span class="dv">1</span><span class="op">,</span> <span class="op">&amp;</span>status<span class="op">,</span> R_NilValue<span class="op">));</span></span>
 <span id="cb112-15"><a href="#cb112-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>status <span class="op">!=</span> PARSE_OK<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb112-16"><a href="#cb112-16" aria-hidden="true" tabindex="-1"></a>            UNPROTECT<span class="op">(</span><span class="dv">2</span><span class="op">);</span></span>
-<span id="cb112-17"><a href="#cb112-17" aria-hidden="true" tabindex="-1"></a>            error<span class="op">(</span><span class="st">"invalid call %s"</span><span class="op">,</span> cmd<span class="op">);</span></span>
+<span id="cb112-17"><a href="#cb112-17" aria-hidden="true" tabindex="-1"></a>            error<span class="op">(</span><span class="st">"invalid call </span><span class="sc">%s</span><span class="st">"</span><span class="op">,</span> cmd<span class="op">);</span></span>
 <span id="cb112-18"><a href="#cb112-18" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
 <span id="cb112-19"><a href="#cb112-19" aria-hidden="true" tabindex="-1"></a>        <span class="co">/* Loop is needed here as EXPSEXP will be of length &gt; 1 */</span></span>
 <span id="cb112-20"><a href="#cb112-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> length<span class="op">(</span>cmdexpr<span class="op">);</span> i<span class="op">++)</span></span>
@@ -1864,9 +1855,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1931,6 +1936,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -1974,7 +2065,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
-    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -2002,6 +2093,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
     <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
   </div>
 </footer>

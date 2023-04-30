@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.475">
+<meta name="generator" content="quarto-1.3.340">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -46,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -138,60 +109,67 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <span class="navbar-title">R Manuals :: Writing R Extensions</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./../index.html">
+    <a class="nav-link" href="./../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Manuals</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
         <li>
-    <a class="dropdown-item" href="./../r-intro/index.html">
+    <a class="dropdown-item" href="./../r-intro/index.html" rel="" target="">
  <span class="dropdown-text">An Introduction to R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-data/index.html">
+    <a class="dropdown-item" href="./../r-data/index.html" rel="" target="">
  <span class="dropdown-text">R Data Import/Export</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-admin/index.html">
+    <a class="dropdown-item" href="./../r-admin/index.html" rel="" target="">
  <span class="dropdown-text">R Installation and Administration</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-exts/index.html">
+    <a class="dropdown-item" href="./../r-exts/index.html" rel="" target="">
  <span class="dropdown-text">Writing R Extensions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-lang/index.html">
+    <a class="dropdown-item" href="./../r-lang/index.html" rel="" target="">
  <span class="dropdown-text">R Language Definition</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-ints/index.html">
+    <a class="dropdown-item" href="./../r-ints/index.html" rel="" target="">
  <span class="dropdown-text">R Internals</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./../about.html">
+    <a class="nav-link" href="./../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Debugging.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -199,104 +177,117 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-      <div class="mt-2 flex-shrink-0 align-items-center">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Writing R Extensions</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Writing R Extensions</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Acknowledgements.html" class="sidebar-item-text sidebar-link">Acknowledgements</a>
+  <a href="./Acknowledgements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acknowledgements</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Creating-R-packages.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Creating R packages</span></a>
+  <a href="./Creating-R-packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Creating R packages</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Writing-R-documentation-files.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Writing R documentation files</span></a>
+  <a href="./Writing-R-documentation-files.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Writing R documentation files</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Tidying-and-profiling-R-code.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Tidying and profiling R code</span></a>
+  <a href="./Tidying-and-profiling-R-code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Tidying and profiling R code</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Debugging.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging</span></a>
+  <a href="./Debugging.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./System-and-foreign-language-interfaces.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">System and foreign language interfaces</span></a>
+  <a href="./System-and-foreign-language-interfaces.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">System and foreign language interfaces</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./The-R-API.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The R API: entry points for C code</span></a>
+  <a href="./The-R-API.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The R API: entry points for C code</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Generic-functions-and-methods.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Generic functions and methods</span></a>
+  <a href="./Generic-functions-and-methods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Generic functions and methods</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Linking-GUIs-and-other-front-ends-to-R.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linking GUIs and other front-ends to R</span></a>
+  <a href="./Linking-GUIs-and-other-front-ends-to-R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linking GUIs and other front-ends to R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link">Function and variable index</a>
+  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Function and variable index</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link">Concept index</a>
+  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Concept index</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#browsing" id="toc-browsing" class="nav-link active" data-scroll-target="#browsing"><span class="toc-section-number">4.1</span>  Browsing</a></li>
-  <li><a href="#debugging-r-code" id="toc-debugging-r-code" class="nav-link" data-scroll-target="#debugging-r-code"><span class="toc-section-number">4.2</span>  Debugging R code</a></li>
-  <li><a href="#checking-memory-access" id="toc-checking-memory-access" class="nav-link" data-scroll-target="#checking-memory-access"><span class="toc-section-number">4.3</span>  Checking memory access</a>
+  <li><a href="#browsing" id="toc-browsing" class="nav-link active" data-scroll-target="#browsing"><span class="header-section-number">4.1</span> Browsing</a></li>
+  <li><a href="#debugging-r-code" id="toc-debugging-r-code" class="nav-link" data-scroll-target="#debugging-r-code"><span class="header-section-number">4.2</span> Debugging R code</a></li>
+  <li><a href="#checking-memory-access" id="toc-checking-memory-access" class="nav-link" data-scroll-target="#checking-memory-access"><span class="header-section-number">4.3</span> Checking memory access</a>
   <ul class="collapse">
-  <li><a href="#using-gctorture" id="toc-using-gctorture" class="nav-link" data-scroll-target="#using-gctorture"><span class="toc-section-number">4.3.1</span>  Using gctorture</a></li>
-  <li><a href="#using-valgrind" id="toc-using-valgrind" class="nav-link" data-scroll-target="#using-valgrind"><span class="toc-section-number">4.3.2</span>  Using valgrind</a></li>
-  <li><a href="#using-the-address-sanitizer" id="toc-using-the-address-sanitizer" class="nav-link" data-scroll-target="#using-the-address-sanitizer"><span class="toc-section-number">4.3.3</span>  Using the Address Sanitizer</a></li>
-  <li><a href="#using-the-leak-sanitizer" id="toc-using-the-leak-sanitizer" class="nav-link" data-scroll-target="#using-the-leak-sanitizer"><span class="toc-section-number">4.3.4</span>  Using the Leak Sanitizer</a></li>
-  <li><a href="#using-the-undefined-behaviour-sanitizer" id="toc-using-the-undefined-behaviour-sanitizer" class="nav-link" data-scroll-target="#using-the-undefined-behaviour-sanitizer"><span class="toc-section-number">4.3.5</span>  Using the Undefined Behaviour Sanitizer</a></li>
-  <li><a href="#other-analyses-with-clang" id="toc-other-analyses-with-clang" class="nav-link" data-scroll-target="#other-analyses-with-clang"><span class="toc-section-number">4.3.6</span>  Other analyses with ‘clang’</a></li>
-  <li><a href="#other-analyses-with-gcc" id="toc-other-analyses-with-gcc" class="nav-link" data-scroll-target="#other-analyses-with-gcc"><span class="toc-section-number">4.3.7</span>  Other analyses with ‘gcc’</a></li>
-  <li><a href="#using-dr.-memory" id="toc-using-dr.-memory" class="nav-link" data-scroll-target="#using-dr.-memory"><span class="toc-section-number">4.3.8</span>  Using ‘Dr.&nbsp;Memory’</a></li>
-  <li><a href="#fortran-array-bounds-checking" id="toc-fortran-array-bounds-checking" class="nav-link" data-scroll-target="#fortran-array-bounds-checking"><span class="toc-section-number">4.3.9</span>  Fortran array bounds checking</a></li>
+  <li><a href="#using-gctorture" id="toc-using-gctorture" class="nav-link" data-scroll-target="#using-gctorture"><span class="header-section-number">4.3.1</span> Using gctorture</a></li>
+  <li><a href="#using-valgrind" id="toc-using-valgrind" class="nav-link" data-scroll-target="#using-valgrind"><span class="header-section-number">4.3.2</span> Using valgrind</a></li>
+  <li><a href="#using-the-address-sanitizer" id="toc-using-the-address-sanitizer" class="nav-link" data-scroll-target="#using-the-address-sanitizer"><span class="header-section-number">4.3.3</span> Using the Address Sanitizer</a></li>
+  <li><a href="#using-the-leak-sanitizer" id="toc-using-the-leak-sanitizer" class="nav-link" data-scroll-target="#using-the-leak-sanitizer"><span class="header-section-number">4.3.4</span> Using the Leak Sanitizer</a></li>
+  <li><a href="#using-the-undefined-behaviour-sanitizer" id="toc-using-the-undefined-behaviour-sanitizer" class="nav-link" data-scroll-target="#using-the-undefined-behaviour-sanitizer"><span class="header-section-number">4.3.5</span> Using the Undefined Behaviour Sanitizer</a></li>
+  <li><a href="#other-analyses-with-clang" id="toc-other-analyses-with-clang" class="nav-link" data-scroll-target="#other-analyses-with-clang"><span class="header-section-number">4.3.6</span> Other analyses with ‘clang’</a></li>
+  <li><a href="#other-analyses-with-gcc" id="toc-other-analyses-with-gcc" class="nav-link" data-scroll-target="#other-analyses-with-gcc"><span class="header-section-number">4.3.7</span> Other analyses with ‘gcc’</a></li>
+  <li><a href="#using-dr.-memory" id="toc-using-dr.-memory" class="nav-link" data-scroll-target="#using-dr.-memory"><span class="header-section-number">4.3.8</span> Using ‘Dr.&nbsp;Memory’</a></li>
+  <li><a href="#fortran-array-bounds-checking" id="toc-fortran-array-bounds-checking" class="nav-link" data-scroll-target="#fortran-array-bounds-checking"><span class="header-section-number">4.3.9</span> Fortran array bounds checking</a></li>
   </ul></li>
-  <li><a href="#debugging-compiled-code" id="toc-debugging-compiled-code" class="nav-link" data-scroll-target="#debugging-compiled-code"><span class="toc-section-number">4.4</span>  Debugging compiled code</a>
+  <li><a href="#debugging-compiled-code" id="toc-debugging-compiled-code" class="nav-link" data-scroll-target="#debugging-compiled-code"><span class="header-section-number">4.4</span> Debugging compiled code</a>
   <ul class="collapse">
-  <li><a href="#finding-entry-points-in-dynamically-loaded-code" id="toc-finding-entry-points-in-dynamically-loaded-code" class="nav-link" data-scroll-target="#finding-entry-points-in-dynamically-loaded-code"><span class="toc-section-number">4.4.1</span>  Finding entry points in dynamically loaded code</a></li>
-  <li><a href="#inspecting-r-objects-when-debugging" id="toc-inspecting-r-objects-when-debugging" class="nav-link" data-scroll-target="#inspecting-r-objects-when-debugging"><span class="toc-section-number">4.4.2</span>  Inspecting R objects when debugging</a></li>
-  <li><a href="#debugging-on-macos" id="toc-debugging-on-macos" class="nav-link" data-scroll-target="#debugging-on-macos"><span class="toc-section-number">4.4.3</span>  Debugging on macOS</a></li>
+  <li><a href="#finding-entry-points-in-dynamically-loaded-code" id="toc-finding-entry-points-in-dynamically-loaded-code" class="nav-link" data-scroll-target="#finding-entry-points-in-dynamically-loaded-code"><span class="header-section-number">4.4.1</span> Finding entry points in dynamically loaded code</a></li>
+  <li><a href="#inspecting-r-objects-when-debugging" id="toc-inspecting-r-objects-when-debugging" class="nav-link" data-scroll-target="#inspecting-r-objects-when-debugging"><span class="header-section-number">4.4.2</span> Inspecting R objects when debugging</a></li>
+  <li><a href="#debugging-on-macos" id="toc-debugging-on-macos" class="nav-link" data-scroll-target="#debugging-on-macos"><span class="header-section-number">4.4.3</span> Debugging on macOS</a></li>
   </ul></li>
-  <li><a href="#using-link-time-optimization" id="toc-using-link-time-optimization" class="nav-link" data-scroll-target="#using-link-time-optimization"><span class="toc-section-number">4.5</span>  Using Link-time Optimization</a></li>
+  <li><a href="#using-link-time-optimization" id="toc-using-link-time-optimization" class="nav-link" data-scroll-target="#using-link-time-optimization"><span class="header-section-number">4.5</span> Using Link-time Optimization</a></li>
   </ul>
 </nav>
     </div>
@@ -305,7 +296,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging</span></h1>
 </div>
 
 
@@ -409,7 +400,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>Error in as<span class="op">.</span>environment<span class="op">(</span>pkg<span class="op">)</span> <span class="op">:</span> no item called <span class="st">"package:S4nswv"</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>on the search list</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>Error in initialize<span class="op">(</span>value<span class="op">,</span> <span class="op">...)</span> <span class="op">:</span> S language method selection got</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>an error when called from internal dispatch <span class="cf">for</span> function 'initialize'</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>an error when called from internal dispatch <span class="cf">for</span> function <span class="ch">'i</span><span class="er">nitialize</span><span class="ch">'</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> traceback<span class="op">()</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="op">:</span> initialize<span class="op">(</span>value<span class="op">,</span> <span class="op">...)</span></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="op">:</span> new<span class="op">(</span><span class="st">"xyloc"</span><span class="op">,</span> x <span class="op">=</span> runif<span class="op">(</span><span class="dv">20</span><span class="op">),</span> y <span class="op">=</span> runif<span class="op">(</span><span class="dv">20</span><span class="op">))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -448,16 +439,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="op">[</span><span class="dv">36</span><span class="op">]</span> <span class="st">"y"</span>          <span class="st">"ynames"</span>     <span class="st">"z"</span></span>
 <span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>Browse<span class="op">[</span><span class="dv">1</span><span class="op">]&gt;</span> eta</span>
 <span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>            <span class="dv">1</span>             <span class="dv">2</span>             <span class="dv">3</span>             <span class="dv">4</span>             <span class="dv">5</span></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.000000e+00</span> <span class="op">-</span><span class="fl">2.235357e-06</span> <span class="op">-</span><span class="fl">1.117679e-05</span> <span class="op">-</span><span class="fl">5.588393e-05</span> <span class="op">-</span><span class="fl">2.794197e-04</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a> <span class="dv">0</span><span class="er">.000000e</span><span class="op">+</span><span class="bn">00</span> <span class="op">-</span><span class="fl">2.235357e-06</span> <span class="op">-</span><span class="fl">1.117679e-05</span> <span class="op">-</span><span class="fl">5.588393e-05</span> <span class="op">-</span><span class="fl">2.794197e-04</span></span>
 <span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>            <span class="dv">6</span>             <span class="dv">7</span>             <span class="dv">8</span>             <span class="dv">9</span></span>
 <span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="fl">1.397098e-03</span> <span class="op">-</span><span class="fl">6.985492e-03</span> <span class="op">-</span><span class="fl">3.492746e-02</span> <span class="op">-</span><span class="fl">1.746373e-01</span></span>
 <span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>Browse<span class="op">[</span><span class="dv">1</span><span class="op">]&gt;</span> valideta<span class="op">(</span>eta<span class="op">)</span></span>
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="op">[</span><span class="dv">1</span><span class="op">]</span> TRUE</span>
 <span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>Browse<span class="op">[</span><span class="dv">1</span><span class="op">]&gt;</span> mu</span>
 <span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span>         <span class="dv">2</span>         <span class="dv">3</span>         <span class="dv">4</span>         <span class="dv">5</span>         <span class="dv">6</span>         <span class="dv">7</span>         <span class="dv">8</span></span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="fl">1.0000000</span> <span class="fl">0.9999978</span> <span class="fl">0.9999888</span> <span class="fl">0.9999441</span> <span class="fl">0.9997206</span> <span class="fl">0.9986039</span> <span class="fl">0.9930389</span> <span class="fl">0.9656755</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="fl">1.0000000</span> <span class="dv">0</span><span class="er">.9999978</span> <span class="dv">0</span><span class="er">.9999888</span> <span class="dv">0</span><span class="er">.9999441</span> <span class="dv">0</span><span class="er">.9997206</span> <span class="dv">0</span><span class="er">.9986039</span> <span class="dv">0</span><span class="er">.9930389</span> <span class="dv">0</span><span class="er">.9656755</span></span>
 <span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>        <span class="dv">9</span></span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="fl">0.8397616</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span><span class="er">.8397616</span></span>
 <span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>Browse<span class="op">[</span><span class="dv">1</span><span class="op">]&gt;</span> validmu<span class="op">(</span>mu<span class="op">)</span></span>
 <span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="op">[</span><span class="dv">1</span><span class="op">]</span> FALSE</span>
 <span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>Browse<span class="op">[</span><span class="dv">1</span><span class="op">]&gt;</span> c</span>
@@ -490,7 +481,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    mustart <span class="op">=</span> mustart<span class="op">,</span> offset <span class="op">=</span> offset<span class="op">,</span> family <span class="op">=</span> family<span class="op">,</span> control <span class="op">=</span> control<span class="op">,</span></span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    intercept <span class="op">=</span> attr<span class="op">(</span>mt<span class="op">,</span> <span class="st">"intercept"</span><span class="op">)</span> <span class="op">&gt;</span> <span class="dv">0</span><span class="op">)</span></span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>debug<span class="op">:</span> <span class="op">{</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="er">## lists the whole function</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#</span><span class="er"># lists the whole function</span></span>
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>Browse<span class="op">[</span><span class="dv">1</span><span class="op">]&gt;</span></span>
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>debug<span class="op">:</span> x <span class="op">&lt;-</span> as<span class="op">.</span>matrix<span class="op">(</span>x<span class="op">)</span></span>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="op">...</span></span>
@@ -499,21 +490,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>debug<span class="op">:</span> eta <span class="op">&lt;-</span> drop<span class="op">(</span>x <span class="op">%*%</span> start<span class="op">)</span></span>
 <span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>Browse<span class="op">[</span><span class="dv">1</span><span class="op">]&gt;</span> eta</span>
 <span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>            <span class="dv">1</span>             <span class="dv">2</span>             <span class="dv">3</span>             <span class="dv">4</span>             <span class="dv">5</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.000000e+00</span> <span class="op">-</span><span class="fl">2.235357e-06</span> <span class="op">-</span><span class="fl">1.117679e-05</span> <span class="op">-</span><span class="fl">5.588393e-05</span> <span class="op">-</span><span class="fl">2.794197e-04</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a> <span class="dv">0</span><span class="er">.000000e</span><span class="op">+</span><span class="bn">00</span> <span class="op">-</span><span class="fl">2.235357e-06</span> <span class="op">-</span><span class="fl">1.117679e-05</span> <span class="op">-</span><span class="fl">5.588393e-05</span> <span class="op">-</span><span class="fl">2.794197e-04</span></span>
 <span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>            <span class="dv">6</span>             <span class="dv">7</span>             <span class="dv">8</span>             <span class="dv">9</span></span>
 <span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="fl">1.397098e-03</span> <span class="op">-</span><span class="fl">6.985492e-03</span> <span class="op">-</span><span class="fl">3.492746e-02</span> <span class="op">-</span><span class="fl">1.746373e-01</span></span>
 <span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>Browse<span class="op">[</span><span class="dv">1</span><span class="op">]&gt;</span></span>
 <span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>debug<span class="op">:</span> mu <span class="op">&lt;-</span> linkinv<span class="op">(</span>eta <span class="op">&lt;-</span> eta <span class="op">+</span> offset<span class="op">)</span></span>
 <span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>Browse<span class="op">[</span><span class="dv">1</span><span class="op">]&gt;</span> mu</span>
 <span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span>         <span class="dv">2</span>         <span class="dv">3</span>         <span class="dv">4</span>         <span class="dv">5</span>         <span class="dv">6</span>         <span class="dv">7</span>         <span class="dv">8</span></span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="fl">1.0000000</span> <span class="fl">0.9999978</span> <span class="fl">0.9999888</span> <span class="fl">0.9999441</span> <span class="fl">0.9997206</span> <span class="fl">0.9986039</span> <span class="fl">0.9930389</span> <span class="fl">0.9656755</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="fl">1.0000000</span> <span class="dv">0</span><span class="er">.9999978</span> <span class="dv">0</span><span class="er">.9999888</span> <span class="dv">0</span><span class="er">.9999441</span> <span class="dv">0</span><span class="er">.9997206</span> <span class="dv">0</span><span class="er">.9986039</span> <span class="dv">0</span><span class="er">.9930389</span> <span class="dv">0</span><span class="er">.9656755</span></span>
 <span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>        <span class="dv">9</span></span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="fl">0.8397616</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span><span class="er">.8397616</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>(The prompt <code>Browse[1]&gt;</code> indicates that this is the first level of browsing: it is possible to step into another function that is itself being debugged or contains a call to <code>browser()</code>.)</p>
 <p><code>debug</code> can be used for hidden functions and S3 methods by e.g. <code>debug(stats:::predict.Arima)</code>. (It cannot be used for S4 methods, but an alternative is given on the help page for <code>debug</code>.) Sometimes you want to debug a function defined inside another function, e.g.&nbsp;the function <code>arimafn</code> defined inside <code>arima</code>. To do so, set <code>debug</code> on the outer function (here <code>arima</code>) and step through it until the inner function has been defined. Then call <code>debug</code> on the inner function (and use <code>c</code> to get out of step-through mode in the outer function).</p>
 <p>To remove debugging of a function, call <code>undebug</code> with the argument previously given to <code>debug</code>; debugging otherwise lasts for the rest of the R session (or until the function is edited or otherwise replaced).</p>
 <p><code>trace</code> can be used to temporarily insert debugging code into a function, for example to insert a call to <code>browser()</code> just before the point of the error. To return to our running example</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="er">## first get a numbered listing of the expressions of the function</span></span>
+<div class="sourceCode" id="cb15"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#</span><span class="er"># first get a numbered listing of the expressions of the function</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> page<span class="op">(</span>as<span class="op">.</span>list<span class="op">(</span>body<span class="op">(</span>glm<span class="op">.</span>fit<span class="op">)),</span> method<span class="op">=</span><span class="st">"print"</span><span class="op">)</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> trace<span class="op">(</span>glm<span class="op">.</span>fit<span class="op">,</span> browser<span class="op">,</span> at<span class="op">=</span><span class="dv">22</span><span class="op">)</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>Tracing function <span class="st">"glm.fit"</span> in package <span class="st">"stats"</span></span>
@@ -523,7 +514,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>   etastart <span class="op">=</span> etastart<span class="op">,</span>  <span class="op">....</span> step <span class="dv">22</span></span>
 <span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>Called from<span class="op">:</span> eval<span class="op">(</span>expr<span class="op">,</span> envir<span class="op">,</span> enclos<span class="op">)</span></span>
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>Browse<span class="op">[</span><span class="dv">1</span><span class="op">]&gt;</span> n</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="er">## and single-step from here.</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="pp">#</span><span class="er"># and single-step from here.</span></span>
 <span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> untrace<span class="op">(</span>glm<span class="op">.</span>fit<span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>For your own functions, it may be as easy to use <code>fix</code> to insert temporary code, but <code>trace</code> can help with functions in a namespace (as can <code>fixInNamespace</code>). Alternatively, use <code>trace(,edit=TRUE)</code> to insert code visually.</p>
 </section>
@@ -654,7 +645,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Other useful flags include</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span>no<span class="sc">-</span>fsanitize<span class="sc">-</span>recover</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>which causes the first report to be fatal (it always is for the <code>unreachable</code> and <code>return</code> suboptions). For more detailed information on where the runtime error occurs, using</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>setenv UBSAN_OPTIONS 'print_stacktrace<span class="op">=</span><span class="dv">1</span><span class="er">'</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>setenv UBSAN_OPTIONS <span class="ch">'p</span><span class="er">rint_stacktrace=1</span><span class="ch">'</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>will include a traceback in the report. Beyond that, R can be run under a debugger with a breakpoint set before the sanitizer report is produced: for <code>gdb</code> or <code>lldb</code> you could use</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="cf">break</span> __ubsan_handle_float_cast_overflow</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="cf">break</span> __ubsan_handle_float_cast_overflow_abort</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -729,15 +720,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>Program received signal SIGINT<span class="op">,</span> Interrupt<span class="op">.</span></span>
 <span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="bn">0x00397682</span> in _int_free <span class="op">()</span> from <span class="op">/</span>lib<span class="op">/</span>tls<span class="op">/</span>libc<span class="op">.</span>so<span class="fl">.6</span></span>
 <span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="op">(</span>gdb<span class="op">)</span> where</span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="er">#0  0x00397682 in _int_free () from /lib/tls/libc.so.6</span></span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="er">#1  0x00397eba in free () from /lib/tls/libc.so.6</span></span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="er">#2  0xb7cf2551 in R_gc_internal (size_needed=313)</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#0  0x00397682 in _int_free () from /lib/tls/libc.so.6</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#1  0x00397eba in free () from /lib/tls/libc.so.6</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="pp">#2  0xb7cf2551 in R_gc_internal (size_needed=313)</span></span>
 <span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>    at <span class="op">/</span>users<span class="op">/</span>ripley<span class="op">/</span>R<span class="op">/</span>svn<span class="op">/</span>R<span class="op">-</span>devel<span class="op">/</span>src<span class="op">/</span>main<span class="op">/</span>memory<span class="op">.</span>c<span class="op">:</span><span class="dv">743</span></span>
-<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a><span class="er">#3  0xb7cf3617 in Rf_allocVector (type=13, length=626)</span></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a><span class="pp">#3  0xb7cf3617 in Rf_allocVector (type=13, length=626)</span></span>
 <span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>    at <span class="op">/</span>users<span class="op">/</span>ripley<span class="op">/</span>R<span class="op">/</span>svn<span class="op">/</span>R<span class="op">-</span>devel<span class="op">/</span>src<span class="op">/</span>main<span class="op">/</span>memory<span class="op">.</span>c<span class="op">:</span><span class="dv">1906</span></span>
-<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a><span class="er">#4  0xb7c3f6d3 in PutRNGstate ()</span></span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a><span class="pp">#4  0xb7c3f6d3 in PutRNGstate ()</span></span>
 <span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>    at <span class="op">/</span>users<span class="op">/</span>ripley<span class="op">/</span>R<span class="op">/</span>svn<span class="op">/</span>R<span class="op">-</span>devel<span class="op">/</span>src<span class="op">/</span>main<span class="op">/</span>RNG<span class="op">.</span>c<span class="op">:</span><span class="dv">351</span></span>
-<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a><span class="er">#5  0xb7d6c0a5 in do_random2 (call=0x94bf7d4, op=0x92580e8, args=0x9698f98,</span></span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a><span class="pp">#5  0xb7d6c0a5 in do_random2 (call=0x94bf7d4, op=0x92580e8, args=0x9698f98,</span></span>
 <span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>    rho<span class="op">=</span><span class="bn">0x9698f28</span><span class="op">)</span> at <span class="op">/</span>users<span class="op">/</span>ripley<span class="op">/</span>R<span class="op">/</span>svn<span class="op">/</span>R<span class="op">-</span>devel<span class="op">/</span>src<span class="op">/</span>main<span class="op">/</span>random<span class="op">.</span>c<span class="op">:</span><span class="dv">183</span></span>
 <span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a><span class="op">...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In many cases it is possible to attach a debugger to a running process: this is helpful if an alternative front-end is in use or to investigate a task that seems to be taking far too long. This is done by something like</p>
@@ -938,9 +929,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1005,6 +1010,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -1048,7 +1139,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
-    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -1076,6 +1167,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
     <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
   </div>
 </footer>
