@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.340">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -640,7 +640,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(dest, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">file.copy</span>(execs, dest, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Note the use of architecture-specific subdirectories of <code>bin</code> where needed.</p>
+<p>Note the use of architecture-specific subdirectories of <code>bin</code> where needed. (Executables should installed under a <code>bin</code> directory and not under <code>libs</code>. It is good practice to check that they can be executed as part of the installation script, so a broken package is not installed.)</p>
 <p>The <code>data</code> subdirectory is for data files: See <a href="#data-in-packages">Data in packages</a>.</p>
 <p>The <code>demo</code> subdirectory is for R scripts (for running <em>via</em> <code>demo()</code>) that demonstrate some of the functionality of the package. Demos may be interactive and are not checked automatically, so if testing is desired use code in the <code>tests</code> directory to achieve this. The script files must start with a (lower or upper case) letter and have one of the extensions <code>.R</code> or <code>.r</code>. If present, the <code>demo</code> subdirectory should also have a <code>00Index</code> file with one line for each demo, giving its name and a description separated by a tab or at least three spaces. (This index file is not generated automatically.) Note that a demo does not have a specified encoding and so should be an ASCII file (see <a href="#encoding-issues">Encoding issues</a>). Function <code>demo()</code> will use the package encoding if there is one, but this is mainly useful for non-ASCII comments.</p>
 <p>The contents of the <code>inst</code> subdirectory will be copied recursively to the installation directory. Subdirectories of <code>inst</code> should not interfere with those used by R (currently, <code>R</code>, <code>data</code>, <code>demo</code>, <code>exec</code>, <code>libs</code>, <code>man</code>, <code>help</code>, <code>html</code> and <code>Meta</code>, and earlier versions used <code>latex</code>, <code>R-ex</code>). The copying of the <code>inst</code> happens after <code>src</code> is built so its <code>Makefile</code> can create files to be installed. To exclude files from being installed, one can specify a list of exclude patterns in file <code>.Rinstignore</code> in the top-level source directory. These patterns should be Perl-like regular expressions (see the help for <code>regexp</code> in R for the precise details), one per line, to be matched case-insensitively against the file and directory paths, e.g.&nbsp;<code>doc/.*[.]png$</code> will exclude all PNG files in <code>inst/doc</code> based on the extension.</p>

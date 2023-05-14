@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.340">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -346,7 +346,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<div class="page-columns page-full"><p>R will configure and build under most common Unix and Unix-alike platforms including <code>cpu-*-linux-gnu</code> for the <code>alpha</code>, <code>arm64</code>, <code>hppa</code>, <code>ix86</code>, <code>m68k</code>, <code>mips</code>, <code>mipsel</code>#, <code>ppc64</code>, <code>s390x</code>, <code>sparc64</code>, and <code>x86_64</code> CPUs, <code>x86_64-apple-darwin</code> and <code>aarch64-apple-darwin</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> as well as perhaps (it is tested less frequently on these platforms) <code>i386-sun-solaris</code>, <code>i386-*-freebsd</code>, <code>x86_64-*-freebsd</code>, <code>i386-*-netbsd</code>, <code>x86_64-*-openbsd</code> and <code>powerpc-ibm-aix6*</code></p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;aka ‘Apple Silicon’, known to some as <code>arm64-apple-darwin</code>.</p></li></div></div>
+<div class="page-columns page-full"><p>R will configure and build under most common Unix and Unix-alike platforms including <code>cpu-*-linux-gnu</code> for the <code>alpha</code>, <code>arm64</code> (also known as <code>aarch64</code>, <code>ix86</code>, <code>mips</code>, <code>mipsel</code>#, <code>ppc64</code>, <code>riscv64</code>, <code>s390x</code>, <code>sparc64</code>, and <code>x86_64</code> CPUs, <code>x86_64-apple-darwin</code> and <code>aarch64-apple-darwin</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> as well as perhaps (it is tested less frequently on these platforms) <code>x86_64-*-freebsd</code>, <code>x86_64-*-openbsd</code> and <code>powerpc-ibm-aix6*</code></p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;aka ‘Apple Silicon’, known to some as <code>arm64-apple-darwin</code>.</p></li></div></div>
+<p>Only 64-bit platforms are tested reqularly, and <code>configure</code> will warn if it encounters a 32-bit one.</p>
 <p>In addition, binary distributions are available for some common Linux distributions (see the FAQ for current details) and for macOS. These are installed in platform-specific ways, so for the rest of this chapter we consider only building from the sources.</p>
 <p>Cross-building is not possible: installing R builds a minimal version of R and then runs many R scripts to complete the build.</p>
 <section id="simple-compilation" class="level2 section page-columns page-full" data-number="2.1">
