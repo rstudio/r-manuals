@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.3.361">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -91,7 +91,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -168,7 +169,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Relational-databases.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Relational databases</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -464,7 +465,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Package <a href="https://CRAN.R-project.org/package=RODBC"><strong>RODBC</strong></a> on CRAN provides an interface to database sources supporting an ODBC interface. This is very widely available, and allows the same R code to access different database systems. <a href="https://CRAN.R-project.org/package=RODBC"><strong>RODBC</strong></a> runs on Unix/Linux, Windows and macOS, and almost all database systems provide support for ODBC. We have tested Microsoft SQL Server, Access, MySQL, PostgreSQL, Oracle and IBM DB2 on Windows and MySQL, MariaDB, Oracle, PostgreSQL and SQLite on Linux.</p>
 <p>ODBC is a client-server system, and we have happily connected to a DBMS running on a Unix server from a Windows client, and <em>vice versa</em>.</p>
 <p>On Windows ODBC support is part of the OS. On Unix/Linux you will need an ODBC Driver Manager such as unixODBC (<a href="https://www.unixodbc.org/" class="uri">https://www.unixodbc.org/</a>) or iOBDC (<a href="https://www.iodbc.org/" class="uri">https://www.iodbc.org/</a>: this is pre-installed in macOS) and an installed driver for your database system.</p>
-<p>Windows provides drivers not just for DBMSs but also for Excel (<code>.xls</code>) spreadsheets, DBase (<code>.dbf</code>) files and even text files. (The named applications do <em>not</em> need to be installed. Which file formats are supported depends on the versions of the drivers.) There are versions for Excel and Access 2007/2010 (go to <a href="https://www.microsoft.com/en-us/download/default.aspx" class="uri">https://www.microsoft.com/en-us/download/default.aspx</a>, and search for ‘Office ODBC’, which will lead to <code>AccessDatabaseEngine.exe</code>), the ‘2007 Office System Driver’ (the latter has a version for 64-bit Windows, and that will also read earlier versions).</p>
+<p>Windows provides drivers not just for DBMSs but also for Excel (<code>.xls</code>) spreadsheets, DBase (<code>.dbf</code>) files and even text files. (The named applications do <em>not</em> need to be installed. Which file formats are supported depends on the versions of the drivers.) There are versions for Excel and Access 2007/2010 (go to <a href="https://www.microsoft.com/en-us/download" class="uri">https://www.microsoft.com/en-us/download</a>, and search for ‘Office ODBC’, which will lead to <code>AccessDatabaseEngine.exe</code>), the ‘2007 Office System Driver’ (the latter has a version for 64-bit Windows, and that will also read earlier versions).</p>
 <p>On macOS the Actual Technologies (<a href="https://www.actualtech.com/product_access.php" class="uri">https://www.actualtech.com/product_access.php</a>) drivers provide ODBC interfaces to Access databases and to Excel spreadsheets (not including Excel 2007/2010).</p>
 <p>Many simultaneous connections are possible. A connection is opened by a call to <code>odbcConnect</code> or <code>odbcDriverConnect</code> (which on the Windows GUI allows a database to be selected via dialog boxes) which returns a handle used for subsequent access to the database. Printing a connection will provide some details of the ODBC connection, and calling <code>odbcGetInfo</code> will give details on the client and server.</p>
 <p>A connection is closed by a call to <code>close</code> or <code>odbcClose</code>, and also (with a warning) when not R object refers to it and at the end of an R session.</p>

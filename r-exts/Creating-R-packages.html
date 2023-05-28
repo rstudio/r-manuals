@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.3.361">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -91,7 +91,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -168,7 +169,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Creating-R-packages.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Creating R packages</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -1726,7 +1727,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="17" type="1">
 <li></li>
 </ol></li>
-<li><p>A package with a hard-to-satisfy system requirement is by definition not portable, annoyingly so if this is not declared in the <code>SystemRequirements</code> field. The most common example is the use of <code>pandoc</code>, which is only available for a very limited range of platforms (and has onerous requirements to install from source) and has capabilities<a href="#fn89" class="footnote-ref" id="fnref89" role="doc-noteref"><sup>89</sup></a> that vary by build but are not documented. Several recent versions of <code>pandoc</code> for macOS did not work on R’s target of High Sierra (and this too was undocumented): at the time of writing <code>2.14.0</code> to <code>2.16.2</code> did, but not <code>2.17.0.1</code>. (Currently <code>pandoc</code> is only available from the official site for Intel macOS but that build works well enough on <code>arm64</code> machines.) Another example is the Rust compilation system (<code>cargo</code> and <code>rustc</code>).</p>
+<li><p>A package with a hard-to-satisfy system requirement is by definition not portable, annoyingly so if this is not declared in the <code>SystemRequirements</code> field. The most common example is the use of <code>pandoc</code>, which is only available for a very limited range of platforms (and has onerous requirements to install from source) and has capabilities<a href="#fn89" class="footnote-ref" id="fnref89" role="doc-noteref"><sup>89</sup></a> that vary by build but are not documented. Several recent versions of <code>pandoc</code> for macOS did not work on R’s target of High Sierra (and this too was undocumented). Another example is the Rust compilation system (<code>cargo</code> and <code>rustc</code>).</p>
 <p>Usage of external commands should always be conditional on a test for presence (perhaps using <code>Sys.which</code>), as well as declared in the <code>SystemRequirements</code> field. A package should pass its checks without warnings nor errors without the external command being present.</p>
 <p>An external command can be a (possibly optional) requirement for an imported or suggested package but needed for examples, tests or vignettes in the package itself. Such usages should always be declared and conditional.</p>
 <p>Interpreters for scripting languages such as Perl, Python and Ruby need to be declared as system requirements and used conditionally: for example macOS 10.16 was announced not to have them (but released as macOS 11 with them); later it was announced that macOS 12.3 does not have Python 2 and only a minimal install of Python 3 is included. Python 2 has passed end-of-life and been removed from many major distributions. Support for Rust cannot be assumed.</p>
@@ -1754,7 +1755,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Tests should use <code>options(warn = 1)</code> as reporting</p>
 <div class="sourceCode" id="cb123"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a>There were <span class="dv">22</span> <span class="fu">warnings</span> (use <span class="fu">warnings</span>() to see them)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>is pointless, especially for automated checking systems.</p></li>
-<li><p>If your package uses dates/times, ensure that it works in all timezones, especially those near boundaries (problems have most often be seen in <code>Europe/London</code> (zero offset in Winter) and <code>Pacific/Auckland</code>, near enough the International Date line) and with offsets not in whole hours (Adelaide, Chatham Islands, …). More extreme examples are <code>Africa/Conakry</code> (permanent UTC), <code>Asia/Calcutta</code> (no DST, permanent half-hour offset) and <code>Pacific/Kiritimati]</code>(no DST, more than 12 hours ahead of UTC).</p></li>
+<li><p>If your package uses dates/times, ensure that it works in all timezones, especially those near boundaries (problems have most often be seen in <code>Europe/London</code> (zero offset in Winter) and <code>Pacific/Auckland</code>, near enough the International Date line) and with offsets not in whole hours (Adelaide, Chatham Islands, …). More extreme examples are <code>Africa/Conakry</code> (permanent UTC), <code>Asia/Calcutta</code> (no DST, permanent half-hour offset) and <code>Pacific/Kiritimati</code>(no DST, more than 12 hours ahead of UTC).</p></li>
 </ul>
 <div class="no-row-height column-margin column-container"><li id="fn90"><p><sup>90</sup>&nbsp;Not doing so is the default on Windows, overridden for the R executables.</p></li><li id="fn91"><p><sup>91</sup>&nbsp;These are not needed for the default compiler settings on <code>x86_64</code> but are likely to be needed on <code>ix86</code>.</p></li></div><section id="pdf-size" class="level3 subsection page-columns page-full" data-number="1.6.1">
 <h3 class="subsection anchored" data-number="1.6.1" data-anchor-id="pdf-size"><span class="header-section-number">1.6.1</span> PDF size</h3>
@@ -1765,7 +1766,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>and suitable options might be</p>
 <div class="sourceCode" id="cb125"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="dt">-dPDFSETTINGS</span><span class="ch">=</span><span class="st">/ebook</span></span>
 <span id="cb125-2"><a href="#cb125-2" aria-hidden="true" tabindex="-1"></a><span class="dt">-dPDFSETTINGS</span><span class="ch">=</span><span class="st">/screen</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>See <a href="https://ghostscript.readthedocs.io/en/latest/VectorDevices.html" class="uri">https://ghostscript.readthedocs.io/en/latest/VectorDevices.html</a> for more such and consider all the options for image downsampling). There have been examples in CRAN packages for which current versions of Ghostscript produced much bigger reductions than earlier ones (e.g.&nbsp;at the upgrades from <code>9.50</code> to <code>9.52</code> and from <code>9.55</code> to <code>9.56</code>).</p>
+<p>See <a href="https://ghostscript.readthedocs.io/en/latest/VectorDevices.html" class="uri">https://ghostscript.readthedocs.io/en/latest/VectorDevices.html</a> for more such and consider all the options for image downsampling). There have been examples in CRAN packages for which current versions of Ghostscript produced much bigger reductions than earlier ones (e.g.&nbsp;at the upgrades from <code>9.50</code> to <code>9.52</code>, from <code>9.55</code> to <code>9.56</code> and then to <code>10.00.0</code>).</p>
 <p>We come across occasionally large PDF files containing excessively complicated figures using PDF vector graphics: such figures are often best redesigned or failing that, output as PNG files.</p>
 <p>Option <code>--compact-vignettes</code> to <code>R CMD build</code> defaults to value <code>qpdf</code>: use <code>both</code> to try harder to reduce the size, provided you have Ghostscript available (see the help for <code>tools::compactPDF</code>).</p>
 </section>
