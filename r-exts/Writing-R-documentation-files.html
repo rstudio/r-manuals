@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.3.427">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -584,7 +584,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb16"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\section</span>{Warning}{</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  You must not call this function unless ...</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>For consistency with the pre-assigned sections, the section name (the first argument to <code>\section</code>) should be capitalized (but not all upper case). Whitespace between the first and second braced expressions is not allowed. Markup (e.g.&nbsp;<code>\code</code>) within the section title may cause problems with the latex conversion (depending on the version of macro packages such as <code>hyperref</code>) and so should be avoided.</p>
+<p>For consistency with the pre-assigned sections, the section name (the first argument to <code>\section</code>) should be capitalized (but not all upper case) and not end in a period. Whitespace between the first and second braced expressions is not allowed. Markup (e.g.&nbsp;<code>\code</code>) within the section title may cause problems with the latex conversion (depending on the version of macro packages such as <code>hyperref</code>) and so should be avoided.</p>
 <p>The <code>\subsection</code> macro takes arguments in the same format as <code>\section</code>, but is used within a section, so it may be used to nest subsections within sections or other subsections. There is no predefined limit on the nesting level, but formatting is not designed for more than 3 levels (i.e.&nbsp;subsections within subsections within sections).</p>
 <p>Note that additional named sections are always inserted at a fixed position in the output (before <code>\note</code>, <code>\seealso</code> and the examples), no matter where they appear in the input (but in the same order amongst themselves as in the input).</p>
 </section>

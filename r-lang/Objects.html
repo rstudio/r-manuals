@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.3.427">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -509,7 +509,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </blockquote>
 <p>Single numbers, such as <code>4.2</code>, and strings, such as <code>"four point two"</code> are still vectors, of length 1; there are no more basic types. Vectors with length zero are possible (and useful).</p>
-<div class="page-columns page-full"><p>A single element of a character vector is often referred to as a <em>character string</em> or short <em>string</em>. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Note that character vectors internally are <code>STRSXP</code> types and each element (we call <em>string</em> above) is of C type <code>CHARSXP</code> (with <em>internal only</em> <code>typeof(.) == "char"</code>, see <a href="#typeof-char">typeof-char</a>).</p></li></div></div>
+<div class="page-columns page-full"><p>A single element of a character vector is often referred to as a <em>character string</em> or short <em>string</em>. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;Note that, internally, character vectors are of type <code>STRSXP</code> and each element is of type <code>CHARSXP</code> (with <em>internal only</em> <code>typeof(.) == "char"</code>, see <a href="#typeof-char">typeof-char</a>). Thus, an R <em>string</em> is internally a <code>STRSXP</code> with one element, a <code>CHARSXP</code>.</p></li></div></div>
 </section>
 <section id="lists" class="level3 subsection" data-number="2.1.2">
 <h3 class="subsection anchored" data-number="2.1.2" data-anchor-id="lists"><span class="header-section-number">2.1.2</span> Lists</h3>
