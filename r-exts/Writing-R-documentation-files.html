@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.427">
+<meta name="generator" content="quarto-1.3.433">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -498,7 +498,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <dd>
 <p>There can be zero or more <code>\keyword</code> sections per file. Each <code>\keyword</code> section should specify a single keyword, preferably one of the standard keywords as listed in file <code>KEYWORDS</code> in the R documentation directory (default <code>R_HOME/doc</code>). Use e.g.&nbsp;<code>RShowDoc("KEYWORDS")</code> to inspect the standard keywords from within R. There can be more than one <code>\keyword</code> entry if the R object being documented falls into more than one category, or none.</p>
 <p>Do strongly consider using <code>\concept</code> (see <a href="#indices">Indices</a>) instead of <code>\keyword</code> if you are about to use more than very few non-standard keywords.</p>
-<p>The special keyword <code>internal</code> marks a page of internal objects that are not part of the package’s API. If the help page for object <code>foo</code> has keyword <code>internal</code>, then <code>help(foo)</code> gives this help page, but <code>foo</code> is excluded from several object indices, including the alphabetical list of objects in the HTML help system.</p>
+<p>The special keyword <code>internal</code> marks a page of internal topics (typically, objects that are not part of the package’s API). If the help page for topic <code>foo</code> has keyword <code>internal</code>, then <code>help(foo)</code> gives this help page, but <code>foo</code> is excluded from several topic indices, including the alphabetical list of topics in the HTML help system.</p>
 <p><code>help.search()</code> can search by keyword, including user-defined values: however the ‘Search Engine &amp; Keywords’ HTML page accessed <em>via</em> <code>help.start()</code> provides single-click access only to a pre-defined list of keywords.</p>
 </dd>
 </dl>
@@ -573,7 +573,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="documenting-packages" class="level3 subsection" data-number="2.1.4">
 <h3 class="subsection anchored" data-number="2.1.4" data-anchor-id="documenting-packages"><span class="header-section-number">2.1.4</span> Documenting packages</h3>
 <p>Packages may have an overview help page with an <code>\alias</code> <code>pkgname-package</code>, e.g.&nbsp;<code>utils-package</code> for the <strong>utils</strong> package, when <code>package?pkgname</code> will open that help page. If a topic named <code>pkgname</code> does not exist in another <code>Rd</code> file, it is helpful to use this as an additional <code>\alias</code>.</p>
-<p>Skeletons of documentation for a package can be generated using the function <code>promptPackage()</code>. If the <code>final = LIBS</code> argument is used, then the <code>Rd</code> file will be generated in final form, containing the information that would be produced up to <code>library(help = pkgname)</code>. Otherwise (the default) comments will be inserted giving suggestions for content.</p>
+<p>Skeletons of documentation for a package can be generated using the function <code>promptPackage()</code>. If the <code>final = TRUE</code> argument is used, then the <code>Rd</code> file will be generated in final form, containing the information that would be produced by <code>library(help = pkgname)</code>. Otherwise (the default) comments will be inserted giving suggestions for content.</p>
 <p>Apart from the mandatory <code>\name</code> and <code>\title</code> and the <code>pkgname-package</code> alias, the only requirement for the package overview page is that it include a <code>\docType{package}</code> statement. All other content is optional. We suggest that it should be a short overview, to give a reader unfamiliar with the package enough information to get started. More extensive documentation is better placed into a package vignette (see <a href="Creating-R-packages.html#writing-package-vignettes">Writing package vignettes</a>) and referenced from this page, or into individual man pages for the functions, datasets, or classes.</p>
 </section>
 </section>
