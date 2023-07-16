@@ -434,7 +434,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">attach</span>(lentils)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>places the data frame in the search path at position&nbsp;2, and provided there are no variables <code>u</code>, <code>v</code> or <code>w</code> in position&nbsp;1, <code>u</code>, <code>v</code> and <code>w</code> are available as variables from the data frame in their own right. At this point an assignment such as</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> u <span class="ot">&lt;-</span> v<span class="sc">+</span>w</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>does not replace the component <code>u</code> of the data frame, but rather masks it with another variable <code>u</code> in the working directory at position&nbsp;1 on the search path. To make a permanent change to the data frame itself, the simplest way is to resort once again to the <code>$</code> notation:</p>
+<p>does not replace the component <code>u</code> of the data frame, but rather masks it with another variable <code>u</code> in the workspace at position&nbsp;1 on the search path. To make a permanent change to the data frame itself, the simplest way is to resort once again to the <code>$</code> notation:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> lentils<span class="sc">$</span>u <span class="ot">&lt;-</span> v<span class="sc">+</span>w</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>However the new value of component <code>u</code> is not visible until the data frame is detached and attached again.</p>
 <p>To detach a data frame, use the function</p>
@@ -446,12 +446,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="working-with-data-frames" class="level3 subsection" data-number="6.3.3">
 <h3 class="subsection anchored" data-number="6.3.3" data-anchor-id="working-with-data-frames"><span class="header-section-number">6.3.3</span> Working with data frames</h3>
-<p>A useful convention that allows you to work with many different problems comfortably together in the same working directory is</p>
+<p>A useful convention that allows you to work with many different problems comfortably together in the same workspace is</p>
 <ul>
 <li>gather together all variables for any well defined and separate problem in a data frame under a suitably informative name;</li>
-<li>when working with a problem attach the appropriate data frame at position&nbsp;2, and use the working directory at level&nbsp;1 for operational quantities and temporary variables;</li>
+<li>when working with a problem attach the appropriate data frame at position&nbsp;2, and use the workspace at level&nbsp;1 for operational quantities and temporary variables;</li>
 <li>before leaving a problem, add any variables you wish to keep for future reference to the data frame using the <code>$</code> form of assignment, and then <code>detach()</code>;</li>
-<li>finally remove all unwanted variables from the working directory and keep it as clean of left-over temporary variables as possible.</li>
+<li>finally remove all unwanted variables from the workspace and keep it as clean of left-over temporary variables as possible.</li>
 </ul>
 <p>In this way it is quite simple to work with many problems in the same directory, all of which have variables named <code>x</code>, <code>y</code> and <code>z</code>, for example.</p>
 </section>
