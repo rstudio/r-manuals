@@ -330,30 +330,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\alias</span>{load}</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">\title</span>{Reload Saved Datasets}</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">\description</span>{</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  Reload the datasets written to a file with the function</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\code</span>{save}.</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">\usage</span>{</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>load(file, envir = parent.frame())</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">\arguments</span>{</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\item</span>{file}{a connection or a character string giving the</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    name of the file to load.}</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\item</span>{envir}{the environment where the data should be</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    loaded.}</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  Reload datasets written with the function <span class="fu">\code</span>{save}.</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">\usage</span>{</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>load(file, envir = parent.frame(), verbose = FALSE)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">\arguments</span>{</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\item</span>{file}{a (readable binary-mode) <span class="fu">\link</span>{connection}</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    or a character string giving the name of the file to load</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    (when <span class="fu">\link</span>{tilde expansion} is done).}</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\item</span>{envir}{the environment where the data should be loaded.}</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\item</span>{verbose}{should item names be printed during loading?}</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">\seealso</span>{</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\code</span>{<span class="fu">\link</span>{save}}.</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">\value</span>{</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  A character vector of the names of objects created, invisibly.</span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">\examples</span>{</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>## save all data</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>save(list = ls(), file= "all.RData")</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>## restore the saved values to the current environment</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>load("all.RData")</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">\seealso</span>{</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\code</span>{<span class="fu">\link</span>{save}}.</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="fu">\examples</span>{</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>## save all data</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>save(list = ls(all.names = TRUE), file = "all.RData")</span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>## restore the saved values to the workspace</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>load("all.RData", .GlobalEnv)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>## restore the saved values to the current environment</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>load("all.RData")</span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fu">\keyword</span>{file}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></td>
 </tr>
@@ -440,7 +440,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <dd>
 <p>Description of the function’s arguments, using an entry of the form</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\item</span>{arg_i}{Description of arg_i.}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>for each element of the argument list. (Note that there is no whitespace between the three parts of the entry.) There may be optional text outside the <code>\item</code> entries, for example to give general information about groups of parameters.</p>
+<p>for each element of the argument list. (Note that there is no whitespace between the three parts of the entry.) Arguments can also be described jointly by separating their names with commas (and optional whitespace) in the <code>\item</code> label. There may be optional text outside the <code>\item</code> entries, for example to give general information about groups of parameters.</p>
 </dd>
 <dt><code>\details{...}</code> <a href="#index-_005cdetails" class="copiable-anchor">¶</a></dt>
 <dd>
@@ -725,13 +725,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="mathematics" class="level2 section" data-number="2.6">
 <h2 class="section anchored" data-number="2.6" data-anchor-id="mathematics"><span class="header-section-number">2.6</span> Mathematics</h2>
-<p>Mathematical formulae should be set beautifully for printed documentation yet we still want something useful for text and HTML online help. To this end, the two commands <code>\eqn{latex}{ascii}</code> and <code>\deqn{latex}{ascii}</code> are used. Whereas <code>\eqn</code> is used for “inline” formulae (corresponding to TeX’s <code>$...$</code>), <code>\deqn</code> gives “displayed equations” (as in LaTeX’s <code>displaymath</code> environment, or TeX’s <code>$$...$$</code>). Both arguments are treated as ‘verbatim’ text.</p>
+<p>Mathematical formulae should be set beautifully for printed documentation and in KaTeX/MathJax-enhanced HTML help (as from R 4.2.0) yet we still want something useful for plain-text (and legacy HTML) help. To this end, the two commands <code>\eqn{latex}{ascii}</code> and <code>\deqn{latex}{ascii}</code> are used. Whereas <code>\eqn</code> is used for “inline” formulae (corresponding to TeX’s <code>$...$</code>), <code>\deqn</code> gives “displayed equations” (as in LaTeX’s <code>displaymath</code> environment, or TeX’s <code>$$...$$</code>). Both arguments are treated as ‘verbatim’ text.</p>
 <p>Both commands can also be used as <code>\eqn{latexascii}</code> (only <em>one</em> argument) which then is used for both <code>latex</code> and <code>ascii</code>. No whitespace is allowed between command and the first argument, nor between the first and second arguments.</p>
 <p>The following example is from <code>Poisson.Rd</code>:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\deqn</span>{p(x) = <span class="fu">\frac</span>{<span class="fu">\lambda</span>^x e^{-<span class="fu">\lambda</span>}}{x!}}{<span class="co">%</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>        p(x) = <span class="fu">\lambda</span>^x exp(-<span class="fu">\lambda</span>)/x!}</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  for <span class="fu">\eqn</span>{x = 0, 1, 2, <span class="fu">\ldots</span>}.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>For text on-line help we get</p>
+<p>In plain-text help we get</p>
 <blockquote class="blockquote">
 <table class="table">
 <colgroup>
@@ -746,8 +746,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 </blockquote>
-<p>Greek letters (both cases) will be rendered in HTML if preceded by a backslash, <code>\dots</code> and <code>\ldots</code> will be rendered as ellipses and <code>\sqrt</code>, <code>\ge</code> and <code>\le</code> as mathematical symbols.</p>
-<p>Note that only basic LaTeX can be used, there being no provision to specify LaTeX style files such as the AMS extensions.</p>
+<p>In legacy HTML help, Greek letters (both cases) will be rendered if preceded by a backslash, <code>\dots</code> and <code>\ldots</code> will be rendered as ellipses and <code>\sqrt</code>, <code>\ge</code> and <code>\le</code> as mathematical symbols.</p>
+<p>Note that only basic LaTeX can be used, there being no provision to specify LaTeX style files, but AMS extensions are supported as from R 4.2.2.</p>
 </section>
 <section id="figures" class="level2 section" data-number="2.7">
 <h2 class="section anchored" data-number="2.7" data-anchor-id="figures"><span class="header-section-number">2.7</span> Figures</h2>
@@ -760,7 +760,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="insertions" class="level2 section page-columns page-full" data-number="2.8">
 <h2 class="section anchored" data-number="2.8" data-anchor-id="insertions"><span class="header-section-number">2.8</span> Insertions</h2>
-<div class="page-columns page-full"><p>Use <code>\R</code> for the R system itself. Use <code>\dots</code> for the dots in function argument lists <code>...</code>, and <code>\ldots</code> for ellipsis dots in ordinary text.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> These can be followed by <code>{}</code>, and should be unless followed by whitespace.</p><div class="no-row-height column-margin column-container"><li id="fn7"><p><sup>7</sup>&nbsp;There is only a fine distinction between <code>\dots</code> and <code>\ldots</code>. It is technically incorrect to use <code>\ldots</code> in code blocks and <code>tools::checkRd</code> will warn about this—on the other hand the current converters treat them the same way in code blocks, and elsewhere apart from the small distinction between the two in LaTeX.</p></li></div></div>
+<div class="page-columns page-full"><p>Use <code>\R</code> for the R system itself. The <code>\dots</code> macro is a historical alternative to using literal <code>...</code> for the dots in function argument lists; use <code>\ldots</code> for ellipsis dots in ordinary text.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> These macros can be followed by <code>{}</code>, and should be unless followed by whitespace.</p><div class="no-row-height column-margin column-container"><li id="fn7"><p><sup>7</sup>&nbsp;There is only a fine distinction between <code>\dots</code> and <code>\ldots</code>. It is technically incorrect to use <code>\ldots</code> in code blocks and <code>tools::checkRd</code> will warn about this—on the other hand the current converters treat them the same way in code blocks, and elsewhere apart from the small distinction between the two in LaTeX.</p></li></div></div>
 <p>After an unescaped <code>%</code>, you can put your own comments regarding the help text. The rest of the line (but not the newline at the end) will be completely disregarded. Therefore, you can also use it to make part of the “help” invisible.</p>
 <p>You can produce a backslash (<code>\</code>) by escaping it by another backslash. (Note that <code>\cr</code> is used for generating line breaks.)</p>
 <div class="page-columns page-full"><p>The “comment” character <code>%</code> and unpaired braces<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> <em>almost always</em> need to be escaped by <code>\</code>, and <code>\\</code> can be used for backslash and needs to be when there are two or more adjacent backslashes. In R-like code quoted strings are handled slightly differently; see <a href="https://developer.r-project.org/parseRd.pdf">“Parsing Rd files”</a> for details – in particular braces should not be escaped in quoted strings.</p><div class="no-row-height column-margin column-container"><li id="fn8"><p><sup>8</sup>&nbsp;See the examples section in the file <code>Paren.Rd</code> for an example.</p></li></div></div>
