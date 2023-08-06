@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -608,7 +608,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 <dt><code>_R_CHECK_COMPILATION_FLAGS_</code> <a href="#index-_r_check_compilation_flags_" class="copiable-anchor">¶</a></dt>
 <dd>
-<p>If the package is installed and has C/C++/Fortran code, check the install log for non-portable flags (for example those added to <code>src/Makevars</code> during configuration). Currently <code>-W</code> flags are reported, except <code>-Wall</code>, <code>-Wextra</code> and <code>-Weverything</code>, and flags which appear to be attempts to suppress warnings are highlighted. See ‘Writing R Extensions’ for the rationale of this check (and why even <code>-Werror</code> is unsafe).</p>
+<p>If the package is installed and has C/C++/Fortran code, check the install log for non-portable flags (for example those added to <code>src/Makevars</code> during configuration). Currently <code>-W</code> flags are reported, except <code>-Wall</code>, <code>-Wextra</code> and <code>-Weverything</code>, and flags which appear to be attempts to suppress warnings are highlighted. See section ‘Writing portable packages’ in the ‘Writing R Extensions’ manual for the rationale of this check (and why even <code>-Werror</code> is unsafe).</p>
 <p>Environment variable <code>_R_CHECK_COMPILATION_FLAGS_KNOWN_</code> can be set to a space-separated set of flags which come from the R build used for testing (flags such as <code>-Wall</code> and <code>-Wextra</code> are already known). For example, for CRAN builds of R &gt;= 4.0.0 on macOS one could use</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>_R_CHECK_COMPILATION_FLAGS_KNOWN_<span class="ot">=</span><span class="st">"-mmacosx-version-min=10.13"</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Default: unset.</p>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -311,7 +311,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>The structure of a <em>source</em> packages is described in <a href="https://cran.r-project.org/doc/manuals/R-exts.html#Creating-R-packages" data-manual="R-exts">Creating R packages</a> in Writing R Extensions: this chapter is concerned with the structure of <em>installed</em> packages.</p>
+<p>The structure of a <em>source</em> packages is described in section ‘Creating R packages’ in the ‘Writing R Extensions’ manual: this chapter is concerned with the structure of <em>installed</em> packages.</p>
 <p>An installed package has a top-level file <code>DESCRIPTION</code>, a copy of the file of that name in the package sources with a <code>Built</code> field appended, and file <code>INDEX</code>, usually describing the objects on which help is available, a file <code>NAMESPACE</code> if the package has a name space, optional files such as <code>CITATION</code>, <code>LICENCE</code> and <code>NEWS</code>, and any other files copied in from <code>inst</code>. It will have directories <code>Meta</code>, <code>help</code> and <code>html</code> (even if the package has no help pages), almost always has a directory <code>R</code> and often has a directory <code>libs</code> to contain compiled code. Other directories with known meaning to R are <code>data</code>, <code>demo</code>, <code>doc</code> and <code>po</code>.</p>
 <p>Function <code>library</code> looks for a namespace and if one is found passes control to <code>loadNamespace</code>. Then <code>library</code> or <code>loadNamespace</code> looks for file <code>R/pkgname</code>, warns if it is not found and otherwise sources the code (using <code>sys.source</code>) into the package’s environment, then lazy-loads a database <code>R/sysdata</code> if present. So how R code gets loaded depends on the contents of <code>R/pkgname</code>: a standard template to load lazy-load databases are provided in <code>share/R/nspackloader.R</code>.</p>
 <p>Compiled code is usually loaded when the package’s namespace is loaded by a <code>useDynlib</code> directive in a <code>NAMESPACE</code> file or by the package’s <code>.onLoad</code> function. Conventionally compiled code is loaded by a call to <code>library.dynam</code> and this looks in directory <code>libs</code> (and in an appropriate sub-directory if sub-architectures are in use) for a shared object (Unix-alike) or DLL (Windows).</p>

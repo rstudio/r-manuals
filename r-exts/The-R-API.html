@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -1273,12 +1273,26 @@ with the same arguments, but all pointers.</code></pre>
 <h2 class="section anchored" data-number="6.11" data-anchor-id="re-encoding"><span class="header-section-number">6.11</span> Re-encoding</h2>
 <p>R has its own C-level interface to the encoding conversion capabilities provided by <code>iconv</code> because there are incompatibilities between the declarations in different implementations of <code>iconv</code>.</p>
 <p>These are declared in header file <code>R_ext/Riconv.h</code>.</p>
-<p><span class="category">Function:</span><em>void *</em> <strong>Riconv_open</strong> <em>(const char *<code>to</code>, const char *<code>from</code>)</em> <a href="#index-riconv_open" class="copiable-anchor">¶</a></p>
+<dl>
+<dt><span class="category">Function:</span><em>void *</em> <strong>Riconv_open</strong> <em>(const char *<code>to</code>, const char *<code>from</code>)</em> <a href="#index-riconv_open" class="copiable-anchor">¶</a></dt>
+<dd>
 <p>Set up a pointer to an encoding object to be used to convert between two encodings: <code>""</code> indicates the current locale.</p>
-<p><span class="category">Function:</span><em>size_t</em> <strong>Riconv</strong> <em>(void *<code>cd</code>, const char **<code>inbuf</code>, size_t *<code>inbytesleft</code>, char **<code>outbuf</code>, size_t *<code>outbytesleft</code>)</em> <a href="#index-riconv" class="copiable-anchor">¶</a></p>
+</dd>
+</dl>
+<!-- -->
+<dl>
+<dt><span class="category">Function:</span><em>size_t</em> <strong>Riconv</strong> <em>(void *<code>cd</code>, const char **<code>inbuf</code>, size_t *<code>inbytesleft</code>, char **<code>outbuf</code>, size_t *<code>outbytesleft</code>)</em> <a href="#index-riconv" class="copiable-anchor">¶</a></dt>
+<dd>
 <p>Convert as much as possible of <code>inbuf</code> to <code>outbuf</code>. Initially the <code>size_t</code> variables indicate the number of bytes available in the buffers, and they are updated (and the <code>char</code> pointers are updated to point to the next free byte in the buffer). The return value is the number of characters converted, or <code>(size_t)-1</code> (beware: <code>size_t</code> is usually an unsigned type). It should be safe to assume that an error condition sets <code>errno</code> to one of <code>E2BIG</code> (the output buffer is full), <code>EILSEQ</code> (the input cannot be converted, and might be invalid in the encoding specified) or <code>EINVAL</code> (the input does not end with a complete multi-byte character).</p>
-<p><span class="category">Function:</span><em>int</em> <strong>Riconv_close</strong> <em>(void * <code>cd</code>)</em> <a href="#index-riconv_close" class="copiable-anchor">¶</a></p>
+</dd>
+</dl>
+<!-- -->
+<dl>
+<dt><span class="category">Function:</span><em>int</em> <strong>Riconv_close</strong> <em>(void * <code>cd</code>)</em> <a href="#index-riconv_close" class="copiable-anchor">¶</a></dt>
+<dd>
 <p>Free the resources of an encoding object.</p>
+</dd>
+</dl>
 </section>
 <section id="condition-handling-and-cleanup-code" class="level2 section" data-number="6.12">
 <h2 class="section anchored" data-number="6.12" data-anchor-id="condition-handling-and-cleanup-code"><span class="header-section-number">6.12</span> Condition handling and cleanup code</h2>

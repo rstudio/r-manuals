@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -314,7 +314,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>The process of marking messages (errors, warnings etc) for translation in an R package is described in ‘Writing R Extensions’, and the standard packages included with R have (with an exception in <strong>grDevices</strong> for the menus of the <code>windows()</code> device) been internationalized in the same way as other packages.</p>
+<p>The process of marking messages (errors, warnings etc) for translation in an R package is described in section ‘Internationalization’ in the ‘Writing R Extensions’ manual, and the standard packages included with R have (with an exception in <strong>grDevices</strong> for the menus of the <code>windows()</code> device) been internationalized in the same way as other packages.</p>
 <section id="r-code" class="level2 section" data-number="3.1">
 <h2 class="section anchored" data-number="3.1" data-anchor-id="r-code"><span class="header-section-number">3.1</span> R code</h2>
 <p>Internationalization for R code is done in exactly the same way as for extension packages. As all standard packages which have R code also have a namespace, it is never necessary to specify <code>domain</code>, but for efficiency calls to <code>message</code>, <code>warning</code> and <code>stop</code> should include <code>domain = NA</code> when the message is constructed <em>via</em> <code>gettextf</code>, <code>gettext</code> or <code>ngettext</code>.</p>
