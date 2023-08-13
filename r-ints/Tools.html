@@ -777,7 +777,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <dl>
 <dt><code>_R_CHECK_NO_RECOMMENDED_</code> <a href="#index-_r_check_no_recommended_" class="copiable-anchor">¶</a></dt>
 <dd>
-<p>If set to a true value, augment the previous checks to make recommended packages unavailable unless declared (even if installed in <code>.library</code>). Default: false (but true for CRAN submission checks).</p>
+<p>If set to a true value, augment the previous checks to make recommended packages unavailable unless declared (even if installed in <code>.Library</code>). Default: false (but true for CRAN submission checks).</p>
 <p>This may give false positives on code which uses <code>grDevices::densCols</code> and <code>stats:::.asSparse</code> / <code>stats:::.Diag</code> as these invoke <a href="https://CRAN.R-project.org/package=KernSmooth"><strong>KernSmooth</strong></a> and <a href="https://CRAN.R-project.org/package=Matrix"><strong>Matrix</strong></a> respectively. (Those in <strong>stats</strong> are called from various contrasts functions if <code>sparse = TRUE</code> is used.)</p>
 </dd>
 </dl>

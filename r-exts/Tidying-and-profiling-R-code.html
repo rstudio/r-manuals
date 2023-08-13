@@ -279,9 +279,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#profiling-compiled-code" id="toc-profiling-compiled-code" class="nav-link" data-scroll-target="#profiling-compiled-code"><span class="header-section-number">3.4</span> Profiling compiled code</a>
   <ul class="collapse">
   <li><a href="#linux" id="toc-linux" class="nav-link" data-scroll-target="#linux"><span class="header-section-number">3.4.1</span> Linux</a></li>
-  <li><a href="#oprofile-and-operf" id="toc-oprofile-and-operf" class="nav-link" data-scroll-target="#oprofile-and-operf"><span class="header-section-number">3.4.2</span> oprofile and operf</a></li>
-  <li><a href="#sprof" id="toc-sprof" class="nav-link" data-scroll-target="#sprof"><span class="header-section-number">3.4.3</span> sprof</a></li>
-  <li><a href="#macos" id="toc-macos" class="nav-link" data-scroll-target="#macos"><span class="header-section-number">3.4.4</span> macOS</a></li>
+  <li><a href="#perf" id="toc-perf" class="nav-link" data-scroll-target="#perf"><span class="header-section-number">3.4.2</span> perf</a></li>
+  <li><a href="#oprofile-and-operf" id="toc-oprofile-and-operf" class="nav-link" data-scroll-target="#oprofile-and-operf"><span class="header-section-number">3.4.3</span> oprofile and operf</a></li>
+  <li><a href="#sprof" id="toc-sprof" class="nav-link" data-scroll-target="#sprof"><span class="header-section-number">3.4.4</span> sprof</a></li>
+  <li><a href="#macos" id="toc-macos" class="nav-link" data-scroll-target="#macos"><span class="header-section-number">3.4.5</span> macOS</a></li>
+  <li><a href="#windows" id="toc-windows" class="nav-link" data-scroll-target="#windows"><span class="header-section-number">3.4.6</span> Windows</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -326,7 +328,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="profiling-r-code-for-speed" class="level2 section page-columns page-full" data-number="3.2">
 <h2 class="section anchored" data-number="3.2" data-anchor-id="profiling-r-code-for-speed"><span class="header-section-number">3.2</span> Profiling R code for speed</h2>
 <div class="page-columns page-full"><p>It is possible to profile R code on Windows and most<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Unix-alike versions of R.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;R has to be built to enable this, but the option <code>--enable-R-profiling</code> is the default.</p></li></div></div>
-<div class="page-columns page-full"><p>The command <code>Rprof</code> is used to control profiling, and its help page can be consulted for full details. Profiling works by recording at fixed intervals<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> (by default every 20 msecs) which line in which R function is being used, and recording the results in a file (default <code>Rprof.out</code> in the working directory). Then the function <code>summaryRprof</code> or the command-line utility <code>R CMD Rprof Rprof.out</code> can be used to summarize the activity.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;For Unix-alikes these are intervals of CPU time, and for Windows of elapsed time.</p></li></div></div>
+<div class="page-columns page-full"><p>The command <code>Rprof</code> is used to control profiling, and its help page can be consulted for full details. Profiling works by recording at fixed intervals<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> (by default every 20 msecs) which line in which R function is being used, and recording the results in a file (default <code>Rprof.out</code> in the working directory). Then the function <code>summaryRprof</code> or the command-line utility <code>R CMD Rprof Rprof.out</code> can be used to summarize the activity.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;For Unix-alikes by default these are intervals of CPU time, and for Windows of elapsed (‘wall-clock’) time. As from R 4.4.0, elapsed time is optional on Unix-alikes</p></li></div></div>
 <p>As an example, consider the following code (from Venables &amp; Ripley, 2002, pp.&nbsp;225–6).</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS); <span class="fu">library</span>(boot)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>storm.fm <span class="ot">&lt;-</span> <span class="fu">nls</span>(Time <span class="sc">~</span> b<span class="sc">*</span>Viscosity<span class="sc">/</span>(Wt <span class="sc">-</span> c), stormer,</span>
@@ -445,149 +447,129 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="profiling-compiled-code" class="level2 section" data-number="3.4">
 <h2 class="section anchored" data-number="3.4" data-anchor-id="profiling-compiled-code"><span class="header-section-number">3.4</span> Profiling compiled code</h2>
-<p>Profiling compiled code is highly system-specific, but this section contains some hints gleaned from various R users. Some methods need to be different for a compiled executable and for dynamic/shared libraries/objects as used by R packages. We know of no good way to profile DLLs on Windows.</p>
+<p>Profiling compiled code is highly system-specific, but this section contains some hints gleaned from various R users. Some methods need to be different for a compiled executable and for dynamic/shared libraries/objects as used by R packages.</p>
 <p>This chapter is based on reports from users and the information may not be current.</p>
 <section id="linux" class="level3 subsection" data-number="3.4.1">
 <h3 class="subsection anchored" data-number="3.4.1" data-anchor-id="linux"><span class="header-section-number">3.4.1</span> Linux</h3>
-<p>Options include using <code>sprof</code> for a shared object, and <code>oprofile</code> (see <a href="https://oprofile.sourceforge.io/news/" class="uri">https://oprofile.sourceforge.io/news/</a>) and <code>perf</code> (see <a href="https://perf.wiki.kernel.org/index.php/Tutorial" class="uri">https://perf.wiki.kernel.org/index.php/Tutorial</a>) for any executable or shared object. These seem less widely supplied than they used to be (for example Fedora 36 only has <code>perf</code>).</p>
+<p>Options include using <code>sprof</code> for a shared object, and <code>oprofile</code> (see <a href="https://oprofile.sourceforge.io/news/" class="uri">https://oprofile.sourceforge.io/news/</a>) and <code>perf</code> (see <a href="https://perf.wiki.kernel.org/index.php/Tutorial" class="uri">https://perf.wiki.kernel.org/index.php/Tutorial</a>) for any executable or shared object. These seem less widely supplied than they used to be. There is also ‘Google Performance Tools’, also known as <strong>gperftools</strong> or <strong>google-perftools</strong>.</p>
+<p>All of these work best when R and any packages have been built with debugging symbols.</p>
 </section>
-<section id="oprofile-and-operf" class="level3 subsubsection" data-number="3.4.2">
-<h3 class="subsubsection anchored" data-number="3.4.2" data-anchor-id="oprofile-and-operf"><span class="header-section-number">3.4.2</span> oprofile and operf</h3>
-<p>The <code>oprofile</code> project has two modes of operation. In what is now called ‘legacy’ mode, it is uses a daemon to collect information on a process (see below). Since version 0.9.8 (August 2012), the preferred mode is to use <code>operf</code>, so we discuss that first. The modes differ in how the profiling data is collected: it is analysed by tools such as <code>opreport</code> and <code>oppannote</code> in both.</p>
-<p>Here is an example on <code>x86_64</code> Linux using R 3.0.2. File <code>pvec.R</code> contains the part of the examples from <code>pvec</code> in package <strong>parallel</strong>:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>library<span class="op">(</span>parallel<span class="op">)</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>N <span class="op">&lt;-</span> <span class="fl">1e6</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>dates <span class="op">&lt;-</span> sprintf<span class="op">(</span><span class="ch">'%</span><span class="er">04d-%02d-%02d</span><span class="ch">'</span><span class="op">,</span> as<span class="op">.</span>integer<span class="op">(</span><span class="dv">2000</span><span class="op">+</span>rnorm<span class="op">(</span>N<span class="op">)),</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                 as<span class="op">.</span>integer<span class="op">(</span>runif<span class="op">(</span>N<span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">12</span><span class="op">)),</span> as<span class="op">.</span>integer<span class="op">(</span>runif<span class="op">(</span>N<span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">28</span><span class="op">)))</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>system<span class="op">.</span>time<span class="op">(</span>a <span class="op">&lt;-</span> as<span class="op">.</span>POSIXct<span class="op">(</span>dates<span class="op">,</span> format <span class="op">=</span> <span class="st">"%Y-%m-</span><span class="sc">%d</span><span class="st">"</span><span class="op">))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>with timings from the final step</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>   user  system elapsed</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fl">0.371</span>   <span class="fl">0.237</span>   <span class="fl">0.612</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>R-level profiling by <code>Rprof</code> shows</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>                     self<span class="op">.</span>time self<span class="op">.</span>pct total<span class="op">.</span>time total<span class="op">.</span>pct</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="st">"strptime"</span>                <span class="fl">1.70</span>    <span class="fl">41.06</span>       <span class="fl">1.70</span>     <span class="fl">41.06</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="st">"as.POSIXct.POSIXlt"</span>      <span class="fl">1.40</span>    <span class="fl">33.82</span>       <span class="fl">1.42</span>     <span class="fl">34.30</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="st">"sprintf"</span>                 <span class="dv">0</span><span class="er">.74</span>    <span class="fl">17.87</span>       <span class="dv">0</span><span class="er">.98</span>     <span class="fl">23.67</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="op">...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>so the conversion from character to <code>POSIXlt</code> takes most of the time.</p>
-<p>This can be run under <code>operf</code> and analysed by</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>operf R <span class="sc">-</span>f pvec.R</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>opreport</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>opreport <span class="sc">-</span>l <span class="sc">/</span>path<span class="sc">/</span>to<span class="sc">/</span>R_HOME<span class="sc">/</span>bin<span class="sc">/</span>exec<span class="sc">/</span>R</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>opannotate <span class="sc">--</span>source <span class="sc">/</span>path<span class="sc">/</span>to<span class="sc">/</span>R_HOME<span class="sc">/</span>bin<span class="sc">/</span>exec<span class="sc">/</span>R</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="do">## And for the system time</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>opreport <span class="sc">-</span>l <span class="sc">/</span>lib64<span class="sc">/</span>libc.so<span class="fl">.6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The first report shows where (which library etc) the time was spent:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>CPU_CLK_UNHALT...<span class="sc">|</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  samples<span class="sc">|</span>      %<span class="sc">|</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="sc">------------------</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>   <span class="dv">166761</span> <span class="fl">99.9161</span> Rdev</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>        CPU_CLK_UNHALT...<span class="sc">|</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>          samples<span class="sc">|</span>      %<span class="sc">|</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>        <span class="sc">------------------</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>            <span class="dv">70586</span> <span class="fl">42.3276</span> no<span class="sc">-</span>vmlinux</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>            <span class="dv">56963</span> <span class="fl">34.1585</span> libc<span class="dv">-2</span>.<span class="fl">16.</span>so</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>            <span class="dv">36922</span> <span class="fl">22.1407</span> R</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>             <span class="dv">1584</span>  <span class="fl">0.9499</span> stats.so</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>              <span class="dv">624</span>  <span class="fl">0.3742</span> libm<span class="dv">-2</span>.<span class="fl">16.</span>so</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The rest of the output is voluminous, and only extracts are shown below.</p>
+<section id="perf" class="level3 subsubsection" data-number="3.4.2">
+<h3 class="subsubsection anchored" data-number="3.4.2" data-anchor-id="perf"><span class="header-section-number">3.4.2</span> perf</h3>
+<p>This seems the most widely distributed tool. Here is an example on <code>x86_64</code> Linux using R 4.3.1 built with LTO.</p>
+<p>At its simplest</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>perf record R <span class="sc">-</span>f tests<span class="sc">/</span>Examples<span class="sc">/</span>stats<span class="sc">-</span>Ex.R</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>perf report <span class="sc">--</span>sort<span class="ot">=</span>dso</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>perf report <span class="sc">--</span>sort<span class="ot">=</span>srcfile</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>rm perf.data<span class="sc">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The first report is</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>  <span class="fl">75.67</span>%  R</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>   <span class="fl">9.25</span>%  libc.so<span class="fl">.6</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>   <span class="fl">4.87</span>%  [unknown]</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>   <span class="fl">3.75</span>%  libz.so.<span class="dv">1</span>.<span class="fl">2.11</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>   <span class="fl">3.37</span>%  stats.so</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>   <span class="fl">1.17</span>%  libm.so<span class="fl">.6</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>   <span class="fl">0.63</span>%  libtirpc.so.<span class="dv">3</span>.<span class="fl">0.0</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>   <span class="fl">0.41</span>%  graphics.so</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>   <span class="fl">0.30</span>%  grDevices.so</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>   <span class="fl">0.20</span>%  libRblas.so</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>   <span class="fl">0.09</span>%  libpcre2<span class="fl">-8.</span>so.<span class="dv">0</span>.<span class="fl">11.0</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>   <span class="fl">0.07</span>%  methods.so</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>   ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>which shows which shared libraries (DSOs) the time was spent in.</p>
+<p><code>perf annotate</code> can be used on an application built with GCC and <code>-ggdb</code>: it interleaves disassembled and source code.</p>
+</section>
+<section id="oprofile-and-operf" class="level3 subsubsection" data-number="3.4.3">
+<h3 class="subsubsection anchored" data-number="3.4.3" data-anchor-id="oprofile-and-operf"><span class="header-section-number">3.4.3</span> oprofile and operf</h3>
+<p>The <code>oprofile</code> project has two modes of operation. Since version 0.9.8 (August 2012), the preferred mode is to use <code>operf</code>, so we discuss only that.</p>
+<p>Let us look at the <strong>boot</strong> example from §3.2 on <code>x86_64</code> Linux using R 4.3.1.</p>
+<p>This can be run under <code>operf</code> and analysed by commands like</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>operf R <span class="sc">-</span>f boot.R</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>opreport</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>opreport <span class="sc">-</span>l <span class="sc">/</span>path<span class="sc">/</span>to<span class="sc">/</span>R_HOME<span class="sc">/</span>bin<span class="sc">/</span>exec<span class="sc">/</span>R</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>opreport <span class="sc">-</span>l <span class="sc">/</span>path<span class="sc">/</span>to<span class="sc">/</span>R_HOME<span class="sc">/</span>library<span class="sc">/</span>stats<span class="sc">/</span>src<span class="sc">/</span>stats.so</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>opannotate <span class="sc">--</span>source <span class="sc">/</span>path<span class="sc">/</span>to<span class="sc">/</span>R_HOME<span class="sc">/</span>bin<span class="sc">/</span>exec<span class="sc">/</span>R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The first line had to be done as root.</p>
+<p>The first report shows in which library (etc) the time was spent:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>   CPU_CLK_UNHALT...<span class="sc">|</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>      samples<span class="sc">|</span>      %<span class="sc">|</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="sc">------------------</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>       <span class="dv">278341</span> <span class="fl">91.9947</span> R</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        <span class="dv">18290</span>  <span class="fl">6.0450</span> libc.so<span class="fl">.6</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>         <span class="dv">2277</span>  <span class="fl">0.7526</span> kallsyms</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>         <span class="dv">1426</span>  <span class="fl">0.4713</span> stats.so</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>          <span class="dv">739</span>  <span class="fl">0.2442</span> libRblas.so</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>          <span class="dv">554</span>  <span class="fl">0.1831</span> libz.so.<span class="dv">1</span>.<span class="fl">2.11</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>          <span class="dv">373</span>  <span class="fl">0.1233</span> libm.so<span class="fl">.6</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>          <span class="dv">352</span>  <span class="fl">0.1163</span> libtirpc.so.<span class="dv">3</span>.<span class="fl">0.0</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>          <span class="dv">153</span>  <span class="fl">0.0506</span> ld<span class="sc">-</span>linux<span class="sc">-</span>x86<span class="fl">-64.</span>so<span class="fl">.2</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>           <span class="dv">12</span>  <span class="fl">0.0040</span> methods.so</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>(<code>kallsyms</code> is the kernel.)</p>
+<p>The rest of the output is voluminous, and only extracts are shown.</p>
 <p>Most of the time within R is spent in</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>samples  <span class="op">%</span>        image name symbol name</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="dv">10397</span>    <span class="fl">28.5123</span>  R           R_gc_internal</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="dv">5683</span>     <span class="fl">15.5848</span>  R           do_sprintf</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="dv">3036</span>      <span class="fl">8.3258</span>  R           do_asPOSIXct</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2427</span>      <span class="fl">6.6557</span>  R           do_strptime</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="dv">2421</span>      <span class="fl">6.6392</span>  R           Rf_mkCharLenCE</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1480</span>      <span class="fl">4.0587</span>  R           w_strptime_internal</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="dv">1202</span>      <span class="fl">3.2963</span>  R           Rf_qnorm5</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="dv">1165</span>      <span class="fl">3.1948</span>  R           unif_rand</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="dv">675</span>       <span class="fl">1.8511</span>  R           mktime0</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="dv">617</span>       <span class="fl">1.6920</span>  R           makelt</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="dv">617</span>       <span class="fl">1.6920</span>  R           validate_tm</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="dv">584</span>       <span class="fl">1.6015</span>  R           day_of_the_week</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="op">...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>opannotate</code> shows that 31% of the time in R is spent in <code>memory.c</code>, 21% in <code>datetime.c</code> and 7% in <code>Rstrptime.h</code>. The analysis for <code>libc</code> showed that calls to <code>wcsftime</code> dominated, so those calls were cached for R 3.0.3: the time spent in <code>no-vmlinux</code> (the kernel) was reduced dramatically.</p>
-<p>On platforms which support it, call graphs can be produced by <code>opcontrol --callgraph</code> if collected <em>via</em> <code>operf --callgraph</code>.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>samples  <span class="op">%</span>        image name symbol name</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="dv">52955</span>    <span class="fl">19.0574</span>  R                        bcEval<span class="op">.</span>lto_priv<span class="fl">.0</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="dv">16484</span>     <span class="fl">5.9322</span>  R                        Rf_allocVector3</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="dv">14224</span>     <span class="fl">5.1189</span>  R                        Rf_findVarInFrame3</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="dv">12581</span>     <span class="fl">4.5276</span>  R                        CONS_NR</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="dv">8289</span>      <span class="fl">2.9830</span>  R                        Rf_matchArgs_NR</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="dv">8034</span>      <span class="fl">2.8913</span>  R                        Rf_cons</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="dv">7114</span>      <span class="fl">2.5602</span>  R                        R_gc_internal<span class="op">.</span>lto_priv<span class="fl">.0</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="dv">6552</span>      <span class="fl">2.3579</span>  R                        Rf_eval</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="dv">5969</span>      <span class="fl">2.1481</span>  R                        VECTOR_ELT</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="dv">5684</span>      <span class="fl">2.0456</span>  R                        Rf_applyClosure</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="dv">5497</span>      <span class="fl">1.9783</span>  R                        findVarLocInFrame<span class="op">.</span>part<span class="fl">.0</span><span class="er">.lto_priv.0</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="dv">4827</span>      <span class="fl">1.7371</span>  R                        Rf_mkPROMISE</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="dv">4609</span>      <span class="fl">1.6587</span>  R                        Rf_install</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="dv">4317</span>      <span class="fl">1.5536</span>  R                        Rf_findFun3</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="dv">4035</span>      <span class="fl">1.4521</span>  R                        getvar<span class="op">.</span>lto_priv<span class="fl">.0</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="dv">3491</span>      <span class="fl">1.2563</span>  R                        SETCAR</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="dv">3179</span>      <span class="fl">1.1441</span>  R                        Rf_defineVar</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="dv">2892</span>      <span class="fl">1.0408</span>  R                        duplicate1<span class="op">.</span>lto_priv<span class="fl">.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and in <code>stats.so</code></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>samples  %        image name               symbol name</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="dv">285</span>      <span class="fl">24.4845</span>  stats.so                 termsform</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="dv">284</span>      <span class="fl">24.3986</span>  stats.so                 numeric_deriv</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="dv">213</span>      <span class="fl">18.2990</span>  stats.so                 modelframe</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="dv">114</span>       <span class="fl">9.7938</span>  stats.so                 nls_iter</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="dv">55</span>        <span class="fl">4.7251</span>  stats.so                 ExtractVars</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="dv">47</span>        <span class="fl">4.0378</span>  stats.so                 EncodeVars</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="dv">37</span>        <span class="fl">3.1787</span>  stats.so                 getListElement</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="dv">32</span>        <span class="fl">2.7491</span>  stats.so                 TrimRepeats</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="dv">25</span>        <span class="fl">2.1478</span>  stats.so                 InstallVar</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="dv">20</span>        <span class="fl">1.7182</span>  stats.so                 MatchVar</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="dv">20</span>        <span class="fl">1.7182</span>  stats.so                 isZeroOne</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="dv">15</span>        <span class="fl">1.2887</span>  stats.so                 ConvInfoMsg.isra<span class="fl">.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The profiling data is by default stored in sub-directory <code>oprofile_data</code> of the current directory, which can be removed at the end of the session.</p>
-<p>Another way to use this is to run <code>operf -s</code> as root, run the R session in another terminal then shut down <code>operf</code> and analyse as above.</p>
-<p>Another example, from <a href="https://CRAN.R-project.org/package=sm"><strong>sm</strong></a> version 2.2-5.4. The example for <code>sm.variogram</code> took a long time:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(<span class="fu">example</span>(sm.variogram))</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>   user  system elapsed</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fl">5.543</span>   <span class="fl">3.202</span>   <span class="fl">8.785</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>including a lot of system time. Profiling just the slow part, the second plot, showed</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>  samples<span class="sc">|</span>      %<span class="sc">|</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="sc">------------------</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>   <span class="dv">381845</span> <span class="fl">99.9885</span> R</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>        CPU_CLK_UNHALT...<span class="sc">|</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>          samples<span class="sc">|</span>      %<span class="sc">|</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        <span class="sc">------------------</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>           <span class="dv">187484</span> <span class="fl">49.0995</span> sm.so</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>           <span class="dv">169627</span> <span class="fl">44.4230</span> no<span class="sc">-</span>vmlinux</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>            <span class="dv">12636</span>  <span class="fl">3.3092</span> libgfortran.so.<span class="dv">3</span>.<span class="fl">0.0</span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>             <span class="dv">6455</span>  <span class="fl">1.6905</span> R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>so the system time was almost all in the Linux kernel. It is possible to dig deeper if you have a matching uncompressed kernel with debug symbols to specify <em>via</em> <code>--vmlinux</code>: we did not.</p>
-<p>In ‘legacy’ mode <code>oprofile</code> works by running a daemon which collects information. The daemon must be started as root, e.g.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>% su</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>% opcontrol <span class="sc">--</span>no<span class="sc">-</span>vmlinux</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>% (optional, some platforms) opcontrol <span class="sc">--</span>callgraph<span class="ot">=</span><span class="dv">5</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>% opcontrol <span class="sc">--</span>start</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>% exit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Then as a user</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span> R</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="op">...</span> run the boot example</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span> opcontrol <span class="op">--</span>dump</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="op">%</span> opreport <span class="op">-</span>l <span class="op">/</span>path<span class="op">/</span>to<span class="op">/</span>R_HOME<span class="op">/</span>library<span class="op">/</span>stats<span class="op">/</span>libs<span class="op">/</span>stats<span class="op">.</span>so</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="op">...</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>samples  <span class="op">%</span>        symbol name</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="dv">1623</span>     <span class="fl">75.5939</span>  anonymous symbol from section <span class="op">.</span>plt</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="dv">349</span>      <span class="fl">16.2552</span>  numeric_deriv</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="dv">113</span>       <span class="fl">5.2632</span>  nls_iter</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="dv">62</span>        <span class="fl">2.8878</span>  getListElement</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="op">%</span> opreport <span class="op">-</span>l <span class="op">/</span>path<span class="op">/</span>to<span class="op">/</span>R_HOME<span class="op">/</span>bin<span class="op">/</span>exec<span class="op">/</span>R</span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="op">...</span></span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>samples  <span class="op">%</span>        symbol name</span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="dv">76052</span>    <span class="fl">11.9912</span>  Rf_eval</span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="dv">54670</span>     <span class="fl">8.6198</span>  Rf_findVarInFrame3</span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="dv">37814</span>     <span class="fl">5.9622</span>  Rf_allocVector</span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="dv">31489</span>     <span class="fl">4.9649</span>  Rf_duplicate</span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="dv">28221</span>     <span class="fl">4.4496</span>  Rf_protect</span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="dv">26485</span>     <span class="fl">4.1759</span>  Rf_cons</span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="dv">23650</span>     <span class="fl">3.7289</span>  Rf_matchArgs</span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="dv">21088</span>     <span class="fl">3.3250</span>  Rf_findFun</span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="dv">19995</span>     <span class="fl">3.1526</span>  findVarLocInFrame</span>
-<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a><span class="dv">14871</span>     <span class="fl">2.3447</span>  Rf_evalList</span>
-<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="dv">13794</span>     <span class="fl">2.1749</span>  R_Newhashpjw</span>
-<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a><span class="dv">13522</span>     <span class="fl">2.1320</span>  R_gc_internal</span>
-<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a><span class="op">...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Shutting down the profiler and clearing the records needs to be done as root.</p>
 </section>
-<section id="sprof" class="level3 subsubsection" data-number="3.4.3">
-<h3 class="subsubsection anchored" data-number="3.4.3" data-anchor-id="sprof"><span class="header-section-number">3.4.3</span> sprof</h3>
+<section id="sprof" class="level3 subsubsection" data-number="3.4.4">
+<h3 class="subsubsection anchored" data-number="3.4.4" data-anchor-id="sprof"><span class="header-section-number">3.4.4</span> sprof</h3>
 <p>You can select shared objects to be profiled with <code>sprof</code> by setting the environment variable <code>LD_PROFILE</code>. For example</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>% setenv LD_PROFILE <span class="sc">/</span>path<span class="sc">/</span>to<span class="sc">/</span>R_HOME<span class="sc">/</span>library<span class="sc">/</span>stats<span class="sc">/</span>libs<span class="sc">/</span>stats.so</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>R</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>... run the boot example</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>% sprof <span class="sc">/</span>path<span class="sc">/</span>to<span class="sc">/</span>R_HOME<span class="sc">/</span>library<span class="sc">/</span>stats<span class="sc">/</span>libs<span class="sc">/</span>stats.so \</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="sc">/</span>var<span class="sc">/</span>tmp<span class="sc">/</span>path<span class="sc">/</span>to<span class="sc">/</span>R_HOME<span class="sc">/</span>library<span class="sc">/</span>stats<span class="sc">/</span>libs<span class="sc">/</span>stats.so.profile</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>Flat profile<span class="sc">:</span></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>Each sample counts as <span class="fl">0.01</span> seconds.</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  %   cumulative   self              self     total</span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a> time   seconds   seconds    calls  us<span class="sc">/</span>call  us<span class="sc">/</span>call  name</span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a> <span class="fl">76.19</span>      <span class="fl">0.32</span>     <span class="fl">0.32</span>        <span class="dv">0</span>     <span class="fl">0.00</span>           numeric_deriv</span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a> <span class="fl">16.67</span>      <span class="fl">0.39</span>     <span class="fl">0.07</span>        <span class="dv">0</span>     <span class="fl">0.00</span>           nls_iter</span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  <span class="fl">7.14</span>      <span class="fl">0.42</span>     <span class="fl">0.03</span>        <span class="dv">0</span>     <span class="fl">0.00</span>           getListElement</span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>rm <span class="sc">/</span>var<span class="sc">/</span>tmp<span class="sc">/</span>path<span class="sc">/</span>to<span class="sc">/</span>R_HOME<span class="sc">/</span>library<span class="sc">/</span>stats<span class="sc">/</span>libs<span class="sc">/</span>stats.so.profile</span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>... to clean up ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>It is possible that root access is needed to create the directories used for the profile data.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>% setenv LD_PROFILE <span class="sc">/</span>path<span class="sc">/</span>to<span class="sc">/</span>R_HOME<span class="sc">/</span>library<span class="sc">/</span>stats<span class="sc">/</span>libs<span class="sc">/</span>stats.so</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>% R <span class="sc">-</span>f boot.R</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>% sprof <span class="sc">/</span>path<span class="sc">/</span>to<span class="sc">/</span>R_HOME<span class="sc">/</span>library<span class="sc">/</span>stats<span class="sc">/</span>libs<span class="sc">/</span>stats.so \</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="sc">/</span>var<span class="sc">/</span>tmp<span class="sc">/</span>path<span class="sc">/</span>to<span class="sc">/</span>R_HOME<span class="sc">/</span>library<span class="sc">/</span>stats<span class="sc">/</span>libs<span class="sc">/</span>stats.so.profile</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>Flat profile<span class="sc">:</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>Each sample counts as <span class="fl">0.01</span> seconds.</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  %   cumulative   self              self     total</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a> time   seconds   seconds    calls  us<span class="sc">/</span>call  us<span class="sc">/</span>call  name</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a> <span class="fl">76.19</span>      <span class="fl">0.32</span>     <span class="fl">0.32</span>        <span class="dv">0</span>     <span class="fl">0.00</span>           numeric_deriv</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a> <span class="fl">16.67</span>      <span class="fl">0.39</span>     <span class="fl">0.07</span>        <span class="dv">0</span>     <span class="fl">0.00</span>           nls_iter</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="fl">7.14</span>      <span class="fl">0.42</span>     <span class="fl">0.03</span>        <span class="dv">0</span>     <span class="fl">0.00</span>           getListElement</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>... to clean up ...</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>rm <span class="sc">/</span>var<span class="sc">/</span>tmp<span class="sc">/</span>path<span class="sc">/</span>to<span class="sc">/</span>R_HOME<span class="sc">/</span>library<span class="sc">/</span>stats<span class="sc">/</span>libs<span class="sc">/</span>stats.so.profile</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>It is possible that root access will be needed to create the directories used for the profile data.</p>
 </section>
-<section id="macos" class="level3 subsection" data-number="3.4.4">
-<h3 class="subsection anchored" data-number="3.4.4" data-anchor-id="macos"><span class="header-section-number">3.4.4</span> macOS</h3>
-<p>Developers have recommended <code>sample</code> (or <code>Sampler.app</code>, which is a GUI version), <code>Shark</code> (in version of <code>Xcode</code> up to those for Snow Leopard), and <code>Instruments</code> (part of <code>Xcode</code>, see <a href="https://help.apple.com/instruments/mac/current/" class="uri">https://help.apple.com/instruments/mac/current/</a>).</p>
+<section id="macos" class="level3 subsection" data-number="3.4.5">
+<h3 class="subsection anchored" data-number="3.4.5" data-anchor-id="macos"><span class="header-section-number">3.4.5</span> macOS</h3>
+<p>Developers have recommended <code>Instruments</code> (part of <code>Xcode</code>, see <a href="https://help.apple.com/instruments/mac/current/" class="uri">https://help.apple.com/instruments/mac/current/</a>), This had a command-line version prior to macOS 12.</p>
+</section>
+<section id="windows" class="level3 subsection" data-number="3.4.6">
+<h3 class="subsection anchored" data-number="3.4.6" data-anchor-id="windows"><span class="header-section-number">3.4.6</span> Windows</h3>
+<p><code>Very Sleepy</code> (<a href="https://github.com/VerySleepy/verysleepy" class="uri">https://github.com/VerySleepy/verysleepy</a>) has been used.</p>
 <p>Footnotes</p>
 
 
