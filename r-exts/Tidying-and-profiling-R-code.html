@@ -278,12 +278,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#profiling-compiled-code" id="toc-profiling-compiled-code" class="nav-link" data-scroll-target="#profiling-compiled-code"><span class="header-section-number">3.4</span> Profiling compiled code</a>
   <ul class="collapse">
-  <li><a href="#linux" id="toc-linux" class="nav-link" data-scroll-target="#linux"><span class="header-section-number">3.4.1</span> Linux</a></li>
+  <li><a href="#profiling-on-linux" id="toc-profiling-on-linux" class="nav-link" data-scroll-target="#profiling-on-linux"><span class="header-section-number">3.4.1</span> Profiling on Linux</a></li>
   <li><a href="#perf" id="toc-perf" class="nav-link" data-scroll-target="#perf"><span class="header-section-number">3.4.2</span> perf</a></li>
   <li><a href="#oprofile-and-operf" id="toc-oprofile-and-operf" class="nav-link" data-scroll-target="#oprofile-and-operf"><span class="header-section-number">3.4.3</span> oprofile and operf</a></li>
   <li><a href="#sprof" id="toc-sprof" class="nav-link" data-scroll-target="#sprof"><span class="header-section-number">3.4.4</span> sprof</a></li>
-  <li><a href="#macos" id="toc-macos" class="nav-link" data-scroll-target="#macos"><span class="header-section-number">3.4.5</span> macOS</a></li>
-  <li><a href="#windows" id="toc-windows" class="nav-link" data-scroll-target="#windows"><span class="header-section-number">3.4.6</span> Windows</a></li>
+  <li><a href="#profiling-on-macos" id="toc-profiling-on-macos" class="nav-link" data-scroll-target="#profiling-on-macos"><span class="header-section-number">3.4.5</span> Profiling on macOS</a></li>
+  <li><a href="#profiling-on-windows" id="toc-profiling-on-windows" class="nav-link" data-scroll-target="#profiling-on-windows"><span class="header-section-number">3.4.6</span> Profiling on Windows</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -449,8 +449,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="section anchored" data-number="3.4" data-anchor-id="profiling-compiled-code"><span class="header-section-number">3.4</span> Profiling compiled code</h2>
 <p>Profiling compiled code is highly system-specific, but this section contains some hints gleaned from various R users. Some methods need to be different for a compiled executable and for dynamic/shared libraries/objects as used by R packages.</p>
 <p>This chapter is based on reports from users and the information may not be current.</p>
-<section id="linux" class="level3 subsection" data-number="3.4.1">
-<h3 class="subsection anchored" data-number="3.4.1" data-anchor-id="linux"><span class="header-section-number">3.4.1</span> Linux</h3>
+<section id="profiling-on-linux" class="level3 subsection" data-number="3.4.1">
+<h3 class="subsection anchored" data-number="3.4.1" data-anchor-id="profiling-on-linux"><span class="header-section-number">3.4.1</span> Profiling on Linux</h3>
 <p>Options include using <code>sprof</code> for a shared object, and <code>oprofile</code> (see <a href="https://oprofile.sourceforge.io/news/" class="uri">https://oprofile.sourceforge.io/news/</a>) and <code>perf</code> (see <a href="https://perf.wiki.kernel.org/index.php/Tutorial" class="uri">https://perf.wiki.kernel.org/index.php/Tutorial</a>) for any executable or shared object. These seem less widely supplied than they used to be. There is also ‘Google Performance Tools’, also known as <strong>gperftools</strong> or <strong>google-perftools</strong>.</p>
 <p>All of these work best when R and any packages have been built with debugging symbols.</p>
 </section>
@@ -563,12 +563,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>rm <span class="sc">/</span>var<span class="sc">/</span>tmp<span class="sc">/</span>path<span class="sc">/</span>to<span class="sc">/</span>R_HOME<span class="sc">/</span>library<span class="sc">/</span>stats<span class="sc">/</span>libs<span class="sc">/</span>stats.so.profile</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>It is possible that root access will be needed to create the directories used for the profile data.</p>
 </section>
-<section id="macos" class="level3 subsection" data-number="3.4.5">
-<h3 class="subsection anchored" data-number="3.4.5" data-anchor-id="macos"><span class="header-section-number">3.4.5</span> macOS</h3>
+<section id="profiling-on-macos" class="level3 subsection" data-number="3.4.5">
+<h3 class="subsection anchored" data-number="3.4.5" data-anchor-id="profiling-on-macos"><span class="header-section-number">3.4.5</span> Profiling on macOS</h3>
 <p>Developers have recommended <code>Instruments</code> (part of <code>Xcode</code>, see <a href="https://help.apple.com/instruments/mac/current/" class="uri">https://help.apple.com/instruments/mac/current/</a>), This had a command-line version prior to macOS 12.</p>
 </section>
-<section id="windows" class="level3 subsection" data-number="3.4.6">
-<h3 class="subsection anchored" data-number="3.4.6" data-anchor-id="windows"><span class="header-section-number">3.4.6</span> Windows</h3>
+<section id="profiling-on-windows" class="level3 subsection" data-number="3.4.6">
+<h3 class="subsection anchored" data-number="3.4.6" data-anchor-id="profiling-on-windows"><span class="header-section-number">3.4.6</span> Profiling on Windows</h3>
 <p><code>Very Sleepy</code> (<a href="https://github.com/VerySleepy/verysleepy" class="uri">https://github.com/VerySleepy/verysleepy</a>) has been used. There were problems with accessing the debug information, but the best results which included function names were obtained by attaching the profiler to an existing <code>Rterm</code> process, either via GUI or using <code>/a:</code> (pid obtained via <code>Sys.getpid()</code>).</p>
 <p>Footnotes</p>
 
