@@ -279,9 +279,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#profiling-compiled-code" id="toc-profiling-compiled-code" class="nav-link" data-scroll-target="#profiling-compiled-code"><span class="header-section-number">3.4</span> Profiling compiled code</a>
   <ul class="collapse">
   <li><a href="#profiling-on-linux" id="toc-profiling-on-linux" class="nav-link" data-scroll-target="#profiling-on-linux"><span class="header-section-number">3.4.1</span> Profiling on Linux</a></li>
-  <li><a href="#perf" id="toc-perf" class="nav-link" data-scroll-target="#perf"><span class="header-section-number">3.4.2</span> perf</a></li>
-  <li><a href="#oprofile-and-operf" id="toc-oprofile-and-operf" class="nav-link" data-scroll-target="#oprofile-and-operf"><span class="header-section-number">3.4.3</span> oprofile and operf</a></li>
-  <li><a href="#sprof" id="toc-sprof" class="nav-link" data-scroll-target="#sprof"><span class="header-section-number">3.4.4</span> sprof</a></li>
+  <li><a href="#perf" id="toc-perf" class="nav-link" data-scroll-target="#perf"><span class="header-section-number">3.4.2</span> <code>perf</code></a></li>
+  <li><a href="#oprofile-and-operf" id="toc-oprofile-and-operf" class="nav-link" data-scroll-target="#oprofile-and-operf"><span class="header-section-number">3.4.3</span> <code>oprofile</code> and <code>operf</code></a></li>
+  <li><a href="#sprof" id="toc-sprof" class="nav-link" data-scroll-target="#sprof"><span class="header-section-number">3.4.4</span> <code>sprof</code></a></li>
   <li><a href="#profiling-on-macos" id="toc-profiling-on-macos" class="nav-link" data-scroll-target="#profiling-on-macos"><span class="header-section-number">3.4.5</span> Profiling on macOS</a></li>
   <li><a href="#profiling-on-windows" id="toc-profiling-on-windows" class="nav-link" data-scroll-target="#profiling-on-windows"><span class="header-section-number">3.4.6</span> Profiling on Windows</a></li>
   </ul></li>
@@ -455,7 +455,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>All of these work best when R and any packages have been built with debugging symbols.</p>
 </section>
 <section id="perf" class="level3 subsubsection" data-number="3.4.2">
-<h3 class="subsubsection anchored" data-number="3.4.2" data-anchor-id="perf"><span class="header-section-number">3.4.2</span> perf</h3>
+<h3 class="subsubsection anchored" data-number="3.4.2" data-anchor-id="perf"><span class="header-section-number">3.4.2</span> <code>perf</code></h3>
 <p>This seems the most widely distributed tool. Here is an example on <code>x86_64</code> Linux using R 4.3.1 built with LTO.</p>
 <p>At its simplest</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>perf record R <span class="sc">-</span>f tests<span class="sc">/</span>Examples<span class="sc">/</span>stats<span class="sc">-</span>Ex.R</span>
@@ -480,7 +480,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>perf annotate</code> can be used on an application built with GCC and <code>-ggdb</code>: it interleaves disassembled and source code.</p>
 </section>
 <section id="oprofile-and-operf" class="level3 subsubsection" data-number="3.4.3">
-<h3 class="subsubsection anchored" data-number="3.4.3" data-anchor-id="oprofile-and-operf"><span class="header-section-number">3.4.3</span> oprofile and operf</h3>
+<h3 class="subsubsection anchored" data-number="3.4.3" data-anchor-id="oprofile-and-operf"><span class="header-section-number">3.4.3</span> <code>oprofile</code> and <code>operf</code></h3>
 <p>The <code>oprofile</code> project has two modes of operation. Since version 0.9.8 (August 2012), the preferred mode is to use <code>operf</code>, so we discuss only that.</p>
 <p>Let us look at the <strong>boot</strong> example from §3.2 on <code>x86_64</code> Linux using R 4.3.1.</p>
 <p>This can be run under <code>operf</code> and analysed by commands like</p>
@@ -543,7 +543,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The profiling data is by default stored in sub-directory <code>oprofile_data</code> of the current directory, which can be removed at the end of the session.</p>
 </section>
 <section id="sprof" class="level3 subsubsection" data-number="3.4.4">
-<h3 class="subsubsection anchored" data-number="3.4.4" data-anchor-id="sprof"><span class="header-section-number">3.4.4</span> sprof</h3>
+<h3 class="subsubsection anchored" data-number="3.4.4" data-anchor-id="sprof"><span class="header-section-number">3.4.4</span> <code>sprof</code></h3>
 <p>You can select shared objects to be profiled with <code>sprof</code> by setting the environment variable <code>LD_PROFILE</code>. For example</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>% setenv LD_PROFILE <span class="sc">/</span>path<span class="sc">/</span>to<span class="sc">/</span>R_HOME<span class="sc">/</span>library<span class="sc">/</span>stats<span class="sc">/</span>libs<span class="sc">/</span>stats.so</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>% R <span class="sc">-</span>f boot.R</span>
