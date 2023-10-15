@@ -607,7 +607,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="c-standards" class="level3 subsection" data-number="2.7.4">
 <h3 class="subsection anchored" data-number="2.7.4" data-anchor-id="c-standards"><span class="header-section-number">2.7.4</span> C standards</h3>
-<p>Compiling R requires C99 or later: C11 and C17 are minor updates, but the substantial update planned for ‘C23’ (now expected in 2024) will also be supported.</p>
+<p>Compiling R requires C99 or later: C11 and C17 are minor updates, but the substantial update planned for ‘C23’ (now expected <em>ca</em> April 2024) will also be supported.</p>
 <p>As from R 4.3.0 there is support for packages to indicate their preferred C version. Macros <code>CC17</code>, <code>C17FLAGS</code>, <code>CC23</code> and <code>C23FLAGS</code> can be set in <code>config.site</code> (there are examples there). Those for C17 should support C17 or earlier and not allow C23 additions so for example <code>bool</code>, <code>true</code> and <code>false</code> can be used as identifiers. Those for C23 should support new types such as <code>bool</code>.</p>
 <p>Some compilers warn enthusiastically about prototypes. For most, omitting <code>-Wstrict-prototypes</code> in <code>C17FLAGS</code> suffices. However, versions 15 and later of LLVM <code>clang</code> and 14.0.3 and later of Apple clang warn by default in all modes if <code>-Wall</code> or <code>-pedantic</code> is used, and may need <code>-Wno-strict-prototypes</code>.</p>
 </section>

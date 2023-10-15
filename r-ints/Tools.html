@@ -408,11 +408,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 <dt><code>_R_CHECK_RD_CHECKRD_MINLEVEL_</code> <a href="#index-_r_check_rd_checkrd_minlevel_" class="copiable-anchor">¶</a></dt>
 <dd>
-<p>Controls the minimum level for reporting warnings from <code>checkRd</code>. Default: -1.</p>
+<p>Controls the minimum level for reporting warnings from <code>checkRd()</code>. Default: -1.</p>
+</dd>
+<dt><code>_R_CHECK_RD_NOTE_LOST_BRACES_</code> <a href="#index-_r_check_rd_note_lost_braces_" class="copiable-anchor">¶</a></dt>
+<dd>
+<p>If true, some of the “lost braces” that <code>checkRd()</code> finds in LaTeX-like Rd contexts are reported (by raising their warning level to -1). This will often detect missing initial backslashes for Rd macros, unescaped in-text set braces, and description-like <code>\item{label}{desc}</code> entries within <code>\itemize</code>. Default: unset (but true for CRAN submission checks), currently; may be enabled unconditionally in the future.</p>
 </dd>
 <dt><code>_R_CHECK_RD_ALLOW_EMPTY_ITEM_IN_DESCRIBE_</code> <a href="#index-_r_check_rd_allow_empty_item_in_describe_" class="copiable-anchor">¶</a></dt>
 <dd>
-<p>Control whether empty items inside <code>\\describe</code> are allowed without a warning. This is a temporary stop gap measure meant to support legacy packages, and is likely to be removed in future versions of R. Default: false.</p>
+<p>Control whether empty items inside <code>\describe</code> are allowed without a warning. This is a temporary stop gap measure meant to support legacy packages, and is likely to be removed in future versions of R. Default: false.</p>
 </dd>
 <dt><code>_R_CHECK_XREFS_REPOSITORIES_</code> <a href="#index-_r_check_xrefs_repositories_" class="copiable-anchor">¶</a></dt>
 <dd>
@@ -749,6 +753,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <dd>
 <p>Default: false (but true for CRAN submission checks). If set to a true value, checking S3 methods also notes “possible issues”, including issues with apparent methods not registered and methods registered for non-generics. Default: false (but true for CRAN submission checks).</p>
 </dd>
+<dt><code>_R_CHECK_MBCS_CONVERSION_FAILURE_</code> <a href="#index-_r_check_mbcs_conversion_failure_" class="copiable-anchor">¶</a></dt>
+<dd>
+<p>If set to a non-empty value, makes warnings from <code>pdf()</code> and <code>postscript()</code> about conversion failures from an MBCS (ususally UTF-8) into errors. Default: unset.</p>
+</dd>
 </dl>
 <div class="page-columns page-full"><p>The following variables control checks for undeclared/unconditional use of other packages. They work by setting up a temporary library directory and setting <code>.libPaths()</code> to just that and <code>.Library</code>, so are only effective if additional packages are installed somewhere other than <code>.Library</code>. The temporary library is populated by symbolic links<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> to installed packages not also in <code>.Library</code>.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;under Windows, junction points, or copies if environment variable <code>R_WIN_NO_JUNCTIONS</code> has a non-empty value.</p></li></div></div>
 <dl>
@@ -815,18 +823,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>_R_CHECK_THINGS_IN_CHECK_DIR_<span class="ot">=</span>true</span>
 <span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>_R_CHECK_THINGS_IN_TEMP_DIR_<span class="ot">=</span>true</span>
 <span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>_R_CHECK_BASHISMS_<span class="ot">=</span>true</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>_R_CLASS_MATRIX_ARRARY_<span class="ot">=</span>true</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>_R_CHECK_ORPHANED_<span class="ot">=</span>true</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>_R_CHECK_BOGUS_RETURN_<span class="ot">=</span>true</span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>_R_CHECK_MATRIX_DATA_<span class="ot">=</span><span class="cn">TRUE</span></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>_R_CHECK_CODE_CLASS_IS_STRING_<span class="ot">=</span>true</span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>_R_CHECK_RD_VALIDATE_RD2HTML_<span class="ot">=</span>true</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>_R_CHECK_RD_MATH_RENDERING_<span class="ot">=</span>true</span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>_R_CHECK_NEWS_IN_PLAIN_TEXT_<span class="ot">=</span>true</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>_R_CHECK_BROWSER_NONINTERACTIVE_<span class="ot">=</span>true</span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>_R_CHECK_URLS_SHOW_301_STATUS_<span class="ot">=</span>true</span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>_R_CHECK_UNDOC_USE_ALL_NAMES_<span class="ot">=</span>true</span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>_R_CHECK_S3_METHODS_SHOW_POSSIBLE_ISSUES_<span class="ot">=</span>true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>_R_CHECK_ORPHANED_<span class="ot">=</span>true</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>_R_CHECK_BOGUS_RETURN_<span class="ot">=</span>true</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>_R_CHECK_MATRIX_DATA_<span class="ot">=</span><span class="cn">TRUE</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>_R_CHECK_CODE_CLASS_IS_STRING_<span class="ot">=</span>true</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>_R_CHECK_RD_VALIDATE_RD2HTML_<span class="ot">=</span>true</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>_R_CHECK_RD_MATH_RENDERING_<span class="ot">=</span>true</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>_R_CHECK_NEWS_IN_PLAIN_TEXT_<span class="ot">=</span>true</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>_R_CHECK_BROWSER_NONINTERACTIVE_<span class="ot">=</span>true</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>_R_CHECK_URLS_SHOW_301_STATUS_<span class="ot">=</span>true</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>_R_CHECK_UNDOC_USE_ALL_NAMES_<span class="ot">=</span>true</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>_R_CHECK_S3_METHODS_SHOW_POSSIBLE_ISSUES_<span class="ot">=</span>true</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>_R_CHECK_RD_NOTE_LOST_BRACES_<span class="ot">=</span>true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>These are turned on by <code>R CMD check --as-cran</code>: the incoming checks also use</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>_R_CHECK_FORCE_SUGGESTS_<span class="ot">=</span><span class="cn">FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>since some packages do suggest other packages not available on CRAN or other commonly-used repositories.</p>
