@@ -496,8 +496,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>25</code></td>
-<td style="text-align: left;"><code>S4SXP</code></td>
-<td style="text-align: left;">S4 classes not of simple type</td>
+<td style="text-align: left;"><code>OBJSXP</code></td>
+<td style="text-align: left;">objects not of simple type</td>
 </tr>
 </tbody>
 </table>
@@ -506,7 +506,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="page-columns page-full"><p>Language objects (<code>LANGSXP</code>) are calls (including formulae and so on). Internally they are pairlists with first element a reference<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> to the function to be called with remaining elements the actual arguments for the call (and with the tags if present giving the specified argument names). Although this is not enforced, many places in the code assume that the pairlist is of length one or more, often without checking.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;a pointer to a function or a symbol to look up the function by name, or a language object to be evaluated to give a function.</p></li></div></div>
 <p>Expressions are of type <code>EXPRSXP</code>: they are a vector of (usually language) objects most often seen as the result of <code>parse()</code>.</p>
 <p>The functions are of types <code>CLOSXP</code>, <code>SPECIALSXP</code> and <code>BUILTINSXP</code>: where <code>SEXPTYPE</code>s are stored in an integer these are sometimes lumped into a pseudo-type <code>FUNSXP</code> with code 99. Functions defined via <code>function</code> are of type <code>CLOSXP</code> and have formals, body and environment.</p>
-<p>The <code>SEXPTYPE</code> <code>S4SXP</code> is for S4 objects which do not consist solely of a simple type such as an atomic vector or function.</p>
+<p>The <code>SEXPTYPE</code> <code>OBJ</code> is for S4 and other objects which do not consist solely of a simple type such as an atomic vector or function.</p>
 </section>
 <section id="rest-of-header" class="level3 subsection" data-number="1.1.2">
 <h3 class="subsection anchored" data-number="1.1.2" data-anchor-id="rest-of-header"><span class="header-section-number">1.1.2</span> Rest of header</h3>
@@ -660,7 +660,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <dd>
 <p><code>length</code>, <code>truelength</code> followed by a block of bytes.</p>
 </dd>
-<dt><code>S4SXP</code></dt>
+<dt><code>OBJSXP</code></dt>
 <dd>
 <p>two unused pointers and a tag.</p>
 </dd>
@@ -870,7 +870,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>[This section is currently a preliminary draft and should not be taken as definitive. The description assumes that <code>R_NO_METHODS_TABLES</code> has not been set.]</p>
 <section id="representation-of-s4-objects" class="level3 subsection page-columns page-full" data-number="1.12.1">
 <h3 class="subsection anchored" data-number="1.12.1" data-anchor-id="representation-of-s4-objects"><span class="header-section-number">1.12.1</span> Representation of S4 objects</h3>
-<p>S4 objects can be of any <code>SEXPTYPE</code>. They are either an object of a simple type (such as an atomic vector or function) with S4 class information or of type <code>S4SXP</code>. In all cases, the ‘S4 bit’ (bit 4 of the ‘general purpose’ field) is set, and can be tested by the macro/function <code>IS_S4_OBJECT</code>.</p>
+<p>S4 objects can be of any <code>SEXPTYPE</code>. They are either an object of a simple type (such as an atomic vector or function) with S4 class information or of type <code>OBJSXP</code>. In all cases, the ‘S4 bit’ (bit 4 of the ‘general purpose’ field) is set, and can be tested by the macro/function <code>IS_S4_OBJECT</code>.</p>
 <div class="page-columns page-full"><p>S4 objects are created via <code>new()</code><a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> and thence via the C function <code>R_do_new_object</code>. This duplicates the prototype of the class, adds a class attribute and sets the S4 bit. All S4 class attributes should be character vectors of length one with an attribute giving (as a character string) the name of the package (or <code>.GlobalEnv</code>) containing the class definition. Since S4 objects have a class attribute, the <code>OBJECT</code> bit is set.</p><div class="no-row-height column-margin column-container"><li id="fn12"><p><sup>12</sup>&nbsp;This can also create non-S4 objects, as in <code>new("integer")</code>.</p></li></div></div>
 <p>It is currently unclear what should happen if the class attribute is removed from an S4 object, or if this should be allowed.</p>
 </section>

@@ -757,6 +757,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <dd>
 <p>If set to a non-empty value, makes warnings from <code>pdf()</code> and <code>postscript()</code> about conversion failures from an MBCS (usually UTF-8) into errors. Default: unset (but true for CRAN submission checks).</p>
 </dd>
+<dt><code>_R_CHECK_VALIDATE_UTF8_</code> <a href="#index-_r_check_validate_utf8_" class="copiable-anchor">¶</a></dt>
+<dd>
+<p>If set to a non-empty value, makes installation warnings about non-UTF-8 strings in a package’s code (<code>R/*R</code>) and help (<code>man/*.Rd</code>) files into errors. On most platforms invalid bytes in these files get converted to escapes (see <code>iconv(sub = "byte")</code>), but on others these lead to installation failure. Default: unset (but true for CRAN submission checks).</p>
+</dd>
 </dl>
 <div class="page-columns page-full"><p>The following variables control checks for undeclared/unconditional use of other packages. They work by setting up a temporary library directory and setting <code>.libPaths()</code> to just that and <code>.Library</code>, so are only effective if additional packages are installed somewhere other than <code>.Library</code>. The temporary library is populated by symbolic links<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> to installed packages not also in <code>.Library</code>.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;under Windows, junction points, or copies if environment variable <code>R_WIN_NO_JUNCTIONS</code> has a non-empty value.</p></li></div></div>
 <dl>
