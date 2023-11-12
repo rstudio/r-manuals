@@ -1318,7 +1318,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="subsection anchored" data-number="1.3.3" data-anchor-id="building-binary-packages"><span class="header-section-number">1.3.3</span> Building binary packages</h3>
 <p>Binary packages are compressed copies of installed versions of packages. They contain compiled shared libraries rather than C, C++ or Fortran source code, and the R functions are included in their installed form. The format and filename are platform-specific; for example, a binary package for Windows is usually supplied as a <code>.zip</code> file, and for the macOS platform the default binary package file extension is <code>.tgz</code>.</p>
 <p>The recommended method of building binary packages is to use</p>
-<p><code>R CMD INSTALL --build pkg</code> where <code>pkg</code> is either the name of a source tarball (in the usual <code>.tar.gz</code> format) or the location of the directory of the package source to be built. This operates by first installing the package and then packing the installed binaries into the appropriate binary package file for the particular platform.</p>
+<p><code>R CMD INSTALL --build pkg</code></p>
+<p>where <code>pkg</code> is either the name of a source tarball (in the usual <code>.tar.gz</code> format) or the location of the directory of the package source to be built. This operates by first installing the package and then packing the installed binaries into the appropriate binary package file for the particular platform.</p>
 <p>By default, <code>R CMD INSTALL --build</code> will attempt to install the package into the default library tree for the local installation of R. This has two implications:</p>
 <ul>
 <li>If the installation is successful, it will overwrite any existing installation of the same package.</li>
