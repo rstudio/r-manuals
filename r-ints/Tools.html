@@ -755,7 +755,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 <dt><code>_R_CHECK_MBCS_CONVERSION_FAILURE_</code> <a href="#index-_r_check_mbcs_conversion_failure_" class="copiable-anchor">¶</a></dt>
 <dd>
-<p>If set to a non-empty value, makes warnings from <code>pdf()</code> and <code>postscript()</code> about conversion failures from an MBCS (usually UTF-8) into errors. Default: unset (but true for CRAN submission checks).</p>
+<p>If set to a non-empty value, makes warnings from <code>pdf()</code> and <code>postscript()</code> about conversion failures from an MBCS (usually UTF-8) into errors. Unless the value is <code>silent</code>, when the warnings are suppressed. Default: unset (but true for CRAN submission checks).</p>
 </dd>
 <dt><code>_R_CHECK_VALIDATE_UTF8_</code> <a href="#index-_r_check_validate_utf8_" class="copiable-anchor">¶</a></dt>
 <dd>

@@ -364,7 +364,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="memory-allocation" class="level2 section page-columns page-full" data-number="6.1">
 <h2 class="section anchored" data-number="6.1" data-anchor-id="memory-allocation"><span class="header-section-number">6.1</span> Memory allocation</h2>
 <p>There are two types of memory allocation available to the C programmer, one in which R manages the clean-up and the other in which user has full control (and responsibility).</p>
-<p>These functions are declared in header <code>R_exts/RS.h</code> which is included by <code>R.h</code>.</p>
+<p>These functions are declared in header <code>R_ext/RS.h</code> which is included by <code>R.h</code>.</p>
 <section id="transient-storage-allocation" class="level3 subsection" data-number="6.1.1">
 <h3 class="subsection anchored" data-number="6.1.1" data-anchor-id="transient-storage-allocation"><span class="header-section-number">6.1.1</span> Transient storage allocation</h3>
 <p>Here R will reclaim the memory at the end of the call to <code>.C</code>, <code>.Call</code> or <code>.External</code>. Use</p>
