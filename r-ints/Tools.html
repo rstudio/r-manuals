@@ -651,15 +651,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 <dt><code>_R_CHECK_VIGNETTES_SKIP_RUN_MAYBE_</code> <a href="#index-_r_check_vignettes_skip_run_maybe_" class="copiable-anchor">¶</a></dt>
 <dd>
-<p>Should running the R code in the vignettes be skipped if vignette outputs are to be rebuilt (which will involve running that code). Default: false (but true for CRAN checking)</p>
+<p>Should running the R code in the vignettes be skipped if vignette outputs are to be rebuilt (which will involve running that code). Default: true.</p>
 </dd>
 <dt><code>_R_CHECK_BUILD_VIGNETTES_SEPARATELY_</code> <a href="#index-_r_check_build_vignettes_separately_" class="copiable-anchor">¶</a></dt>
 <dd>
-<p>Prior to R 3.6.0, re-building the vignette outputs was done in a single R session which allowed accidental reliance of one vignette on another (for example, in the loading of packages). The current default is to use a separate session for each vignette; this option allows testing the older behaviour, Default: true</p>
+<p>Prior to R 3.6.0, re-building the vignette outputs was done in a single R session which allowed accidental reliance of one vignette on another (for example, in the loading of packages). The current default is to use a separate session for each vignette; this option allows testing the older behaviour, Default: true.</p>
 </dd>
 <dt><code>_R_CHECK_SYSTEM_CLOCK_</code> <a href="#index-_r_check_system_clock_" class="copiable-anchor">¶</a></dt>
 <dd>
-<p>As part of the ‘checking for future file timestamps’ enabled by <code>--as-cran</code>, check the system clock against an external clock to catch errors such as the wrong day or even year. Not necessary on systems doing repeated checks. Default: true (but false for CRAN checking)</p>
+<p>As part of the ‘checking for future file timestamps’ enabled by <code>--as-cran</code>, check the system clock against an external clock to catch errors such as the wrong day or even year. Not necessary on systems doing repeated checks. Default: true (but false for CRAN checking).</p>
 </dd>
 <dt><code>_R_CHECK_AUTOCONF_</code> <a href="#index-_r_check_autoconf_" class="copiable-anchor">¶</a></dt>
 <dd>
@@ -679,7 +679,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 <dt><code>_R_CHECK_THINGS_IN_OTHER_DIRS_</code> <a href="#index-_r_check_things_in_other_dirs_" class="copiable-anchor">¶</a></dt>
 <dd>
-<p>Check and report at the end of the check run if new files or directories are created in a selected set of directories during the check run. (This is confined to files owned by the user running the check process.) Currently the directories monitored are the home directory, <code>/tmp</code> (excluding <code>RtmpXXXXXX</code> dirs), <code>/dav/shm</code>, <code>~/.cache</code> (recursively) and <code>~/.local/share</code> (recursively) or their equivalents on Windows and macOS (the directories in which the default settings for <code>tools::R_user_dir()</code> use a <code>R</code> subdirectory). Additional directories can be specified in environment variable <code>_R_CHECK_THINGS_IN_OTHER_DIRS_XTRA_</code>, separated by semicolons. Directories are reported with a trailing <code>/</code> on all platforms.</p>
+<p>Check and report at the end of the check run if new files or directories are created in a selected set of directories during the check run. (This is confined to files owned by the user running the check process.) Currently the directories monitored are the home directory, <code>/tmp</code> (excluding <code>RtmpXXXXXX</code> directories), <code>/dav/shm</code>, <code>~/.cache</code> (recursively) and <code>~/.local/share</code> (recursively) or their equivalents on Windows and macOS (the directories in which the default settings for <code>tools::R_user_dir()</code> use a <code>R</code> subdirectory). Additional directories can be specified in environment variable <code>_R_CHECK_THINGS_IN_OTHER_DIRS_XTRA_</code>, separated by semicolons. Directories are reported with a trailing <code>/</code> on all platforms.</p>
 <p>Environment variable <code>_R_CHECK_THINGS_IN_OTHER_DIRS_EXCLUDE_</code> can specify an (extended regex) pattern of file paths not to be reported – this should match absolute file paths with home represented by <code>~</code>. For example, on a Linux system</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="st">'^~/.cache/(mozilla/firefox|mesa_shader_cache)/'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>matches cache directories used by Firefox and OpenGL (and their content). If the value starts with <code>@</code> it is considered as a filepath which is read with each line treated as a pattern to be matched.</p>
