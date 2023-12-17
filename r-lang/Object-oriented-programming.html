@@ -295,7 +295,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#inheritance" id="toc-inheritance" class="nav-link" data-scroll-target="#inheritance"><span class="header-section-number">5.2</span> Inheritance</a></li>
   <li><a href="#method-dispatching" id="toc-method-dispatching" class="nav-link" data-scroll-target="#method-dispatching"><span class="header-section-number">5.3</span> Method dispatching</a></li>
   <li><a href="#usemethod" id="toc-usemethod" class="nav-link" data-scroll-target="#usemethod"><span class="header-section-number">5.4</span> UseMethod</a></li>
-  <li><a href="#nextmethod" id="toc-nextmethod" class="nav-link" data-scroll-target="#nextmethod"><span class="header-section-number">5.5</span> NextMethod</a></li>
+  <li><a href="#nextmethod" id="toc-nextmethod" class="nav-link" data-scroll-target="#nextmethod"><span class="header-section-number">5.5</span> <code>NextMethod</code></a></li>
   <li><a href="#group-methods" id="toc-group-methods" class="nav-link" data-scroll-target="#group-methods"><span class="header-section-number">5.6</span> Group methods</a></li>
   <li><a href="#writing-methods" id="toc-writing-methods" class="nav-link" data-scroll-target="#writing-methods"><span class="header-section-number">5.7</span> Writing methods</a></li>
   </ul>
@@ -378,9 +378,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>If the first argument to <code>UseMethod</code> is not supplied it is assumed to be the name of the current function. If two arguments are supplied to <code>UseMethod</code> then the first is the name of the method and the second is assumed to be the object that will be dispatched on. It is evaluated so that the required method can be determined. In this case the first argument in the call to the generic is not evaluated and is discarded. There is no way to change the other arguments in the call to the method; these remain as they were in the call to the generic. This is in contrast to <code>NextMethod</code> where the arguments in the call to the next method can be altered.</p>
 </section>
 <section id="nextmethod" class="level2 section" data-number="5.5">
-<h2 class="section anchored" data-number="5.5" data-anchor-id="nextmethod"><span class="header-section-number">5.5</span> NextMethod</h2>
+<h2 class="section anchored" data-number="5.5" data-anchor-id="nextmethod"><span class="header-section-number">5.5</span> <code>NextMethod</code></h2>
 <p><code>NextMethod</code> is used to provide a simple inheritance mechanism.</p>
-<p>Methods invoked as a result of a call to <code>NextMethod</code> behave as if they had been invoked from the previous method. The arguments to the inherited method are in the same order and have the same names as the call to the current method. This means that they are the same as for the call to the generic. However, the expressions for the arguments are the names of the corresponding formal arguments of the current method. Thus the arguments will have values that correspond to their value at the time NextMethod was invoked.</p>
+<p>Methods invoked as a result of a call to <code>NextMethod</code> behave as if they had been invoked from the previous method. The arguments to the inherited method are in the same order and have the same names as the call to the current method. This means that they are the same as for the call to the generic. However, the expressions for the arguments are the names of the corresponding formal arguments of the current method. Thus the arguments will have values that correspond to their value at the time <code>NextMethod</code> was invoked.</p>
 <p>Unevaluated arguments remain unevaluated. Missing arguments remain missing.</p>
 <p>The syntax for a call to <code>NextMethod</code> is <code>NextMethod(generic, object, ...)</code>. If the <code>generic</code> is not supplied the value of <code>.Generic</code> is used. If the <code>object</code> is not supplied the first argument in the call to the current method is used. Values in the <code>...</code> argument are used to modify the arguments of the next method.</p>
 <p>It is important to realize that the choice of the next method depends on the current values of <code>.Generic</code> and <code>.Class</code> and not on the object. So changing the object in a call to <code>NextMethod</code> affects the arguments received by the next method but does not affect the choice of the next method.</p>
@@ -388,9 +388,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>An issue for discussion is the behaviour of the <code>...</code> argument to <code>NextMethod</code>. The White Book describes the behaviour as follows:</p>
 <p>- named arguments replace the corresponding arguments in the call to the current method. Unnamed arguments go at the start of the argument list.</p>
 <p>What I would like to do is:</p>
-<p>-first do the argument matching for NextMethod; -if the object or generic are changed fine -first if a named list element matches an argument (named or not) the list value replaces the argument value. - the first unnamed list element</p>
-<p>Values for lookup: Class: comes first from .Class, second from the first argument to the method and last from the object specified in the call to NextMethod</p>
-<p>Generic: comes first from .Generic, if nothing then from the first argument to the method and if it’s still missing from the call to NextMethod</p>
+<p>-first do the argument matching for <code>NextMethod</code>; -if the object or generic are changed fine -first if a named list element matches an argument (named or not) the list value replaces the argument value. - the first unnamed list element</p>
+<p>Values for lookup: Class: comes first from <code>.Class</code>, second from the first argument to the method and last from the object specified in the call to <code>NextMethod</code></p>
+<p>Generic: comes first from <code>.Generic</code>, if nothing then from the first argument to the method and if it’s still missing from the call to <code>NextMethod</code></p>
 <p>Method: this should just be the current function name.</p>
 </section>
 <section id="group-methods" class="level2 section" data-number="5.6">
