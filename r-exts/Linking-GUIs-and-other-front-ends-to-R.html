@@ -279,7 +279,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#embedding-r-under-windows" id="toc-embedding-r-under-windows" class="nav-link" data-scroll-target="#embedding-r-under-windows"><span class="header-section-number">8.2</span> Embedding R under Windows</a>
   <ul class="collapse">
   <li><a href="#using-dcom" id="toc-using-dcom" class="nav-link" data-scroll-target="#using-dcom"><span class="header-section-number">8.2.1</span> Using (D)COM</a></li>
-  <li><a href="#calling-r.dll-directly" id="toc-calling-r.dll-directly" class="nav-link" data-scroll-target="#calling-r.dll-directly"><span class="header-section-number">8.2.2</span> Calling R.dll directly</a></li>
+  <li><a href="#calling-r.dll-directly" id="toc-calling-r.dll-directly" class="nav-link" data-scroll-target="#calling-r.dll-directly"><span class="header-section-number">8.2.2</span> Calling <code>R.dll</code> directly</a></li>
   <li><a href="#finding-r_home" id="toc-finding-r_home" class="nav-link" data-scroll-target="#finding-r_home"><span class="header-section-number">8.2.3</span> Finding R_HOME</a></li>
   </ul></li>
   </ul>
@@ -641,7 +641,7 @@ write the time stamp to the console.</code></pre>
 </ul>
 </section>
 <section id="calling-r.dll-directly" class="level3 subsection page-columns page-full" data-number="8.2.2">
-<h3 class="subsection anchored" data-number="8.2.2" data-anchor-id="calling-r.dll-directly"><span class="header-section-number">8.2.2</span> Calling R.dll directly</h3>
+<h3 class="subsection anchored" data-number="8.2.2" data-anchor-id="calling-r.dll-directly"><span class="header-section-number">8.2.2</span> Calling <code>R.dll</code> directly</h3>
 <p>The <code>R</code> DLL is mainly written in C and has <code>_cdecl</code> entry points. Calling it directly will be tricky except from C code (or C++ with a little care).</p>
 <p>There is a version of the Unix-alike interface calling</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> Rf_initEmbeddedR<span class="op">(</span><span class="dt">int</span> ac<span class="op">,</span> <span class="dt">char</span> <span class="op">**</span>av<span class="op">);</span></span>

@@ -651,12 +651,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 <dt><code>\url{uniform_resource_locator}</code> <a href="#index-_005curl" class="copiable-anchor">¶</a></dt>
 <dd class="page-columns page-full">
-<div class="page-columns page-full"><p>Indicate a uniform resource locator (URL) for the World Wide Web. The argument is handled as ‘verbatim’ text (with percent and braces escaped by backslash), and rendered as a hyperlink in HTML and PDF conversion. Linefeeds are removed, and leading and trailing whitespace<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> is removed. See <a href="Creating-R-packages.html#specifying-urls">Specifying URLs</a>.</p><div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;as defined by the R function <code>trimws</code>.</p></li></div></div>
+<div class="page-columns page-full"><p>Indicate a uniform resource locator (URL) for the World Wide Web. The argument is handled as ‘verbatim’ text (with percent and braces escaped by backslash), and rendered as a hyperlink in HTML and PDF conversion. Line feeds are removed, and leading and trailing whitespace<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> is removed. See <a href="Creating-R-packages.html#specifying-urls">Specifying URLs</a>.</p><div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;as defined by the R function <code>trimws</code>.</p></li></div></div>
 <p>Displayed using <code>typewriter</code> font where possible.</p>
 </dd>
 <dt><code>\href{uniform_resource_locator}{text}</code> <a href="#index-_005chref" class="copiable-anchor">¶</a></dt>
 <dd>
-<p>Indicate a hyperlink to the World Wide Web. The first argument is handled as ‘verbatim’ text (with percent and braces escaped by backslash) and is used as the URL in the hyperlink, with the second argument of LaTeX-like text displayed to the user. Linefeeds are removed from the first argument, and leading and trailing whitespace is removed.</p>
+<p>Indicate a hyperlink to the World Wide Web. The first argument is handled as ‘verbatim’ text (with percent and braces escaped by backslash) and is used as the URL in the hyperlink, with the second argument of LaTeX-like text displayed to the user. Line feeds are removed from the first argument, and leading and trailing whitespace is removed.</p>
 <p>Note that RFC3986-encoded URLs (e.g.&nbsp;using <code>%28VS.85%29</code> in place of <code>(VS.85)</code>) may not work correctly in versions of R before 3.1.3 and are best avoided—use <code>URLdecode()</code> to decode them.</p>
 </dd>
 <dt><code>\var{metasyntactic_variable}</code> <a href="#index-_005cvar" class="copiable-anchor">¶</a></dt>
