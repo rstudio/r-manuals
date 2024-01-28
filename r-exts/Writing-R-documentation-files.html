@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -81,7 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -90,6 +96,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -103,9 +110,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: Writing R Extensions</span>
     </a>
@@ -117,73 +124,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="./../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Manuals</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
         <li>
-    <a class="dropdown-item" href="./../r-intro/index.html" rel="" target="">
+    <a class="dropdown-item" href="./../r-intro/index.html">
  <span class="dropdown-text">An Introduction to R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-data/index.html" rel="" target="">
+    <a class="dropdown-item" href="./../r-data/index.html">
  <span class="dropdown-text">R Data Import/Export</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-admin/index.html" rel="" target="">
+    <a class="dropdown-item" href="./../r-admin/index.html">
  <span class="dropdown-text">R Installation and Administration</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-exts/index.html" rel="" target="">
+    <a class="dropdown-item" href="./../r-exts/index.html">
  <span class="dropdown-text">Writing R Extensions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-lang/index.html" rel="" target="">
+    <a class="dropdown-item" href="./../r-lang/index.html">
  <span class="dropdown-text">R Language Definition</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-ints/index.html" rel="" target="">
+    <a class="dropdown-item" href="./../r-ints/index.html">
  <span class="dropdown-text">R Internals</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./../about.html" rel="" target="">
- <span class="menu-text">About</span></a>
+    <a class="nav-link" href="./../about.html"> 
+<span class="menu-text">About</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Writing-R-documentation-files.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Writing R documentation files</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Writing-R-documentation-files.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Writing R documentation files</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -261,7 +260,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -311,7 +310,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <section id="rd-format" class="level2 section page-columns page-full" data-number="2.1">
 <h2 class="section anchored" data-number="2.1" data-anchor-id="rd-format"><span class="header-section-number">2.1</span> Rd format</h2>
@@ -361,8 +362,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </blockquote>
 <p>An <code>Rd</code> file consists of three parts. The header gives basic information about the name of the file, the topics documented, a title, a short textual description and R usage information for the objects documented. The body gives further information (for example, on the function’s arguments and return value, as in the above example). Finally, there is an optional footer with keyword information. The header is mandatory.</p>
-<div class="page-columns page-full"><p>Information is given within a series of <em>sections</em> with standard names (and user-defined sections are also allowed). Unless otherwise specified<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> these should occur only once in an <code>Rd</code> file (in any order), and the processing software will retain only the first occurrence of a standard section in the file, with a warning.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;e.g.&nbsp;<code>\alias</code>, <code>\keyword</code> and <code>\note</code> sections.</p></li></div></div>
-<p>See <a href="https://developer.r-project.org/Rds.html">“Guidelines for Rd files”</a> for guidelines for writing documentation in <code>Rd</code> format which should be useful for package writers. The R generic function <code>prompt</code> is used to construct a bare-bones <code>Rd</code> file ready for manual editing. Methods are defined for documenting functions (which fill in the proper function and argument names) and data frames. There are also functions <code>promptData</code>, <code>promptPackage</code>, <code>promptClass</code>, and <code>promptMethods</code> for other types of <code>Rd</code> file.</p>
+<p>Information is given within a series of <em>sections</em> with standard names (and user-defined sections are also allowed). Unless otherwise specified<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> these should occur only once in an <code>Rd</code> file (in any order), and the processing software will retain only the first occurrence of a standard section in the file, with a warning.</p>
+<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;e.g.&nbsp;<code>\alias</code>, <code>\keyword</code> and <code>\note</code> sections.</p></div><p>See <a href="https://developer.r-project.org/Rds.html">“Guidelines for Rd files”</a> for guidelines for writing documentation in <code>Rd</code> format which should be useful for package writers. The R generic function <code>prompt</code> is used to construct a bare-bones <code>Rd</code> file ready for manual editing. Methods are defined for documenting functions (which fill in the proper function and argument names) and data frames. There are also functions <code>promptData</code>, <code>promptPackage</code>, <code>promptClass</code>, and <code>promptMethods</code> for other types of <code>Rd</code> file.</p>
 <p>The general syntax of <code>Rd</code> files is summarized below. For a detailed technical discussion of current <code>Rd</code> syntax, see <a href="https://developer.r-project.org/parseRd.pdf">“Parsing Rd files”</a>.</p>
 <p><code>Rd</code> files consist of four types of text input. The most common is LaTeX-like, with the backslash used as a prefix on markup (e.g. <code>\alias</code>), and braces used to indicate arguments (e.g.&nbsp;<code>{load}</code>). The least common type of text is ‘verbatim’ text, where no markup other than the comment marker (<code>%</code>) is processed. There is also a rare variant of ‘verbatim’ text (used in <code>\eqn</code>, <code>\deqn</code>, <code>\figure</code>, and <code>\newcommand</code>) where comment markers need not be escaped. The final type is R-like, intended for R code, but allowing some embedded macros. Quoted strings within R-like text are handled specially: regular character escapes such as <code>\n</code> may be entered as-is. Only markup starting with <code>\l</code> (e.g. <code>\link</code>) or <code>\v</code> (e.g.&nbsp;<code>\var</code>) will be recognized within quoted strings. The rarely used vertical tab <code>\v</code> must be entered as <code>\\v</code>.</p>
 <p>Each macro defines the input type for its argument. For example, the file initially uses LaTeX-like syntax, and this is also used in the <code>\description</code> section, but the <code>\usage</code> section uses R-like syntax, and the <code>\alias</code> macro uses ‘verbatim’ syntax. Comments run from a percent symbol <code>%</code> to the end of the line in all types of text except the rare ‘verbatim’ variant (as on the first line of the <code>load</code> example).</p>
@@ -373,8 +374,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <dl class="page-columns page-full">
 <dt><code>\name{name}</code> <a href="#index-_005cname" class="copiable-anchor">¶</a></dt>
 <dd class="page-columns page-full">
-<div class="page-columns page-full"><p><code>name</code> typically<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> is the basename of the <code>Rd</code> file containing the documentation. It is the “name” of the <code>Rd</code> object represented by the file and has to be unique in a package. To avoid problems with indexing the package manual, it may not contain <code>!</code> <code>|</code> nor <code>@</code>. (LaTeX special characters are allowed, but may not be collated correctly in the index.) There can only be one <code>\name</code> entry in a file, and it must not contain any markup and should only contain printable ASCII characters. Entries in the package manual will be in alphabetic<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> order of the <code>\name</code> entries.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;There can be exceptions: for example <code>Rd</code> files are not allowed to start with a dot, and have to be uniquely named on a case-insensitive file system.</p></li><li id="fn3"><p><sup>3</sup>&nbsp;in the current locale, and with special treatment for LaTeX special characters and with any <code>pkgname-package</code> topic moved to the top of the list.</p></li></div></div>
-</dd>
+<p><code>name</code> typically<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> is the basename of the <code>Rd</code> file containing the documentation. It is the “name” of the <code>Rd</code> object represented by the file and has to be unique in a package. To avoid problems with indexing the package manual, it may not contain <code>!</code> <code>|</code> nor <code>@</code>. (LaTeX special characters are allowed, but may not be collated correctly in the index.) There can only be one <code>\name</code> entry in a file, and it must not contain any markup and should only contain printable ASCII characters. Entries in the package manual will be in alphabetic<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> order of the <code>\name</code> entries.</p>
+<div class="no-row-height column-margin column-container"><p><sup>2</sup>&nbsp;There can be exceptions: for example <code>Rd</code> files are not allowed to start with a dot, and have to be uniquely named on a case-insensitive file system.</p><p><sup>3</sup>&nbsp;in the current locale, and with special treatment for LaTeX special characters and with any <code>pkgname-package</code> topic moved to the top of the list.</p></div></dd>
 <dt><code>\alias{topic}</code> <a href="#index-_005calias" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>The <code>\alias</code> sections specify all “topics” the file documents. This information is collected into index data bases for lookup by the on-line (plain text and HTML) help systems. The <code>topic</code> can contain spaces, but (for historical reasons) leading and trailing spaces will be stripped. Percent and left brace need to be escaped by a backslash.</p>
@@ -451,8 +452,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Description of the function’s return value.</p>
 <p>If a list with multiple values is returned, you can use entries of the form</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\item</span>{comp_i}{Description of comp_i.}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="page-columns page-full"><p>for each component of the list returned. There may be optional text outside the <code>\item</code> entries (see for example the joint help for <code>rle</code> and <code>inverse.rle</code>, or the sets of items in <code>l10n_info</code>). Note that <code>\value</code> is implicitly a <code>\describe</code> environment, so that environment should not be used for listing components, just individual <code>\item{}{}</code> entries.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;<code>\describe</code> can still be used for more general lists, including when <code>\item</code> labels need special markup such as <code>\var</code> for metasyntactic variables, see <a href="#marking-text">Marking text</a>.</p></li></div></div>
-</dd>
+<p>for each component of the list returned. There may be optional text outside the <code>\item</code> entries (see for example the joint help for <code>rle</code> and <code>inverse.rle</code>, or the sets of items in <code>l10n_info</code>). Note that <code>\value</code> is implicitly a <code>\describe</code> environment, so that environment should not be used for listing components, just individual <code>\item{}{}</code> entries.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<div class="no-row-height column-margin column-container"><p><sup>4</sup>&nbsp;<code>\describe</code> can still be used for more general lists, including when <code>\item</code> labels need special markup such as <code>\var</code> for metasyntactic variables, see <a href="#marking-text">Marking text</a>.</p></div></dd>
 <dt><code>\references{...}</code> <a href="#index-_005creferences" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>A section with references to the literature. Use <code>\url{}</code> or <code>\href{}{}</code> for web pointers, and <code>\doi{}</code> for DOIs (this needs R &gt;= 3.3, see <a href="#user-defined-macros">User-defined macros</a> for more info).</p>
@@ -490,8 +491,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Data needed for making the examples executable can be obtained by random number generation (for example, <code>x &lt;- rnorm(100)</code>), or by using standard data sets listed by <code>data()</code> (see <code>?data</code> for more info).</p>
 <p>Finally, there is <code>\donttest</code>, used (at the beginning of a separate line) to mark code that should be run by <code>example()</code> but not by <code>R CMD check</code> (by default: the option <code>--run-donttest</code> can be used). This should be needed only occasionally but can be used for code which might fail in circumstances that are hard to test for, for example in some locales. (Use e.g.&nbsp;<code>capabilities()</code> or <code>nzchar(Sys.which("someprogram"))</code> to test for features needed in the examples wherever possible, and you can also use <code>try()</code> or <code>tryCatch()</code>. Use <code>interactive()</code> to condition examples which need someone to interact with.) Note that code included in <code>\donttest</code> must be correct R code, and any packages used should be declared in the <code>DESCRIPTION</code> file. It is good practice to include a comment in the <code>\donttest</code> section explaining why it is needed.</p>
 <p>Output from code between comments</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">## IGNORE_RDIFF_BEGIN</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="do">## IGNORE_RDIFF_END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">## IGNORE_RDIFF_</span><span class="re">BEGIN</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="do">## IGNORE_RDIFF_</span><span class="re">END</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>is ignored when comparing check output to reference output (a <code>-Ex.Rout.save</code> file). This markup can also be used for scripts under <code>tests</code>.</p>
 </dd>
 <dt><code>\keyword{key}</code></dt>
@@ -651,8 +652,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 <dt><code>\url{uniform_resource_locator}</code> <a href="#index-_005curl" class="copiable-anchor">¶</a></dt>
 <dd class="page-columns page-full">
-<div class="page-columns page-full"><p>Indicate a uniform resource locator (URL) for the World Wide Web. The argument is handled as ‘verbatim’ text (with percent and braces escaped by backslash), and rendered as a hyperlink in HTML and PDF conversion. Line feeds are removed, and leading and trailing whitespace<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> is removed. See <a href="Creating-R-packages.html#specifying-urls">Specifying URLs</a>.</p><div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;as defined by the R function <code>trimws</code>.</p></li></div></div>
-<p>Displayed using <code>typewriter</code> font where possible.</p>
+<p>Indicate a uniform resource locator (URL) for the World Wide Web. The argument is handled as ‘verbatim’ text (with percent and braces escaped by backslash), and rendered as a hyperlink in HTML and PDF conversion. Line feeds are removed, and leading and trailing whitespace<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> is removed. See <a href="Creating-R-packages.html#specifying-urls">Specifying URLs</a>.</p>
+<div class="no-row-height column-margin column-container"><p><sup>5</sup>&nbsp;as defined by the R function <code>trimws</code>.</p></div><p>Displayed using <code>typewriter</code> font where possible.</p>
 </dd>
 <dt><code>\href{uniform_resource_locator}{text}</code> <a href="#index-_005chref" class="copiable-anchor">¶</a></dt>
 <dd>
@@ -661,8 +662,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 <dt><code>\var{metasyntactic_variable}</code> <a href="#index-_005cvar" class="copiable-anchor">¶</a></dt>
 <dd class="page-columns page-full">
-<div class="page-columns page-full"><p>Indicate a metasyntactic variable. In most cases this will be rendered distinctly, e.g.&nbsp;in italic (PDF/HTML) or wrapped in <code>&lt;...&gt;</code> (text), but not in all<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>. LaTeX-like.</p><div class="no-row-height column-margin column-container"><li id="fn6"><p><sup>6</sup>&nbsp;Currently it is rendered differently in HTML conversions, and in LaTeX and text conversion outside <code>\usage</code> and <code>\examples</code> environments.</p></li></div></div>
-</dd>
+<p>Indicate a metasyntactic variable. In most cases this will be rendered distinctly, e.g.&nbsp;in italic (PDF/HTML) or wrapped in <code>&lt;...&gt;</code> (text), but not in all<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>. LaTeX-like.</p>
+<div class="no-row-height column-margin column-container"><p><sup>6</sup>&nbsp;Currently it is rendered differently in HTML conversions, and in LaTeX and text conversion outside <code>\usage</code> and <code>\examples</code> environments.</p></div></dd>
 <dt><code>\env{environment_variable}</code> <a href="#index-_005cenv" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Indicate an environment variable. ‘Verbatim’. Displayed using <code>typewriter</code> font where possible</p>
@@ -764,11 +765,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="insertions" class="level2 section page-columns page-full" data-number="2.8">
 <h2 class="section anchored" data-number="2.8" data-anchor-id="insertions"><span class="header-section-number">2.8</span> Insertions</h2>
-<div class="page-columns page-full"><p>Use <code>\R</code> for the R system itself. The <code>\dots</code> macro is a historical alternative to using literal <code>...</code> for the dots in function argument lists; use <code>\ldots</code> for ellipsis dots in ordinary text.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> These macros can be followed by <code>{}</code>, and should be unless followed by whitespace.</p><div class="no-row-height column-margin column-container"><li id="fn7"><p><sup>7</sup>&nbsp;There is only a fine distinction between <code>\dots</code> and <code>\ldots</code>. It is technically incorrect to use <code>\ldots</code> in code blocks and <code>tools::checkRd</code> will warn about this—on the other hand the current converters treat them the same way in code blocks, and elsewhere apart from the small distinction between the two in LaTeX.</p></li></div></div>
-<p>After an unescaped <code>%</code>, you can put your own comments regarding the help text. The rest of the line (but not the newline at the end) will be completely disregarded. Therefore, you can also use it to make part of the “help” invisible.</p>
+<p>Use <code>\R</code> for the R system itself. The <code>\dots</code> macro is a historical alternative to using literal <code>...</code> for the dots in function argument lists; use <code>\ldots</code> for ellipsis dots in ordinary text.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> These macros can be followed by <code>{}</code>, and should be unless followed by whitespace.</p>
+<div class="no-row-height column-margin column-container"><p><sup>7</sup>&nbsp;There is only a fine distinction between <code>\dots</code> and <code>\ldots</code>. It is technically incorrect to use <code>\ldots</code> in code blocks and <code>tools::checkRd</code> will warn about this—on the other hand the current converters treat them the same way in code blocks, and elsewhere apart from the small distinction between the two in LaTeX.</p></div><p>After an unescaped <code>%</code>, you can put your own comments regarding the help text. The rest of the line (but not the newline at the end) will be completely disregarded. Therefore, you can also use it to make part of the “help” invisible.</p>
 <p>You can produce a backslash (<code>\</code>) by escaping it by another backslash. (Note that <code>\cr</code> is used for generating line breaks.)</p>
-<div class="page-columns page-full"><p>The “comment” character <code>%</code> and unpaired braces<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> <em>almost always</em> need to be escaped by <code>\</code>, and <code>\\</code> can be used for backslash and needs to be when there are two or more adjacent backslashes. In R-like code quoted strings are handled slightly differently; see <a href="https://developer.r-project.org/parseRd.pdf">“Parsing Rd files”</a> for details – in particular braces should not be escaped in quoted strings.</p><div class="no-row-height column-margin column-container"><li id="fn8"><p><sup>8</sup>&nbsp;See the examples section in the file <code>Paren.Rd</code> for an example.</p></li></div></div>
-<p>All of <code>% { } \</code> should be escaped in LaTeX-like text.</p>
+<p>The “comment” character <code>%</code> and unpaired braces<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> <em>almost always</em> need to be escaped by <code>\</code>, and <code>\\</code> can be used for backslash and needs to be when there are two or more adjacent backslashes. In R-like code quoted strings are handled slightly differently; see <a href="https://developer.r-project.org/parseRd.pdf">“Parsing Rd files”</a> for details – in particular braces should not be escaped in quoted strings.</p>
+<div class="no-row-height column-margin column-container"><p><sup>8</sup>&nbsp;See the examples section in the file <code>Paren.Rd</code> for an example.</p></div><p>All of <code>% { } \</code> should be escaped in LaTeX-like text.</p>
 <p>Text which might need to be represented differently in different encodings should be marked by <code>\enc</code>, e.g.&nbsp;<code>\enc{Jöreskog}{Joreskog}</code> (with no whitespace between the braces) where the first argument will be used where encodings are allowed and the second should be ASCII (and is used for e.g.&nbsp;the text conversion in locales that cannot represent the encoded form). (This is intended to be used for individual words, not whole sentences or paragraphs.)</p>
 </section>
 <section id="indices" class="level2 section" data-number="2.9">
@@ -867,8 +868,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="section anchored" data-number="2.14" data-anchor-id="encoding"><span class="header-section-number">2.14</span> Encoding</h2>
 <p>Rd files are text files and so it is impossible to deduce the encoding they are written in unless ASCII: files with 8-bit characters could be UTF-8, Latin-1, Latin-9, KOI8-R, EUC-JP, <em>etc</em>. So an <code>\encoding{}</code> section must be used to specify the encoding if it is not ASCII. (The <code>\encoding{}</code> section must be on a line by itself, and in particular one containing no non-ASCII characters. The encoding declared in the <code>DESCRIPTION</code> file will be used if none is declared in the file.) The <code>Rd</code> files are converted to UTF-8 before parsing and so the preferred encoding for the files themselves is now UTF-8.</p>
 <p>Wherever possible, avoid non-ASCII chars in <code>Rd</code> files, and even symbols such as <code>&lt;</code>, <code>&gt;</code>, <code>$</code>, <code>^</code>, <code>&amp;</code>, <code>|</code>, <code>@</code>, <code>~</code>, and <code>*</code> outside ‘verbatim’ environments (since they may disappear in fonts designed to render text). (Function <code>showNonASCIIfile</code> in package <strong>tools</strong> can help in finding non-ASCII bytes in the files.)</p>
-<div class="page-columns page-full"><p>For convenience, encoding names <code>latin1</code> and <code>latin2</code> are always recognized: these and <code>UTF-8</code> are likely to work fairly widely. However, this does not mean that all characters in UTF-8 will be recognized, and the coverage of non-Latin characters<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> is fairly low. Using LaTeX <code>inputenx</code> (see <code>?Rd2pdf</code> in R) will give greater coverage of UTF-8.</p><div class="no-row-height column-margin column-container"><li id="fn9"><p><sup>9</sup>&nbsp;R 2.9.0 added support for UTF-8 Cyrillic characters in LaTeX, but on some OSes this will need Cyrillic support added to LaTeX, so environment variable <code>_R_CYRILLIC_TEX_</code> may need to be set to a non-empty value to enable this.</p></li></div></div>
-<p>The <code>\enc</code> command (see <a href="#insertions">Insertions</a>) can be used to provide transliterations which will be used in conversions that do not support the declared encoding.</p>
+<p>For convenience, encoding names <code>latin1</code> and <code>latin2</code> are always recognized: these and <code>UTF-8</code> are likely to work fairly widely. However, this does not mean that all characters in UTF-8 will be recognized, and the coverage of non-Latin characters<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> is fairly low. Using LaTeX <code>inputenx</code> (see <code>?Rd2pdf</code> in R) will give greater coverage of UTF-8.</p>
+<div class="no-row-height column-margin column-container"><p><sup>9</sup>&nbsp;R 2.9.0 added support for UTF-8 Cyrillic characters in LaTeX, but on some OSes this will need Cyrillic support added to LaTeX, so environment variable <code>_R_CYRILLIC_TEX_</code> may need to be set to a non-empty value to enable this.</p></div><p>The <code>\enc</code> command (see <a href="#insertions">Insertions</a>) can be used to provide transliterations which will be used in conversions that do not support the declared encoding.</p>
 <p>The LaTeX conversion converts the file to UTF-8 from the declared encoding, and includes a</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\inputencoding</span>{utf8}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>command, and this needs to be matched by a suitable invocation of the <code>\usepackage{inputenc}</code> command. The R utility <code>R CMD Rd2pdf</code> looks at the converted code and includes the encodings used: it might for example use</p>
@@ -978,10 +979,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -991,8 +1011,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1005,6 +1034,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1048,6 +1196,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1073,6 +1222,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1130,32 +1305,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          // default icon
-          link.classList.add("external");
-      }
-    }
 });
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./Creating-R-packages.html" class="pagination-link">
+      <a href="./Creating-R-packages.html" class="pagination-link  aria-label=" &lt;span="" r="" packages&lt;="" span&gt;"="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Creating R packages</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./Tidying-and-profiling-R-code.html" class="pagination-link">
+      <a href="./Tidying-and-profiling-R-code.html" class="pagination-link" aria-label="<span class='chapter-number'>3</span>&nbsp; <span class='chapter-title'>Tidying and profiling R code</span>">
         <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Tidying and profiling R code</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -1163,13 +1322,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-left">
+<p>A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></p>
+</div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
-    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+    <div class="nav-footer-right">
+<p>Built using <a href="https://quarto.org">Quarto</a></p>
+</div>
   </div>
 </footer>
+
 
 
 

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -81,7 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -90,6 +96,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -103,9 +110,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: Writing R Extensions</span>
     </a>
@@ -117,73 +124,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="./../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Manuals</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
         <li>
-    <a class="dropdown-item" href="./../r-intro/index.html" rel="" target="">
+    <a class="dropdown-item" href="./../r-intro/index.html">
  <span class="dropdown-text">An Introduction to R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-data/index.html" rel="" target="">
+    <a class="dropdown-item" href="./../r-data/index.html">
  <span class="dropdown-text">R Data Import/Export</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-admin/index.html" rel="" target="">
+    <a class="dropdown-item" href="./../r-admin/index.html">
  <span class="dropdown-text">R Installation and Administration</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-exts/index.html" rel="" target="">
+    <a class="dropdown-item" href="./../r-exts/index.html">
  <span class="dropdown-text">Writing R Extensions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-lang/index.html" rel="" target="">
+    <a class="dropdown-item" href="./../r-lang/index.html">
  <span class="dropdown-text">R Language Definition</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-ints/index.html" rel="" target="">
+    <a class="dropdown-item" href="./../r-ints/index.html">
  <span class="dropdown-text">R Internals</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./../about.html" rel="" target="">
- <span class="menu-text">About</span></a>
+    <a class="nav-link" href="./../about.html"> 
+<span class="menu-text">About</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Debugging.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Debugging.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -261,7 +260,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -310,7 +309,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <p>This chapter covers the debugging of R extensions, starting with the ways to get useful error information and moving on to how to deal with errors that crash R.</p>
 <section id="browsing" class="level2 section page-columns page-full" data-number="4.1">
@@ -327,14 +328,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>Browse[<span class="dv">1</span>]<span class="sc">&gt;</span></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>     height         weight</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a> Min.   <span class="sc">:</span><span class="fl">58.0</span>   Min.   <span class="sc">:</span><span class="fl">115.0</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a> 1st Qu.<span class="sc">:</span><span class="fl">61.5</span>   1st Qu.<span class="sc">:</span><span class="fl">124.5</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a> <span class="dv">1</span>st Qu.<span class="sc">:</span><span class="fl">61.5</span>   <span class="dv">1</span>st Qu.<span class="sc">:</span><span class="fl">124.5</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a> Median <span class="sc">:</span><span class="fl">65.0</span>   Median <span class="sc">:</span><span class="fl">135.0</span></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a> Mean   <span class="sc">:</span><span class="fl">65.0</span>   Mean   <span class="sc">:</span><span class="fl">136.7</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a> 3rd Qu.<span class="sc">:</span><span class="fl">68.5</span>   3rd Qu.<span class="sc">:</span><span class="fl">148.0</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a> <span class="dv">3</span>rd Qu.<span class="sc">:</span><span class="fl">68.5</span>   <span class="dv">3</span>rd Qu.<span class="sc">:</span><span class="fl">148.0</span></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a> Max.   <span class="sc">:</span><span class="fl">72.0</span>   Max.   <span class="sc">:</span><span class="fl">164.0</span></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">rm</span>(summary.data.frame)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="page-columns page-full"><p>At the browser prompt one can enter any R expression, so for example <code>ls()</code> lists the objects in the current frame, and entering the name of an object will<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> print it. The following commands are also accepted</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;With the exceptions of the commands listed below: an object of such a name can be printed <em>via</em> an explicit call to <code>print</code>.</p></li></div></div>
-<ul>
+<p>At the browser prompt one can enter any R expression, so for example <code>ls()</code> lists the objects in the current frame, and entering the name of an object will<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> print it. The following commands are also accepted</p>
+<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;With the exceptions of the commands listed below: an object of such a name can be printed <em>via</em> an explicit call to <code>print</code>.</p></div><ul>
 <li><p><code>n</code></p>
 <p>Enter ‘step-through’ mode. In this mode, hitting return executes the next line of code (more precisely one line and any continuation lines). Typing <code>c</code> will continue to the end of the current context, e.g.&nbsp;to the end of the current loop or function.</p></li>
 <li><p><code>c</code></p>
@@ -440,16 +441,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="op">[</span><span class="dv">36</span><span class="op">]</span> <span class="st">"y"</span>          <span class="st">"ynames"</span>     <span class="st">"z"</span></span>
 <span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>Browse<span class="op">[</span><span class="dv">1</span><span class="op">]&gt;</span> eta</span>
 <span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>            <span class="dv">1</span>             <span class="dv">2</span>             <span class="dv">3</span>             <span class="dv">4</span>             <span class="dv">5</span></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a> <span class="dv">0</span><span class="er">.000000e</span><span class="op">+</span><span class="bn">00</span> <span class="op">-</span><span class="fl">2.235357e-06</span> <span class="op">-</span><span class="fl">1.117679e-05</span> <span class="op">-</span><span class="fl">5.588393e-05</span> <span class="op">-</span><span class="fl">2.794197e-04</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.000000e+00</span> <span class="op">-</span><span class="fl">2.235357e-06</span> <span class="op">-</span><span class="fl">1.117679e-05</span> <span class="op">-</span><span class="fl">5.588393e-05</span> <span class="op">-</span><span class="fl">2.794197e-04</span></span>
 <span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>            <span class="dv">6</span>             <span class="dv">7</span>             <span class="dv">8</span>             <span class="dv">9</span></span>
 <span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="fl">1.397098e-03</span> <span class="op">-</span><span class="fl">6.985492e-03</span> <span class="op">-</span><span class="fl">3.492746e-02</span> <span class="op">-</span><span class="fl">1.746373e-01</span></span>
 <span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>Browse<span class="op">[</span><span class="dv">1</span><span class="op">]&gt;</span> valideta<span class="op">(</span>eta<span class="op">)</span></span>
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="op">[</span><span class="dv">1</span><span class="op">]</span> TRUE</span>
 <span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>Browse<span class="op">[</span><span class="dv">1</span><span class="op">]&gt;</span> mu</span>
 <span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span>         <span class="dv">2</span>         <span class="dv">3</span>         <span class="dv">4</span>         <span class="dv">5</span>         <span class="dv">6</span>         <span class="dv">7</span>         <span class="dv">8</span></span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="fl">1.0000000</span> <span class="dv">0</span><span class="er">.9999978</span> <span class="dv">0</span><span class="er">.9999888</span> <span class="dv">0</span><span class="er">.9999441</span> <span class="dv">0</span><span class="er">.9997206</span> <span class="dv">0</span><span class="er">.9986039</span> <span class="dv">0</span><span class="er">.9930389</span> <span class="dv">0</span><span class="er">.9656755</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="fl">1.0000000</span> <span class="fl">0.9999978</span> <span class="fl">0.9999888</span> <span class="fl">0.9999441</span> <span class="fl">0.9997206</span> <span class="fl">0.9986039</span> <span class="fl">0.9930389</span> <span class="fl">0.9656755</span></span>
 <span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>        <span class="dv">9</span></span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span><span class="er">.8397616</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="fl">0.8397616</span></span>
 <span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>Browse<span class="op">[</span><span class="dv">1</span><span class="op">]&gt;</span> validmu<span class="op">(</span>mu<span class="op">)</span></span>
 <span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="op">[</span><span class="dv">1</span><span class="op">]</span> FALSE</span>
 <span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>Browse<span class="op">[</span><span class="dv">1</span><span class="op">]&gt;</span> c</span>
@@ -491,16 +492,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>debug<span class="op">:</span> eta <span class="op">&lt;-</span> drop<span class="op">(</span>x <span class="op">%*%</span> start<span class="op">)</span></span>
 <span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>Browse<span class="op">[</span><span class="dv">1</span><span class="op">]&gt;</span> eta</span>
 <span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>            <span class="dv">1</span>             <span class="dv">2</span>             <span class="dv">3</span>             <span class="dv">4</span>             <span class="dv">5</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a> <span class="dv">0</span><span class="er">.000000e</span><span class="op">+</span><span class="bn">00</span> <span class="op">-</span><span class="fl">2.235357e-06</span> <span class="op">-</span><span class="fl">1.117679e-05</span> <span class="op">-</span><span class="fl">5.588393e-05</span> <span class="op">-</span><span class="fl">2.794197e-04</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a> <span class="fl">0.000000e+00</span> <span class="op">-</span><span class="fl">2.235357e-06</span> <span class="op">-</span><span class="fl">1.117679e-05</span> <span class="op">-</span><span class="fl">5.588393e-05</span> <span class="op">-</span><span class="fl">2.794197e-04</span></span>
 <span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>            <span class="dv">6</span>             <span class="dv">7</span>             <span class="dv">8</span>             <span class="dv">9</span></span>
 <span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="op">-</span><span class="fl">1.397098e-03</span> <span class="op">-</span><span class="fl">6.985492e-03</span> <span class="op">-</span><span class="fl">3.492746e-02</span> <span class="op">-</span><span class="fl">1.746373e-01</span></span>
 <span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>Browse<span class="op">[</span><span class="dv">1</span><span class="op">]&gt;</span></span>
 <span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>debug<span class="op">:</span> mu <span class="op">&lt;-</span> linkinv<span class="op">(</span>eta <span class="op">&lt;-</span> eta <span class="op">+</span> offset<span class="op">)</span></span>
 <span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>Browse<span class="op">[</span><span class="dv">1</span><span class="op">]&gt;</span> mu</span>
 <span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span>         <span class="dv">2</span>         <span class="dv">3</span>         <span class="dv">4</span>         <span class="dv">5</span>         <span class="dv">6</span>         <span class="dv">7</span>         <span class="dv">8</span></span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="fl">1.0000000</span> <span class="dv">0</span><span class="er">.9999978</span> <span class="dv">0</span><span class="er">.9999888</span> <span class="dv">0</span><span class="er">.9999441</span> <span class="dv">0</span><span class="er">.9997206</span> <span class="dv">0</span><span class="er">.9986039</span> <span class="dv">0</span><span class="er">.9930389</span> <span class="dv">0</span><span class="er">.9656755</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="fl">1.0000000</span> <span class="fl">0.9999978</span> <span class="fl">0.9999888</span> <span class="fl">0.9999441</span> <span class="fl">0.9997206</span> <span class="fl">0.9986039</span> <span class="fl">0.9930389</span> <span class="fl">0.9656755</span></span>
 <span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>        <span class="dv">9</span></span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span><span class="er">.8397616</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="fl">0.8397616</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>(The prompt <code>Browse[1]&gt;</code> indicates that this is the first level of browsing: it is possible to step into another function that is itself being debugged or contains a call to <code>browser()</code>.)</p>
 <p><code>debug</code> can be used for hidden functions and S3 methods by e.g. <code>debug(stats:::predict.Arima)</code>. (It cannot be used for S4 methods, but an alternative is given on the help page for <code>debug</code>.) Sometimes you want to debug a function defined inside another function, e.g.&nbsp;the function <code>arimafn</code> defined inside <code>arima</code>. To do so, set <code>debug</code> on the outer function (here <code>arima</code>) and step through it until the inner function has been defined. Then call <code>debug</code> on the inner function (and use <code>c</code> to get out of step-through mode in the outer function).</p>
 <p>To remove debugging of a function, call <code>undebug</code> with the argument previously given to <code>debug</code>; debugging otherwise lasts for the rest of the R session (or until the function is edited or otherwise replaced).</p>
@@ -546,12 +547,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="using-valgrind" class="level3 subsection page-columns page-full" data-number="4.3.2">
 <h3 class="subsection anchored" data-number="4.3.2" data-anchor-id="using-valgrind"><span class="header-section-number">4.3.2</span> Using valgrind</h3>
-<div class="page-columns page-full"><p>If you have access to Linux on a common CPU type or supported versions of FreeBSD or Solaris<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> you can use <code>valgrind</code> (<a href="https://valgrind.org/" class="uri">https://valgrind.org/</a>, pronounced to rhyme with ‘tinned’) to check for possible problems. To run some examples under <code>valgrind</code> use something like</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;The macOS support is for long-obsolete versions.</p></li></div></div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>R <span class="sc">-</span>d valgrind <span class="sc">--</span>vanilla <span class="sc">&lt;</span> mypkg<span class="sc">-</span>Ex.R</span>
+<p>If you have access to Linux on a common CPU type or supported versions of FreeBSD or Solaris<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> you can use <code>valgrind</code> (<a href="https://valgrind.org/" class="uri">https://valgrind.org/</a>, pronounced to rhyme with ‘tinned’) to check for possible problems. To run some examples under <code>valgrind</code> use something like</p>
+<div class="no-row-height column-margin column-container"><p><sup>2</sup>&nbsp;The macOS support is for long-obsolete versions.</p></div><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>R <span class="sc">-</span>d valgrind <span class="sc">--</span>vanilla <span class="sc">&lt;</span> mypkg<span class="sc">-</span>Ex.R</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>R <span class="sc">-</span>d <span class="st">"valgrind --tool=memcheck --leak-check=full"</span> <span class="sc">--</span>vanilla <span class="sc">&lt;</span> mypkg<span class="sc">-</span>Ex.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>where <code>mypkg-Ex.R</code> is a set of examples, e.g.&nbsp;the file created in <code>mypkg.Rcheck</code> by <code>R CMD check</code>. Occasionally this reports memory reads of ‘uninitialised values’ that are the result of compiler optimization, so can be worth checking under an unoptimized compile: for maximal information use a build with debugging symbols. We know there will be some small memory leaks from <code>readline</code> and R itself — these are memory areas that are in use right up to the end of the R session. Expect this to run around 20x slower than without <code>valgrind</code>, and in some cases much slower than that. Several versions of <code>valgrind</code> were not happy with some optimized BLAS libraries that use CPU-specific instructions so you may need to build a version of R specifically to use with <code>valgrind</code>.</p>
-<div class="page-columns page-full"><p>On platforms where <code>valgrind</code> and its headers<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> are installed you can build a version of R with extra instrumentation to help <code>valgrind</code> detect errors in the use of memory allocated from the R heap. The <code>configure</code> option is <code>--with-valgrind-instrumentation=level</code>, where <code>level</code> is 0, 1 or 2. Level 0 is the default and does not add anything. Level 1 will detect some uses<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> of uninitialised memory and has little impact on speed (compared to level 0). Level 2 will detect many other memory-use bugs<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> but make R much slower when running under <code>valgrind</code>. Using this in conjunction with <code>gctorture</code> can be even more effective (and even slower).</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;in some distributions packaged separately, for example as <code>valgrind-devel</code>.</p></li><li id="fn4"><p><sup>4</sup>&nbsp;Those in some numeric, logical, integer, raw, complex vectors and in memory allocated by <code>R_alloc</code>.</p></li><li id="fn5"><p><sup>5</sup>&nbsp;including using the data sections of R vectors after they are freed.</p></li></div></div>
-<p>An example of <code>valgrind</code> output is</p>
+<p>On platforms where <code>valgrind</code> and its headers<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> are installed you can build a version of R with extra instrumentation to help <code>valgrind</code> detect errors in the use of memory allocated from the R heap. The <code>configure</code> option is <code>--with-valgrind-instrumentation=level</code>, where <code>level</code> is 0, 1 or 2. Level 0 is the default and does not add anything. Level 1 will detect some uses<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> of uninitialised memory and has little impact on speed (compared to level 0). Level 2 will detect many other memory-use bugs<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> but make R much slower when running under <code>valgrind</code>. Using this in conjunction with <code>gctorture</code> can be even more effective (and even slower).</p>
+<div class="no-row-height column-margin column-container"><p><sup>3</sup>&nbsp;in some distributions packaged separately, for example as <code>valgrind-devel</code>.</p><p><sup>4</sup>&nbsp;Those in some numeric, logical, integer, raw, complex vectors and in memory allocated by <code>R_alloc</code>.</p><p><sup>5</sup>&nbsp;including using the data sections of R vectors after they are freed.</p></div><p>An example of <code>valgrind</code> output is</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">==</span><span class="dv">12539</span><span class="sc">==</span> Invalid read of size <span class="dv">4</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="sc">==</span><span class="dv">12539</span><span class="sc">==</span>    at <span class="dv">0x1CDF6CBE</span><span class="sc">:</span> <span class="fu">csc_compTr</span> (Mutils.c<span class="sc">:</span><span class="dv">273</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="sc">==</span><span class="dv">12539</span><span class="sc">==</span>    by <span class="dv">0x1CE07E1E</span><span class="sc">:</span> <span class="fu">tsc_transpose</span> (dtCMatrix.c<span class="sc">:</span><span class="dv">25</span>)</span>
@@ -571,8 +572,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="st">==12539==    by 0x80F7515: Rf_allocVector (memory.c:1915)</span></span>
 <span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="st">...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This example is from an instrumented version of R, while tracking down a bug in the <a href="https://CRAN.R-project.org/package=Matrix"><strong>Matrix</strong></a> package in 2006. The first line indicates that R has tried to read 4 bytes from a memory address that it does not have access to. This is followed by a C stack trace showing where the error occurred. Next is a description of the memory that was accessed. It is inside a block allocated by <code>malloc</code>, called from <code>GetNewPage</code>, that is, in the internal R heap. Since this memory all belongs to R, <code>valgrind</code> would not (and did not) detect the problem in an uninstrumented build of R. In this example the stack trace was enough to isolate and fix the bug, which was in <code>tsc_transpose</code>, and in this example running under <code>gctorture()</code> did not provide any additional information.</p>
-<div class="page-columns page-full"><p><code>valgrind</code> is good at spotting the use of uninitialized values: use option <code>--track-origins=yes</code> to show where these originated from. What it cannot detect is the misuse of arrays allocated on the stack: this includes C automatic variables and some<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> Fortran arrays.</p><div class="no-row-height column-margin column-container"><li id="fn6"><p><sup>6</sup>&nbsp;small fixed-size arrays by default in <code>gfortran</code>, for example.</p></li></div></div>
-<p>It is possible to run all the examples, tests and vignettes covered by <code>R CMD check</code> under <code>valgrind</code> by using the option <code>--use-valgrind</code>. If you do this you will need to select the <code>valgrind</code> options some other way, for example by having a <code>~/.valgrindrc</code> file containing</p>
+<p><code>valgrind</code> is good at spotting the use of uninitialized values: use option <code>--track-origins=yes</code> to show where these originated from. What it cannot detect is the misuse of arrays allocated on the stack: this includes C automatic variables and some<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> Fortran arrays.</p>
+<div class="no-row-height column-margin column-container"><p><sup>6</sup>&nbsp;small fixed-size arrays by default in <code>gfortran</code>, for example.</p></div><p>It is possible to run all the examples, tests and vignettes covered by <code>R CMD check</code> under <code>valgrind</code> by using the option <code>--use-valgrind</code>. If you do this you will need to select the <code>valgrind</code> options some other way, for example by having a <code>~/.valgrindrc</code> file containing</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="sc">--</span>leak<span class="sc">-</span>check<span class="ot">=</span>full</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="sc">--</span>track<span class="sc">-</span>origins<span class="ot">=</span>yes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>or setting the environment variable <code>VALGRIND_OPTS</code>. As from R 4.2.0, <code>--use-valgrind</code> also uses <code>valgrind</code> when re-building the vignettes.</p>
@@ -580,14 +581,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="using-the-address-sanitizer" class="level3 subsection page-columns page-full" data-number="4.3.3">
 <h3 class="subsection anchored" data-number="4.3.3" data-anchor-id="using-the-address-sanitizer"><span class="header-section-number">4.3.3</span> Using the Address Sanitizer</h3>
-<div class="page-columns page-full"><p><code>AddressSanitizer</code> (‘ASan’) is a tool with similar aims to the memory checker in <code>valgrind</code>. It is available with suitable builds<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> of <code>gcc</code> and <code>clang</code> on common Linux and macOS platforms. See <a href="https://clang.llvm.org/docs/UsersManual.html#controlling-code-generation" class="uri">https://clang.llvm.org/docs/UsersManual.html#controlling-code-generation</a>, <a href="https://clang.llvm.org/docs/AddressSanitizer.html" class="uri">https://clang.llvm.org/docs/AddressSanitizer.html</a> and <a href="https://github.com/google/sanitizers" class="uri">https://github.com/google/sanitizers</a>.</p><div class="no-row-height column-margin column-container"><li id="fn7"><p><sup>7</sup>&nbsp;currently on <code>x86_64</code>/<code>ix86</code> Linux and FreeBSD, with some support for Intel macOS but not with the toolchain normally used with R. (There is a faster variant, HWASAN, for <code>aarch64</code> only.) On some platforms the runtime library, <strong>libasan</strong>, needs to be installed separately, and for checking C++ you may also need <strong>libubsan</strong>.</p></li></div></div>
-<div class="page-columns page-full"><p>More thorough checks of C++ code are done if the C++ library has been ‘annotated’: at the time of writing this applied to <code>std::vector</code> in <code>libc++</code> for use with <code>clang</code> and gives rise to <code>container-overflow</code><a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> reports.</p><div class="no-row-height column-margin column-container"><li id="fn8"><p><sup>8</sup>&nbsp;see <a href="https://llvm.org/devmtg/2014-04/PDFs/LightningTalks/EuroLLVM%202014%20--%20container%20overflow.pdf" class="uri">https://llvm.org/devmtg/2014-04/PDFs/LightningTalks/EuroLLVM%202014%20--%20container%20overflow.pdf</a>.</p></li></div></div>
+<p><code>AddressSanitizer</code> (‘ASan’) is a tool with similar aims to the memory checker in <code>valgrind</code>. It is available with suitable builds<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> of <code>gcc</code> and <code>clang</code> on common Linux and macOS platforms. See <a href="https://clang.llvm.org/docs/UsersManual.html#controlling-code-generation" class="uri">https://clang.llvm.org/docs/UsersManual.html#controlling-code-generation</a>, <a href="https://clang.llvm.org/docs/AddressSanitizer.html" class="uri">https://clang.llvm.org/docs/AddressSanitizer.html</a> and <a href="https://github.com/google/sanitizers" class="uri">https://github.com/google/sanitizers</a>.</p>
+<div class="no-row-height column-margin column-container"><p><sup>7</sup>&nbsp;currently on <code>x86_64</code>/<code>ix86</code> Linux and FreeBSD, with some support for Intel macOS but not with the toolchain normally used with R. (There is a faster variant, HWASAN, for <code>aarch64</code> only.) On some platforms the runtime library, <strong>libasan</strong>, needs to be installed separately, and for checking C++ you may also need <strong>libubsan</strong>.</p><p><sup>8</sup>&nbsp;see <a href="https://llvm.org/devmtg/2014-04/PDFs/LightningTalks/EuroLLVM%202014%20--%20container%20overflow.pdf" class="uri">https://llvm.org/devmtg/2014-04/PDFs/LightningTalks/EuroLLVM%202014%20--%20container%20overflow.pdf</a>.</p></div><p>More thorough checks of C++ code are done if the C++ library has been ‘annotated’: at the time of writing this applied to <code>std::vector</code> in <code>libc++</code> for use with <code>clang</code> and gives rise to <code>container-overflow</code><a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> reports.</p>
 <p>It requires code to have been compiled <em>and linked</em> with <code>-fsanitize=address</code> and compiling with <code>-fno-omit-frame-pointer</code> will give more legible reports. It has a runtime penalty of 2–3x, extended compilation times and uses substantially more memory, often 1–2GB, at run time. On 64-bit platforms it reserves (but does not allocate) 16–20TB of virtual memory: restrictive shell settings can cause problems. It can be helpful to increase the stack size, for example to 40MB.</p>
 <p>By comparison with <code>valgrind</code>, ASan can detect misuse of stack and global variables but not the use of uninitialized memory.</p>
-<div class="page-columns page-full"><p>Recent versions return symbolic addresses for the location of the error provided <code>llvm-symbolizer</code><a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> is on the path: if it is available but not on the path or has been renamed<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>, one can use an environment variable, e.g.</p><div class="no-row-height column-margin column-container"><li id="fn9"><p><sup>9</sup>&nbsp;part of the LLVM project and distributed in <code>llvm</code> RPMs and <code>.deb</code>s on Linux. It is not currently shipped by Apple.</p></li><li id="fn10"><p><sup>10</sup>&nbsp;as Ubuntu has been said to do.</p></li></div></div>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ASAN_SYMBOLIZER_PATH<span class="ot">=</span><span class="er">/</span>path<span class="sc">/</span>to<span class="sc">/</span>llvm<span class="sc">-</span>symbolizer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="page-columns page-full"><p>An alternative is to pipe the output through <code>asan_symbolize.py</code><a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> and perhaps then (for compiled C++ code) <code>c++filt</code>. (On macOS, you may need to run <code>dsymutil</code> to get line-number reports.)</p><div class="no-row-height column-margin column-container"><li id="fn11"><p><sup>11</sup>&nbsp;installed on some Linux systems as <code>asan_symbolize</code>, and obtainable from <a href="https://github.com/llvm/llvm-project/blob/main/compiler-rt/lib/asan/scripts/asan_symbolize.py" class="uri">https://github.com/llvm/llvm-project/blob/main/compiler-rt/lib/asan/scripts/asan_symbolize.py</a>: it makes use of <code>llvm-symbolizer</code> if available.</p></li></div></div>
-<p>The simplest way to make use of this is to build a version of R with something like</p>
+<p>Recent versions return symbolic addresses for the location of the error provided <code>llvm-symbolizer</code><a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> is on the path: if it is available but not on the path or has been renamed<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>, one can use an environment variable, e.g.</p>
+<div class="no-row-height column-margin column-container"><p><sup>9</sup>&nbsp;part of the LLVM project and distributed in <code>llvm</code> RPMs and <code>.deb</code>s on Linux. It is not currently shipped by Apple.</p><p><sup>10</sup>&nbsp;as Ubuntu has been said to do.</p></div><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ASAN_SYMBOLIZER_PATH<span class="ot">=</span><span class="er">/</span>path<span class="sc">/</span>to<span class="sc">/</span>llvm<span class="sc">-</span>symbolizer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>An alternative is to pipe the output through <code>asan_symbolize.py</code><a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> and perhaps then (for compiled C++ code) <code>c++filt</code>. (On macOS, you may need to run <code>dsymutil</code> to get line-number reports.)</p>
+<div class="no-row-height column-margin column-container"><p><sup>11</sup>&nbsp;installed on some Linux systems as <code>asan_symbolize</code>, and obtainable from <a href="https://github.com/llvm/llvm-project/blob/main/compiler-rt/lib/asan/scripts/asan_symbolize.py" class="uri">https://github.com/llvm/llvm-project/blob/main/compiler-rt/lib/asan/scripts/asan_symbolize.py</a>: it makes use of <code>llvm-symbolizer</code> if available.</p></div><p>The simplest way to make use of this is to build a version of R with something like</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>CC<span class="op">=</span><span class="st">"gcc -std=gnu99 -fsanitize=address"</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>CFLAGS<span class="op">=</span><span class="st">"-fno-omit-frame-pointer -g -O2 -Wall -pedantic -mtune=native"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>which will ensure that the <code>libasan</code> run-time library is compiled into the R executable. However this check can be enabled on a per-package basis by using a <code>~/.R/Makevars</code> file like</p>
@@ -601,8 +602,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>For more detailed information on an error, R can be run under a debugger with a breakpoint set before the address sanitizer report is produced: for <code>gdb</code> or <code>lldb</code> you could use</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="cf">break</span> __asan_report_error</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>(See <a href="https://github.com/google/sanitizers/wiki/AddressSanitizerAndDebugger" class="uri">https://github.com/google/sanitizers/wiki/AddressSanitizerAndDebugger</a>.)</p>
-<div class="page-columns page-full"><p>More recent versions<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> added the flag <code>-fsanitize-address-use-after-scope</code>: see <a href="https://github.com/google/sanitizers/wiki/AddressSanitizerUseAfterScope" class="uri">https://github.com/google/sanitizers/wiki/AddressSanitizerUseAfterScope</a>.</p><div class="no-row-height column-margin column-container"><li id="fn12"><p><sup>12</sup>&nbsp;including <code>gcc</code> 7.1 and <code>clang</code> 4.0.0: for <code>gcc</code> it is implied by <code>-fsanitize=address</code>.</p></li></div></div>
-<div class="page-columns page-full"><p>One of the checks done by ASan is that <code>malloc/free</code> and in C++ <code>new/delete</code> and <code>new[]/delete[]</code> are used consistently (rather than say <code>free</code> being used to dealloc memory allocated by <code>new[]</code>). This matters on some systems but not all: unfortunately on some of those where it does not matter, system libraries<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a> are not consistent. The check can be suppressed by including <code>alloc_dealloc_mismatch=0</code> in <code>ASAN_OPTIONS</code>.</p><div class="no-row-height column-margin column-container"><li id="fn13"><p><sup>13</sup>&nbsp;for example, X11/GL libraries on Linux, seen when checking package <a href="https://CRAN.R-project.org/package=rgl"><strong>rgl</strong></a> and some others using it—a workaround is to set environment variable <code>RGL_USE_NULL=true</code>.</p></li></div></div>
+<p>More recent versions<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> added the flag <code>-fsanitize-address-use-after-scope</code>: see <a href="https://github.com/google/sanitizers/wiki/AddressSanitizerUseAfterScope" class="uri">https://github.com/google/sanitizers/wiki/AddressSanitizerUseAfterScope</a>.</p>
+<div class="no-row-height column-margin column-container"><p><sup>12</sup>&nbsp;including <code>gcc</code> 7.1 and <code>clang</code> 4.0.0: for <code>gcc</code> it is implied by <code>-fsanitize=address</code>.</p><p><sup>13</sup>&nbsp;for example, X11/GL libraries on Linux, seen when checking package <a href="https://CRAN.R-project.org/package=rgl"><strong>rgl</strong></a> and some others using it—a workaround is to set environment variable <code>RGL_USE_NULL=true</code>.</p></div><p>One of the checks done by ASan is that <code>malloc/free</code> and in C++ <code>new/delete</code> and <code>new[]/delete[]</code> are used consistently (rather than say <code>free</code> being used to dealloc memory allocated by <code>new[]</code>). This matters on some systems but not all: unfortunately on some of those where it does not matter, system libraries<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a> are not consistent. The check can be suppressed by including <code>alloc_dealloc_mismatch=0</code> in <code>ASAN_OPTIONS</code>.</p>
 <p>ASan also checks system calls and sometimes reports can refer to problems in the system software and not the package nor R. A couple of reports have been of ‘heap-use-after-free’ errors in the X11 libraries called from Tcl/Tk.</p>
 </section>
 <section id="using-the-leak-sanitizer" class="level3 subsubsection" data-number="4.3.4">
@@ -619,8 +620,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="using-the-undefined-behaviour-sanitizer" class="level3 subsection page-columns page-full" data-number="4.3.5">
 <h3 class="subsection anchored" data-number="4.3.5" data-anchor-id="using-the-undefined-behaviour-sanitizer"><span class="header-section-number">4.3.5</span> Using the Undefined Behaviour Sanitizer</h3>
 <p>‘Undefined behaviour’ is where the language standard does not require particular behaviour from the compiler. Examples include division by zero (where for doubles R requires the ISO/IEC&nbsp;60559 behaviour but C/C++ do not), use of zero-length arrays, shifts too far for signed types (e.g.&nbsp;<code>int x, y; y = x &lt;&lt; 31;</code>), out-of-range coercion, invalid C++ casts and mis-alignment. Not uncommon examples of out-of-range coercion in R packages are attempts to coerce a <code>NaN</code> or infinity to type <code>int</code> or <code>NA_INTEGER</code> to an unsigned type such as <code>size_t</code>. Also common is <code>y[x - 1]</code> forgetting that <code>x</code> might be <code>NA_INTEGER</code>.</p>
-<div class="page-columns page-full"><p>‘UBSanitizer’ is a tool for C/C++ source code selected by <code>-fsanitize=undefined</code> in suitable builds<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> of <code>clang</code> and GCC. Its (main) runtime library is linked into each package’s DLL, so it is less often needed to be included in <code>MAIN_LDFLAGS</code>. Platforms supported by <code>clang</code> are listed at <a href="https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html#supported-platforms" class="uri">https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html#supported-platforms</a>: CRAN uses it for C/C++ with both GCC and <code>clang</code> on <code>x86_64</code> Linux: the two toolchains often highlight different things with more reports from <code>clang</code> than GCC.</p><div class="no-row-height column-margin column-container"><li id="fn14"><p><sup>14</sup>&nbsp;On some platforms the runtime library, <strong>libubsan</strong>, needs to be installed separately.</p></li></div></div>
-<p>This sanitizer can be combined with the Address Sanitizer by <code>-fsanitize=undefined,address</code> (where both are supported).</p>
+<p>‘UBSanitizer’ is a tool for C/C++ source code selected by <code>-fsanitize=undefined</code> in suitable builds<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> of <code>clang</code> and GCC. Its (main) runtime library is linked into each package’s DLL, so it is less often needed to be included in <code>MAIN_LDFLAGS</code>. Platforms supported by <code>clang</code> are listed at <a href="https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html#supported-platforms" class="uri">https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html#supported-platforms</a>: CRAN uses it for C/C++ with both GCC and <code>clang</code> on <code>x86_64</code> Linux: the two toolchains often highlight different things with more reports from <code>clang</code> than GCC.</p>
+<div class="no-row-height column-margin column-container"><p><sup>14</sup>&nbsp;On some platforms the runtime library, <strong>libubsan</strong>, needs to be installed separately.</p></div><p>This sanitizer can be combined with the Address Sanitizer by <code>-fsanitize=undefined,address</code> (where both are supported).</p>
 <p>Finer control of what is checked can be achieved by other options.</p>
 <p>For <code>clang</code> see <a href="https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html#ubsan-checks" class="uri">https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html#ubsan-checks</a>. The current set is (on a single line):</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>fsanitize<span class="op">=</span>alignment<span class="op">,</span><span class="dt">bool</span><span class="op">,</span>bounds<span class="op">,</span>builtin<span class="op">,</span><span class="kw">enum</span><span class="op">,</span><span class="dt">float</span><span class="op">-</span>cast<span class="op">-</span>overflow<span class="op">,</span></span>
@@ -667,8 +668,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="using-dr.-memory" class="level3 subsection page-columns page-full" data-number="4.3.8">
 <h3 class="subsection anchored" data-number="4.3.8" data-anchor-id="using-dr.-memory"><span class="header-section-number">4.3.8</span> Using ‘Dr.&nbsp;Memory’</h3>
-<div class="page-columns page-full"><p>‘Dr.&nbsp;Memory’ from <a href="https://drmemory.org/" class="uri">https://drmemory.org/</a> is a memory checker for (currently) Windows, Linux and macOS with similar aims to <code>valgrind</code>. It works with unmodified executables<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a> and detects memory access errors, uninitialized reads and memory leaks.</p><div class="no-row-height column-margin column-container"><li id="fn15"><p><sup>15</sup>&nbsp;but works better if inlining and frame pointer optimizations are disabled.</p></li></div></div>
-</section>
+<p>‘Dr.&nbsp;Memory’ from <a href="https://drmemory.org/" class="uri">https://drmemory.org/</a> is a memory checker for (currently) Windows, Linux and macOS with similar aims to <code>valgrind</code>. It works with unmodified executables<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a> and detects memory access errors, uninitialized reads and memory leaks.</p>
+<div class="no-row-height column-margin column-container"><p><sup>15</sup>&nbsp;but works better if inlining and frame pointer optimizations are disabled.</p></div></section>
 <section id="fortran-array-bounds-checking" class="level3 subsection" data-number="4.3.9">
 <h3 class="subsection anchored" data-number="4.3.9" data-anchor-id="fortran-array-bounds-checking"><span class="header-section-number">4.3.9</span> Fortran array bounds checking</h3>
 <p>Most of the Fortran compilers used with R allow code to be compiled with checking of array bounds: for example <code>gfortran</code> has option <code>-fbounds-check</code>. This will give an error when the upper or lower bound is exceeded, e.g.</p>
@@ -805,20 +806,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span><span class="dv">7</span> <span class="ot">=</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Another alternative is the <code>R_inspect</code> function which shows the low-level structure of the objects recursively (addresses differ from the above as this example is created on another machine):</p>
 <div class="sourceCode" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>(gdb) p <span class="fu">R_inspect</span>(<span class="sc">$</span><span class="dv">1</span>)</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="sc">@</span>100954d18 <span class="dv">19</span> VECSXP g0c2 [OBJ,<span class="fu">NAM</span>(<span class="dv">2</span>),ATT] (<span class="at">len=</span><span class="dv">2</span>, <span class="at">tl=</span><span class="dv">0</span>)</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="sc">@</span>100954d50 <span class="dv">13</span> INTSXP g0c2 [<span class="fu">NAM</span>(<span class="dv">2</span>)] (<span class="at">len=</span><span class="dv">3</span>, <span class="at">tl=</span><span class="dv">0</span>) <span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span></span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="sc">@</span>100954d88 <span class="dv">13</span> INTSXP g0c2 [<span class="fu">NAM</span>(<span class="dv">2</span>)] (<span class="at">len=</span><span class="dv">3</span>, <span class="at">tl=</span><span class="dv">0</span>) <span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="sc">@</span><span class="dv">100954</span>d18 <span class="dv">19</span> VECSXP g0c2 [OBJ,<span class="fu">NAM</span>(<span class="dv">2</span>),ATT] (<span class="at">len=</span><span class="dv">2</span>, <span class="at">tl=</span><span class="dv">0</span>)</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="sc">@</span><span class="dv">100954</span>d50 <span class="dv">13</span> INTSXP g0c2 [<span class="fu">NAM</span>(<span class="dv">2</span>)] (<span class="at">len=</span><span class="dv">3</span>, <span class="at">tl=</span><span class="dv">0</span>) <span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="sc">@</span><span class="dv">100954</span>d88 <span class="dv">13</span> INTSXP g0c2 [<span class="fu">NAM</span>(<span class="dv">2</span>)] (<span class="at">len=</span><span class="dv">3</span>, <span class="at">tl=</span><span class="dv">0</span>) <span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span></span>
 <span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>ATTRIB<span class="sc">:</span></span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="er">@</span>102a70140 <span class="dv">02</span> LISTSXP g0c0 []</span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>    TAG<span class="sc">:</span> <span class="er">@</span>10083c478 <span class="dv">01</span> SYMSXP g0c0 [MARK,<span class="fu">NAM</span>(<span class="dv">2</span>),gp<span class="ot">=</span><span class="dv">0x4000</span>] <span class="st">"names"</span></span>
-<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>    <span class="sc">@</span>100954dc0 <span class="dv">16</span> STRSXP g0c2 [<span class="fu">NAM</span>(<span class="dv">2</span>)] (<span class="at">len=</span><span class="dv">2</span>, <span class="at">tl=</span><span class="dv">0</span>)</span>
-<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>      <span class="sc">@</span>10099df28 <span class="dv">09</span> CHARSXP g0c1 [MARK,gp<span class="ot">=</span><span class="dv">0x21</span>] <span class="st">"a"</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="er">@</span><span class="dv">102</span>a70140 <span class="dv">02</span> LISTSXP g0c0 []</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>    TAG<span class="sc">:</span> <span class="er">@</span><span class="dv">10083</span>c478 <span class="dv">01</span> SYMSXP g0c0 [MARK,<span class="fu">NAM</span>(<span class="dv">2</span>),gp<span class="ot">=</span><span class="dv">0x4000</span>] <span class="st">"names"</span></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>    <span class="sc">@</span><span class="dv">100954</span>dc0 <span class="dv">16</span> STRSXP g0c2 [<span class="fu">NAM</span>(<span class="dv">2</span>)] (<span class="at">len=</span><span class="dv">2</span>, <span class="at">tl=</span><span class="dv">0</span>)</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>      <span class="sc">@</span><span class="dv">10099</span>df28 <span class="dv">09</span> CHARSXP g0c1 [MARK,gp<span class="ot">=</span><span class="dv">0x21</span>] <span class="st">"a"</span></span>
 <span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>      <span class="sc">@</span><span class="fl">10095e518</span> <span class="dv">09</span> CHARSXP g0c1 [MARK,gp<span class="ot">=</span><span class="dv">0x21</span>] <span class="st">"b"</span></span>
 <span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>    TAG<span class="sc">:</span> <span class="er">@</span><span class="fl">100859e60</span> <span class="dv">01</span> SYMSXP g0c0 [MARK,<span class="fu">NAM</span>(<span class="dv">2</span>),gp<span class="ot">=</span><span class="dv">0x4000</span>] <span class="st">"row.names"</span></span>
-<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>    <span class="sc">@</span>102a6f868 <span class="dv">13</span> INTSXP g0c1 [<span class="fu">NAM</span>(<span class="dv">2</span>)] (<span class="at">len=</span><span class="dv">2</span>, <span class="at">tl=</span><span class="dv">1</span>) <span class="sc">-</span><span class="dv">2147483648</span>,<span class="sc">-</span><span class="dv">3</span></span>
-<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>    TAG<span class="sc">:</span> <span class="er">@</span>10083c948 <span class="dv">01</span> SYMSXP g0c0 [MARK,gp<span class="ot">=</span><span class="dv">0x4000</span>] <span class="st">"class"</span></span>
-<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>    <span class="sc">@</span>102a6f838 <span class="dv">16</span> STRSXP g0c1 [<span class="fu">NAM</span>(<span class="dv">2</span>)] (<span class="at">len=</span><span class="dv">1</span>, <span class="at">tl=</span><span class="dv">1</span>)</span>
-<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a>      <span class="sc">@</span>1008c6d48 <span class="dv">09</span> CHARSXP g0c2 [MARK,gp<span class="ot">=</span><span class="dv">0x21</span>,ATT] <span class="st">"data.frame"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>    <span class="sc">@</span><span class="dv">102</span>a6f868 <span class="dv">13</span> INTSXP g0c1 [<span class="fu">NAM</span>(<span class="dv">2</span>)] (<span class="at">len=</span><span class="dv">2</span>, <span class="at">tl=</span><span class="dv">1</span>) <span class="sc">-</span><span class="dv">2147483648</span>,<span class="sc">-</span><span class="dv">3</span></span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>    TAG<span class="sc">:</span> <span class="er">@</span><span class="dv">10083</span>c948 <span class="dv">01</span> SYMSXP g0c0 [MARK,gp<span class="ot">=</span><span class="dv">0x4000</span>] <span class="st">"class"</span></span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>    <span class="sc">@</span><span class="dv">102</span>a6f838 <span class="dv">16</span> STRSXP g0c1 [<span class="fu">NAM</span>(<span class="dv">2</span>)] (<span class="at">len=</span><span class="dv">1</span>, <span class="at">tl=</span><span class="dv">1</span>)</span>
+<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a>      <span class="sc">@</span><span class="dv">1008</span>c6d48 <span class="dv">09</span> CHARSXP g0c2 [MARK,gp<span class="ot">=</span><span class="dv">0x21</span>,ATT] <span class="st">"data.frame"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In general the representation of each object follows the format:</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="sc">@</span><span class="er">&lt;</span>address<span class="sc">&gt;</span> <span class="er">&lt;</span>type<span class="sc">-</span>nr<span class="sc">&gt;</span> <span class="er">&lt;</span>type<span class="sc">-</span>name<span class="sc">&gt;</span> <span class="er">&lt;</span>gc<span class="sc">-</span>info<span class="sc">&gt;</span> [<span class="sc">&lt;</span>flags<span class="sc">&gt;</span>] ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>For a more fine-grained control over the depth of the recursion and the output of vectors <code>R_inspect3</code> takes additional two character() parameters: maximum depth and the maximal number of elements that will be printed for scalar vectors. The defaults in <code>R_inspect</code> are currently -1 (no limit) and 5 respectively.</p>
@@ -829,15 +830,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb49"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> CMD INSTALL <span class="at">--dsym</span> pkgname</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>as macOS does not store debugging symbols in the <code>.so</code> file. (It is not necessary to have R built with debugging symbols, although compiling the package should be done including <code>-g</code> in <code>CFLAGS</code> / <code>CXXFLAGS</code> / <code>FFLAGS</code> / <code>FCFLAGS</code> as appropriate.)</p>
 <p>Security measures may prevent running a CRAN binary distribution of R under <code>lldb</code> or attaching this as a debugger (<a href="https://cran.r-project.org/bin/macosx/RMacOSX-FAQ.html#I-cannot-attach-debugger-to-R" class="uri">https://cran.r-project.org/bin/macosx/RMacOSX-FAQ.html#I-cannot-attach-debugger-to-R</a>), although both were possible on High Sierra and are again from R 4.2.0. This can also affect locally compiled builds, where attaching to an interactive R session under Big Sur or Monterey worked in 2022 after giving administrator permission <em>via</em> a popup-up. (To debug in what Apple deems a non-interactive session, e.g.&nbsp;logged in remotely, see <code>man DevToolsSecurity</code>.)</p>
-<div class="page-columns page-full"><p>Debugging a local build of R on macOS can raise additional hurdles as environment variables such as <code>DYLD_FALLBACK_LIBRARY_PATH</code> are not usually passed through<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a> the <code>lldb</code> process, resulting in messages like</p><div class="no-row-height column-margin column-container"><li id="fn16"><p><sup>16</sup>&nbsp;By default as a security measure: see <code>man dyld</code>.</p></li></div></div>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>R <span class="sc">-</span>d lldb</span>
+<p>Debugging a local build of R on macOS can raise additional hurdles as environment variables such as <code>DYLD_FALLBACK_LIBRARY_PATH</code> are not usually passed through<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a> the <code>lldb</code> process, resulting in messages like</p>
+<div class="no-row-height column-margin column-container"><p><sup>16</sup>&nbsp;By default as a security measure: see <code>man dyld</code>.</p></div><div class="sourceCode" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>R <span class="sc">-</span>d lldb</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>...</span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>(lldb) run</span>
 <span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>Process <span class="dv">16828</span> launched<span class="sc">:</span> <span class="st">'/path/to/bin/exec/R'</span> (x86_64)</span>
 <span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>dyld<span class="sc">:</span> Library not loaded<span class="sc">:</span> libR.dylib</span>
 <span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>  Referenced from<span class="sc">:</span> <span class="er">/</span>path<span class="sc">/</span>to<span class="sc">/</span>bin<span class="sc">/</span>exec<span class="sc">/</span>R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="page-columns page-full"><p>A quick workaround is to symlink the dylibs under <code>R_HOME/lib</code> to somewhere where they will be found such as the current working directory. It would be possible to do as the distribution does<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a> and use <code>install_name_tool</code>, but that would have to be done for all the dylibs including those in packages.</p><div class="no-row-height column-margin column-container"><li id="fn17"><p><sup>17</sup>&nbsp;See <a href="https://svn.r-project.org/R-dev-web/trunk/CRAN/QA/Simon/R-build/fixpathR" class="uri">https://svn.r-project.org/R-dev-web/trunk/CRAN/QA/Simon/R-build/fixpathR</a>: <code>@executable_path</code> could be used rather than absolute paths.</p></li></div></div>
-<p>It may be simplest to attach the debugger to a running process (see above). Specifically, run R and when it is at the prompt just before a command that is to be debugged, at a terminal</p>
+<p>A quick workaround is to symlink the dylibs under <code>R_HOME/lib</code> to somewhere where they will be found such as the current working directory. It would be possible to do as the distribution does<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a> and use <code>install_name_tool</code>, but that would have to be done for all the dylibs including those in packages.</p>
+<div class="no-row-height column-margin column-container"><p><sup>17</sup>&nbsp;See <a href="https://svn.r-project.org/R-dev-web/trunk/CRAN/QA/Simon/R-build/fixpathR" class="uri">https://svn.r-project.org/R-dev-web/trunk/CRAN/QA/Simon/R-build/fixpathR</a>: <code>@executable_path</code> could be used rather than absolute paths.</p></div><p>It may be simplest to attach the debugger to a running process (see above). Specifically, run R and when it is at the prompt just before a command that is to be debugged, at a terminal</p>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>ps <span class="sc">-</span>ef <span class="sc">|</span> grep exec<span class="sc">/</span>R</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="co"># identify the PID pid for the next command: it is the second item</span></span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>lldb <span class="sc">-</span>p pid</span>
@@ -982,10 +983,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -995,8 +1015,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1009,6 +1038,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1052,6 +1200,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1077,6 +1226,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1134,32 +1309,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          // default icon
-          link.classList.add("external");
-      }
-    }
 });
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./Tidying-and-profiling-R-code.html" class="pagination-link">
+      <a href="./Tidying-and-profiling-R-code.html" class="pagination-link  aria-label=" &lt;span="" and="" profiling="" r="" code&lt;="" span&gt;"="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Tidying and profiling R code</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./System-and-foreign-language-interfaces.html" class="pagination-link">
+      <a href="./System-and-foreign-language-interfaces.html" class="pagination-link" aria-label="<span class='chapter-number'>5</span>&nbsp; <span class='chapter-title'>System and foreign language interfaces</span>">
         <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">System and foreign language interfaces</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -1167,13 +1326,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-left">
+<p>A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></p>
+</div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
-    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+    <div class="nav-footer-right">
+<p>Built using <a href="https://quarto.org">Quarto</a></p>
+</div>
   </div>
 </footer>
+
 
 
 

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -81,7 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -90,6 +96,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -103,9 +110,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: R Installation and Administration</span>
     </a>
@@ -117,73 +124,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="./../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Manuals</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
         <li>
-    <a class="dropdown-item" href="./../r-intro/index.html" rel="" target="">
+    <a class="dropdown-item" href="./../r-intro/index.html">
  <span class="dropdown-text">An Introduction to R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-data/index.html" rel="" target="">
+    <a class="dropdown-item" href="./../r-data/index.html">
  <span class="dropdown-text">R Data Import/Export</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-admin/index.html" rel="" target="">
+    <a class="dropdown-item" href="./../r-admin/index.html">
  <span class="dropdown-text">R Installation and Administration</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-exts/index.html" rel="" target="">
+    <a class="dropdown-item" href="./../r-exts/index.html">
  <span class="dropdown-text">Writing R Extensions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-lang/index.html" rel="" target="">
+    <a class="dropdown-item" href="./../r-lang/index.html">
  <span class="dropdown-text">R Language Definition</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-ints/index.html" rel="" target="">
+    <a class="dropdown-item" href="./../r-ints/index.html">
  <span class="dropdown-text">R Internals</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./../about.html" rel="" target="">
- <span class="menu-text">About</span></a>
+    <a class="nav-link" href="./../about.html"> 
+<span class="menu-text">About</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Installing-R-under-Unix-alikes.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Installing R under Unix-alikes</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Installing-R-under-Unix-alikes.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Installing R under Unix-alikes</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -296,7 +295,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -342,10 +341,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
 
-<div class="page-columns page-full"><p>R will configure and build under most common Unix and Unix-alike platforms including <code>cpu-*-linux-gnu</code> for the <code>alpha</code>, <code>arm64</code> (also known as <code>aarch64</code>, <code>ix86</code>, <code>mips</code>, <code>mipsel</code>#, <code>ppc64</code>, <code>riscv64</code>, <code>s390x</code>, <code>sparc64</code>, and <code>x86_64</code> CPUs, <code>x86_64-apple-darwin</code> and <code>aarch64-apple-darwin</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> as well as perhaps (it is tested less frequently on these platforms) <code>x86_64-*-freebsd</code>, <code>x86_64-*-openbsd</code> and <code>powerpc-ibm-aix6*</code></p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;aka ‘Apple Silicon’, known to some as <code>arm64-apple-darwin</code>.</p></li></div></div>
-<p>Only 64-bit platforms are tested regularly, and <code>configure</code> will warn if it encounters a 32-bit one.</p>
+
+<p>R will configure and build under most common Unix and Unix-alike platforms including <code>cpu-*-linux-gnu</code> for the <code>alpha</code>, <code>arm64</code> (also known as <code>aarch64</code>, <code>ix86</code>, <code>mips</code>, <code>mipsel</code>#, <code>ppc64</code>, <code>riscv64</code>, <code>s390x</code>, <code>sparc64</code>, and <code>x86_64</code> CPUs, <code>x86_64-apple-darwin</code> and <code>aarch64-apple-darwin</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> as well as perhaps (it is tested less frequently on these platforms) <code>x86_64-*-freebsd</code>, <code>x86_64-*-openbsd</code> and <code>powerpc-ibm-aix6*</code></p>
+<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;aka ‘Apple Silicon’, known to some as <code>arm64-apple-darwin</code>.</p></div><p>Only 64-bit platforms are tested regularly, and <code>configure</code> will warn if it encounters a 32-bit one.</p>
 <p>In addition, binary distributions are available for some common Linux distributions (see the FAQ for current details) and for macOS. These are installed in platform-specific ways, so for the rest of this chapter we consider only building from the sources.</p>
 <p>Cross-building is not possible: installing R builds a minimal version of R and then runs many R scripts to complete the build.</p>
 <section id="simple-compilation" class="level2 section page-columns page-full" data-number="2.1">
@@ -354,8 +355,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Choose a directory to install the R tree (R is not just a binary, but has additional data sets, help files, font metrics etc). Let us call this place <code>R_HOME</code>. Untar the source code. This should create directories <code>src</code>, <code>doc</code>, and several more under a top-level directory: change to that top-level directory (At this point North American readers should consult <a href="Configuration-on-a-Unix-alike.html#setting-paper-size">Setting paper size</a>.) Issue the following commands:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>.<span class="sc">/</span>configure</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>make</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="page-columns page-full"><p>(See <a href="Configuration-on-a-Unix-alike.html#using-make">Using make</a> if your make is not called <code>make</code>.) Users of Debian-based 64-bit systems<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> may need</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;which use <code>lib</code> rather than <code>lib64</code> for their primary 64-bit library directories: attempts are made to detect such systems.</p></li></div></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>.<span class="sc">/</span>configure LIBnn<span class="ot">=</span>lib</span>
+<p>(See <a href="Configuration-on-a-Unix-alike.html#using-make">Using make</a> if your make is not called <code>make</code>.) Users of Debian-based 64-bit systems<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> may need</p>
+<div class="no-row-height column-margin column-container"><p><sup>2</sup>&nbsp;which use <code>lib</code> rather than <code>lib64</code> for their primary 64-bit library directories: attempts are made to detect such systems.</p></div><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>.<span class="sc">/</span>configure LIBnn<span class="ot">=</span>lib</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>make</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Then check the built system works correctly by</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>make check</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -366,8 +367,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>make check<span class="sc">-</span>all</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>see <a href="#testing-a-unix-alike-installation">Testing an Installation</a> for the possibilities of doing this in parallel. Note that these checks are only run completely if the recommended packages are installed. If you have a local CRAN mirror, these checks can be speeded up by either setting environment variable <code>R_CRAN_WEB</code> to its URL, or having a file <code>.R/repositories</code> specifying it (see <code>?setRepositories</code>).</p>
 <p><code>make check-devel</code> checks the included packages’ <code>tests</code> directories. For <strong>grDevices</strong> more complete checks will be run if the environment variable <code>R_GRDEVICES_COMPARE_PS_PDF</code> is set: those checks are skipped on platforms using <code>musl</code> such as Alpine Linux, and it knows about differences from transliterations in macOS 14 and later.</p>
-<div class="page-columns page-full"><p>Parallel make is supported for building R but not for the <code>check</code> targets (as the output is likely to be unreadably interleaved, although where supported<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> GNU make’s <code>-O</code> may help).</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;not by the version supplied by macOS.</p></li></div></div>
-<p>If the <code>configure</code> and <code>make</code> commands execute successfully, a shell-script front-end called <code>R</code> will be created and copied to <code>R_HOME/bin</code>. You can link or copy this script to a place where users can invoke it, for example to <code>/usr/local/bin/R</code>. You could also copy the man page <code>R.1</code> to a place where your <code>man</code> reader finds it, such as <code>/usr/local/man/man1</code>. If you want to install the complete R tree to, e.g., <code>/usr/local/lib/R</code>, see <a href="#installation">Installation</a>. Note: you do not <em>need</em> to install R: you can run it from where it was built.</p>
+<p>Parallel make is supported for building R but not for the <code>check</code> targets (as the output is likely to be unreadably interleaved, although where supported<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> GNU make’s <code>-O</code> may help).</p>
+<div class="no-row-height column-margin column-container"><p><sup>3</sup>&nbsp;not by the version supplied by macOS.</p></div><p>If the <code>configure</code> and <code>make</code> commands execute successfully, a shell-script front-end called <code>R</code> will be created and copied to <code>R_HOME/bin</code>. You can link or copy this script to a place where users can invoke it, for example to <code>/usr/local/bin/R</code>. You could also copy the man page <code>R.1</code> to a place where your <code>man</code> reader finds it, such as <code>/usr/local/man/man1</code>. If you want to install the complete R tree to, e.g., <code>/usr/local/lib/R</code>, see <a href="#installation">Installation</a>. Note: you do not <em>need</em> to install R: you can run it from where it was built.</p>
 <p>You do not necessarily have to build R in the top-level source directory (say, <code>TOP_SRCDIR</code>). To build in <code>BUILDDIR</code>, run</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>cd BUILDDIR</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>TOP_SRCDIR<span class="sc">/</span>configure</span>
@@ -430,8 +431,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <dl class="page-columns page-full">
 <dt><code>times</code></dt>
 <dd class="page-columns page-full">
-<div class="page-columns page-full"><p>(The default.) Using standard PostScript fonts, Times Roman, Helvetica and Courier. This works well both for on-screen viewing and for printing. One disadvantage is that the Usage and Examples sections may come out rather wide: this can be overcome by using <em>in addition</em> either of the options <code>inconsolata</code> (on a Unix-alike only if found by <code>configure</code>) or <code>beramono</code>, which replace the Courier monospaced font by Inconsolata or Bera Sans Mono respectively. (You will need the LaTeX package <strong>inconsolata</strong><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> or <strong>bera</strong> installed.)</p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;Instructions on how to install the latest version are at <a href="https://www.ctan.org/tex-archive/fonts/inconsolata/" class="uri">https://www.ctan.org/tex-archive/fonts/inconsolata/</a>.</p></li></div></div>
-<p>Note that in most LaTeX installations this will not actually use the standard fonts for PDF, but rather embed the URW clones NimbusRom, NimbusSans and (for Courier, if used) NimbusMon.</p>
+<p>(The default.) Using standard PostScript fonts, Times Roman, Helvetica and Courier. This works well both for on-screen viewing and for printing. One disadvantage is that the Usage and Examples sections may come out rather wide: this can be overcome by using <em>in addition</em> either of the options <code>inconsolata</code> (on a Unix-alike only if found by <code>configure</code>) or <code>beramono</code>, which replace the Courier monospaced font by Inconsolata or Bera Sans Mono respectively. (You will need the LaTeX package <strong>inconsolata</strong><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> or <strong>bera</strong> installed.)</p>
+<div class="no-row-height column-margin column-container"><p><sup>4</sup>&nbsp;Instructions on how to install the latest version are at <a href="https://www.ctan.org/tex-archive/fonts/inconsolata/" class="uri">https://www.ctan.org/tex-archive/fonts/inconsolata/</a>.</p></div><p>Note that in most LaTeX installations this will not actually use the standard fonts for PDF, but rather embed the URW clones NimbusRom, NimbusSans and (for Courier, if used) NimbusMon.</p>
 <p>This needs LaTeX packages <strong>times</strong>, <strong>helvetic</strong> and (if used) <strong>courier</strong> installed.</p>
 </dd>
 <dt><code>lm</code></dt>
@@ -439,8 +440,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Using the <em>Latin Modern</em> fonts. These are not often installed as part of a TeX distribution, but can obtained from <a href="https://www.ctan.org/tex-archive/fonts/ps-type1/lm/" class="uri">https://www.ctan.org/tex-archive/fonts/ps-type1/lm/</a> and mirrors. This uses fonts rather similar to Computer Modern, but is not so good on-screen as <code>times</code>.</p>
 </dd>
 </dl>
-<div class="page-columns page-full"><p>The default can be overridden by setting the environment variable <code>R_RD4PDF</code>. (On Unix-alikes, this will be picked up at install time and stored in <code>etc/Renviron</code>, but can still be overridden when the manuals are built, using <code>make -e</code>.) The usual<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> default value for <code>R_RD4PDF</code> is <code>times,inconsolata,hyper</code>: omit <code>inconsolata</code> if you do not have LaTeX package <strong>inconsolata</strong> installed. As from R 4.2.0, <code>hyper</code> is always enabled (with a fallback if LaTeX package <strong>hyperref</strong> is not installed).</p><div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;on a Unix-alike, <code>inconsolata</code> is omitted if not found by <code>configure</code>.</p></li></div></div>
-<p>Further options, e.g for <strong>hyperref</strong>, can be included in a file <code>Rd.cfg</code> somewhere on your LaTeX search path. For example, if you prefer to hyperlink the text and not the page number in the table of contents use</p>
+<p>The default can be overridden by setting the environment variable <code>R_RD4PDF</code>. (On Unix-alikes, this will be picked up at install time and stored in <code>etc/Renviron</code>, but can still be overridden when the manuals are built, using <code>make -e</code>.) The usual<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> default value for <code>R_RD4PDF</code> is <code>times,inconsolata,hyper</code>: omit <code>inconsolata</code> if you do not have LaTeX package <strong>inconsolata</strong> installed. As from R 4.2.0, <code>hyper</code> is always enabled (with a fallback if LaTeX package <strong>hyperref</strong> is not installed).</p>
+<div class="no-row-height column-margin column-container"><p><sup>5</sup>&nbsp;on a Unix-alike, <code>inconsolata</code> is omitted if not found by <code>configure</code>.</p></div><p>Further options, e.g for <strong>hyperref</strong>, can be included in a file <code>Rd.cfg</code> somewhere on your LaTeX search path. For example, if you prefer to hyperlink the text and not the page number in the table of contents use</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>\ifthenelse{\boolean{Rd<span class="sc">@</span>use<span class="sc">@</span>hyper}}{\hypersetup{linktoc<span class="ot">=</span>section}}{}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>or</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>\ifthenelse{\boolean{Rd<span class="sc">@</span>use<span class="sc">@</span>hyper}}{\hypersetup{linktoc<span class="ot">=</span>all}}{}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -496,8 +497,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>will use a version-specific R home on a non-Debian Linux 64-bit system.</p>
 <p>If you have made R as a shared/static library you can install it in your system’s library directory by</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>make prefix<span class="ot">=</span><span class="er">/</span>path<span class="sc">/</span>to<span class="sc">/</span>here install<span class="sc">-</span>libR</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="page-columns page-full"><p>where <code>prefix</code> is optional, and <code>libdir</code> will give more precise control.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> However, you should not install to a directory mentioned in <code>LDPATHS</code> (e.g.&nbsp;<code>/usr/local/lib64</code>) if you intend to work with multiple versions of R, since that directory may be given precedence over the <code>lib</code> directory of other R installations.</p><div class="no-row-height column-margin column-container"><li id="fn6"><p><sup>6</sup>&nbsp;This will be needed if more than one sub-architecture is to be installed.</p></li></div></div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>make install<span class="sc">-</span>strip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>where <code>prefix</code> is optional, and <code>libdir</code> will give more precise control.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> However, you should not install to a directory mentioned in <code>LDPATHS</code> (e.g.&nbsp;<code>/usr/local/lib64</code>) if you intend to work with multiple versions of R, since that directory may be given precedence over the <code>lib</code> directory of other R installations.</p>
+<div class="no-row-height column-margin column-container"><p><sup>6</sup>&nbsp;This will be needed if more than one sub-architecture is to be installed.</p></div><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>make install<span class="sc">-</span>strip</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>will install stripped executables, and on platforms where this is supported, stripped libraries in directories <code>lib</code> and <code>modules</code> and in the standard packages.</p>
 <p>Note that installing R into a directory whose path contains spaces is not supported, and some aspects (such as installing source packages) will not work.</p>
 <p>To install info and PDF versions of the manuals, use one or both of</p>
@@ -535,14 +536,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>When running post-install tests with sub-architectures, use</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>R <span class="sc">--</span>arch<span class="ot">=</span>name CMD make check[<span class="sc">-</span>devel<span class="sc">|</span>all]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>to select a sub-architecture to check.</p>
-<div class="page-columns page-full"><p>Sub-architectures were also used on Windows, but by selecting executables within the appropriate <code>bin</code> directory, <code>R_HOME/bin/x64</code>. For backwards compatibility there are executables <code>R_HOME/bin/R.exe</code> and <code>R_HOME/bin/Rscript.exe</code>: these will run an executable from one of the subdirectories, which one being taken first from the <code>R_ARCH</code> environment variable, then from the <code>--arch</code> command-line option<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> and finally from the installation default (which is 32-bit for a combined 32/64 bit R installation). R 4.2.0 follows the scheme, but supports and includes only 64-bit builds.</p><div class="no-row-height column-margin column-container"><li id="fn7"><p><sup>7</sup>&nbsp;with possible values <code>i386</code>, <code>x64</code>, <code>32</code> and <code>64</code>.</p></li></div></div>
-</section>
+<p>Sub-architectures were also used on Windows, but by selecting executables within the appropriate <code>bin</code> directory, <code>R_HOME/bin/x64</code>. For backwards compatibility there are executables <code>R_HOME/bin/R.exe</code> and <code>R_HOME/bin/Rscript.exe</code>: these will run an executable from one of the subdirectories, which one being taken first from the <code>R_ARCH</code> environment variable, then from the <code>--arch</code> command-line option<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> and finally from the installation default (which is 32-bit for a combined 32/64 bit R installation). R 4.2.0 follows the scheme, but supports and includes only 64-bit builds.</p>
+<div class="no-row-height column-margin column-container"><p><sup>7</sup>&nbsp;with possible values <code>i386</code>, <code>x64</code>, <code>32</code> and <code>64</code>.</p></div></section>
 <section id="other-options" class="level2 section page-columns page-full" data-number="2.7">
 <h2 class="section anchored" data-number="2.7" data-anchor-id="other-options"><span class="header-section-number">2.7</span> Other Options</h2>
 <p>There are many other installation options, most of which are listed by <code>configure --help</code>. Almost all of those not listed elsewhere in this manual are either standard <code>autoconf</code> options not relevant to R or intended for specialist uses by the R developers.</p>
 <p>One that may be useful when working on R itself is the option <code>--disable-byte-compiled-packages</code>, which ensures that the base and recommended packages are not byte-compiled. (Alternatively the (make or environment) variable <code>R_NO_BASE_COMPILE</code> can be set to a non-empty value for the duration of the build.)</p>
-<div class="page-columns page-full"><p>Option <code>--with-internal-tzcode</code> makes use of R’s own code and copy of the IANA database for managing timezones. This will be preferred where there are issues with the system implementation, usually involving times after 2037 or before 1916. An alternative time-zone directory<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> can be used, pointed to by environment variable <code>TZDIR</code>: this should contain files such as <code>Europe/London</code>. On all tested OSes the system timezone was deduced correctly, but if necessary it can be set as the value of environment variable <code>TZ</code>.</p><div class="no-row-height column-margin column-container"><li id="fn8"><p><sup>8</sup>&nbsp;How to prepare such a directory is described in file <code>src/extra/tzone/Notes</code> in the R sources.</p></li></div></div>
-<div class="page-columns page-full"><p>Options <code>--with-internal-iswxxxxx</code>, <code>--with-internal-towlower</code> and <code>--with-internal-wcwidth</code> were introduced in R 4.1.0. These control the replacement of the system wide-character classification (such as <code>iswprint</code>), case-changing (<code>wctrans</code>) and width (<code>wcwidth</code> and <code>wcswidth</code>) functions by ones contained in the R sources. Replacement of the classification functions has been done for many years on macOS and AIX (and Windows): option <code>--with-internal-iswxxxxx</code> allows this to be suppressed on those platforms or used on others. Replacing the case-changing functions was new in R 4.1.0 and the default on macOS (and on Windows since R 4.2.0). Replacement of the width functions has also been done for many years and remains the default. These options will only matter to those working with non-ASCII character data, especially in languages written in a non-Western script<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> (which includes ‘symbols’ such as emoji). Note that one of those <code>iswxxxxx</code> is <code>iswprint</code> which is used to decide whether to output a character as a glyph or as a <code>\U{xxxxxx}</code> escape—for example, try <code>"\U1f600"</code>, an emoji. The width functions are of most importance in East Asian locale: their values differ between such locales. (Replacing the system functions provides a degree of platform-independence (including to OS updates) but replaces it with a dependence on the R version.)</p><div class="no-row-height column-margin column-container"><li id="fn9"><p><sup>9</sup>&nbsp;But on Windows problems have been seen with case-changing functions on accented Latin-1 characters.</p></li></div></div>
+<p>Option <code>--with-internal-tzcode</code> makes use of R’s own code and copy of the IANA database for managing timezones. This will be preferred where there are issues with the system implementation, usually involving times after 2037 or before 1916. An alternative time-zone directory<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> can be used, pointed to by environment variable <code>TZDIR</code>: this should contain files such as <code>Europe/London</code>. On all tested OSes the system timezone was deduced correctly, but if necessary it can be set as the value of environment variable <code>TZ</code>.</p>
+<div class="no-row-height column-margin column-container"><p><sup>8</sup>&nbsp;How to prepare such a directory is described in file <code>src/extra/tzone/Notes</code> in the R sources.</p><p><sup>9</sup>&nbsp;But on Windows problems have been seen with case-changing functions on accented Latin-1 characters.</p></div><p>Options <code>--with-internal-iswxxxxx</code>, <code>--with-internal-towlower</code> and <code>--with-internal-wcwidth</code> were introduced in R 4.1.0. These control the replacement of the system wide-character classification (such as <code>iswprint</code>), case-changing (<code>wctrans</code>) and width (<code>wcwidth</code> and <code>wcswidth</code>) functions by ones contained in the R sources. Replacement of the classification functions has been done for many years on macOS and AIX (and Windows): option <code>--with-internal-iswxxxxx</code> allows this to be suppressed on those platforms or used on others. Replacing the case-changing functions was new in R 4.1.0 and the default on macOS (and on Windows since R 4.2.0). Replacement of the width functions has also been done for many years and remains the default. These options will only matter to those working with non-ASCII character data, especially in languages written in a non-Western script<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> (which includes ‘symbols’ such as emoji). Note that one of those <code>iswxxxxx</code> is <code>iswprint</code> which is used to decide whether to output a character as a glyph or as a <code>\U{xxxxxx}</code> escape—for example, try <code>"\U1f600"</code>, an emoji. The width functions are of most importance in East Asian locale: their values differ between such locales. (Replacing the system functions provides a degree of platform-independence (including to OS updates) but replaces it with a dependence on the R version.)</p>
 <section id="debugging-symbols" class="level3 subsection" data-number="2.7.1">
 <h3 class="subsection anchored" data-number="2.7.1" data-anchor-id="debugging-symbols"><span class="header-section-number">2.7.1</span> Debugging Symbols</h3>
 <p>By default, <code>configure</code> adds a flag (usually <code>-g</code>) to the compilation flags for C, Fortran and CXX sources. This will slow down compilation and increase object sizes of both R and packages, so it may be a good idea to change those flags (set <code>CFLAGS</code> etc in <code>config.site</code> before configuring, or edit files <code>Makeconf</code> and <code>etc/Makeconf</code> between running <code>configure</code> and <code>make</code>).</p>
@@ -553,15 +554,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="openmp-support" class="level3 subsection page-columns page-full" data-number="2.7.2">
 <h3 class="subsection anchored" data-number="2.7.2" data-anchor-id="openmp-support"><span class="header-section-number">2.7.2</span> OpenMP Support</h3>
-<div class="page-columns page-full"><p>By default <code>configure</code> searches for suitable flags<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> for OpenMP support for the C, C++ (default standard) and Fortran compilers.</p><div class="no-row-height column-margin column-container"><li id="fn10"><p><sup>10</sup>&nbsp;for example, <code>-fopenmp</code>, <code>-fiopenmp</code>, <code>-xopenmp</code> or <code>-qopenmp</code>. This includes for <code>clang</code> and the Intel and Oracle compilers.</p></li></div></div>
-<p>Only the C result is currently used for R itself, and only if <code>MAIN_LD</code>/<code>DYLIB_LD</code> were not specified. This can be overridden by specifying</p>
+<p>By default <code>configure</code> searches for suitable flags<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a> for OpenMP support for the C, C++ (default standard) and Fortran compilers.</p>
+<div class="no-row-height column-margin column-container"><p><sup>10</sup>&nbsp;for example, <code>-fopenmp</code>, <code>-fiopenmp</code>, <code>-xopenmp</code> or <code>-qopenmp</code>. This includes for <code>clang</code> and the Intel and Oracle compilers.</p></div><p>Only the C result is currently used for R itself, and only if <code>MAIN_LD</code>/<code>DYLIB_LD</code> were not specified. This can be overridden by specifying</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>R_OPENMP_CFLAGS</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Use for packages has similar restrictions (involving <code>SHLIB_LD</code> and similar: note that as Fortran code is by default linked by the C (or C++) compiler, both need to support OpenMP) and can be overridden by specifying some of</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>SHLIB_OPENMP_CFLAGS</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>SHLIB_OPENMP_CXXFLAGS</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>SHLIB_OPENMP_FFLAGS</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="page-columns page-full"><p>Setting these to an empty value will disable OpenMP for that compiler (and configuring with <code>--disable-openmp</code> will disable all detection<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> of OpenMP). The <code>configure</code> detection test is to compile and link a standalone OpenMP program, which is not the same as compiling a shared object and loading it into the C program of R’s executable. Note that overridden values are not tested.</p><div class="no-row-height column-margin column-container"><li id="fn11"><p><sup>11</sup>&nbsp;This does not necessarily disable <em>use</em> of OpenMP – the <code>configure</code> code allows for platforms where OpenMP is used without a flag. For the <code>flang</code> compiler in late 2017, the Fortran runtime always used OpenMP.</p></li></div></div>
-</section>
+<p>Setting these to an empty value will disable OpenMP for that compiler (and configuring with <code>--disable-openmp</code> will disable all detection<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> of OpenMP). The <code>configure</code> detection test is to compile and link a standalone OpenMP program, which is not the same as compiling a shared object and loading it into the C program of R’s executable. Note that overridden values are not tested.</p>
+<div class="no-row-height column-margin column-container"><p><sup>11</sup>&nbsp;This does not necessarily disable <em>use</em> of OpenMP – the <code>configure</code> code allows for platforms where OpenMP is used without a flag. For the <code>flang</code> compiler in late 2017, the Fortran runtime always used OpenMP.</p></div></section>
 <section id="c-support" class="level3 subsection" data-number="2.7.3">
 <h3 class="subsection anchored" data-number="2.7.3" data-anchor-id="c-support"><span class="header-section-number">2.7.3</span> C++ Support</h3>
 <p>C++ is not used by R itself, but support is provided for installing packages with C++ code via <code>make</code> macros defined in file <code>etc/Makeconf</code> (and with explanations in file <code>config.site</code>):</p>
@@ -597,10 +598,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The macros <code>CXX</code> etc are those used by default for C++ code. <code>configure</code> will attempt to set the rest suitably, choosing for <code>CXXSTD</code> and <code>CXX11STD</code> a suitable flag such as <code>-std=c++11</code> for C++11 support (which is required if C++ is to be supported at all). inferred values can be overridden in file <code>config.site</code> or on the <code>configure</code> command line: user-supplied values will be tested by compiling some C++11/14/17/20/23 code.</p>
 <p>It may be that there is no suitable flag for C++14/17/20/23 support with the default compiler, in which case a different compiler could be selected for <code>CXX14</code>/<code>CXX17</code>/<code>CXX20</code>/<code>CXX23</code> with its corresponding flags.</p>
 <p>The <code>-std</code> flag is supported by the GCC, <code>clang++</code> and Intel compilers. Currently accepted values are (plus some synonyms)</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>g<span class="sc">++</span><span class="er">:</span>     c<span class="sc">++</span><span class="dv">11</span> gnu<span class="sc">+</span><span class="dv">11</span> c<span class="sc">++</span><span class="dv">14</span> gnu<span class="sc">++</span><span class="dv">14</span> c<span class="sc">++</span><span class="dv">17</span> gnu<span class="sc">++</span><span class="dv">17</span> c<span class="sc">++</span>2a gnu<span class="sc">++</span>2a (from <span class="dv">8</span>)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>         c<span class="sc">++</span><span class="dv">20</span> gnu<span class="sc">++</span><span class="dv">20</span> (from <span class="dv">10</span>) c<span class="sc">++</span><span class="dv">23</span> gnu<span class="sc">++</span><span class="dv">23</span> c<span class="sc">++</span>2b gnu<span class="sc">++</span>2b (from <span class="dv">11</span>)</span>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>g<span class="sc">++</span><span class="er">:</span>     c<span class="sc">++</span><span class="dv">11</span> gnu<span class="sc">+</span><span class="dv">11</span> c<span class="sc">++</span><span class="dv">14</span> gnu<span class="sc">++</span><span class="dv">14</span> c<span class="sc">++</span><span class="dv">17</span> gnu<span class="sc">++</span><span class="dv">17</span> c<span class="sc">++</span><span class="dv">2</span>a gnu<span class="sc">++</span><span class="dv">2</span><span class="fu">a</span> (from <span class="dv">8</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>         c<span class="sc">++</span><span class="dv">20</span> gnu<span class="sc">++</span><span class="dv">20</span> (from <span class="dv">10</span>) c<span class="sc">++</span><span class="dv">23</span> gnu<span class="sc">++</span><span class="dv">23</span> c<span class="sc">++</span><span class="dv">2</span>b gnu<span class="sc">++</span><span class="dv">2</span><span class="fu">b</span> (from <span class="dv">11</span>)</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>Intel<span class="sc">:</span>   c<span class="sc">++</span><span class="dv">11</span>  gnu<span class="sc">+</span><span class="dv">11</span> c<span class="sc">++</span><span class="dv">14</span> gnu<span class="sc">++</span><span class="dv">14</span> c<span class="sc">++</span><span class="dv">17</span> gnu<span class="sc">++</span><span class="dv">17</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>         c<span class="sc">++</span><span class="dv">20</span> gnu<span class="sc">++</span><span class="dv">20</span> (from <span class="fl">2021.1</span>) c<span class="sc">++</span>2b gnu<span class="sc">++</span>2b (from <span class="fl">2022.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>         c<span class="sc">++</span><span class="dv">20</span> gnu<span class="sc">++</span><span class="dv">20</span> (from <span class="fl">2021.1</span>) c<span class="sc">++</span><span class="dv">2</span>b gnu<span class="sc">++</span><span class="dv">2</span><span class="fu">b</span> (from <span class="fl">2022.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>(Those for LLVM <code>clang++</code> are documented at <a href="https://clang.llvm.org/cxx_status.html" class="uri">https://clang.llvm.org/cxx_status.html</a>, and follow <code>g++</code>: <code>-std=c++20</code> is supported from Clang 10, <code>-std=c++2b</code> from Clang 13 and <code>-std=c++23</code> from Clang 17. Apple Clang supports <code>-std=c++2b</code> from 13.1.6: version 15.0.0 does not support <code>-std=c++23</code>.)</p>
 <p>‘Standards’ for <code>g++</code> starting with <code>gnu</code> enable ‘GNU extensions’: what those are is hard to track down.</p>
 <p>For the use of C++11 and later in R packages see the ‘Writing R Extensions’ manual. Prior to R 3.6.0 the default C++ standard was that of the compiler used: currently it is C++17 (if available): this can be overridden by setting <code>CXXSTD</code> when R is configured.</p>
@@ -614,10 +615,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="link-time-optimization" class="level3 subsection page-columns page-full" data-number="2.7.5">
 <h3 class="subsection anchored" data-number="2.7.5" data-anchor-id="link-time-optimization"><span class="header-section-number">2.7.5</span> Link-Time Optimization</h3>
-<div class="page-columns page-full"><p>There is support for using link-time optimization (LTO) if the toolchain supports it: configure with flag <code>--enable-lto</code>. When LTO is enabled it is used for compiled code in add-on packages unless the flag <code>--enable-lto=R</code> is used<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>.</p><div class="no-row-height column-margin column-container"><li id="fn12"><p><sup>12</sup>&nbsp;Then recommended packages installed as part of the R installation do use LTO, but not packages installed later.</p></li></div></div>
-<div class="page-columns page-full"><p>The main benefit seen to date from LTO has been detecting long-standing bugs in the ways packages pass arguments to compiled code and between compilation units. Benchmarking in 2020 with <code>gcc</code>/<code>gfortran</code>&nbsp;10 showed gains of a few percent in increased performance and reduction in installed size for builds without debug symbols, but large size reductions for some packages<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a> with debug symbols. (Performance and size gains are said to be most often seen in complex C++ builds.)</p><div class="no-row-height column-margin column-container"><li id="fn13"><p><sup>13</sup>&nbsp;A complete CRAN installation reduced from 50 to 35GB.</p></li></div></div>
-<div class="page-columns page-full"><p>Whether toolchains support LTO is often unclear: all of the C compiler, the Fortran compiler<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> and linker have to support it, and support it by the same mechanism (so mixing compiler families may not work and a non-default linker may be needed). It has been supported by the GCC and LLVM projects for some years with diverging implementations.</p><div class="no-row-height column-margin column-container"><li id="fn14"><p><sup>14</sup>&nbsp;although there is the possibility to exclude Fortran but that misses some of the benefits.</p></li></div></div>
-<p>LTO support was added in 2011 for GCC&nbsp;4.5 on Linux but was little used before 2019: compiler support has steadily improved over those years and <code>--enable-lto=R</code> is nowadays used for some routine CRAN checking.</p>
+<p>There is support for using link-time optimization (LTO) if the toolchain supports it: configure with flag <code>--enable-lto</code>. When LTO is enabled it is used for compiled code in add-on packages unless the flag <code>--enable-lto=R</code> is used<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>.</p>
+<div class="no-row-height column-margin column-container"><p><sup>12</sup>&nbsp;Then recommended packages installed as part of the R installation do use LTO, but not packages installed later.</p><p><sup>13</sup>&nbsp;A complete CRAN installation reduced from 50 to 35GB.</p></div><p>The main benefit seen to date from LTO has been detecting long-standing bugs in the ways packages pass arguments to compiled code and between compilation units. Benchmarking in 2020 with <code>gcc</code>/<code>gfortran</code>&nbsp;10 showed gains of a few percent in increased performance and reduction in installed size for builds without debug symbols, but large size reductions for some packages<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a> with debug symbols. (Performance and size gains are said to be most often seen in complex C++ builds.)</p>
+<p>Whether toolchains support LTO is often unclear: all of the C compiler, the Fortran compiler<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> and linker have to support it, and support it by the same mechanism (so mixing compiler families may not work and a non-default linker may be needed). It has been supported by the GCC and LLVM projects for some years with diverging implementations.</p>
+<div class="no-row-height column-margin column-container"><p><sup>14</sup>&nbsp;although there is the possibility to exclude Fortran but that misses some of the benefits.</p></div><p>LTO support was added in 2011 for GCC&nbsp;4.5 on Linux but was little used before 2019: compiler support has steadily improved over those years and <code>--enable-lto=R</code> is nowadays used for some routine CRAN checking.</p>
 <p>Unfortunately <code>--enable-lto</code> may be accepted but silently do nothing useful if some of the toolchain does not support LTO: this is less common than it once was.</p>
 <p>Various macros can be set in file <code>config.site</code> to customize how LTO is used. If the Fortran compiler is not of the same family as the C/C++ compilers, set macro <code>LTO_FC</code> (probably to empty). Macro <code>LTO_LD</code> can be used to select an alternative linker should that be needed.</p>
 </section>
@@ -629,8 +630,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>For non-system compilers or if those wrappers have not been installed one may need something like</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>AR<span class="ot">=</span><span class="st">"ar --plugin=/path/to/liblto_plugin.so"</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>RANLIB<span class="ot">=</span><span class="st">"ranlib --plugin=/path/to/liblto_plugin.so"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="page-columns page-full"><p>and <code>NM</code> may be needed to be set analogously. (If using an LTO-enabled build to check packages, set environment variable <code>UserNM</code><a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a> to <code>gcc-nm</code>.)</p><div class="no-row-height column-margin column-container"><li id="fn15"><p><sup>15</sup>&nbsp;not <code>NM</code> as we found <code>make</code> overriding that.</p></li></div></div>
-<p>With GCC 5 and later it is possible to parallelize parts of the LTO linking process: set the make macro <code>LTO</code> to something like <code>LTO=-flto=8</code> (to use 8 threads), for example in file <code>config.site</code>.</p>
+<p>and <code>NM</code> may be needed to be set analogously. (If using an LTO-enabled build to check packages, set environment variable <code>UserNM</code><a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a> to <code>gcc-nm</code>.)</p>
+<div class="no-row-height column-margin column-container"><p><sup>15</sup>&nbsp;not <code>NM</code> as we found <code>make</code> overriding that.</p></div><p>With GCC 5 and later it is possible to parallelize parts of the LTO linking process: set the make macro <code>LTO</code> to something like <code>LTO=-flto=8</code> (to use 8 threads), for example in file <code>config.site</code>.</p>
 <p>Under some circumstances and for a few packages, the PIC flags have needed overriding on Linux with GCC 9 and later: e.g use in <code>config.site</code>:</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="dt">CPICFLAGS</span><span class="ch">=</span><span class="st">-fPIC</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="dt">CXXPICFLAGS</span><span class="ch">=</span><span class="st">-fPIC</span></span>
@@ -661,8 +662,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="lto-for-package-checking" class="level3 subsubsection page-columns page-full" data-number="2.7.8">
 <h3 class="subsubsection anchored" data-number="2.7.8" data-anchor-id="lto-for-package-checking"><span class="header-section-number">2.7.8</span> LTO for package checking</h3>
 <p>LTO effectively compiles all the source code in a package as a single compilation unit and so allows the compiler (with sufficient diagnostic flags such as <code>-Wall</code>) to check consistency between what are normally separate compilation units.</p>
-<div class="page-columns page-full"><p>With <code>gcc</code>/<code>gfortran</code> 9.x and later<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a> LTO will flag inconsistencies in calls to Fortran subroutines/functions, both between Fortran source files and between Fortran and C/C++. <code>gfortran</code> 8.4, 9.2 and later can help understanding these by extracting C prototypes from Fortran source files with option <code>-fc-prototypes-external</code>, e.g.&nbsp;that (at the time of writing) Fortran <code>LOGICAL</code> corresponds to <code>int_least32_t *</code> in C.</p><div class="no-row-height column-margin column-container"><li id="fn16"><p><sup>16</sup>&nbsp;probably also 8.4 and later.</p></li></div></div>
-</section>
+<p>With <code>gcc</code>/<code>gfortran</code> 9.x and later<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a> LTO will flag inconsistencies in calls to Fortran subroutines/functions, both between Fortran source files and between Fortran and C/C++. <code>gfortran</code> 8.4, 9.2 and later can help understanding these by extracting C prototypes from Fortran source files with option <code>-fc-prototypes-external</code>, e.g.&nbsp;that (at the time of writing) Fortran <code>LOGICAL</code> corresponds to <code>int_least32_t *</code> in C.</p>
+<div class="no-row-height column-margin column-container"><p><sup>16</sup>&nbsp;probably also 8.4 and later.</p></div></section>
 </section>
 <section id="testing-an-installation" class="level2 section" data-number="2.8">
 <h2 class="section anchored" data-number="2.8" data-anchor-id="testing-an-installation"><span class="header-section-number">2.8</span> Testing an Installation</h2>
@@ -776,10 +777,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -789,8 +809,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -803,6 +832,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -846,6 +994,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -871,6 +1020,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -928,32 +1103,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          // default icon
-          link.classList.add("external");
-      }
-    }
 });
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./Obtaining-R.html" class="pagination-link">
+      <a href="./Obtaining-R.html" class="pagination-link  aria-label=" &lt;span="" r&lt;="" span&gt;"="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Obtaining R</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./Installing-R-under-Windows.html" class="pagination-link">
+      <a href="./Installing-R-under-Windows.html" class="pagination-link" aria-label="<span class='chapter-number'>3</span>&nbsp; <span class='chapter-title'>Installing R under Windows</span>">
         <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Installing R under Windows</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -961,13 +1120,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-left">
+<p>A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></p>
+</div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
-    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+    <div class="nav-footer-right">
+<p>Built using <a href="https://quarto.org">Quarto</a></p>
+</div>
   </div>
 </footer>
+
 
 
 

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -81,7 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -90,6 +96,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -103,9 +110,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: R Installation and Administration</span>
     </a>
@@ -117,73 +124,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="./../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Manuals</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
         <li>
-    <a class="dropdown-item" href="./../r-intro/index.html" rel="" target="">
+    <a class="dropdown-item" href="./../r-intro/index.html">
  <span class="dropdown-text">An Introduction to R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-data/index.html" rel="" target="">
+    <a class="dropdown-item" href="./../r-data/index.html">
  <span class="dropdown-text">R Data Import/Export</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-admin/index.html" rel="" target="">
+    <a class="dropdown-item" href="./../r-admin/index.html">
  <span class="dropdown-text">R Installation and Administration</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-exts/index.html" rel="" target="">
+    <a class="dropdown-item" href="./../r-exts/index.html">
  <span class="dropdown-text">Writing R Extensions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-lang/index.html" rel="" target="">
+    <a class="dropdown-item" href="./../r-lang/index.html">
  <span class="dropdown-text">R Language Definition</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-ints/index.html" rel="" target="">
+    <a class="dropdown-item" href="./../r-ints/index.html">
  <span class="dropdown-text">R Internals</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./../about.html" rel="" target="">
- <span class="menu-text">About</span></a>
+    <a class="nav-link" href="./../about.html"> 
+<span class="menu-text">About</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Add-on-packages.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Add-on packages</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Add-on-packages.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Add-on packages</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -296,7 +295,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -339,7 +338,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <p>It is helpful to use the correct terminology. A <em>package</em> is loaded from a <em>library</em> by the function <code>library()</code>. Thus a library is a directory containing installed packages; the main library is <code>R_HOME/library</code>, but others can be used, for example by setting the environment variable <code>R_LIBS</code> or using the R function <code>.libPaths()</code>. To avoid any confusion you will often see a library directory referred to as a ‘library tree’.</p>
 <section id="default-packages" class="level2 section" data-number="6.1">
@@ -353,8 +354,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="managing-libraries" class="level2 section page-columns page-full" data-number="6.2">
 <h2 class="section anchored" data-number="6.2" data-anchor-id="managing-libraries"><span class="header-section-number">6.2</span> Managing libraries</h2>
 <p>R packages are installed into <em>libraries</em>, which are directories in the file system containing a subdirectory for each package installed there.</p>
-<div class="page-columns page-full"><p>R comes with a single library, <code>R_HOME/library</code> which is the value of the R object <code>.Library</code> containing the standard and recommended<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> packages. Both sites and users can create others and make use of them (or not) in an R session. At the lowest level <code>.libPaths()</code> can be used to add paths to the collection of libraries or to report the current collection.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;unless they were excluded in the build.</p></li></div></div>
-<div class="page-columns page-full"><p>R will automatically make use of a site-specific library <code>R_HOME/site-library</code> if this exists (it does not in a vanilla R installation). This location can be overridden by setting<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> <code>.Library.site</code> in <code>R_HOME/etc/Rprofile.site</code>, or (not recommended) by setting the environment variable <code>R_LIBS_SITE</code>.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;its binding is locked once the startup files have been read, so users cannot easily change it. See <code>?.libPaths</code> for how to make use of the new value.</p></li></div></div>
+<p>R comes with a single library, <code>R_HOME/library</code> which is the value of the R object <code>.Library</code> containing the standard and recommended<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> packages. Both sites and users can create others and make use of them (or not) in an R session. At the lowest level <code>.libPaths()</code> can be used to add paths to the collection of libraries or to report the current collection.</p>
+<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;unless they were excluded in the build.</p><p><sup>2</sup>&nbsp;its binding is locked once the startup files have been read, so users cannot easily change it. See <code>?.libPaths</code> for how to make use of the new value.</p></div><p>R will automatically make use of a site-specific library <code>R_HOME/site-library</code> if this exists (it does not in a vanilla R installation). This location can be overridden by setting<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> <code>.Library.site</code> in <code>R_HOME/etc/Rprofile.site</code>, or (not recommended) by setting the environment variable <code>R_LIBS_SITE</code>.</p>
 <p>Users can have one or more libraries, normally specified by the environment variable <code>R_LIBS_USER</code>. This has a default value (to see it, use <code>Sys.getenv("R_LIBS_USER")</code> within an R session), but that is only used if the corresponding directory actually exists (which by default it will not).</p>
 <p>Both <code>R_LIBS_USER</code> and <code>R_LIBS_SITE</code> can specify multiple library paths, separated by colons (semicolons on Windows).</p>
 </section>
@@ -363,8 +364,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Packages may be distributed in source form or compiled binary form. Installing source packages which contain C/C++/Fortran code requires that compilers and related tools be installed. Binary packages are platform-specific and generally need no special tools to install, but see the documentation for your platform for details.</p>
 <p>Note that you may need to specify implicitly or explicitly the library to which the package is to be installed. This is only an issue if you have more than one library, of course.</p>
 <p>Ensure that the environment variable <code>TMPDIR</code> is either unset (and <code>/tmp</code> exists and can be written in and executed from) or is the absolute path to a valid temporary directory, not containing spaces.</p>
-<div class="page-columns page-full"><p>For most users it suffices to call <code>install.packages(pkgname)</code> or its GUI equivalent if the intention is to install a CRAN package and internet access is available.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> On most systems <code>install.packages()</code> will allow packages to be selected from a list box (typically with thousands of items).</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;If a proxy needs to be set, see <code>?download.file</code>.</p></li></div></div>
-<p>To install packages from source on a Unix-alike use in a terminal</p>
+<p>For most users it suffices to call <code>install.packages(pkgname)</code> or its GUI equivalent if the intention is to install a CRAN package and internet access is available.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> On most systems <code>install.packages()</code> will allow packages to be selected from a list box (typically with thousands of items).</p>
+<div class="no-row-height column-margin column-container"><p><sup>3</sup>&nbsp;If a proxy needs to be set, see <code>?download.file</code>.</p></div><p>To install packages from source on a Unix-alike use in a terminal</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> CMD INSTALL <span class="at">-l</span> /path/to/library pkg1 pkg2 ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The part <code>-l /path/to/library</code> can be omitted, in which case the first library of a normal R session is used (that shown by <code>.libPaths()[1]</code>).</p>
 <p>There are a number of options available: use <code>R CMD INSTALL --help</code> to see the current list.</p>
@@ -394,8 +395,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>R CMD INSTALL</code> works in Windows to install source packages. No additional tools are needed if the package does not contain compiled code, and <code>install.packages(type="source")</code> will work for such packages. Those with compiled code need the tools (see <a href="Installing-R-under-Windows.html#the-windows-toolset">The Windows toolset</a>). The tools are found automatically by R when installed by the toolset installer. See <a href="https://cran.r-project.org/bin/windows/base/howto-R-devel.html">Building R and packages</a> for more details.</p>
 <p>Occasional permission problems after unpacking source packages have been seen on some systems: these have been circumvented by setting the environment variable <code>R_INSTALL_TAR</code> to <code>tar.exe</code>.</p>
 <p>If you have only a source package that is known to work with current R and just want a binary Windows build of it, you could make use of the building service offered at <a href="https://win-builder.r-project.org/" class="uri">https://win-builder.r-project.org/</a>.</p>
-<div class="page-columns page-full"><p>For almost all packages <code>R CMD INSTALL</code> will attempt to install both 32- and 64-bit builds of a package if run from a 32/64-bit install of R (only 64-bit builds and installs are supported since R 4.2.0). It will report success if the installation of the architecture of the running <code>R</code> succeeded, whether or not the other architecture was successfully installed. The exceptions are packages with a non-empty <code>configure.win</code> script or which make use of <code>src/Makefile.win</code>. If <code>configure.win</code> does something appropriate to both architectures use<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> option <code>--force-biarch</code>: otherwise <code>R CMD INSTALL --merge-multiarch</code> can be applied to a source tarball to merge separate 32- and 64-bit installs. (This can only be applied to a tarball, and will only succeed if both installs succeed.)</p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;for a small number of CRAN packages where this is known to be safe and is needed by the autobuilder this is the default. Look at the source of <code>tools:::.install_packages</code> for the list. It can also be specified in the package’s <code>DESCRIPTION</code> file.</p></li></div></div>
-<p>If you have a package without compiled code and no Windows-specific help, you can zip up an installation on another OS and install from that zip file on Windows. However, such a package can be installed from the sources on Windows without any additional tools.</p>
+<p>For almost all packages <code>R CMD INSTALL</code> will attempt to install both 32- and 64-bit builds of a package if run from a 32/64-bit install of R (only 64-bit builds and installs are supported since R 4.2.0). It will report success if the installation of the architecture of the running <code>R</code> succeeded, whether or not the other architecture was successfully installed. The exceptions are packages with a non-empty <code>configure.win</code> script or which make use of <code>src/Makefile.win</code>. If <code>configure.win</code> does something appropriate to both architectures use<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> option <code>--force-biarch</code>: otherwise <code>R CMD INSTALL --merge-multiarch</code> can be applied to a source tarball to merge separate 32- and 64-bit installs. (This can only be applied to a tarball, and will only succeed if both installs succeed.)</p>
+<div class="no-row-height column-margin column-container"><p><sup>4</sup>&nbsp;for a small number of CRAN packages where this is known to be safe and is needed by the autobuilder this is the default. Look at the source of <code>tools:::.install_packages</code> for the list. It can also be specified in the package’s <code>DESCRIPTION</code> file.</p></div><p>If you have a package without compiled code and no Windows-specific help, you can zip up an installation on another OS and install from that zip file on Windows. However, such a package can be installed from the sources on Windows without any additional tools.</p>
 </section>
 <section id="macos" class="level3 subsection page-columns page-full" data-number="6.3.2">
 <h3 class="subsection anchored" data-number="6.3.2" data-anchor-id="macos"><span class="header-section-number">6.3.2</span> macOS</h3>
@@ -407,20 +408,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Tcl/Tk extension <code>BWidget</code> used to be distributed with R but no longer is; <code>Tktable</code> has been distributed with most versions of R (but not 4.0.0 and not <code>arm64</code> builds of 4.1.0 or 4.1.1).</p>
 <p>The default compilers specified are shown in file <code>/Library/Frameworks/R.framework/Resources/etc/Makeconf</code>. At the time of writing those settings assumed that the C, Fortran and C++ compilers were on the path (see <a href="Platform-notes.html#macos">macOS</a>). The settings can be changed, either by editing that file or in a file such as <code>~/.R/Makevars</code> (see the next section). Entries which may need to be changed include <code>CC</code>, <code>CXX</code>, <code>FC</code>, <code>FLIBS</code> and the corresponding flags, and perhaps <code>CXXCPP</code>, <code>DYLIB_LD</code>, <code>MAIN_LD</code>, <code>SHLIB_CXXLD</code> and <code>SHLIB_LD</code>, as well as their <code>CXX11</code>, <code>CXX14</code>, <code>CXX17</code> and <code>CXX20</code> variants.</p>
 <p>So for example you could select a specific LLVM <code>clang</code> for both C and C++ with extensive checking by having in <code>~/.R/Makevars</code></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">CC </span><span class="ch">=</span><span class="st"> /usr/local/clang/bin/clang -isysroot</span></span>
+<div class="sourceCode" id="cb7"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">CC</span> <span class="ch">=</span><span class="st"> /usr/local/clang/bin/clang -isysroot</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX </span><span class="ch">=</span><span class="st"> /usr/local/clang/bin/clang++ -isysroot</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX</span> <span class="ch">=</span><span class="st"> /usr/local/clang/bin/clang++ -isysroot</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX11 </span><span class="ch">=</span><span class="st"> </span><span class="ch">$C</span><span class="st">XX</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX14 </span><span class="ch">=</span><span class="st"> </span><span class="ch">$C</span><span class="st">XX</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX17 </span><span class="ch">=</span><span class="st"> </span><span class="ch">$C</span><span class="st">XX</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX20 </span><span class="ch">=</span><span class="st"> </span><span class="ch">$C</span><span class="st">XX</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="dt">CFLAGS </span><span class="ch">=</span><span class="st"> -g -O2 -Wall -pedantic -Wconversion -Wno-sign-conversion</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="dt">CXXFLAGS </span><span class="ch">=</span><span class="st"> -g -O2 -Wall -pedantic -Wconversion -Wno-sign-conversion</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX11FLAGS </span><span class="ch">=</span><span class="st"> </span><span class="ch">$C</span><span class="st">XXFLAGS</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX14FLAGS </span><span class="ch">=</span><span class="st"> </span><span class="ch">$C</span><span class="st">XXFLAGS</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX17FLAGS </span><span class="ch">=</span><span class="st"> </span><span class="ch">$C</span><span class="st">XXFLAGS</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX20FLAGS </span><span class="ch">=</span><span class="st"> </span><span class="ch">$C</span><span class="st">XXFLAGS</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX11</span> <span class="ch">=</span><span class="st"> </span><span class="ch">$C</span><span class="st">XX</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX14</span> <span class="ch">=</span><span class="st"> </span><span class="ch">$C</span><span class="st">XX</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX17</span> <span class="ch">=</span><span class="st"> </span><span class="ch">$C</span><span class="st">XX</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX20</span> <span class="ch">=</span><span class="st"> </span><span class="ch">$C</span><span class="st">XX</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="dt">CFLAGS</span> <span class="ch">=</span><span class="st"> -g -O2 -Wall -pedantic -Wconversion -Wno-sign-conversion</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="dt">CXXFLAGS</span> <span class="ch">=</span><span class="st"> -g -O2 -Wall -pedantic -Wconversion -Wno-sign-conversion</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX11FLAGS</span> <span class="ch">=</span><span class="st"> </span><span class="ch">$C</span><span class="st">XXFLAGS</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX14FLAGS</span> <span class="ch">=</span><span class="st"> </span><span class="ch">$C</span><span class="st">XXFLAGS</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX17FLAGS</span> <span class="ch">=</span><span class="st"> </span><span class="ch">$C</span><span class="st">XXFLAGS</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX20FLAGS</span> <span class="ch">=</span><span class="st"> </span><span class="ch">$C</span><span class="st">XXFLAGS</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>(long lines split for the manual only) and for the current macOS distribution of <code>gfortran</code> at <a href="https://mac.r-project.org/tools/" class="uri">https://mac.r-project.org/tools/</a></p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>FC <span class="ot">=</span> <span class="er">/</span>opt<span class="sc">/</span>gfortran<span class="sc">/</span>bin<span class="sc">/</span>gfortran</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>(arm64)</span>
@@ -431,32 +432,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span>L<span class="sc">/</span>opt<span class="sc">/</span>gfortran<span class="sc">/</span>lib <span class="sc">-</span>lgfortran <span class="sc">-</span>lquadmath</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>(line broken here for the manual only).</p>
 <p>If that <code>clang</code> build supports OpenMP, you can add</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">SHLIB_OPENMP_CFLAGS </span><span class="ch">=</span><span class="st"> -fopenmp</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="dt">SHLIB_OPENMP_CXXFLAGS </span><span class="ch">=</span><span class="st"> -fopenmp</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">SHLIB_OPENMP_CFLAGS</span> <span class="ch">=</span><span class="st"> -fopenmp</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="dt">SHLIB_OPENMP_CXXFLAGS</span> <span class="ch">=</span><span class="st"> -fopenmp</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>to compile OpenMP-using packages. It will also be necessary to arrange for the <code>libomp.dylib</code> library to be found at both install time and run time, for example by copying/linking it somewhere that is searched such as <code>/usr/local/lib</code>.</p>
-<div class="page-columns page-full"><p>Apple includes many Open Source libraries in macOS but increasingly without the corresponding headers (not even in Xcode nor the Command Line Tools): they are often rather old versions. If installing packages from source using them it is usually easiest to install a statically-linked up-to-date copy of the Open Source package from its sources or from <a href="https://mac.r-project.org/bin/" class="uri">https://mac.r-project.org/bin/</a>. But sometimes it is desirable/necessary to use Apple’s dynamically linked library, in which case appropriate headers could be extracted from the sources<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> available <em>via</em> <a href="https://opensource.apple.com" class="uri">https://opensource.apple.com</a> – this has been used for <code>iodbc</code>.</p><div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;Note that capitalization and versioning may differ from the Open Source project.</p></li></div></div>
-<p>Some care may be needed with selecting compilers when installing external software for use with packages. The ‘system’ compilers as used when building R are <code>clang</code> and <code>clang++</code>, but the Apple toolchain also provides compilers called <code>gcc</code> and <code>g++</code> which despite their names are based on LLVM and <code>libc++</code> like the system ones and which behave in almost the same way as the system ones. Most Open Source software has a <code>configure</code> script developed using GNU <code>autoconf</code> and hence will select <code>gcc</code> and <code>g++</code> as the default compilers: this usually works fine. For consistency one can use</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>./configure <span class="dt">CC</span><span class="ch">=</span><span class="st">clang CFLAGS=-O2 CXX=clang++ CXXFLAGS=-O2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Apple includes many Open Source libraries in macOS but increasingly without the corresponding headers (not even in Xcode nor the Command Line Tools): they are often rather old versions. If installing packages from source using them it is usually easiest to install a statically-linked up-to-date copy of the Open Source package from its sources or from <a href="https://mac.r-project.org/bin/" class="uri">https://mac.r-project.org/bin/</a>. But sometimes it is desirable/necessary to use Apple’s dynamically linked library, in which case appropriate headers could be extracted from the sources<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> available <em>via</em> <a href="https://opensource.apple.com" class="uri">https://opensource.apple.com</a> – this has been used for <code>iodbc</code>.</p>
+<div class="no-row-height column-margin column-container"><p><sup>5</sup>&nbsp;Note that capitalization and versioning may differ from the Open Source project.</p></div><p>Some care may be needed with selecting compilers when installing external software for use with packages. The ‘system’ compilers as used when building R are <code>clang</code> and <code>clang++</code>, but the Apple toolchain also provides compilers called <code>gcc</code> and <code>g++</code> which despite their names are based on LLVM and <code>libc++</code> like the system ones and which behave in almost the same way as the system ones. Most Open Source software has a <code>configure</code> script developed using GNU <code>autoconf</code> and hence will select <code>gcc</code> and <code>g++</code> as the default compilers: this usually works fine. For consistency one can use</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>./configure CC=clang CFLAGS=-O2 CXX=clang++ CXXFLAGS=-O2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>(avoiding <code>autoconf</code>s default <code>-g</code>). As from R 4.3.0, <code>R CMD INSTALL</code> and <code>install.packages()</code> try to invoke <code>configure</code> with the same compilers and flags used to build R.</p>
 <p>For <code>arm64</code>, not all configure scripts have been updated to recognize the platform and so might need the flag <code>--build=aarch64-apple-darwin20.1.0</code>. Also, be aware that running the compilers from a <code>x86_64</code> application switches them to generating code for that CPU: this applies to a Terminal, a shell, older <code>cmake</code> or (non-system) <code>make</code>, and from <code>R CMD INSTALL</code> or <code>install.packages()</code>. One can use</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>./configure <span class="dt">CC</span><span class="ch">=</span><span class="st">"clang -arch arm64" CFLAGS=-O2 CXX="clang++ -arch arm64" CXXFLAGS=-O2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>./configure CC=<span class="st">"clang -arch arm64"</span> CFLAGS=-O2 CXX=<span class="st">"clang++ -arch arm64"</span> CXXFLAGS=-O2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>to force <code>arm64</code> code.</p>
 </section>
 <section id="customizing-package-compilation" class="level3 subsection page-columns page-full" data-number="6.3.3">
 <h3 class="subsection anchored" data-number="6.3.3" data-anchor-id="customizing-package-compilation"><span class="header-section-number">6.3.3</span> Customizing package compilation</h3>
-<div class="page-columns page-full"><p>The R system and package-specific compilation flags can be overridden or added to by setting the appropriate Make variables in the personal file <code>HOME/.R/Makevars-R_PLATFORM</code> (but <code>HOME/.R/Makevars.win</code> or <code>HOME/.R/Makevars.win64</code> on Windows), or if that does not exist, <code>HOME/.R/Makevars</code>, where <code>R_PLATFORM</code> is the platform for which R was built, as available in the <code>platform</code> component of the R variable <code>R.version</code>. The full path to an alternative personal file<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> can be specified <em>via</em> the environment variable <code>R_MAKEVARS_USER</code>.</p><div class="no-row-height column-margin column-container"><li id="fn6"><p><sup>6</sup>&nbsp;using a path containing spaces is likely to cause problems</p></li></div></div>
-<p>Package developers are encouraged to use this mechanism to enable a reasonable amount of diagnostic messaging (“warnings”) when compiling, such as e.g.&nbsp;<code>-Wall -pedantic</code> for tools from GCC, the GNU Compiler Collection, or for <code>clang</code>.</p>
+<p>The R system and package-specific compilation flags can be overridden or added to by setting the appropriate Make variables in the personal file <code>HOME/.R/Makevars-R_PLATFORM</code> (but <code>HOME/.R/Makevars.win</code> or <code>HOME/.R/Makevars.win64</code> on Windows), or if that does not exist, <code>HOME/.R/Makevars</code>, where <code>R_PLATFORM</code> is the platform for which R was built, as available in the <code>platform</code> component of the R variable <code>R.version</code>. The full path to an alternative personal file<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> can be specified <em>via</em> the environment variable <code>R_MAKEVARS_USER</code>.</p>
+<div class="no-row-height column-margin column-container"><p><sup>6</sup>&nbsp;using a path containing spaces is likely to cause problems</p></div><p>Package developers are encouraged to use this mechanism to enable a reasonable amount of diagnostic messaging (“warnings”) when compiling, such as e.g.&nbsp;<code>-Wall -pedantic</code> for tools from GCC, the GNU Compiler Collection, or for <code>clang</code>.</p>
 <p>Note that this mechanism can also be used when it is necessary to change the optimization level whilst installing a particular package. For example</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">## for C code</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="dt">CFLAGS </span><span class="ch">=</span><span class="st"> -g -O -mtune=native</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="dt">CFLAGS</span> <span class="ch">=</span><span class="st"> -g -O -mtune=native</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">## for C++ code</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="dt">CXXFLAGS </span><span class="ch">=</span><span class="st"> -g -O -mtune=native</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="dt">CXXFLAGS</span> <span class="ch">=</span><span class="st"> -g -O -mtune=native</span></span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">## for C++11 code</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX11FLAGS </span><span class="ch">=</span><span class="st"> -g -O -mtune=native</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX11FLAGS</span> <span class="ch">=</span><span class="st"> -g -O -mtune=native</span></span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">## for fixed-form Fortran code</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="dt">FFLAGS </span><span class="ch">=</span><span class="st"> -g -O -mtune=native</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="dt">FFLAGS</span> <span class="ch">=</span><span class="st"> -g -O -mtune=native</span></span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">## for C17 code</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="dt">C17FLAGS </span><span class="ch">=</span><span class="st"> -g -O -mtune=native -Wno-strict-prototypes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="dt">C17FLAGS</span> <span class="ch">=</span><span class="st"> -g -O -mtune=native -Wno-strict-prototypes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Note that if you have specified a non-default C++ or C standard, you need to set the flag(s) appropriate to that standard.</p>
 <p>Another use is to override the settings in a binary installation of R. For example, for the current distribution of <code>gfortran</code> at <a href="https://mac.r-project.org/tools/" class="uri">https://mac.r-project.org/tools/</a></p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>FC <span class="ot">=</span> <span class="er">/</span>opt<span class="sc">/</span>gfortran<span class="sc">/</span>bin<span class="sc">/</span>gfortran</span>
@@ -497,8 +498,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="subsection anchored" data-number="6.3.6" data-anchor-id="external-software"><span class="header-section-number">6.3.6</span> External software</h3>
 <p>Some R packages contain compiled code which links to external software libraries. Unless the external library is statically linked (which is done as much as possible for binary packages on Windows and macOS), the libraries have to be found when the package is loaded and not just when it is installed. How this should be done depends on the OS (and in some cases the version).</p>
 <p>For Unix-alikes except macOS the primary mechanism is the <code>ld.so</code> cache controlled by <code>ldconfig</code>: external dynamic libraries recorded in that cache will be found. Standard library locations will be covered by the cache, and well-designed software will add its locations (as for example <strong>openmpi</strong> does on Fedora). The secondary mechanism is to consult the environment variable <code>LD_LIBRARY_PATH</code>. The R script controls that variable, and sets it to the concatenation of <code>R_LD_LIBRARY_PATH</code>, <code>R_JAVA_LD_LIBRARY_PATH</code> and the environment value of <code>LD_LIBRARY_PATH</code>. The first two have defaults which are normally set when R is installed (but can be overridden in the environment) so <code>LD_LIBRARY_PATH</code> is the best choice for a user to set.</p>
-<div class="page-columns page-full"><p>On macOS the primary mechanism is to embed the absolute path to dependent dynamic libraries into an object when it is compiled. Few R packages arrange to do so, but it can be edited<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> <em>via</em> <code>install_name_tool</code> — that only deals with direct dependencies and those would also need to be compiled to include the absolute paths of their dependencies. If the choice of absolute path is to be deferred to load time, how they are resolved is described in <code>man dyld</code>: the role of <code>LD_LIBRARY_PATH</code> is replaced on macOS by <code>DYLD_LIBRARY_PATH</code> and <code>DYLD_FALLBACK_LIBRARY_PATH</code>. Running <code>R CMD otool -L</code> on the package shared object will show where (if anywhere) its dependencies are resolved. <code>DYLD_FALLBACK_LIBRARY_PATH</code> is preferred (and it is that which is manipulated by the R script), but as from 10.11 (‘El Capitan’) the default behaviour had been changed for security reasons to discard these environment variables when invoking a shell script (and <code>R</code> is a shell script). That makes the only portable option to set <code>R_LD_LIBRARY_PATH</code> in the environment, something like</p><div class="no-row-height column-margin column-container"><li id="fn7"><p><sup>7</sup>&nbsp;They need to have been created using <code>-headerpad_max_install_names</code>, which is the default for an R package.</p></li></div></div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>export R_LD_LIBRARY_PATH<span class="op">=</span><span class="st">"`R RHOME`/lib:/opt/local/lib"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>On macOS the primary mechanism is to embed the absolute path to dependent dynamic libraries into an object when it is compiled. Few R packages arrange to do so, but it can be edited<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> <em>via</em> <code>install_name_tool</code> — that only deals with direct dependencies and those would also need to be compiled to include the absolute paths of their dependencies. If the choice of absolute path is to be deferred to load time, how they are resolved is described in <code>man dyld</code>: the role of <code>LD_LIBRARY_PATH</code> is replaced on macOS by <code>DYLD_LIBRARY_PATH</code> and <code>DYLD_FALLBACK_LIBRARY_PATH</code>. Running <code>R CMD otool -L</code> on the package shared object will show where (if anywhere) its dependencies are resolved. <code>DYLD_FALLBACK_LIBRARY_PATH</code> is preferred (and it is that which is manipulated by the R script), but as from 10.11 (‘El Capitan’) the default behaviour had been changed for security reasons to discard these environment variables when invoking a shell script (and <code>R</code> is a shell script). That makes the only portable option to set <code>R_LD_LIBRARY_PATH</code> in the environment, something like</p>
+<div class="no-row-height column-margin column-container"><p><sup>7</sup>&nbsp;They need to have been created using <code>-headerpad_max_install_names</code>, which is the default for an R package.</p></div><div class="sourceCode" id="cb15"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>export R_LD_LIBRARY_PATH<span class="op">=</span><span class="st">"`R RHOME`/lib:/opt/local/lib"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The precise rules for where Windows looks for DLLs are complex and depend on the version of Windows. But for present purposes the main solution is to put the directories containing the DLLs the package links to (and any those DLLs link to) on the <code>PATH</code>.</p>
 <p>The danger with any of the methods which involve setting environment variables is of inadvertently masking a system library. This is less for <code>DYLD_FALLBACK_LIBRARY_PATH</code> and for <em>appending</em> to <code>PATH</code> on Windows (as it should already contain the system library paths).</p>
 </section>
@@ -637,10 +638,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -650,8 +670,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -664,6 +693,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -707,6 +855,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -732,6 +881,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -789,32 +964,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          // default icon
-          link.classList.add("external");
-      }
-    }
 });
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./Running-R.html" class="pagination-link">
+      <a href="./Running-R.html" class="pagination-link  aria-label=" &lt;span="" r&lt;="" span&gt;"="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Running R</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./Internationalization.html" class="pagination-link">
+      <a href="./Internationalization.html" class="pagination-link" aria-label="<span class='chapter-number'>7</span>&nbsp; <span class='chapter-title'>Internationalization and Localization</span>">
         <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Internationalization and Localization</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -822,13 +981,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-left">
+<p>A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></p>
+</div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
-    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+    <div class="nav-footer-right">
+<p>Built using <a href="https://quarto.org">Quarto</a></p>
+</div>
   </div>
 </footer>
+
 
 
 

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -81,7 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -90,6 +96,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -103,9 +110,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: R Internals</span>
     </a>
@@ -117,73 +124,65 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="./../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Manuals</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
         <li>
-    <a class="dropdown-item" href="./../r-intro/index.html" rel="" target="">
+    <a class="dropdown-item" href="./../r-intro/index.html">
  <span class="dropdown-text">An Introduction to R</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-data/index.html" rel="" target="">
+    <a class="dropdown-item" href="./../r-data/index.html">
  <span class="dropdown-text">R Data Import/Export</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-admin/index.html" rel="" target="">
+    <a class="dropdown-item" href="./../r-admin/index.html">
  <span class="dropdown-text">R Installation and Administration</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-exts/index.html" rel="" target="">
+    <a class="dropdown-item" href="./../r-exts/index.html">
  <span class="dropdown-text">Writing R Extensions</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-lang/index.html" rel="" target="">
+    <a class="dropdown-item" href="./../r-lang/index.html">
  <span class="dropdown-text">R Language Definition</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./../r-ints/index.html" rel="" target="">
+    <a class="dropdown-item" href="./../r-ints/index.html">
  <span class="dropdown-text">R Internals</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./../about.html" rel="" target="">
- <span class="menu-text">About</span></a>
+    <a class="nav-link" href="./../about.html"> 
+<span class="menu-text">About</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Graphics-Devices.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Graphics</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Graphics-Devices.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Graphics</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -279,7 +278,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -325,10 +324,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
 
-<div class="page-columns page-full"><p>R’s graphics internals were re-designed to enable multiple graphics systems to be installed on top on the graphics ‘engine’ – currently there are two such systems, one supporting ‘base’ graphics (based on that in S and whose R code<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> is in package <strong>graphics</strong>) and one implemented in package <strong>grid</strong>.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;The C code is in files <code>base.c</code>, <code>graphics.c</code>, <code>par.c</code>, <code>plot.c</code> and <code>plot3d.c</code> in directory <code>src/main</code>.</p></li></div></div>
-<p>Some notes on the historical changes can be found at <a href="https://www.stat.auckland.ac.nz/~paul/R/basegraph.html" class="uri">https://www.stat.auckland.ac.nz/~paul/R/basegraph.html</a> and <a href="https://www.stat.auckland.ac.nz/~paul/R/graphicsChanges.html" class="uri">https://www.stat.auckland.ac.nz/~paul/R/graphicsChanges.html</a>.</p>
+
+<p>R’s graphics internals were re-designed to enable multiple graphics systems to be installed on top on the graphics ‘engine’ – currently there are two such systems, one supporting ‘base’ graphics (based on that in S and whose R code<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> is in package <strong>graphics</strong>) and one implemented in package <strong>grid</strong>.</p>
+<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;The C code is in files <code>base.c</code>, <code>graphics.c</code>, <code>par.c</code>, <code>plot.c</code> and <code>plot3d.c</code> in directory <code>src/main</code>.</p></div><p>Some notes on the historical changes can be found at <a href="https://www.stat.auckland.ac.nz/~paul/R/basegraph.html" class="uri">https://www.stat.auckland.ac.nz/~paul/R/basegraph.html</a> and <a href="https://www.stat.auckland.ac.nz/~paul/R/graphicsChanges.html" class="uri">https://www.stat.auckland.ac.nz/~paul/R/graphicsChanges.html</a>.</p>
 <p>At the lowest level is a graphics device, which manages a plotting surface (a screen window or a representation to be written to a file). This implements a set of graphics primitives, to ‘draw’</p>
 <ul>
 <li>a circle, optionally filled</li>
@@ -358,8 +359,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>capture the current contents of the device as a raster image.</li>
 <li>close the device.</li>
 </ul>
-<div class="page-columns page-full"><p>The device also sets a number of variables, mainly Boolean flags indicating its capabilities. Devices work entirely in ‘device units’ which are up to its developer: they can be in pixels, big points (1/72 inch), twips, …, and can differ<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> in the <code>x</code> and <code>y</code> directions.</p><div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;although that needs to be handled carefully, as for example the <code>circle</code> callback is given a radius (and that should be interpreted as in the x units).</p></li></div></div>
-<p>The next layer up is the graphics ‘engine’ that is the main interface to the device (although the graphics subsystems do talk directly to devices). This is responsible for clipping lines, rectangles and polygons, converting the <code>pch</code> values <code>0...26</code> to sets of lines/circles, centring (and otherwise adjusting) text, rendering mathematical expressions (‘plotmath’) and mapping colour descriptions such as names to the internal representation.</p>
+<p>The device also sets a number of variables, mainly Boolean flags indicating its capabilities. Devices work entirely in ‘device units’ which are up to its developer: they can be in pixels, big points (1/72 inch), twips, …, and can differ<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> in the <code>x</code> and <code>y</code> directions.</p>
+<div class="no-row-height column-margin column-container"><p><sup>2</sup>&nbsp;although that needs to be handled carefully, as for example the <code>circle</code> callback is given a radius (and that should be interpreted as in the x units).</p></div><p>The next layer up is the graphics ‘engine’ that is the main interface to the device (although the graphics subsystems do talk directly to devices). This is responsible for clipping lines, rectangles and polygons, converting the <code>pch</code> values <code>0...26</code> to sets of lines/circles, centring (and otherwise adjusting) text, rendering mathematical expressions (‘plotmath’) and mapping colour descriptions such as names to the internal representation.</p>
 <p>Another function of the engine is to manage display lists and snapshots. Some but not all instances of graphics devices maintain display lists, a ‘list’ of operations that have been performed on the device to produce the current plot (since the device was opened or the plot was last cleared, e.g.&nbsp;by <code>plot.new</code>). Screen devices generally maintain a display list to handle repaint and resize events whereas file-based formats do not—display lists are also used to implement <code>dev.copy()</code> and friends. The display list is a pairlist of <code>.Internal</code> (base graphics) or <code>.Call.graphics</code> (grid graphics) calls, which means that the C code implementing a graphics operation will be re-called when the display list is replayed: apart from the part which records the operation if successful.</p>
 <p>Snapshots of the current graphics state are taken by <code>GEcreateSnapshot</code> and replayed later in the session by <code>GEplaySnapshot</code>. These are used by <code>recordPlot()</code>, <code>replayPlot()</code> and the GUI menus of the <code>windows()</code> device. The ‘state’ includes the display list.</p>
 <p>The top layer comprises the graphics subsystems. Although there is provision for 24 subsystems since about 2001, currently still only two exist, ‘base’ and ‘grid’. The base subsystem is registered with the engine when R is initialized, and unregistered (via <code>KillAllDevices</code>) when an R session is shut down. The grid subsystem is registered in its <code>.onLoad</code> function and unregistered in the <code>.onUnload</code> function. The graphics subsystem may also have ‘state’ information saved in a snapshot (currently base does and grid does not).</p>
@@ -386,8 +387,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    GESystemDesc <span class="op">*</span>gesd<span class="op">[</span>MAX_GRAPHICS_SYSTEMS<span class="op">];</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    Rboolean ask<span class="op">;</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="page-columns page-full"><p>So this is essentially a device structure plus information about the device maintained by the graphics engine and normally<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> visible to the engine and not to the device. Type <code>pGEDevDesc</code> is a pointer to this type.</p><div class="no-row-height column-margin column-container"><li id="fn3"><p><sup>3</sup>&nbsp;It is possible for the device to find the <code>GEDevDesc</code> which points to its <code>DevDesc</code>, and this is done often enough that there is a convenience function <code>desc2GEDesc</code> to do so.</p></li></div></div>
-<div class="page-columns page-full"><p>The graphics engine maintains an array of devices, as pointers to <code>GEDevDesc</code> structures. The array is of size 64 but the first element is always occupied by the <code>"null device"</code> and the final element is kept as NULL as a sentinel.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> This array is reflected in the R variable <code>.Devices</code>. Once a device is killed its element becomes available for reallocation (and its name will appear as <code>""</code> in <code>.Devices</code>). Exactly one of the devices is ‘active’: this is the the null device if no other device has been opened and not killed.</p><div class="no-row-height column-margin column-container"><li id="fn4"><p><sup>4</sup>&nbsp;Calling <code>R_CheckDeviceAvailable()</code> ensures there is a free slot or throws an error.</p></li></div></div>
+<p>So this is essentially a device structure plus information about the device maintained by the graphics engine and normally<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> visible to the engine and not to the device. Type <code>pGEDevDesc</code> is a pointer to this type.</p>
+<div class="no-row-height column-margin column-container"><p><sup>3</sup>&nbsp;It is possible for the device to find the <code>GEDevDesc</code> which points to its <code>DevDesc</code>, and this is done often enough that there is a convenience function <code>desc2GEDesc</code> to do so.</p><p><sup>4</sup>&nbsp;Calling <code>R_CheckDeviceAvailable()</code> ensures there is a free slot or throws an error.</p></div><p>The graphics engine maintains an array of devices, as pointers to <code>GEDevDesc</code> structures. The array is of size 64 but the first element is always occupied by the <code>"null device"</code> and the final element is kept as NULL as a sentinel.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> This array is reflected in the R variable <code>.Devices</code>. Once a device is killed its element becomes available for reallocation (and its name will appear as <code>""</code> in <code>.Devices</code>). Exactly one of the devices is ‘active’: this is the the null device if no other device has been opened and not killed.</p>
 <p>Each instance of a graphics device needs to set up a <code>GEDevDesc</code> structure by code very similar to</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    pGEDevDesc gdd;</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -461,8 +462,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>               <span class="dt">double</span><span class="op">*</span> ascent<span class="op">,</span> <span class="dt">double</span><span class="op">*</span> descent<span class="op">,</span> <span class="dt">double</span><span class="op">*</span> width<span class="op">,</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>               pDevDesc dd<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The <code>gc</code> parameter provides the graphics context, most importantly the current font and fontsize, and <code>dd</code> is a pointer to the active device’s structure.</p>
-<div class="page-columns page-full"><p>The <code>text</code> callback should plot <code>str</code> at <code>(x, y)</code><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> with an anti-clockwise rotation of <code>rot</code> degrees. (For <code>hadj</code> see below.) The interpretation for horizontal text is that the baseline is at <code>y</code> and the start is a <code>x</code>, so any left bearing for the first character will start at <code>x</code>.</p><div class="no-row-height column-margin column-container"><li id="fn5"><p><sup>5</sup>&nbsp;in device coordinates</p></li></div></div>
-<p>The <code>strWidth</code> callback computes the width of the string which it would occupy if plotted horizontally in the current font. (Width here is expected to include both (preferably) or neither of left and right bearings.)</p>
+<p>The <code>text</code> callback should plot <code>str</code> at <code>(x, y)</code><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> with an anti-clockwise rotation of <code>rot</code> degrees. (For <code>hadj</code> see below.) The interpretation for horizontal text is that the baseline is at <code>y</code> and the start is a <code>x</code>, so any left bearing for the first character will start at <code>x</code>.</p>
+<div class="no-row-height column-margin column-container"><p><sup>5</sup>&nbsp;in device coordinates</p></div><p>The <code>strWidth</code> callback computes the width of the string which it would occupy if plotted horizontally in the current font. (Width here is expected to include both (preferably) or neither of left and right bearings.)</p>
 <p>The <code>metricInfo</code> callback computes the size of a single character: <code>ascent</code> is the distance it extends above the baseline and <code>descent</code> how far it extends below the baseline. <code>width</code> is the amount by which the cursor should be advanced when the character is placed. For <code>ascent</code> and <code>descent</code> this is intended to be the bounding box of the ‘ink’ put down by the glyph and not the box which might be used when assembling a line of conventional text (it needs to be for e.g.&nbsp;<code>hat(beta)</code> to work correctly). However, the <code>width</code> is used in plotmath to advance to the next character, and so needs to include left and right bearings.</p>
 <p>The <em>interpretation</em> of <code>c</code> depends on the locale. In a single-byte locale values <code>32...255</code> indicate the corresponding character in the locale (if present). For the symbol font (as used by <code>graphics::par(font=5)</code>, <code>grid::gpar(fontface=5</code>) and by ‘plotmath’), values <code>32...126, 161...239, 241...254</code> indicate glyphs in the Adobe Symbol encoding. In a multibyte locale, <code>c</code> represents a Unicode point (except in the symbol font). So the function needs to include code like</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>    Rboolean Unicode <span class="ot">=</span> mbcslocale <span class="sc">&amp;&amp;</span> (gc<span class="ot">-&gt;</span>fontface <span class="sc">!=</span> <span class="dv">5</span>);</span>
@@ -488,9 +489,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* plotting character over the plotting point. */</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* Pure guesswork and eyeballing ... */</span></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    dd<span class="op">-&gt;</span>xCharOffset <span class="op">=</span>  <span class="dv">0</span><span class="er">.4900</span><span class="op">;</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    dd<span class="op">-&gt;</span>yCharOffset <span class="op">=</span>  <span class="dv">0</span><span class="er">.3333</span><span class="op">;</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    dd<span class="op">-&gt;</span>yLineBias <span class="op">=</span> <span class="dv">0</span><span class="er">.2</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    dd<span class="op">-&gt;</span>xCharOffset <span class="op">=</span>  <span class="fl">0.4900</span><span class="op">;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    dd<span class="op">-&gt;</span>yCharOffset <span class="op">=</span>  <span class="fl">0.3333</span><span class="op">;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    dd<span class="op">-&gt;</span>yLineBias <span class="op">=</span> <span class="fl">0.2</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>It seems that <code>xCharOffset</code> is not currently used, and <code>yCharOffset</code> is used by the base graphics system to set vertical alignment in <code>text()</code> when <code>pos</code> is specified, and in <code>identify()</code>. It is occasionally used by the graphic engine when attempting exact centring of text, such as character string values of <code>pch</code> in <code>points()</code> or <code>grid.points()</code>—however, it is only used when precise character metric information is not available or for multi-line strings.</p>
 <p><code>yLineBias</code> is used in the base graphics system in <code>axis()</code> and <code>mtext()</code> to provide a default for their <code>padj</code> argument.</p>
 <p>From <code>R_GE_version</code> 16 (<code>R_GE_glyphs</code>), there is also a <code>glyph</code> callback.</p>
@@ -555,8 +556,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Buffering on the screen device is achieved by running a timer, which when it fires copies the internal bitmap to the screen. This is set to fire every 500ms (by default) and is reset to 100ms after plotting activity.</p>
 <p>Repaint events are handled by copying the internal bitmap to the screen canvas (and then reinitializing the timer), unless there has been a resize. Resizes are handled by replaying the display list: this might not be necessary if a fixed canvas with scrollbars is being used, but that is the least popular of the three forms of resizing.</p>
 <p>Text on the device has moved to ‘Unicode’ (UCS-2) in recent years. UTF-8 is requested (<code>hasTextUTF8 = TRUE</code>) for standard text, and converted to UCS-2 in the plotting functions in file <code>src/extra/graphapp/gdraw.c</code>. However, GDI has no support for Unicode symbol fonts, and symbols are handled in Adobe Symbol encoding.</p>
-<div class="page-columns page-full"><p>There is support for translucent colours (with alpha channel between 0 and 255) was introduced on the screen device and bitmap devices.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> This is done by drawing on a further internal bitmap, <code>xd-&gt;bm2</code>, in the opaque version of the colour then alpha-blending that bitmap to <code>xd-&gt;bm</code>. The alpha-blending routine is in a separate DLL, <code>msimg32.dll</code>, which is loaded on first use. As small a rectangular region as reasonably possible is alpha-blended (this is rectangle <code>r</code> in the code), but things like mitre joins make estimation of a tight bounding box too much work for lines and polygonal boundaries. Translucent-coloured lines are not common, and the performance seems acceptable.</p><div class="no-row-height column-margin column-container"><li id="fn6"><p><sup>6</sup>&nbsp;It is technically possible to use alpha-blending on metafile devices such as printers, but it seems few drivers have support for this.</p></li></div></div>
-<p>The support for a transparent background in <code>png()</code> predates full alpha-channel support in <code>libpng</code> (let alone in PNG viewers), so makes use of the limited transparency support in earlier versions of PNG. Where 24-bit colour is used, this is done by marking a single colour to be rendered as transparent. R chose <code>#fdfefd</code>, and uses this as the background colour (in <code>GA_NewPage</code> if the specified background colour is transparent (and all non-opaque background colours are treated as transparent). So this works by marking that colour in the PNG file, and viewers without transparency support see a slightly-off-white background, as if there were a near-white canvas. Where a palette is used in the PNG file (if less than 256 colours were used) then this colour is recorded with full transparency and the remaining colours as opaque. If 32-bit colour were available then we could add a full alpha channel, but this is dependent on the graphics hardware and undocumented properties of GDI.</p>
+<p>There is support for translucent colours (with alpha channel between 0 and 255) was introduced on the screen device and bitmap devices.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> This is done by drawing on a further internal bitmap, <code>xd-&gt;bm2</code>, in the opaque version of the colour then alpha-blending that bitmap to <code>xd-&gt;bm</code>. The alpha-blending routine is in a separate DLL, <code>msimg32.dll</code>, which is loaded on first use. As small a rectangular region as reasonably possible is alpha-blended (this is rectangle <code>r</code> in the code), but things like mitre joins make estimation of a tight bounding box too much work for lines and polygonal boundaries. Translucent-coloured lines are not common, and the performance seems acceptable.</p>
+<div class="no-row-height column-margin column-container"><p><sup>6</sup>&nbsp;It is technically possible to use alpha-blending on metafile devices such as printers, but it seems few drivers have support for this.</p></div><p>The support for a transparent background in <code>png()</code> predates full alpha-channel support in <code>libpng</code> (let alone in PNG viewers), so makes use of the limited transparency support in earlier versions of PNG. Where 24-bit colour is used, this is done by marking a single colour to be rendered as transparent. R chose <code>#fdfefd</code>, and uses this as the background colour (in <code>GA_NewPage</code> if the specified background colour is transparent (and all non-opaque background colours are treated as transparent). So this works by marking that colour in the PNG file, and viewers without transparency support see a slightly-off-white background, as if there were a near-white canvas. Where a palette is used in the PNG file (if less than 256 colours were used) then this colour is recorded with full transparency and the remaining colours as opaque. If 32-bit colour were available then we could add a full alpha channel, but this is dependent on the graphics hardware and undocumented properties of GDI.</p>
 </section>
 </section>
 <section id="colours" class="level2 section" data-number="6.2">
@@ -683,10 +684,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -696,8 +716,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -710,6 +739,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -753,6 +901,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -778,6 +927,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -835,32 +1010,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          // default icon
-          link.classList.add("external");
-      }
-    }
 });
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./Files.html" class="pagination-link">
+      <a href="./Files.html" class="pagination-link  aria-label=" &lt;span="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Files</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./GUI-consoles.html" class="pagination-link">
+      <a href="./GUI-consoles.html" class="pagination-link" aria-label="<span class='chapter-number'>7</span>&nbsp; <span class='chapter-title'>GUI consoles</span>">
         <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">GUI consoles</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
@@ -868,13 +1027,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></div>   
+    <div class="nav-footer-left">
+<p>A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></p>
+</div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
-    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+    <div class="nav-footer-right">
+<p>Built using <a href="https://quarto.org">Quarto</a></p>
+</div>
   </div>
 </footer>
+
 
 
 
