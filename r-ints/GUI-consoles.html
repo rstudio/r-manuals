@@ -279,7 +279,7 @@ ul.task-list li input[type="checkbox"] {
 
 <p>The standard R front-ends are programs which run in a terminal, but there are several ways to provide a GUI console.</p>
 <p>This can be done by a package which is loaded from terminal-based R and launches a console as part of its startup code or by the user running a specific function: package <a href="https://CRAN.R-project.org/package=Rcmdr"><strong>Rcmdr</strong></a> is a well-known example with a Tk-based GUI.</p>
-<p>There used to be a Gtk-based console invoked by <code>R --gui=GNOME</code>: this relied on special-casing in the front-end shell script to launch a different executable. There still is <code>R --gui=Tk</code>, which starts terminal-based R and runs <code>tcltk::tkStartGui()</code> as part of the modified startup sequence.</p>
+<p>There used to be a GTK-based console invoked by <code>R --gui=GNOME</code>: this relied on special-casing in the front-end shell script to launch a different executable. There still is <code>R --gui=Tk</code>, which starts terminal-based R and runs <code>tcltk::tkStartGui()</code> as part of the modified startup sequence.</p>
 <p>However, the main way to run a GUI console is to launch a separate program which runs embedded R: this is done by <code>Rgui.exe</code> on Windows and <code>R.app</code> on macOS. The first is an integral part of R and the code for the console is currently in <code>R.dll</code>.</p>
 <section id="r.app" class="level2 section page-columns page-full" data-number="7.1">
 <h2 class="section anchored" data-number="7.1" data-anchor-id="r.app"><span class="header-section-number">7.1</span> R.app</h2>
