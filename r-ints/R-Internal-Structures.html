@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -308,8 +308,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#autoprinting" id="toc-autoprinting" class="nav-link" data-scroll-target="#autoprinting"><span class="header-section-number">1.6</span> Autoprinting</a></li>
   <li><a href="#the-write-barrier-and-the-garbage-collector" id="toc-the-write-barrier-and-the-garbage-collector" class="nav-link" data-scroll-target="#the-write-barrier-and-the-garbage-collector"><span class="header-section-number">1.7</span> The write barrier and the garbage collector</a></li>
   <li><a href="#serialization-formats" id="toc-serialization-formats" class="nav-link" data-scroll-target="#serialization-formats"><span class="header-section-number">1.8</span> Serialization Formats</a></li>
-  <li><a href="#encodings-for-charsxps" id="toc-encodings-for-charsxps" class="nav-link" data-scroll-target="#encodings-for-charsxps"><span class="header-section-number">1.9</span> Encodings for CHARSXPs</a></li>
-  <li><a href="#the-charsxp-cache" id="toc-the-charsxp-cache" class="nav-link" data-scroll-target="#the-charsxp-cache"><span class="header-section-number">1.10</span> The CHARSXP cache</a></li>
+  <li><a href="#encodings-for-charsxps" id="toc-encodings-for-charsxps" class="nav-link" data-scroll-target="#encodings-for-charsxps"><span class="header-section-number">1.9</span> Encodings for <code>CHARSXP</code>s</a></li>
+  <li><a href="#the-charsxp-cache" id="toc-the-charsxp-cache" class="nav-link" data-scroll-target="#the-charsxp-cache"><span class="header-section-number">1.10</span> The <code>CHARSXP</code> cache</a></li>
   <li><a href="#warnings-and-errors" id="toc-warnings-and-errors" class="nav-link" data-scroll-target="#warnings-and-errors"><span class="header-section-number">1.11</span> Warnings and errors</a></li>
   <li><a href="#s4-objects" id="toc-s4-objects" class="nav-link" data-scroll-target="#s4-objects"><span class="header-section-number">1.12</span> S4 objects</a>
   <ul class="collapse">
@@ -320,7 +320,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#memory-allocators" id="toc-memory-allocators" class="nav-link" data-scroll-target="#memory-allocators"><span class="header-section-number">1.13</span> Memory allocators</a>
   <ul class="collapse">
-  <li><a href="#internals-of-r_alloc" id="toc-internals-of-r_alloc" class="nav-link" data-scroll-target="#internals-of-r_alloc"><span class="header-section-number">1.13.1</span> Internals of R_alloc</a></li>
+  <li><a href="#internals-of-r_alloc" id="toc-internals-of-r_alloc" class="nav-link" data-scroll-target="#internals-of-r_alloc"><span class="header-section-number">1.13.1</span> Internals of <code>R_alloc</code></a></li>
   </ul></li>
   <li><a href="#internal-use-of-global-and-base-environments" id="toc-internal-use-of-global-and-base-environments" class="nav-link" data-scroll-target="#internal-use-of-global-and-base-environments"><span class="header-section-number">1.14</span> Internal use of global and base environments</a>
   <ul class="collapse">
@@ -669,7 +669,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="allocation-classes" class="level3 subsection" data-number="1.1.4">
 <h3 class="subsection anchored" data-number="1.1.4" data-anchor-id="allocation-classes"><span class="header-section-number">1.1.4</span> Allocation classes</h3>
-<p>As we have seen, the field <code>gccls</code> in the header is three bits to label up to 8 classes of nodes. Non-vector nodes are of class 0, and ‘small’ vector nodes are of classes 1 to 5, with a class for custom allocator vector nodes 6 and ‘large’ vector nodes being of class 7. The ‘small’ vector nodes are able to store vector data of up to 8, 16, 32, 64 and 128 bytes: larger vectors are <code>malloc</code>-ed individually whereas the ‘small’ nodes are allocated from pages of about 2000 bytes. Vector nodes allocated using custom allocators (via <code>allocVector3</code>) are not counted in the gc memory usage statistics since their memory semantics is not under R’s control and may be non-standard (e.g., memory could be partially shared across nodes).</p>
+<p>As we have seen, the field <code>gccls</code> in the header is three bits to label up to 8 classes of nodes. Non-vector nodes are of class 0, and ‘small’ vector nodes are of classes 1 to 5, with a class for custom allocator vector nodes 6 and ‘large’ vector nodes being of class 7. The ‘small’ vector nodes are able to store vector data of up to 8, 16, 32, 64 and 128 bytes: larger vectors are <code>malloc</code>-ed individually whereas the ‘small’ nodes are allocated from pages of about 2000 bytes. Vector nodes allocated using custom allocators (via <code>allocVector3</code>) are not counted in the GC memory usage statistics since their memory semantics is not under R’s control and may be non-standard (e.g., memory could be partially shared across nodes).</p>
 </section>
 </section>
 <section id="environments-and-variable-lookup" class="level2 section page-columns page-full" data-number="1.2">
@@ -831,13 +831,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Some objects are written as if they were <code>SEXPTYPE</code>s: such pseudo-<code>SEXPTYPE</code>s cover <code>R_NilValue</code>, <code>R_EmptyEnv</code>, <code>R_BaseEnv</code>, <code>R_GlobalEnv</code>, <code>R_UnboundValue</code>, <code>R_MissingArg</code> and <code>R_BaseNamespace</code>.</p>
 <p>For all <code>SEXPTYPE</code>s except <code>NILSXP</code>, <code>SYMSXP</code> and <code>ENVSXP</code> serialization starts with an integer with the <code>SEXPTYPE</code> in bits 0:7<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> followed by the object bit, two bits indicating if there are any attributes and if there is a tag (for the pairlist types), an unused bit and then the <code>gp</code> field<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> in bits 12:27. Pairlist-like objects write their attributes (if any), tag (if any), CAR and then CDR (using tail recursion): other objects write their attributes after themselves. Atomic vector objects write their length followed by the data: generic vector-list objects write their length followed by a call to <code>WriteItem</code> for each element. The code for <code>CHARSXP</code>s special-cases <code>NA_STRING</code> and writes it as length <code>-1</code> with no data. Lengths no more than <code>2^31 - 1</code> are written in that way and larger lengths (which only occur on 64-bit systems) as <code>-1</code> followed by the upper and lower 32-bits as integers (regarded as unsigned).</p>
 <div class="no-row-height column-margin column-container"><p><sup>7</sup>&nbsp;only bits 0:4 are currently used for <code>SEXPTYPE</code>s but values 241:255 are used for pseudo-<code>SEXPTYPE</code>s.</p><p><sup>8</sup>&nbsp;Currently the only relevant bits are 0:1, 4, 14:15.</p></div><p>Environments are treated in several ways: as we have seen, some are written as specific pseudo-<code>SEXPTYPE</code>s. Package and namespace environments are written with pseudo-<code>SEXPTYPE</code>s followed by the name. ‘Normal’ environments are written out as <code>ENVSXP</code>s with an integer indicating if the environment is locked followed by the enclosure, frame, ‘tag’ (the hash table) and attributes.</p>
-<p>In the ‘XDR’ format integers and doubles are written in bigendian order: however the format is not fully XDR (as defined in RFC 1832) as byte quantities (such as the contents of <code>CHARSXP</code> and <code>RAWSXP</code> types) are written as-is and not padded to a multiple of four bytes.</p>
+<p>In the ‘XDR’ format integers and doubles are written in big-endian order: however the format is not fully XDR (as defined in RFC 1832) as byte quantities (such as the contents of <code>CHARSXP</code> and <code>RAWSXP</code> types) are written as-is and not padded to a multiple of four bytes.</p>
 <p>The ‘ASCII’ format writes 7-bit characters. Integers are formatted with <code>%d</code> (except that <code>NA_integer_</code> is written as <code>NA</code>), doubles formatted with <code>%.16g</code> (plus <code>NA</code>, <code>Inf</code> and <code>-Inf</code>) and bytes with <code>%02x</code>. Strings are written using standard escapes (e.g.&nbsp;<code>\t</code> and <code>\013</code>) for non-printing and non-ASCII bytes.</p>
 <p>Version-3 serialization extends version-2 by support for custom serialization of <code>ALTREP</code> framework objects. It also stores the current native encoding at serialization time, so that unflagged strings can be converted if unserialized in R running under different native encoding.</p>
 </section>
 <section id="encodings-for-charsxps" class="level2 section page-columns page-full" data-number="1.9">
-<h2 class="section anchored" data-number="1.9" data-anchor-id="encodings-for-charsxps"><span class="header-section-number">1.9</span> Encodings for CHARSXPs</h2>
-<p>Character data in R are stored in the sexptype <code>CHARSXP</code>.</p>
+<h2 class="section anchored" data-number="1.9" data-anchor-id="encodings-for-charsxps"><span class="header-section-number">1.9</span> Encodings for <code>CHARSXP</code>s</h2>
+<p>Character data in R are stored in the <code>SEXPTYPE</code> <code>CHARSXP</code>.</p>
 <p>There is support for encodings other than that of the current locale, in particular UTF-8 and the multi-byte encodings used on Windows for CJK languages. A limited means to indicate the encoding of a <code>CHARSXP</code> is <em>via</em> two of the ‘general purpose’ bits which are used to declare the encoding to be either Latin-1 or UTF-8. (Note that it is possible for a character vector to contain elements in different encodings.) Both printing and plotting notice the declaration and convert the string to the current locale (possibly using <code>&lt;xx&gt;</code> to display in hexadecimal bytes that are not valid in the current locale). Many (but not all) of the character manipulation functions will either preserve the declaration or re-encode the character string.</p>
 <p>Strings that refer to the OS such as file names need to be passed through a wide-character interface on some OSes (e.g.&nbsp;Windows).</p>
 <p>When are character strings declared to be of known encoding? One way is to do so directly via <code>Encoding</code>. The parser declares the encoding if this is known, either via the <code>encoding</code> argument to <code>parse</code> or from the locale within which parsing is being done at the R command line. (Other ways are recorded on the help page for <code>Encoding</code>.)</p>
@@ -853,7 +853,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Older versions of Windows still rely on the previous encoding support where the native encoding cannot be UTF-8. R 4.2 requires UCRT to work, but UCRT can be installed on Windows since Vista SP2 and Windows Server 2008 SP2. It is shipped with Windows since Windows 10 and Windows Server 2016.</p>
 </section>
 <section id="the-charsxp-cache" class="level2 section" data-number="1.10">
-<h2 class="section anchored" data-number="1.10" data-anchor-id="the-charsxp-cache"><span class="header-section-number">1.10</span> The CHARSXP cache</h2>
+<h2 class="section anchored" data-number="1.10" data-anchor-id="the-charsxp-cache"><span class="header-section-number">1.10</span> The <code>CHARSXP</code> cache</h2>
 <p>There is a global cache for <code>CHARSXP</code>s created by <code>mkChar</code> — the cache ensures that most <code>CHARSXP</code>s with the same contents share storage (‘contents’ including any declared encoding). Not all <code>CHARSXP</code>s are part of the cache – notably <code>NA_STRING</code> is not. <code>CHARSXP</code>s reloaded from the <code>save</code> formats of R prior to 0.99.0 are not cached (since the code used is frozen and very few examples still exist).</p>
 <p>The cache records the encoding of the string as well as the bytes: all requests to create a <code>CHARSXP</code> should be <em>via</em> a call to <code>mkCharLenCE</code>. Any encoding given in <code>mkCharLenCE</code> call will be ignored if the string’s bytes are all ASCII characters.</p>
 </section>
@@ -914,7 +914,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>All of the methods of memory allocation mentioned so far are relatively expensive. All R platforms support <code>alloca</code>, and in almost all cases<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> this is managed by the compiler, allocates memory on the C stack and is very efficient.</p>
 <div class="no-row-height column-margin column-container"><p><sup>14</sup>&nbsp;but apparently not on Windows.</p></div><p>There are two disadvantages in using <code>alloca</code>. First, it is fragile and care is needed to avoid writing (or even reading) outside the bounds of the allocation block returned. Second, it increases the danger of overflowing the C stack. It is suggested that it is only used for smallish allocations (up to tens of thousands of bytes), and that</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">R_CheckStack</span>();</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>is called immediately after the allocation (as R’s stack checking mechanism will warn far enough from the stack limit to allow for modest use of alloca). (<code>do_makeunique</code> in file <code>src/main/unique.c</code> provides an example of both points.)</p>
+<p>is called immediately after the allocation (as R’s stack checking mechanism will warn far enough from the stack limit to allow for modest use of <code>alloca</code>). (<code>do_makeunique</code> in file <code>src/main/unique.c</code> provides an example of both points.)</p>
 <p>There is an alternative check,</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">R_CheckStack2</span>(size_t extra);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>to be called immediately <em>before</em> trying an allocation of <code>extra</code> bytes.</p>
@@ -936,7 +936,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">        default allocated for future use */</span></span>
 <span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>   R_FreeStringBufferL<span class="op">(&amp;</span>ex_buff<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="internals-of-r_alloc" class="level3 subsection" data-number="1.13.1">
-<h3 class="subsection anchored" data-number="1.13.1" data-anchor-id="internals-of-r_alloc"><span class="header-section-number">1.13.1</span> Internals of R_alloc</h3>
+<h3 class="subsection anchored" data-number="1.13.1" data-anchor-id="internals-of-r_alloc"><span class="header-section-number">1.13.1</span> Internals of <code>R_alloc</code></h3>
 <p>The memory used by <code>R_alloc</code> is allocated as R vectors, of type <code>RAWSXP</code>. Thus the allocation is in units of 8 bytes, and is rounded up. A request for zero bytes currently returns <code>NULL</code> (but this should not be relied on). For historical reasons, in all other cases 1 byte is added before rounding up so the allocation is always 1–8 bytes more than was asked for: again this should not be relied on.</p>
 <p>The vectors allocated are protected via the setting of <code>R_VStack</code>, as the garbage collector marks everything that can be reached from that location. When a vector is <code>R_alloc</code>ated, its <code>ATTRIB</code> pointer is set to the current <code>R_VStack</code>, and <code>R_VStack</code> is set to the latest allocation. Thus <code>R_VStack</code> is a single-linked chain of the vectors currently allocated via <code>R_alloc</code>. Function <code>vmaxset</code> resets the location <code>R_VStack</code>, and should be to a value that has previously be obtained <em>via</em> <code>vmaxget</code>: allocations after the value was obtained will no longer be protected and hence available for garbage collection.</p>
 </section>
@@ -1421,12 +1421,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link  aria-label=" r="" internals"="">
+      <a href="./index.html" class="pagination-link" aria-label="R Internals">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">R Internals</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./_002eInternal-vs-_002ePrimitive.html" class="pagination-link" aria-label="<span class='chapter-number'>2</span>&nbsp; <span class='chapter-title'>`.Internal` vs `.Primitive`</span>">
+      <a href="./_002eInternal-vs-_002ePrimitive.html" class="pagination-link" aria-label="`.Internal` vs `.Primitive`">
         <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><code>.Internal</code> vs <code>.Primitive</code></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -427,7 +427,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 <dt><code>log(y) ~ x1 + x2</code></dt>
 <dd>
-<p>Multiple regression of the transformed variable, log(y), on <em>x1</em> and <em>x2</em> (with an implicit intercept term).</p>
+<p>Multiple regression of the transformed variable,log(y), on <em>x1</em> and <em>x2</em> (with an implicit intercept term).</p>
 </dd>
 <dt><code>y ~ poly(x,2)</code></dt>
 <dd>
@@ -559,7 +559,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="contrasts" class="level3 subsection" data-number="11.1.2">
 <h3 class="subsection anchored" data-number="11.1.2" data-anchor-id="contrasts"><span class="header-section-number">11.1.2</span> Contrasts</h3>
 <p>We need at least some idea how the model formulae specify the columns of the model matrix. This is easy if we have continuous variables, as each provides one column of the model matrix (and the intercept will provide a column of ones if included in the model).</p>
-<p>What about a <em>k</em>-level factor <code>A</code>? The answer differs for unordered and ordered factors. For <em>unordered</em> factors <em>k - 1</em> columns are generated for the indicators of the second, …, <em>k</em>th levels of the factor. (Thus the implicit parameterization is to contrast the response at each level with that at the first.) For <em>ordered</em> factors the <em>k - 1</em> columns are the orthogonal polynomials on <em>1, …, k</em>, omitting the constant term.</p>
+<p>What about a <em>k</em>-level factor <code>A</code>? The answer differs for unordered and ordered factors. For <em>unordered</em> factors <em>k - 1</em> columns are generated for the indicators of the second, …, <em>k</em>-th levels of the factor. (Thus the implicit parameterization is to contrast the response at each level with that at the first.) For <em>ordered</em> factors the <em>k - 1</em> columns are the orthogonal polynomials on <em>1, …, k</em>, omitting the constant term.</p>
 <p>Although the answer is already complicated, it is not the whole story. First, if the intercept is omitted in a model that contains a factor term, the first such term is encoded into <em>k</em> columns giving the indicators for all the levels. Second, the whole behavior can be changed by the <code>options</code> setting for <code>contrasts</code>. The default setting in R is</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">contrasts =</span> <span class="fu">c</span>(<span class="st">"contr.treatment"</span>, <span class="st">"contr.poly"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The main reason for mentioning this is that R and S have different defaults for unordered factors, S using Helmert contrasts. So if you need to compare your results to those of a textbook or paper which used <span class="small">S-PLUS</span>, you will need to set</p>
@@ -654,13 +654,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="display">
 <div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>eta <span class="ot">=</span> beta_1 x_1 <span class="sc">+</span> beta_2 x_2 <span class="sc">+</span> ... <span class="sc">+</span> beta_p x_p,</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>hence x_i has no influence on the distribution of <em>y</em> if and only if beta_i is zero.</p></li>
+<p>hence <em>x_i</em> has no influence on the distribution of <em>y</em> if and only if beta_i is zero.</p></li>
 <li><p>The distribution of <em>y</em> is of the form</p>
 <div class="display">
 <div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f_Y</span>(y; mu, phi)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="ot">=</span> <span class="fu">exp</span>((A<span class="sc">/</span>phi) <span class="sc">*</span> (y <span class="fu">lambda</span>(mu) <span class="sc">-</span> <span class="fu">gamma</span>(<span class="fu">lambda</span>(mu))) <span class="sc">+</span> <span class="fu">tau</span>(y, phi))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>where phi is a <em>scale parameter</em> (possibly known), and is constant for all observations, <em>A</em> represents a prior weight, assumed known but possibly varying with the observations, and $\mu$ is the mean of <em>y</em>. So it is assumed that the distribution of <em>y</em> is determined by its mean and possibly a scale parameter as well.</p></li>
+<p>where phi is a <em>scale parameter</em> (possibly known), and is constant for all observations, <em>A</em> represents a prior weight, assumed known but possibly varying with the observations, and mu is the mean of <em>y</em>.</p>
+<p>So it is assumed that the distribution of <em>y</em> is determined by its mean and possibly a scale parameter as well.</p></li>
 <li><p>The mean, mu, is a smooth invertible function of the linear predictor:</p>
 <div class="display">
 <div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">=</span> <span class="fu">m</span>(eta),    eta <span class="ot">=</span> m<span class="sc">^</span>{<span class="sc">-</span><span class="dv">1</span>}(mu) <span class="ot">=</span> <span class="fu">ell</span>(mu)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -792,7 +793,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="quasi-likelihood-models" class="level3 subsubheading" data-number="11.6.6">
 <h3 class="subsubheading anchored" data-number="11.6.6" data-anchor-id="quasi-likelihood-models"><span class="header-section-number">11.6.6</span> Quasi-likelihood models</h3>
-<p>For all families the variance of the response will depend on the mean and will have the scale parameter as a multiplier. The form of dependence of the variance on the mean is a characteristic of the response distribution; for example for the poisson distribution Var(y) = mu.</p>
+<p>For all families the variance of the response will depend on the mean and will have the scale parameter as a multiplier. The form of dependence of the variance on the mean is a characteristic of the response distribution; for example for the Poisson distribution Var(y) = mu.</p>
 <p>For quasi-likelihood estimation and inference the precise response distribution is not specified, but rather only a link function and the form of the variance function as it depends on the mean. Since quasi-likelihood estimation uses formally identical techniques to those for the gaussian distribution, this family provides a way of fitting gaussian models with non-standard link functions or variance functions, incidentally.</p>
 <p>For example, consider fitting the non-linear regression y = theta_1 z_1 / (z_2 - theta_2) + e which may be written alternatively as y = 1 / (beta_1 x_1 + beta_2 x_2) + e where x_1 = z_2/z_1, x_2 = -1/z_1, beta_1 = 1/theta_1, and beta_2 = theta_2/theta_1. Supposing a suitable data frame to be set up we could fit this non-linear regression as</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> nlfit <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">-</span> <span class="dv">1</span>,</span>
@@ -1297,12 +1298,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./Writing-your-own-functions.html" class="pagination-link  aria-label=" &lt;span="" your="" own="" functions&lt;="" span&gt;"="">
+      <a href="./Writing-your-own-functions.html" class="pagination-link" aria-label="Writing your own functions">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Writing your own functions</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./Graphics.html" class="pagination-link" aria-label="<span class='chapter-number'>12</span>&nbsp; <span class='chapter-title'>Graphical procedures</span>">
+      <a href="./Graphics.html" class="pagination-link" aria-label="Graphical procedures">
         <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Graphical procedures</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

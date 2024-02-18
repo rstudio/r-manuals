@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -447,13 +447,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">par</span>(<span class="at">pch=</span><span class="st">"*"</span>, ...)</span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  [more omissions]</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Less frequently, a function will need to refer to components of <code>...</code>. The expression <code>list(...)</code> evaluates all such arguments and returns them in a named list, while <code>..1</code>, <code>..2</code>, etc. evaluate them one at a time, with <code>..n</code> returning the n’th unmatched argument.</p>
+<p>Less frequently, a function will need to refer to components of <code>...</code>. The expression <code>list(...)</code> evaluates all such arguments and returns them in a named list, while <code>..1</code>, <code>..2</code>, etc. evaluate them one at a time, with <code>..n</code> returning the n-th unmatched argument.</p>
 </section>
 <section id="assignments-within-functions" class="level2 section" data-number="10.5">
 <h2 class="section anchored" data-number="10.5" data-anchor-id="assignments-within-functions"><span class="header-section-number">10.5</span> Assignments within functions</h2>
 <p>Note that <em>any ordinary assignments done within the function are local and temporary and are lost after exit from the function</em>. Thus the assignment <code>X &lt;- qr(X)</code> does not affect the value of the argument in the calling program.</p>
 <p>To understand completely the rules governing the scope of R assignments the reader needs to be familiar with the notion of an evaluation <em>frame</em>. This is a somewhat advanced, though hardly difficult, topic and is not covered further here.</p>
-<p>If global and permanent assignments are intended within a function, then either the “superassignment” operator, <code>&lt;&lt;-</code> or the function <code>assign()</code> can be used. See the <code>help</code> document for details.</p>
+<p>If global and permanent assignments are intended within a function, then either the ‘superassignment’ operator, <code>&lt;&lt;-</code> or the function <code>assign()</code> can be used. See the <code>help</code> document for details.</p>
 </section>
 <section id="more-advanced-examples" class="level2 section" data-number="10.6">
 <h2 class="section anchored" data-number="10.6" data-anchor-id="more-advanced-examples"><span class="header-section-number">10.6</span> More advanced examples</h2>
@@ -1064,12 +1064,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./Loops-and-conditional-execution.html" class="pagination-link  aria-label=" &lt;span="" loops="" and="" conditional="" execution&lt;="" span&gt;"="">
+      <a href="./Loops-and-conditional-execution.html" class="pagination-link" aria-label="Grouping, loops and conditional execution">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Grouping, loops and conditional execution</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./Statistical-models-in-R.html" class="pagination-link" aria-label="<span class='chapter-number'>11</span>&nbsp; <span class='chapter-title'>Statistical models in R</span>">
+      <a href="./Statistical-models-in-R.html" class="pagination-link" aria-label="Statistical models in R">
         <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Statistical models in R</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

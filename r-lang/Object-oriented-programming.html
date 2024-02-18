@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -293,7 +293,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#definition" id="toc-definition" class="nav-link active" data-scroll-target="#definition"><span class="header-section-number">5.1</span> Definition</a></li>
   <li><a href="#inheritance" id="toc-inheritance" class="nav-link" data-scroll-target="#inheritance"><span class="header-section-number">5.2</span> Inheritance</a></li>
   <li><a href="#method-dispatching" id="toc-method-dispatching" class="nav-link" data-scroll-target="#method-dispatching"><span class="header-section-number">5.3</span> Method dispatching</a></li>
-  <li><a href="#usemethod" id="toc-usemethod" class="nav-link" data-scroll-target="#usemethod"><span class="header-section-number">5.4</span> UseMethod</a></li>
+  <li><a href="#usemethod" id="toc-usemethod" class="nav-link" data-scroll-target="#usemethod"><span class="header-section-number">5.4</span> <code>UseMethod</code></a></li>
   <li><a href="#nextmethod" id="toc-nextmethod" class="nav-link" data-scroll-target="#nextmethod"><span class="header-section-number">5.5</span> <code>NextMethod</code></a></li>
   <li><a href="#group-methods" id="toc-group-methods" class="nav-link" data-scroll-target="#group-methods"><span class="header-section-number">5.6</span> Group methods</a></li>
   <li><a href="#writing-methods" id="toc-writing-methods" class="nav-link" data-scroll-target="#writing-methods"><span class="header-section-number">5.7</span> Writing methods</a></li>
@@ -357,7 +357,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="inheritance" class="level2 section" data-number="5.2">
 <h2 class="section anchored" data-number="5.2" data-anchor-id="inheritance"><span class="header-section-number">5.2</span> Inheritance</h2>
-<p>The class attribute of an object can have several elements. When a generic function is called the first inheritance is mainly handled through <code>NextMethod</code>. <code>NextMethod</code> determines the method currently being evaluated, finds the next class from th</p>
+<p>The class attribute of an object can have several elements. When a generic function is called the first inheritance is mainly handled through <code>NextMethod</code>. <code>NextMethod</code> determines the method currently being evaluated, finds the next class from the</p>
 <p>FIXME: something is missing here</p>
 </section>
 <section id="method-dispatching" class="level2 section" data-number="5.3">
@@ -367,7 +367,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Any object can have a <code>class</code> attribute. This attribute can have any number of elements. Each of these is a string that defines a class. When a generic function is invoked the class of its first argument is examined.</p>
 </section>
 <section id="usemethod" class="level2 section" data-number="5.4">
-<h2 class="section anchored" data-number="5.4" data-anchor-id="usemethod"><span class="header-section-number">5.4</span> UseMethod</h2>
+<h2 class="section anchored" data-number="5.4" data-anchor-id="usemethod"><span class="header-section-number">5.4</span> <code>UseMethod</code></h2>
 <p><code>UseMethod</code> is a special function and it behaves differently from other function calls. The syntax of a call to it is <code>UseMethod(generic, object)</code>, where <code>generic</code> is the name of the generic function, <code>object</code> is the object used to determine which method should be chosen. <code>UseMethod</code> can only be called from the body of a function.</p>
 <p><code>UseMethod</code> changes the evaluation model in two ways. First, when it is invoked it determines the next method (function) to be called. It then invokes that function using the current evaluation environment; this process will be described shortly. The second way in which <code>UseMethod</code> changes the evaluation environment is that it does not return control to the calling function. This means, that any statements after a call to <code>UseMethod</code> are guaranteed not to be executed.</p>
 <p>When <code>UseMethod</code> is invoked the generic function is the specified value in the call to <code>UseMethod</code>. The object to dispatch on is either the supplied second argument or the first argument to the current function. The class of the argument is determined and the first element of it is combined with the name of the generic to determine the appropriate method. So, if the generic had name <code>foo</code> and the class of the object is <code>"bar"</code>, then R will search for a method named <code>foo.bar</code>. If no such method exists then the inheritance mechanism described above is used to locate an appropriate method.</p>
@@ -834,12 +834,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./Functions.html" class="pagination-link  aria-label=" &lt;span="">
+      <a href="./Functions.html" class="pagination-link" aria-label="Functions">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Functions</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./Computing-on-the-language.html" class="pagination-link" aria-label="<span class='chapter-number'>6</span>&nbsp; <span class='chapter-title'>Computing on the language</span>">
+      <a href="./Computing-on-the-language.html" class="pagination-link" aria-label="Computing on the language">
         <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Computing on the language</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

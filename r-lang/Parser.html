@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -454,7 +454,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 </dl>
 <p>A single quote may also be embedded directly in a double-quote delimited string and vice versa.</p>
-<p>A ‘nul’ (<code>\0</code>) is not allowed in a character string, so using <code>\0</code> in a string constant terminates the constant (usually with a warning): further characters up to the closing quote are scanned but ignored.</p>
+<p>A NUL (<code>\0</code>) is not allowed in a character string, so using <code>\0</code> in a string constant terminates the constant (usually with a warning): further characters up to the closing quote are scanned but ignored.</p>
 </section>
 <section id="identifiers" class="level3 subsection" data-number="10.3.2">
 <h3 class="subsection anchored" data-number="10.3.2" data-anchor-id="identifiers"><span class="header-section-number">10.3.2</span> Identifiers</h3>
@@ -492,8 +492,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="special-operators" class="level3 subsection" data-number="10.3.4">
 <h3 class="subsection anchored" data-number="10.3.4" data-anchor-id="special-operators"><span class="header-section-number">10.3.4</span> Special operators</h3>
 <p>R allows user-defined infix operators. These have the form of a string of characters delimited by the <code>%</code> character. The string can contain any printable character except <code>%</code>. The escape sequences for strings do not apply here.</p>
-<p>Note that the following operators are predefined</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">%%</span> <span class="sc">%*%</span> <span class="sc">%/%</span> <span class="sc">%in%</span> <span class="sc">%o%</span> <span class="sc">%x%</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that the following operators are predefined:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">%%</span> <span class="sc">%*%</span> <span class="sc">%/%</span> <span class="sc">%in%</span> <span class="sc">%o%</span> <span class="sc">%x%</span> <span class="sc">%||%</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="separators" class="level3 subsection page-columns page-full" data-number="10.3.5">
 <h3 class="subsection anchored" data-number="10.3.5" data-anchor-id="separators"><span class="header-section-number">10.3.5</span> Separators</h3>
@@ -1069,7 +1069,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./Debugging.html" class="pagination-link  aria-label=" &lt;span="">
+      <a href="./Debugging.html" class="pagination-link" aria-label="Debugging">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Debugging</span></span>
       </a>          
   </div>

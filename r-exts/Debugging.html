@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -271,8 +271,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#debugging-r-code" id="toc-debugging-r-code" class="nav-link" data-scroll-target="#debugging-r-code"><span class="header-section-number">4.2</span> Debugging R code</a></li>
   <li><a href="#checking-memory-access" id="toc-checking-memory-access" class="nav-link" data-scroll-target="#checking-memory-access"><span class="header-section-number">4.3</span> Checking memory access</a>
   <ul class="collapse">
-  <li><a href="#using-gctorture" id="toc-using-gctorture" class="nav-link" data-scroll-target="#using-gctorture"><span class="header-section-number">4.3.1</span> Using gctorture</a></li>
-  <li><a href="#using-valgrind" id="toc-using-valgrind" class="nav-link" data-scroll-target="#using-valgrind"><span class="header-section-number">4.3.2</span> Using valgrind</a></li>
+  <li><a href="#using-gctorture" id="toc-using-gctorture" class="nav-link" data-scroll-target="#using-gctorture"><span class="header-section-number">4.3.1</span> Using <code>gctorture</code></a></li>
+  <li><a href="#using-valgrind" id="toc-using-valgrind" class="nav-link" data-scroll-target="#using-valgrind"><span class="header-section-number">4.3.2</span> Using Valgrind</a></li>
   <li><a href="#using-the-address-sanitizer" id="toc-using-the-address-sanitizer" class="nav-link" data-scroll-target="#using-the-address-sanitizer"><span class="header-section-number">4.3.3</span> Using the Address Sanitizer</a></li>
   <li><a href="#using-the-leak-sanitizer" id="toc-using-the-leak-sanitizer" class="nav-link" data-scroll-target="#using-the-leak-sanitizer"><span class="header-section-number">4.3.4</span> Using the Leak Sanitizer</a></li>
   <li><a href="#using-the-undefined-behaviour-sanitizer" id="toc-using-the-undefined-behaviour-sanitizer" class="nav-link" data-scroll-target="#using-the-undefined-behaviour-sanitizer"><span class="header-section-number">4.3.5</span> Using the Undefined Behaviour Sanitizer</a></li>
@@ -526,7 +526,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Note that memory access errors may be seen with LAPACK, BLAS, OpenMP and Java-using packages: some at least of these seem to be intentional, and some are related to passing characters to Fortran.</p>
 <p>Some of these tools can detect mismatched allocation and deallocation. C++ programmers should note that memory allocated by <code>new []</code> must be freed by <code>delete []</code>, other uses of <code>new</code> by <code>delete</code>, and memory allocated by <code>malloc</code>, <code>calloc</code> and <code>realloc</code> by <code>free</code>. Some platforms will tolerate mismatches (perhaps with memory leaks) but others will segfault.</p>
 <section id="using-gctorture" class="level3 subsection" data-number="4.3.1">
-<h3 class="subsection anchored" data-number="4.3.1" data-anchor-id="using-gctorture"><span class="header-section-number">4.3.1</span> Using gctorture</h3>
+<h3 class="subsection anchored" data-number="4.3.1" data-anchor-id="using-gctorture"><span class="header-section-number">4.3.1</span> Using <code>gctorture</code></h3>
 <p>We can help to detect memory problems in R objects earlier by running garbage collection as often as possible. This is achieved by <code>gctorture(TRUE)</code>, which as described on its help page</p>
 <blockquote class="blockquote">
 <p>Provokes garbage collection on (nearly) every memory allocation. Intended to ferret out memory protection bugs. Also makes R run <em>very</em> slowly, unfortunately.</p>
@@ -546,7 +546,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Used with a debugger and with <code>gctorture</code> or <code>gctorture2</code> this mechanism can be helpful in isolating memory protect problems.</p>
 </section>
 <section id="using-valgrind" class="level3 subsection page-columns page-full" data-number="4.3.2">
-<h3 class="subsection anchored" data-number="4.3.2" data-anchor-id="using-valgrind"><span class="header-section-number">4.3.2</span> Using valgrind</h3>
+<h3 class="subsection anchored" data-number="4.3.2" data-anchor-id="using-valgrind"><span class="header-section-number">4.3.2</span> Using Valgrind</h3>
 <p>If you have access to Linux on a common CPU type or supported versions of FreeBSD or Solaris<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> you can use <code>valgrind</code> (<a href="https://valgrind.org/" class="uri">https://valgrind.org/</a>, pronounced to rhyme with ‘tinned’) to check for possible problems. To run some examples under <code>valgrind</code> use something like</p>
 <div class="no-row-height column-margin column-container"><p><sup>2</sup>&nbsp;The macOS support is for long-obsolete versions.</p></div><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>R <span class="sc">-</span>d valgrind <span class="sc">--</span>vanilla <span class="sc">&lt;</span> mypkg<span class="sc">-</span>Ex.R</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>R <span class="sc">-</span>d <span class="st">"valgrind --tool=memcheck --leak-check=full"</span> <span class="sc">--</span>vanilla <span class="sc">&lt;</span> mypkg<span class="sc">-</span>Ex.R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -603,7 +603,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="cf">break</span> __asan_report_error</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>(See <a href="https://github.com/google/sanitizers/wiki/AddressSanitizerAndDebugger" class="uri">https://github.com/google/sanitizers/wiki/AddressSanitizerAndDebugger</a>.)</p>
 <p>More recent versions<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> added the flag <code>-fsanitize-address-use-after-scope</code>: see <a href="https://github.com/google/sanitizers/wiki/AddressSanitizerUseAfterScope" class="uri">https://github.com/google/sanitizers/wiki/AddressSanitizerUseAfterScope</a>.</p>
-<div class="no-row-height column-margin column-container"><p><sup>12</sup>&nbsp;including <code>gcc</code> 7.1 and <code>clang</code> 4.0.0: for <code>gcc</code> it is implied by <code>-fsanitize=address</code>.</p><p><sup>13</sup>&nbsp;for example, X11/GL libraries on Linux, seen when checking package <a href="https://CRAN.R-project.org/package=rgl"><strong>rgl</strong></a> and some others using it—a workaround is to set environment variable <code>RGL_USE_NULL=true</code>.</p></div><p>One of the checks done by ASan is that <code>malloc/free</code> and in C++ <code>new/delete</code> and <code>new[]/delete[]</code> are used consistently (rather than say <code>free</code> being used to dealloc memory allocated by <code>new[]</code>). This matters on some systems but not all: unfortunately on some of those where it does not matter, system libraries<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a> are not consistent. The check can be suppressed by including <code>alloc_dealloc_mismatch=0</code> in <code>ASAN_OPTIONS</code>.</p>
+<div class="no-row-height column-margin column-container"><p><sup>12</sup>&nbsp;including <code>gcc</code> 7.1 and <code>clang</code> 4.0.0: for <code>gcc</code> it is implied by <code>-fsanitize=address</code>.</p><p><sup>13</sup>&nbsp;for example, X11/GL libraries on Linux, seen when checking package <a href="https://CRAN.R-project.org/package=rgl"><strong>rgl</strong></a> and some others using it—a workaround is to set environment variable <code>RGL_USE_NULL=true</code>.</p></div><p>One of the checks done by ASan is that <code>malloc/free</code> and in C++ <code>new/delete</code> and <code>new[]/delete[]</code> are used consistently (rather than say <code>free</code> being used to deallocate memory allocated by <code>new[]</code>). This matters on some systems but not all: unfortunately on some of those where it does not matter, system libraries<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a> are not consistent. The check can be suppressed by including <code>alloc_dealloc_mismatch=0</code> in <code>ASAN_OPTIONS</code>.</p>
 <p>ASan also checks system calls and sometimes reports can refer to problems in the system software and not the package nor R. A couple of reports have been of ‘heap-use-after-free’ errors in the X11 libraries called from Tcl/Tk.</p>
 </section>
 <section id="using-the-leak-sanitizer" class="level3 subsubsection" data-number="4.3.4">
@@ -782,7 +782,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
 <span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>(Debugger output reformatted for better legibility).</p>
-<p>Using <code>R_PV()</code> one can “inspect” the values of the various elements of the SEXP, for example,</p>
+<p>Using <code>R_PV()</code> one can “inspect” the values of the various elements of the <code>SEXP</code>, for example,</p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>(gdb) p <span class="fu">R_PV</span>(<span class="sc">$</span><span class="dv">1</span><span class="ot">-&gt;</span>attrib)</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>names</span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"a"</span> <span class="st">"b"</span></span>
@@ -1313,12 +1313,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./Tidying-and-profiling-R-code.html" class="pagination-link  aria-label=" &lt;span="" and="" profiling="" r="" code&lt;="" span&gt;"="">
+      <a href="./Tidying-and-profiling-R-code.html" class="pagination-link" aria-label="Tidying and profiling R code">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Tidying and profiling R code</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./System-and-foreign-language-interfaces.html" class="pagination-link" aria-label="<span class='chapter-number'>5</span>&nbsp; <span class='chapter-title'>System and foreign language interfaces</span>">
+      <a href="./System-and-foreign-language-interfaces.html" class="pagination-link" aria-label="System and foreign language interfaces">
         <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">System and foreign language interfaces</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

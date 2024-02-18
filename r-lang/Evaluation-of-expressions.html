@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -465,50 +465,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">Matching operator, binary (in model formulae: nesting)</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;"><code>%||%</code></td>
+<td style="text-align: left;">Null coalescing operator, binary</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;"><code>&lt;</code></td>
 <td style="text-align: left;">Less than, binary</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><code>&gt;</code></td>
 <td style="text-align: left;">Greater than, binary</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><code>==</code></td>
 <td style="text-align: left;">Equal to, binary</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><code>&gt;=</code></td>
 <td style="text-align: left;">Greater than or equal to, binary</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><code>&lt;=</code></td>
 <td style="text-align: left;">Less than or equal to, binary</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><code>&amp;</code></td>
 <td style="text-align: left;">And, binary, vectorized</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><code>&amp;&amp;</code></td>
 <td style="text-align: left;">And, binary, not vectorized</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><code>|</code></td>
 <td style="text-align: left;">Or, binary, vectorized</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><code>||</code></td>
 <td style="text-align: left;">Or, binary, not vectorized</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><code>&lt;-</code></td>
 <td style="text-align: left;">Left assignment, binary</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><code>-&gt;</code></td>
 <td style="text-align: left;">Right assignment, binary</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><code>$</code></td>
 <td style="text-align: left;">List subset, binary</td>
 </tr>
@@ -671,7 +675,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>x[[i, j]]</span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span>a</span>
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span><span class="st">"a"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>For vectors and matrices the <code>[[</code> forms are rarely used, although they have some slight semantic differences from the <code>[</code> form (e.g.&nbsp;it drops any <code>names</code> or <code>dimnames</code> attribute, and that partial matching is used for character indices). When indexing multi-dimensional structures with a single index, <code>x[[i]]</code> or <code>x[i]</code> will return the <code>i</code>th sequential element of <code>x</code>.</p>
+<p>For vectors and matrices the <code>[[</code> forms are rarely used, although they have some slight semantic differences from the <code>[</code> form (e.g.&nbsp;it drops any <code>names</code> or <code>dimnames</code> attribute, and that partial matching is used for character indices). When indexing multi-dimensional structures with a single index, <code>x[[i]]</code> or <code>x[i]</code> will return the <code>i</code>-th sequential element of <code>x</code>.</p>
 <p>For lists, one generally uses <code>[[</code> to select any single element, whereas <code>[</code> returns a list of the selected elements.</p>
 <p>The <code>[[</code> form allows only a single element to be selected using integer or character indices, whereas <code>[</code> allows indexing by vectors. Note though that for a list or other recursive object, the index can be a vector and each element of the vector is applied in turn to the list, the selected component, the selected component of that component, and so on. The result is still a single element.</p>
 <p>The form using <code>$</code> applies to recursive objects such as lists and pairlists. It allows only a literal character string or a symbol as the index. That is, the index is not computable: for cases where you need to evaluate an expression to find the index, use <code>x[[expr]]</code>. Applying <code>$</code> to a non-recursive object is an error.</p>
@@ -1275,12 +1279,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./Objects.html" class="pagination-link  aria-label=" &lt;span="">
+      <a href="./Objects.html" class="pagination-link" aria-label="Objects">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Objects</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./Functions.html" class="pagination-link" aria-label="<span class='chapter-number'>4</span>&nbsp; <span class='chapter-title'>Functions</span>">
+      <a href="./Functions.html" class="pagination-link" aria-label="Functions">
         <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Functions</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

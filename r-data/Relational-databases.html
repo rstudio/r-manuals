@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -299,7 +299,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#r-interface-packages" id="toc-r-interface-packages" class="nav-link" data-scroll-target="#r-interface-packages"><span class="header-section-number">4.3</span> R interface packages</a>
   <ul class="collapse">
   <li><a href="#packages-using-dbi" id="toc-packages-using-dbi" class="nav-link" data-scroll-target="#packages-using-dbi"><span class="header-section-number">4.3.1</span> Packages using DBI</a></li>
-  <li><a href="#package-rodbc" id="toc-package-rodbc" class="nav-link" data-scroll-target="#package-rodbc"><span class="header-section-number">4.3.2</span> Package RODBC</a></li>
+  <li><a href="#package-rodbc" id="toc-package-rodbc" class="nav-link" data-scroll-target="#package-rodbc"><span class="header-section-number">4.3.2</span> Package <strong>RODBC</strong></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -462,11 +462,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> dbDisconnect<span class="op">(</span>con<span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="package-rodbc" class="level3 subsection" data-number="4.3.2">
-<h3 class="subsection anchored" data-number="4.3.2" data-anchor-id="package-rodbc"><span class="header-section-number">4.3.2</span> Package RODBC</h3>
+<h3 class="subsection anchored" data-number="4.3.2" data-anchor-id="package-rodbc"><span class="header-section-number">4.3.2</span> Package <strong>RODBC</strong></h3>
 <p>Package <a href="https://CRAN.R-project.org/package=RODBC"><strong>RODBC</strong></a> on CRAN provides an interface to database sources supporting an ODBC interface. This is very widely available, and allows the same R code to access different database systems. <a href="https://CRAN.R-project.org/package=RODBC"><strong>RODBC</strong></a> runs on Unix/Linux, Windows and macOS, and almost all database systems provide support for ODBC. We have tested Microsoft SQL Server, Access, MySQL, PostgreSQL, Oracle and IBM DB2 on Windows and MySQL, MariaDB, Oracle, PostgreSQL and SQLite on Linux.</p>
 <p>ODBC is a client-server system, and we have happily connected to a DBMS running on a Unix server from a Windows client, and <em>vice versa</em>.</p>
 <p>On Windows ODBC support is part of the OS. On Unix/Linux you will need an ODBC Driver Manager such as unixODBC (<a href="https://www.unixodbc.org/" class="uri">https://www.unixodbc.org/</a>) or iODBC (<a href="https://www.iodbc.org/" class="uri">https://www.iodbc.org/</a>: this is pre-installed in macOS) and an installed driver for your database system.</p>
-<p>Windows provides drivers not just for DBMSs but also for Excel (<code>.xls</code>) spreadsheets, DBase (<code>.dbf</code>) files and even text files. (The named applications do <em>not</em> need to be installed. Which file formats are supported depends on the versions of the drivers.) There are versions for Excel and Access 2007/2010 (go to <a href="https://www.microsoft.com/en-us/download" class="uri">https://www.microsoft.com/en-us/download</a>, and search for ‘Office ODBC’, which will lead to <code>AccessDatabaseEngine.exe</code>), the ‘2007 Office System Driver’ (the latter has a version for 64-bit Windows, and that will also read earlier versions).</p>
+<p>Windows provides drivers not just for DBMSs but also for Excel (<code>.xls</code>) spreadsheets, dBase (<code>.dbf</code>) files and even text files. (The named applications do <em>not</em> need to be installed. Which file formats are supported depends on the versions of the drivers.) There are versions for Excel and Access 2007/2010 (go to <a href="https://www.microsoft.com/en-us/download" class="uri">https://www.microsoft.com/en-us/download</a>, and search for ‘Office ODBC’, which will lead to <code>AccessDatabaseEngine.exe</code>), the ‘2007 Office System Driver’ (the latter has a version for 64-bit Windows, and that will also read earlier versions).</p>
 <p>On macOS the Actual Technologies (<a href="https://www.actualtech.com/product_access.php" class="uri">https://www.actualtech.com/product_access.php</a>) drivers provide ODBC interfaces to Access databases and to Excel spreadsheets (not including Excel 2007/2010).</p>
 <p>Many simultaneous connections are possible. A connection is opened by a call to <code>odbcConnect</code> or <code>odbcDriverConnect</code> (which on the Windows GUI allows a database to be selected via dialog boxes) which returns a handle used for subsequent access to the database. Printing a connection will provide some details of the ODBC connection, and calling <code>odbcGetInfo</code> will give details on the client and server.</p>
 <p>A connection is closed by a call to <code>close</code> or <code>odbcClose</code>, and also (with a warning) when not R object refers to it and at the end of an R session.</p>
@@ -938,12 +938,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./Importing-from-other-statistical-systems.html" class="pagination-link  aria-label=" &lt;span="" from="" other="" statistical="" systems&lt;="" span&gt;"="">
+      <a href="./Importing-from-other-statistical-systems.html" class="pagination-link" aria-label="Importing from other statistical systems">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Importing from other statistical systems</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./Binary-files.html" class="pagination-link" aria-label="<span class='chapter-number'>5</span>&nbsp; <span class='chapter-title'>Binary files</span>">
+      <a href="./Binary-files.html" class="pagination-link" aria-label="Binary files">
         <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Binary files</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

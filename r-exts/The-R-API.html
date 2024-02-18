@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -576,7 +576,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>shows that a subroutine has been registered with 9 arguments (as that is what the <code>.Fortran</code> call used) but only has 8.</p>
 <section id="fortran-character-strings" class="level3 subsection" data-number="6.6.1">
 <h3 class="subsection anchored" data-number="6.6.1" data-anchor-id="fortran-character-strings"><span class="header-section-number">6.6.1</span> Fortran character strings</h3>
-<p>Passing character strings from C to Fortran or <em>vice versa</em> is not portable, but can be done with care. The internal representations are different: a character array in C (or C++) is nul-terminated so its length can be computed by <code>strlen</code>. Fortran character arrays are typically stored as an array of bytes and a length. This matters when passing strings from C to Fortran or <em>vice versa</em>: in many cases one has been able to get away with passing the string but not the length. However, in 2019 this changed for <code>gfortran</code>, starting with version 9 but backported to versions 7 and 8. Several months later, <code>gfortran</code> 9.2 introduced an option</p>
+<p>Passing character strings from C to Fortran or <em>vice versa</em> is not portable, but can be done with care. The internal representations are different: a character array in C (or C++) is NUL-terminated so its length can be computed by <code>strlen</code>. Fortran character arrays are typically stored as an array of bytes and a length. This matters when passing strings from C to Fortran or <em>vice versa</em>: in many cases one has been able to get away with passing the string but not the length. However, in 2019 this changed for <code>gfortran</code>, starting with version 9 but backported to versions 7 and 8. Several months later, <code>gfortran</code> 9.2 introduced an option</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span>ftail<span class="sc">-</span>call<span class="sc">-</span>workaround</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>and made it the current default but said it might be withdrawn in future.</p>
 <p>Suppose we want a function to report a message from Fortran to R’s console (one could use <code>labelpr</code>, or <code>intpr</code> with dummy data, but this might be the basis of a custom reporting function). Suppose the equivalent in Fortran would be</p>
@@ -601,7 +601,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    cmsg<span class="op">[</span>msg_len<span class="op">]</span> <span class="op">=</span> <span class="ch">'</span><span class="sc">\0</span><span class="ch">'</span><span class="op">;</span> <span class="co">// nul-terminate the string, to be sure</span></span>
 <span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">// do something with 'cmsg' </span></span>
 <span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>in code depending on <code>R(&gt;= 3.6.2)</code>. For earlier versions of R we could just assume that <code>msg</code> is nul-terminated (not guaranteed, but people have been getting away with it for many years), so the complete C side might be</p>
+<p>in code depending on <code>R(&gt;= 3.6.2)</code>. For earlier versions of R we could just assume that <code>msg</code> is NUL-terminated (not guaranteed, but people have been getting away with it for many years), so the complete C side might be</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifndef USE_FC_LEN_T</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="pp"># define USE_FC_LEN_T</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span>
@@ -1396,7 +1396,7 @@ with the same arguments, but all pointers.</code></pre>
 <div class="sourceCode" id="cb64"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#if defined(R_VERSION) &amp;&amp; R_VERSION &gt;= R_Version(3, 1, 0)</span></span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">...</span></span>
 <span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>More detailed information is available in the macros <code>R_MAJOR</code>, <code>R_MINOR</code>, <code>R_YEAR</code>, <code>R_MONTH</code> and <code>R_DAY</code>: see the header file <code>Rversion.h</code> for their format. Note that the minor version includes the patchlevel (as in <code>2.2</code>).</p>
+<p>More detailed information is available in the macros <code>R_MAJOR</code>, <code>R_MINOR</code>, <code>R_YEAR</code>, <code>R_MONTH</code> and <code>R_DAY</code>: see the header file <code>Rversion.h</code> for their format. Note that the minor version includes the patch level (as in <code>2.2</code>).</p>
 <p>Packages which use <code>alloca</code> need to ensure it is defined: as it is part of neither C nor POSIX there is no standard way to do so. One can use</p>
 <div class="sourceCode" id="cb65"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Rconfig.h&gt;</span><span class="pp"> </span><span class="co">// for HAVE_ALLOCA_H</span></span>
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifdef __GNUC__</span></span>
@@ -2014,12 +2014,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./System-and-foreign-language-interfaces.html" class="pagination-link  aria-label=" &lt;span="" and="" foreign="" language="" interfaces&lt;="" span&gt;"="">
+      <a href="./System-and-foreign-language-interfaces.html" class="pagination-link" aria-label="System and foreign language interfaces">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">System and foreign language interfaces</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./Generic-functions-and-methods.html" class="pagination-link" aria-label="<span class='chapter-number'>7</span>&nbsp; <span class='chapter-title'>Generic functions and methods</span>">
+      <a href="./Generic-functions-and-methods.html" class="pagination-link" aria-label="Generic functions and methods">
         <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Generic functions and methods</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

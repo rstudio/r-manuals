@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -437,7 +437,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In late 2020 Intel revamped their C/C++ compilers (and later their Fortran compiler) to use an LLVM back-end (and for the C/C++ compilers, a modified version of <code>clang</code> as the front-end). Those compilers are only for <code>x86_64</code>: the earlier (now called ‘Classic’) C/C++ compilers were discontinued in late 2023 (and are covered in the version of this manual for R 4.3.x: the Fortran compiler <code>ifort</code> remains part of the Fortran distribution)..</p>
 <p>The compilers are now all under Intel’s ‘oneAPI’ brand. The revamped ones are <code>icx</code>, <code>icpx</code> and <code>ifx</code>; they are identified by the C/C++ macro <code>__INTEL_LLVM_COMPILER</code> (and do not define <code>__INTEL_COMPILER</code>: they also define <code>__clang__</code> and <code>__clang_major__</code>).</p>
 <p>The C++ compiler uses the system’s <code>lidstdc++</code> as its runtime library rather than LLVM’s <code>libc++</code>.</p>
-<p>Standalone installers (which are free-of-charge) are available from <a href="https://www.intel.com/content/www/us/en/developer/articles/tool/oneapi-standalone-components.html" class="uri">https://www.intel.com/content/www/us/en/developer/articles/tool/oneapi-standalone-components.html</a>: they are also part of the oneAPI Base and HPC (for Fortran) ToolKits.</p>
+<p>Standalone installers (which are free-of-charge) are available from <a href="https://www.intel.com/content/www/us/en/developer/articles/tool/oneapi-standalone-components.html" class="uri">https://www.intel.com/content/www/us/en/developer/articles/tool/oneapi-standalone-components.html</a>: they are also part of the oneAPI Base and HPC (for Fortran) toolkits.</p>
 <p>We tried the compilers in oneAPI 2024.0.2 and 2023.x.y using (the paths do differ by compiler version)</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dt">IP</span><span class="ch">=</span><span class="st">/path/to/compilers/bin/</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="dt">CC</span><span class="ch">=$I</span><span class="st">P/icx</span></span>
@@ -1151,7 +1151,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./Configuration-on-a-Unix-alike.html" class="pagination-link  aria-label=" &lt;span="" on="" a="" unix-alike&lt;="" span&gt;"="">
+      <a href="./Configuration-on-a-Unix-alike.html" class="pagination-link" aria-label="Configuration on a Unix-alike">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Configuration on a Unix-alike</span></span>
       </a>          
   </div>

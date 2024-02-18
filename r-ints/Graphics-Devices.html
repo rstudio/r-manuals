@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -461,7 +461,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> metricInfo<span class="op">(</span><span class="dt">int</span> c<span class="op">,</span> pGEcontext gc<span class="op">,</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>               <span class="dt">double</span><span class="op">*</span> ascent<span class="op">,</span> <span class="dt">double</span><span class="op">*</span> descent<span class="op">,</span> <span class="dt">double</span><span class="op">*</span> width<span class="op">,</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>               pDevDesc dd<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The <code>gc</code> parameter provides the graphics context, most importantly the current font and fontsize, and <code>dd</code> is a pointer to the active device’s structure.</p>
+<p>The <code>gc</code> parameter provides the graphics context, most importantly the current font and font size, and <code>dd</code> is a pointer to the active device’s structure.</p>
 <p>The <code>text</code> callback should plot <code>str</code> at <code>(x, y)</code><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> with an anti-clockwise rotation of <code>rot</code> degrees. (For <code>hadj</code> see below.) The interpretation for horizontal text is that the baseline is at <code>y</code> and the start is a <code>x</code>, so any left bearing for the first character will start at <code>x</code>.</p>
 <div class="no-row-height column-margin column-container"><p><sup>5</sup>&nbsp;in device coordinates</p></div><p>The <code>strWidth</code> callback computes the width of the string which it would occupy if plotted horizontally in the current font. (Width here is expected to include both (preferably) or neither of left and right bearings.)</p>
 <p>The <code>metricInfo</code> callback computes the size of a single character: <code>ascent</code> is the distance it extends above the baseline and <code>descent</code> how far it extends below the baseline. <code>width</code> is the amount by which the cursor should be advanced when the character is placed. For <code>ascent</code> and <code>descent</code> this is intended to be the bounding box of the ‘ink’ put down by the glyph and not the box which might be used when assembling a line of conventional text (it needs to be for e.g.&nbsp;<code>hat(beta)</code> to work correctly). However, the <code>width</code> is used in plotmath to advance to the next character, and so needs to include left and right bearings.</p>
@@ -1014,12 +1014,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./Files.html" class="pagination-link  aria-label=" &lt;span="">
+      <a href="./Files.html" class="pagination-link" aria-label="Files">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Files</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./GUI-consoles.html" class="pagination-link" aria-label="<span class='chapter-number'>7</span>&nbsp; <span class='chapter-title'>GUI consoles</span>">
+      <a href="./GUI-consoles.html" class="pagination-link" aria-label="GUI consoles">
         <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">GUI consoles</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

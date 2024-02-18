@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -280,7 +280,7 @@ ul.task-list li input[type="checkbox"] {
 <p>The first piece of advice is to avoid doing so if possible! If you have access to Excel, export the data you want from Excel in tab-delimited or comma-separated form, and use <code>read.delim</code> or <code>read.csv</code> to import it into R. (You may need to use <code>read.delim2</code> or <code>read.csv2</code> in a locale that uses comma as the decimal point.) Exporting a DIF file and reading it using <code>read.DIF</code> is another possibility.</p>
 <p>If you do not have Excel, many other programs are able to read such spreadsheets and export in a text format on both Windows and Unix, for example Gnumeric (<a href="http://www.gnumeric.org" class="uri">http://www.gnumeric.org</a>) and OpenOffice (<a href="https://www.openoffice.org" class="uri">https://www.openoffice.org</a>). You can also cut-and-paste between the display of a spreadsheet in such a program and R: <code>read.table</code> will read from the R console or, under Windows, from the clipboard (via <code>file = "clipboard"</code> or <code>readClipboard</code>). The <code>read.DIF</code> function can also read from the clipboard.</p>
 <p>Note that an Excel <code>.xls</code> file is not just a spreadsheet: such files can contain many sheets, and the sheets can contain formulae, macros and so on. Not all readers can read other than the first sheet, and may be confused by other contents of the file.</p>
-<p>Windows users (of 32-bit R) can use <code>odbcConnectExcel</code> in package <a href="https://CRAN.R-project.org/package=RODBC"><strong>RODBC</strong></a>. This can select rows and columns from any of the sheets in an Excel spreadsheet file (at least from Excel 97–2003, depending on your ODBC drivers: by calling <code>odbcConnect</code> directly versions back to Excel 3.0 can be read). The version <code>odbcConnectExcel2007</code> will read the Excel 2007 formats as well as earlier ones (provided the drivers are installed, including with 64-bit Windows R: see <a href="Relational-databases.html#rodbc">Package RODBC</a>). macOS users can also use <a href="https://CRAN.R-project.org/package=RODBC"><strong>RODBC</strong></a> if they have a suitable driver (e.g.&nbsp;that from Actual Technologies).</p>
+<p>Windows users (of 32-bit R) can use <code>odbcConnectExcel</code> in package <a href="https://CRAN.R-project.org/package=RODBC"><strong>RODBC</strong></a>. This can select rows and columns from any of the sheets in an Excel spreadsheet file (at least from Excel 97–2003, depending on your ODBC drivers: by calling <code>odbcConnect</code> directly versions back to Excel 3.0 can be read). The version <code>odbcConnectExcel2007</code> will read the Excel 2007 formats as well as earlier ones (provided the drivers are installed, including with 64-bit Windows R: see <a href="Relational-databases.html#rodbc">Package <strong>RODBC</strong></a>). macOS users can also use <a href="https://CRAN.R-project.org/package=RODBC"><strong>RODBC</strong></a> if they have a suitable driver (e.g.&nbsp;that from Actual Technologies).</p>
 <p><code>Perl</code> users have contributed a module <code>OLE::SpreadSheet::ParseExcel</code> and a program <code>xls2csv.pl</code> to convert Excel 95–2003 spreadsheets to CSV files. Package <a href="https://CRAN.R-project.org/package=gdata"><strong>gdata</strong></a> provides a basic wrapper in its <code>read.xls</code> function. With suitable <code>Perl</code> modules installed this function can also read Excel 2007 spreadsheets.</p>
 <p>Packages <a href="https://CRAN.R-project.org/package=dataframes2xls"><strong>dataframes2xls</strong></a> and <a href="https://CRAN.R-project.org/package=WriteXLS"><strong>WriteXLS</strong></a> each contain a function to <em>write</em> one or more data frames to an <code>.xls</code> file, using Python and Perl respectively.</p>
 <p>Package <a href="https://CRAN.R-project.org/package=xlsx"><strong>xlsx</strong></a> can read and manipulate Excel 2007 and later spreadsheets: it requires Java.</p>
@@ -699,7 +699,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./Network-interfaces.html" class="pagination-link  aria-label=" &lt;span="" interfaces&lt;="" span&gt;"="">
+      <a href="./Network-interfaces.html" class="pagination-link" aria-label="Network interfaces">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Network interfaces</span></span>
       </a>          
   </div>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -655,7 +655,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>There are several ways to compare graphically the two samples. We have already seen a pair of boxplots. The following</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> plot<span class="op">(</span>ecdf<span class="op">(</span>A<span class="op">),</span> <span class="cf">do</span><span class="op">.</span>points<span class="op">=</span>FALSE<span class="op">,</span> verticals<span class="op">=</span>TRUE<span class="op">,</span> xlim<span class="op">=</span>range<span class="op">(</span>A<span class="op">,</span> B<span class="op">))</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> plot<span class="op">(</span>ecdf<span class="op">(</span>B<span class="op">),</span> <span class="cf">do</span><span class="op">.</span>points<span class="op">=</span>FALSE<span class="op">,</span> verticals<span class="op">=</span>TRUE<span class="op">,</span> add<span class="op">=</span>TRUE<span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>will show the two empirical CDFs, and <code>qqplot</code> will perform a Q-Q plot of the two samples. The Kolmogorov-Smirnov test is of the maximal vertical distance between the two ecdf’s, assuming a common continuous distribution:</p>
+<p>will show the two empirical CDFs, and <code>qqplot</code> will perform a Q-Q plot of the two samples. The Kolmogorov-Smirnov test is of the maximal vertical distance between the two ecdfs, assuming a common continuous distribution:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">ks.test</span>(A, B)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>         Two<span class="sc">-</span>sample Kolmogorov<span class="sc">-</span>Smirnov test</span>
@@ -1080,12 +1080,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./Reading-data-from-files.html" class="pagination-link  aria-label=" &lt;span="" data="" from="" files&lt;="" span&gt;"="">
+      <a href="./Reading-data-from-files.html" class="pagination-link" aria-label="Reading data from files">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Reading data from files</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./Loops-and-conditional-execution.html" class="pagination-link" aria-label="<span class='chapter-number'>9</span>&nbsp; <span class='chapter-title'>Grouping, loops and conditional execution</span>">
+      <a href="./Loops-and-conditional-execution.html" class="pagination-link" aria-label="Grouping, loops and conditional execution">
         <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Grouping, loops and conditional execution</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
