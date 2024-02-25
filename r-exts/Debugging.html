@@ -654,7 +654,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>or similar (there are handlers for each type of undefined behaviour).</p>
 <p>There are also the compiler flags <code>-fcatch-undefined-behavior</code> and <code>-ftrapv</code>, said to be more reliable in <code>clang</code> than <code>gcc</code>.</p>
 <p>For more details on the topic see <a href="https://blog.regehr.org/archives/213" class="uri">https://blog.regehr.org/archives/213</a> and <a href="https://blog.llvm.org/2011/05/what-every-c-programmer-should-know.html" class="uri">https://blog.llvm.org/2011/05/what-every-c-programmer-should-know.html</a> (which has 3 parts).</p>
-<p>It may or may not be possible to build R itself with <code>-fsanitize=undefined</code>: problems have been seen with OpenMP-using code with <code>gcc</code> but there has been success with <code>clang</code>.</p>
+<p>It may or may not be possible to build R itself with <code>-fsanitize=undefined</code>: problems have in the past been seen with OpenMP-using code with <code>gcc</code> but there has been success with <code>clang</code> up to version 16.. However, problems have been seen with <code>clang</code> 17 and later, including missing entry points and R builds hanging.</p>
 </section>
 <section id="other-analyses-with-clang" class="level3 subsection" data-number="4.3.6">
 <h3 class="subsection anchored" data-number="4.3.6" data-anchor-id="other-analyses-with-clang"><span class="header-section-number">4.3.6</span> Other analyses with ‘clang’</h3>

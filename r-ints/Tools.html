@@ -413,7 +413,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 <dt><code>_R_CHECK_RD_NOTE_LOST_BRACES_</code> <a href="#index-_r_check_rd_note_lost_braces_" class="copiable-anchor">¶</a></dt>
 <dd>
-<p>If true, some of the “lost braces” that <code>checkRd()</code> finds in LaTeX-like Rd contexts are reported (by raising their warning level to -1). This will often detect missing initial backslashes for Rd macros, unescaped in-text set braces, and description-like <code>\item{label}{desc}</code> entries within <code>\itemize</code>. Default: unset (but true for CRAN submission checks), currently; may be enabled unconditionally in the future.</p>
+<p>Control whether some of the “lost braces” that <code>checkRd()</code> finds in LaTeX-like Rd contexts are reported (by raising their warning level to -1). This will often detect missing initial backslashes for Rd macros, unescaped in-text set braces, and <code>\describe</code>-style <code>\item{label}{desc}</code> entries within <code>\itemize</code>. Default: true.</p>
 </dd>
 <dt><code>_R_CHECK_RD_ALLOW_EMPTY_ITEM_IN_DESCRIBE_</code> <a href="#index-_r_check_rd_allow_empty_item_in_describe_" class="copiable-anchor">¶</a></dt>
 <dd>

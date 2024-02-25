@@ -379,9 +379,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="constants" class="level3 subsection" data-number="10.3.1">
 <h3 class="subsection anchored" data-number="10.3.1" data-anchor-id="constants"><span class="header-section-number">10.3.1</span> Constants</h3>
 <p>There are five types of constants: integer, logical, numeric, complex and string.</p>
-<p>In addition, there are four special constants, <code>NULL</code>, <code>NA</code>, <code>Inf</code>, and <code>NaN</code>.</p>
+<p>In addition, there is the special constant <code>NULL</code>. Also, the numeric <code>Inf</code>, and <code>NaN</code>, the logical <code>NA</code>, and <code>NA_character_</code>, <code>NA_integer_</code>, <code>NA_real_</code>, and <code>NA_complex_</code> deserve mentioning; for the latter, see <a href="Evaluation-of-expressions.html#na-handling">NA handling</a>.</p>
 <p><code>NULL</code> is used to indicate the empty object. <code>NA</code> is used for absent (“Not Available”) data values. <code>Inf</code> denotes infinity and <code>NaN</code> is not-a-number in the IEEE floating point calculus (results of the operations respectively <em>1/0</em> and <em>0/0</em>, for instance).</p>
-<p>Logical constants are either <code>TRUE</code> or <code>FALSE</code>.</p>
+<p>Logical constants are either <code>TRUE</code>, <code>FALSE</code> or <code>NA</code>.</p>
 <p>Numeric constants follow a similar syntax to that of the <strong>C</strong> language. They consist of an integer part consisting of zero or more digits, followed optionally by <code>.</code> and a fractional part of zero or more digits optionally followed by an exponent part consisting of an <code>E</code> or an <code>e</code>, an optional sign and a string of one or more digits. Either the fractional or the decimal part can be empty, but not both at once.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Valid numeric constants<span class="sc">:</span> <span class="dv">1</span> <span class="dv">10</span> <span class="fl">0.1</span> .<span class="dv">2</span> <span class="fl">1e-7</span> <span class="fl">1.2e+7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Numeric constants can also be hexadecimal, starting with <code>0x</code> or <code>0x</code> followed by zero or more digits, <code>a-f</code> or <code>A-F</code>. Hexadecimal floating point constants are supported using C99 syntax, e.g.&nbsp;<code>0x1.1p1</code>.</p>
@@ -509,7 +509,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <table class="table">
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><code>+ - * / %% ^</code></td>
+<td style="text-align: left;"><code>+ - * / %% %/% ^</code></td>
 <td style="text-align: left;">arithmetic</td>
 </tr>
 <tr class="even">

@@ -1597,7 +1597,7 @@ with the same arguments, but all pointers.</code></pre>
 </table>
 </blockquote>
 <p>The graphics systems are exposed in headers <code>R_ext/GraphicsEngine.h</code>, <code>R_ext/GraphicsDevice.h</code> (which it includes) and <code>R_ext/QuartzDevice.h</code>. Facilities for defining custom connection implementations are provided in <code>R_ext/Connections.h</code>, but make sure you consult the file before use.</p>
-<p>Let us re-iterate the advice to include system headers before the R header files, especially <code>Rinternals.h</code> (included by <code>Rdefines.h</code>) and <code>Rmath.h</code>, which redefine names which may be used in system headers (fewer if <code>R_NO_REMAP</code> is defined before inclusion, or <code>R_NO_REMAP_RMATH</code> for <code>Rmath.h</code>).</p>
+<p>Let us re-iterate the advice to include in C++ code system headers before the R header files, especially <code>Rinternals.h</code> (included by <code>Rdefines.h</code>) and <code>Rmath.h</code>, which redefine names which may be used in system headers, or (preferably) to define <code>R_NO_REMAP</code>. Setting the environment variable <code>_R_CXX_USE_NO_REMAP_</code> to a true value allows the need for this to be tested, as it causes <code>R CMD INSTALL</code> to compile C++ code defining <code>R_NO_REMAP</code>.</p>
 <p>Footnotes</p>
 
 
