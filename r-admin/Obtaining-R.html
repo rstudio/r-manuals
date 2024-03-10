@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -338,7 +338,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The simplest way is to download the most recent <code>R-x.y.z.tar.gz</code> file, and unpack it with</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xf</span> R-x.y.z.tar.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>on systems that have a suitable<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> <code>tar</code> installed. On other systems you need to have the <code>gzip</code> program installed, when you can use</p>
-<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;e.g.&nbsp;GNU <code>tar</code> version 1.15 or later, or that from the <code>libarchive</code> (as used on macOS) or ‘Heirloom Toolchest’ distributions.</p></div><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gzip</span> <span class="at">-dc</span> R-x.y.z.tar.gz <span class="kw">|</span> <span class="fu">tar</span> <span class="at">-xf</span> <span class="at">-</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;e.g.&nbsp;GNU <code>tar</code> version 1.15 or later, or that from the <code>libarchive</code> (as used on macOS) or ‘Heirloom Toolchest’ distributions.</p></div></div><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gzip</span> <span class="at">-dc</span> R-x.y.z.tar.gz <span class="kw">|</span> <span class="fu">tar</span> <span class="at">-xf</span> <span class="at">-</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The pathname of the directory into which the sources are unpacked should not contain spaces, as most <code>make</code> programs (and specifically GNU <code>make</code>) do not expect spaces.</p>
 <p>If you want the build to be usable by a group of users, set <code>umask</code> before unpacking so that the files will be readable by the target group (e.g., <code>umask 022</code> to be usable by all users). Keep this setting of <code>umask</code> whilst building and installing.</p>
 <p>If you use a fairly recent GNU version of <code>tar</code> and do this as a root account (which on Windows includes accounts with administrator privileges) you may see many warnings about changing ownership. In which case you can use</p>
@@ -355,7 +355,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>svn checkout https<span class="sc">:</span><span class="er">//</span>svn.r<span class="sc">-</span>project.org<span class="sc">/</span>R<span class="sc">/</span>trunk<span class="sc">/</span> path</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>to check out <code>r-devel</code> into directory <code>path</code> (which will be created if necessary). The alpha, beta and RC versions of an upcoming <code>x.y.0</code> release are available from <code>https://svn.r-project.org/R/branches/R-x-y-branch/</code> in the four-week period prior to the release.</p>
 <p>Note that <code>https:</code> is required<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, and that the SSL certificate for the Subversion server of the R project should be recognized as from a trusted source.</p>
-<div class="no-row-height column-margin column-container"><p><sup>2</sup>&nbsp;for some Subversion clients <code>http:</code> may appear to work, but requires continual redirection.</p></div><p>Note that retrieving the sources by e.g.&nbsp;<code>wget -r</code> or <code>svn export</code> from that URL will not work (and will give a error early in the <code>make</code> process): the Subversion information is needed to build R.</p>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;for some Subversion clients <code>http:</code> may appear to work, but requires continual redirection.</p></div></div><p>Note that retrieving the sources by e.g.&nbsp;<code>wget -r</code> or <code>svn export</code> from that URL will not work (and will give a error early in the <code>make</code> process): the Subversion information is needed to build R.</p>
 <p>The Subversion repository does not contain the current sources for the recommended packages, which can be obtained by <code>rsync</code> or downloaded from CRAN. To use <code>rsync</code> to install the appropriate sources for the recommended packages, run <code>./tools/rsync-recommended</code> from the top-level directory of the R sources.</p>
 <p>If downloading manually from CRAN, do ensure that you have the correct versions of the recommended packages: if the number in the file <code>VERSION</code> is <code>x.y.z</code> you need to download the contents of <code>https://CRAN.R-project.org/src/contrib/dir</code>, where <code>dir</code> is <code>x.y.z/Recommended</code> for r-devel or <code>x.y-patched/Recommended</code> for r-patched, respectively, to directory <code>src/library/Recommended</code> in the sources you have unpacked. After downloading manually you need to execute <code>tools/link-recommended</code> from the top level of the sources to make the requisite links in <code>src/library/Recommended</code>. A suitable incantation from the top level of the R sources using <code>wget</code> might be (for the correct value of <code>dir</code>)</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>wget <span class="sc">-</span>r <span class="sc">-</span>l1 <span class="sc">--</span>no<span class="sc">-</span>parent <span class="sc">-</span>A\<span class="sc">*</span>.gz <span class="sc">-</span>nd <span class="sc">-</span>P src<span class="sc">/</span>library<span class="sc">/</span>Recommended \</span>
@@ -459,6 +459,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
           // target, if specified
           link.setAttribute("target", "_blank");
           if (link.getAttribute("rel") === null) {
@@ -502,7 +507,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

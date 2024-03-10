@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -457,13 +457,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="r-commands-case-sensitivity-etc." class="level2 section page-columns page-full" data-number="1.8">
 <h2 class="section anchored" data-number="1.8" data-anchor-id="r-commands-case-sensitivity-etc."><span class="header-section-number">1.8</span> R commands, case sensitivity, etc.</h2>
 <p>Technically R is an <em>expression language</em> with a very simple syntax. It is <em>case sensitive</em> as are most UNIX based packages, so <code>A</code> and <code>a</code> are different symbols and would refer to different variables. The set of symbols which can be used in R names depends on the operating system and country within which R is being run (technically on the <em>locale</em> in use). Normally all alphanumeric symbols are allowed<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> (and in some countries this includes accented letters) plus <code>.</code> and <code>_</code>, with the restriction that a name must start with <code>.</code> or a letter, and if it starts with <code>.</code> the second character must not be a digit. Names are effectively unlimited in length.</p>
-<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;For portable R code (including that to be used in R packages) only A–Z, a–z, and 0–9 should be used.</p></div><p>Elementary commands consist of either <em>expressions</em> or <em>assignments</em>. If an expression is given as a command, it is evaluated, printed (unless specifically made invisible), and the value is lost. An assignment also evaluates an expression and passes the value to a variable but the result is not automatically printed.</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;For portable R code (including that to be used in R packages) only A–Z, a–z, and 0–9 should be used.</p></div></div><p>Elementary commands consist of either <em>expressions</em> or <em>assignments</em>. If an expression is given as a command, it is evaluated, printed (unless specifically made invisible), and the value is lost. An assignment also evaluates an expression and passes the value to a variable but the result is not automatically printed.</p>
 <p>Commands are separated either by a semi-colon (<code>;</code>), or by a newline. Elementary commands can be grouped together into one compound expression by braces (<code>{</code> and <code>}</code>). <em>Comments</em> can be put almost<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> anywhere, starting with a hash mark (<code>#</code>), everything to the end of the line is a comment.</p>
-<div class="no-row-height column-margin column-container"><p><sup>2</sup>&nbsp;<strong>not</strong> inside strings, nor within the argument list of a function definition</p></div><p>If a command is not complete at the end of a line, R will give a different prompt, by default</p>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;<strong>not</strong> inside strings, nor within the argument list of a function definition</p></div></div><p>If a command is not complete at the end of a line, R will give a different prompt, by default</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>on second and subsequent lines and continue to read input until the command is syntactically complete. This prompt may be changed by the user. We will generally omit the continuation prompt and indicate continuation by simple indenting.</p>
 <p>Command lines entered at the console are limited<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> to about 4095 bytes (not characters).</p>
-<div class="no-row-height column-margin column-container"><p><sup>3</sup>&nbsp;some of the consoles will not allow you to enter more, and amongst those which do some will silently discard the excess and some will use it as the start of the next line.</p></div></section>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;some of the consoles will not allow you to enter more, and amongst those which do some will silently discard the excess and some will use it as the start of the next line.</p></div></div></section>
 <section id="recall-and-correction-of-previous-commands" class="level2 section" data-number="1.9">
 <h2 class="section anchored" data-number="1.9" data-anchor-id="recall-and-correction-of-previous-commands"><span class="header-section-number">1.9</span> Recall and correction of previous commands</h2>
 <p>Under many versions of UNIX and on Windows, R provides a mechanism for recalling and re-executing previous commands. The vertical arrow keys on the keyboard can be used to scroll forward and backward through a <em>command history</em>. Once a command is located in this way, the cursor can be moved within the command using the horizontal arrow keys, and characters can be removed with the DEL key or added with the other keys. More details are provided later: see <a href="The-command_002dline-editor.html">The command-line editor</a>.</p>
@@ -473,7 +473,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="executing-commands-from-or-diverting-output-to-a-file" class="level2 section page-columns page-full" data-number="1.10">
 <h2 class="section anchored" data-number="1.10" data-anchor-id="executing-commands-from-or-diverting-output-to-a-file"><span class="header-section-number">1.10</span> Executing commands from or diverting output to a file</h2>
 <p>If commands<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> are stored in an external file, say <code>commands.R</code> in the working directory <code>work</code>, they may be executed at any time in an R session with the command</p>
-<div class="no-row-height column-margin column-container"><p><sup>4</sup>&nbsp;of unlimited length.</p></div><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">source</span>(<span class="st">"commands.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;of unlimited length.</p></div></div><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">source</span>(<span class="st">"commands.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>For Windows <strong>Source</strong> is also available on the <strong>File</strong> menu. The function <code>sink</code>,</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sink</span>(<span class="st">"record.lis"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>will divert all subsequent output from the console to an external file, <code>record.lis</code>. The command</p>
@@ -489,7 +489,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>To remove objects the function <code>rm</code> is available:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">rm</span>(x, y, z, ink, junk, temp, foo, bar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>All objects created during an R session can be stored permanently in a file for use in future R sessions. At the end of each R session you are given the opportunity to save all the currently available objects. If you indicate that you want to do this, the objects are written to a file called <code>.RData</code><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> in the current directory, and the command lines used in the session are saved to a file called <code>.Rhistory</code>.</p>
-<div class="no-row-height column-margin column-container"><p><sup>5</sup>&nbsp;The leading “dot” in this file name makes it <em>invisible</em> in normal file listings in UNIX, and in default GUI file listings on macOS and Windows.</p></div><p>When R is started at later time from the same directory it reloads the workspace from this file. At the same time the associated commands history is reloaded.</p>
+<div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;The leading “dot” in this file name makes it <em>invisible</em> in normal file listings in UNIX, and in default GUI file listings on macOS and Windows.</p></div></div><p>When R is started at later time from the same directory it reloads the workspace from this file. At the same time the associated commands history is reloaded.</p>
 <p>It is recommended that you should use separate working directories for analyses conducted with R. It is quite common for objects with names <code>x</code> and <code>y</code> to be created during an analysis. Names like this are often meaningful in the context of a single analysis, but it can be quite hard to decide what they might be when the several analyses have been conducted in the same directory.</p>
 <p>Footnotes</p>
 
@@ -588,6 +588,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
           // target, if specified
           link.setAttribute("target", "_blank");
           if (link.getAttribute("rel") === null) {
@@ -631,7 +636,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

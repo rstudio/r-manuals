@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -524,7 +524,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>is the matrix product. If <code>x</code> is a vector, then</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="sc">%*%</span> A <span class="sc">%*%</span> x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>is a quadratic form.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;Note that <code>x %*% x</code> is ambiguous, as it could mean either x’x or x x’, where x is the column form. In such cases the smaller matrix seems implicitly to be the interpretation adopted, so the scalar x’x is in this case the result. The matrix x x’ may be calculated either by <code>cbind(x) %*% x</code> or <code>x %*% rbind(x)</code> since the result of <code>rbind()</code> or <code>cbind()</code> is always a matrix. However, the best way to compute x’x or x x’ is <code>crossprod(x)</code> or <code>x %o% x</code> respectively.</p></div><p>The function <code>crossprod()</code> forms “cross products”, meaning that <code>crossprod(X, y)</code> is the same as <code>t(X) %*% y</code> but the operation is more efficient. If the second argument to <code>crossprod()</code> is omitted it is taken to be the same as the first.</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Note that <code>x %*% x</code> is ambiguous, as it could mean either x’x or x x’, where x is the column form. In such cases the smaller matrix seems implicitly to be the interpretation adopted, so the scalar x’x is in this case the result. The matrix x x’ may be calculated either by <code>cbind(x) %*% x</code> or <code>x %*% rbind(x)</code> since the result of <code>rbind()</code> or <code>cbind()</code> is always a matrix. However, the best way to compute x’x or x x’ is <code>crossprod(x)</code> or <code>x %o% x</code> respectively.</p></div></div><p>The function <code>crossprod()</code> forms “cross products”, meaning that <code>crossprod(X, y)</code> is the same as <code>t(X) %*% y</code> but the operation is more efficient. If the second argument to <code>crossprod()</code> is omitted it is taken to be the same as the first.</p>
 <p>The meaning of <code>diag()</code> depends on its argument. <code>diag(v)</code>, where <code>v</code> is a vector, gives a diagonal matrix with elements of the vector as the diagonal entries. On the other hand <code>diag(M)</code>, where <code>M</code> is a matrix, gives the vector of main diagonal entries of <code>M</code>. This is the same convention as that used for <code>diag()</code> in <span class="small">MATLAB</span>. Also, somewhat confusingly, if <code>k</code> is a single numeric value then <code>diag(k)</code> is the <code>k</code> by <code>k</code> identity matrix!</p>
 </section>
 <section id="linear-equations-and-inversion" class="level3 subsection page-columns page-full" data-number="5.7.2">
@@ -537,7 +537,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">solve</span>(A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>but rarely is needed. Numerically, it is both inefficient and potentially unstable to compute <code>x &lt;- solve(A) %*% b</code> instead of <code>solve(A,b)</code>.</p>
 <p>The quadratic form &nbsp;<code>x %*% A^{-1} %*% x</code> &nbsp; which is used in multivariate computations, should be computed by something like<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> <code>x %*% solve(A,x)</code>, rather than computing the inverse of <code>A</code>.</p>
-<div class="no-row-height column-margin column-container"><p><sup>2</sup>&nbsp;Even better would be to form a matrix square root B with A = BB’ and find the squared length of the solution of By = x , perhaps using the Cholesky or eigendecomposition of A.</p></div></section>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;Even better would be to form a matrix square root B with A = BB’ and find the squared length of the solution of By = x , perhaps using the Cholesky or eigendecomposition of A.</p></div></div></section>
 <section id="eigenvalues-and-eigenvectors" class="level3 subsection" data-number="5.7.3">
 <h3 class="subsection anchored" data-number="5.7.3" data-anchor-id="eigenvalues-and-eigenvectors"><span class="header-section-number">5.7.3</span> Eigenvalues and eigenvectors</h3>
 <p>The function <code>eigen(Sm)</code> calculates the eigenvalues and eigenvectors of a symmetric matrix <code>Sm</code>. The result of this function is a list of two components named <code>values</code> and <code>vectors</code>. The assignment</p>
@@ -710,6 +710,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
           // target, if specified
           link.setAttribute("target", "_blank");
           if (link.getAttribute("rel") === null) {
@@ -753,7 +758,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

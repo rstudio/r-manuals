@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -329,7 +329,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="profiling-r-code-for-speed" class="level2 section page-columns page-full" data-number="3.2">
 <h2 class="section anchored" data-number="3.2" data-anchor-id="profiling-r-code-for-speed"><span class="header-section-number">3.2</span> Profiling R code for speed</h2>
 <p>It is possible to profile R code on Windows and most<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Unix-alike versions of R.</p>
-<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;R has to be built to enable this, but the option <code>--enable-R-profiling</code> is the default.</p><p><sup>2</sup>&nbsp;For Unix-alikes by default these are intervals of CPU time, and for Windows of elapsed (‘wall-clock’) time. As from R 4.4.0, elapsed time is optional on Unix-alikes</p></div><p>The command <code>Rprof</code> is used to control profiling, and its help page can be consulted for full details. Profiling works by recording at fixed intervals<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> (by default every 20 msecs) which line in which R function is being used, and recording the results in a file (default <code>Rprof.out</code> in the working directory). Then the function <code>summaryRprof</code> or the command-line utility <code>R CMD Rprof Rprof.out</code> can be used to summarize the activity.</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;R has to be built to enable this, but the option <code>--enable-R-profiling</code> is the default.</p></div><div id="fn2"><p><sup>2</sup>&nbsp;For Unix-alikes by default these are intervals of CPU time, and for Windows of elapsed (‘wall-clock’) time. As from R 4.4.0, elapsed time is optional on Unix-alikes</p></div></div><p>The command <code>Rprof</code> is used to control profiling, and its help page can be consulted for full details. Profiling works by recording at fixed intervals<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> (by default every 20 msecs) which line in which R function is being used, and recording the results in a file (default <code>Rprof.out</code> in the working directory). Then the function <code>summaryRprof</code> or the command-line utility <code>R CMD Rprof Rprof.out</code> can be used to summarize the activity.</p>
 <p>As an example, consider the following code (from Venables &amp; Ripley, 2002, pp.&nbsp;225–6).</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS); <span class="fu">library</span>(boot)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>storm.fm <span class="ot">&lt;-</span> <span class="fu">nls</span>(Time <span class="sc">~</span> b<span class="sc">*</span>Viscosity<span class="sc">/</span>(Wt <span class="sc">-</span> c), stormer,</span>
@@ -669,6 +669,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
           // target, if specified
           link.setAttribute("target", "_blank");
           if (link.getAttribute("rel") === null) {
@@ -712,7 +717,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

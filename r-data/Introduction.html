@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -344,7 +344,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>intro<span class="op">.</span>dat<span class="op">:</span> UTF<span class="op">-</span><span class="dv">8</span> Unicode text</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>intro<span class="op">.</span>dat<span class="op">:</span> UTF<span class="op">-</span><span class="dv">8</span> Unicode <span class="op">(</span>with BOM<span class="op">)</span> text</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Modern Unix-alike systems, including macOS, are likely to produce UTF-8 files. Windows may produce what it calls ‘Unicode’ files (<code>UCS-2LE</code> or just possibly <code>UTF-16LE</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>). Otherwise most files will be in a 8-bit encoding unless from a Chinese/Japanese/Korean locale (which have a wide range of encodings in common use). It is not possible to automatically detect with certainty which 8-bit encoding (although guesses may be possible and <code>file</code> may guess as it did in the example above), so you may simply have to ask the originator for some clues (e.g.&nbsp;‘Russian on Windows’).</p>
-<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;the distinction is subtle, <a href="https://en.wikipedia.org/wiki/UTF-16/UCS-2" class="uri">https://en.wikipedia.org/wiki/UTF-16/UCS-2</a>, and the use of surrogate pairs is very rare.</p></div><p>‘BOMs’ (Byte Order Marks, <a href="https://en.wikipedia.org/wiki/Byte_order_mark" class="uri">https://en.wikipedia.org/wiki/Byte_order_mark</a>) cause problems for Unicode files. In the Unix world BOMs are rarely used, whereas in the Windows world they almost always are for UCS-2/UTF-16 files, and often are for UTF-8 files. The <code>file</code> utility will not even recognize UCS-2 files without a BOM, but many other utilities will refuse to read files with a BOM and the IANA standards for <code>UTF-16LE</code> and <code>UTF-16BE</code> prohibit it. We have too often been reduced to looking at the file with the command-line utility <code>od</code> or a hex editor to work out its encoding.</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;the distinction is subtle, <a href="https://en.wikipedia.org/wiki/UTF-16/UCS-2" class="uri">https://en.wikipedia.org/wiki/UTF-16/UCS-2</a>, and the use of surrogate pairs is very rare.</p></div></div><p>‘BOMs’ (Byte Order Marks, <a href="https://en.wikipedia.org/wiki/Byte_order_mark" class="uri">https://en.wikipedia.org/wiki/Byte_order_mark</a>) cause problems for Unicode files. In the Unix world BOMs are rarely used, whereas in the Windows world they almost always are for UCS-2/UTF-16 files, and often are for UTF-8 files. The <code>file</code> utility will not even recognize UCS-2 files without a BOM, but many other utilities will refuse to read files with a BOM and the IANA standards for <code>UTF-16LE</code> and <code>UTF-16BE</code> prohibit it. We have too often been reduced to looking at the file with the command-line utility <code>od</code> or a hex editor to work out its encoding.</p>
 <p>Note that <code>utf8</code> is not a valid encoding name (<code>UTF-8</code> is), and <code>macintosh</code> is the most portable name for what is sometimes called ‘Mac Roman’ encoding.</p>
 </section>
 </section>
@@ -386,7 +386,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Text files do not contain metadata on their encodings, so for non-ASCII data the file needs to be targetted to the application intended to read it. All of these functions can write to a <em>connection</em> which allows an encoding to be specified for the file, and <code>write.table</code> has a <code>fileEncoding</code> argument to make this easier.</p>
 <p>The hard part is to know what file encoding to use. For use on Windows, it is best to use what Windows calls ‘Unicode’<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, that is <code>"UTF-16LE"</code>. Using UTF-8 is a good way to make portable files that will not easily be confused with any other encoding, but even macOS applications (where UTF-8 is the system encoding) may not recognize them, and Windows applications are most unlikely to. Apparently Excel:mac 2004/8 expected <code>.csv</code> files in <code>"macroman"</code> encoding (the encoding used in much earlier versions of Mac OS).</p></li>
 </ol>
-<div class="no-row-height column-margin column-container"><p><sup>2</sup>&nbsp;Even then, Windows applications may expect a Byte Order Mark which the implementation of <code>iconv</code> used by R may or may not add depending on the platform.</p></div><p>Function <code>write.matrix</code> in package <a href="https://CRAN.R-project.org/package=MASS"><strong>MASS</strong></a> provides a specialized interface for writing matrices, with the option of writing them in blocks and thereby reducing memory usage.</p>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;Even then, Windows applications may expect a Byte Order Mark which the implementation of <code>iconv</code> used by R may or may not add depending on the platform.</p></div></div><p>Function <code>write.matrix</code> in package <a href="https://CRAN.R-project.org/package=MASS"><strong>MASS</strong></a> provides a specialized interface for writing matrices, with the option of writing them in blocks and thereby reducing memory usage.</p>
 <p>It is possible to use <code>sink</code> to divert the standard R output to a file, and thereby capture the output of (possibly implicit) <code>print</code> statements. This is not usually the most efficient route, and the <code>options(width)</code> setting may need to be increased.</p>
 <p>Function <code>write.foreign</code> in package <a href="https://CRAN.R-project.org/package=foreign"><strong>foreign</strong></a> uses <code>write.table</code> to produce a text file and also writes a code file that will read this text file into another statistical package. There is currently support for export to <code>SAS</code>, <code>SPSS</code> and <code>Stata</code>.</p>
 </section>
@@ -496,6 +496,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
           // target, if specified
           link.setAttribute("target", "_blank");
           if (link.getAttribute("rel") === null) {
@@ -539,7 +544,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

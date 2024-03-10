@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -284,7 +284,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="r.app" class="level2 section page-columns page-full" data-number="7.1">
 <h2 class="section anchored" data-number="7.1" data-anchor-id="r.app"><span class="header-section-number">7.1</span> R.app</h2>
 <p><code>R.app</code> is a macOS application which provides a console. Its sources are a separate project<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, and its binaries link to an R installation which it runs as a dynamic library <code>libR.dylib</code>. The standard CRAN distribution of R for macOS bundles the GUI and R itself, but installing the GUI is optional and either component can be updated separately.</p>
-<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;an Xcode project, in SVN at <a href="https://svn.r-project.org/R-packages/trunk/Mac-GUI/" class="uri">https://svn.r-project.org/R-packages/trunk/Mac-GUI/</a>.</p></div><p><code>R.app</code> relies on <code>libR.dylib</code> being in a specific place, and hence on R having been built and installed as a Mac macOS ‘framework’. Specifically, it uses <code>/Library/Frameworks/R.framework/R</code>. This is a symbolic link, as frameworks can contain multiple versions of R. It eventually resolves to <code>/Library/Frameworks/R.framework/Versions/Current/Resources/lib/libR.dylib</code>, which is (in the CRAN distribution) a ‘fat’ binary containing multiple sub-architectures.</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;an Xcode project, in SVN at <a href="https://svn.r-project.org/R-packages/trunk/Mac-GUI/" class="uri">https://svn.r-project.org/R-packages/trunk/Mac-GUI/</a>.</p></div></div><p><code>R.app</code> relies on <code>libR.dylib</code> being in a specific place, and hence on R having been built and installed as a Mac macOS ‘framework’. Specifically, it uses <code>/Library/Frameworks/R.framework/R</code>. This is a symbolic link, as frameworks can contain multiple versions of R. It eventually resolves to <code>/Library/Frameworks/R.framework/Versions/Current/Resources/lib/libR.dylib</code>, which is (in the CRAN distribution) a ‘fat’ binary containing multiple sub-architectures.</p>
 <p>macOS applications are directory trees: each <code>R.app</code> contains a front-end written in Objective-C for one sub-architecture: in the standard distribution there are separate applications for 32- and 64-bit Intel architectures.</p>
 <p>Originally the R sources contained quite a lot of code used only by the macOS GUI, but this was migrated to the <code>R.app</code> sources.</p>
 <p><code>R.app</code> starts R as an embedded application with a command-line which includes <code>--gui=aqua</code> (see below). It uses most of the interface pointers defined in the header <code>Rinterface.h</code>, plus a private interface pointer in file <code>src/main/sysutils.c</code>. It adds an environment it names <code>tools:RGUI</code> to the second position in the search path. This contains a number of utility functions used to support the menu items, for example <code>package.manager()</code>, plus functions <code>q()</code> and <code>quit()</code> which mask those in package <strong>base</strong>—the custom versions save the history in a way specific to <code>R.app</code>.</p>
@@ -409,6 +409,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
           // target, if specified
           link.setAttribute("target", "_blank");
           if (link.getAttribute("rel") === null) {
@@ -452,7 +457,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

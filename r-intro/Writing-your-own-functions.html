@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -407,7 +407,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> regcoeff <span class="ot">&lt;-</span> <span class="fu">bslash</span>(Xmat, yvar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>and so on.</p>
 <p>The classical R function <code>lsfit()</code> does this job quite well, and more<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. It in turn uses the functions <code>qr()</code> and <code>qr.coef()</code> in the slightly counterintuitive way above to do this part of the calculation. Hence there is probably some value in having just this part isolated in a simple to use function if it is going to be in frequent use. If so, we may wish to make it a matrix binary operator for even more convenient use.</p>
-<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;See also the methods described in <a href="Statistical-models-in-R.html#statistical-models-in-r">Statistical models in R</a></p></div></section>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;See also the methods described in <a href="Statistical-models-in-R.html#statistical-models-in-r">Statistical models in R</a></p></div></div></section>
 <section id="defining-new-binary-operators" class="level2 section" data-number="10.2">
 <h2 class="section anchored" data-number="10.2" data-anchor-id="defining-new-binary-operators"><span class="header-section-number">10.2</span> Defining new binary operators</h2>
 <p>Had we given the <code>bslash()</code> function a different name, namely one of the form</p>
@@ -553,7 +553,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Lexical scope can also be used to give functions <em>mutable state</em>. In the following example we show how R can be used to mimic a bank account. A functioning bank account needs to have a balance or total, a function for making withdrawals, a function for making deposits and a function for stating the current balance. We achieve this by creating the three functions within <code>account</code> and then returning a list containing them. When <code>account</code> is invoked it takes a numerical argument <code>total</code> and returns a list containing the three functions. Because these functions are defined in an environment which contains <code>total</code>, they will have access to its value.</p>
 <p>The special assignment operator, <code>&lt;&lt;-</code>, is used to change the value associated with <code>total</code>. This operator looks back in enclosing environments for an environment that contains the symbol <code>total</code> and when it finds such an environment it replaces the value, in that environment, with the value of right hand side. If the global or top-level environment is reached without finding the symbol <code>total</code> then that variable is created and assigned to there. For most users <code>&lt;&lt;-</code> creates a global variable and assigns the value of the right hand side to it<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Only when <code>&lt;&lt;-</code> has been used in a function that was returned as the value of another function will the special behavior described here occur.</p>
-<div class="no-row-height column-margin column-container"><p><sup>2</sup>&nbsp;In some sense this mimics the behavior in <span class="small">S-PLUS</span> since in <span class="small">S-PLUS</span> this operator always creates or assigns to a global variable.</p></div><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>open.account <span class="ot">&lt;-</span> <span class="cf">function</span>(total) {</span>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;In some sense this mimics the behavior in <span class="small">S-PLUS</span> since in <span class="small">S-PLUS</span> this operator always creates or assigns to a global variable.</p></div></div><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>open.account <span class="ot">&lt;-</span> <span class="cf">function</span>(total) {</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">deposit =</span> <span class="cf">function</span>(amount) {</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span>(amount <span class="sc">&lt;=</span> <span class="dv">0</span>)</span>
@@ -588,7 +588,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="section anchored" data-number="10.8" data-anchor-id="customizing-the-environment"><span class="header-section-number">10.8</span> Customizing the environment</h2>
 <p>Users can customize their environment in several different ways. There is a site initialization file and every directory can have its own special initialization file. Finally, the special functions <code>.First</code> and <code>.Last</code> can be used.</p>
 <p>The location of the site initialization file is taken from the value of the <code>R_PROFILE</code> environment variable. If that variable is unset, the file <code>Rprofile.site</code> in the R home subdirectory <code>etc</code> is used. This file should contain the commands that you want to execute every time R is started under your system. A second, personal, profile file named <code>.Rprofile</code><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> can be placed in any directory. If R is invoked in that directory then that file will be sourced. This file gives individual users control over their workspace and allows for different startup procedures in different working directories. If no <code>.Rprofile</code> file is found in the startup directory, then R looks for a <code>.Rprofile</code> file in the user’s home directory and uses that (if it exists). If the environment variable <code>R_PROFILE_USER</code> is set, the file it points to is used instead of the <code>.Rprofile</code> files.</p>
-<div class="no-row-height column-margin column-container"><p><sup>3</sup>&nbsp;So it is hidden under UNIX.</p></div><p>Any function named <code>.First()</code> in either of the two profile files or in the <code>.RData</code> image has a special status. It is automatically performed at the beginning of an R session and may be used to initialize the environment. For example, the definition in the example below alters the prompt to <code>$</code> and sets up various other useful things that can then be taken for granted in the rest of the session.</p>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;So it is hidden under UNIX.</p></div></div><p>Any function named <code>.First()</code> in either of the two profile files or in the <code>.RData</code> image has a special status. It is automatically performed at the beginning of an R session and may be used to initialize the environment. For example, the definition in the example below alters the prompt to <code>$</code> and sets up various other useful things that can then be taken for granted in the rest of the session.</p>
 <p>Thus, the sequence in which files are executed is, <code>Rprofile.site</code>, the user profile, <code>.RData</code> and then <code>.First()</code>. A definition in later files will mask definitions in earlier files.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="op">.</span>First <span class="op">&lt;-</span> function<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  options<span class="op">(</span>prompt<span class="op">=</span><span class="st">"$ "</span><span class="op">,</span> <span class="cf">continue</span><span class="op">=</span><span class="st">"+</span><span class="sc">\t</span><span class="st">"</span><span class="op">)</span>  # $ is the prompt</span>
@@ -745,6 +745,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
           // target, if specified
           link.setAttribute("target", "_blank");
           if (link.getAttribute("rel") === null) {
@@ -788,7 +793,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

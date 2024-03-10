@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -370,11 +370,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="intrinsic-attributes-mode-and-length" class="level2 section page-columns page-full" data-number="3.1">
 <h2 class="section anchored" data-number="3.1" data-anchor-id="intrinsic-attributes-mode-and-length"><span class="header-section-number">3.1</span> Intrinsic attributes: mode and length</h2>
 <p>The entities R operates on are technically known as <em>objects</em>. Examples are vectors of numeric (real) or complex values, vectors of logical values and vectors of character strings. These are known as “atomic” structures since their components are all of the same type, or <em>mode</em>, namely <em>numeric</em><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, <em>complex</em>, <em>logical</em>, <em>character</em> and <em>raw</em>.</p>
-<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;<em>numeric</em> mode is actually an amalgam of two distinct modes, namely <em>integer</em> and <em>double</em> precision, as explained in the manual.</p></div><p>Vectors must have their values <em>all of the same mode</em>. Thus any given vector must be unambiguously either <em>logical</em>, <em>numeric</em>, <em>complex</em>, <em>character</em> or <em>raw</em>. (The only apparent exception to this rule is the special “value” listed as <code>NA</code> for quantities not available, but in fact there are several types of <code>NA</code>). Note that a vector can be empty and still have a mode. For example the empty character string vector is listed as <code>character(0)</code> and the empty numeric vector as <code>numeric(0)</code>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;<em>numeric</em> mode is actually an amalgam of two distinct modes, namely <em>integer</em> and <em>double</em> precision, as explained in the manual.</p></div></div><p>Vectors must have their values <em>all of the same mode</em>. Thus any given vector must be unambiguously either <em>logical</em>, <em>numeric</em>, <em>complex</em>, <em>character</em> or <em>raw</em>. (The only apparent exception to this rule is the special “value” listed as <code>NA</code> for quantities not available, but in fact there are several types of <code>NA</code>). Note that a vector can be empty and still have a mode. For example the empty character string vector is listed as <code>character(0)</code> and the empty numeric vector as <code>numeric(0)</code>.</p>
 <p>R also operates on objects called <em>lists</em>, which are of mode <em>list</em>. These are ordered sequences of objects which individually can be of any mode. <em>lists</em> are known as “recursive” rather than atomic structures since their components can themselves be lists in their own right.</p>
 <p>The other recursive structures are those of mode <em>function</em> and <em>expression</em>. Functions are the objects that form part of the R system along with similar user written functions, which we discuss in some detail later. Expressions as objects form an advanced part of R which will not be discussed in this guide, except indirectly when we discuss <em>formulae</em> used with modeling in R.</p>
 <p>By the <em>mode</em> of an object we mean the basic type of its fundamental constituents. This is a special case of a “property” of an object. Another property of every object is its <em>length</em>. The functions <code>mode(object)</code> and <code>length(object)</code> can be used to find out the mode and length of any defined structure <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
-<div class="no-row-height column-margin column-container"><p><sup>2</sup>&nbsp;Note however that <code>length(object)</code> does not always contain intrinsic useful information, e.g., when <code>object</code> is a function.</p></div><p>Further properties of an object are usually provided by <code>attributes(object)</code>, see <a href="#getting-and-setting-attributes">Getting and setting attributes</a>. Because of this, <em>mode</em> and <em>length</em> are also called “intrinsic attributes” of an object.</p>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;Note however that <code>length(object)</code> does not always contain intrinsic useful information, e.g., when <code>object</code> is a function.</p></div></div><p>Further properties of an object are usually provided by <code>attributes(object)</code>, see <a href="#getting-and-setting-attributes">Getting and setting attributes</a>. Because of this, <em>mode</em> and <em>length</em> are also called “intrinsic attributes” of an object.</p>
 <p>For example, if <code>z</code> is a complex vector of length 100, then in an expression <code>mode(z)</code> is the character string <code>"complex"</code> and <code>length(z)</code> is <code>100</code>.</p>
 <p>R caters for changes of mode almost anywhere it could be considered sensible to do so, (and a few where it might not be). For example with</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> z <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -383,7 +383,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>after which <code>digits</code> is the character vector <code>c("0", "1", "2", ..., "9")</code>. A further <em>coercion</em>, or change of mode, reconstructs the numerical vector again:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> d <span class="op">&lt;-</span> as<span class="op">.</span>integer<span class="op">(</span>digits<span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Now <code>d</code> and <code>z</code> are the same.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> There is a large collection of functions of the form <code>as.something()</code> for either coercion from one mode to another, or for investing an object with some other attribute it may not already possess. The reader should consult the different help files to become familiar with them.</p>
-<div class="no-row-height column-margin column-container"><p><sup>3</sup>&nbsp;In general, coercion from numeric to character and back again will not be exactly reversible, because of roundoff errors in the character representation.</p></div></section>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;In general, coercion from numeric to character and back again will not be exactly reversible, because of roundoff errors in the character representation.</p></div></div></section>
 <section id="changing-the-length-of-an-object" class="level2 section" data-number="3.2">
 <h2 class="section anchored" data-number="3.2" data-anchor-id="changing-the-length-of-an-object"><span class="header-section-number">3.2</span> Changing the length of an object</h2>
 <p>An “empty” object may still have a mode. For example</p>
@@ -410,7 +410,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="section anchored" data-number="3.4" data-anchor-id="the-class-of-an-object"><span class="header-section-number">3.4</span> The class of an object</h2>
 <p>All objects in R have a <em>class</em>, reported by the function <code>class</code>. For simple vectors this is just the mode, for example <code>"numeric"</code>, <code>"logical"</code>, <code>"character"</code> or <code>"list"</code>, but <code>"matrix"</code>, <code>"array"</code>, <code>"factor"</code> and <code>"data.frame"</code> are other possible values.</p>
 <p>A special attribute known as the <em>class</em> of the object is used to allow for an object-oriented style<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> of programming in R. For example if an object has class <code>"data.frame"</code>, it will be printed in a certain way, the <code>plot()</code> function will display it graphically in a certain way, and other so-called generic functions such as <code>summary()</code> will react to it as an argument in a way sensitive to its class.</p>
-<div class="no-row-height column-margin column-container"><p><sup>4</sup>&nbsp;A different style using ‘formal’ or ‘S4’ classes is provided in package <code>methods</code>.</p></div><p>To remove temporarily the effects of class, use the function <code>unclass()</code>. For example if <code>winter</code> has the class <code>"data.frame"</code> then</p>
+<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;A different style using ‘formal’ or ‘S4’ classes is provided in package <code>methods</code>.</p></div></div><p>To remove temporarily the effects of class, use the function <code>unclass()</code>. For example if <code>winter</code> has the class <code>"data.frame"</code> then</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> winter</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>will print it in data frame form, which is rather like a matrix, whereas</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> unclass<span class="op">(</span>winter<span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -513,6 +513,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
           // target, if specified
           link.setAttribute("target", "_blank");
           if (link.getAttribute("rel") === null) {
@@ -556,7 +561,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

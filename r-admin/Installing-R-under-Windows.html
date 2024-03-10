@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -353,7 +353,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="subsection anchored" data-number="3.1.2" data-anchor-id="latex"><span class="header-section-number">3.1.2</span> LaTeX</h3>
 <p>Both building R and checking packages need a distribution of LaTeX installed, with the directory containing <code>pdflatex</code> on the path.</p>
 <p>The <code>MiKTeX</code> (<a href="https://miktex.org/" class="uri">https://miktex.org/</a>) distribution of LaTeX is that used on CRAN. This can be set up to install extra packages ‘on the fly’ (without asking), which is the simplest way to use it. The ‘basic’ version of <code>MiKTeX</code> will need to add some packages.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> In any case ensure that the <strong>inconsolata</strong> package is installed—you can check with the <code>MiKTeX</code> Package Manager.</p>
-<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;There are reports of segfaults when <code>MiKTeX</code> installs additional packages when making <code>NEWS.pdf</code>: re-running <code>make</code> seems to solve this.</p></div><p>It is also possible to use the TeX Live distribution from <a href="https://www.tug.org/texlive/" class="uri">https://www.tug.org/texlive/</a>. (The CRAN package <a href="https://CRAN.R-project.org/package=tinytex"><strong>tinytex</strong></a> can install and manage a subset of TeX Live.)</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;There are reports of segfaults when <code>MiKTeX</code> installs additional packages when making <code>NEWS.pdf</code>: re-running <code>make</code> seems to solve this.</p></div></div><p>It is also possible to use the TeX Live distribution from <a href="https://www.tug.org/texlive/" class="uri">https://www.tug.org/texlive/</a>. (The CRAN package <a href="https://CRAN.R-project.org/package=tinytex"><strong>tinytex</strong></a> can install and manage a subset of TeX Live.)</p>
 </section>
 </section>
 <section id="checking-the-build" class="level2 section" data-number="3.2">
@@ -486,6 +486,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
           // target, if specified
           link.setAttribute("target", "_blank");
           if (link.getAttribute("rel") === null) {
@@ -529,7 +534,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

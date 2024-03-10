@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -539,7 +539,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="control-structures" class="level2 section page-columns page-full" data-number="3.2">
 <h2 class="section anchored" data-number="3.2" data-anchor-id="control-structures"><span class="header-section-number">3.2</span> Control structures</h2>
 <p>Computation in R consists of sequentially evaluating <em>statements</em>. Statements, such as <code>x&lt;-1:10</code> or <code>mean(y)</code>, can be separated by either a semi-colon or a new line. Whenever the evaluator is presented with a syntactically complete statement that statement is evaluated and the <em>value</em> returned. The result of evaluating a statement can be referred to as the value of the statement<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> The value can always be assigned to a symbol.</p>
-<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;Evaluation always takes place in an environment. See <a href="#scope-of-variables">Scope of variables</a> for more details.</p></div><p>Both semicolons and new lines can be used to separate statements. A semicolon always indicates the end of a statement while a new line <em>may</em> indicate the end of a statement. If the current statement is not syntactically complete new lines are simply ignored by the evaluator. If the session is interactive the prompt changes from <code>&gt;</code> to <code>+</code>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Evaluation always takes place in an environment. See <a href="#scope-of-variables">Scope of variables</a> for more details.</p></div></div><p>Both semicolons and new lines can be used to separate statements. A semicolon always indicates the end of a statement while a new line <em>may</em> indicate the end of a statement. If the current statement is not syntactically complete new lines are simply ignored by the evaluator. If the session is interactive the prompt changes from <code>&gt;</code> to <code>+</code>.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="dv">0</span>; x <span class="sc">+</span> <span class="dv">5</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">5</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> y <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
@@ -578,7 +578,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="looping" class="level3 subsection page-columns page-full" data-number="3.2.2">
 <h3 class="subsection anchored" data-number="3.2.2" data-anchor-id="looping"><span class="header-section-number">3.2.2</span> Looping</h3>
 <p>R has three statements that provide explicit looping.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> They are <code>for</code>, <code>while</code> and <code>repeat</code>. The two built-in constructs, <code>next</code> and <code>break</code>, provide additional control over the evaluation. R provides other functions for implicit looping such as <code>tapply</code>, <code>apply</code>, and <code>lapply</code>. In addition many operations, especially arithmetic ones, are vectorized so you may not need to use a loop.</p>
-<div class="no-row-height column-margin column-container"><p><sup>2</sup>&nbsp;Looping is the repeated evaluation of a statement or block of statements.</p></div><p>There are two statements that can be used to explicitly control looping. They are <code>break</code> and <code>next</code>. The <code>break</code> statement causes an exit from the innermost loop that is currently being executed. The <code>next</code> statement immediately causes control to return to the start of the loop. The next iteration of the loop (if there is one) is then executed. No statement below <code>next</code> in the current loop is evaluated.</p>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;Looping is the repeated evaluation of a statement or block of statements.</p></div></div><p>There are two statements that can be used to explicitly control looping. They are <code>break</code> and <code>next</code>. The <code>break</code> statement causes an exit from the innermost loop that is currently being executed. The <code>next</code> statement immediately causes control to return to the start of the loop. The next iteration of the loop (if there is one) is then executed. No statement below <code>next</code> in the current loop is evaluated.</p>
 <p>The value returned by a loop statement is always <code>NULL</code> and is returned invisibly.</p>
 </section>
 <section id="repeat" class="level3 subsection" data-number="3.2.3">
@@ -960,6 +960,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
           // target, if specified
           link.setAttribute("target", "_blank");
           if (link.getAttribute("rel") === null) {
@@ -1003,7 +1008,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

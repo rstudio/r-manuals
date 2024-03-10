@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -330,7 +330,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>The routines supporting the distribution and special<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> functions in R and a few others are declared in C header file <code>Rmath.h</code>. These can be compiled into a standalone library for linking to other applications. (Note that they are not a separate library when R is built, and the standalone version differs in several ways.)</p>
-<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;e.g.&nbsp;Bessel, beta and gamma functions</p></div><p>The makefiles and other sources needed are in directory <code>src/nmath/standalone</code>, so the following instructions assume that is the current working directory (in the build directory tree on a Unix-alike if that is separate from the sources).</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;e.g.&nbsp;Bessel, beta and gamma functions</p></div></div><p>The makefiles and other sources needed are in directory <code>src/nmath/standalone</code>, so the following instructions assume that is the current working directory (in the build directory tree on a Unix-alike if that is separate from the sources).</p>
 <p><code>Rmath.h</code> contains <code>R_VERSION_STRING</code>, which is a character string containing the current R version, for example <code>"4.4.0"</code>.</p>
 <p>There is full access to R’s handling of <code>NaN</code>, <code>Inf</code> and <code>-Inf</code> via special versions of the macros and functions</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>    ISNAN<span class="op">,</span> R_FINITE<span class="op">,</span> R_log<span class="op">,</span> R_pow and R_pow_di</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -373,7 +373,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="windows" class="level2 section page-columns page-full" data-number="9.2">
 <h2 class="section anchored" data-number="9.2" data-anchor-id="windows"><span class="header-section-number">9.2</span> Windows</h2>
 <p>You need to set up<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> almost all the tools to make R and then run (in a Unix-like shell)</p>
-<div class="no-row-height column-margin column-container"><p><sup>2</sup>&nbsp;including copying <code>MkRules.dist</code> to <code>MkRule.local</code> and selecting the architecture.</p></div><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(cd ..<span class="sc">/</span>..<span class="sc">/</span>gnuwin32; make MkRules)</span>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;including copying <code>MkRules.dist</code> to <code>MkRule.local</code> and selecting the architecture.</p></div></div><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(cd ..<span class="sc">/</span>..<span class="sc">/</span>gnuwin32; make MkRules)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>(cd ..<span class="sc">/</span>..<span class="sc">/</span>include; make <span class="sc">-</span>f Makefile.win config.h Rconfig.h Rmath.h)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>make <span class="sc">-</span>f Makefile.win</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Alternatively, in a <code>cmd.exe</code> shell use</p>
@@ -493,6 +493,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
           // target, if specified
           link.setAttribute("target", "_blank");
           if (link.getAttribute("rel") === null) {
@@ -536,7 +541,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

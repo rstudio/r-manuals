@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -764,7 +764,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 </dl>
 <p>The following variables control checks for undeclared/unconditional use of other packages. They work by setting up a temporary library directory and setting <code>.libPaths()</code> to just that and <code>.Library</code>, so are only effective if additional packages are installed somewhere other than <code>.Library</code>. The temporary library is populated by symbolic links<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> to installed packages not also in <code>.Library</code>.</p>
-<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;under Windows, junction points, or copies if environment variable <code>R_WIN_NO_JUNCTIONS</code> has a non-empty value.</p></div><dl>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;under Windows, junction points, or copies if environment variable <code>R_WIN_NO_JUNCTIONS</code> has a non-empty value.</p></div></div><dl>
 <dt><code>_R_CHECK_INSTALL_DEPENDS_</code> <a href="#index-_r_check_install_depends_" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>If set to a true value and a test installation is to be done, this is done with a temporary library populated by all the Depends/Imports/LinkingTo packages. Default: false (but true for CRAN submission checks).</p>
@@ -879,7 +879,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 </dl>
 <p>Another variable which enables stricter checks is to set <code>R_CHECK_CONSTANTS</code> to <code>5</code>. This checks that nothing<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> changes the values of ‘constants’<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> in R code. This is best used in conjunction with setting <code>R_JIT_STRATEGY</code> to <code>3</code>, which checks code on first use (by default most code is only checked after byte-compilation on second use). Unfortunately these checks slow down checking of examples, tests and vignettes, typically two-fold but in the worst cases at least a hundred-fold.</p>
-<div class="no-row-height column-margin column-container"><p><sup>2</sup>&nbsp;The usual culprits are calls to compiled code <em>via</em> <code>.Call</code> or <code>.External</code> which alter their arguments.</p><p><sup>3</sup>&nbsp;things which the byte compiler assumes do not change, e.g.&nbsp;function bodies.</p></div><p>The following environment variables can be used to customize the operation of <code>INSTALL</code>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;The usual culprits are calls to compiled code <em>via</em> <code>.Call</code> or <code>.External</code> which alter their arguments.</p></div><div id="fn3"><p><sup>3</sup>&nbsp;things which the byte compiler assumes do not change, e.g.&nbsp;function bodies.</p></div></div><p>The following environment variables can be used to customize the operation of <code>INSTALL</code>.</p>
 <dl>
 <dt><code>_R_INSTALL_LIBS_ONLY_FORCE_DEPENDS_IMPORTS_</code> <a href="#index-_r_install_libs_only_force_depends_imports_" class="copiable-anchor">¶</a></dt>
 <dd>
@@ -982,6 +982,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
           // target, if specified
           link.setAttribute("target", "_blank");
           if (link.getAttribute("rel") === null) {
@@ -1025,7 +1030,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

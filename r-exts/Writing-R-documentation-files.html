@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -363,7 +363,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <p>An <code>Rd</code> file consists of three parts. The header gives basic information about the name of the file, the topics documented, a title, a short textual description and R usage information for the objects documented. The body gives further information (for example, on the function’s arguments and return value, as in the above example). Finally, there is an optional footer with keyword information. The header is mandatory.</p>
 <p>Information is given within a series of <em>sections</em> with standard names (and user-defined sections are also allowed). Unless otherwise specified<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> these should occur only once in an <code>Rd</code> file (in any order), and the processing software will retain only the first occurrence of a standard section in the file, with a warning.</p>
-<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;e.g.&nbsp;<code>\alias</code>, <code>\keyword</code> and <code>\note</code> sections.</p></div><p>See <a href="https://developer.r-project.org/Rds.html">“Guidelines for Rd files”</a> for guidelines for writing documentation in <code>Rd</code> format which should be useful for package writers. The R generic function <code>prompt</code> is used to construct a bare-bones <code>Rd</code> file ready for manual editing. Methods are defined for documenting functions (which fill in the proper function and argument names) and data frames. There are also functions <code>promptData</code>, <code>promptPackage</code>, <code>promptClass</code>, and <code>promptMethods</code> for other types of <code>Rd</code> file.</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;e.g.&nbsp;<code>\alias</code>, <code>\keyword</code> and <code>\note</code> sections.</p></div></div><p>See <a href="https://developer.r-project.org/Rds.html">“Guidelines for Rd files”</a> for guidelines for writing documentation in <code>Rd</code> format which should be useful for package writers. The R generic function <code>prompt</code> is used to construct a bare-bones <code>Rd</code> file ready for manual editing. Methods are defined for documenting functions (which fill in the proper function and argument names) and data frames. There are also functions <code>promptData</code>, <code>promptPackage</code>, <code>promptClass</code>, and <code>promptMethods</code> for other types of <code>Rd</code> file.</p>
 <p>The general syntax of <code>Rd</code> files is summarized below. For a detailed technical discussion of current <code>Rd</code> syntax, see <a href="https://developer.r-project.org/parseRd.pdf">“Parsing Rd files”</a>.</p>
 <p><code>Rd</code> files consist of four types of text input. The most common is LaTeX-like, with the backslash used as a prefix on markup (e.g. <code>\alias</code>), and braces used to indicate arguments (e.g.&nbsp;<code>{load}</code>). The least common type of text is ‘verbatim’ text, where no markup other than the comment marker (<code>%</code>) is processed. There is also a rare variant of ‘verbatim’ text (used in <code>\eqn</code>, <code>\deqn</code>, <code>\figure</code>, and <code>\newcommand</code>) where comment markers need not be escaped. The final type is R-like, intended for R code, but allowing some embedded macros. Quoted strings within R-like text are handled specially: regular character escapes such as <code>\n</code> may be entered as-is. Only markup starting with <code>\l</code> (e.g. <code>\link</code>) or <code>\v</code> (e.g.&nbsp;<code>\var</code>) will be recognized within quoted strings. The rarely used vertical tab <code>\v</code> must be entered as <code>\\v</code>.</p>
 <p>Each macro defines the input type for its argument. For example, the file initially uses LaTeX-like syntax, and this is also used in the <code>\description</code> section, but the <code>\usage</code> section uses R-like syntax, and the <code>\alias</code> macro uses ‘verbatim’ syntax. Comments run from a percent symbol <code>%</code> to the end of the line in all types of text except the rare ‘verbatim’ variant (as on the first line of the <code>load</code> example).</p>
@@ -375,7 +375,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <dt><code>\name{name}</code> <a href="#index-_005cname" class="copiable-anchor">¶</a></dt>
 <dd class="page-columns page-full">
 <p><code>name</code> typically<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> is the basename of the <code>Rd</code> file containing the documentation. It is the “name” of the <code>Rd</code> object represented by the file and has to be unique in a package. To avoid problems with indexing the package manual, it may not contain <code>!</code> <code>|</code> nor <code>@</code>. (LaTeX special characters are allowed, but may not be collated correctly in the index.) There can only be one <code>\name</code> entry in a file, and it must not contain any markup and should only contain printable ASCII characters. Entries in the package manual will be in alphabetic<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> order of the <code>\name</code> entries.</p>
-<div class="no-row-height column-margin column-container"><p><sup>2</sup>&nbsp;There can be exceptions: for example <code>Rd</code> files are not allowed to start with a dot, and have to be uniquely named on a case-insensitive file system.</p><p><sup>3</sup>&nbsp;in the current locale, and with special treatment for LaTeX special characters and with any <code>pkgname-package</code> topic moved to the top of the list.</p></div></dd>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;There can be exceptions: for example <code>Rd</code> files are not allowed to start with a dot, and have to be uniquely named on a case-insensitive file system.</p></div><div id="fn3"><p><sup>3</sup>&nbsp;in the current locale, and with special treatment for LaTeX special characters and with any <code>pkgname-package</code> topic moved to the top of the list.</p></div></div></dd>
 <dt><code>\alias{topic}</code> <a href="#index-_005calias" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>The <code>\alias</code> sections specify all “topics” the file documents. This information is collected into index data bases for lookup by the on-line (plain text and HTML) help systems. The <code>topic</code> can contain spaces, but (for historical reasons) leading and trailing spaces will be stripped. Percent and left brace need to be escaped by a backslash.</p>
@@ -453,7 +453,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>If a list with multiple values is returned, you can use entries of the form</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\item</span>{comp_i}{Description of comp_i.}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>for each component of the list returned. There may be optional text outside the <code>\item</code> entries (see for example the joint help for <code>rle</code> and <code>inverse.rle</code>, or the sets of items in <code>l10n_info</code>). Note that <code>\value</code> is implicitly a <code>\describe</code> environment, so that environment should not be used for listing components, just individual <code>\item{}{}</code> entries.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
-<div class="no-row-height column-margin column-container"><p><sup>4</sup>&nbsp;<code>\describe</code> can still be used for more general lists, including when <code>\item</code> labels need special markup such as <code>\var</code> for metasyntactic variables, see <a href="#marking-text">Marking text</a>.</p></div></dd>
+<div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;<code>\describe</code> can still be used for more general lists, including when <code>\item</code> labels need special markup such as <code>\var</code> for metasyntactic variables, see <a href="#marking-text">Marking text</a>.</p></div></div></dd>
 <dt><code>\references{...}</code> <a href="#index-_005creferences" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>A section with references to the literature. Use <code>\url{}</code> or <code>\href{}{}</code> for web pointers, and <code>\doi{}</code> for DOIs (this needs R &gt;= 3.3, see <a href="#user-defined-macros">User-defined macros</a> for more info).</p>
@@ -653,7 +653,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <dt><code>\url{uniform_resource_locator}</code> <a href="#index-_005curl" class="copiable-anchor">¶</a></dt>
 <dd class="page-columns page-full">
 <p>Indicate a uniform resource locator (URL) for the World Wide Web. The argument is handled as ‘verbatim’ text (with percent and braces escaped by backslash), and rendered as a hyperlink in HTML and PDF conversion. Line feeds are removed, and leading and trailing whitespace<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> is removed. See <a href="Creating-R-packages.html#specifying-urls">Specifying URLs</a>.</p>
-<div class="no-row-height column-margin column-container"><p><sup>5</sup>&nbsp;as defined by the R function <code>trimws</code>.</p></div><p>Displayed using <code>typewriter</code> font where possible.</p>
+<div class="no-row-height column-margin column-container"><div id="fn5"><p><sup>5</sup>&nbsp;as defined by the R function <code>trimws</code>.</p></div></div><p>Displayed using <code>typewriter</code> font where possible.</p>
 </dd>
 <dt><code>\href{uniform_resource_locator}{text}</code> <a href="#index-_005chref" class="copiable-anchor">¶</a></dt>
 <dd>
@@ -663,7 +663,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <dt><code>\var{metasyntactic_variable}</code> <a href="#index-_005cvar" class="copiable-anchor">¶</a></dt>
 <dd class="page-columns page-full">
 <p>Indicate a metasyntactic variable. In most cases this will be rendered distinctly, e.g.&nbsp;in italic (PDF/HTML) or wrapped in <code>&lt;...&gt;</code> (text), but not in all<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>. LaTeX-like.</p>
-<div class="no-row-height column-margin column-container"><p><sup>6</sup>&nbsp;Currently it is rendered differently in HTML conversions, and in LaTeX and text conversion outside <code>\usage</code> and <code>\examples</code> environments.</p></div></dd>
+<div class="no-row-height column-margin column-container"><div id="fn6"><p><sup>6</sup>&nbsp;Currently it is rendered differently in HTML conversions, and in LaTeX and text conversion outside <code>\usage</code> and <code>\examples</code> environments.</p></div></div></dd>
 <dt><code>\env{environment_variable}</code> <a href="#index-_005cenv" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Indicate an environment variable. ‘Verbatim’. Displayed using <code>typewriter</code> font where possible</p>
@@ -766,10 +766,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="insertions" class="level2 section page-columns page-full" data-number="2.8">
 <h2 class="section anchored" data-number="2.8" data-anchor-id="insertions"><span class="header-section-number">2.8</span> Insertions</h2>
 <p>Use <code>\R</code> for the R system itself. The <code>\dots</code> macro is a historical alternative to using literal <code>...</code> for the dots in function argument lists; use <code>\ldots</code> for ellipsis dots in ordinary text.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> These macros can be followed by <code>{}</code>, and should be unless followed by whitespace.</p>
-<div class="no-row-height column-margin column-container"><p><sup>7</sup>&nbsp;There is only a fine distinction between <code>\dots</code> and <code>\ldots</code>. It is technically incorrect to use <code>\ldots</code> in code blocks and <code>tools::checkRd</code> will warn about this—on the other hand the current converters treat them the same way in code blocks, and elsewhere apart from the small distinction between the two in LaTeX.</p></div><p>After an unescaped <code>%</code>, you can put your own comments regarding the help text. The rest of the line (but not the newline at the end) will be completely disregarded. Therefore, you can also use it to make part of the “help” invisible.</p>
+<div class="no-row-height column-margin column-container"><div id="fn7"><p><sup>7</sup>&nbsp;There is only a fine distinction between <code>\dots</code> and <code>\ldots</code>. It is technically incorrect to use <code>\ldots</code> in code blocks and <code>tools::checkRd</code> will warn about this—on the other hand the current converters treat them the same way in code blocks, and elsewhere apart from the small distinction between the two in LaTeX.</p></div></div><p>After an unescaped <code>%</code>, you can put your own comments regarding the help text. The rest of the line (but not the newline at the end) will be completely disregarded. Therefore, you can also use it to make part of the “help” invisible.</p>
 <p>You can produce a backslash (<code>\</code>) by escaping it by another backslash. (Note that <code>\cr</code> is used for generating line breaks.)</p>
 <p>The “comment” character <code>%</code> and unpaired braces<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a> <em>almost always</em> need to be escaped by <code>\</code>, and <code>\\</code> can be used for backslash and needs to be when there are two or more adjacent backslashes. In R-like code quoted strings are handled slightly differently; see <a href="https://developer.r-project.org/parseRd.pdf">“Parsing Rd files”</a> for details – in particular braces should not be escaped in quoted strings.</p>
-<div class="no-row-height column-margin column-container"><p><sup>8</sup>&nbsp;See the examples section in the file <code>Paren.Rd</code> for an example.</p></div><p>All of <code>% { } \</code> should be escaped in LaTeX-like text.</p>
+<div class="no-row-height column-margin column-container"><div id="fn8"><p><sup>8</sup>&nbsp;See the examples section in the file <code>Paren.Rd</code> for an example.</p></div></div><p>All of <code>% { } \</code> should be escaped in LaTeX-like text.</p>
 <p>Text which might need to be represented differently in different encodings should be marked by <code>\enc</code>, e.g.&nbsp;<code>\enc{Jöreskog}{Joreskog}</code> (with no whitespace between the braces) where the first argument will be used where encodings are allowed and the second should be ASCII (and is used for e.g.&nbsp;the text conversion in locales that cannot represent the encoded form). (This is intended to be used for individual words, not whole sentences or paragraphs.)</p>
 </section>
 <section id="indices" class="level2 section" data-number="2.9">
@@ -869,7 +869,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Rd files are text files and so it is impossible to deduce the encoding they are written in unless ASCII: files with 8-bit characters could be UTF-8, Latin-1, Latin-9, KOI8-R, EUC-JP, <em>etc</em>. So an <code>\encoding{}</code> section must be used to specify the encoding if it is not ASCII. (The <code>\encoding{}</code> section must be on a line by itself, and in particular one containing no non-ASCII characters. The encoding declared in the <code>DESCRIPTION</code> file will be used if none is declared in the file.) The <code>Rd</code> files are converted to UTF-8 before parsing and so the preferred encoding for the files themselves is now UTF-8.</p>
 <p>Wherever possible, avoid non-ASCII chars in <code>Rd</code> files, and even symbols such as <code>&lt;</code>, <code>&gt;</code>, <code>$</code>, <code>^</code>, <code>&amp;</code>, <code>|</code>, <code>@</code>, <code>~</code>, and <code>*</code> outside ‘verbatim’ environments (since they may disappear in fonts designed to render text). (Function <code>showNonASCIIfile</code> in package <strong>tools</strong> can help in finding non-ASCII bytes in the files.)</p>
 <p>For convenience, encoding names <code>latin1</code> and <code>latin2</code> are always recognized: these and <code>UTF-8</code> are likely to work fairly widely. However, this does not mean that all characters in UTF-8 will be recognized, and the coverage of non-Latin characters<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> is fairly low. Using LaTeX <code>inputenx</code> (see <code>?Rd2pdf</code> in R) will give greater coverage of UTF-8.</p>
-<div class="no-row-height column-margin column-container"><p><sup>9</sup>&nbsp;R 2.9.0 added support for UTF-8 Cyrillic characters in LaTeX, but on some OSes this will need Cyrillic support added to LaTeX, so environment variable <code>_R_CYRILLIC_TEX_</code> may need to be set to a non-empty value to enable this.</p></div><p>The <code>\enc</code> command (see <a href="#insertions">Insertions</a>) can be used to provide transliterations which will be used in conversions that do not support the declared encoding.</p>
+<div class="no-row-height column-margin column-container"><div id="fn9"><p><sup>9</sup>&nbsp;R 2.9.0 added support for UTF-8 Cyrillic characters in LaTeX, but on some OSes this will need Cyrillic support added to LaTeX, so environment variable <code>_R_CYRILLIC_TEX_</code> may need to be set to a non-empty value to enable this.</p></div></div><p>The <code>\enc</code> command (see <a href="#insertions">Insertions</a>) can be used to provide transliterations which will be used in conversions that do not support the declared encoding.</p>
 <p>The LaTeX conversion converts the file to UTF-8 from the declared encoding, and includes a</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\inputencoding</span>{utf8}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>command, and this needs to be matched by a suitable invocation of the <code>\usepackage{inputenc}</code> command. The R utility <code>R CMD Rd2pdf</code> looks at the converted code and includes the encodings used: it might for example use</p>
@@ -990,6 +990,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
           // target, if specified
           link.setAttribute("target", "_blank");
           if (link.getAttribute("rel") === null) {
@@ -1033,7 +1038,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
