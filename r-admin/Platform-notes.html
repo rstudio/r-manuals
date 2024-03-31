@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.551">
+<meta name="generator" content="quarto-1.4.552">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -551,6 +551,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="subsection anchored" data-number="C.3.2" data-anchor-id="fortran-compiler"><span class="header-section-number">C.3.2</span> Fortran compiler</h3>
 <p>There is ‘universal’ (Intel and <code>arm64</code>) build of <code>gfortran</code> 12.2 at <a href="https://mac.r-project.org/tools/gfortran-12.2-universal.pkg" class="uri">https://mac.r-project.org/tools/gfortran-12.2-universal.pkg</a>. This installs into <code>/opt/gfortran</code>.</p>
 <p>The <code>/opt/gfortran/SDK</code> symlink should point to the desired path to the SDK (defaults to the command line tools SDK). This can be updated by running <code>/opt/gfortran/bin/gfortran-update-sdk</code> or manually. If the symlink is broken, the driver will issue a warning and use <code>xcrun -show-sdk-path</code> to try to find an SDK and use its path. (The SDK path is used when using <code>gfortran</code> to link, so not when building R but when installing a few packages.)</p>
+<p>A build of <code>gfortran</code> 13.2 for <code>arm64</code> macOS 14 is available at <a href="https://github.com/fxcoudert/gfortran-for-macOS/releases" class="uri">https://github.com/fxcoudert/gfortran-for-macOS/releases</a>. This can be built for Intel and older OSes from the sources at <a href="https://github.com/iains/gcc-13-branch/" class="uri">https://github.com/iains/gcc-13-branch/</a>.</p>
 </section>
 <section id="cairo-graphics" class="level3 subsection" data-number="C.3.3">
 <h3 class="subsection anchored" data-number="C.3.3" data-anchor-id="cairo-graphics"><span class="header-section-number">C.3.3</span> Cairo graphics</h3>
