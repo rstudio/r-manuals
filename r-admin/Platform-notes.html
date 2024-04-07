@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.552">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -366,7 +366,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>macOS<span class="sc">:</span> __APPLE__</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>NetBSD<span class="sc">:</span> __NetBSD__</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>OpenBSD<span class="sc">:</span> __OpenBSD__</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>Windows<span class="sc">:</span> _WIN32, _WIN64</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>Windows<span class="sc">:</span> _WIN32, _WIN64</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>Windows on <span class="dv">64</span><span class="sc">-</span>but ARM<span class="sc">:</span> _M_ARM64 or _WIN32 plus __aarch64__</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Identifying compilers can be very tricky. GCC defines <code>__GNUC__</code>, but so do other compilers claiming conformance with it, notably (LLVM and Apple) <code>clang</code> and Intel compilers. Further, some use the value of <code>__GNUC__</code> for their version, not the version of GCC they claim to be compatible with.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> <code>clang</code>-based compilers define <code>__clang__</code>. Both LLVM and Apple <code>clang</code> define <code>__clang_major__</code> as a string giving their major version, but for example Apple’s 13.x.y is very different from LLVM’s 13.x.y. And compilers based on LLVM <code>clang</code>, for example from Intel and IBM, will define these. Some of the included software uses <code>__APPLE_CC__</code> to identify an Apple compiler (which used to include Apple builds of GCC), but Apple <code>clang</code> is better identified by the <code>__apple_build_version__</code> macro.</p>
 <div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Most <code>clang</code>-based compilers give <code>4</code>, but not those distributed by FreeBSD. Intel’s <code>icx</code> reported <code>12</code> in 2023.</p></div></div><section id="x11-issues" class="level2 section page-columns page-full" data-number="C.1">
 <h2 class="section anchored" data-number="C.1" data-anchor-id="x11-issues"><span class="header-section-number">C.1</span> X11 issues</h2>
@@ -423,7 +424,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Recent versions have (optional when built) OpenMP support.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
 <div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;This also needs the OpenMP runtime which has sometimes been distributed separately.</p></div></div><p>There are problems mixing <code>clang</code> 15.0.0 and later built as default on Linux to produce PIE code and <code>gfortran</code> 11 or later, which does not. One symptom is that <code>configure</code> does not detect <code>FC_LEN_T</code>, which can be overcome by setting</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>FPIEFLAGS<span class="ot">=</span><span class="sc">-</span>fPIE</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>in <code>config.site</code>. (As from R 4.2.2 <code>configure</code> tries that value if it is unset.)</p>
+<p>in <code>config.site</code>. (<code>configure</code> tries that value if it is unset.)</p>
 </section>
 <section id="flang" class="level3 subsection" data-number="C.2.2">
 <h3 class="subsection anchored" data-number="C.2.2" data-anchor-id="flang"><span class="header-section-number">C.2.2</span> flang</h3>

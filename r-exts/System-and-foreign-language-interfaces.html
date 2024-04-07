@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.552">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -478,7 +478,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <p>If a shared object/DLL is loaded more than once the most recent version is used.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> More generally, if the same symbol name appears in several shared objects, the most recently loaded occurrence is used. The <code>PACKAGE</code> argument and registration (see the next section) provide good ways to avoid any ambiguity in which occurrence is meant.</p>
 <div class="no-row-height column-margin column-container"><div id="fn4"><p><sup>4</sup>&nbsp;Strictly this is OS-specific, but no exceptions have been seen for many years.</p></div></div><p>On Unix-alikes the paths used to resolve dynamically linked dependent libraries are fixed (for security reasons) when the process is launched, so <code>dyn.load</code> will only look for such libraries in the locations set by the <code>R</code> shell script (<em>via</em> <code>etc/ldpaths</code>) and in the OS-specific defaults.</p>
-<p>Windows allows more control (and less security) over where dependent DLLs are looked for. On all versions this includes the <code>PATH</code> environment variable, but with lowest priority: note that it does not include the directory from which the DLL was loaded. It is possible to add a single path with quite high priority <em>via</em> the <code>DLLpath</code> argument to <code>dyn.load</code>. This is (by default) used by <code>library.dynam</code> to include the package’s <code>libs/x64</code> directory in the DLL search path.</p>
+<p>Windows allows more control (and less security) over where dependent DLLs are looked for. On all versions this includes the <code>PATH</code> environment variable, but with lowest priority: note that it does not include the directory from which the DLL was loaded. It is possible to add a single path with quite high priority <em>via</em> the <code>DLLpath</code> argument to <code>dyn.load</code>. This is (by default) used by <code>library.dynam</code> to include the package’s <code>libs/x64</code> directory (on Intel) in the DLL search path.</p>
 </section>
 <section id="registering-native-routines" class="level2 section page-columns page-full" data-number="5.4">
 <h2 class="section anchored" data-number="5.4" data-anchor-id="registering-native-routines"><span class="header-section-number">5.4</span> Registering native routines</h2>
@@ -1821,7 +1821,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb124-2"><a href="#cb124-2" aria-hidden="true" tabindex="-1"></a>                  <span class="dt">int</span> subst<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>can be used to re-encode character strings: like <code>translateChar</code> it returns a string allocated by <code>R_alloc</code>. This can translate from <code>CE_SYMBOL</code> to <code>CE_UTF8</code>, but not conversely. Argument <code>subst</code> controls what to do with untranslatable characters or invalid input: this is done byte-by-byte with <code>1</code> indicates to output hex of the form <code>&lt;a0&gt;</code>, and <code>2</code> to replace by <code>.</code>, with any other value causing the byte to produce no output.</p>
 <p>There is also</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a>SEXP mkCharLenCE<span class="op">(</span><span class="dt">const</span> <span class="dt">char</span> <span class="op">*,</span> <span class="dt">size_t</span><span class="op">,</span> cetype_t<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a>SEXP mkCharLenCE<span class="op">(</span><span class="dt">const</span> <span class="dt">char</span> <span class="op">*,</span> <span class="dt">int</span><span class="op">,</span> cetype_t<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>to create marked character strings of a given length.</p>
 <p>Footnotes</p>
 
