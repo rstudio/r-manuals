@@ -343,7 +343,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Note:</strong> Because R re-maps many of its external names to avoid clashes with system or user code, it is <em>essential</em> to include the appropriate header files when using these entry points.</p>
 </blockquote>
 <p>This remapping can cause problems<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, and can be eliminated by defining <code>R_NO_REMAP</code> (before including any R headers) and prepending <code>Rf_</code> to <em>all</em> the function names used from <code>Rinternals.h</code> and <code>R_ext/Error.h</code>. These problems can usually be avoided by including other headers (such as system headers and those for external software used by the package) before any R headers. (Headers from other packages may include R headers directly or <em>via</em> inclusion from further packages, and may define <code>R_NO_REMAP</code> with or without including <code>Rinternals.h</code>.)</p>
-<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Known problems have been defining <code>LENGTH</code>, <code>error</code>, <code>length</code>, <code>vector</code> and <code>warning</code>: whether these matter depends on the OS and toolchain, with many problem reports involving <code>clang++</code>. As from LLVM <code>clang</code> 13.0.0, the remapping of <code>match</code> breaks the subsequent inclusion of <code>omp.h</code>.</p></div></div><p>We can classify the entry points as</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Known problems have been defining <code>LENGTH</code>, <code>error</code>, <code>length</code>, <code>match</code>, <code>vector</code> and <code>warning</code>: whether these matter depends on the OS and toolchain, with many problem reports involving <code>clang++</code>.</p></div></div><p>We can classify the entry points as</p>
 <dl>
 <dt><em>API</em></dt>
 <dd>
@@ -1315,6 +1315,10 @@ with the same arguments, but all pointers.</code></pre>
 <span class="category">Function:</span><em>char *</em> <strong>R_tmpnam2</strong> <em>(const char *<code>prefix</code>, const char *<code>tmpdir</code>, const char *<code>fileext</code>)</em> <a href="#index-r_tmpnam2" class="copiable-anchor">¶</a><br>
 <span class="category">Function:</span><em>void</em> <strong>R_free_tmpnam</strong> <em>(char *<code>name</code>)</em> <a href="#index-r_free_tmpnam" class="copiable-anchor">¶</a></p>
 <p>: Return a pathname for a temporary file with name beginning with <code>prefix</code> and ending with <code>fileext</code> in directory <code>tmpdir</code>. A <code>NULL</code> prefix or extension is replaced by <code>""</code>. Note that the return value is dynamically allocated and should be freed using <code>R_free_tmpnam</code> when no longer needed (unlike the system call <code>tmpnam</code>). Freeing the result using <code>free</code> is no longer recommended.</p>
+<!-- -->
+<p><span class="category">Function:</span><em>void</em> <strong>R_atof</strong> <em>(const char* <code>str</code>)</em> <a href="#index-r_atof" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>void</em> <strong>R_strtod</strong> <em>(const char* <code>str</code>, char ** <code>end</code>)</em> <a href="#index-r_strtod" class="copiable-anchor">¶</a></p>
+<p>: Implementations of the C99/POSIX functions <code>atof</code> and <code>strtod</code> which guarantee platform-dependent behaviour, including always using the period as the decimal point <em>aka</em> ‘radix character’ and converting <code>"NA"</code> to R’s <code>NA_REAL_</code> .</p>
 <p>There is also the internal function used to expand file names in several R functions, and called directly by <code>path.expand</code>.</p>
 <dl>
 <dt><span class="category">Function:</span><em>const char *</em> <strong>R_ExpandFileName</strong> <em>(const char *<code>fn</code>)</em> <a href="#index-r_expandfilename" class="copiable-anchor">¶</a></dt>
@@ -1597,7 +1601,7 @@ with the same arguments, but all pointers.</code></pre>
 </table>
 </blockquote>
 <p>The graphics systems are exposed in headers <code>R_ext/GraphicsEngine.h</code>, <code>R_ext/GraphicsDevice.h</code> (which it includes) and <code>R_ext/QuartzDevice.h</code>. Facilities for defining custom connection implementations are provided in <code>R_ext/Connections.h</code>, but make sure you consult the file before use.</p>
-<p>Let us re-iterate the advice to include in C++ code system headers before the R header files, especially <code>Rinternals.h</code> (included by <code>Rdefines.h</code>) and <code>Rmath.h</code>, which redefine names which may be used in system headers, or (preferably) to define <code>R_NO_REMAP</code>. Setting the environment variable <code>_R_CXX_USE_NO_REMAP_</code> to a true value allows the need for this to be tested, as it causes <code>R CMD INSTALL</code> to compile C++ code defining <code>R_NO_REMAP</code>.</p>
+<p>Let us re-iterate the advice to include in C++ code system headers before the R header files, especially <code>Rinternals.h</code> (included by <code>Rdefines.h</code>) and <code>Rmath.h</code>, which redefine names which may be used in system headers, or (preferably) to define <code>R_NO_REMAP</code>. Setting the environment variable <code>_R_CXX_USE_NO_REMAP_</code> to a true value allows the need for this to be tested, as it causes <code>R CMD INSTALL</code> to compile C++ code defining <code>R_NO_REMAP</code>. <code>_R_CXX_USE_NO_REMAP_</code> is set by <code>R CMD check --as-cran</code> and is planned to become the default in future.</p>
 <p>Footnotes</p>
 
 
