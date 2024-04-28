@@ -361,6 +361,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <dd>
 <p>Entry points that are where possible (Windows and some modern Unix-alike compilers/loaders when using R as a shared library) not exported.</p>
 </dd>
+<dt><em>experimental</em></dt>
+<dd>
+<p>Entry points declared in an installed header file that are part of an experimental API, such as <code>R_ext/Altrep.h</code>. These are subject to change, so package authors wishing to use these should be prepared to adapt.</p>
+</dd>
 </dl>
 <section id="memory-allocation" class="level2 section page-columns page-full" data-number="6.1">
 <h2 class="section anchored" data-number="6.1" data-anchor-id="memory-allocation"><span class="header-section-number">6.1</span> Memory allocation</h2>
