@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R Manuals :: Writing R Extensions - 7&nbsp; Generic functions and methods</title>
+<title>R Manuals :: Writing R Extensions - Experimental API index</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,8 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./Linking-GUIs-and-other-front-ends-to-R.html" rel="next">
-<link href="./The-R-API.html" rel="prev">
+<link href="./Embedding-API-index.html" rel="next">
+<link href="./API-index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -173,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Generic-functions-and-methods.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Generic functions and methods</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Experimental-API-index.html">Experimental API index</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -235,7 +201,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Generic-functions-and-methods.html" class="sidebar-item-text sidebar-link active">
+  <a href="./Generic-functions-and-methods.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Generic functions and methods</span></span></a>
   </div>
 </li>
@@ -265,7 +231,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Experimental-API-index.html" class="sidebar-item-text sidebar-link">
+  <a href="./Experimental-API-index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Experimental API index</span></a>
   </div>
 </li>
@@ -281,20 +247,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#adding-new-generics" id="toc-adding-new-generics" class="nav-link active" data-scroll-target="#adding-new-generics"><span class="header-section-number">7.1</span> Adding new generics</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Generic functions and methods</span></h1>
+<h1 class="title">Experimental API index</h1>
 </div>
 
 
@@ -311,55 +271,155 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>R programmers will often want to add methods for existing generic functions, and may want to add new generic functions or make existing functions generic. In this chapter we give guidelines for doing so, with examples of the problems caused by not adhering to them.</p>
-<p>This chapter only covers the ‘informal’ class system copied from S3, and not with the S4 (formal) methods of package <strong>methods</strong>.</p>
-<p>First, a <em>caveat</em>: a function named <code>gen.cl</code> will be invoked by the generic <code>gen</code> for class <code>cl</code>, so do not name functions in this style unless they are intended to be methods.</p>
-<p>The key function for methods is <code>NextMethod</code>, which dispatches the next method. It is quite typical for a method function to make a few changes to its arguments, dispatch to the next method, receive the results and modify them a little. An example is</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>t.data.frame <span class="ot">&lt;-</span> <span class="cf">function</span>(x)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(x)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">NextMethod</span>(<span class="st">"t"</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Note that the example above works because there is a <em>next</em> method, the default method, not that a new method is selected when the class is changed.</p>
-<p><em>Any</em> method a programmer writes may be invoked from another method by <code>NextMethod</code>, <em>with the arguments appropriate to the previous method</em>. Further, the programmer cannot predict which method <code>NextMethod</code> will pick (it might be one not yet dreamt of), and the end user calling the generic needs to be able to pass arguments to the next method. For this to work</p>
-<blockquote class="blockquote">
-<p><em>A method must have all the arguments of the generic, including <code>...</code> if the generic does.</em></p>
-</blockquote>
-<p>It is a grave misunderstanding to think that a method needs only to accept the arguments it needs. The original S version of <code>predict.lm</code> did not have a <code>...</code> argument, although <code>predict</code> did. It soon became clear that <code>predict.glm</code> needed an argument <code>dispersion</code> to handle over-dispersion. As <code>predict.lm</code> had neither a <code>dispersion</code> nor a <code>...</code> argument, <code>NextMethod</code> could no longer be used. (The legacy, two direct calls to <code>predict.lm</code>, lives on in <code>predict.glm</code> in R, which is based on the workaround for S3 written by Venables &amp; Ripley.)</p>
-<p>Further, the user is entitled to use positional matching when calling the generic, and the arguments to a method called by <code>UseMethod</code> are those of the call to the generic. Thus</p>
-<blockquote class="blockquote">
-<p><em>A method must have arguments in exactly the same order as the generic.</em></p>
-</blockquote>
-<p>To see the scale of this problem, consider the generic function <code>scale</code>, defined as</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>scale <span class="ot">&lt;-</span> <span class="cf">function</span> (x, <span class="at">center =</span> <span class="cn">TRUE</span>, <span class="at">scale =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">UseMethod</span>(<span class="st">"scale"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Suppose an unthinking package writer created methods such as</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>scale.foo <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">scale =</span> <span class="cn">FALSE</span>, ...) { }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Then for <code>x</code> of class <code>"foo"</code> the calls</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scale</span>(x, , <span class="cn">TRUE</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">scale</span>(x, <span class="at">scale =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>would most likely do different things, to the justifiable consternation of the end user.</p>
-<p>To add a further twist, which default is used when a user calls <code>scale(x)</code> in our example? What if</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>scale.bar <span class="ot">&lt;-</span> <span class="cf">function</span>(x, center, <span class="at">scale =</span> <span class="cn">TRUE</span>) <span class="fu">NextMethod</span>(<span class="st">"scale"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>and <code>x</code> has class <code>c("bar", "foo")</code>? It is the default specified in the method that is used, but the default specified in the generic may be the one the user sees. This leads to the recommendation:</p>
-<blockquote class="blockquote">
-<p><em>If the generic specifies defaults, all methods should use the same defaults.</em></p>
-</blockquote>
-<p>An easy way to follow these recommendations is to always keep generics simple, e.g.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>scale <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ...) <span class="fu">UseMethod</span>(<span class="st">"scale"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Only add parameters and defaults to the generic if they make sense in all possible methods implementing it.</p>
-<section id="adding-new-generics" class="level2 section" data-number="7.1">
-<h2 class="section anchored" data-number="7.1" data-anchor-id="adding-new-generics"><span class="header-section-number">7.1</span> Adding new generics</h2>
-<p>When creating a new generic function, bear in mind that its argument list will be the maximal set of arguments for methods, including those written elsewhere years later. So choosing a good set of arguments may well be an important design issue, and there need to be good arguments <em>not</em> to include a <code>...</code> argument.</p>
-<p>If a <code>...</code> argument is supplied, some thought should be given to its position in the argument sequence. Arguments which follow <code>...</code> must be named in calls to the function, and they must be named in full (partial matching is suppressed after <code>...</code>). Formal arguments before <code>...</code> can be partially matched, and so may ‘swallow’ actual arguments intended for <code>...</code>. Although it is commonplace to make the <code>...</code> argument the last one, that is not always the right choice.</p>
-<p>Sometimes package writers want to make generic a function in the base package, and request a change in R. This may be justifiable, but making a function generic with the old definition as the default method does have a small performance cost. It is never necessary, as a package can take over a function in the base package and make it generic by something like</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>(object, ...) <span class="fu">UseMethod</span>(<span class="st">"foo"</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>foo.default <span class="ot">&lt;-</span> <span class="cf">function</span>(object, ...) base<span class="sc">::</span><span class="fu">foo</span>(object)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Earlier versions of this manual suggested assigning <code>foo.default &lt;- base::foo</code>. This is <strong>not</strong> a good idea, as it captures the base function at the time of installation and it might be changed as R is patched or updated.</p>
-<p>The same idea can be applied for functions in other packages.</p>
+<p>Entry points and variables listed in this index and in header files listed here are part of an experimental API, such as <code>R_ext/Altrep.h</code>. These are subject to change, so package authors wishing to use these should be prepared to adapt.</p>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Jump to: &nbsp;</td>
+<td style="text-align: left;"><a href="#experimental-api-index_ae_letter-a" class="summary-letter"><strong>A</strong></a> &nbsp; <a href="#experimental-api-index_ae_letter-r" class="summary-letter"><strong>R</strong></a> &nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;">Index Entry</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;">Section</td>
+</tr>
+<tr class="even">
+<td>A</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-any_duplicated"><code>any_duplicated</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#semi-internal-convenience-functions">Semi-internal convenience functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-any_duplicated3"><code>any_duplicated3</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#semi-internal-convenience-functions">Semi-internal convenience functions</a></td>
+</tr>
+<tr class="odd">
+<td>R</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_activebindingfunction"><code>R_ActiveBindingFunction</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#semi-internal-convenience-functions">Semi-internal convenience functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_bindingisactive"><code>R_BindingIsActive</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#semi-internal-convenience-functions">Semi-internal convenience functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_bindingislocked"><code>R_BindingIsLocked</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#semi-internal-convenience-functions">Semi-internal convenience functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_chk_calloc"><code>R_chk_calloc</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#user-controlled-memory">User-controlled memory</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_chk_free"><code>R_chk_free</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#user-controlled-memory">User-controlled memory</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_chk_realloc"><code>R_chk_realloc</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#user-controlled-memory">User-controlled memory</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_compute_identical"><code>R_compute_identical</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#semi-internal-convenience-functions">Semi-internal convenience functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_environmentislocked"><code>R_EnvironmentIsLocked</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#semi-internal-convenience-functions">Semi-internal convenience functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_ext_002faltrep.h"><code>R_ext/Altrep.h</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#the-r-api">The R API</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_ext_002fgraphicsdevice.h"><code>R_ext/GraphicsDevice.h</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#organization-of-header-files">Organization of header files</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_ext_002fgraphicsengine.h"><code>R_ext/GraphicsEngine.h</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#organization-of-header-files">Organization of header files</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_ext_002fquartzdevice.h"><code>R_ext/QuartzDevice.h</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#organization-of-header-files">Organization of header files</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_lockbinding"><code>R_LockBinding</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#semi-internal-convenience-functions">Semi-internal convenience functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_lockenvironment"><code>R_LockEnvironment</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#semi-internal-convenience-functions">Semi-internal convenience functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_makeactivebinding"><code>R_MakeActiveBinding</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#semi-internal-convenience-functions">Semi-internal convenience functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_unlockbinding"><code>R_unLockBinding</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#semi-internal-convenience-functions">Semi-internal convenience functions</a></td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Jump to: &nbsp;</td>
+<td style="text-align: left;"><a href="#experimental-api-index_ae_letter-a" class="summary-letter"><strong>A</strong></a> &nbsp; <a href="#experimental-api-index_ae_letter-r" class="summary-letter"><strong>R</strong></a> &nbsp;</td>
+</tr>
+</tbody>
+</table>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -780,13 +840,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./The-R-API.html" class="pagination-link" aria-label="The R API: entry points for C code">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The R API: entry points for C code</span></span>
+      <a href="./API-index.html" class="pagination-link" aria-label="API index">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">API index</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./Linking-GUIs-and-other-front-ends-to-R.html" class="pagination-link" aria-label="Linking GUIs and other front-ends to R">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linking GUIs and other front-ends to R</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./Embedding-API-index.html" class="pagination-link" aria-label="Embedding API index">
+        <span class="nav-page-text">Embedding API index</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

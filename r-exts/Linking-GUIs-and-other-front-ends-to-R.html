@@ -257,6 +257,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Concept index</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./API-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">API index</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Experimental-API-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Experimental API index</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Embedding-API-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Embedding API index</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -427,25 +445,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="dt">void</span> <span class="op">(*</span>ptr_R_ProcessEvents<span class="op">)();</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>which allow standard R callbacks to be redirected to your GUI. What these do is generally documented in the file <code>src/unix/system.txt</code>.</p>
 <dl>
-<dt><span class="category">Function:</span><em>void</em> <strong>R_ShowMessage</strong> <em>(char *<code>message</code>)</em> <a href="#index-r_showmessage" class="copiable-anchor">¶</a></dt>
+<dt><span class="category">Function:</span><em>void</em> <strong>R_ShowMessage</strong> <em>(char *<code>message</code>)</em> <a href="#index-r_showmessage-2" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>This should display the message, which may have multiple lines: it should be brought to the user’s attention immediately.</p>
 </dd>
 </dl>
 <!-- -->
 <dl>
-<dt><span class="category">Function:</span><em>void</em> <strong>R_Busy</strong> <em>(int <code>which</code>)</em> <a href="#index-r_busy" class="copiable-anchor">¶</a></dt>
+<dt><span class="category">Function:</span><em>void</em> <strong>R_Busy</strong> <em>(int <code>which</code>)</em> <a href="#index-r_busy-2" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>This function invokes actions (such as change of cursor) when R embarks on an extended computation (<code>which=1</code>) and when such a state terminates (<code>which=0</code>).</p>
 </dd>
 </dl>
 <!-- -->
-<p><span class="category">Function:</span><em>int</em> <strong>R_ReadConsole</strong> <em>(const char *<code>prompt</code>, unsigned char *<code>buf</code>, int <code>buflen</code>, int <code>hist</code>)</em> <a href="#index-r_readconsole" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>void</em> <strong>R_WriteConsole</strong> <em>(const char *<code>buf</code>, int <code>buflen</code>)</em> <a href="#index-r_writeconsole" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>void</em> <strong>R_WriteConsoleEx</strong> <em>(const char *<code>buf</code>, int <code>buflen</code>, int <code>otype</code>)</em> <a href="#index-r_writeconsoleex" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>void</em> <strong>R_ResetConsole</strong> <em>()</em> <a href="#index-r_resetconsole" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>void</em> <strong>R_FlushConsole</strong> <em>()</em> <a href="#index-r_flushconsole" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>void</em> <strong>R_ClearerrConsole</strong> <em>()</em> <a href="#index-r_clearerrconsole" class="copiable-anchor">¶</a></p>
+<p><span class="category">Function:</span><em>int</em> <strong>R_ReadConsole</strong> <em>(const char *<code>prompt</code>, unsigned char *<code>buf</code>, int <code>buflen</code>, int <code>hist</code>)</em> <a href="#index-r_readconsole-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>void</em> <strong>R_WriteConsole</strong> <em>(const char *<code>buf</code>, int <code>buflen</code>)</em> <a href="#index-r_writeconsole-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>void</em> <strong>R_WriteConsoleEx</strong> <em>(const char *<code>buf</code>, int <code>buflen</code>, int <code>otype</code>)</em> <a href="#index-r_writeconsoleex-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>void</em> <strong>R_ResetConsole</strong> <em>()</em> <a href="#index-r_resetconsole-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>void</em> <strong>R_FlushConsole</strong> <em>()</em> <a href="#index-r_flushconsole-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>void</em> <strong>R_ClearerrConsole</strong> <em>()</em> <a href="#index-r_clearerrconsole-2" class="copiable-anchor">¶</a></p>
 <p>: These functions interact with a console.</p>
 <pre><code>`R_ReadConsole` prints the given prompt at the console and then does
 a `fgets(3)`--like operation, transferring up to `buflen`
@@ -476,36 +494,36 @@ console. `R_ClearerrConsole` clears any errors associated with
 reading from the console.</code></pre>
 <!-- -->
 <dl>
-<dt><span class="category">Function:</span><em>int</em> <strong>R_ShowFiles</strong> <em>(int <code>nfile</code>, const char **<code>file</code>, const char **<code>headers</code>, const char *<code>wtitle</code>, Rboolean <code>del</code>, const char *<code>pager</code>)</em> <a href="#index-r_showfiles" class="copiable-anchor">¶</a></dt>
+<dt><span class="category">Function:</span><em>int</em> <strong>R_ShowFiles</strong> <em>(int <code>nfile</code>, const char **<code>file</code>, const char **<code>headers</code>, const char *<code>wtitle</code>, Rboolean <code>del</code>, const char *<code>pager</code>)</em> <a href="#index-r_showfiles-2" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>This function is used to display the contents of files.</p>
 </dd>
 </dl>
 <!-- -->
 <dl>
-<dt><span class="category">Function:</span><em>int</em> <strong>R_ChooseFile</strong> <em>(int <code>new</code>, char *<code>buf</code>, int <code>len</code>)</em> <a href="#index-r_choosefile" class="copiable-anchor">¶</a></dt>
+<dt><span class="category">Function:</span><em>int</em> <strong>R_ChooseFile</strong> <em>(int <code>new</code>, char *<code>buf</code>, int <code>len</code>)</em> <a href="#index-r_choosefile-2" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Choose a file and return its name in <code>buf</code> of length <code>len</code>. Return value is 0 for success, &gt; 0 otherwise.</p>
 </dd>
 </dl>
 <!-- -->
 <dl>
-<dt><span class="category">Function:</span><em>int</em> <strong>R_EditFile</strong> <em>(const char *<code>buf</code>)</em> <a href="#index-r_editfile" class="copiable-anchor">¶</a></dt>
+<dt><span class="category">Function:</span><em>int</em> <strong>R_EditFile</strong> <em>(const char *<code>buf</code>)</em> <a href="#index-r_editfile-2" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Send a file to an editor window.</p>
 </dd>
 </dl>
 <!-- -->
 <dl>
-<dt><span class="category">Function:</span><em>int</em> <strong>R_EditFiles</strong> <em>(int <code>nfile</code>, const char **<code>file</code>, const char **<code>title</code>, const char *<code>editor</code>)</em> <a href="#index-r_editfiles" class="copiable-anchor">¶</a></dt>
+<dt><span class="category">Function:</span><em>int</em> <strong>R_EditFiles</strong> <em>(int <code>nfile</code>, const char **<code>file</code>, const char **<code>title</code>, const char *<code>editor</code>)</em> <a href="#index-r_editfiles-2" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Send <code>nfile</code> files to an editor, with titles possibly to be used for the editor window(s).</p>
 </dd>
 </dl>
 <!-- -->
-<p><span class="category">Function:</span><em>SEXP</em> <strong>R_loadhistory</strong> <em>(SEXP, SEXP, SEXP, SEXP);</em> <a href="#index-r_loadhistory" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>SEXP</em> <strong>R_savehistory</strong> <em>(SEXP, SEXP, SEXP, SEXP);</em> <a href="#index-r_savehistory" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>SEXP</em> <strong>R_addhistory</strong> <em>(SEXP, SEXP, SEXP, SEXP);</em> <a href="#index-r_addhistory" class="copiable-anchor">¶</a></p>
+<p><span class="category">Function:</span><em>SEXP</em> <strong>R_loadhistory</strong> <em>(SEXP, SEXP, SEXP, SEXP);</em> <a href="#index-r_loadhistory-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>SEXP</em> <strong>R_savehistory</strong> <em>(SEXP, SEXP, SEXP, SEXP);</em> <a href="#index-r_savehistory-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>SEXP</em> <strong>R_addhistory</strong> <em>(SEXP, SEXP, SEXP, SEXP);</em> <a href="#index-r_addhistory-2" class="copiable-anchor">¶</a></p>
 <p>: <code>.Internal</code> functions for <code>loadhistory</code>, <code>savehistory</code> and <code>timestamp</code>.</p>
 <pre><code>If the console has no history mechanism these can be as simple as
 
@@ -546,7 +564,7 @@ write the time stamp to the console.</code></pre>
 </dl>
 <!-- -->
 <dl>
-<dt><span class="category">Function:</span><em>void</em> <strong>R_CleanUp</strong> <em>(SA_TYPE <code>saveact</code>, int <code>status</code>, int <code>RunLast</code>)</em> <a href="#index-r_cleanup" class="copiable-anchor">¶</a></dt>
+<dt><span class="category">Function:</span><em>void</em> <strong>R_CleanUp</strong> <em>(SA_TYPE <code>saveact</code>, int <code>status</code>, int <code>RunLast</code>)</em> <a href="#index-r_cleanup-1" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>This function invokes any actions which occur at system termination. It needs to be quite complex:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Rinterface.h&gt;</span></span>

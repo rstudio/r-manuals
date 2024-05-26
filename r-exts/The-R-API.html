@@ -257,6 +257,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Concept index</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./API-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">API index</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Experimental-API-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Experimental API index</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Embedding-API-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Embedding API index</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -347,7 +365,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <dl>
 <dt><em>API</em></dt>
 <dd>
-<p>Entry points which are documented in this manual and declared in an installed header file. These can be used in distributed packages and will only be changed after deprecation.</p>
+<p>Entry points which are documented in this manual and declared in an installed header file. These can be used in distributed packages and ideally will only be changed after deprecation.</p>
 </dd>
 <dt><em>public</em></dt>
 <dd>
@@ -365,10 +383,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <dd>
 <p>Entry points declared in an installed header file that are part of an experimental API, such as <code>R_ext/Altrep.h</code>. These are subject to change, so package authors wishing to use these should be prepared to adapt.</p>
 </dd>
+<dt><em>embedding</em></dt>
+<dd>
+<p>Entry points intended primarily for embedding and creating new front-ends. It is not clear that this needs to be a separate category but it may be useful to keep it separate for now.</p>
+</dd>
 </dl>
+<p>See API index, Experimental API index, Embedding API index for the classification of entry points in this document.</p>
+<p>If you would like to use an entry point or variable that is not identified as part of the API in this document, or is currently hidden, you can make a request for it to be made available. Entry points or variables not identified as in the API may be changed or removed with no notice as part of efforts to improve aspects of R.</p>
+<p><strong>Work in progress:</strong> Currently Entry points in the API are identified in the source for this document with <code>@apifun</code>, <code>@eapifun</code>, and <code>@embfun</code> entries. Similarly, <code>@apivar</code>, <code>@eapivar</code>, and <code>@embvar</code> identify variables, and <code>@apihdr</code>, <code>@eapihdr</code>, and <code>@embhdr</code> identify headers in the API. This could be used for programmatic extraction, but the specific format is work in progress and even the way this document is produced is subject to change.</p>
 <section id="memory-allocation" class="level2 section page-columns page-full" data-number="6.1">
 <h2 class="section anchored" data-number="6.1" data-anchor-id="memory-allocation"><span class="header-section-number">6.1</span> Memory allocation</h2>
-<p>There are two types of memory allocation available to the C programmer, one in which R manages the clean-up and the other in which user has full control (and responsibility).</p>
+<p>There are two types of memory allocation available to the C programmer, one in which R manages the clean-up and the other in which users have full control (and responsibility).</p>
 <p>These functions are declared in header <code>R_ext/RS.h</code> which is included by <code>R.h</code>.</p>
 <section id="transient-storage-allocation" class="level3 subsection" data-number="6.1.1">
 <h3 class="subsection anchored" data-number="6.1.1" data-anchor-id="transient-storage-allocation"><span class="header-section-number">6.1.1</span> Transient storage allocation</h3>
@@ -405,6 +430,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Do not assume that memory allocated by <code>R_Calloc</code>/<code>R_Realloc</code> comes from the same pool as used by <code>malloc</code>:<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> in particular do not use <code>free</code> or <code>strdup</code> with it.</p>
 <div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;That was not the case on Windows prior to R 4.2.0.</p></div></div><p>Memory obtained by these macros should be aligned in the same way as <code>malloc</code>, that is ‘suitably aligned for any kind of variable’.</p>
 <p>Historically the macros <code>Calloc</code>, <code>Free</code> and <code>Realloc</code> were used, and these remain available unless <code>STRICT_R_HEADERS</code> was defined prior to the inclusion of the header.</p>
+<p><code>R_Calloc</code>, <code>R_Realloc</code>, and <code>R_Free</code> are currently implemented as macros expanding to calls to <code>R_chk_calloc</code>, <code>R_chk_realloc</code>, and <code>R_chk_free</code>, respectively. These should not be called directly as they may be removed in the future.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> <span class="op">*</span> CallocCharBuf<span class="op">(</span><span class="dt">size_t</span> n<span class="op">)</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> <span class="op">*</span> Memcpy<span class="op">(</span>q<span class="op">,</span> p<span class="op">,</span> n<span class="op">)</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> <span class="op">*</span> Memzero<span class="op">(</span>p<span class="op">,</span> n<span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -706,7 +732,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="numerical-analysis-subroutines" class="level2 section page-columns page-full" data-number="6.7">
 <h2 class="section anchored" data-number="6.7" data-anchor-id="numerical-analysis-subroutines"><span class="header-section-number">6.7</span> Numerical analysis subroutines</h2>
 <p>R contains a large number of mathematical functions for its own use, for example numerical linear algebra computations and special functions.</p>
-<p>The header files <code>R_ext/BLAS.h</code>, <code>R_ext/Lapack.h</code> and <code>R_ext/Linpack.h</code> contains declarations of the BLAS, LAPACK and LINPACK linear algebra functions included in R. These are expressed as calls to Fortran subroutines, and they will also be usable from users’ Fortran code. Although not part of the official API, this set of subroutines is unlikely to change (but might be supplemented).</p>
+<p>The header files <code>R_ext/BLAS.h</code>, <code>R_ext/Lapack.h</code> and <code>R_ext/Linpack.h</code> contain declarations of the BLAS, LAPACK and LINPACK linear algebra functions included in R. These are expressed as calls to Fortran subroutines, and they will also be usable from users’ Fortran code. Although not part of the official API, this set of subroutines is unlikely to change (but might be supplemented).</p>
 <p>The header file <code>Rmath.h</code> lists many other functions that are available and documented in the following subsections. Many of these are C interfaces to the code behind R functions, so the R function documentation may give further details.</p>
 <section id="distribution-functions" class="level3 subsection" data-number="6.7.1">
 <h3 class="subsection anchored" data-number="6.7.1" data-anchor-id="distribution-functions"><span class="header-section-number">6.7.1</span> Distribution functions</h3>
@@ -873,43 +899,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="mathematical-functions" class="level3 subsection" data-number="6.7.2">
 <h3 class="subsection anchored" data-number="6.7.2" data-anchor-id="mathematical-functions"><span class="header-section-number">6.7.2</span> Mathematical functions</h3>
-<p><span class="category">Function:</span><em>double</em> <strong>gammafn</strong> <em>(double <code>x</code>)</em> <a href="#index-gammafn" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>double</em> <strong>lgammafn</strong> <em>(double <code>x</code>)</em> <a href="#index-lgammafn" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>double</em> <strong>digamma</strong> <em>(double <code>x</code>)</em> <a href="#index-digamma" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>double</em> <strong>trigamma</strong> <em>(double <code>x</code>)</em> <a href="#index-trigamma" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>double</em> <strong>tetragamma</strong> <em>(double <code>x</code>)</em> <a href="#index-tetragamma" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>double</em> <strong>pentagamma</strong> <em>(double <code>x</code>)</em> <a href="#index-pentagamma" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>double</em> <strong>psigamma</strong> <em>(double <code>x</code>, double <code>deriv</code>)</em> <a href="#index-psigamma" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>void</em> <strong>dpsifn</strong> <em>(double <code>x</code>, int <code>n</code>, int <code>kode</code>, int <code>m</code>, double* <code>ans</code>, int* <code>nz</code>, int* <code>ierr</code>)</em> <a href="#index-dpsifn" class="copiable-anchor">¶</a></p>
+<p><span class="category">Function:</span><em>double</em> <strong>gammafn</strong> <em>(double <code>x</code>)</em> <a href="#index-gammafn-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>double</em> <strong>lgammafn</strong> <em>(double <code>x</code>)</em> <a href="#index-lgammafn-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>double</em> <strong>digamma</strong> <em>(double <code>x</code>)</em> <a href="#index-digamma-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>double</em> <strong>trigamma</strong> <em>(double <code>x</code>)</em> <a href="#index-trigamma-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>double</em> <strong>tetragamma</strong> <em>(double <code>x</code>)</em> <a href="#index-tetragamma-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>double</em> <strong>pentagamma</strong> <em>(double <code>x</code>)</em> <a href="#index-pentagamma-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>double</em> <strong>psigamma</strong> <em>(double <code>x</code>, double <code>deriv</code>)</em> <a href="#index-psigamma-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>void</em> <strong>dpsifn</strong> <em>(double <code>x</code>, int <code>n</code>, int <code>kode</code>, int <code>m</code>, double* <code>ans</code>, int* <code>nz</code>, int* <code>ierr</code>)</em> <a href="#index-dpsifn-2" class="copiable-anchor">¶</a></p>
 <p>: The Gamma function, the natural logarithm of its absolute value and first four derivatives and the n-th derivative of Psi, the digamma function, which is the derivative of <code>lgammafn</code>. In other words, <code>digamma(x)</code> is the same as <code>psigamma(x,0)</code>, <code>trigamma(x) == psigamma(x,1)</code>, etc. The underlying workhorse, <code>dpsifn()</code>, is useful, e.g., when several derivatives of log Gamma=<code>lgammafn</code> are desired. It computes and returns in <code>ans[]</code> the length-<code>m</code> sequence (-1)^(k+1) / gamma(k+1) * psi(k;x) for k = n ... n+m-1, where psi(k;x) is the k-th derivative of Psi(x), i.e., <code>psigamma(x,k)</code>. For more details, see the comments in <code>src/nmath/polygamma.c</code>.</p>
 <!-- -->
-<p><span class="category">Function:</span><em>double</em> <strong>beta</strong> <em>(double <code>a</code>, double <code>b</code>)</em> <a href="#index-beta" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>double</em> <strong>lbeta</strong> <em>(double <code>a</code>, double <code>b</code>)</em> <a href="#index-lbeta" class="copiable-anchor">¶</a></p>
+<p><span class="category">Function:</span><em>double</em> <strong>beta</strong> <em>(double <code>a</code>, double <code>b</code>)</em> <a href="#index-beta-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>double</em> <strong>lbeta</strong> <em>(double <code>a</code>, double <code>b</code>)</em> <a href="#index-lbeta-2" class="copiable-anchor">¶</a></p>
 <p>: The (complete) Beta function and its natural logarithm.</p>
 <!-- -->
-<p><span class="category">Function:</span><em>double</em> <strong>choose</strong> <em>(double <code>n</code>, double <code>k</code>)</em> <a href="#index-choose" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>double</em> <strong>lchoose</strong> <em>(double <code>n</code>, double <code>k</code>)</em> <a href="#index-lchoose" class="copiable-anchor">¶</a></p>
+<p><span class="category">Function:</span><em>double</em> <strong>choose</strong> <em>(double <code>n</code>, double <code>k</code>)</em> <a href="#index-choose-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>double</em> <strong>lchoose</strong> <em>(double <code>n</code>, double <code>k</code>)</em> <a href="#index-lchoose-2" class="copiable-anchor">¶</a></p>
 <p>: The number of combinations of <code>k</code> items chosen from <code>n</code> and the natural logarithm of its absolute value, generalized to arbitrary real <code>n</code>. <code>k</code> is rounded to the nearest integer (with a warning if needed).</p>
 <!-- -->
-<p><span class="category">Function:</span><em>double</em> <strong>bessel_i</strong> <em>(double <code>x</code>, double <code>nu</code>, double <code>expo</code>)</em> <a href="#index-bessel_i" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>double</em> <strong>bessel_j</strong> <em>(double <code>x</code>, double <code>nu</code>)</em> <a href="#index-bessel_j" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>double</em> <strong>bessel_k</strong> <em>(double <code>x</code>, double <code>nu</code>, double <code>expo</code>)</em> <a href="#index-bessel_k" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>double</em> <strong>bessel_y</strong> <em>(double <code>x</code>, double <code>nu</code>)</em> <a href="#index-bessel_y" class="copiable-anchor">¶</a></p>
+<p><span class="category">Function:</span><em>double</em> <strong>bessel_i</strong> <em>(double <code>x</code>, double <code>nu</code>, double <code>expo</code>)</em> <a href="#index-bessel_i-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>double</em> <strong>bessel_j</strong> <em>(double <code>x</code>, double <code>nu</code>)</em> <a href="#index-bessel_j-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>double</em> <strong>bessel_k</strong> <em>(double <code>x</code>, double <code>nu</code>, double <code>expo</code>)</em> <a href="#index-bessel_k-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>double</em> <strong>bessel_y</strong> <em>(double <code>x</code>, double <code>nu</code>)</em> <a href="#index-bessel_y-2" class="copiable-anchor">¶</a></p>
 <p>: Bessel functions of types I, J, K and Y with index <code>nu</code>. For <code>bessel_i</code> and <code>bessel_k</code> there is the option to return <span class="nolinebreak">exp(-</span><code>x</code>)&nbsp;I(<code>x</code>;&nbsp;<code>nu</code>) or exp(<code>x</code>)&nbsp;K(<code>x</code>;&nbsp;<code>nu</code>) if <code>expo</code> is 2. (Use <code>expo == 1</code> for unscaled values.)</p>
 </section>
 <section id="numerical-utilities" class="level3 subsection page-columns page-full" data-number="6.7.3">
 <h3 class="subsection anchored" data-number="6.7.3" data-anchor-id="numerical-utilities"><span class="header-section-number">6.7.3</span> Numerical Utilities</h3>
 <p>There are a few other numerical utility functions available as entry points.</p>
-<p><span class="category">Function:</span><em>double</em> <strong>R_pow</strong> <em>(double <code>x</code>, double <code>y</code>)</em> <a href="#index-r_pow" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>double</em> <strong>R_pow_di</strong> <em>(double <code>x</code>, int <code>i</code>)</em> <a href="#index-r_pow_di" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>double</em> <strong>pow1p</strong> <em>(double <code>x</code>, double <code>y</code>)</em> <a href="#index-pow1p" class="copiable-anchor">¶</a></p>
+<p><span class="category">Function:</span><em>double</em> <strong>R_pow</strong> <em>(double <code>x</code>, double <code>y</code>)</em> <a href="#index-r_pow-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>double</em> <strong>R_pow_di</strong> <em>(double <code>x</code>, int <code>i</code>)</em> <a href="#index-r_pow_di-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>double</em> <strong>pow1p</strong> <em>(double <code>x</code>, double <code>y</code>)</em> <a href="#index-pow1p-2" class="copiable-anchor">¶</a></p>
 <p>: <code>R_pow(x, y)</code> and <code>R_pow_di(x, i)</code> compute <code>x^y</code> and <code>x^i</code>, respectively using <code>R_FINITE</code> checks and returning the proper result (the same as R) for the cases where <code>x</code>, <code>y</code> or <code>i</code> are 0 or missing or infinite or <code>NaN</code>.</p>
 <pre><code>`pow1p(x, y)` computes
 `(1 + x)^y`, accurately even for small
 `x`, i.e., \|x\| \&lt;\&lt; 1.</code></pre>
 <!-- -->
 <dl>
-<dt><span class="category">Function:</span><em>double</em> <strong>log1p</strong> <em>(double <code>x</code>)</em> <a href="#index-log1p" class="copiable-anchor">¶</a></dt>
+<dt><span class="category">Function:</span><em>double</em> <strong>log1p</strong> <em>(double <code>x</code>)</em> <a href="#index-log1p-2" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Computes <code>log(1 + x)</code> (<em>log 1 <strong>p</strong>lus x</em>), accurately even for small <code>x</code>, i.e., |x| &lt;&lt; 1.</p>
 <p>This should be provided by your platform, in which case it is not included in <code>Rmath.h</code>, but is (probably) in <code>math.h</code> which <code>Rmath.h</code> includes (except under C++, so it may not be declared for C++98).</p>
@@ -917,28 +943,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dl>
 <!-- -->
 <dl>
-<dt><span class="category">Function:</span><em>double</em> <strong>log1pmx</strong> <em>(double <code>x</code>)</em> <a href="#index-log1pmx" class="copiable-anchor">¶</a></dt>
+<dt><span class="category">Function:</span><em>double</em> <strong>log1pmx</strong> <em>(double <code>x</code>)</em> <a href="#index-log1pmx-2" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Computes <code>log(1 + x) - x</code> (<em>log 1 <strong>p</strong>lus x <strong>m</strong>inus <strong>x</strong></em>), accurately even for small <code>x</code>, i.e., |x| &lt;&lt; 1.</p>
 </dd>
 </dl>
 <!-- -->
 <dl>
-<dt><span class="category">Function:</span><em>double</em> <strong>log1pexp</strong> <em>(double <code>x</code>)</em> <a href="#index-log1pexp" class="copiable-anchor">¶</a></dt>
+<dt><span class="category">Function:</span><em>double</em> <strong>log1pexp</strong> <em>(double <code>x</code>)</em> <a href="#index-log1pexp-2" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Computes <code>log(1 + exp(x))</code> (<em>log 1 <strong>p</strong>lus <strong>exp</strong></em>), accurately, notably for large <code>x</code>, e.g., x &gt; 720.</p>
 </dd>
 </dl>
 <!-- -->
 <dl>
-<dt><span class="category">Function:</span><em>double</em> <strong>log1mexp</strong> <em>(double <code>x</code>)</em> <a href="#index-log1mexp" class="copiable-anchor">¶</a></dt>
+<dt><span class="category">Function:</span><em>double</em> <strong>log1mexp</strong> <em>(double <code>x</code>)</em> <a href="#index-log1mexp-2" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Computes <code>log(1 - exp(-x))</code> (<em>log 1 <strong>m</strong>inus <strong>exp</strong></em>), accurately, carefully for two regions of <code>x</code>, optimally cutting off at log 2 (= 0.693147..), using <code>((-x) &gt; -M_LN2 ? log(-expm1(-x)) : log1p(-exp(-x)))</code>.</p>
 </dd>
 </dl>
 <!-- -->
 <dl>
-<dt><span class="category">Function:</span><em>double</em> <strong>expm1</strong> <em>(double <code>x</code>)</em> <a href="#index-expm1" class="copiable-anchor">¶</a></dt>
+<dt><span class="category">Function:</span><em>double</em> <strong>expm1</strong> <em>(double <code>x</code>)</em> <a href="#index-expm1-2" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Computes <code>exp(x) - 1</code> (<em>exp x <strong>m</strong>inus 1</em>), accurately even for small <code>x</code>, i.e., |x| &lt;&lt; 1.</p>
 <p>This should be provided by your platform, in which case it is not included in <code>Rmath.h</code>, but is (probably) in <code>math.h</code> which <code>Rmath.h</code> includes (except under C++, so it may not be declared for C++98).</p>
@@ -946,14 +972,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dl>
 <!-- -->
 <dl>
-<dt><span class="category">Function:</span><em>double</em> <strong>lgamma1p</strong> <em>(double <code>x</code>)</em> <a href="#index-lgamma1p" class="copiable-anchor">¶</a></dt>
+<dt><span class="category">Function:</span><em>double</em> <strong>lgamma1p</strong> <em>(double <code>x</code>)</em> <a href="#index-lgamma1p-2" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Computes <code>log(gamma(x + 1))</code> (<em>log(gamma(1 <strong>p</strong>lus x))</em>), accurately even for small <code>x</code>, i.e., 0 &lt; x &lt; 0.5.</p>
 </dd>
 </dl>
 <!-- -->
 <dl class="page-columns page-full">
-<dt><span class="category">Function:</span><em>double</em> <strong>cospi</strong> <em>(double <code>x</code>)</em> <a href="#index-cospi" class="copiable-anchor">¶</a></dt>
+<dt><span class="category">Function:</span><em>double</em> <strong>cospi</strong> <em>(double <code>x</code>)</em> <a href="#index-cospi-2" class="copiable-anchor">¶</a></dt>
 <dd class="page-columns page-full">
 <p>Computes <code>cos(pi * x)</code> (where <code>pi</code> is 3.14159...), accurately, notably for half integer <code>x</code>.</p>
 <p>This might be provided by your platform<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>, in which case it is not included in <code>Rmath.h</code>, but is in <code>math.h</code> which <code>Rmath.h</code> includes. (Ensure that neither <code>math.h</code> nor <code>cmath</code> is included before <code>Rmath.h</code> or define</p>
@@ -963,7 +989,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dl>
 <!-- -->
 <dl>
-<dt><span class="category">Function:</span><em>double</em> <strong>sinpi</strong> <em>(double <code>x</code>)</em> <a href="#index-sinpi" class="copiable-anchor">¶</a></dt>
+<dt><span class="category">Function:</span><em>double</em> <strong>sinpi</strong> <em>(double <code>x</code>)</em> <a href="#index-sinpi-2" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Computes <code>sin(pi * x)</code> accurately, notably for (half) integer <code>x</code>.</p>
 <p>This might be provided by your platform, in which case it is not included in <code>Rmath.h</code>, but is in <code>math.h</code> which <code>Rmath.h</code> includes (but see the comments for <code>cospi</code>).</p>
@@ -971,46 +997,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dl>
 <!-- -->
 <dl>
-<dt><span class="category">Function:</span><em>double</em> <strong>Rtanpi</strong> <em>(double <code>x</code>)</em> <a href="#index-rtanpi" class="copiable-anchor">¶</a></dt>
+<dt><span class="category">Function:</span><em>double</em> <strong>Rtanpi</strong> <em>(double <code>x</code>)</em> <a href="#index-rtanpi-2" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Computes <code>tan(pi * x)</code> accurately, notably for integer <code>x</code>, giving <code>NaN</code> for half integer <code>x</code> and exactly +1 or -1 for (non half) quarter integers.</p>
 </dd>
 </dl>
 <!-- -->
 <dl>
-<dt><span class="category">Function:</span><em>double</em> <strong>tanpi</strong> <em>(double <code>x</code>)</em> <a href="#index-tanpi" class="copiable-anchor">¶</a></dt>
+<dt><span class="category">Function:</span><em>double</em> <strong>tanpi</strong> <em>(double <code>x</code>)</em> <a href="#index-tanpi-2" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Computes <code>tan(pi * x)</code> accurately for integer <code>x</code> with possibly platform dependent behavior for half (and quarter) integers. This might be provided by your platform, in which case it is not included in <code>Rmath.h</code>, but is in <code>math.h</code> which <code>Rmath.h</code> includes (but see the comments for <code>cospi</code>).</p>
 </dd>
 </dl>
 <!-- -->
-<p><span class="category">Function:</span><em>double</em> <strong>logspace_add</strong> <em>(double <code>logx</code>, double <code>logy</code>)</em> <a href="#index-logspace_add" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>double</em> <strong>logspace_sub</strong> <em>(double <code>logx</code>, double <code>logy</code>)</em> <a href="#index-logspace_sub" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>double</em> <strong>logspace_sum</strong> <em>(const double* <code>logx</code>, int <code>n</code>)</em> <a href="#index-logspace_sum" class="copiable-anchor">¶</a></p>
+<p><span class="category">Function:</span><em>double</em> <strong>logspace_add</strong> <em>(double <code>logx</code>, double <code>logy</code>)</em> <a href="#index-logspace_add-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>double</em> <strong>logspace_sub</strong> <em>(double <code>logx</code>, double <code>logy</code>)</em> <a href="#index-logspace_sub-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>double</em> <strong>logspace_sum</strong> <em>(const double* <code>logx</code>, int <code>n</code>)</em> <a href="#index-logspace_sum-2" class="copiable-anchor">¶</a></p>
 <p>: Compute the log of a sum or difference from logs of terms, i.e., “x + y” as <code>log (exp(logx) + exp(logy))</code> and “x - y” as <code>log (exp(logx) - exp(logy))</code>, and “sum_i x[i]” as <code>log (sum[i = 1:n exp(logx[i])] )</code> without causing unnecessary overflows or throwing away too much accuracy.</p>
 <!-- -->
-<p><span class="category">Function:</span><em>int</em> <strong>imax2</strong> <em>(int <code>x</code>, int <code>y</code>)</em> <a href="#index-imax2" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>int</em> <strong>imin2</strong> <em>(int <code>x</code>, int <code>y</code>)</em> <a href="#index-imin2" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>double</em> <strong>fmax2</strong> <em>(double <code>x</code>, double <code>y</code>)</em> <a href="#index-fmax2" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>double</em> <strong>fmin2</strong> <em>(double <code>x</code>, double <code>y</code>)</em> <a href="#index-fmin2" class="copiable-anchor">¶</a></p>
+<p><span class="category">Function:</span><em>int</em> <strong>imax2</strong> <em>(int <code>x</code>, int <code>y</code>)</em> <a href="#index-imax2-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>int</em> <strong>imin2</strong> <em>(int <code>x</code>, int <code>y</code>)</em> <a href="#index-imin2-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>double</em> <strong>fmax2</strong> <em>(double <code>x</code>, double <code>y</code>)</em> <a href="#index-fmax2-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>double</em> <strong>fmin2</strong> <em>(double <code>x</code>, double <code>y</code>)</em> <a href="#index-fmin2-2" class="copiable-anchor">¶</a></p>
 <p>: Return the larger (<code>max</code>) or smaller (<code>min</code>) of two integer or double numbers, respectively. Note that <code>fmax2</code> and <code>fmin2</code> differ from C99/C++11’s <code>fmax</code> and <code>fmin</code> when one of the arguments is a <code>NaN</code>: these versions return <code>NaN</code>.</p>
 <!-- -->
 <dl>
-<dt><span class="category">Function:</span><em>double</em> <strong>sign</strong> <em>(double <code>x</code>)</em> <a href="#index-sign" class="copiable-anchor">¶</a></dt>
+<dt><span class="category">Function:</span><em>double</em> <strong>sign</strong> <em>(double <code>x</code>)</em> <a href="#index-sign-1" class="copiable-anchor">¶</a></dt>
 <dd>
+<p><span id="index-sign"></span></p>
 <p>Compute the <em>signum</em> function, where sign(<code>x</code>) is 1, 0, or <em>-1</em>, when <code>x</code> is positive, 0, or negative, respectively, and <code>NaN</code> if <code>x</code> is a <code>NaN</code>.</p>
 </dd>
 </dl>
 <!-- -->
 <dl>
-<dt><span class="category">Function:</span><em>double</em> <strong>fsign</strong> <em>(double <code>x</code>, double <code>y</code>)</em> <a href="#index-fsign" class="copiable-anchor">¶</a></dt>
+<dt><span class="category">Function:</span><em>double</em> <strong>fsign</strong> <em>(double <code>x</code>, double <code>y</code>)</em> <a href="#index-fsign-2" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Performs “transfer of sign” and is defined as |x| * sign(y).</p>
 </dd>
 </dl>
 <!-- -->
 <dl>
-<dt><span class="category">Function:</span><em>double</em> <strong>fprec</strong> <em>(double <code>x</code>, double <code>digits</code>)</em> <a href="#index-fprec" class="copiable-anchor">¶</a></dt>
+<dt><span class="category">Function:</span><em>double</em> <strong>fprec</strong> <em>(double <code>x</code>, double <code>digits</code>)</em> <a href="#index-fprec-2" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Returns the value of <code>x</code> rounded to <code>digits</code> decimal digits (after the decimal point).</p>
 <p>This is the function used by R’s <code>signif()</code>.</p>
@@ -1018,7 +1045,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dl>
 <!-- -->
 <dl>
-<dt><span class="category">Function:</span><em>double</em> <strong>fround</strong> <em>(double <code>x</code>, double <code>digits</code>)</em> <a href="#index-fround" class="copiable-anchor">¶</a></dt>
+<dt><span class="category">Function:</span><em>double</em> <strong>fround</strong> <em>(double <code>x</code>, double <code>digits</code>)</em> <a href="#index-fround-2" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Returns the value of <code>x</code> rounded to <code>digits</code> <em>significant</em> decimal digits.</p>
 <p>This is the function used by R’s <code>round()</code>. (Note that C99/C++11 provide a <code>round</code> function but C++98 need not.)</p>
@@ -1026,7 +1053,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dl>
 <!-- -->
 <dl>
-<dt><span class="category">Function:</span><em>double</em> <strong>ftrunc</strong> <em>(double <code>x</code>)</em> <a href="#index-ftrunc" class="copiable-anchor">¶</a></dt>
+<dt><span class="category">Function:</span><em>double</em> <strong>ftrunc</strong> <em>(double <code>x</code>)</em> <a href="#index-ftrunc-2" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Returns the value of <code>x</code> truncated (to an integer value) towards zero.</p>
 </dd>
@@ -1248,8 +1275,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="utility-functions" class="level2 section" data-number="6.10">
 <h2 class="section anchored" data-number="6.10" data-anchor-id="utility-functions"><span class="header-section-number">6.10</span> Utility functions</h2>
 <p>R has a fairly comprehensive set of sort routines which are made available to users’ C code. The following is declared in header file <code>Rinternals.h</code>.</p>
-<p><span class="category">Function:</span><em>void</em> <strong>R_orderVector</strong> <em>(int* <code>indx</code>, int <code>n</code>, SEXP <code>arglist</code>, Rboolean <code>nalast</code>, Rboolean <code>decreasing</code>)</em> <a href="#index-r_ordervector" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>void</em> <strong>R_orderVector1</strong> <em>(int* <code>indx</code>, int <code>n</code>, SEXP <code>x</code>, Rboolean <code>nalast</code>, Rboolean <code>decreasing</code>)</em> <a href="#index-r_ordervector1" class="copiable-anchor">¶</a></p>
+<p><span class="category">Function:</span><em>void</em> <strong>R_orderVector</strong> <em>(int* <code>indx</code>, int <code>n</code>, SEXP <code>arglist</code>, Rboolean <code>nalast</code>, Rboolean <code>decreasing</code>)</em> <a href="#index-r_ordervector-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>void</em> <strong>R_orderVector1</strong> <em>(int* <code>indx</code>, int <code>n</code>, SEXP <code>x</code>, Rboolean <code>nalast</code>, Rboolean <code>decreasing</code>)</em> <a href="#index-r_ordervector1-2" class="copiable-anchor">¶</a></p>
 <p>: <code>R_orderVector()</code> corresponds to R’s <code>order(..., na.last, decreasing)</code>. More specifically, <code>indx &lt;- order(x, y, na.last, decreasing)</code> corresponds to <code>R_orderVector(indx, n, Rf_lang2(x, y), nalast, decreasing)</code> and for three vectors, <code>Rf_lang3(x,y,z)</code> is used as <code>arglist</code>.</p>
 <pre><code>Both `R_orderVector` and `R_orderVector1` assume the vector `indx`
 to be allocated to length \&gt;= n. On return, `indx[]` contains a
@@ -1260,47 +1287,47 @@ When ordering only one vector, `R_orderVector1` is faster and
 corresponds (but is 0-based) to R's
 `indx &lt;- order(x, na.last, decreasing)`. It was added in R 3.3.0.</code></pre>
 <p>All other sort routines are declared in header file <code>R_ext/Utils.h</code> (included by <code>R.h</code>) and include the following.</p>
-<p><span class="category">Function:</span><em>void</em> <strong>R_isort</strong> <em>(int* <code>x</code>, int <code>n</code>)</em> <a href="#index-r_isort" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>void</em> <strong>R_rsort</strong> <em>(double* <code>x</code>, int <code>n</code>)</em> <a href="#index-r_rsort" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>void</em> <strong>R_csort</strong> <em>(Rcomplex* <code>x</code>, int <code>n</code>)</em> <a href="#index-r_csort" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>void</em> <strong>rsort_with_index</strong> <em>(double* <code>x</code>, int* <code>index</code>, int <code>n</code>)</em> <a href="#index-rsort_with_index" class="copiable-anchor">¶</a></p>
+<p><span class="category">Function:</span><em>void</em> <strong>R_isort</strong> <em>(int* <code>x</code>, int <code>n</code>)</em> <a href="#index-r_isort-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>void</em> <strong>R_rsort</strong> <em>(double* <code>x</code>, int <code>n</code>)</em> <a href="#index-r_rsort-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>void</em> <strong>R_csort</strong> <em>(Rcomplex* <code>x</code>, int <code>n</code>)</em> <a href="#index-r_csort-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>void</em> <strong>rsort_with_index</strong> <em>(double* <code>x</code>, int* <code>index</code>, int <code>n</code>)</em> <a href="#index-rsort_with_index-2" class="copiable-anchor">¶</a></p>
 <p>: The first three sort integer, real (double) and complex data respectively. (Complex numbers are sorted by the real part first then the imaginary part.) <code>NA</code>s are sorted last.</p>
 <pre><code>`rsort_with_index` sorts on `x`, and applies the same
 permutation to `index`. `NA`s are sorted last.</code></pre>
 <!-- -->
 <dl>
-<dt><span class="category">Function:</span><em>void</em> <strong>revsort</strong> <em>(double* <code>x</code>, int* <code>index</code>, int <code>n</code>)</em> <a href="#index-revsort" class="copiable-anchor">¶</a></dt>
+<dt><span class="category">Function:</span><em>void</em> <strong>revsort</strong> <em>(double* <code>x</code>, int* <code>index</code>, int <code>n</code>)</em> <a href="#index-revsort-2" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Is similar to <code>rsort_with_index</code> but sorts into decreasing order, and <code>NA</code>s are not handled.</p>
 </dd>
 </dl>
 <!-- -->
-<p><span class="category">Function:</span><em>void</em> <strong>iPsort</strong> <em>(int* <code>x</code>, int <code>n</code>, int <code>k</code>)</em> <a href="#index-ipsort" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>void</em> <strong>rPsort</strong> <em>(double* <code>x</code>, int <code>n</code>, int <code>k</code>)</em> <a href="#index-rpsort" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>void</em> <strong>cPsort</strong> <em>(Rcomplex* <code>x</code>, int <code>n</code>, int <code>k</code>)</em> <a href="#index-cpsort" class="copiable-anchor">¶</a></p>
+<p><span class="category">Function:</span><em>void</em> <strong>iPsort</strong> <em>(int* <code>x</code>, int <code>n</code>, int <code>k</code>)</em> <a href="#index-ipsort-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>void</em> <strong>rPsort</strong> <em>(double* <code>x</code>, int <code>n</code>, int <code>k</code>)</em> <a href="#index-rpsort-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>void</em> <strong>cPsort</strong> <em>(Rcomplex* <code>x</code>, int <code>n</code>, int <code>k</code>)</em> <a href="#index-cpsort-2" class="copiable-anchor">¶</a></p>
 <p>: These all provide (very) partial sorting: they permute <code>x</code> so that <code>x[k]</code> is in the correct place with smaller values to the left, larger ones to the right.</p>
 <!-- -->
-<p><span class="category">Function:</span><em>void</em> <strong>R_qsort</strong> <em>(double *<code>v</code>, size_t <code>i</code>, size_t <code>j</code>)</em> <a href="#index-r_qsort" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>void</em> <strong>R_qsort_I</strong> <em>(double *<code>v</code>, int *<code>I</code>, int <code>i</code>, int <code>j</code>)</em> <a href="#index-r_qsort_i" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>void</em> <strong>R_qsort_int</strong> <em>(int *<code>iv</code>, size_t <code>i</code>, size_t <code>j</code>)</em> <a href="#index-r_qsort_int" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>void</em> <strong>R_qsort_int_I</strong> <em>(int *<code>iv</code>, int *<code>I</code>, int <code>i</code>, int <code>j</code>)</em> <a href="#index-r_qsort_int_i" class="copiable-anchor">¶</a></p>
+<p><span class="category">Function:</span><em>void</em> <strong>R_qsort</strong> <em>(double *<code>v</code>, size_t <code>i</code>, size_t <code>j</code>)</em> <a href="#index-r_qsort-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>void</em> <strong>R_qsort_I</strong> <em>(double *<code>v</code>, int *<code>I</code>, int <code>i</code>, int <code>j</code>)</em> <a href="#index-r_qsort_i-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>void</em> <strong>R_qsort_int</strong> <em>(int *<code>iv</code>, size_t <code>i</code>, size_t <code>j</code>)</em> <a href="#index-r_qsort_int-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>void</em> <strong>R_qsort_int_I</strong> <em>(int *<code>iv</code>, int *<code>I</code>, int <code>i</code>, int <code>j</code>)</em> <a href="#index-r_qsort_int_i-2" class="copiable-anchor">¶</a></p>
 <p>: These routines sort <code>v[i:j]</code> or <code>iv[i:j]</code> (using 1-indexing, i.e., <code>v[1]</code> is the first element) calling the quicksort algorithm as used by R’s <code>sort(v, method = "quick")</code> and documented on the help page for the R function <code>sort</code>. The <code>..._I()</code> versions also return the <code>sort.index()</code> vector in <code>I</code>. Note that the ordering is <em>not</em> stable, so tied values may be permuted.</p>
 <pre><code>Note that `NA`s are not handled (explicitly) and you should use
 different sorting functions if `NA`s can be present.</code></pre>
 <!-- -->
-<p><span class="category">Function:</span><em>subroutine</em> <strong>qsort4</strong> <em>(double precision <code>v</code>, integer <code>indx</code>, integer <code>ii</code>, integer <code>jj</code>)</em> <a href="#index-qsort4" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>subroutine</em> <strong>qsort3</strong> <em>(double precision <code>v</code>, integer <code>ii</code>, integer <code>jj</code>)</em> <a href="#index-qsort3" class="copiable-anchor">¶</a></p>
+<p><span class="category">Function:</span><em>subroutine</em> <strong>qsort4</strong> <em>(double precision <code>v</code>, integer <code>indx</code>, integer <code>ii</code>, integer <code>jj</code>)</em> <a href="#index-qsort4-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>subroutine</em> <strong>qsort3</strong> <em>(double precision <code>v</code>, integer <code>ii</code>, integer <code>jj</code>)</em> <a href="#index-qsort3-2" class="copiable-anchor">¶</a></p>
 <p>: The Fortran interface routines for sorting double precision vectors are <code>qsort3</code> and <code>qsort4</code>, equivalent to <code>R_qsort</code> and <code>R_qsort_I</code>, respectively.</p>
 <!-- -->
 <dl>
-<dt><span class="category">Function:</span><em>void</em> <strong>R_max_col</strong> <em>(double* <code>matrix</code>, int* <code>nr</code>, int* <code>nc</code>, int* <code>maxes</code>, int* <code>ties_meth</code>)</em> <a href="#index-r_max_col" class="copiable-anchor">¶</a></dt>
+<dt><span class="category">Function:</span><em>void</em> <strong>R_max_col</strong> <em>(double* <code>matrix</code>, int* <code>nr</code>, int* <code>nc</code>, int* <code>maxes</code>, int* <code>ties_meth</code>)</em> <a href="#index-r_max_col-2" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Given the <code>nr</code> by <code>nc</code> matrix <code>matrix</code> in column-major (“Fortran”) order, <code>R_max_col()</code> returns in <code>maxes[i-1]</code> the column number of the maximal element in the <code>i</code>-th row (the same as R’s <code>max.col()</code> function). In the case of ties (multiple maxima), <code>*ties_meth</code> is an integer code in <code>1:3</code> determining the method: 1 = “random”, 2 = “first” and 3 = “last”. See R’s help page <code>?max.col</code>.</p>
 </dd>
 </dl>
 <!-- -->
-<p><span class="category">Function:</span><em>int</em> <strong>findInterval</strong> <em>(double* <code>xt</code>, int <code>n</code>, double <code>x</code>, Rboolean <code>rightmost_closed</code>, Rboolean <code>all_inside</code>, int <code>ilo</code>, int* <code>mflag</code>)</em> <a href="#index-findinterval" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>int</em> <strong>findInterval2(double*</strong> <em><code>xt</code>, int <code>n</code>, double <code>x</code>, Rboolean <code>rightmost_closed</code>, Rboolean <code>all_inside</code>, Rboolean <code>left_open</code>, int <code>ilo</code>, int* <code>mflag</code>)</em> <a href="#index-findinterval2_0028double_002a" class="copiable-anchor">¶</a></p>
+<p><span class="category">Function:</span><em>int</em> <strong>findInterval</strong> <em>(double* <code>xt</code>, int <code>n</code>, double <code>x</code>, Rboolean <code>rightmost_closed</code>, Rboolean <code>all_inside</code>, int <code>ilo</code>, int* <code>mflag</code>)</em> <a href="#index-findinterval-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>int</em> <strong>findInterval2</strong> <em>(double* <code>xt</code>, int <code>n</code>, double <code>x</code>, Rboolean <code>rightmost_closed</code>, Rboolean <code>all_inside</code>, Rboolean <code>left_open</code>, int <code>ilo</code>, int* <code>mflag</code>)</em> <a href="#index-findinterval2-2" class="copiable-anchor">¶</a></p>
 <p>: Given the ordered vector <code>xt</code> of length <code>n</code>, return the interval or index of <code>x</code> in <code>xt[]</code>, typically max(<em>i</em>; 1 &lt;= i &lt;= <code>n</code> &amp; <em><code>xt</code>[i]</em> &lt;= <code>x</code>) where we use 1-indexing as in R and Fortran (but not C). If <code>rightmost_closed</code> is true, also returns <em><code>n</code>-1</em> if <code>x</code> equals <em><code>xt</code>[<code>n</code>]</em>. If <code>all_inside</code> is not 0, the result is coerced to lie in <code>1:(n-1)</code> even when <code>x</code> is outside the <code>xt</code>[] range. On return, <code>*mflag</code> equals <em>-1</em> if <code>x</code> &lt; <code>xt</code>[1], <em>+1</em> if <code>x</code> &gt;= <code>xt</code>[<code>n</code>], and 0 otherwise.</p>
 <pre><code>The algorithm is particularly fast when `ilo` is set to
 the last result of `findInterval()` and `x` is a value of
@@ -1315,17 +1342,17 @@ intervals t) by left-open ones t\], see the help page of R function
 There is also an `F77_CALL(interv)()` version of `findInterval()`
 with the same arguments, but all pointers.</code></pre>
 <p>A system-independent interface to produce the name of a temporary file is provided as</p>
-<p><span class="category">Function:</span><em>char *</em> <strong>R_tmpnam</strong> <em>(const char *<code>prefix</code>, const char *<code>tmpdir</code>)</em> <a href="#index-r_tmpnam" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>char *</em> <strong>R_tmpnam2</strong> <em>(const char *<code>prefix</code>, const char *<code>tmpdir</code>, const char *<code>fileext</code>)</em> <a href="#index-r_tmpnam2" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>void</em> <strong>R_free_tmpnam</strong> <em>(char *<code>name</code>)</em> <a href="#index-r_free_tmpnam" class="copiable-anchor">¶</a></p>
+<p><span class="category">Function:</span><em>char *</em> <strong>R_tmpnam</strong> <em>(const char *<code>prefix</code>, const char *<code>tmpdir</code>)</em> <a href="#index-r_tmpnam-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>char *</em> <strong>R_tmpnam2</strong> <em>(const char *<code>prefix</code>, const char *<code>tmpdir</code>, const char *<code>fileext</code>)</em> <a href="#index-r_tmpnam2-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>void</em> <strong>R_free_tmpnam</strong> <em>(char *<code>name</code>)</em> <a href="#index-r_free_tmpnam-2" class="copiable-anchor">¶</a></p>
 <p>: Return a pathname for a temporary file with name beginning with <code>prefix</code> and ending with <code>fileext</code> in directory <code>tmpdir</code>. A <code>NULL</code> prefix or extension is replaced by <code>""</code>. Note that the return value is dynamically allocated and should be freed using <code>R_free_tmpnam</code> when no longer needed (unlike the system call <code>tmpnam</code>). Freeing the result using <code>free</code> is no longer recommended.</p>
 <!-- -->
-<p><span class="category">Function:</span><em>void</em> <strong>R_atof</strong> <em>(const char* <code>str</code>)</em> <a href="#index-r_atof" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>void</em> <strong>R_strtod</strong> <em>(const char* <code>str</code>, char ** <code>end</code>)</em> <a href="#index-r_strtod" class="copiable-anchor">¶</a></p>
+<p><span class="category">Function:</span><em>void</em> <strong>R_atof</strong> <em>(const char* <code>str</code>)</em> <a href="#index-r_atof-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>void</em> <strong>R_strtod</strong> <em>(const char* <code>str</code>, char ** <code>end</code>)</em> <a href="#index-r_strtod-2" class="copiable-anchor">¶</a></p>
 <p>: Implementations of the C99/POSIX functions <code>atof</code> and <code>strtod</code> which guarantee platform-dependent behaviour, including always using the period as the decimal point <em>aka</em> ‘radix character’ and converting <code>"NA"</code> to R’s <code>NA_REAL_</code> .</p>
 <p>There is also the internal function used to expand file names in several R functions, and called directly by <code>path.expand</code>.</p>
 <dl>
-<dt><span class="category">Function:</span><em>const char *</em> <strong>R_ExpandFileName</strong> <em>(const char *<code>fn</code>)</em> <a href="#index-r_expandfilename" class="copiable-anchor">¶</a></dt>
+<dt><span class="category">Function:</span><em>const char *</em> <strong>R_ExpandFileName</strong> <em>(const char *<code>fn</code>)</em> <a href="#index-r_expandfilename-2" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Expand a path name <code>fn</code> by replacing a leading tilde by the user’s home directory (if defined). The precise meaning is platform-specific; it will usually be taken from the environment variable <code>HOME</code> if this is defined.</p>
 </dd>
@@ -1337,21 +1364,21 @@ with the same arguments, but all pointers.</code></pre>
 <p>R has its own C-level interface to the encoding conversion capabilities provided by <code>iconv</code> because there are incompatibilities between the declarations in different implementations of <code>iconv</code>.</p>
 <p>These are declared in header file <code>R_ext/Riconv.h</code>.</p>
 <dl>
-<dt><span class="category">Function:</span><em>void *</em> <strong>Riconv_open</strong> <em>(const char *<code>to</code>, const char *<code>from</code>)</em> <a href="#index-riconv_open" class="copiable-anchor">¶</a></dt>
+<dt><span class="category">Function:</span><em>void *</em> <strong>Riconv_open</strong> <em>(const char *<code>to</code>, const char *<code>from</code>)</em> <a href="#index-riconv_open-2" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Set up a pointer to an encoding object to be used to convert between two encodings: <code>""</code> indicates the current locale.</p>
 </dd>
 </dl>
 <!-- -->
 <dl>
-<dt><span class="category">Function:</span><em>size_t</em> <strong>Riconv</strong> <em>(void *<code>cd</code>, const char **<code>inbuf</code>, size_t *<code>inbytesleft</code>, char **<code>outbuf</code>, size_t *<code>outbytesleft</code>)</em> <a href="#index-riconv" class="copiable-anchor">¶</a></dt>
+<dt><span class="category">Function:</span><em>size_t</em> <strong>Riconv</strong> <em>(void *<code>cd</code>, const char **<code>inbuf</code>, size_t *<code>inbytesleft</code>, char **<code>outbuf</code>, size_t *<code>outbytesleft</code>)</em> <a href="#index-riconv-2" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Convert as much as possible of <code>inbuf</code> to <code>outbuf</code>. Initially the <code>size_t</code> variables indicate the number of bytes available in the buffers, and they are updated (and the <code>char</code> pointers are updated to point to the next free byte in the buffer). The return value is the number of characters converted, or <code>(size_t)-1</code> (beware: <code>size_t</code> is usually an unsigned type). It should be safe to assume that an error condition sets <code>errno</code> to one of <code>E2BIG</code> (the output buffer is full), <code>EILSEQ</code> (the input cannot be converted, and might be invalid in the encoding specified) or <code>EINVAL</code> (the input does not end with a complete multi-byte character).</p>
 </dd>
 </dl>
 <!-- -->
 <dl>
-<dt><span class="category">Function:</span><em>int</em> <strong>Riconv_close</strong> <em>(void * <code>cd</code>)</em> <a href="#index-riconv_close" class="copiable-anchor">¶</a></dt>
+<dt><span class="category">Function:</span><em>int</em> <strong>Riconv_close</strong> <em>(void * <code>cd</code>)</em> <a href="#index-riconv_close-2" class="copiable-anchor">¶</a></dt>
 <dd>
 <p>Free the resources of an encoding object.</p>
 </dd>

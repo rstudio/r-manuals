@@ -345,7 +345,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>R will configure and build under most common Unix and Unix-alike platforms including <code>cpu-*-linux-gnu</code> for the <code>alpha</code>, <code>arm64</code> (also known as <code>aarch64</code>, <code>ix86</code>, <code>mips</code>, <code>mipsel</code>#, <code>ppc64</code>, <code>riscv64</code>, <code>s390x</code>, <code>sparc64</code>, and <code>x86_64</code> CPUs, <code>x86_64-apple-darwin</code> and <code>aarch64-apple-darwin</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> as well as perhaps (it is tested less frequently on these platforms) <code>x86_64-*-freebsd</code>, <code>x86_64-*-openbsd</code> and <code>powerpc-ibm-aix6*</code></p>
+<p>R will configure and build under most common Unix and Unix-alike platforms including <code>cpu-*-linux-gnu</code> for the <code>alpha</code>, <code>arm64</code> (also known as <code>aarch64</code>, <code>ix86</code>, <code>mips</code>, <code>mipsel</code>#, <code>ppc64</code>, <code>riscv64</code>, <code>s390x</code>, <code>sparc64</code>, and <code>x86_64</code> CPUs, <code>aarch64-apple-darwin</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> and <code>x86_64-apple-darwin</code> as well as perhaps (it is tested less frequently on these platforms) <code>x86_64-*-freebsd</code>, <code>x86_64-*-openbsd</code> and <code>powerpc-ibm-aix6*</code></p>
 <div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;aka ‘Apple Silicon’, known to some as <code>arm64-apple-darwin</code>.</p></div></div><p>Only 64-bit platforms are tested regularly, and <code>configure</code> will warn if it encounters a 32-bit one.</p>
 <p>In addition, binary distributions are available for some common Linux distributions (see the FAQ for current details) and for macOS. These are installed in platform-specific ways, so for the rest of this chapter we consider only building from the sources.</p>
 <p>Cross-building is not possible: installing R builds a minimal version of R and then runs many R scripts to complete the build.</p>
@@ -633,7 +633,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>RANLIB<span class="ot">=</span><span class="st">"ranlib --plugin=/path/to/liblto_plugin.so"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>and <code>NM</code> may be needed to be set analogously. (If using an LTO-enabled build to check packages, set environment variable <code>UserNM</code><a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> to <code>gcc-nm</code>.)</p>
 <div class="no-row-height column-margin column-container"><div id="fn14"><p><sup>14</sup>&nbsp;not <code>NM</code> as we found <code>make</code> overriding that.</p></div></div><p>With GCC 5 and later it is possible to parallelize parts of the LTO linking process: set the make macro <code>LTO</code> to something like <code>LTO=-flto=8</code> (to use 8 threads), for example in file <code>config.site</code>.</p>
-<p>Under some circumstances and for a few packages, the PIC flags have needed overriding on Linux with GCC 9 and later: e.g use in <code>config.site</code>:</p>
+<p>Under some circumstances and for a few packages, the PIC flags have needed overriding on Linux with GCC 9: e.g use in <code>config.site</code>:</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="dt">CPICFLAGS</span><span class="ch">=</span><span class="st">-fPIC</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="dt">CXXPICFLAGS</span><span class="ch">=</span><span class="st">-fPIC</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX11PICFLAGS</span><span class="ch">=</span><span class="st">-fPIC</span></span>
@@ -641,8 +641,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX17PICFLAGS</span><span class="ch">=</span><span class="st">-fPIC</span></span>
 <span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX20PICFLAGS</span><span class="ch">=</span><span class="st">-fPIC</span></span>
 <span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="dt">FPICFLAGS</span><span class="ch">=</span><span class="st">-fPIC</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>We suggest only using these if the problem is encountered (it was not seen on CRAN with GCC 10 at the time of writing).</p>
-<p>Note that R may need to be re-compiled after even a minor update to the compiler (e.g.&nbsp;from 10.1 to 10.2) but this may not be clear from confused compiler messages.</p>
+<p>We suggest only using these if the problem is encountered (it had not been seen on CRAN with GCC 10–14 at the time of writing).</p>
+<p>Note that R may need to be re-compiled after even a minor update to the compiler (e.g.&nbsp;from 13.1 to 13.2).</p>
 </section>
 <section id="lto-with-llvm" class="level3 subsubsection" data-number="2.7.7">
 <h3 class="subsubsection anchored" data-number="2.7.7" data-anchor-id="lto-with-llvm"><span class="header-section-number">2.7.7</span> LTO with LLVM</h3>

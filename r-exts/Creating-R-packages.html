@@ -257,6 +257,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Concept index</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./API-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">API index</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Experimental-API-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Experimental API index</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Embedding-API-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Embedding API index</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -1979,10 +1997,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="no-row-height column-margin column-container"><div id="fn113"><p><sup>113</sup>&nbsp;discontinued in 2023.</p></div></div><p>There is still a lot of Fortran code in CRAN packages which predates Fortran 77. Modern Fortran compilers are being written to target a minimum standard of Fortran 2018. and it is desirable that Fortran code in packages complies with that standard. For <code>gfortran</code> this can be checked by adding <code>-std=f2018</code> to <code>FFLAGS</code>. The most commonly seen issues are</p>
 <ul>
 <li><p>The use of <code>DFLOAT</code>, which was superseded by <code>DBLE</code> in Fortran 77. Also, use of <code>DCMPLX</code>, <code>DCONJG</code>, <code>DIMAG</code> and similar.</p></li>
-<li><p>Use of what <code>gfprtran</code> calls ‘Fortran 2018 deleted features’, although most were ‘deleted’ in earlier standards: those itmeize here were deleted in Fortran 2008. (In the Fortran standards ‘deleted’ means features that compilers are not required to implement.) These include</p>
+<li><p>Use of what <code>gfprtran</code> calls ‘Fortran 2018 deleted features’, although most were ‘deleted’ in earlier standards: those itemized here were deleted in Fortran 2008. (In the Fortran standards ‘deleted’ means features that compilers are not required to implement.) These include</p>
 <ul>
-<li>Aritmmetic <code>IF</code> statements.</li>
-<li><code>DO</code> loops whch are not terminated with a <code>END DO</code> or <code>CONTINUE</code> statement. (Unlabelled <code>DO</code> loops terminated by <code>END DO</code> are preferred for readability.)</li>
+<li>Arithmetic <code>IF</code> statements.</li>
+<li><code>DO</code> loops which are not terminated with a <code>END DO</code> or <code>CONTINUE</code> statement. (Unlabelled <code>DO</code> loops terminated by <code>END DO</code> are preferred for readability.)</li>
 <li>Labelled <code>DO</code> loops sharing a terminating <code>CONTINUE</code> statement.</li>
 </ul></li>
 <li><p>The use of GNU Fortran extensions. Some are listed at <a href="https://gcc.gnu.org/onlinedocs/gfortran/Extensions-implemented-in-GNU-Fortran.html" class="uri">https://gcc.gnu.org/onlinedocs/gfortran/Extensions-implemented-in-GNU-Fortran.html</a>. Others which have caused problems include <code>etime</code>, <code>getpid</code>, <code>isnan</code><a href="#fn114" class="footnote-ref" id="fnref114" role="doc-noteref"><sup>114</sup></a> and <code>sizeof</code>.</p>
@@ -1997,7 +2015,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The same applies to <code>INTEGER(KIND=4)</code> and <code>COMPLEX(KIND=16)</code>.</p>
 <p>Many uses of integer and real variable in Fortran code in packages will interwork with C (for example <code>.Fortran</code> is written in C), and R has checked that <code>INTEGER</code> and <code>DOUBLE PRECISION</code> correspond to the C types <code>int</code> and <code>double</code>. To make this explicit, from Fortran 2003 one can use the named constants <code>c_int</code>, <code>c_double</code> and <code>c_double_complex</code> from module <code>iso_c_binding</code>.</p></li>
 <li><p>The Intel compilers only recognize the extensions <code>.f</code> (fixed-form) and <code>.f90</code> (free-form) and not <code>.f95</code>. <code>R CMD INSTALL</code> works around this for packages without a <code>src/Makefile</code>.</p></li>
-<li><p>Use of extensions <code>.F</code> and <code>.F90</code> to indicate source code to be preprocessed: the preprocessor used is compiler-specific and may or may not be <code>cpp</code>. Compilers may even preproces files with extension <code>.f</code> or <code>.f90</code> (Intel does).</p></li>
+<li><p>Use of extensions <code>.F</code> and <code>.F90</code> to indicate source code to be preprocessed: the preprocessor used is compiler-specific and may or may not be <code>cpp</code>. Compilers may even preprocess files with extension <code>.f</code> or <code>.f90</code> (Intel does).</p></li>
 <li><p>Fixed form Fortran (with extension <code>.f</code>) should only use 72 columns, and free-form at most 132 columns. This includes trailing comments. Over-long lines may be silently truncated or give a warning.</p></li>
 <li><p>Tabs are not part of the Fortran character set: compilers tend to accept them but how they are interpreted is compiler-specific.</p></li>
 <li><p>Fortran-66-style Hollerith constants.</p></li>
@@ -2008,9 +2026,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>FORALL</code> statements.</li>
 <li>Labelled <code>DO</code> statements.</li>
 <li><code>COMMON</code> and <code>EQUIVALENCE</code> statements, and <code>BLOCK DATA</code> units.</li>
-<li>Computed <code>GOTO</code> statmennts, replaced by <code>SELECT CASE</code>.</li>
+<li>Computed <code>GOTO</code> statements, replaced by <code>SELECT CASE</code>.</li>
 <li>Statement functions.</li>
-<li><code>DATA</code> statments after executable statements.</li>
+<li><code>DATA</code> statements after executable statements.</li>
 <li>Specific (rather than generic) names for intrinsic functions.</li>
 </ul>
 <p><code>gfortran</code> with option <code>-std=f2018</code> will warn about these: R will report only in the installation log.</p>

@@ -1,0 +1,3013 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.554">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>R Manuals :: Writing R Extensions - API index</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Experimental-API-index.html" rel="next">
+<link href="./Concept-index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">R Manuals :: Writing R Extensions</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Manuals</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
+        <li>
+    <a class="dropdown-item" href="./../r-intro/index.html">
+ <span class="dropdown-text">An Introduction to R</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-data/index.html">
+ <span class="dropdown-text">R Data Import/Export</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-admin/index.html">
+ <span class="dropdown-text">R Installation and Administration</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-exts/index.html">
+ <span class="dropdown-text">Writing R Extensions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-lang/index.html">
+ <span class="dropdown-text">R Language Definition</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./../r-ints/index.html">
+ <span class="dropdown-text">R Internals</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./API-index.html">API index</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Writing R Extensions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Acknowledgements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acknowledgements</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Creating-R-packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Creating R packages</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Writing-R-documentation-files.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Writing R documentation files</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Tidying-and-profiling-R-code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Tidying and profiling R code</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Debugging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./System-and-foreign-language-interfaces.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">System and foreign language interfaces</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./The-R-API.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The R API: entry points for C code</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Generic-functions-and-methods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Generic functions and methods</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Linking-GUIs-and-other-front-ends-to-R.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Linking GUIs and other front-ends to R</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Function and variable index</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Concept index</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./API-index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">API index</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Experimental-API-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Experimental API index</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Embedding-API-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Embedding API index</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">API index</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Entry points and variables listed in this index and in header files listed here are intended to be used in distributed packages and ideally will only be changed after deprecation.</p>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Jump to: &nbsp;</td>
+<td style="text-align: left;"><a href="#api-index_ap_letter-a" class="summary-letter"><strong>A</strong></a> &nbsp; <a href="#api-index_ap_letter-b" class="summary-letter"><strong>B</strong></a> &nbsp; <a href="#api-index_ap_letter-c" class="summary-letter"><strong>C</strong></a> &nbsp; <a href="#api-index_ap_letter-d" class="summary-letter"><strong>D</strong></a> &nbsp; <a href="#api-index_ap_letter-e" class="summary-letter"><strong>E</strong></a> &nbsp; <a href="#api-index_ap_letter-f" class="summary-letter"><strong>F</strong></a> &nbsp; <a href="#api-index_ap_letter-g" class="summary-letter"><strong>G</strong></a> &nbsp; <a href="#api-index_ap_letter-i" class="summary-letter"><strong>I</strong></a> &nbsp; <a href="#api-index_ap_letter-l" class="summary-letter"><strong>L</strong></a> &nbsp; <a href="#api-index_ap_letter-m" class="summary-letter"><strong>M</strong></a> &nbsp; <a href="#api-index_ap_letter-n" class="summary-letter"><strong>N</strong></a> &nbsp; <a href="#api-index_ap_letter-o" class="summary-letter"><strong>O</strong></a> &nbsp; <a href="#api-index_ap_letter-p" class="summary-letter"><strong>P</strong></a> &nbsp; <a href="#api-index_ap_letter-q" class="summary-letter"><strong>Q</strong></a> &nbsp; <a href="#api-index_ap_letter-r" class="summary-letter"><strong>R</strong></a> &nbsp; <a href="#api-index_ap_letter-s" class="summary-letter"><strong>S</strong></a> &nbsp; <a href="#api-index_ap_letter-t" class="summary-letter"><strong>T</strong></a> &nbsp; <a href="#api-index_ap_letter-u" class="summary-letter"><strong>U</strong></a> &nbsp; <a href="#api-index_ap_letter-v" class="summary-letter"><strong>V</strong></a> &nbsp; <a href="#api-index_ap_letter-w" class="summary-letter"><strong>W</strong></a> &nbsp; <a href="#api-index_ap_letter-x" class="summary-letter"><strong>X</strong></a> &nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;">Index Entry</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;">Section</td>
+</tr>
+<tr class="even">
+<td>A</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-alloclang"><code>allocLang</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#evaluating-r-expressions-from-c">Evaluating R expressions from C</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-alloclist"><code>allocList</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#handling-lists">Handling lists</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-alloclist-1"><code>allocList</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#evaluating-r-expressions-from-c">Evaluating R expressions from C</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-allocmatrix"><code>allocMatrix</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#calculating-numerical-derivatives">Calculating numerical derivatives</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-allocvector"><code>allocVector</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#allocating-storage">Allocating storage</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-aschar"><code>asChar</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-ascomplex"><code>asComplex</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-asinteger"><code>asInteger</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-aslogical"><code>asLogical</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-asreal"><code>asReal</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="odd">
+<td>B</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-bessel_i"><code>bessel_i</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#mathematical-functions">Mathematical functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-bessel_j"><code>bessel_j</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#mathematical-functions">Mathematical functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-bessel_k"><code>bessel_k</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#mathematical-functions">Mathematical functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-bessel_y"><code>bessel_y</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#mathematical-functions">Mathematical functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-beta"><code>beta</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#mathematical-functions">Mathematical functions</a></td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-caar"><code>CAAR</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#calling-.external">Calling .External</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-cad4r"><code>CAD4R</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#calling-.external">Calling .External</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-cad5r"><code>CAD5R</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#calling-.external">Calling .External</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-cadddr"><code>CADDDR</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#calling-.external">Calling .External</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-caddr"><code>CADDR</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#calling-.external">Calling .External</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-cadr"><code>CADR</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#calling-.external">Calling .External</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-calloc"><code>Calloc</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#user-controlled-memory">User-controlled memory</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-car"><code>CAR</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#calling-.external">Calling .External</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-cdar"><code>CDAR</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#calling-.external">Calling .External</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-cdddr"><code>CDDDR</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#calling-.external">Calling .External</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-cddr"><code>CDDR</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#calling-.external">Calling .External</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-cdr"><code>CDR</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#calling-.external">Calling .External</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-cgmin"><code>cgmin</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#optimization">Optimization</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-choose"><code>choose</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#mathematical-functions">Mathematical functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-classgets"><code>classgets</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#classes">Classes</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-coercevector"><code>coerceVector</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#details-of-r-types">Details of R types</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-complex"><code>COMPLEX</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#vector-accessor-functions">Vector accessor functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-complex_elt"><code>COMPLEX_ELT</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#vector-accessor-functions">Vector accessor functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-complex_ro"><code>COMPLEX_RO</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#vector-accessor-functions">Vector accessor functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-cons"><code>CONS</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-cons"><code>cons</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-cospi"><code>cospi</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#numerical-utilities">Numerical Utilities</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-cpsort"><code>cPsort</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#utility-functions">Utility functions</a></td>
+</tr>
+<tr class="odd">
+<td>D</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-d1mach"><code>d1mach</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#utility-functions">Utility functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-dblepr"><code>dblepr</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#printing-from-fortran">Printing from Fortran</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-dblepr1"><code>dblepr1</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#printing-from-fortran">Printing from Fortran</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-definevar"><code>defineVar</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#finding-and-setting-variables">Finding and setting variables</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-digamma"><code>digamma</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#mathematical-functions">Mathematical functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-dimgets"><code>dimgets</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#attributes">Attributes</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-dimnamesgets"><code>dimnamesgets</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#attributes">Attributes</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-dpsifn"><code>dpsifn</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#mathematical-functions">Mathematical functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-duplicate"><code>duplicate</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#named-objects-and-copying">Named objects and copying</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-dwilcox"><code>dwilcox</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#distribution-functions">Distribution functions</a></td>
+</tr>
+<tr class="even">
+<td>E</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-elt"><code>elt</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-error"><code>error</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#error-signaling">Error signaling</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-errorcall"><code>errorcall</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#error-signaling">Error signaling</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-eval"><code>eval</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#evaluating-r-expressions-from-c">Evaluating R expressions from C</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-expm1"><code>expm1</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#numerical-utilities">Numerical Utilities</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-exp_rand"><code>exp_rand</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#random-numbers">Random numbers</a></td>
+</tr>
+<tr class="odd">
+<td>F</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-false"><code>FALSE</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#mathematical-constants">Mathematical constants</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-findfun"><code>findFun</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#evaluating-r-expressions-from-c">Evaluating R expressions from C</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-findinterval"><code>findInterval</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#utility-functions">Utility functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-findinterval2"><code>findInterval2</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#utility-functions">Utility functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-fmax2"><code>fmax2</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#numerical-utilities">Numerical Utilities</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-fmin2"><code>fmin2</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#numerical-utilities">Numerical Utilities</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-fprec"><code>fprec</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#numerical-utilities">Numerical Utilities</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-free"><code>Free</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#user-controlled-memory">User-controlled memory</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-fround"><code>fround</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#numerical-utilities">Numerical Utilities</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-fsign"><code>fsign</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#numerical-utilities">Numerical Utilities</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-ftrunc"><code>ftrunc</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#numerical-utilities">Numerical Utilities</a></td>
+</tr>
+<tr class="odd">
+<td>G</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-gammafn"><code>gammafn</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#mathematical-functions">Mathematical functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-getarraydimnames"><code>GetArrayDimnames</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#attributes">Attributes</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-getattrib"><code>getAttrib</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#attributes">Attributes</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-getcharce"><code>getCharCE</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#character-encoding-issues">Character encoding issues</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-getcolnames"><code>GetColNames</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#attributes">Attributes</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-getmatrixdimnames"><code>GetMatrixDimnames</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#attributes">Attributes</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-getrngstate"><code>GetRNGstate</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#random-numbers">Random numbers</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-getrownames"><code>GetRowNames</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#attributes">Attributes</a></td>
+</tr>
+<tr class="even">
+<td>I</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-i1mach"><code>i1mach</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#utility-functions">Utility functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-imax2"><code>imax2</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#numerical-utilities">Numerical Utilities</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-imin2"><code>imin2</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#numerical-utilities">Numerical Utilities</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-inherits"><code>inherits</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#semi-internal-convenience-functions">Semi-internal convenience functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-install"><code>install</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#attributes">Attributes</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-integer"><code>INTEGER</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#vector-accessor-functions">Vector accessor functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-integer_elt"><code>INTEGER_ELT</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#vector-accessor-functions">Vector accessor functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-integer_ro"><code>INTEGER_RO</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#vector-accessor-functions">Vector accessor functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-integr_fn"><code>integr_fn</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#integration">Integration</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-interv"><code>interv</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#utility-functions">Utility functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-intpr"><code>intpr</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#printing-from-fortran">Printing from Fortran</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-intpr1"><code>intpr1</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#printing-from-fortran">Printing from Fortran</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-ipsort"><code>iPsort</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#utility-functions">Utility functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-isarray"><code>isArray</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-iscomplex"><code>isComplex</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#details-of-r-types">Details of R types</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-isenvironment"><code>isEnvironment</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#details-of-r-types">Details of R types</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-isexpression"><code>isExpression</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#details-of-r-types">Details of R types</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-isfactor"><code>isFactor</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-isfunction"><code>isFunction</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-isinteger"><code>isInteger</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#details-of-r-types">Details of R types</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-islanguage"><code>isLanguage</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-islist"><code>isList</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-islogical"><code>isLogical</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#details-of-r-types">Details of R types</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-ismatrix"><code>isMatrix</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-isna"><code>ISNA</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#missing-and-special-values">Missing and special values</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-isna-1"><code>ISNA</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#missing-and-ieee-values">Missing and IEEE values</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-isnan"><code>ISNAN</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#missing-and-special-values">Missing and special values</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-isnan-1"><code>ISNAN</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#missing-and-ieee-values">Missing and IEEE values</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-isnewlist"><code>isNewList</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-isnull"><code>isNull</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#details-of-r-types">Details of R types</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-isnumeric"><code>isNumeric</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-isobject"><code>isObject</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-isordered"><code>isOrdered</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-ispairlist"><code>isPairList</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-isprimitive"><code>isPrimitive</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-isreal"><code>isReal</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#details-of-r-types">Details of R types</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-isstring"><code>isString</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#details-of-r-types">Details of R types</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-issymbol"><code>isSymbol</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#details-of-r-types">Details of R types</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-ists"><code>isTs</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-isunordered"><code>isUnordered</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-isvector"><code>isVector</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-isvectoratomic"><code>isVectorAtomic</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-isvectorlist"><code>isVectorList</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="even">
+<td>L</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-labelpr"><code>labelpr</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#printing-from-fortran">Printing from Fortran</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-lang1"><code>lang1</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-lang2"><code>lang2</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-lang3"><code>lang3</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-lang4"><code>lang4</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-lang5"><code>lang5</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-lang6"><code>lang6</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-lastelt"><code>lastElt</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-lbeta"><code>lbeta</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#mathematical-functions">Mathematical functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-lbfgsb"><code>lbfgsb</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#optimization">Optimization</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-lchoose"><code>lchoose</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#mathematical-functions">Mathematical functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-lcons"><code>LCONS</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-lcons"><code>lcons</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-lcons-1"><code>LCONS</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#evaluating-r-expressions-from-c">Evaluating R expressions from C</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-length"><code>LENGTH</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#calculating-numerical-derivatives">Calculating numerical derivatives</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-length"><code>length</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#calculating-numerical-derivatives">Calculating numerical derivatives</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-lgamma1p"><code>lgamma1p</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#numerical-utilities">Numerical Utilities</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-lgammafn"><code>lgammafn</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#mathematical-functions">Mathematical functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-list1"><code>list1</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-list2"><code>list2</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-list3"><code>list3</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-list4"><code>list4</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-list5"><code>list5</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-list6"><code>list6</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-log1mexp"><code>log1mexp</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#numerical-utilities">Numerical Utilities</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-log1p"><code>log1p</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#numerical-utilities">Numerical Utilities</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-log1pexp"><code>log1pexp</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#numerical-utilities">Numerical Utilities</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-log1pmx"><code>log1pmx</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#numerical-utilities">Numerical Utilities</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-logical"><code>LOGICAL</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#vector-accessor-functions">Vector accessor functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-logical_elt"><code>LOGICAL_ELT</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#vector-accessor-functions">Vector accessor functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-logical_ro"><code>LOGICAL_RO</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#vector-accessor-functions">Vector accessor functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-logspace_add"><code>logspace_add</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#numerical-utilities">Numerical Utilities</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-logspace_sub"><code>logspace_sub</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#numerical-utilities">Numerical Utilities</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-logspace_sum"><code>logspace_sum</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#numerical-utilities">Numerical Utilities</a></td>
+</tr>
+<tr class="odd">
+<td>M</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-mark_not_mutable"><code>MARK_NOT_MUTABLE</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#named-objects-and-copying">Named objects and copying</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-maybe_referenced"><code>MAYBE_REFERENCED</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#named-objects-and-copying">Named objects and copying</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-maybe_shared"><code>MAYBE_SHARED</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#named-objects-and-copying">Named objects and copying</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-mkchar"><code>mkChar</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#handling-character-data">Handling character data</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-mkcharce"><code>mkCharCE</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#character-encoding-issues">Character encoding issues</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-mkcharlen"><code>mkCharLen</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#handling-character-data">Handling character data</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-mkcharlence"><code>mkCharLenCE</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#character-encoding-issues">Character encoding issues</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-mkstring"><code>mkString</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-m_e"><code>M_E</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#mathematical-constants">Mathematical constants</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-m_pi"><code>M_PI</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#mathematical-constants">Mathematical constants</a></td>
+</tr>
+<tr class="even">
+<td>N</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-namesgets"><code>namesgets</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#attributes">Attributes</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-na_real"><code>NA_REAL</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#missing-and-ieee-values">Missing and IEEE values</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-ncols"><code>ncols</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#transient-storage-allocation">Transient storage allocation</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-nmmin"><code>nmmin</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#optimization">Optimization</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-norm_rand"><code>norm_rand</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#random-numbers">Random numbers</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-nrows"><code>nrows</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#transient-storage-allocation">Transient storage allocation</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-nthcdr"><code>nthcdr</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="even">
+<td>O</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Linking-GUIs-and-other-front-ends-to-R.html#index-onintr"><code>onintr</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Linking-GUIs-and-other-front-ends-to-R.html#calling-r.dll-directly">Calling R.dll directly</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-optimfn"><code>optimfn</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#optimization">Optimization</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-optimgr"><code>optimgr</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#optimization">Optimization</a></td>
+</tr>
+<tr class="even">
+<td>P</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-pentagamma"><code>pentagamma</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#mathematical-functions">Mathematical functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-pow1p"><code>pow1p</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#numerical-utilities">Numerical Utilities</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-printname"><code>PRINTNAME</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#calling-.external">Calling .External</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Debugging.html#index-printvalue"><code>PrintValue</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Debugging.html#inspecting-r-objects">Inspecting R objects</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-protect"><code>PROTECT</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#garbage-collection">Garbage Collection</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-protect"><code>protect</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#garbage-collection">Garbage Collection</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-protect_with_index"><code>PROTECT_WITH_INDEX</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#garbage-collection">Garbage Collection</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-psigamma"><code>psigamma</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#mathematical-functions">Mathematical functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-putrngstate"><code>PutRNGstate</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#random-numbers">Random numbers</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-pwilcox"><code>pwilcox</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#distribution-functions">Distribution functions</a></td>
+</tr>
+<tr class="odd">
+<td>Q</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-qsort3"><code>qsort3</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#utility-functions">Utility functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-qsort4"><code>qsort4</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#utility-functions">Utility functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-qwilcox"><code>qwilcox</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#distribution-functions">Distribution functions</a></td>
+</tr>
+<tr class="odd">
+<td>R</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-raw"><code>RAW</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#vector-accessor-functions">Vector accessor functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-raw_elt"><code>RAW_ELT</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#vector-accessor-functions">Vector accessor functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-raw_ro"><code>RAW_RO</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#vector-accessor-functions">Vector accessor functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-rchkusr"><code>rchkusr</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#allowing-interrupts">Allowing interrupts</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-rdqagi"><code>Rdqagi</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#integration">Integration</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-rdqags"><code>Rdqags</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#integration">Integration</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-real"><code>REAL</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#vector-accessor-functions">Vector accessor functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-realloc"><code>Realloc</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#user-controlled-memory">User-controlled memory</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-realpr"><code>realpr</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#printing-from-fortran">Printing from Fortran</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-realpr1"><code>realpr1</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#printing-from-fortran">Printing from Fortran</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-real_elt"><code>REAL_ELT</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#vector-accessor-functions">Vector accessor functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-real_ro"><code>REAL_RO</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#vector-accessor-functions">Vector accessor functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-reenc"><code>reEnc</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#character-encoding-issues">Character encoding issues</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-reprintf"><code>REprintf</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#printing">Printing</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-reprotect"><code>REPROTECT</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#garbage-collection">Garbage Collection</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-revprintf"><code>REvprintf</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#printing">Printing</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-revsort"><code>revsort</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#utility-functions">Utility functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-rexit"><code>rexit</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#error-signaling-from-fortran">Error signaling from Fortran</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-riconv"><code>Riconv</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#re-encoding">Re-encoding</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-riconv_close"><code>Riconv_close</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#re-encoding">Re-encoding</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-riconv_open"><code>Riconv_open</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#re-encoding">Re-encoding</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-rmath.h"><code>Rmath.h</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#numerical-analysis-subroutines">Numerical analysis subroutines</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-rmultinom"><code>rmultinom</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#distribution-functions">Distribution functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-rprintf"><code>Rprintf</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#printing">Printing</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-rpsort"><code>rPsort</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#utility-functions">Utility functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-rsort_with_index"><code>rsort_with_index</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#utility-functions">Utility functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-rtanpi"><code>Rtanpi</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#numerical-utilities">Numerical Utilities</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-rvprintf"><code>Rvprintf</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#printing">Printing</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-rwarn"><code>rwarn</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#error-signaling-from-fortran">Error signaling from Fortran</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_alloc"><code>R_alloc</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#transient-storage-allocation">Transient storage allocation</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_allocld"><code>R_allocLD</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#transient-storage-allocation">Transient storage allocation</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_atof"><code>R_atof</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#utility-functions">Utility functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_calloc"><code>R_Calloc</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#user-controlled-memory">User-controlled memory</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_checkuserinterrupt"><code>R_CheckUserInterrupt</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#allowing-interrupts">Allowing interrupts</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_clearexternalptr"><code>R_ClearExternalPtr</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#external-pointers-and-weak-references">External pointers and weak references</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_continueunwind"><code>R_ContinueUnwind</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#condition-handling-and-cleanup-code">Condition handling and cleanup code</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_csort"><code>R_csort</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#utility-functions">Utility functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_dimnamessymbol"><code>R_DimNamesSymbol</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#attributes">Attributes</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_expandfilename"><code>R_ExpandFileName</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#utility-functions">Utility functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_ext_002farith.h"><code>R_ext/Arith.h</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#missing-and-special-values">Missing and special values</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_ext_002fblas.h"><code>R_ext/BLAS.h</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#numerical-analysis-subroutines">Numerical analysis subroutines</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_ext_002fboolean.h"><code>R_ext/Boolean.h</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#mathematical-constants">Mathematical constants</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_ext_002fcomplex.h"><code>R_ext/Complex.h</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#interface-functions-.c-and-.fortran">Interface functions .C and .Fortran</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_ext_002fconstants.h"><code>R_ext/Constants.h</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#mathematical-constants">Mathematical constants</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_ext_002ferror.h"><code>R_ext/Error.h</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#the-r-api">The R API</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_ext_002flapack.h"><code>R_ext/Lapack.h</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#numerical-analysis-subroutines">Numerical analysis subroutines</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_ext_002flinpack.h"><code>R_ext/Linpack.h</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#numerical-analysis-subroutines">Numerical analysis subroutines</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_ext_002fmemory.h"><code>R_ext/Memory.h</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#organization-of-header-files">Organization of header files</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_ext_002frandom.h"><code>R_ext/Random.h</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#organization-of-header-files">Organization of header files</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_ext_002friconv.h"><code>R_ext/Riconv.h</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#re-encoding">Re-encoding</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_ext_002fvisibility.h"><code>R_ext/Visibility.h</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#converting-a-package-to-use-registration">Converting a package to use registration</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_externalptraddr"><code>R_ExternalPtrAddr</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#external-pointers-and-weak-references">External pointers and weak references</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_externalptraddrfn"><code>R_ExternalPtrAddrFn</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#external-pointers-and-weak-references">External pointers and weak references</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_externalptrprotected"><code>R_ExternalPtrProtected</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#external-pointers-and-weak-references">External pointers and weak references</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_externalptrtag"><code>R_ExternalPtrTag</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#external-pointers-and-weak-references">External pointers and weak references</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_finite"><code>R_FINITE</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#missing-and-ieee-values">Missing and IEEE values</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_forcesymbols"><code>R_forceSymbols</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#registering-native-routines">Registering native routines</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_free"><code>R_Free</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#user-controlled-memory">User-controlled memory</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_free_tmpnam"><code>R_free_tmpnam</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#utility-functions">Utility functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_getccallable"><code>R_GetCCallable</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#linking-to-native-routines-in-other-packages">Linking to native routines in other packages</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_getcurrentsrcref"><code>R_GetCurrentSrcref</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#accessing-source-references">Accessing source references</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_getsrcfilename"><code>R_GetSrcFilename</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#accessing-source-references">Accessing source references</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_inline"><code>R_INLINE</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#inlining-c-functions">Inlining C functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_isnan"><code>R_IsNaN</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#missing-and-ieee-values">Missing and IEEE values</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_isort"><code>R_isort</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#utility-functions">Utility functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_makeexternalptr"><code>R_MakeExternalPtr</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#external-pointers-and-weak-references">External pointers and weak references</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_makeexternalptrfn"><code>R_MakeExternalPtrFn</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#external-pointers-and-weak-references">External pointers and weak references</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_makeunwindcont"><code>R_MakeUnwindCont</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#condition-handling-and-cleanup-code">Condition handling and cleanup code</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_makeweakref"><code>R_MakeWeakRef</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#external-pointers-and-weak-references">External pointers and weak references</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_makeweakrefc"><code>R_MakeWeakRefC</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#external-pointers-and-weak-references">External pointers and weak references</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_max_col"><code>R_max_col</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#utility-functions">Utility functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_namessymbol"><code>R_NamesSymbol</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#attributes">Attributes</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_neginf"><code>R_NegInf</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#missing-and-ieee-values">Missing and IEEE values</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_newenv"><code>R_NewEnv</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#finding-and-setting-variables">Finding and setting variables</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_newpreciousmset"><code>R_NewPreciousMSet</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#garbage-collection">Garbage Collection</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_nilvalue"><code>R_NilValue</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#handling-lists">Handling lists</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_ordervector"><code>R_orderVector</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#utility-functions">Utility functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_ordervector1"><code>R_orderVector1</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#utility-functions">Utility functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_parsevector"><code>R_ParseVector</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#parsing-r-code-from-c">Parsing R code from C</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_posinf"><code>R_PosInf</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#missing-and-ieee-values">Missing and IEEE values</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_pow"><code>R_pow</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#numerical-utilities">Numerical Utilities</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_pow_di"><code>R_pow_di</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#numerical-utilities">Numerical Utilities</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_preserveinmset"><code>R_PreserveInMSet</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#garbage-collection">Garbage Collection</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_preserveobject"><code>R_PreserveObject</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#garbage-collection">Garbage Collection</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_protectwithindex"><code>R_ProtectWithIndex</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#garbage-collection">Garbage Collection</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Debugging.html#index-r_pv"><code>R_PV</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Debugging.html#inspecting-r-objects">Inspecting R objects</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_qsort"><code>R_qsort</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#utility-functions">Utility functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_qsort_i"><code>R_qsort_I</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#utility-functions">Utility functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_qsort_int"><code>R_qsort_int</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#utility-functions">Utility functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_qsort_int_i"><code>R_qsort_int_I</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#utility-functions">Utility functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_realloc"><code>R_Realloc</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#user-controlled-memory">User-controlled memory</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_registerccallable"><code>R_RegisterCCallable</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#linking-to-native-routines-in-other-packages">Linking to native routines in other packages</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_registercfinalizer"><code>R_RegisterCFinalizer</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#external-pointers-and-weak-references">External pointers and weak references</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_registercfinalizerex"><code>R_RegisterCFinalizerEx</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#external-pointers-and-weak-references">External pointers and weak references</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_registerfinalizer"><code>R_RegisterFinalizer</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#external-pointers-and-weak-references">External pointers and weak references</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_registerfinalizerex"><code>R_RegisterFinalizerEx</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#external-pointers-and-weak-references">External pointers and weak references</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_registerroutines"><code>R_registerRoutines</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#registering-native-routines">Registering native routines</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_releasefrommset"><code>R_ReleaseFromMSet</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#garbage-collection">Garbage Collection</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_releaseobject"><code>R_ReleaseObject</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#garbage-collection">Garbage Collection</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_reprotect"><code>R_Reprotect</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#garbage-collection">Garbage Collection</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_rsort"><code>R_rsort</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#utility-functions">Utility functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_runweakreffinalizer"><code>R_RunWeakRefFinalizer</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#external-pointers-and-weak-references">External pointers and weak references</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_setexternalptraddr"><code>R_SetExternalPtrAddr</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#external-pointers-and-weak-references">External pointers and weak references</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_setexternalptrprotected"><code>R_SetExternalPtrProtected</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#external-pointers-and-weak-references">External pointers and weak references</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_setexternalptrtag"><code>R_SetExternalPtrTag</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#external-pointers-and-weak-references">External pointers and weak references</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Linking-GUIs-and-other-front-ends-to-R.html#index-r_showmessage"><code>R_ShowMessage</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Linking-GUIs-and-other-front-ends-to-R.html#setting-r-callbacks">Setting R callbacks</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_strtod"><code>R_strtod</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#utility-functions">Utility functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_tmpnam"><code>R_tmpnam</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#utility-functions">Utility functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_tmpnam2"><code>R_tmpnam2</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#utility-functions">Utility functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_trycatch"><code>R_tryCatch</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#condition-handling-and-cleanup-code">Condition handling and cleanup code</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_trycatcherror"><code>R_tryCatchError</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#condition-handling-and-cleanup-code">Condition handling and cleanup code</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_unif_index"><code>R_unif_index</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#random-numbers">Random numbers</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_unwindprotect"><code>R_UnwindProtect</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#condition-handling-and-cleanup-code">Condition handling and cleanup code</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_usedynamicsymbols"><code>R_useDynamicSymbols</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#registering-native-routines">Registering native routines</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_version"><code>R_Version</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#platform-and-version-information">Platform and version information</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_weakrefkey"><code>R_WeakRefKey</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#external-pointers-and-weak-references">External pointers and weak references</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-r_weakrefvalue"><code>R_WeakRefValue</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#external-pointers-and-weak-references">External pointers and weak references</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-r_withcallingerrorhandler"><code>R_withCallingErrorHandler</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#condition-handling-and-cleanup-code">Condition handling and cleanup code</a></td>
+</tr>
+<tr class="even">
+<td>S</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-samin"><code>samin</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#optimization">Optimization</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-scalarcomplex"><code>ScalarComplex</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-scalarinteger"><code>ScalarInteger</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-scalarlogical"><code>ScalarLogical</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-scalarraw"><code>ScalarRaw</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-scalarreal"><code>ScalarReal</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-scalarstring"><code>ScalarString</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-setattrib"><code>setAttrib</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#attributes">Attributes</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-setcad4r"><code>SETCAD4R</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#calling-.external">Calling .External</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-setcadddr"><code>SETCADDDR</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#calling-.external">Calling .External</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-setcaddr"><code>SETCADDR</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#calling-.external">Calling .External</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-setcadr"><code>SETCADR</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#calling-.external">Calling .External</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-setcar"><code>SETCAR</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#calling-.external">Calling .External</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-setcdr"><code>SETCDR</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#calling-.external">Calling .External</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-setvar"><code>setVar</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#finding-and-setting-variables">Finding and setting variables</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-set_complex_elt"><code>SET_COMPLEX_ELT</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#vector-accessor-functions">Vector accessor functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-set_integer_elt"><code>SET_INTEGER_ELT</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#vector-accessor-functions">Vector accessor functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-set_logical_elt"><code>SET_LOGICAL_ELT</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#vector-accessor-functions">Vector accessor functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-set_raw_elt"><code>SET_RAW_ELT</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#vector-accessor-functions">Vector accessor functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-set_real_elt"><code>SET_REAL_ELT</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#vector-accessor-functions">Vector accessor functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-set_string_elt"><code>SET_STRING_ELT</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#handling-character-data">Handling character data</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-set_tag"><code>SET_TAG</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#evaluating-r-expressions-from-c">Evaluating R expressions from C</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-set_vector_elt"><code>SET_VECTOR_ELT</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#vector-accessor-functions">Vector accessor functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-shallow_duplicate"><code>shallow_duplicate</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#named-objects-and-copying">Named objects and copying</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-sign"><code>sign</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#numerical-utilities">Numerical Utilities</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-signrank_free"><code>signrank_free</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#distribution-functions">Distribution functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-sinpi"><code>sinpi</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#numerical-utilities">Numerical Utilities</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-str2type"><code>str2type</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-string_elt"><code>STRING_ELT</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#handling-character-data">Handling character data</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-s_alloc"><code>S_alloc</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#transient-storage-allocation">Transient storage allocation</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-s_realloc"><code>S_realloc</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#transient-storage-allocation">Transient storage allocation</a></td>
+</tr>
+<tr class="even">
+<td>T</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-tag"><code>TAG</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#calling-.external">Calling .External</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-tanpi"><code>tanpi</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#numerical-utilities">Numerical Utilities</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-tetragamma"><code>tetragamma</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#mathematical-functions">Mathematical functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-translatechar"><code>translateChar</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#character-encoding-issues">Character encoding issues</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-translatecharutf8"><code>translateCharUTF8</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#character-encoding-issues">Character encoding issues</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-trigamma"><code>trigamma</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#mathematical-functions">Mathematical functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-true"><code>TRUE</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#mathematical-constants">Mathematical constants</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-type2char"><code>type2char</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-type2str"><code>type2str</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#some-convenience-functions">Some convenience functions</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-typeof"><code>TYPEOF</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#calling-.external">Calling .External</a></td>
+</tr>
+<tr class="odd">
+<td>U</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-unif_rand"><code>unif_rand</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#random-numbers">Random numbers</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-unprotect"><code>UNPROTECT</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#garbage-collection">Garbage Collection</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-unprotect"><code>unprotect</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#garbage-collection">Garbage Collection</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-unprotect_ptr"><code>UNPROTECT_PTR</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#garbage-collection">Garbage Collection</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-unprotect_ptr"><code>unprotect_ptr</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#garbage-collection">Garbage Collection</a></td>
+</tr>
+<tr class="odd">
+<td>V</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#index-vector_elt"><code>VECTOR_ELT</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="System-and-foreign-language-interfaces.html#vector-accessor-functions">Vector accessor functions</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-vmaxget"><code>vmaxget</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#transient-storage-allocation">Transient storage allocation</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-vmaxset"><code>vmaxset</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#transient-storage-allocation">Transient storage allocation</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-vmmin"><code>vmmin</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#optimization">Optimization</a></td>
+</tr>
+<tr class="even">
+<td>W</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-warning"><code>warning</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#error-signaling">Error signaling</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-warningcall"><code>warningcall</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#error-signaling">Error signaling</a></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="The-R-API.html#index-wilcox_free"><code>wilcox_free</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="The-R-API.html#distribution-functions">Distribution functions</a></td>
+</tr>
+<tr class="even">
+<td>X</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: left;"><a href="Creating-R-packages.html#index-xlength"><code>XLENGTH</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Creating-R-packages.html#portable-c-and-c-code">Portable C and C++ code</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: left;"><a href="Creating-R-packages.html#index-xlength"><code>xlength</code></a>:</td>
+<td style="text-align: left;">&nbsp;</td>
+<td style="text-align: left;"><a href="Creating-R-packages.html#portable-c-and-c-code">Portable C and C++ code</a></td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Jump to: &nbsp;</td>
+<td style="text-align: left;"><a href="#api-index_ap_letter-a" class="summary-letter"><strong>A</strong></a> &nbsp; <a href="#api-index_ap_letter-b" class="summary-letter"><strong>B</strong></a> &nbsp; <a href="#api-index_ap_letter-c" class="summary-letter"><strong>C</strong></a> &nbsp; <a href="#api-index_ap_letter-d" class="summary-letter"><strong>D</strong></a> &nbsp; <a href="#api-index_ap_letter-e" class="summary-letter"><strong>E</strong></a> &nbsp; <a href="#api-index_ap_letter-f" class="summary-letter"><strong>F</strong></a> &nbsp; <a href="#api-index_ap_letter-g" class="summary-letter"><strong>G</strong></a> &nbsp; <a href="#api-index_ap_letter-i" class="summary-letter"><strong>I</strong></a> &nbsp; <a href="#api-index_ap_letter-l" class="summary-letter"><strong>L</strong></a> &nbsp; <a href="#api-index_ap_letter-m" class="summary-letter"><strong>M</strong></a> &nbsp; <a href="#api-index_ap_letter-n" class="summary-letter"><strong>N</strong></a> &nbsp; <a href="#api-index_ap_letter-o" class="summary-letter"><strong>O</strong></a> &nbsp; <a href="#api-index_ap_letter-p" class="summary-letter"><strong>P</strong></a> &nbsp; <a href="#api-index_ap_letter-q" class="summary-letter"><strong>Q</strong></a> &nbsp; <a href="#api-index_ap_letter-r" class="summary-letter"><strong>R</strong></a> &nbsp; <a href="#api-index_ap_letter-s" class="summary-letter"><strong>S</strong></a> &nbsp; <a href="#api-index_ap_letter-t" class="summary-letter"><strong>T</strong></a> &nbsp; <a href="#api-index_ap_letter-u" class="summary-letter"><strong>U</strong></a> &nbsp; <a href="#api-index_ap_letter-v" class="summary-letter"><strong>V</strong></a> &nbsp; <a href="#api-index_ap_letter-w" class="summary-letter"><strong>W</strong></a> &nbsp; <a href="#api-index_ap_letter-x" class="summary-letter"><strong>X</strong></a> &nbsp;</td>
+</tr>
+</tbody>
+</table>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Concept-index.html" class="pagination-link" aria-label="Concept index">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Concept index</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Experimental-API-index.html" class="pagination-link" aria-label="Experimental API index">
+        <span class="nav-page-text">Experimental API index</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>A re-styled version of the original R manuals at <a href="https://cran.r-project.org/manuals.html" class="uri">https://cran.r-project.org/manuals.html</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Built using <a href="https://quarto.org">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
