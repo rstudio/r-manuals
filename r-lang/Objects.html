@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -349,7 +349,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In this chapter we provide preliminary descriptions of the various data structures provided in R. More detailed discussions of many of them will be found in the subsequent chapters. The R specific function <code>typeof</code> returns the <em>type</em> of an R object. Note that in the C code underlying R, all objects are pointers to a structure with typedef <code>SEXPREC</code>; the different R data types are represented in C by <code>SEXPTYPE</code>, which determines how the information in the various parts of the structure is used.</p>
 <p>The following table describes the possible values returned by <code>typeof</code> and what they are.</p>
 <blockquote class="blockquote">
-<table class="table">
+<table class="caption-top table">
 <tbody>
 <tr class="odd">
 <td style="text-align: left;"><code>"NULL"</code></td>
@@ -467,7 +467,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Vectors can be thought of as contiguous cells containing data. Cells are accessed through indexing operations such as <code>x[5]</code>. More details are given in <a href="Evaluation-of-expressions.html#indexing">Indexing</a>.</p>
 <p>R has six basic (‘atomic’) vector types: logical, integer, real, complex, character (in C aka ‘string’) and raw. The modes and storage modes for the different vector types are listed in the following table.</p>
 <blockquote class="blockquote">
-<table class="table">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th style="text-align: left;">typeof</th>
