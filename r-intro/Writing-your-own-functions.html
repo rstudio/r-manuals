@@ -622,11 +622,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">UseMethod</span>(<span class="st">"coef"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The presence of <code>UseMethod</code> indicates this is a generic function. To see what methods are available we can use <code>methods()</code></p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">methods</span>(coef)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] coef.aov<span class="sc">*</span>         coef.Arima<span class="sc">*</span>       coef.default<span class="sc">*</span>     coef.listof<span class="sc">*</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">5</span>] coef.nls<span class="sc">*</span>         coef.summary.nls<span class="sc">*</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>   Non<span class="sc">-</span>visible functions are asterisked</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In this example there are six methods, none of which can be seen by typing its name. We can read these by either of</p>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] coef.aov<span class="sc">*</span>     coef.Arima<span class="sc">*</span>   coef.default<span class="sc">*</span> coef.listof<span class="sc">*</span>  coef.maov<span class="sc">*</span>   </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">6</span>] coef.nls<span class="sc">*</span>    </span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>see <span class="st">'?methods'</span> <span class="cf">for</span> accessing help and source code</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In this example there are six methods, none of which can be seen by typing its name (as indicated by the asterisk). We can read these by either of</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">getAnywhere</span>(<span class="st">"coef.aov"</span>)</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>A single object matching <span class="st">'coef.aov'</span> was found</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>It was found <span class="cf">in</span> the following places</span>
@@ -634,18 +633,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  namespace<span class="sc">:</span>stats</span>
 <span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>with value</span>
 <span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span> (object, ...)</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span> (object, <span class="at">complete =</span> <span class="cn">FALSE</span>, ...)</span>
 <span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    z <span class="ot">&lt;-</span> object<span class="sc">$</span>coef</span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>    z[<span class="sc">!</span><span class="fu">is.na</span>(z)]</span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">getS3method</span>(<span class="st">"coef"</span>, <span class="st">"aov"</span>)</span>
-<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span> (object, ...)</span>
-<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>    z <span class="ot">&lt;-</span> object<span class="sc">$</span>coef</span>
-<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>    z[<span class="sc">!</span><span class="fu">is.na</span>(z)]</span>
-<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    cf <span class="ot">&lt;-</span> object<span class="sc">$</span>coefficients</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (complete) </span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>        cf</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> cf[<span class="sc">!</span><span class="fu">is.na</span>(cf)]</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">getS3method</span>(<span class="st">"coef"</span>, <span class="st">"aov"</span>)</span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span> (object, <span class="at">complete =</span> <span class="cn">FALSE</span>, ...)</span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>    cf <span class="ot">&lt;-</span> object<span class="sc">$</span>coefficients</span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (complete) </span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>        cf</span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> cf[<span class="sc">!</span><span class="fu">is.na</span>(cf)]</span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>A function named <code>gen.cl</code> will be invoked by the generic <code>gen</code> for class <code>cl</code>, so do not name functions in this style unless they are intended to be methods.</p>
 <p>The reader is referred to the <em>R Language Definition</em> for a more complete discussion of this mechanism.</p>
 <p>Footnotes</p>

@@ -329,6 +329,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#controlling-visibility" id="toc-controlling-visibility" class="nav-link" data-scroll-target="#controlling-visibility"><span class="header-section-number">6.18</span> Controlling visibility</a></li>
   <li><a href="#using-these-functions-in-your-own-c-code" id="toc-using-these-functions-in-your-own-c-code" class="nav-link" data-scroll-target="#using-these-functions-in-your-own-c-code"><span class="header-section-number">6.19</span> Using these functions in your own C code</a></li>
   <li><a href="#organization-of-header-files" id="toc-organization-of-header-files" class="nav-link" data-scroll-target="#organization-of-header-files"><span class="header-section-number">6.20</span> Organization of header files</a></li>
+  <li><a href="#moving-into-c-api-compliance" id="toc-moving-into-c-api-compliance" class="nav-link" data-scroll-target="#moving-into-c-api-compliance"><span class="header-section-number">6.21</span> Moving into C API compliance</a>
+  <ul class="collapse">
+  <li><a href="#some-api-replacements-for-non-api-entry-points" id="toc-some-api-replacements-for-non-api-entry-points" class="nav-link" data-scroll-target="#some-api-replacements-for-non-api-entry-points"><span class="header-section-number">6.21.1</span> Some API replacements for non-API entry points</a></li>
+  <li><a href="#creating-environments" id="toc-creating-environments" class="nav-link" data-scroll-target="#creating-environments"><span class="header-section-number">6.21.2</span> Creating environments</a></li>
+  <li><a href="#creating-call-expressions" id="toc-creating-call-expressions" class="nav-link" data-scroll-target="#creating-call-expressions"><span class="header-section-number">6.21.3</span> Creating call expressions</a></li>
+  <li><a href="#creating-closures" id="toc-creating-closures" class="nav-link" data-scroll-target="#creating-closures"><span class="header-section-number">6.21.4</span> Creating closures</a></li>
+  <li><a href="#querying-charsxp-encoding" id="toc-querying-charsxp-encoding" class="nav-link" data-scroll-target="#querying-charsxp-encoding"><span class="header-section-number">6.21.5</span> Querying <code>CHARSXP</code> encoding</a></li>
+  <li><a href="#some-backports" id="toc-some-backports" class="nav-link" data-scroll-target="#some-backports"><span class="header-section-number">6.21.6</span> Some backports</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -369,11 +378,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <dl>
 <dt><em>API</em></dt>
 <dd>
-<p>Entry points which are documented in this manual and declared in an installed header file. These can be used in distributed packages and ideally will only be changed after deprecation.</p>
+<p>Entry points which are documented in this manual and declared in an installed header file. These can be used in distributed packages and ideally will only be changed after deprecation. See <a href="API-index.html">API index</a>.</p>
 </dd>
 <dt><em>public</em></dt>
 <dd>
-<p>Entry points declared in an installed header file that are exported on all R platforms but are not documented and subject to change without notice.</p>
+<p>Entry points declared in an installed header file that are exported on all R platforms but are not documented and subject to change without notice. Do not use these in distributed code. Their declarations will eventually be moved out of installed header files.</p>
 </dd>
 <dt><em>private</em></dt>
 <dd>
@@ -385,14 +394,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 <dt><em>experimental</em></dt>
 <dd>
-<p>Entry points declared in an installed header file that are part of an experimental API, such as <code>R_ext/Altrep.h</code>. These are subject to change, so package authors wishing to use these should be prepared to adapt.</p>
+<p>Entry points declared in an installed header file that are part of an experimental API, such as <code>R_ext/Altrep.h</code>. These are subject to change, so package authors wishing to use these should be prepared to adapt. See <a href="Experimental-API-index.html">Experimental API index</a>.</p>
 </dd>
 <dt><em>embedding</em></dt>
 <dd>
-<p>Entry points intended primarily for embedding and creating new front-ends. It is not clear that this needs to be a separate category but it may be useful to keep it separate for now.</p>
+<p>Entry points intended primarily for embedding and creating new front-ends. It is not clear that this needs to be a separate category but it may be useful to keep it separate for now. See <a href="Embedding-API-index.html">Embedding API index</a>.</p>
 </dd>
 </dl>
-<p>See API index, Experimental API index, Embedding API index for the classification of entry points in this document.</p>
 <p>If you would like to use an entry point or variable that is not identified as part of the API in this document, or is currently hidden, you can make a request for it to be made available. Entry points or variables not identified as in the API may be changed or removed with no notice as part of efforts to improve aspects of R.</p>
 <p><strong>Work in progress:</strong> Currently Entry points in the API are identified in the source for this document with <code>@apifun</code>, <code>@eapifun</code>, and <code>@embfun</code> entries. Similarly, <code>@apivar</code>, <code>@eapivar</code>, and <code>@embvar</code> identify variables, and <code>@apihdr</code>, <code>@eapihdr</code>, and <code>@embhdr</code> identify headers in the API. This could be used for programmatic extraction, but the specific format is work in progress and even the way this document is produced is subject to change.</p>
 <section id="memory-allocation" class="level2 section page-columns page-full" data-number="6.1">
@@ -713,7 +721,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="fortran-logical" class="level3 subsection" data-number="6.6.2">
 <h3 class="subsection anchored" data-number="6.6.2" data-anchor-id="fortran-logical"><span class="header-section-number">6.6.2</span> Fortran LOGICAL</h3>
-<p>Passing Fortran LOGICAL variables to/from C/C++ is potentially compiler-dependent. Fortran compilers have long used a 32-bit integer type so it is pretty portable to use <code>int *</code> on the C/C++ side. However, recent versions of <code>gfortran</code> <em>via</em> the option <code>-fc-prototypes-external</code> say the C equivalent is <code>int_least32_t *</code>: ‘Link-Time Optimization’ will report <code>int *</code> as a mismatch. It is possible to use <code>iso_c_binding</code> in Fortran 2003 to map LOGICAL variables to the C99 type <code>_Bool</code>, but it is usually simpler to pass integers to and fro.</p>
+<p>Passing Fortran LOGICAL variables to/from C/C++ is potentially compiler-dependent. Fortran compilers have long used a 32-bit integer type so it is pretty portable to use <code>int *</code> on the C/C++ side. However, recent versions of <code>gfortran</code> <em>via</em> the option <code>-fc-prototypes-external</code> say the C equivalent is <code>int_least32_t *</code>: ‘Link-Time Optimization’ will report <code>int *</code> as a mismatch. It is possible to use <code>iso_c_binding</code> in Fortran 2003 to map LOGICAL variables to the C99 type <code>_Bool</code>, but it is usually simpler to pass integers.</p>
 </section>
 <section id="passing-functions" class="level3 subsection" data-number="6.6.3">
 <h3 class="subsection anchored" data-number="6.6.3" data-anchor-id="passing-functions"><span class="header-section-number">6.6.3</span> Passing functions</h3>
@@ -1685,9 +1693,181 @@ with the same arguments, but all pointers.</code></pre>
 </blockquote>
 <p>The graphics systems are exposed in headers <code>R_ext/GraphicsEngine.h</code>, <code>R_ext/GraphicsDevice.h</code> (which it includes) and <code>R_ext/QuartzDevice.h</code>. Facilities for defining custom connection implementations are provided in <code>R_ext/Connections.h</code>, but make sure you consult the file before use.</p>
 <p>Let us re-iterate the advice to include in C++ code system headers before the R header files, especially <code>Rinternals.h</code> (included by <code>Rdefines.h</code>) and <code>Rmath.h</code>, which redefine names which may be used in system headers, or (preferably) to define <code>R_NO_REMAP</code>. Setting the environment variable <code>_R_CXX_USE_NO_REMAP_</code> to a true value allows the need for this to be tested, as it causes <code>R CMD INSTALL</code> to compile C++ code defining <code>R_NO_REMAP</code>. <code>_R_CXX_USE_NO_REMAP_</code> is set by <code>R CMD check --as-cran</code> and is planned to become the default in future.</p>
+</section>
+<section id="moving-into-c-api-compliance" class="level2 section" data-number="6.21">
+<h2 class="section anchored" data-number="6.21" data-anchor-id="moving-into-c-api-compliance"><span class="header-section-number">6.21</span> Moving into C API compliance</h2>
+<p>Work is in progress to clarify and tighten the C API for extending R code. This will help make package C code more robust, and will facilitate maintaining and improving the R source code without impacting package space. In the process a number of entry points intended for internal use will be removed from installed header files or hidden, and others will be replaced by more robust versions better suited for use in package C code. This section describes how packages can move from using non-API entry points to using ones available and supported in the API.</p>
+<p><strong>Work in progress:</strong> This section is a work in progress and will be adjusted as changes are made to the API.</p>
+<section id="some-api-replacements-for-non-api-entry-points" class="level3 subsection" data-number="6.21.1">
+<h3 class="subsection anchored" data-number="6.21.1" data-anchor-id="some-api-replacements-for-non-api-entry-points"><span class="header-section-number">6.21.1</span> Some API replacements for non-API entry points</h3>
+<p>Some non-API entry points intended for internal use have long had entry points in the API that can be used instead. In other cases new entry point have been added that are more appropriate for use in packages; typically these include more extensive error checking on arguments.</p>
+<p>This table lists some non-API functions used in packages and the API functions that should be used instead:</p>
+<dl>
+<dt><code>EXTPTR_PROT</code></dt>
+<dd>
+
+</dd>
+<dt><code>EXTPTR_TAG</code></dt>
+<dd>
+
+</dd>
+<dt><code>EXTPTR_PTR</code></dt>
+<dd>
+<p>Use <code>R_ExternalPtrProtected</code>, <code>R_ExternalPtrTag</code>, and <code>R_ExternalPtrAddr</code>.</p>
+</dd>
+<dt><code>OBJECT</code></dt>
+<dd>
+
+</dd>
+<dt><code>IS_S4_OBJECT</code></dt>
+<dd>
+<p>Use <code>isObject</code> and <code>isS4</code>.</p>
+</dd>
+<dt><code>GetOption</code></dt>
+<dd>
+<p>Use <code>GetOption1</code>.</p>
+</dd>
+<dt><code>R_lsInternal</code></dt>
+<dd>
+<p>Use <code>R_lsInternal3</code>.</p>
+</dd>
+<dt><code>REAL0</code></dt>
+<dd>
+
+</dd>
+<dt><code>COMPLEX0</code></dt>
+<dd>
+<p>Use <code>REAL</code> and <code>COMPLEX</code>.</p>
+</dd>
+<dt><code>STRING_PTR</code></dt>
+<dd>
+
+</dd>
+<dt><code>DATAPTR</code></dt>
+<dd>
+
+</dd>
+<dt><code>STDVEC_DATAPTR</code></dt>
+<dd>
+<p>Use <code>STRING_PTR_RO</code> and <code>DATAPTR_RO</code>. Obtaining writable pointers to these data can violate the memory manager’s integrity assumptions and is not supported.</p>
+</dd>
+<dt><code>isFrame</code></dt>
+<dd>
+<p>Use <code>isDataFrame</code>, added in R 4.5.0.</p>
+</dd>
+<dt><code>BODY</code></dt>
+<dd>
+
+</dd>
+<dt><code>FORMALS</code></dt>
+<dd>
+
+</dd>
+<dt><code>CLOENV</code></dt>
+<dd>
+<p>Use <code>R_ClosureBody</code>, <code>R_ClosureFormals</code>, and <code>R_ClosureEnv</code>; these were added in R 4.5.0.</p>
+</dd>
+<dt><code>ENCLOS</code></dt>
+<dd>
+<p>Use <code>R_ParentEnv</code>, added in R 4.5.0.</p>
+</dd>
+<dt><code>IS_ASCII</code></dt>
+<dd>
+<p>Use <code>charIsASCII</code>, added in R 4.5.0.</p>
+</dd>
+<dt><code>IS_UTF8</code></dt>
+<dd>
+<p>Use <code>charIsUTF8</code>, added in R 4.5.0, or avoid completely.</p>
+</dd>
+<dt><code>findVarInFrame3</code></dt>
+<dd>
+<p>Use <code>R_existsVarInFrame</code> to test for existence.</p>
+</dd>
+</dl>
+<p>For recently added entry points packages that need to be compiled under older versions that do not yet contain these entry points can use back-ported versions defined conditionally. See <a href="#some-backports">Some backports</a>.</p>
+</section>
+<section id="creating-environments" class="level3 subsection" data-number="6.21.2">
+<h3 class="subsection anchored" data-number="6.21.2" data-anchor-id="creating-environments"><span class="header-section-number">6.21.2</span> Creating environments</h3>
+<p>An idiom appearing in a number of packages is to create an environment as</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>SEXP env <span class="op">=</span> allocSExp<span class="op">(</span>ENVSXP<span class="op">);</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>SET_ENCLOS<span class="op">(</span>env<span class="op">,</span> parent<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The function <code>allocSExp</code> and mutation functions like <code>SET_ENCLOS</code>, <code>SET_FRAME</code>, and <code>SET_HASHTAB</code> are not part of the API as they expose internal structure that might need to change in the future. A proper constructor function should be used instead. The constructor function for environments is <code>R_NewEnv</code>, so the new environment should be created as</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>SEXP env <span class="op">=</span> R_NewEnv<span class="op">(</span>parent<span class="op">,</span> FALSE<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="creating-call-expressions" class="level3 subsection" data-number="6.21.3">
+<h3 class="subsection anchored" data-number="6.21.3" data-anchor-id="creating-call-expressions"><span class="header-section-number">6.21.3</span> Creating call expressions</h3>
+<p>Another idiom used in some packages is to create a call expression with space for two arguments as</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>SEXP expr <span class="op">=</span> allocList<span class="op">(</span><span class="dv">3</span><span class="op">);</span></span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>SET_TYPEOF<span class="op">(</span>expr<span class="op">,</span> <span class="st">"LANGSXP"</span><span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and then fill in the function and argument expressions. <code>SET_TYPEOF</code> will also not be available to packages in the future. An alternative way to construct the expression that will work in any R version is</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>SEXP expr <span class="op">=</span> LCONS<span class="op">(</span>R_NilValue<span class="op">,</span> allocList<span class="op">(</span><span class="dv">2</span><span class="op">));</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>R 4.4.1 adds the constructor <code>allocLang</code>, so the expression can be created as</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>SEXP env <span class="op">=</span> allocLang<span class="op">(</span><span class="dv">3</span><span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="creating-closures" class="level3 subsection" data-number="6.21.4">
+<h3 class="subsection anchored" data-number="6.21.4" data-anchor-id="creating-closures"><span class="header-section-number">6.21.4</span> Creating closures</h3>
+<p>Yet another common idiom is to create a new closure as</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>SEXP fun <span class="op">=</span> Rf_allocSExp<span class="op">(</span>CLOSXP<span class="op">);</span></span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>SET_FORMALS<span class="op">(</span>fun<span class="op">,</span> formals<span class="op">);</span></span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a>SET_BODY<span class="op">(</span>fun<span class="op">,</span> body<span class="op">);</span></span>
+<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a>SET_CLOENV<span class="op">(</span>fun<span class="op">,</span> env<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>R 4.5.0 adds the constructor <code>R_mkClosure</code>; this can be used as</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>SEXP fun <span class="op">=</span> R_mkClosure<span class="op">(</span>formals<span class="op">,</span> body<span class="op">,</span> env<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="querying-charsxp-encoding" class="level3 subsection" data-number="6.21.5">
+<h3 class="subsection anchored" data-number="6.21.5" data-anchor-id="querying-charsxp-encoding"><span class="header-section-number">6.21.5</span> Querying <code>CHARSXP</code> encoding</h3>
+<p>A number of packages query encoding bits set on <code>CHARSXP</code> objects via macros <code>IS_ASCII</code> and <code>IS_UTF8</code>, some packages also via <code>IS_BYTES</code> and <code>IS_LATIN1</code>. These macros are not part of the API and packages have been copying their definition and directly accessing the bits in memory. The structure of the object header is, however, internal to R and may have to change in the future.</p>
+<p><code>IS_ASCII</code> can be replaced by <code>charIsASCII</code>, added in R 4.5.0. It can also be replaced by code that checks individual characters (bytes).</p>
+<p>Information provided by the other macros is available via function <code>getCharCE</code>, which has been part of the API since R 2.7.0. Before switching to <code>getCharCE</code>, packages are, however, advised to check whether the encoding information is really needed and whether it is used correctly.</p>
+<p>Most code should be able to work with complete <code>CHARSXP</code>s and never look at the individual bytes. When access to characters and bytes (of strings other than <code>CE_BYTES</code>) is needed, one would use <code>translateChar</code> or <code>translateCharUTF8</code>. These functions internally already check the encoding and whether the string is ASCII and only translate when needed, which should be rarely since R &gt;= 4.2.0 (UTF-8 is used as native encoding on most systems running R).</p>
+<p>Several packages use the encoding information to find out whether an internal string representation visible via <code>CHAR</code> is UTF-8 or latin1. R 4.5.0 provides functions <code>charIsUTF8</code> and <code>charIsLatin1</code> for this purpose, which are safer against future changes and handle also native strings when running in the corresponding locale. Note that both will be true for ASCII strings.</p>
+<p>A pattern used in several packages is</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> <span class="op">*</span>asutf8<span class="op">(</span>SEXP c<span class="op">)</span></span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(!</span>IS_UTF8<span class="op">(</span>s<span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="op">!</span>IS_ASCII<span class="op">(</span>s<span class="op">))</span>  <span class="co">// not compliant</span></span>
+<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Rf_translateCharUTF8<span class="op">(</span>s<span class="op">);</span></span>
+<span id="cb90-5"><a href="#cb90-5" aria-hidden="true" tabindex="-1"></a>   <span class="cf">else</span></span>
+<span id="cb90-6"><a href="#cb90-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> CHAR<span class="op">(</span>s<span class="op">);</span></span>
+<span id="cb90-7"><a href="#cb90-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>to make this code compliant, simply call</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> <span class="op">*</span>asutf8<span class="op">(</span>SEXP c<span class="op">)</span></span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> Rf_translateCharUTF8<span class="op">(</span>s<span class="op">);</span> <span class="co">// compliant</span></span>
+<span id="cb91-4"><a href="#cb91-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>as the encoding flags are already checked in <code>translateCharUTF8</code>. Also note the non-compliant check doesn’t handle native encoding.</p>
+</section>
+<section id="some-backports" class="level3 subsection" data-number="6.21.6">
+<h3 class="subsection anchored" data-number="6.21.6" data-anchor-id="some-backports"><span class="header-section-number">6.21.6</span> Some backports</h3>
+<p>This section lists backports of recently added definitions that can be used in packages that need to be compiled under older versions of R that do not yet contain these entry points.</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#if R_VERSION &lt; R_Version(4, 4, 1)</span></span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>SEXP allocLang<span class="op">(</span><span class="dt">int</span> n<span class="op">)</span></span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>n <span class="op">&gt;</span> <span class="dv">0</span><span class="op">)</span></span>
+<span id="cb92-5"><a href="#cb92-5" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> LCONS<span class="op">(</span>R_NilValue<span class="op">,</span> allocList<span class="op">(</span>n <span class="op">-</span> <span class="dv">1</span><span class="op">));</span></span>
+<span id="cb92-6"><a href="#cb92-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb92-7"><a href="#cb92-7" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> R_NilValue<span class="op">;</span></span>
+<span id="cb92-8"><a href="#cb92-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb92-9"><a href="#cb92-9" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span>
+<span id="cb92-10"><a href="#cb92-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-11"><a href="#cb92-11" aria-hidden="true" tabindex="-1"></a><span class="pp">#if R_VERSION &lt; R_Version(4, 5, 0)</span></span>
+<span id="cb92-12"><a href="#cb92-12" aria-hidden="true" tabindex="-1"></a><span class="pp"># define isDataFrame</span><span class="op">(</span><span class="pp">x</span><span class="op">)</span><span class="pp"> isFrame</span><span class="op">(</span><span class="pp">x</span><span class="op">)</span></span>
+<span id="cb92-13"><a href="#cb92-13" aria-hidden="true" tabindex="-1"></a><span class="pp"># define R_ClosureFormals</span><span class="op">(</span><span class="pp">x</span><span class="op">)</span><span class="pp"> FORMALS</span><span class="op">(</span><span class="pp">x</span><span class="op">)</span></span>
+<span id="cb92-14"><a href="#cb92-14" aria-hidden="true" tabindex="-1"></a><span class="pp"># define R_ClosureEnv</span><span class="op">(</span><span class="pp">x</span><span class="op">)</span><span class="pp"> CLOENV</span><span class="op">(</span><span class="pp">x</span><span class="op">)</span></span>
+<span id="cb92-15"><a href="#cb92-15" aria-hidden="true" tabindex="-1"></a><span class="pp"># define R_ParentEnv</span><span class="op">(</span><span class="pp">x</span><span class="op">)</span><span class="pp"> ENCLOS</span><span class="op">(</span><span class="pp">x</span><span class="op">)</span></span>
+<span id="cb92-16"><a href="#cb92-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-17"><a href="#cb92-17" aria-hidden="true" tabindex="-1"></a>SEXP R_mkClosure<span class="op">(</span>SEXP formals<span class="op">,</span> SEXP body<span class="op">,</span> SEXP env<span class="op">)</span></span>
+<span id="cb92-18"><a href="#cb92-18" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb92-19"><a href="#cb92-19" aria-hidden="true" tabindex="-1"></a>    SEXP fun <span class="op">=</span> Rf_allocSExp<span class="op">(</span>CLOSXP<span class="op">);</span></span>
+<span id="cb92-20"><a href="#cb92-20" aria-hidden="true" tabindex="-1"></a>    SET_FORMALS<span class="op">(</span>fun<span class="op">,</span> formals<span class="op">);</span></span>
+<span id="cb92-21"><a href="#cb92-21" aria-hidden="true" tabindex="-1"></a>    SET_BODY<span class="op">(</span>fun<span class="op">,</span> body<span class="op">);</span></span>
+<span id="cb92-22"><a href="#cb92-22" aria-hidden="true" tabindex="-1"></a>    SET_CLOENV<span class="op">(</span>fun<span class="op">,</span> env<span class="op">);</span></span>
+<span id="cb92-23"><a href="#cb92-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fun<span class="op">;</span></span>
+<span id="cb92-24"><a href="#cb92-24" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb92-25"><a href="#cb92-25" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Footnotes</p>
 
 
+</section>
 </section>
 
 
