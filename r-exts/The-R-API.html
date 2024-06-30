@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.555">
+<meta name="generator" content="quarto-1.4.557">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -1779,9 +1779,37 @@ with the same arguments, but all pointers.</code></pre>
 <dd>
 <p>Use <code>charIsUTF8</code>, added in R 4.5.0, or avoid completely.</p>
 </dd>
+<dt><code>allocSExp</code></dt>
+<dd>
+<p>Use an appropriate constructor.</p>
+</dd>
 <dt><code>findVarInFrame3</code></dt>
 <dd>
 <p>Use <code>R_existsVarInFrame</code> to test for existence.</p>
+</dd>
+<dt><code>findVar</code></dt>
+<dd>
+
+</dd>
+<dt><code>findVarInFrame</code></dt>
+<dd>
+<p>Use <code>R_getVar</code> or <code>R_getVarEx</code>, added in R 4.5.0. In some cases using <code>eval</code> may suffice.</p>
+</dd>
+<dt><code>ATTRIB</code></dt>
+<dd>
+<p>Use <code>getAttrib</code> for individual attributes. To test whether there are any attributes use <code>ANY_ATTRIB</code>, added in R 4.5.0.</p>
+</dd>
+<dt><code>SET_ATTRIB</code></dt>
+<dd>
+
+</dd>
+<dt><code>SET_OBJECT</code></dt>
+<dd>
+<p>Use <code>setAttrib</code> for individual attributes, <code>DUPLICATE_ATTRIB</code> or <code>SHALLOW_DUPLICATE_ATTRIB</code> for copying attributes from one object to another. Use <code>CLEAR_ATTRIB</code> for removing all attributes, added in R 4.5.0.</p>
+</dd>
+<dt><code>R_GetCurrentEnv</code></dt>
+<dd>
+<p>Use <code>environment()</code> at the R level and pass the result as an argument to your C function.</p>
 </dd>
 </dl>
 <p>For recently added entry points packages that need to be compiled under older versions that do not yet contain these entry points can use back-ported versions defined conditionally. See <a href="#some-backports">Some backports</a>.</p>

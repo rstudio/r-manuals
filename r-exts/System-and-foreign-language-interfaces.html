@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.555">
+<meta name="generator" content="quarto-1.4.557">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -1280,16 +1280,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>    SEXP ans<span class="op">;</span></span>
 <span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(!</span>isString<span class="op">(</span>name<span class="op">)</span> <span class="op">||</span> length<span class="op">(</span>name<span class="op">)</span> <span class="op">!=</span> <span class="dv">1</span><span class="op">)</span></span>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!</span>isString<span class="op">(</span>name<span class="op">)</span> <span class="op">||</span> length<span class="op">(</span>name<span class="op">)</span> <span class="op">!=</span> <span class="dv">1</span><span class="op">)</span></span>
 <span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a>        error<span class="op">(</span><span class="st">"name is not a single string"</span><span class="op">);</span></span>
-<span id="cb77-7"><a href="#cb77-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(!</span>isEnvironment<span class="op">(</span>rho<span class="op">))</span></span>
+<span id="cb77-7"><a href="#cb77-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!</span>isEnvironment<span class="op">(</span>rho<span class="op">))</span></span>
 <span id="cb77-8"><a href="#cb77-8" aria-hidden="true" tabindex="-1"></a>        error<span class="op">(</span><span class="st">"rho should be an environment"</span><span class="op">);</span></span>
-<span id="cb77-9"><a href="#cb77-9" aria-hidden="true" tabindex="-1"></a>    ans <span class="op">=</span> findVar<span class="op">(</span>installChar<span class="op">(</span>STRING_ELT<span class="op">(</span>name<span class="op">,</span> <span class="dv">0</span><span class="op">)),</span> rho<span class="op">);</span></span>
-<span id="cb77-10"><a href="#cb77-10" aria-hidden="true" tabindex="-1"></a>    Rprintf<span class="op">(</span><span class="st">"first value is </span><span class="sc">%f\n</span><span class="st">"</span><span class="op">,</span> REAL<span class="op">(</span>ans<span class="op">)[</span><span class="dv">0</span><span class="op">]);</span></span>
-<span id="cb77-11"><a href="#cb77-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> R_NilValue<span class="op">;</span></span>
-<span id="cb77-12"><a href="#cb77-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The main work is done by <code>findVar</code>, but to use it we need to install <code>name</code> as a name in the symbol table. As we wanted the value for internal use, we return <code>NULL</code>.</p>
-<p>Similar functions with syntax</p>
+<span id="cb77-9"><a href="#cb77-9" aria-hidden="true" tabindex="-1"></a>    ans <span class="op">=</span> R_getVar<span class="op">(</span>installChar<span class="op">(</span>STRING_ELT<span class="op">(</span>name<span class="op">,</span> <span class="dv">0</span><span class="op">)),</span> rho<span class="op">,</span> TRUE<span class="op">);</span></span>
+<span id="cb77-10"><a href="#cb77-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>TYPEOF<span class="op">(</span>ans<span class="op">)</span> <span class="op">!=</span> REALSXP <span class="op">||</span> length<span class="op">(</span>ans<span class="op">)</span> <span class="op">==</span> <span class="dv">0</span><span class="op">)</span></span>
+<span id="cb77-11"><a href="#cb77-11" aria-hidden="true" tabindex="-1"></a>        error<span class="op">(</span><span class="st">"value is not a numeric vector with at least one element"</span><span class="op">);</span></span>
+<span id="cb77-12"><a href="#cb77-12" aria-hidden="true" tabindex="-1"></a>    Rprintf<span class="op">(</span><span class="st">"first value is </span><span class="sc">%f\n</span><span class="st">"</span><span class="op">,</span> REAL<span class="op">(</span>ans<span class="op">)[</span><span class="dv">0</span><span class="op">]);</span></span>
+<span id="cb77-13"><a href="#cb77-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> R_NilValue<span class="op">;</span></span>
+<span id="cb77-14"><a href="#cb77-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The main work is done by <code>R_getVar</code>, but to use it we need to install <code>name</code> as a name in the symbol table. As we wanted the value for internal use, we return <code>NULL</code>.</p>
+<p><code>R_getVar</code> is similar to the R function <code>get</code>. It signals an error if there is no binding for the variable in the environment. <code>R_getVarEx</code> can be used to return a default value if no binding is found; this corresponds to the R function <code>get0</code>. The third argument to <code>R_getVar</code> and <code>R_getVarEx</code> corresponds to the <code>inherits</code> argument to the R function <code>get</code>.</p>
+<p>Functions with syntax</p>
 <div class="sourceCode" id="cb78"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> defineVar<span class="op">(</span>SEXP symbol<span class="op">,</span> SEXP value<span class="op">,</span> SEXP rho<span class="op">)</span></span>
 <span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setVar<span class="op">(</span>SEXP symbol<span class="op">,</span> SEXP value<span class="op">,</span> SEXP rho<span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>can be used to assign values to R variables. <code>defineVar</code> creates a new binding or changes the value of an existing binding in the specified environment frame; it is the analogue of <code>assign(symbol, value, envir = rho, inherits = FALSE)</code>, but unlike <code>assign</code>, <code>defineVar</code> does not make a copy of the object <code>value</code>.<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a> <code>setVar</code> searches for an existing binding for <code>symbol</code> in <code>rho</code> or its enclosing environments. If a binding is found, its value is changed to <code>value</code>. Otherwise, a new binding with the specified value is created in the global environment. This corresponds to <code>assign(symbol, value, envir = rho, inherits = TRUE)</code>.</p>
@@ -1338,14 +1341,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb83-19"><a href="#cb83-19" aria-hidden="true" tabindex="-1"></a>Rboolean isNumber<span class="op">(</span>SEXP<span class="op">);</span></span>
 <span id="cb83-20"><a href="#cb83-20" aria-hidden="true" tabindex="-1"></a>Rboolean isDataFrame <span class="op">(</span>SEXP<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Some additional predicates:</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>Rboolean Rf_isValidString<span class="op">(</span>SEXP<span class="op">);</span></span>
-<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>Rboolean Rf_isValidStringF<span class="op">(</span>SEXP<span class="op">);</span></span>
-<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>Rboolean isBlankString<span class="op">(</span><span class="dt">const</span> <span class="dt">char</span> <span class="op">*);</span></span>
-<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a>Rboolean Rf_StringBlank<span class="op">(</span>SEXP<span class="op">);</span></span>
-<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a>Rboolean StringFalse<span class="op">(</span><span class="dt">const</span> <span class="dt">char</span> <span class="op">*);</span> </span>
-<span id="cb84-6"><a href="#cb84-6" aria-hidden="true" tabindex="-1"></a>Rboolean StringTrue<span class="op">(</span><span class="dt">const</span> <span class="dt">char</span> <span class="op">*);</span></span>
-<span id="cb84-7"><a href="#cb84-7" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> IS_LONG_VEC<span class="op">(</span>SEXP<span class="op">);</span></span>
-<span id="cb84-8"><a href="#cb84-8" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> IS_SCALAR<span class="op">(</span>SEXP<span class="op">,</span> <span class="dt">int</span><span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>Rboolean isBlankString<span class="op">(</span><span class="dt">const</span> <span class="dt">char</span> <span class="op">*);</span></span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>Rboolean Rf_StringBlank<span class="op">(</span>SEXP<span class="op">);</span></span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>Rboolean StringFalse<span class="op">(</span><span class="dt">const</span> <span class="dt">char</span> <span class="op">*);</span> </span>
+<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a>Rboolean StringTrue<span class="op">(</span><span class="dt">const</span> <span class="dt">char</span> <span class="op">*);</span></span>
+<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> IS_LONG_VEC<span class="op">(</span>SEXP<span class="op">);</span></span>
+<span id="cb84-6"><a href="#cb84-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> IS_SCALAR<span class="op">(</span>SEXP<span class="op">,</span> <span class="dt">int</span><span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>There are a series of small macros/functions to help construct pairlists and language objects (whose internal structures just differ by <code>SEXPTYPE</code>). Function <code>CONS(u, v)</code> is the basic building block: it constructs a pairlist from <code>u</code> followed by <code>v</code> (which is a pairlist or <code>R_NilValue</code>). <code>LCONS</code> is a variant that constructs a language object. Functions <code>list1</code> to <code>list6</code> construct a pairlist from one to six items, and <code>lang1</code> to <code>lang6</code> do the same for a language object (a function to call plus zero to five arguments). Functions <code>elt</code> and <code>lastElt</code> find the <code>i</code>-th element and the last element of a pairlist, and <code>nthcdr</code> returns a pointer to the <code>n</code>-th position in the pairlist (whose <code>CAR</code> is the <code>n</code>-th item).</p>
 <p>Functions <code>str2type</code> and <code>type2str</code> map R length-one character strings to and from <code>SEXPTYPE</code> numbers, and <code>type2char</code> maps numbers to C character strings. <code>type2str_nowarn</code> does not issue a warning if the <code>SEXPTYPE</code> is invalid.</p>
 </section>
@@ -1369,6 +1370,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
 <span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>the named object is not necessarily copied, so after those two assignments <code>y</code> and <code>x</code> are bound to the same <code>SEXPREC</code> (the structure a <code>SEXP</code> points to). This means that any code which alters one of them has to make a copy before modifying the copy if the usual R semantics are to apply. Note that whereas <code>.C</code> and <code>.Fortran</code> do copy their arguments, <code>.Call</code> and <code>.External</code> do not. So <code>duplicate</code> is commonly called on arguments to <code>.Call</code> before modifying them. If only the top level is modified it may suffice to call <code>shallow_duplicate</code>.</p>
+<p>At times it may be necessary to copy attributes from one object to another. This can be done using <code>DUPLICATE_ATTRIB</code> or <code>SHALLOW_DUPLICATE_ATTRIB</code> <code>ANY_ATTRIB</code> checks whether there are any attributes and <code>CLEAR_ATTRIB</code> removes all attributes.</p>
 <p>However, at least some of this copying is unneeded. In the first assignment shown, <code>x &lt;- 1:10</code>, R first creates an object with value <code>1:10</code> and then assigns it to <code>x</code> but if <code>x</code> is modified no copy is necessary as the temporary object with value <code>1:10</code> cannot be referred to again. R distinguishes between named and unnamed objects <em>via</em> a field in a <code>SEXPREC</code> that can be accessed <em>via</em> the macros <code>NAMED</code> and <code>SET_NAMED</code>. This can take values</p>
 <dl>
 <dt><code>0</code></dt>
