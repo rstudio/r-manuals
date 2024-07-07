@@ -300,6 +300,16 @@
     ]
   },
   {
+    "objectID": "References.html",
+    "href": "References.html",
+    "title": "References",
+    "section": "",
+    "text": "R. A. Becker, J. M. Chambers and A. R. Wilks (1988), The New S Language. A Programming Environment for Data Analysis and Graphics. Wadsworth & Brooks/Cole.\nJ. Bowman, S. Emberson and M. Darnovsky (1996), The Practical SQL Handbook. Using Structured Query Language. Addison-Wesley.\nJ. M. Chambers (1998), Programming with Data. A Guide to the S Language. Springer-Verlag.\nP. Dubois (2000), MySQL. New Riders.\nM. Henning and S. Vinoski (1999), Advanced CORBA Programming with C++. Addison-Wesley.\nK. Kline and D. Kline (2001), SQL in a Nutshell. O’Reilly.\nB. Momjian (2000), PostgreSQL: Introduction and Concepts. Addison-Wesley. Also available at https://momjian.us/main/writings/pgsql/aw_pgsql_book/.\nB. D. Ripley (2001), Connections. R News, 1/1, 16–7. https://www.r-project.org/doc/Rnews/Rnews_2001-1.pdf\nT. M. Therneau and P. M. Grambsch (2000), Modeling Survival Data. Extending the Cox Model. Springer-Verlag.\nE. J. Yarger, G. Reese and T. King (1999), MySQL & mSQL. O’Reilly.",
+    "crumbs": [
+      "References"
+    ]
+  },
+  {
     "objectID": "Function-and-variable-index.html",
     "href": "Function-and-variable-index.html",
     "title": "Function and variable index",
@@ -317,17 +327,6 @@
     "text": "Jump to:  \nA   B   C   D   E   F   H   I   L   M   N   O   P   Q   R   S   T   U   X   Y  \n\n\n\n\n\n\n\nIndex Entry\n \nSection\n\n\nA\n\n\n\n\n\n\nawk:\n \nIntroduction\n\n\nB\n\n\n\n\n\n\nBinary files:\n \nBinary files\n\n\n\nBinary files:\n \nBinary connections\n\n\nC\n\n\n\n\n\n\ncomma separated values:\n \nExport to text files\n\n\n\nCompressed files:\n \nTypes of connections\n\n\n\nConnections:\n \nConnections\n\n\n\nConnections:\n \nTypes of connections\n\n\n\nConnections:\n \nOutput to connections\n\n\n\nConnections:\n \nListing and manipulating connections\n\n\n\nCSV files:\n \nExport to text files\n\n\n\nCSV files:\n \nVariations on read.table\n\n\nD\n\n\n\n\n\n\nData Interchange Format (DIF):\n \nData Interchange Format (DIF)\n\n\n\ndBase:\n \nRODBC\n\n\n\ndBase:\n \ndBase files (DBF)\n\n\n\nDBF files:\n \ndBase files (DBF)\n\n\n\nDBMS:\n \nRelational databases\n\n\nE\n\n\n\n\n\n\nEncodings:\n \nEncodings\n\n\n\nEncodings:\n \nExport to text files\n\n\n\nEpiData:\n \nEpiInfo Minitab SAS S-PLUS SPSS Stata Systat\n\n\n\nEpiInfo:\n \nEpiInfo Minitab SAS S-PLUS SPSS Stata Systat\n\n\n\nExcel:\n \nRODBC\n\n\n\nExcel:\n \nRODBC\n\n\n\nExporting to a text file:\n \nExport to text files\n\n\nF\n\n\n\n\n\n\nFile connections:\n \nTypes of connections\n\n\n\nFixed-width-format files:\n \nFixed-width-format files\n\n\n\nFlat contingency tables:\n \nFlat contingency tables\n\n\nH\n\n\n\n\n\n\nHierarchical Data Format:\n \nBinary data formats\n\n\nI\n\n\n\n\n\n\nImporting from other statistical systems:\n \nImporting from other statistical systems\n\n\nL\n\n\n\n\n\n\nlocales:\n \nVariations on read.table\n\n\nM\n\n\n\n\n\n\nMinitab:\n \nEpiInfo Minitab SAS S-PLUS SPSS Stata Systat\n\n\n\nMissing values:\n \nExport to text files\n\n\n\nMissing values:\n \nVariations on read.table\n\n\n\nMySQL database system:\n \nDBI\n\n\n\nMySQL database system:\n \nRODBC\n\n\nN\n\n\n\n\n\n\nnetwork Common Data Form:\n \nBinary data formats\n\n\nO\n\n\n\n\n\n\nOctave:\n \nOctave\n\n\n\nODBC:\n \nOverview of RDBMSs\n\n\n\nODBC:\n \nRODBC\n\n\n\nOpen Database Connectivity:\n \nOverview of RDBMSs\n\n\n\nOpen Database Connectivity:\n \nRODBC\n\n\nP\n\n\n\n\n\n\nperl:\n \nIntroduction\n\n\n\nperl:\n \nFixed-width-format files\n\n\n\nPipe connections:\n \nTypes of connections\n\n\n\nPostgreSQL database system:\n \nRODBC\n\n\n\nPushback on a connection:\n \nPushback\n\n\nQ\n\n\n\n\n\n\nQuoting strings:\n \nExport to text files\n\n\n\nQuoting strings:\n \nVariations on read.table\n\n\nR\n\n\n\n\n\n\nRe-shaping data:\n \nRe-shaping data\n\n\n\nRelational databases:\n \nRelational databases\n\n\nS\n\n\n\n\n\n\nS-PLUS:\n \nEpiInfo Minitab SAS S-PLUS SPSS Stata Systat\n\n\n\nSAS:\n \nEpiInfo Minitab SAS S-PLUS SPSS Stata Systat\n\n\n\nSockets:\n \nTypes of connections\n\n\n\nSockets:\n \nReading from sockets\n\n\n\nSpreadsheet-like data:\n \nSpreadsheet-like data\n\n\n\nSPSS:\n \nEpiInfo Minitab SAS S-PLUS SPSS Stata Systat\n\n\n\nSPSS Data Entry:\n \nEpiInfo Minitab SAS S-PLUS SPSS Stata Systat\n\n\n\nSQL queries:\n \nSQL queries\n\n\n\nStata:\n \nEpiInfo Minitab SAS S-PLUS SPSS Stata Systat\n\n\n\nSystat:\n \nEpiInfo Minitab SAS S-PLUS SPSS Stata Systat\n\n\nT\n\n\n\n\n\n\nTerminal connections:\n \nTypes of connections\n\n\n\nText connections:\n \nTypes of connections\n\n\nU\n\n\n\n\n\n\nUnix tools:\n \nIntroduction\n\n\n\nURL connections:\n \nTypes of connections\n\n\n\nURL connections:\n \nInput from connections\n\n\nX\n\n\n\n\n\n\nXML:\n \nXML\n\n\nY\n\n\n\n\n\n\nYAML:\n \nXML\n\n\n\n\n\n\nJump to:  \nA   B   C   D   E   F   H   I   L   M   N   O   P   Q   R   S   T   U   X   Y",
     "crumbs": [
       "Concept index"
-    ]
-  },
-  {
-    "objectID": "References.html",
-    "href": "References.html",
-    "title": "Appendix A — References",
-    "section": "",
-    "text": "R. A. Becker, J. M. Chambers and A. R. Wilks (1988), The New S Language. A Programming Environment for Data Analysis and Graphics. Wadsworth & Brooks/Cole.\nJ. Bowman, S. Emberson and M. Darnovsky (1996), The Practical SQL Handbook. Using Structured Query Language. Addison-Wesley.\nJ. M. Chambers (1998), Programming with Data. A Guide to the S Language. Springer-Verlag.\nP. Dubois (2000), MySQL. New Riders.\nM. Henning and S. Vinoski (1999), Advanced CORBA Programming with C++. Addison-Wesley.\nK. Kline and D. Kline (2001), SQL in a Nutshell. O’Reilly.\nB. Momjian (2000), PostgreSQL: Introduction and Concepts. Addison-Wesley. Also available at https://momjian.us/main/writings/pgsql/aw_pgsql_book/.\nB. D. Ripley (2001), Connections. R News, 1/1, 16–7. https://www.r-project.org/doc/Rnews/Rnews_2001-1.pdf\nT. M. Therneau and P. M. Grambsch (2000), Modeling Survival Data. Extending the Cox Model. Springer-Verlag.\nE. J. Yarger, G. Reese and T. King (1999), MySQL & mSQL. O’Reilly.",
-    "crumbs": [
-      "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>References</span>"
     ]
   }
 ]

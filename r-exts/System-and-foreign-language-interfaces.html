@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.557">
+<meta name="generator" content="quarto-1.5.53">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R Manuals :: Writing R Extensions - 5&nbsp; System and foreign language interfaces</title>
+<title>5&nbsp; System and foreign language interfaces – R Manuals :: Writing R Extensions</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -128,7 +128,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Manuals</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
@@ -164,17 +164,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./System-and-foreign-language-interfaces.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">System and foreign language interfaces</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav>
@@ -798,7 +798,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>It is possible to arrange to include compiled code from other languages by setting the macro <code>OBJECTS</code> in file <code>Makevars</code>, together with suitable rules to make the objects.</p>
 <p>Flags that are already set (for example in file <code>etcR_ARCH/Makeconf</code>) can be overridden by the environment variable <code>MAKEFLAGS</code> (at least for systems using a POSIX-compliant <code>make</code>), as in (Bourne shell syntax)</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="va">MAKEFLAGS</span><span class="op">=</span><span class="st">"CFLAGS=-O3"</span> <span class="ex">R</span> CMD SHLIB <span class="pp">*</span>.c</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>It is also possible to set such variables in personal <code>Makevars</code> files, which are read after the local <code>Makevars</code> and the system makefiles or in a site-wide <code>Makevars.site</code> file. See ‘Customizing package compilation’ in the ‘R Installation and Administration’ manual for more information.</p>
+<p>It is also possible to set such variables in personal <code>Makevars</code> files, which are read after the local <code>Makevars</code> and the system makefiles or in a site-wide <code>Makevars.site</code> file. See <a href="https://cran.r-project.org/doc/manuals/R-admin.html#Customizing-package-compilation" data-manual="R-admin">Customizing package compilation</a> in R Installation and Administration for more information.</p>
 <p>Note that as <code>R CMD SHLIB</code> uses Make, it will not remake a shared object just because the flags have changed, and if <code>test.c</code> and <code>test.f</code> both exist in the current directory</p>
 <div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> CMD SHLIB test.f</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>will compile <code>test.c</code>!</p>
@@ -1010,7 +1010,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="no-row-height column-margin column-container"><div id="fn14"><p><sup>14</sup>&nbsp;That is, similar to those defined in S version 4 from the 1990s: these are not kept up to date and are not recommended for new projects.</p></div></div><p>Before you decide to use <code>.Call</code> or <code>.External</code>, you should look at other alternatives. First, consider working in interpreted R code; if this is fast enough, this is normally the best option. You should also see if using <code>.C</code> is enough. If the task to be performed in C is simple enough involving only atomic vectors and requiring no call to R, <code>.C</code> suffices. A great deal of useful code was written using just <code>.C</code> before <code>.Call</code> and <code>.External</code> were available. These interfaces allow much more control, but they also impose much greater responsibilities so need to be used with care. Neither <code>.Call</code> nor <code>.External</code> copy their arguments: you should treat arguments you receive through these interfaces as read-only.</p>
 <p>To handle R objects from within C code we use the macros and functions that have been used to implement the core parts of R. A public<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a> subset of these is defined in the header file <code>Rinternals.h</code> in the directory <code>R_INCLUDE_DIR</code> (default <code>R_HOME/include</code>) that should be available on any R installation.</p>
 <div class="no-row-height column-margin column-container"><div id="fn15"><p><sup>15</sup>&nbsp;see <a href="The-R-API.html#the-r-api">The R API: entry points for C code</a>: note that these are not all part of the API.</p></div></div><p>A substantial amount of R, including the standard packages, is implemented using the functions and macros described here, so the R source code provides a rich source of examples and “how to do it”: do make use of the source code for inspirational examples.</p>
-<p>It is necessary to know something about how R objects are handled in C code. All the R objects you will deal with will be handled with the type <em>SEXP</em><a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a>, which is a pointer to a structure with typedef <code>SEXPREC</code>. Think of this structure as a <em>variant type</em> that can handle all the usual types of R objects, that is vectors of various modes, functions, environments, language objects and so on. The details are given later in this section and in section ‘R Internal Structures’ in the ‘R Internals’ manual, but for most purposes the programmer does not need to know them. Think rather of a model such as that used by Visual Basic, in which R objects are handed around in C code (as they are in interpreted R code) as the variant type, and the appropriate part is extracted for, for example, numerical calculations, only when it is needed. As in interpreted R code, much use is made of coercion to force the variant object to the right type.</p>
+<p>It is necessary to know something about how R objects are handled in C code. All the R objects you will deal with will be handled with the type <em>SEXP</em><a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a>, which is a pointer to a structure with typedef <code>SEXPREC</code>. Think of this structure as a <em>variant type</em> that can handle all the usual types of R objects, that is vectors of various modes, functions, environments, language objects and so on. The details are given later in this section and in <a href="https://cran.r-project.org/doc/manuals/R-ints.html#R-Internal-Structures" data-manual="R-ints">R Internal Structures</a> in R Internals, but for most purposes the programmer does not need to know them. Think rather of a model such as that used by Visual Basic, in which R objects are handed around in C code (as they are in interpreted R code) as the variant type, and the appropriate part is extracted for, for example, numerical calculations, only when it is needed. As in interpreted R code, much use is made of coercion to force the variant object to the right type.</p>
 <div class="no-row-height column-margin column-container"><div id="fn16"><p><sup>16</sup>&nbsp;SEXP is an acronym for <em>S</em>imple <em>EXP</em>ression, common in LISP-like language syntaxes.</p></div></div><section id="handling-the-effects-of-garbage-collection" class="level3 subsection" data-number="5.9.1">
 <h3 class="subsection anchored" data-number="5.9.1" data-anchor-id="handling-the-effects-of-garbage-collection"><span class="header-section-number">5.9.1</span> Handling the effects of garbage collection</h3>
 <p>We need to know a little about the way R handles memory allocation. The memory allocated for R objects is not freed by the user; instead, the memory is from time to time <em>garbage collected</em>. That is, some or all of the allocated memory not being used is freed or marked as re-usable.</p>
@@ -1119,7 +1119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 </blockquote>
-<p>Among the important internal <code>SEXPTYPE</code>s are <code>LANGSXP</code>, <code>CHARSXP</code>, <code>PROMSXP</code>, etc. (<strong>N.B.</strong>: although it is possible to return objects of internal types, it is unsafe to do so as assumptions are made about how they are handled which may be violated at user-level evaluation.) More details are given in section ‘R Internal Structures’ in the ‘R Internals’ manual.</p>
+<p>Among the important internal <code>SEXPTYPE</code>s are <code>LANGSXP</code>, <code>CHARSXP</code>, <code>PROMSXP</code>, etc. (<strong>N.B.</strong>: although it is possible to return objects of internal types, it is unsafe to do so as assumptions are made about how they are handled which may be violated at user-level evaluation.) More details are given in <a href="https://cran.r-project.org/doc/manuals/R-ints.html#R-Internal-Structures" data-manual="R-ints">R Internal Structures</a> in R Internals.</p>
 <p>Unless you are very sure about the type of the arguments, the code should check the data types. Sometimes it may also be necessary to check data types of objects created by evaluating an R expression in the C code. You can use functions like <code>isReal</code>, <code>isInteger</code> and <code>isString</code> to do type checking. Other such functions declared in the header file <code>Rinternals.h</code> include <code>isNull</code>, <code>isSymbol</code>, <code>isLogical</code>, <code>isComplex</code>, <code>isExpression</code>, and <code>isEnvironment</code>. All of these take a <code>SEXP</code> as argument and return 1 or 0 to indicate <code>TRUE</code> or <code>FALSE</code>.</p>
 <p>What happens if the <code>SEXP</code> is not of the correct type? Sometimes you have no other option except to generate an error. You can use the function <code>error</code> for this. It is usually better to coerce the object to the correct type. For example, if you find that an <code>SEXP</code> is of the type <code>INTEGER</code>, but you need a <code>REAL</code> object, you can change the type by using</p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>newSexp <span class="ot">=</span> <span class="fu">PROTECT</span>(<span class="fu">coerceVector</span>(oldSexp, REALSXP));</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1967,18 +1967,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -2010,7 +1999,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -2018,7 +2029,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

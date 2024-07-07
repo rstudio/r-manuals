@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.557">
+<meta name="generator" content="quarto-1.5.53">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R Manuals :: Writing R Extensions - 1&nbsp; Creating R packages</title>
+<title>1&nbsp; Creating R packages – R Manuals :: Writing R Extensions</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -128,7 +128,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Manuals</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
@@ -164,17 +164,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Creating-R-packages.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Creating R packages</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav>
@@ -384,7 +384,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>?INSTALL</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>before reading on.</p>
 <p>For packages which contain code to be compiled, a computing environment including a number of tools is assumed; the “R Installation and Administration” manual describes what is needed for each OS.</p>
-<p>Once a source package is created, it must be installed by the command <code>R CMD INSTALL</code>. See section ‘Add-on-packages’ in the ‘R Installation and Administration’ manual for more information.</p>
+<p>Once a source package is created, it must be installed by the command <code>R CMD INSTALL</code>. See <a href="https://cran.r-project.org/doc/manuals/R-admin.html#Add_002don-packages" data-manual="R-admin">Add-on packages</a> in R Installation and Administration.</p>
 <p>Other types of extensions are supported (but rare): See <a href="#package-types">Package types</a>.</p>
 <p>Some notes on terminology complete this introduction. These will help with the reading of this manual, and also in describing concepts accurately when asking for help.</p>
 <p>A <em>package</em> is a directory of files which extend R, a <em>source package</em> (the master files of a package), or a tarball containing the files of a source package, or an <em>installed</em> package, the result of running <code>R CMD INSTALL</code> on a source package. On some platforms (notably macOS and <code>x86_64</code> Windows) there are also <em>binary packages</em>, a zip file or tarball containing the files of an installed package which can be unpacked rather than installing from sources.</p>
@@ -400,7 +400,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><em>Compilation</em> is not a correct term for a package. Installing a source package which contains C, C++ or Fortran code will involve compiling that code. There is also the possibility of ‘byte’ compiling the R code in a package (using the facilities of package <strong>compiler</strong>): nowadays this is enabled by default for all packages. So <em>compiling</em> a package may come to mean byte-compiling its R code.</li>
 <li>It used to be unambiguous to talk about <em>loading</em> an installed package using <code>library()</code>, but since the advent of package namespaces this has been less clear: people now often talk about <em>loading</em> the package’s namespace and then <em>attaching</em> the package so it becomes visible on the search path. Function <code>library</code> performs both steps, but a package’s namespace can be loaded without the package being attached (for example by calls like <code>splines::ns</code>).</li>
 </ul>
-<p>The concept of <em>lazy loading</em> of code or data is mentioned at several points. This is part of the installation, always selected for R code but optional for data. When used the R objects of the package are created at installation time and stored in a database in the <code>R</code> directory of the installed package, being loaded into the session at first use. This makes the R session start up faster and use less (virtual) memory. (For technical details, see section ‘Lazy loading’ in the ‘R Internals’ manual.)</p>
+<p>The concept of <em>lazy loading</em> of code or data is mentioned at several points. This is part of the installation, always selected for R code but optional for data. When used the R objects of the package are created at installation time and stored in a database in the <code>R</code> directory of the installed package, being loaded into the session at first use. This makes the R session start up faster and use less (virtual) memory. (For technical details, see <a href="https://cran.r-project.org/doc/manuals/R-ints.html#Lazy-loading" data-manual="R-ints">Lazy loading</a> in R Internals.)</p>
 <p>CRAN is a network of WWW sites holding the R distributions and contributed code, especially R packages. Users of R are encouraged to join in the collaborative project and to submit their own packages to CRAN: current instructions are linked from <a href="https://CRAN.R-project.org/banner.shtml#submitting" class="uri">https://CRAN.R-project.org/banner.shtml#submitting</a>.</p>
 <section id="package-structure" class="level2 section page-columns page-full" data-number="1.1">
 <h2 class="section anchored" data-number="1.1" data-anchor-id="package-structure"><span class="header-section-number">1.1</span> Package structure</h2>
@@ -834,7 +834,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>N.B.</strong>: Include paths are preprocessor options, not compiler options, and <strong>must</strong> be set in <code>PKG_CPPFLAGS</code> as otherwise platform-specific paths (e.g.&nbsp;<code>-I/usr/local/include</code>) will take precedence. <code>PKG_CPPFLAGS</code> should contain <code>-I</code>, <code>-D</code>, <code>-U</code> and (where supported) <code>-include</code> and <code>-pthread</code> options: everything else should be a compiler flag. The order of flags matters, and using <code>-I</code> in <code>PKG_CFLAGS</code> or <code>PKG_CXXFLAGS</code> has led to hard-to-debug platform-specific errors.</p>
 <p><code>Makevars</code> can also be used to set flags for the linker, for example <code>-L</code> and <code>-l</code> options, <em>via</em> <code>PKG_LIBS</code>.</p>
 <p>When writing a <code>Makevars</code> file for a package you intend to distribute, take care to ensure that it is not specific to your compiler: flags such as <code>-O2 -Wall -pedantic</code> (and all other <code>-W</code> flags: for the Oracle compilers these were used to pass arguments to compiler phases) are all specific to GCC (and compilers such as <code>clang</code> which aim to be options-compatible with it).</p>
-<p>Also, do not set variables such as <code>CPPFLAGS</code>, <code>CFLAGS</code> etc.: these should be settable by users (sites) through appropriate personal (site-wide) <code>Makevars</code> files. See section ‘Customizing package compilation’ in the ‘R Installation and Administration’ manual for more information.</p>
+<p>Also, do not set variables such as <code>CPPFLAGS</code>, <code>CFLAGS</code> etc.: these should be settable by users (sites) through appropriate personal (site-wide) <code>Makevars</code> files. See <a href="https://cran.r-project.org/doc/manuals/R-admin.html#Customizing-package-compilation" data-manual="R-admin">Customizing package compilation</a> in R Installation and Administration for more information.</p>
 <p>There are some macros<a href="#fn36" class="footnote-ref" id="fnref36" role="doc-noteref"><sup>36</sup></a> which are set whilst configuring the building of R itself and are stored in <code>R_HOME/etcR_ARCH/Makeconf</code>. That makefile is included as a <code>Makefile</code> <em>after</em> <code>Makevars[.win]</code>, and the macros it defines can be used in macro assignments and make command lines in the latter. These include</p>
 <div class="no-row-height column-margin column-container"><div id="fn36"><p><sup>36</sup>&nbsp;in POSIX parlance: GNU <code>make</code> calls these ‘make variables’.</p></div></div><dl class="page-columns page-full">
 <dt><code>FLIBS</code> <a href="#index-flibs" class="copiable-anchor">¶</a></dt>
@@ -1162,7 +1162,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb61"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="dv">sublibs:</span></span>
 <span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="er">         </span><span class="ch">@</span><span class="fu">(cd libs &amp;&amp; </span><span class="ch">$(</span><span class="dt">MAKE</span><span class="ch">)</span><span class="fu"> </span><span class="ch">\</span></span>
 <span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="fu">            CXX=</span><span class="st">"</span><span class="ch">$(</span><span class="dt">CXX17</span><span class="ch">)</span><span class="st"> </span><span class="ch">$(</span><span class="dt">CXX17STD</span><span class="ch">)</span><span class="st">"</span><span class="fu"> CXXFLAGS=</span><span class="st">"</span><span class="ch">$(</span><span class="dt">CXX17FLAGS</span><span class="ch">)</span><span class="st"> </span><span class="ch">$(</span><span class="dt">CXX17PICFLAGS</span><span class="ch">)</span><span class="st">"</span><span class="fu">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The discussion above is about the standard R ways of compiling C++: it will not apply to packages using <code>src/Makefile</code> or building in a subdirectory that do not set the C++ standard. And compilers’ default C++ standards varies widely and gets changed frequently by vendors – for example Apple clang up to at least 15 defaults to C++98, LLVM clang 14–15 to C++14, LLVM clang 16–18 to C++17 and <code>g++</code> 11–13 to C++17.</p>
+<p>The discussion above is about the standard R ways of compiling C++: it will not apply to packages using <code>src/Makefile</code> or building in a subdirectory that do not set the C++ standard. And compilers’ default C++ standards varies widely and gets changed frequently by vendors – for example Apple clang up to at least 16 defaults to C++98, LLVM clang 14–15 to C++14, LLVM clang 16–18 to C++17 and <code>g++</code> 11–14 to C++17.</p>
 <p>For a package with a <code>src/Makefile</code> (or a Windows analogue), a non-default C++ compiler can be selected by including something like</p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX14</span> <span class="ch">=</span><span class="st"> `"</span><span class="ch">${</span><span class="dt">R_HOME</span><span class="ch">}</span><span class="st">/bin/R" CMD config CXX14`</span></span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX14STD</span> <span class="ch">=</span><span class="st"> `"</span><span class="ch">${</span><span class="dt">R_HOME</span><span class="ch">}</span><span class="st">/bin/R" CMD config CXX14STD`</span></span>
@@ -1186,7 +1186,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="c-standards" class="level3 subsection" data-number="1.2.8">
 <h3 class="subsection anchored" data-number="1.2.8" data-anchor-id="c-standards"><span class="header-section-number">1.2.8</span> C standards</h3>
-<p>C has had standards C89/C90, C99, C11, C17 (also known as C18), and C23 is in final draft and expected to be published in early 2024. C11 was a minor change to C99 which introduced some new features and made others optional, and C17 is a ‘bug-fix’ update to C11. On the other hand, C23 makes extensive changes, including making <code>bool</code>, <code>true</code> and <code>false</code> reserved words, finally disallowing K&amp;R-style function declarations and clarifying the formerly deprecated meaning of function declarations with an empty parameter list to mean zero parameters. (There are many other additions: see for example <a href="https://en.cppreference.com/w/c/23" class="uri">https://en.cppreference.com/w/c/23</a>.)</p>
+<p>C has had standards C89/C90, C99, C11, C17 (also known as C18), and C23 is in final draft and expected to be published in 2024. C11 was a minor change to C99 which introduced some new features and made others optional, and C17 is a ‘bug-fix’ update to C11. On the other hand, C23 makes extensive changes, including making <code>bool</code>, <code>true</code> and <code>false</code> reserved words, finally disallowing K&amp;R-style function declarations and clarifying the formerly deprecated meaning of function declarations with an empty parameter list to mean zero parameters. (There are many other additions: see for example <a href="https://en.cppreference.com/w/c/23" class="uri">https://en.cppreference.com/w/c/23</a>.)</p>
 <p>The <code>configure</code> script in recent versions of R aims to choose a C compiler which supports C11: as the default in recent versions of <code>gcc</code>, LLVM <code>clang</code> and Apple <code>clang</code> is C17, that is what is likely to be chosen. On the other hand, until R 4.3.0 the makefiles for the Windows build specified C99. They now use the compiler default which for the recommended compiler is C17.</p>
 <p>Packages may want to either avoid or embrace the changes in C23, and can do so <em>via</em> specifying <code>USE_Cnn</code> for 17, 23, 90 or 99 in the <code>SystemRequirements</code> field of their <code>DESCRIPTION</code> file of a package depending on <code>R (&gt;= 4.3.0)</code>. Those using a <code>configure</code> script should set the corresponding compiler and flags, for example using</p>
 <div class="sourceCode" id="cb65"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="dt">CC</span><span class="ch">=</span><span class="st">`"</span><span class="ch">${</span><span class="dt">R_HOME</span><span class="ch">}</span><span class="st">/bin/R" CMD config CC23`</span></span>
@@ -1272,7 +1272,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Note:</strong> <code>R CMD check</code> and <code>R CMD build</code> run R processes with <code>--vanilla</code> in which none of the user’s startup files are read. If you need <code>R_LIBS</code> set (to find packages in a non-standard library) you can set it in the environment: also you can use the check and build environment files (as specified by the environment variables <code>R_CHECK_ENVIRON</code> and <code>R_BUILD_ENVIRON</code>; if unset, files<a href="#fn53" class="footnote-ref" id="fnref53" role="doc-noteref"><sup>53</sup></a> <code>~/.R/check.Renviron</code> and <code>~/.R/build.Renviron</code> are used) to set environment variables when using these utilities.</p>
 </blockquote><div class="no-row-height column-margin column-container"><div id="fn53"><p><sup>53</sup>&nbsp;On systems which use sub-architectures, architecture-specific versions such as <code>~/.R/check.Renviron.x64</code> take precedence.</p></div></div></div>
 <blockquote class="blockquote">
-<p><strong>Note to Windows users:</strong> <code>R CMD build</code> may make use of the Windows toolset (see the “R Installation and Administration” manual) if present and in your path, and it is required for packages which need it to install (including those with <code>configure.win</code>, <code>cleanup.win</code>, <code>configure.ucrt</code> or <code>cleanup.ucrt</code> scripts or a <code>src</code> directory) and e.g.&nbsp;need vignettes built.</p>
+<p><strong>Note to Windows users:</strong> <code>R CMD build</code> may make use of the Windows toolset (see <a href="https://cran.r-project.org/doc/manuals/R-admin.html#The-Windows-toolset" data-manual="R-admin">The Windows toolset</a> in R Installation and Administration) if present and in your path, and it is required for packages which need it to install (including those with <code>configure.win</code>, <code>cleanup.win</code>, <code>configure.ucrt</code> or <code>cleanup.ucrt</code> scripts or a <code>src</code> directory) and e.g.&nbsp;need vignettes built.</p>
 <p>You may need to set the environment variable <code>TMPDIR</code> to point to a suitable writable directory with a path not containing spaces – use forward slashes for the separators. Also, the directory needs to be on a case-honouring file system (some network-mounted file systems are not).</p>
 </blockquote>
 <section id="checking-packages" class="level3 subsection page-columns page-full" data-number="1.3.1">
@@ -1302,15 +1302,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Compiled code is checked for symbols corresponding to functions which might terminate R or write to <code>stdout</code>/<code>stderr</code> instead of the console. Note that the latter might give false positives in that the symbols might be pulled in with external libraries and could never be called. Windows<a href="#fn56" class="footnote-ref" id="fnref56" role="doc-noteref"><sup>56</sup></a> users should note that the Fortran and C++ runtime libraries are examples of such external libraries.</p></li>
 <li><p>Some checks are made of the contents of the <code>inst/doc</code> directory. These always include checking for files that look like leftovers, and if suitable tools (such as <code>qpdf</code>) are available, checking that the PDF documentation is of minimal size.</p></li>
 <li><p>The examples provided by the package’s documentation are run. (see <a href="Writing-R-documentation-files.html#writing-r-documentation-files">Writing R documentation files</a>, for information on using <code>\examples</code> to create executable example code.) If there is a file <code>tests/Examples/pkg-Ex.Rout.save</code>, the output of running the examples is compared to that file.</p>
-<p>Of course, released packages should be able to run at least their own examples. Each example is run in a ‘clean’ environment (so earlier examples cannot be assumed to have been run), and with the variables <code>T</code> and <code>F</code> redefined to generate an error unless they are set in the example: See section ‘Logical vectors’ in the ‘An Introduction to R’ manual for more information.</p></li>
+<p>Of course, released packages should be able to run at least their own examples. Each example is run in a ‘clean’ environment (so earlier examples cannot be assumed to have been run), and with the variables <code>T</code> and <code>F</code> redefined to generate an error unless they are set in the example: See <a href="https://cran.r-project.org/doc/manuals/R-intro.html#Logical-vectors" data-manual="R-intro">Logical vectors</a> in An Introduction to R.</p></li>
 <li><p>If the package sources contain a <code>tests</code> directory then the tests specified in that directory are run. (Typically they will consist of a set of <code>.R</code> source files and target output files <code>.Rout.save</code>.) Please note that the comparison will be done in the end user’s locale, so the target output files should be ASCII if at all possible. (The command line option <code>--test-dir=foo</code> may be used to specify tests in a non-standard location. For example, unusually slow tests could be placed in <code>inst/slowTests</code> and then <code>R CMD check --test-dir=inst/slowTests</code> would be used to run them. Other names that have been suggested are, for example, <code>inst/testWithOracle</code> for tests that require Oracle to be installed, <code>inst/randomTests</code> for tests which use random values and may occasionally fail by chance, etc.)</p></li>
 <li><p>The R code in package vignettes (see <a href="#writing-package-vignettes">Writing package vignettes</a>) is executed, and the vignettes re-made from their sources as a check of completeness of the sources (unless there is a <code>BuildVignettes</code> field in the package’s <code>DESCRIPTION</code> file with a false value). If there is a target output file <code>.Rout.save</code> in the vignette source directory, the output from running the code in that vignette is compared with the target output file and any differences are reported (but not recorded in the log file). (If the vignette sources are in the deprecated location <code>inst/doc</code>, do mark such target output files to not be installed in <code>.Rinstignore</code>.)</p>
 <p>If there is an error<a href="#fn57" class="footnote-ref" id="fnref57" role="doc-noteref"><sup>57</sup></a> in executing the R code in vignette <code>foo.ext</code>, a log file <code>foo.ext.log</code> is created in the check directory. The vignettes are re-made in a copy of the package sources in the <code>vign_test</code> subdirectory of the check directory, so for further information on errors look in directory <code>pkgname/vign_test/vignettes</code>. (It is only retained if there are errors or if environment variable <code>_R_CHECK_CLEAN_VIGN_TEST_</code> is set to a false value.)</p></li>
-<li><p>The PDF version of the package’s manual is created (to check that the <code>Rd</code> files can be converted successfully). This needs LaTeX and suitable fonts and LaTeX packages to be installed. See the section ‘Making the manuals’ in the ‘R Installation and Administration’ manual’ for further details.</p></li>
+<li><p>The PDF version of the package’s manual is created (to check that the <code>Rd</code> files can be converted successfully). This needs LaTeX and suitable fonts and LaTeX packages to be installed. See <a href="https://cran.r-project.org/doc/manuals/R-admin.html#Making-the-manuals" data-manual="R-admin">Making the manuals</a> in R Installation and Administration for further details.</p></li>
 <li><p>Optionally (including by <code>R CMD check --as-cran</code>) the HTML version of the manual is created and checked for compliance with the HTML5 standard. This requires a recent version<a href="#fn58" class="footnote-ref" id="fnref58" role="doc-noteref"><sup>58</sup></a> of ‘HTML Tidy’, either on the path or at a location specified by environment variable <code>R_TIDYCMD</code>. Up-to-date versions can be installed from <a href="http://binaries.html-tidy.org/" class="uri">http://binaries.html-tidy.org/</a>.</p></li>
 </ol>
 <div class="no-row-height column-margin column-container"><div id="fn54"><p><sup>54</sup>&nbsp;A suitable <code>file.exe</code> is part of the Windows toolset: it checks for <code>gfile</code> if a suitable <code>file</code> is not found: the latter is available in the OpenCSW collection for Solaris at <a href="https://www.opencsw.org/" class="uri">https://www.opencsw.org/</a>. The source repository is <a href="http://ftp.astron.com/pub/file/" class="uri">http://ftp.astron.com/pub/file/</a>.</p></div><div id="fn55"><p><sup>55</sup>&nbsp;An exception is made for subdirectories with names starting <code>win</code> or <code>Win</code>.</p></div><div id="fn56"><p><sup>56</sup>&nbsp;on most other platforms such runtime libraries are dynamic, but static libraries are currently used on Windows because the toolchain is not a standard part of the OS.</p></div><div id="fn57"><p><sup>57</sup>&nbsp;or if option <code>--use-valgrind</code> is used or environment variable <code>_R_CHECK_ALWAYS_LOG_VIGNETTE_OUTPUT_</code> is set to a true value or if there are differences from a target output file</p></div><div id="fn58"><p><sup>58</sup>&nbsp;for the most comprehensive checking this should be 5.8.0 or later: any for which <code>tidy --version</code> does not report a version number will be too old – this includes the 2006 version shipped with macOS.</p></div></div><p>All these tests are run with collation set to the <code>C</code> locale, and for the examples and tests with environment variable <code>LANGUAGE=en</code>: this is to minimize differences between platforms.</p>
-<p>Use <kbd>R CMD check --help</kbd> to obtain more information about the usage of the R package checker. A subset of the checking steps can be selected by adding command-line options. It also allows customization by setting environment variables <span class="nolinebreak"><code>_R_CHECK_*_</code></span> as described in section ‘Tools’ in the ‘R Internals’ manual: a set of these customizations similar to those used by CRAN can be selected by the option <code>--as-cran</code> (which works best if Internet access is available). Some Windows users may need to set environment variable <code>R_WIN_NO_JUNCTIONS</code> to a non-empty value. The test of cyclic declarations<a href="#fn59" class="footnote-ref" id="fnref59" role="doc-noteref"><sup>59</sup></a>in <code>DESCRIPTION</code> files needs repositories (including CRAN) set: do this in <code>~/.Rprofile</code>, by e.g.</p>
+<p>Use <kbd>R CMD check --help</kbd> to obtain more information about the usage of the R package checker. A subset of the checking steps can be selected by adding command-line options. It also allows customization by setting environment variables <span class="nolinebreak"><code>_R_CHECK_*_</code></span> as described in <a href="https://cran.r-project.org/doc/manuals/R-ints.html#Tools" data-manual="R-ints">Tools</a> in R Internals: a set of these customizations similar to those used by CRAN can be selected by the option <code>--as-cran</code> (which works best if Internet access is available). Some Windows users may need to set environment variable <code>R_WIN_NO_JUNCTIONS</code> to a non-empty value. The test of cyclic declarations<a href="#fn59" class="footnote-ref" id="fnref59" role="doc-noteref"><sup>59</sup></a>in <code>DESCRIPTION</code> files needs repositories (including CRAN) set: do this in <code>~/.Rprofile</code>, by e.g.</p>
 <div class="no-row-height column-margin column-container"><div id="fn59"><p><sup>59</sup>&nbsp;For example, in early 2014 <a href="https://CRAN.R-project.org/package=gdata"><strong>gdata</strong></a> declared <code>Imports: gtools</code> and <a href="https://CRAN.R-project.org/package=gtools"><strong>gtools</strong></a> declared <code>Imports: gdata</code>.</p></div></div><div class="sourceCode" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repos =</span> <span class="fu">c</span>(<span class="at">CRAN=</span><span class="st">"https://cran.r-project.org"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>One check customization which can be revealing is</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>_R_CHECK_CODETOOLS_PROFILE_<span class="ot">=</span><span class="st">"suppressLocalUnused=FALSE"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1688,8 +1688,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The <code>-o</code> flag for <code>set</code> in shell scripts is optional in POSIX and not supported on all the platforms R is used on.</p>
 <p>The variable <code>OSTYPE</code> is shell-specific and its values are rather unpredictable and may include a version such as <code>darwin19.0</code>: <code>uname</code> is often what is intended (with common values <code>Darwin</code>, <code>Linux</code> and <code>SunOS</code>).</p>
 <p>On macOS which shell <code>/bin/sh</code> invokes is user- and platform-dependent: it might be <code>bash</code> version 3.2, <code>dash</code> or <code>zsh</code> (for new accounts it is <code>zsh</code>, for accounts ported from Mojave or earlier it is usually <code>bash</code>).</p></li>
-<li><p>R is not built by default as a shared library on non-Windows platforms (although it commonly is on macOS to support the GUI), so there need not be a file <code>libR.so</code> nor <code>libR.dylib</code>. Users of <code>cmake</code> or <code>rust</code> have all too frequently assumed otherwise, so do ensure your package is checked under a vanilla R build. See the section ‘Configuration options’ in the ‘R Installation and Administration’ manual for more information.</p></li>
-<li><p>Make use of the abilities of your compilers to check the standards-conformance of your code. For example, <code>gcc</code>, <code>clang</code> and <code>gfortran</code><a href="#fn82" class="footnote-ref" id="fnref82" role="doc-noteref"><sup>82</sup></a> can be used with options <code>-Wall -pedantic</code> to alert you to potential problems. This is particularly important for C++, where <code>g++ -Wall -pedantic</code> will alert you to the use of some of the GNU extensions which fail to compile on most other C++ compilers. If R was not configured accordingly, one can achieve this <em>via</em> personal <code>Makevars</code> files. See section ‘Customizing package compilation’ in the ‘R Installation and Administration’ manual for more information.</p>
+<li><p>R is not built by default as a shared library on non-Windows platforms (although it commonly is on macOS to support the GUI), so there need not be a file <code>libR.so</code> nor <code>libR.dylib</code>. Users of <code>cmake</code> or <code>rust</code> have all too frequently assumed otherwise, so do ensure your package is checked under a vanilla R build. See <a href="https://cran.r-project.org/doc/manuals/R-admin.html#Configuration-options" data-manual="R-admin">Configuration options</a> in R Installation and Administration for more information.</p></li>
+<li><p>Make use of the abilities of your compilers to check the standards-conformance of your code. For example, <code>gcc</code>, <code>clang</code> and <code>gfortran</code><a href="#fn82" class="footnote-ref" id="fnref82" role="doc-noteref"><sup>82</sup></a> can be used with options <code>-Wall -pedantic</code> to alert you to potential problems. This is particularly important for C++, where <code>g++ -Wall -pedantic</code> will alert you to the use of some of the GNU extensions which fail to compile on most other C++ compilers. If R was not configured accordingly, one can achieve this <em>via</em> personal <code>Makevars</code> files. See <a href="https://cran.r-project.org/doc/manuals/R-admin.html#Customizing-package-compilation" data-manual="R-admin">Customizing package compilation</a> in R Installation and Administration for more information.</p>
 <p>Portable C++ code needs to follow all of the 2011, 2014 and 2017 standards (including not using deprecated/removed features) or to specify C+11/14/17/20/23 where available (which is not the case on all R platforms). Currently C++20 support is patchy across R platforms.</p>
 <p>If using Fortran with the GNU compiler, use the flags <code>-std=f95 -Wall -pedantic</code> which reject most GNU extensions and features from later standards. (Although R only requires Fortran 90, <code>gfortran</code> does not have a way to specify that standard.) Also consider <code>-std=f2008</code> as some recent compilers have Fortran 2008 or even 2018 as the minimum supported standard.</p>
 <p>As from macOS 11 (late 2020), its C compiler sets the flag <code>-Werror=implicit-function-declaration</code> by default which forces stricter conformance to C99. This can be used on other platforms with <code>gcc</code> or <code>clang</code>. If your package has a (<code>autoconf</code>-generated) <code>configure script</code>, try installing it whilst using this flag, and read through the <code>config.log</code> file — compilation warnings and errors can lead to features which are present not being detected. (If possible do this on several platforms.)</p></li>
@@ -2037,7 +2037,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="subsection anchored" data-number="1.6.8" data-anchor-id="binary-distribution"><span class="header-section-number">1.6.8</span> Binary distribution</h3>
 <p>If you want to distribute a binary version of a package on Windows or macOS, there are further checks you need to do to check it is portable: it is all too easy to depend on external software on your own machine that other users will not have.</p>
 <p>For Windows, check what other DLLs your package’s DLL depends on (‘imports’ from in the DLL tools’ parlance). A convenient GUI-based tool to do so is ‘Dependency Walker’ (<a href="https://www.dependencywalker.com/" class="uri">https://www.dependencywalker.com/</a>) for both 32-bit and 64-bit DLLs – note that this will report as missing links to R’s own DLLs such as <code>R.dll</code> and <code>Rblas.dll</code>. The command-line tool <code>objdump</code> in the appropriate toolchain will also reveal what DLLs are imported from. If you use a toolchain other than one provided by the R developers or use your own makefiles, watch out in particular for dependencies on the toolchain’s runtime DLLs such as <code>libgfortran</code>, <code>libstdc++</code> and <code>libgcc_s</code>.</p>
-<p>For macOS, using <code>R CMD otool -L</code> on the package’s shared object(s) in the <code>libs</code> directory will show what they depend on: watch for any dependencies in <code>/usr/local/lib</code> or <code>/usr/local/gfortran/lib</code>, notably <code>libgfortran.?.dylib</code> and <code>libquadmath.0.dylib</code>. (For ways to fix these, see the section ‘Building binary packages’ in the ‘R Installation and Administration’ manual’.)</p>
+<p>For macOS, using <code>R CMD otool -L</code> on the package’s shared object(s) in the <code>libs</code> directory will show what they depend on: watch for any dependencies in <code>/usr/local/lib</code> or <code>/usr/local/gfortran/lib</code>, notably <code>libgfortran.?.dylib</code> and <code>libquadmath.0.dylib</code>. (For ways to fix these, see <a href="https://cran.r-project.org/doc/manuals/R-admin.html#Building-binary-packages" data-manual="R-admin">Building binary packages</a> in R Installation and Administration.)</p>
 <p>Many people (including the CRAN package repository) will not accept source packages containing binary files as the latter are a security risk. If you want to distribute a source package which needs external software on Windows or macOS, options include</p>
 <ul>
 <li>To arrange for installation of the package to download the additional software from a URL, as e.g.&nbsp;package <a href="https://CRAN.R-project.org/package=Cairo"><strong>Cairo</strong></a> used to.</li>
@@ -2126,7 +2126,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="preparing-translations" class="level3 subsection" data-number="1.8.3">
 <h3 class="subsection anchored" data-number="1.8.3" data-anchor-id="preparing-translations"><span class="header-section-number">1.8.3</span> Preparing translations</h3>
 <p>Once the template files have been created, translations can be made. Conventional translations have file extension <code>.po</code> and are placed in the <code>po</code> subdirectory of the package with a name that is either <code>ll.po</code> or <code>R-ll.po</code> for translations of the C and R messages respectively to language with code <code>ll</code>.</p>
-<p>See ‘Localization of messages’ in the ‘R Installation and Administration’ manual for details of language codes.</p>
+<p>See <a href="https://cran.r-project.org/doc/manuals/R-admin.html#Localization-of-messages" data-manual="R-admin">Localization of messages</a> in R Installation and Administration for details of language codes.</p>
 <p>There is an R function, <code>update_pkg_po</code> in package <strong>tools</strong>, to automate much of the maintenance of message translations. See its help for what it does in detail.</p>
 <p>If this is called on a package with no existing translations, it creates the directory <code>pkgdir/po</code>, creates a template file of R messages, <code>pkgdir/po/R-pkg.pot</code>, within it, creates the <code>en@quot</code> translation and installs that. (The <code>en@quot</code> pseudo-language interprets quotes in their directional forms in suitable (e.g.&nbsp;UTF-8) locales.)</p>
 <p>If the package has C source files in its <code>src</code> directory that are marked for translation, use</p>
@@ -2220,18 +2220,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -2263,7 +2252,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -2271,7 +2282,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

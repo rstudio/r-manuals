@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.557">
+<meta name="generator" content="quarto-1.5.53">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R Manuals :: R Internals - 1&nbsp; R Internal Structures</title>
+<title>1&nbsp; R Internal Structures – R Manuals :: R Internals</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -128,7 +128,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-manuals" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Manuals</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-manuals">    
@@ -164,17 +164,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./R-Internal-Structures.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R Internal Structures</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav>
@@ -532,14 +532,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The <code>debug</code> bit is used for closures and environments. For closures it is set by <code>debug()</code> and unset by <code>undebug()</code>, and indicates that evaluations of the function should be run under the browser. For environments it indicates whether the browsing is in single-step mode.</p>
 <p>The <code>trace</code> bit is used for functions for <code>trace()</code> and for other objects when tracing duplications (see <code>tracemem</code>).</p>
 <p>The <code>spare</code> bit is used for closures to mark them for one-time debugging.</p>
-<p>The <code>named</code> field is set and accessed by the <code>SET_NAMED</code> and <code>NAMED</code> macros, and take values <code>0</code>, <code>1</code> and <code>2</code>, or possibly higher if <code>NAMEDMAX</code> is set to a higher value. R has a ‘call by value’ illusion, so an assignment like</p>
+<p>The <code>named</code> field is set and accessed by the <code>SET_NAMED</code> and <code>NAMED</code> macros, and takes values <code>0</code>, <code>1</code> and <code>2</code>, or possibly higher if <code>NAMEDMAX</code> is set to a higher value. R has a ‘call by value’ illusion, so an assignment like</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>[The <code>NAMED</code> mechanism has been replaced by reference counting.]</p>
 <p>appears to make a copy of <code>a</code> and refer to it as <code>b</code>. However, if neither <code>a</code> nor <code>b</code> are subsequently altered there is no need to copy. What really happens is that a new symbol <code>b</code> is bound to the same value as <code>a</code> and the <code>named</code> field on the value object is set (in this case to <code>2</code>). When an object is about to be altered, the <code>named</code> field is consulted. A value of <code>2</code> or more means that the object must be duplicated before being changed. (Note that this does not say that it is necessary to duplicate, only that it should be duplicated whether necessary or not.) A value of <code>0</code> means that it is known that no other <code>SEXP</code> shares data with this object, and so it may safely be altered. A value of <code>1</code> is used for situations like</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(a) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>where in principle two copies of <code>a</code> exist for the duration of the computation as (in principle)</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="st">`</span><span class="at">dim&lt;-</span><span class="st">`</span>(a, <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>but for no longer, and so some primitive functions can be optimized to avoid a copy in this case. [This mechanism is scheduled to be replaced in R 4.0.0.]</p>
+<p>but for no longer, and so some primitive functions can be optimized to avoid a copy in this case.</p>
 <p>The <code>gp</code> bits are by definition ‘general purpose’. We label these from 0 to 15. Bits 0–5 and bits 14–15 have been used as described below (mainly from detective work on the sources).</p>
 <p>The bits can be accessed and set by the <code>LEVELS</code> and <code>SETLEVELS</code> macros, which names appear to date back to the internal factor and ordered types and are now used in only a few places in the code. The <code>gp</code> field is serialized/unserialized for the <code>SEXPTYPE</code>s other than <code>NILSXP</code>, <code>SYMSXP</code> and <code>ENVSXP</code>.</p>
 <p>Bits 14 and 15 of <code>gp</code> are used for ‘fancy bindings’. Bit 14 is used to lock a binding or an environment, and bit 15 is used to indicate an active binding. (For the definition of an ‘active binding’ see the header comments in file <code>src/main/envir.c</code>.) Bit 15 is used for an environment to indicate if it participates in the global cache.</p>
@@ -910,7 +910,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="memory-allocators" class="level2 section page-columns page-full" data-number="1.13">
 <h2 class="section anchored" data-number="1.13" data-anchor-id="memory-allocators"><span class="header-section-number">1.13</span> Memory allocators</h2>
 <p>R’s memory allocation is almost all done via routines in file <code>src/main/memory.c</code>.</p>
-<p>The rest of R should where possible make use of the allocators made available by file <code>src/main/memory.c</code>, which are also the methods recommended in section ‘Memory allocation’ in the ‘Writing R Extensions’ manual for use in R packages, namely the use of <code>R_alloc</code>, <code>R_Calloc</code>, <code>R_Realloc</code> and <code>R_Free</code>. Memory allocated by <code>R_alloc</code> is freed by the garbage collector once the ‘watermark’ has been reset by calling <code>vmaxset</code>. This is done automatically by the wrapper code calling primitives and <code>.Internal</code> functions (and also by the wrapper code to <code>.Call</code> and <code>.External</code>), but <code>vmaxget</code> and <code>vmaxset</code> can be used to reset the watermark from within internal code if the memory is only required for a short time.</p>
+<p>The rest of R should where possible make use of the allocators made available by file <code>src/main/memory.c</code>, which are also the methods recommended in <a href="https://cran.r-project.org/doc/manuals/R-exts.html#Memory-allocation" data-manual="R-exts">Memory allocation</a> in Writing R Extensions for use in R packages, namely the use of <code>R_alloc</code>, <code>R_Calloc</code>, <code>R_Realloc</code> and <code>R_Free</code>. Memory allocated by <code>R_alloc</code> is freed by the garbage collector once the ‘watermark’ has been reset by calling <code>vmaxset</code>. This is done automatically by the wrapper code calling primitives and <code>.Internal</code> functions (and also by the wrapper code to <code>.Call</code> and <code>.External</code>), but <code>vmaxget</code> and <code>vmaxset</code> can be used to reset the watermark from within internal code if the memory is only required for a short time.</p>
 <p>All of the methods of memory allocation mentioned so far are relatively expensive. All R platforms support <code>alloca</code>, and in almost all cases<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> this is managed by the compiler, allocates memory on the C stack and is very efficient.</p>
 <div class="no-row-height column-margin column-container"><div id="fn14"><p><sup>14</sup>&nbsp;but apparently not on Windows.</p></div></div><p>There are two disadvantages in using <code>alloca</code>. First, it is fragile and care is needed to avoid writing (or even reading) outside the bounds of the allocation block returned. Second, it increases the danger of overflowing the C stack. It is suggested that it is only used for smallish allocations (up to tens of thousands of bytes), and that</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">R_CheckStack</span>();</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -981,7 +981,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="section anchored" data-number="1.16" data-anchor-id="visibility"><span class="header-section-number">1.16</span> Visibility</h2>
 <section id="hiding-c-entry-points" class="level3 subsection" data-number="1.16.1">
 <h3 class="subsection anchored" data-number="1.16.1" data-anchor-id="hiding-c-entry-points"><span class="header-section-number">1.16.1</span> Hiding C entry points</h3>
-<p>We make use of the visibility mechanisms discussed in section ‘Controlling Visibility’ in the ‘Writing R Extensions’ manual, C entry points not needed outside the main R executable/dynamic library (and in particular in no package nor module) should be prefixed by <code>attribute_hidden</code>. Minimizing the visibility of symbols in the R dynamic library will speed up linking to it (which packages will do) and reduce the possibility of linking to the wrong entry points of the same name. In addition, on some platforms reducing the number of entry points allows more efficient versions of PIC to be used: somewhat over half the entry points are hidden. A convenient way to hide variables (as distinct from functions) is to declare them <code>extern0</code> in header file <code>Defn.h</code>.</p>
+<p>We make use of the visibility mechanisms discussed in <a href="https://cran.r-project.org/doc/manuals/R-exts.html#Controlling-visibility" data-manual="R-exts">Controlling visibility</a> in Writing R Extensions. C entry points not needed outside the main R executable/dynamic library (and in particular in no package nor module) should be prefixed by <code>attribute_hidden</code>. Minimizing the visibility of symbols in the R dynamic library will speed up linking to it (which packages will do) and reduce the possibility of linking to the wrong entry points of the same name. In addition, on some platforms reducing the number of entry points allows more efficient versions of PIC to be used: somewhat over half the entry points are hidden. A convenient way to hide variables (as distinct from functions) is to declare them <code>extern0</code> in header file <code>Defn.h</code>.</p>
 <p>The visibility mechanism used is only available with some compilers and platforms, and in particular not on Windows, where an alternative mechanism is used. Entry points will not be made available in <code>R.dll</code> if they are listed in the file <code>src/gnuwin32/Rdll.hide</code>. Entries in that file start with a space and must be strictly in alphabetic order in the C locale (use <code>sort</code> on the file to ensure this if you change it). It is possible to hide Fortran as well as C entry points via this file: the former are lower-cased and have an underline as suffix, and the suffixed name should be included in the file. Some entry points exist only on Windows or need to be visible only on Windows, and some notes on these are provided in file <code>src/gnuwin32/Maintainters.notes</code>.</p>
 <p>Because of the advantages of reducing the number of visible entry points, they should be declared <code>attribute_hidden</code> where possible. Note that this only has an effect on a shared-R-library build, and so care is needed not to hide entry points that are legitimately used by packages. So it is best if the decision on visibility is made when a new entry point is created, including the decision if it should be included in header file <code>Rinternals.h</code>. A list of the visible entry points on shared-R-library build on a reasonably standard Unix-alike can be made by something like</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>nm <span class="sc">-</span>g libR.so <span class="sc">|</span> grep <span class="st">' [BCDT] '</span> <span class="sc">|</span> cut <span class="sc">-</span>b20<span class="sc">-</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1047,18 +1047,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1090,7 +1079,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1098,7 +1109,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
