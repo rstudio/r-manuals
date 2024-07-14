@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.53">
+<meta name="generator" content="quarto-1.5.54">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -1121,7 +1121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </blockquote>
 <p>Among the important internal <code>SEXPTYPE</code>s are <code>LANGSXP</code>, <code>CHARSXP</code>, <code>PROMSXP</code>, etc. (<strong>N.B.</strong>: although it is possible to return objects of internal types, it is unsafe to do so as assumptions are made about how they are handled which may be violated at user-level evaluation.) More details are given in <a href="https://cran.r-project.org/doc/manuals/R-ints.html#R-Internal-Structures" data-manual="R-ints">R Internal Structures</a> in R Internals.</p>
 <p>Unless you are very sure about the type of the arguments, the code should check the data types. Sometimes it may also be necessary to check data types of objects created by evaluating an R expression in the C code. You can use functions like <code>isReal</code>, <code>isInteger</code> and <code>isString</code> to do type checking. Other such functions declared in the header file <code>Rinternals.h</code> include <code>isNull</code>, <code>isSymbol</code>, <code>isLogical</code>, <code>isComplex</code>, <code>isExpression</code>, and <code>isEnvironment</code>. All of these take a <code>SEXP</code> as argument and return 1 or 0 to indicate <code>TRUE</code> or <code>FALSE</code>.</p>
-<p>What happens if the <code>SEXP</code> is not of the correct type? Sometimes you have no other option except to generate an error. You can use the function <code>error</code> for this. It is usually better to coerce the object to the correct type. For example, if you find that an <code>SEXP</code> is of the type <code>INTEGER</code>, but you need a <code>REAL</code> object, you can change the type by using</p>
+<p>What happens if the <code>SEXP</code> is not of the correct type? Sometimes you have no other option except to generate an error. You can use the function <code>Rf_error</code> for this. It is usually better to coerce the object to the correct type. For example, if you find that an <code>SEXP</code> is of the type <code>INTEGER</code>, but you need a <code>REAL</code> object, you can change the type by using</p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>newSexp <span class="ot">=</span> <span class="fu">PROTECT</span>(<span class="fu">coerceVector</span>(oldSexp, REALSXP));</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Protection is needed as a new <em>object</em> is created; the object formerly pointed to by the <code>SEXP</code> is still protected but now unused.<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a></p>
 <div class="no-row-height column-margin column-container"><div id="fn17"><p><sup>17</sup>&nbsp;If no coercion was required, <code>coerceVector</code> would have passed the old object through unchanged.</p></div></div><p>All the coercion functions do their own error-checking, and generate <code>NA</code>s with a warning or stop with an error as appropriate.</p>

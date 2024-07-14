@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.53">
+<meta name="generator" content="quarto-1.5.54">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -460,10 +460,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> warningcall<span class="op">(</span>SEXP call<span class="op">,</span> <span class="dt">const</span> <span class="dt">char</span> <span class="op">*</span> format<span class="op">,</span> <span class="op">...);</span></span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> warningcall_immediate<span class="op">(</span>SEXP call<span class="op">,</span> <span class="dt">const</span> <span class="dt">char</span> <span class="op">*</span> format<span class="op">,</span> <span class="op">...);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>These have the same call sequences as calls to <code>printf</code>, but in the simplest case can be called with a single character string argument giving the error message. (Don’t do this if the string contains <code>%</code> or might otherwise be interpreted as a format.)</p>
-<p>These are defined in header <code>R_ext/Error.h</code> included by <code>R.h</code>.</p>
+<p>These are defined in header <code>R_ext/Error.h</code> included by <code>R.h</code>. <strong>NB</strong>: when <code>R_NO_REMAP</code> is defined (as is recommended for C++ code), <code>Rf_error</code> etc must be used.</p>
 <section id="error-signaling-from-fortran" class="level3 subsection" data-number="6.2.1">
 <h3 class="subsection anchored" data-number="6.2.1" data-anchor-id="error-signaling-from-fortran"><span class="header-section-number">6.2.1</span> Error signaling from Fortran</h3>
-<p>There are two interface function provided to call <code>error</code> and <code>warning</code> from Fortran code, in each case with a simple character string argument. They are defined as</p>
+<p>There are two interface function provided to call <code>Rf_error</code> and <code>Rf_warning</code> from Fortran code, in each case with a simple character string argument. They are defined as</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>subroutine <span class="fu">rexit</span>(message)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>subroutine <span class="fu">rwarn</span>(message)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Messages of more than 255 characters are truncated, with a warning.</p>
@@ -520,7 +520,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>          subroutine putRNGseed<span class="op">()</span> bind<span class="op">(</span>C<span class="op">,</span> name <span class="op">=</span> <span class="st">"PutRNGstate"</span><span class="op">)</span></span>
 <span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>          end subroutine putRNGseed</span>
 <span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>        end interface</span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>      end module</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>      end module rngfuncs</span>
 <span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>      </span>
 <span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>      subroutine testit</span>
 <span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>      use rngfuncs</span>
@@ -529,7 +529,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>      X <span class="op">=</span> unifRand<span class="op">()</span></span>
 <span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>      print <span class="op">*,</span> X</span>
 <span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>      call putRNGSeed<span class="op">()</span></span>
-<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>      end</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>      end subroutine testit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="missing-and-ieee-special-values" class="level2 section" data-number="6.4">
@@ -1415,7 +1415,7 @@ with the same arguments, but all pointers.</code></pre>
 <p><code>R_tryCatchError</code> establishes an exiting handler for conditions inheriting form class <code>error</code>.</p>
 <p><code>R_tryCatch</code> can be used to establish a handler for other conditions and to register a cleanup action. The conditions to be handled are specified as a character vector (<code>STRSXP</code>). A <code>NULL</code> pointer can be passed as <code>fun</code> or <code>clean</code> if condition handling or cleanup are not needed.</p>
 <p>These are currently implemented using the R-level <code>tryCatch</code> mechanism so are subject to some overhead.</p>
-<p><code>R_withCallingErrorHandler</code> establishes a calling handler for conditions inheriting form class <code>error</code>. It establishes the handler without calling back into R and will therefore be more efficient.</p>
+<p><code>R_withCallingErrorHandler</code> establishes a calling handler for conditions inheriting from class <code>error</code>. It establishes the handler without calling back into R and will therefore be more efficient.</p>
 <p>The function <code>R_UnwindProtect</code> can be used to ensure that a cleanup action takes place on ordinary return as well as on a non-local transfer of control, which R implements as a <code>longjmp</code>.</p>
 <div class="sourceCode" id="cb61"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>SEXP R_UnwindProtect<span class="op">(</span>SEXP <span class="op">(*</span>fun<span class="op">)(</span><span class="dt">void</span> <span class="op">*</span>data<span class="op">),</span> <span class="dt">void</span> <span class="op">*</span>data<span class="op">,</span></span>
 <span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>                     <span class="dt">void</span> <span class="op">(*</span>clean<span class="op">)(</span><span class="dt">void</span> <span class="op">*</span>data<span class="op">,</span> Rboolean jump<span class="op">),</span> <span class="dt">void</span> <span class="op">*</span>cdata<span class="op">,</span></span>

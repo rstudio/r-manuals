@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.53">
+<meta name="generator" content="quarto-1.5.54">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -1115,6 +1115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The Fortran 2023 released in Nov 2023: as usual compiler vendors are introducing support incrementally. For Intel’s <code>ifx</code> see <a href="https://www.intel.com/content/www/us/en/developer/articles/technical/fortran-language-and-openmp-features-in-ifx.html#Fortran%20Standards" class="uri">https://www.intel.com/content/www/us/en/developer/articles/technical/fortran-language-and-openmp-features-in-ifx.html#Fortran%20Standards</a>. For LLVM’s <code>flang-new</code> see <a href="https://flang.llvm.org/docs/F202X.html" class="uri">https://flang.llvm.org/docs/F202X.html</a>. <code>gfortran</code> does not have complete support even for the 2008 and 2018 standards, but the option <code>-std=f2023</code> is supported from version 14.1.</p>
 <p>Modern versions of Fortran support modules, whereby compiling one source file creates a module file which is then included in others. (Module files typically have a <code>.mod</code> extension: they do depend on the compiler used and so should never be included in a package.) This creates a dependence which <code>make</code> will not know about and often causes installation with a parallel make to fail. Thus it is necessary to add explicit dependencies to <code>src/Makevars</code> to tell <code>make</code> the constraints on the order of compilation. For example, if file <code>iface.f90</code> creates a module <code>iface</code> used by files <code>cmi.f90</code> and <code>dmi.f90</code> then <code>src/Makevars</code> needs to contain something like</p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="dv">cmi.o dmi.o:</span><span class="dt"> iface.o</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Some maintainers have found it difficult to find <em>all</em> the module dependencies which leads to hard-to-reproduce installation failures. There are tools available to find these, including the Intel compiler’s flag <code>-gen-dep</code> and <code>makedepf90</code>.</p>
 <p>Note that it is not portable (although some platforms do accept it) to define a module of the same name in multiple source files.</p>
 </section>
 <section id="using-c-code" class="level3 subsection page-columns page-full" data-number="1.2.7">
