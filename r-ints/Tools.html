@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.54">
+<meta name="generator" content="quarto-1.5.55">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -762,6 +762,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <dd>
 <p>If set to a non-empty value, makes installation warnings about non-UTF-8 strings in a package’s code (<code>R/.*R</code>) and help (<code>man/*.Rd</code>) files into errors. On most platforms invalid bytes in these files get converted to escapes (see <code>iconv(sub = "byte")</code>), but on others these lead to installation failure. Default: unset (but true for CRAN submission checks).</p>
 </dd>
+<dt><code>_R_CHECK_XREFS_NOTE_MISSING_PACKAGE_ANCHORS_</code> <a href="#index-_r_check_xrefs_note_missing_package_anchors_" class="copiable-anchor">¶</a></dt>
+<dd>
+<p>If set to a true value, check whether Rd cross-references to targets not in the package itself or the base packages have package anchors. Default: false (but true for CRAN submission checks).</p>
+</dd>
 </dl>
 <p>The following variables control checks for undeclared/unconditional use of other packages. They work by setting up a temporary library directory and setting <code>.libPaths()</code> to just that and <code>.Library</code>, so are only effective if additional packages are installed somewhere other than <code>.Library</code>. The temporary library is populated by symbolic links<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> to installed packages not also in <code>.Library</code>.</p>
 <div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;under Windows, junction points, or copies if environment variable <code>R_WIN_NO_JUNCTIONS</code> has a non-empty value.</p></div></div><dl>
@@ -839,7 +843,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>_R_CHECK_URLS_SHOW_301_STATUS_<span class="ot">=</span>true</span>
 <span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>_R_CHECK_UNDOC_USE_ALL_NAMES_<span class="ot">=</span>true</span>
 <span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>_R_CHECK_S3_METHODS_SHOW_POSSIBLE_ISSUES_<span class="ot">=</span>true</span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>_R_CHECK_RD_NOTE_LOST_BRACES_<span class="ot">=</span>true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>_R_CHECK_RD_NOTE_LOST_BRACES_<span class="ot">=</span>true</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>_R_CHECK_XREFS_NOTE_MISSING_PACKAGE_ANCHORS_<span class="ot">=</span>true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>These are turned on by <code>R CMD check --as-cran</code>: the incoming checks also use</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>_R_CHECK_FORCE_SUGGESTS_<span class="ot">=</span><span class="cn">FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>since some packages do suggest other packages not available on CRAN or other commonly-used repositories.</p>
