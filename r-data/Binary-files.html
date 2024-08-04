@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.55">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -275,7 +275,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Binary connections (<a href="Connections.html#connections">Connections</a>) are now the preferred way to handle binary files.</p>
 <section id="binary-data-formats" class="level2 section" data-number="5.1">
 <h2 class="section anchored" data-number="5.1" data-anchor-id="binary-data-formats"><span class="header-section-number">5.1</span> Binary data formats</h2>
-<p>Packages <a href="https://CRAN.R-project.org/package=h5"><strong>h5</strong></a>, Bioconductor’s <strong>rhdf5</strong>, <a href="https://CRAN.R-project.org/package=RNetCDF"><strong>RNetCDF</strong></a> and <a href="https://CRAN.R-project.org/package=ncdf4"><strong>ncdf4</strong></a> on CRAN provide interfaces to NASA’s HDF5 (Hierarchical Data Format, see <a href="https://www.hdfgroup.org/HDF5/" class="uri">https://www.hdfgroup.org/HDF5/</a>) and to UCAR’s netCDF data files (network Common Data Form, see <a href="https://www.unidata.ucar.edu/software/netcdf/" class="uri">https://www.unidata.ucar.edu/software/netcdf/</a>).</p>
+<p>Packages <a href="https://CRAN.R-project.org/package=h5"><strong>h5</strong></a>, Bioconductor’s <strong>rhdf5</strong>, <a href="https://CRAN.R-project.org/package=RNetCDF"><strong>RNetCDF</strong></a> and <a href="https://CRAN.R-project.org/package=ncdf4"><strong>ncdf4</strong></a> on CRAN provide interfaces to NASA’s HDF5 (Hierarchical Data Format, see <a href="https://www.hdfgroup.org/wp-content/uploads/2017/07/HDF5.pdf" class="uri">https://www.hdfgroup.org/wp-content/uploads/2017/07/HDF5.pdf</a>) and to UCAR’s netCDF data files (network Common Data Form, see <a href="https://www.unidata.ucar.edu/software/netcdf/" class="uri">https://www.unidata.ucar.edu/software/netcdf/</a>).</p>
 <p>Both of these are systems to store scientific data in array-oriented ways, including descriptions, labels, formats, units, …. HDF5 also allows <em>groups</em> of arrays, and the R interface maps lists to HDF5 groups, and can write numeric and character vectors and matrices.</p>
 <p>NetCDF’s version 4 format (confusingly, implemented in netCDF 4.1.1 and later, but not in 4.0.1) includes the use of various HDF5 formats. This is handled by package <a href="https://CRAN.R-project.org/package=ncdf4"><strong>ncdf4</strong></a> whereas <a href="https://CRAN.R-project.org/package=RNetCDF"><strong>RNetCDF</strong></a> handles version 3 files.</p>
 <p>The availability of software to support these formats is somewhat limited by platform, especially on Windows.</p>
