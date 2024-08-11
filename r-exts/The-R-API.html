@@ -612,7 +612,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Where supported, <em>link time optimization</em> provides a reliable way to check the consistency of calls to C from Fortran or <em>vice versa</em>. See <a href="Debugging.html#using-link-time-optimization">Using Link-time Optimization</a>. One place where this occurs is the registration of <code>.Fortran</code> calls in C code (see <a href="System-and-foreign-language-interfaces.html#registering-native-routines">Registering native routines</a>). For example</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>init<span class="op">.</span>c<span class="op">:</span><span class="dv">10</span><span class="op">:</span><span class="dv">13</span><span class="op">:</span> warning<span class="op">:</span> type of <span class="ch">'v</span><span class="er">som_</span><span class="ch">'</span> does not match original</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a> declaration <span class="op">[-</span>Wlto<span class="op">-</span>type<span class="op">-</span>mismatch<span class="op">]</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">extern</span> <span class="dt">void</span> F77_NAME<span class="op">(</span>vsom<span class="op">)(</span><span class="dt">void</span> <span class="op">*,</span> <span class="dt">void</span> <span class="op">*,</span> <span class="dt">void</span> <span class="op">*,</span> <span class="dt">void</span> <span class="op">*,</span> </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">extern</span> <span class="dt">void</span> F77_NAME<span class="op">(</span>vsom<span class="op">)(</span><span class="dt">void</span> <span class="op">*,</span> <span class="dt">void</span> <span class="op">*,</span> <span class="dt">void</span> <span class="op">*,</span> <span class="dt">void</span> <span class="op">*,</span></span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> <span class="op">*,</span> <span class="dt">void</span> <span class="op">*,</span> <span class="dt">void</span> <span class="op">*,</span> <span class="dt">void</span> <span class="op">*,</span> <span class="dt">void</span> <span class="op">*);</span></span>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>vsom<span class="op">.</span>f90<span class="op">:</span><span class="dv">20</span><span class="op">:</span><span class="dv">33</span><span class="op">:</span> note<span class="op">:</span> type mismatch in parameter <span class="dv">9</span></span>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>   subroutine vsom<span class="op">(</span>neurons<span class="op">,</span>dt<span class="op">,</span>dtrows<span class="op">,</span>dtcols<span class="op">,</span>xdim<span class="op">,</span>ydim<span class="op">,</span>alpha<span class="op">,</span>train<span class="op">)</span></span>
@@ -643,7 +643,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> cmsg<span class="op">[</span>msg_len<span class="op">+</span><span class="dv">1</span><span class="op">];</span></span>
 <span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    strncpy<span class="op">(</span>cmsg<span class="op">,</span> msg<span class="op">,</span> msg_len<span class="op">);</span></span>
 <span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    cmsg<span class="op">[</span>msg_len<span class="op">]</span> <span class="op">=</span> <span class="ch">'</span><span class="sc">\0</span><span class="ch">'</span><span class="op">;</span> <span class="co">// nul-terminate the string, to be sure</span></span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">// do something with 'cmsg' </span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">// do something with 'cmsg'</span></span>
 <span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>in code depending on <code>R(&gt;= 3.6.2)</code>. For earlier versions of R we could just assume that <code>msg</code> is NUL-terminated (not guaranteed, but people have been getting away with it for many years), so the complete C side might be</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifndef USE_FC_LEN_T</span></span>
@@ -657,12 +657,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">char</span> cmsg<span class="op">[</span>msg_len<span class="op">+</span><span class="dv">1</span><span class="op">];</span></span>
 <span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    strncpy<span class="op">(</span>cmsg<span class="op">,</span> msg<span class="op">,</span> msg_len<span class="op">);</span></span>
 <span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>    cmsg<span class="op">[</span>msg_len<span class="op">]</span> <span class="op">=</span> <span class="ch">'</span><span class="sc">\0</span><span class="ch">'</span><span class="op">;</span></span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">// do something with 'cmsg' </span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">// do something with 'cmsg'</span></span>
 <span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
 <span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a><span class="pp">#else</span></span>
 <span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> F77_NAME<span class="op">(</span>rmsg<span class="op">)(</span><span class="dt">char</span> <span class="op">*</span>msg<span class="op">)</span></span>
 <span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">// do something with 'msg' </span></span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">// do something with 'msg'</span></span>
 <span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
 <span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>(<code>USE_FC_LEN_T</code> is the default as from R 4.3.0.)</p>
@@ -717,7 +717,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="pp"># define FCONE</span></span>
 <span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span>
 <span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="op">...</span></span>
-<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>        F77_CALL<span class="op">(</span>dgemm<span class="op">)(</span><span class="st">"N"</span><span class="op">,</span> <span class="st">"T"</span><span class="op">,</span> <span class="op">&amp;</span>nrx<span class="op">,</span> <span class="op">&amp;</span>ncy<span class="op">,</span> <span class="op">&amp;</span>ncx<span class="op">,</span> <span class="op">&amp;</span>one<span class="op">,</span> x<span class="op">,</span> </span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>        F77_CALL<span class="op">(</span>dgemm<span class="op">)(</span><span class="st">"N"</span><span class="op">,</span> <span class="st">"T"</span><span class="op">,</span> <span class="op">&amp;</span>nrx<span class="op">,</span> <span class="op">&amp;</span>ncy<span class="op">,</span> <span class="op">&amp;</span>ncx<span class="op">,</span> <span class="op">&amp;</span>one<span class="op">,</span> x<span class="op">,</span></span>
 <span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>                        <span class="op">&amp;</span>nrx<span class="op">,</span> y<span class="op">,</span> <span class="op">&amp;</span>nry<span class="op">,</span> <span class="op">&amp;</span>zero<span class="op">,</span> z<span class="op">,</span> <span class="op">&amp;</span>nrx FCONE FCONE<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>(Note there is no comma before or between the <code>FCONE</code> invocations.) It is strongly recommended that packages which call from C/C++ BLAS/LAPACK routines with character arguments adopt this approach: packages not using will fail to install as from R 4.3.0.</p>
 </section>
@@ -1589,7 +1589,7 @@ with the same arguments, but all pointers.</code></pre>
 </tr>
 <tr class="even">
 <td><code>R_ext/Applic.h</code> optimizat</td>
-<td style="text-align: left;">ion and integration</td>
+<td style="text-align: left;">ion, integration and some Lapack ones)</td>
 </tr>
 <tr class="odd">
 <td><code>R_ext/BLAS.h</code> C definit</td>
