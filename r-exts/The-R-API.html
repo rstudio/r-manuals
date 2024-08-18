@@ -369,7 +369,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The recommended procedure to use these is to include the header file <code>R.h</code> in your C code by</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;R.h&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This will include several other header files from the directory <code>R_INCLUDE_DIR/R_ext</code>, and there are other header files there that can be included too, but many of the features they contain should be regarded as undocumented and unstable.</p>
-<p>Most of these header files, including all those included by <code>R.h</code>, can be used from C++ code.</p>
+<p>Most of these header files, including all those included by <code>R.h</code>, can be used from C++ code. (However, they cannot safely be included in a <code>extern "C" { }</code> block as they may include C++ headers when included from C++ code—and whether this succeeds is system-specific).</p>
 <blockquote class="blockquote">
 <p><strong>Note:</strong> Because R re-maps many of its external names to avoid clashes with system or user code, it is <em>essential</em> to include the appropriate header files when using these entry points.</p>
 </blockquote>
@@ -443,7 +443,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Users should arrange to <code>R_Free</code> this memory when no longer needed, including on error or user interrupt. This can often be done most conveniently from an <code>on.exit</code> action in the calling R function – see <code>pwilcox</code> for an example.</p>
 <p>Do not assume that memory allocated by <code>R_Calloc</code>/<code>R_Realloc</code> comes from the same pool as used by <code>malloc</code>:<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> in particular do not use <code>free</code> or <code>strdup</code> with it.</p>
 <div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;That was not the case on Windows prior to R 4.2.0.</p></div></div><p>Memory obtained by these macros should be aligned in the same way as <code>malloc</code>, that is ‘suitably aligned for any kind of variable’.</p>
-<p>Historically the macros <code>Calloc</code>, <code>Free</code> and <code>Realloc</code> were used, and these remain available unless <code>STRICT_R_HEADERS</code> was defined prior to the inclusion of the header.</p>
+<p>Historically the macros <code>Calloc</code>, <code>Free</code> and <code>Realloc</code> were used, and these remain available unless <code>STRICT_R_HEADERS</code> was defined prior to the inclusion of the header, but these are likely to be removed in the near future.</p>
 <p><code>R_Calloc</code>, <code>R_Realloc</code>, and <code>R_Free</code> are currently implemented as macros expanding to calls to <code>R_chk_calloc</code>, <code>R_chk_realloc</code>, and <code>R_chk_free</code>, respectively. These should not be called directly as they may be removed in the future.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> <span class="op">*</span> CallocCharBuf<span class="op">(</span><span class="dt">size_t</span> n<span class="op">)</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> <span class="op">*</span> Memcpy<span class="op">(</span>q<span class="op">,</span> p<span class="op">,</span> n<span class="op">)</span></span>
@@ -1204,7 +1204,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 </blockquote>
-<p>There are a set of constants (<code>PI</code>, <code>DOUBLE_EPS</code>) (and so on) defined (unless <code>STRICT_R_HEADERS</code> is defined) in the included header <code>R_ext/Constants.h</code>, mainly for compatibility with S. All but <code>PI</code> are deprecated and should be replaced by the C99/C++11 versions used in that file.</p>
+<p>For compatibility with S this file defines the constant <code>PI</code> (unless <code>STRICT_R_HEADERS</code> is defined): this is deprecated and should be replaced by <code>M_PI</code>. Header <code>Constants.h</code> includes either C header <code>float.h</code> or C++ header <code>cfloat</code>, which provide constants such as <code>DBL_MAX</code>.</p>
 <p>Further, the included header <code>R_ext/Boolean.h</code> has enumeration constants <code>TRUE</code> and <code>FALSE</code> of type <code>Rboolean</code> in order to provide a way of using “logical” variables in C consistently. This can conflict with other software: for example it conflicts with the headers in IJG’s <code>jpeg-9</code> (but not earlier versions).</p>
 </section>
 </section>
@@ -1589,7 +1589,7 @@ with the same arguments, but all pointers.</code></pre>
 </tr>
 <tr class="even">
 <td><code>R_ext/Applic.h</code> optimizat</td>
-<td style="text-align: left;">ion, integration and some Lapack ones)</td>
+<td style="text-align: left;">ion, integration and some LAPACK ones)</td>
 </tr>
 <tr class="odd">
 <td><code>R_ext/BLAS.h</code> C definit</td>

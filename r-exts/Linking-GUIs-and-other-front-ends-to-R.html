@@ -466,12 +466,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="category">Function:</span><em>void</em> <strong>R_ClearerrConsole</strong> <em>()</em> <a href="#index-r_clearerrconsole-2" class="copiable-anchor">¶</a></p>
 <p>: These functions interact with a console.</p>
 <pre><code>`R_ReadConsole` prints the given prompt at the console and then does
-a `fgets(3)`--like operation, transferring up to `buflen`
-characters into the buffer `buf`. The last two bytes
-should be set to `"\n\0"` to preserve sanity. If
-`hist` is non-zero, then the line should be added to any
-command history which is being maintained. The return value is 0 is
-no input is available and \&gt;0 otherwise.
+a `fgets(3)`--like operation, writing up to `buflen`
+bytes into the buffer `buf`. The last of the bytes
+written should be `"\0"`. When there is enough space in
+the buffer to hold the full input line including the line
+terminator, the line terminator should be included. Otherwise, the
+rest of the line should be returned in subsequent calls to
+`R_ReadConsole`. The last call should return data terminated by the
+line terminator. If `hist` is non-zero, then the line
+should be added to any command history which is being maintained.
+The return value is 0 if no input is available and \&gt;0 otherwise.
 
 `R_WriteConsoleEx` writes the given buffer to the console,
 `otype` specifies the output type (regular output or
