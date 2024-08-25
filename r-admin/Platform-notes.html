@@ -439,7 +439,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The compilers are now all under Intel’s ‘oneAPI’ brand. The revamped ones are <code>icx</code>, <code>icpx</code> and <code>ifx</code>; they are identified by the C/C++ macro <code>__INTEL_LLVM_COMPILER</code> (and do not define <code>__INTEL_COMPILER</code>: they also define <code>__clang__</code> and <code>__clang_major__</code>).</p>
 <p>The C++ compiler uses the system’s <code>libstdc++</code> as its runtime library rather than LLVM’s <code>libc++</code>.</p>
 <p>Standalone installers (which are free-of-charge) are available from <a href="https://www.intel.com/content/www/us/en/developer/articles/tool/oneapi-standalone-components.html" class="uri">https://www.intel.com/content/www/us/en/developer/articles/tool/oneapi-standalone-components.html</a>: they are also part of the oneAPI Base and HPC (for Fortran) toolkits.</p>
-<p>We tried the compilers in oneAPI 2024.2.0 and 2023.x.y using (the paths do differ by compiler version)</p>
+<p>We tried the compilers in oneAPI 2024.2.1 and 2023.x.y using (the paths do differ by compiler version)</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dt">IP</span><span class="ch">=</span><span class="st">/path/to/compilers/bin/</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="dt">CC</span><span class="ch">=$I</span><span class="st">P/icx</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="dt">CXX</span><span class="ch">=$I</span><span class="st">P/icpx</span></span>
