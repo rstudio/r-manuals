@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -1038,7 +1038,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">PROTECT_WITH_INDEX</span>(<span class="at">s =</span> <span class="fu">eval</span>(OS<span class="ot">-&gt;</span>R_fcall, OS<span class="ot">-&gt;</span>R_env), <span class="sc">&amp;</span>ipx);</span>
 <span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">REPROTECT</span>(<span class="at">s =</span> <span class="fu">coerceVector</span>(s, REALSXP), ipx);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Note that it is dangerous to mix <code>UNPROTECT_PTR</code> also with <code>PROTECT_WITH_INDEX</code>, as the former changes the protection locations of objects that were protected after the one being unprotected.</p>
-<p>There is another way to avoid the effects of garbage collection: a call to <code>R_PreserveObject</code> adds an object to an internal list of objects not to be collects, and a subsequent call to <code>R_ReleaseObject</code> removes it from that list. This provides a way for objects which are not returned as part of R objects to be protected across calls to compiled code: on the other hand it becomes the user’s responsibility to release them when they are no longer needed (and this often requires the use of a finalizer). It is less efficient than the normal protection mechanism, and should be used sparingly.</p>
+<p>There is another way to avoid the effects of garbage collection: a call to <code>R_PreserveObject</code> adds an object to an internal list of objects not to be collected, and a subsequent call to <code>R_ReleaseObject</code> removes it from that list. This provides a way for objects which are not returned as part of R objects to be protected across calls to compiled code: on the other hand it becomes the user’s responsibility to release them when they are no longer needed (and this often requires the use of a finalizer). It is less efficient than the normal protection mechanism, and should be used sparingly.</p>
 <p>For functions from packages as well as R to safely co-operate in protecting objects, certain rules have to be followed:</p>
 <ul>
 <li>Pointer-protection balance. Calls to <code>PROTECT</code> and <code>UNPROTECT</code> should balance in each function. A function may only call <code>UNPROTECT</code> or <code>REPROTECT</code> on objects it has itself protected. Note that the pointer protection stack balance is restored automatically on non-local transfer of control (See <a href="The-R-API.html#condition-handling-and-cleanup-code">Condition handling and cleanup code</a>.), as if a call to <code>UNPROTECT</code> was invoked with the right argument.</li>
@@ -1824,7 +1824,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>It is probably not a good idea to allow an external pointer to be <code>save</code>d and then reloaded, but if this happens the pointer will be set to the C <code>NULL</code> pointer.</p>
 <p>Finalizers can be run at many places in the code base and much of it, including the R interpreter, is not re-entrant. So great care is needed in choosing the code to be run in a finalizer. Finalizers are marked to be run at garbage collection but only run at a somewhat safe point thereafter.</p>
 <p>Weak references are used to allow the programmer to maintain information on entities without preventing the garbage collection of the entities once they become unreachable.</p>
-<p>A weak reference contains a key and a value. The value is reachable is if it either reachable directly or <em>via</em> weak references with reachable keys. Once a value is determined to be unreachable during garbage collection, the key and value are set to <code>R_NilValue</code> and the finalizer will be run later in the garbage collection.</p>
+<p>A weak reference contains a key and a value. The value is reachable if it is either reachable directly or <em>via</em> weak references with reachable keys. Once a value is determined to be unreachable during garbage collection, the key and value are set to <code>R_NilValue</code> and the finalizer will be run later in the garbage collection.</p>
 <p>Weak reference objects are created by one of</p>
 <div class="sourceCode" id="cb126"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a>SEXP R_MakeWeakRef<span class="op">(</span>SEXP key<span class="op">,</span> SEXP val<span class="op">,</span> SEXP fin<span class="op">,</span> Rboolean onexit<span class="op">);</span></span>
 <span id="cb126-2"><a href="#cb126-2" aria-hidden="true" tabindex="-1"></a>SEXP R_MakeWeakRefC<span class="op">(</span>SEXP key<span class="op">,</span> SEXP val<span class="op">,</span> R_CFinalizer_t fin<span class="op">,</span></span>
