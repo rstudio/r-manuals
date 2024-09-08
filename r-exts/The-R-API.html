@@ -583,16 +583,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <dd>
 <p>to call a Fortran routine from C</p>
 </dd>
-<dt><code>F77_COMDECL(name)</code></dt>
-<dd>
-<p>to declare a Fortran common block in C</p>
-</dd>
-<dt><code>F77_COM(name)</code></dt>
-<dd>
-<p>to access a Fortran common block from C</p>
-</dd>
 </dl>
-<p>On most current platforms these are all the same, but it is unwise to rely on this. Note that names containing underscores were not legal in Fortran 77, and are not portably handled by the above macros. (Also, all Fortran names for use by R are lower case, but this is not enforced by the macros.)</p>
+<p>On current platforms these are the same, but it is unwise to rely on this. Note that names containing underscores were not legal in Fortran 77, and are not portably handled by the above macros. (Also, all Fortran names for use by R are lower case, but this is not enforced by the macros.)</p>
 <p>For example, suppose we want to call R’s normal random numbers from Fortran. We need a C wrapper along the lines of</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;R.h&gt;</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
