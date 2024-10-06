@@ -1898,7 +1898,7 @@ with the same arguments, but all pointers.</code></pre>
 <span id="cb92-25"><a href="#cb92-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb92-26"><a href="#cb92-26" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> CLEAR_ATTRIB<span class="op">(</span>SEXP x<span class="op">)</span></span>
 <span id="cb92-27"><a href="#cb92-27" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb92-28"><a href="#cb92-28" aria-hidden="true" tabindex="-1"></a>    SET_ATTRIB<span class="op">(</span>CHK<span class="op">(</span>x<span class="op">),</span> R_NilValue<span class="op">);</span></span>
+<span id="cb92-28"><a href="#cb92-28" aria-hidden="true" tabindex="-1"></a>    SET_ATTRIB<span class="op">(</span>x<span class="op">,</span> R_NilValue<span class="op">);</span></span>
 <span id="cb92-29"><a href="#cb92-29" aria-hidden="true" tabindex="-1"></a>    SET_OBJECT<span class="op">(</span>x<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
 <span id="cb92-30"><a href="#cb92-30" aria-hidden="true" tabindex="-1"></a>    UNSET_S4_OBJECT<span class="op">(</span>x<span class="op">);</span></span>
 <span id="cb92-31"><a href="#cb92-31" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
