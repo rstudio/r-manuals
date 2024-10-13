@@ -1353,9 +1353,9 @@ with the same arguments, but all pointers.</code></pre>
 <span class="category">Function:</span><em>void</em> <strong>R_free_tmpnam</strong> <em>(char *<code>name</code>)</em> <a href="#index-r_free_tmpnam-2" class="copiable-anchor">¶</a></p>
 <p>: Return a pathname for a temporary file with name beginning with <code>prefix</code> and ending with <code>fileext</code> in directory <code>tmpdir</code>. A <code>NULL</code> prefix or extension is replaced by <code>""</code>. Note that the return value is dynamically allocated and should be freed using <code>R_free_tmpnam</code> when no longer needed (unlike the system call <code>tmpnam</code>). Freeing the result using <code>free</code> is no longer recommended.</p>
 <!-- -->
-<p><span class="category">Function:</span><em>void</em> <strong>R_atof</strong> <em>(const char* <code>str</code>)</em> <a href="#index-r_atof-2" class="copiable-anchor">¶</a><br>
-<span class="category">Function:</span><em>void</em> <strong>R_strtod</strong> <em>(const char* <code>str</code>, char ** <code>end</code>)</em> <a href="#index-r_strtod-2" class="copiable-anchor">¶</a></p>
-<p>: Implementations of the C99/POSIX functions <code>atof</code> and <code>strtod</code> which guarantee platform-dependent behaviour, including always using the period as the decimal point <em>aka</em> ‘radix character’ and converting <code>"NA"</code> to R’s <code>NA_REAL_</code> .</p>
+<p><span class="category">Function:</span><em>double</em> <strong>R_atof</strong> <em>(const char* <code>str</code>)</em> <a href="#index-r_atof-2" class="copiable-anchor">¶</a><br>
+<span class="category">Function:</span><em>double</em> <strong>R_strtod</strong> <em>(const char* <code>str</code>, char ** <code>end</code>)</em> <a href="#index-r_strtod-2" class="copiable-anchor">¶</a></p>
+<p>: Implementations of the C99/POSIX functions <code>atof</code> and <code>strtod</code> which guarantee platform-dependent behaviour, including always using the period as the decimal point <em>aka</em> ‘radix character’ and returning R’s <code>NA_REAL_</code> for all unconverted strings, including <code>"NA"</code>.</p>
 <p>There is also the internal function used to expand file names in several R functions, and called directly by <code>path.expand</code>.</p>
 <dl>
 <dt><span class="category">Function:</span><em>const char *</em> <strong>R_ExpandFileName</strong> <em>(const char *<code>fn</code>)</em> <a href="#index-r_expandfilename-2" class="copiable-anchor">¶</a></dt>
