@@ -766,6 +766,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <dd>
 <p>If set to a true value, check whether Rd cross-references to targets not in the package itself or the base packages have package anchors. Default: false (but true for CRAN submission checks).</p>
 </dd>
+<dt><code>_R_CHECK_PACKAGE_DATASETS_SUPPRESS_NOTES_</code> <a href="#index-_r_check_package_datasets_suppress_notes_" class="copiable-anchor">¶</a></dt>
+<dd>
+<p>If false report the use of non-ASCII strings marked as UTF-8, Latin-1 or <code>"bytes"</code> as part of <code>checking data for non-ASCII characters</code>. Non-ASCII strings of unknown encoding are always reported. Default: true, but false prior on R 4.5.0.</p>
+</dd>
 </dl>
 <p>The following variables control checks for undeclared/unconditional use of other packages. They work by setting up a temporary library directory and setting <code>.libPaths()</code> to just that and <code>.Library</code>, so are only effective if additional packages are installed somewhere other than <code>.Library</code>. The temporary library is populated by symbolic links<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> to installed packages not also in <code>.Library</code>.</p>
 <div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;under Windows, junction points, or copies if environment variable <code>R_WIN_NO_JUNCTIONS</code> has a non-empty value.</p></div></div><dl>
