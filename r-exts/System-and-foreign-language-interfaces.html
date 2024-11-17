@@ -368,6 +368,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p>Many of the functions sescribed here have entry-point names with a <code>Rf_</code> prefix: if they are called from C++ code that prefix needs to added in the C++ code.</p>
 <section id="operating-system-access" class="level2 section" data-number="5.1">
 <h2 class="section anchored" data-number="5.1" data-anchor-id="operating-system-access"><span class="header-section-number">5.1</span> Operating system access</h2>
 <p>Access to operating system functions is <em>via</em> the R functions <code>system</code> and <code>system2</code>. The details will differ by platform (see the on-line help), and about all that can safely be assumed is that the first argument will be a string <code>command</code> that will be passed for execution (not necessarily by a shell) and the second argument to <code>system</code> will be <code>internal</code> which if true will collect the output of the command into an R character vector.</p>
