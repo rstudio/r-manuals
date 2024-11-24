@@ -265,6 +265,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./Fortran-API-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fortran API index</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./Experimental-API-index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Experimental API index</span></a>
   </div>
@@ -407,7 +413,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>myfe<span class="op">.</span>o<span class="op">:</span> myfe<span class="op">.</span>c</span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        $<span class="op">(</span>CC<span class="op">)</span> $<span class="op">(</span>ALL_CPPFLAGS<span class="op">)</span> $<span class="op">(</span>CFLAGS<span class="op">)</span> <span class="op">-</span>c myfe<span class="op">.</span>c <span class="op">-</span>o $@</span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="pp">#</span><span class="er"># replace $(LIBR) $(LIBS) by $(STATIC_LIBR) if R was build with a static libR</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="pp">#</span><span class="er"># replace $(LIBR) $(LIBS) by $(STATIC_LIBR) if R was built with a static libR</span></span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>myfe<span class="op">:</span> myfe<span class="op">.</span>o</span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        $<span class="op">(</span>MAIN_LINK<span class="op">)</span> <span class="op">-</span>o $@ myfe<span class="op">.</span>o $<span class="op">(</span>LIBR<span class="op">)</span> $<span class="op">(</span>LIBS<span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>invoked as</p>
@@ -788,7 +794,7 @@ write the time stamp to the console.</code></pre>
 <div class="sourceCode" id="cb20"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> R_ProcessEvents<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>peekevent<span class="op">())</span> doevent<span class="op">();</span> <span class="co">/* Windows events for GraphApp */</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>UserBreak<span class="op">)</span> <span class="op">{</span> UserBreak <span class="op">=</span> FALSE<span class="op">;</span> onintr<span class="op">();</span> <span class="op">}</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>UserBreak<span class="op">)</span> <span class="op">{</span> UserBreak <span class="op">=</span> FALSE<span class="op">;</span> Rf_onintr<span class="op">();</span> <span class="op">}</span></span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    R_CallBackHook<span class="op">();</span></span>
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>R_tcldo<span class="op">)</span> R_tcldo<span class="op">();</span></span>
 <span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>

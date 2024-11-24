@@ -265,6 +265,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./Fortran-API-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fortran API index</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./Experimental-API-index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Experimental API index</span></a>
   </div>
@@ -510,19 +516,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>opannotate <span class="sc">--</span>source <span class="sc">/</span>path<span class="sc">/</span>to<span class="sc">/</span>R_HOME<span class="sc">/</span>bin<span class="sc">/</span>exec<span class="sc">/</span>R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The first line had to be done as root.</p>
 <p>The first report shows in which library (etc) the time was spent:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>   CPU_CLK_UNHALT...<span class="sc">|</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>      samples<span class="sc">|</span>      %<span class="sc">|</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="sc">------------------</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>       <span class="dv">278341</span> <span class="fl">91.9947</span> R</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        <span class="dv">18290</span>  <span class="fl">6.0450</span> libc.so<span class="fl">.6</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>         <span class="dv">2277</span>  <span class="fl">0.7526</span> kallsyms</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>         <span class="dv">1426</span>  <span class="fl">0.4713</span> stats.so</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>          <span class="dv">739</span>  <span class="fl">0.2442</span> libRblas.so</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>          <span class="dv">554</span>  <span class="fl">0.1831</span> libz.so.<span class="dv">1</span>.<span class="fl">2.11</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>          <span class="dv">373</span>  <span class="fl">0.1233</span> libm.so<span class="fl">.6</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>          <span class="dv">352</span>  <span class="fl">0.1163</span> libtirpc.so.<span class="dv">3</span>.<span class="fl">0.0</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>          <span class="dv">153</span>  <span class="fl">0.0506</span> ld<span class="sc">-</span>linux<span class="sc">-</span>x86<span class="fl">-64.</span>so<span class="fl">.2</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>           <span class="dv">12</span>  <span class="fl">0.0040</span> methods.so</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>        CPU_CLK_UNHALT...<span class="sc">|</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>          samples<span class="sc">|</span>      %<span class="sc">|</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        <span class="sc">------------------</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>           <span class="dv">278341</span> <span class="fl">91.9947</span> R</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>            <span class="dv">18290</span>  <span class="fl">6.0450</span> libc.so<span class="fl">.6</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>             <span class="dv">2277</span>  <span class="fl">0.7526</span> kallsyms</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>             <span class="dv">1426</span>  <span class="fl">0.4713</span> stats.so</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>              <span class="dv">739</span>  <span class="fl">0.2442</span> libRblas.so</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>              <span class="dv">554</span>  <span class="fl">0.1831</span> libz.so.<span class="dv">1</span>.<span class="fl">2.11</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>              <span class="dv">373</span>  <span class="fl">0.1233</span> libm.so<span class="fl">.6</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>              <span class="dv">352</span>  <span class="fl">0.1163</span> libtirpc.so.<span class="dv">3</span>.<span class="fl">0.0</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>              <span class="dv">153</span>  <span class="fl">0.0506</span> ld<span class="sc">-</span>linux<span class="sc">-</span>x86<span class="fl">-64.</span>so<span class="fl">.2</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>               <span class="dv">12</span>  <span class="fl">0.0040</span> methods.so</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>(<code>kallsyms</code> is the kernel.)</p>
 <p>The rest of the output is voluminous, and only extracts are shown.</p>
 <p>Most of the time within R is spent in</p>

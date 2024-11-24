@@ -265,6 +265,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./Fortran-API-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fortran API index</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./Experimental-API-index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Experimental API index</span></a>
   </div>
@@ -1252,11 +1258,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">(</span>cd libs<span class="op">;</span> \</span>
 <span id="cb71-8"><a href="#cb71-8" aria-hidden="true" tabindex="-1"></a>          CC<span class="op">=</span><span class="st">"$(CC)"</span> CFLAGS<span class="op">=</span><span class="st">"$(CFLAGS)"</span> \</span>
 <span id="cb71-9"><a href="#cb71-9" aria-hidden="true" tabindex="-1"></a>          CPPFLAGS<span class="op">=</span><span class="st">"$(CPPFLAGS)"</span> LDFLAGS<span class="op">=</span><span class="st">"$(LDFLAGS)"</span> \</span>
-<span id="cb71-10"><a href="#cb71-10" aria-hidden="true" tabindex="-1"></a>      cmake <span class="op">.</span> \</span>
-<span id="cb71-11"><a href="#cb71-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span>DCMAKE_BUILD_TYPE<span class="op">=</span>Release \</span>
-<span id="cb71-12"><a href="#cb71-12" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span>DBUILD_SHARED_LIBS<span class="op">:</span><span class="dt">bool</span><span class="op">=</span>OFF \</span>
-<span id="cb71-13"><a href="#cb71-13" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span>DCMAKE_POSITION_INDEPENDENT_CODE<span class="op">:</span><span class="dt">bool</span><span class="op">=</span>ON<span class="op">;</span> \</span>
-<span id="cb71-14"><a href="#cb71-14" aria-hidden="true" tabindex="-1"></a>      $<span class="op">(</span>MAKE<span class="op">))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb71-10"><a href="#cb71-10" aria-hidden="true" tabindex="-1"></a>          cmake <span class="op">.</span> \</span>
+<span id="cb71-11"><a href="#cb71-11" aria-hidden="true" tabindex="-1"></a>            <span class="op">-</span>DCMAKE_BUILD_TYPE<span class="op">=</span>Release \</span>
+<span id="cb71-12"><a href="#cb71-12" aria-hidden="true" tabindex="-1"></a>            <span class="op">-</span>DBUILD_SHARED_LIBS<span class="op">:</span><span class="dt">bool</span><span class="op">=</span>OFF \</span>
+<span id="cb71-13"><a href="#cb71-13" aria-hidden="true" tabindex="-1"></a>            <span class="op">-</span>DCMAKE_POSITION_INDEPENDENT_CODE<span class="op">:</span><span class="dt">bool</span><span class="op">=</span>ON<span class="op">;</span> \</span>
+<span id="cb71-14"><a href="#cb71-14" aria-hidden="true" tabindex="-1"></a>          $<span class="op">(</span>MAKE<span class="op">))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>the compiler and other settings having been set as Make variables by an R makefile included by <code>INSTALL</code> before <code>src/Makevars</code>.</p></li>
 </ol>
 <p>A complication is that on macOS <code>cmake</code> (where installed) is commonly not on the path but at <code>/Applications/CMake.app/Contents/bin/cmake</code>. One way to work around this is for the package’s <code>configure</code> script to include</p>
@@ -1954,7 +1960,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>(especially if LTO is used). So don’t do that!</p></li>
 <li><p>Some authors feel the need to print (using <code>Rprintf</code> or similar) vector lengths or indices which are of type <code>R_xlen_t</code>. That may be a 32-bit or (most commonly) 64-bit type but which integer type it is mapped to is platform-specific. The safest way is to cast the length to double and use a double format. So one could use something like</p>
 <div class="sourceCode" id="cb146"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb146-1"><a href="#cb146-1" aria-hidden="true" tabindex="-1"></a>    SEXP Robj<span class="op">;</span> R_xlen_t nelem<span class="op">;</span></span>
-<span id="cb146-2"><a href="#cb146-2" aria-hidden="true" tabindex="-1"></a>    error<span class="op">(</span><span class="st">"Actual: %0.f; Expected %0.f</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span> <span class="op">(</span><span class="dt">double</span><span class="op">)</span> XLENGTH<span class="op">(</span>Robj<span class="op">),</span> <span class="op">(</span><span class="dt">double</span><span class="op">)</span> nelem<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb146-2"><a href="#cb146-2" aria-hidden="true" tabindex="-1"></a>    Rf_error<span class="op">(</span><span class="st">"Actual: %0.f; Expected %0.f</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span> <span class="op">(</span><span class="dt">double</span><span class="op">)</span> XLENGTH<span class="op">(</span>Robj<span class="op">),</span> <span class="op">(</span><span class="dt">double</span><span class="op">)</span> nelem<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>(This could print to full precision, lengths well beyond the address space limits of current OSes, let alone practical limits.)</p>
 <p>If you do want to use an integer format, be aware that <code>R_xlen_t</code> is implemented by the <code>int</code>, <code>long</code> or <code>long long</code> type on current platforms and even on 64-bit ones need not be the same type as <code>int64_t</code>. So the values will need to be cast to the type assumed by the format (and <code>%lld</code> was not supported on Windows until R&nbsp;4.2.0).</p></li>
 <li><p>Variadic macros in C or C++ only portably allow a non-zero number of arguments, although some compilers have allowed zero, often with a warning. The latter was standardized in C++20 using the <code>__VA_OPT__</code> macro. C23 will also allow zero arguments in a similar way.</p></li>
