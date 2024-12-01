@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,10 +71,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-4f73ddde9a6e7a521cd13563a713d023.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -684,7 +684,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>                      <span class="dt">double</span> <span class="op">*</span>w<span class="op">,</span> <span class="dt">int</span> <span class="op">*</span>iper<span class="op">,</span> <span class="dt">double</span> <span class="op">*</span>span<span class="op">,</span> <span class="dt">double</span> <span class="op">*</span>alpha<span class="op">,</span></span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>                      <span class="dt">double</span> <span class="op">*</span>smo<span class="op">,</span> <span class="dt">double</span> <span class="op">*</span>sc<span class="op">,</span> <span class="dt">double</span> <span class="op">*</span>edf<span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>gfortran</code> 8.4, 9.2 and later can help generate such prototypes with its flag <code>-fc-prototypes-external</code> (although one will need to replace the hard-coded trailing underscore with the <code>F77_NAME</code> macro).</p>
-<p>One can get away with inaccurate argument lists in the declarations: it is easy to specify the arguments for <code>.Call</code> (all <code>SEXP</code>) and <code>.External</code> (one <code>SEXP</code>) and as the arguments for <code>.C</code> and <code>.Fortran</code> are all pointers, specifying them as <code>void *</code> suffices. (For most platforms one can omit all the arguments, although link-time optimization will warn, as will compilers set up to warn on strict prototypes – and C23 will require correct arguments.)</p>
+<p>One can get away with inaccurate argument lists in the declarations: it is easy to specify the arguments for <code>.Call</code> (all <code>SEXP</code>) and <code>.External</code> (one <code>SEXP</code>) and as the arguments for <code>.C</code> and <code>.Fortran</code> are all pointers, specifying them as <code>void *</code> suffices. (For most platforms one can omit all the arguments, although link-time optimization will warn, as will compilers set up to warn on strict prototypes – and C23 requires correct arguments.)</p>
 <p>Using <code>-fc-prototypes-external</code> will give a prototype using <code>int_least32_t *lgl</code> for Fortran <code>LOGICAL LGL</code>, but this is not portable and traditionally it has been assumed that the C/C++ equivalent was <code>int *lgl</code>. If adding a declaration just to register a <code>.Fortran</code> call, the most portable version is <code>void *lgl</code>.</p></li>
 <li><p>(Optional but highly recommended.) Restrict <code>.Call</code> etc to use the symbols you chose to register by editing <code>src/init.c</code> to contain</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> R_init_splines<span class="op">(</span>DllInfo <span class="op">*</span>dll<span class="op">)</span></span>
@@ -2021,8 +2021,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -2140,7 +2138,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

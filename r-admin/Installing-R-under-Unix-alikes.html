@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,10 +71,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-4f73ddde9a6e7a521cd13563a713d023.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -613,18 +613,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>For the use of C++ in R packages, see <a href="https://cran.r-project.org/doc/manuals/R-exts.html#Top" data-manual="R-exts">Writing R Extensions</a>. Prior to R 3.6.0 the default C++ standard was that of the compiler used: currently it is C++17.</p>
 <p><a href="https://en.cppreference.com/w/cpp/compiler_support" class="uri">https://en.cppreference.com/w/cpp/compiler_support</a> indicates which versions of common compilers support (parts of) which C++ standards. GCC introduced C++17 support gradually, but version 7 should suffice.</p>
 </section>
-<section id="c-standards" class="level3 subsection" data-number="2.7.4">
+<section id="c-standards" class="level3 subsection page-columns page-full" data-number="2.7.4">
 <h3 class="subsection anchored" data-number="2.7.4" data-anchor-id="c-standards"><span class="header-section-number">2.7.4</span> C standards</h3>
-<p>Compiling R requires C99 or later: C11 and C17 are minor updates, but the substantial update planned for ‘C23’ (now expected <em>ca</em> April 2024) will also be supported.</p>
-<p>As from R 4.3.0 there is support for packages to indicate their preferred C version. Macros <code>CC17</code>, <code>C17FLAGS</code>, <code>CC23</code> and <code>C23FLAGS</code> can be set in <code>config.site</code> (there are examples there). Those for C17 should support C17 or earlier and not allow C23 additions so for example <code>bool</code>, <code>true</code> and <code>false</code> can be used as identifiers. Those for C23 should support new types such as <code>bool</code>.</p>
+<p>Compiling R requires some POSIX features (such as <code>strdup</code><a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> and the <code>ssize_t</code> type) not in the C standards. Typically compilers make these available, but <strong>not</strong> if strict C compliance is specified by for example <code>-std=c17</code>. So if you want to specify a non-default standard use something like <code>-std=gnu23</code>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn11"><p><sup>11</sup>&nbsp;this is part of C23, but part of the C library not the compiler.</p></div></div><p>Compiling R requires C99 or later: C11 and C17 are minor updates, but the substantial update ‘C23’ (finally published in October 2024) is also supported for current versions of GCC and <code>clang</code>.</p>
+<p>As from R 4.3.0 there is support for packages to indicate their preferred C version. Macros <code>CC17</code>, <code>C17FLAGS</code>, <code>CC23</code> and <code>C23FLAGS</code> can be set in <code>config.site</code> (there are examples there). Those for C17 should support C17 or earlier and not allow C23 additions so for example <code>bool</code>, <code>true</code> and <code>false</code> can be used as identifiers. Those for C23 should support the new types such as <code>bool</code>.</p>
 <p>Some compilers warn enthusiastically about prototypes. For most, omitting <code>-Wstrict-prototypes</code> in <code>C17FLAGS</code> suffices. However, versions 15 and later of LLVM <code>clang</code> and 14.0.3 and later of Apple clang warn by default in all modes if <code>-Wall</code> or <code>-pedantic</code> is used, and may need <code>-Wno-strict-prototypes</code>.</p>
 </section>
 <section id="link-time-optimization" class="level3 subsection page-columns page-full" data-number="2.7.5">
 <h3 class="subsection anchored" data-number="2.7.5" data-anchor-id="link-time-optimization"><span class="header-section-number">2.7.5</span> Link-Time Optimization</h3>
-<p>There is support for using link-time optimization (LTO) if the toolchain supports it: configure with flag <code>--enable-lto</code>. When LTO is enabled it is used for compiled code in add-on packages unless the flag <code>--enable-lto=R</code> is used<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>.</p>
-<div class="no-row-height column-margin column-container"><div id="fn11"><p><sup>11</sup>&nbsp;Then recommended packages installed as part of the R installation do use LTO, but not packages installed later.</p></div><div id="fn12"><p><sup>12</sup>&nbsp;A complete CRAN installation reduced from 50 to 35GB.</p></div></div><p>The main benefit seen to date from LTO has been detecting long-standing bugs in the ways packages pass arguments to compiled code and between compilation units. Benchmarking in 2020 with <code>gcc</code>/<code>gfortran</code>&nbsp;10 showed gains of a few percent in increased performance and reduction in installed size for builds without debug symbols, but large size reductions for some packages<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> with debug symbols. (Performance and size gains are said to be most often seen in complex C++ builds.)</p>
-<p>Whether toolchains support LTO is often unclear: all of the C compiler, the Fortran compiler<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a> and linker have to support it, and support it by the same mechanism (so mixing compiler families may not work and a non-default linker may be needed). It has been supported by the GCC and LLVM projects for some years with diverging implementations.</p>
-<div class="no-row-height column-margin column-container"><div id="fn13"><p><sup>13</sup>&nbsp;although there is the possibility to exclude Fortran but that misses some of the benefits.</p></div></div><p>LTO support was added in 2011 for GCC&nbsp;4.5 on Linux but was little used before 2019: compiler support has steadily improved over those years and <code>--enable-lto=R</code> is nowadays used for some routine CRAN checking.</p>
+<p>There is support for using link-time optimization (LTO) if the toolchain supports it: configure with flag <code>--enable-lto</code>. When LTO is enabled it is used for compiled code in add-on packages unless the flag <code>--enable-lto=R</code> is used<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>.</p>
+<div class="no-row-height column-margin column-container"><div id="fn12"><p><sup>12</sup>&nbsp;Then recommended packages installed as part of the R installation do use LTO, but not packages installed later.</p></div><div id="fn13"><p><sup>13</sup>&nbsp;A complete CRAN installation reduced from 50 to 35GB.</p></div></div><p>The main benefit seen to date from LTO has been detecting long-standing bugs in the ways packages pass arguments to compiled code and between compilation units. Benchmarking in 2020 with <code>gcc</code>/<code>gfortran</code>&nbsp;10 showed gains of a few percent in increased performance and reduction in installed size for builds without debug symbols, but large size reductions for some packages<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a> with debug symbols. (Performance and size gains are said to be most often seen in complex C++ builds.)</p>
+<p>Whether toolchains support LTO is often unclear: all of the C compiler, the Fortran compiler<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> and linker have to support it, and support it by the same mechanism (so mixing compiler families may not work and a non-default linker may be needed). It has been supported by the GCC and LLVM projects for some years with diverging implementations.</p>
+<div class="no-row-height column-margin column-container"><div id="fn14"><p><sup>14</sup>&nbsp;although there is the possibility to exclude Fortran but that misses some of the benefits.</p></div></div><p>LTO support was added in 2011 for GCC&nbsp;4.5 on Linux but was little used before 2019: compiler support has steadily improved over those years and <code>--enable-lto=R</code> is nowadays used for some routine CRAN checking.</p>
 <p>Unfortunately <code>--enable-lto</code> may be accepted but silently do nothing useful if some of the toolchain does not support LTO: this is less common than it once was.</p>
 <p>Various macros can be set in file <code>config.site</code> to customize how LTO is used. If the Fortran compiler is not of the same family as the C/C++ compilers, set macro <code>LTO_FC</code> (probably to empty). Macro <code>LTO_LD</code> can be used to select an alternative linker should that be needed.</p>
 </section>
@@ -636,8 +637,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>For non-system compilers or if those wrappers have not been installed one may need something like</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>AR<span class="ot">=</span><span class="st">"ar --plugin=/path/to/liblto_plugin.so"</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>RANLIB<span class="ot">=</span><span class="st">"ranlib --plugin=/path/to/liblto_plugin.so"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>and <code>NM</code> may be needed to be set analogously. (If using an LTO-enabled build to check packages, set environment variable <code>UserNM</code><a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> to <code>gcc-nm</code>.)</p>
-<div class="no-row-height column-margin column-container"><div id="fn14"><p><sup>14</sup>&nbsp;not <code>NM</code> as we found <code>make</code> overriding that.</p></div></div><p>With GCC 5 and later it is possible to parallelize parts of the LTO linking process: set the make macro <code>LTO</code> to something like <code>LTO=-flto=8</code> (to use 8 threads), for example in file <code>config.site</code>.</p>
+<p>and <code>NM</code> may be needed to be set analogously. (If using an LTO-enabled build to check packages, set environment variable <code>UserNM</code><a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a> to <code>gcc-nm</code>.)</p>
+<div class="no-row-height column-margin column-container"><div id="fn15"><p><sup>15</sup>&nbsp;not <code>NM</code> as we found <code>make</code> overriding that.</p></div></div><p>With GCC 5 and later it is possible to parallelize parts of the LTO linking process: set the make macro <code>LTO</code> to something like <code>LTO=-flto=8</code> (to use 8 threads), for example in file <code>config.site</code>.</p>
 <p>Under some circumstances and for a few packages, the PIC flags have needed overriding on Linux with GCC 9: e.g use in <code>config.site</code>:</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="dt">CPICFLAGS</span><span class="ch">=</span><span class="st">-fPIC</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="dt">CXXPICFLAGS</span><span class="ch">=</span><span class="st">-fPIC</span></span>
@@ -668,8 +669,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="lto-for-package-checking" class="level3 subsubsection page-columns page-full" data-number="2.7.8">
 <h3 class="subsubsection anchored" data-number="2.7.8" data-anchor-id="lto-for-package-checking"><span class="header-section-number">2.7.8</span> LTO for package checking</h3>
 <p>LTO effectively compiles all the source code in a package as a single compilation unit and so allows the compiler (with sufficient diagnostic flags such as <code>-Wall</code>) to check consistency between what are normally separate compilation units.</p>
-<p>With <code>gcc</code>/<code>gfortran</code> 9.x and later<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a> LTO will flag inconsistencies in calls to Fortran subroutines/functions, both between Fortran source files and between Fortran and C/C++. <code>gfortran</code> 8.4, 9.2 and later can help understanding these by extracting C prototypes from Fortran source files with option <code>-fc-prototypes-external</code>, e.g.&nbsp;that (at the time of writing) Fortran <code>LOGICAL</code> corresponds to <code>int_least32_t *</code> in C.</p>
-<div class="no-row-height column-margin column-container"><div id="fn15"><p><sup>15</sup>&nbsp;probably also 8.4 and later.</p></div></div></section>
+<p>With <code>gcc</code>/<code>gfortran</code> 9.x and later<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a> LTO will flag inconsistencies in calls to Fortran subroutines/functions, both between Fortran source files and between Fortran and C/C++. <code>gfortran</code> 8.4, 9.2 and later can help understanding these by extracting C prototypes from Fortran source files with option <code>-fc-prototypes-external</code>, e.g.&nbsp;that (at the time of writing) Fortran <code>LOGICAL</code> corresponds to <code>int_least32_t *</code> in C.</p>
+<div class="no-row-height column-margin column-container"><div id="fn16"><p><sup>16</sup>&nbsp;probably also 8.4 and later.</p></div></div></section>
 </section>
 <section id="testing-an-installation" class="level2 section" data-number="2.8">
 <h2 class="section anchored" data-number="2.8" data-anchor-id="testing-an-installation"><span class="header-section-number">2.8</span> Testing an Installation</h2>
@@ -786,8 +787,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -905,7 +904,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
