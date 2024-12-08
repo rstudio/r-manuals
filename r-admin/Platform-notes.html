@@ -428,7 +428,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="flang" class="level3 subsection" data-number="C.2.2">
 <h3 class="subsection anchored" data-number="C.2.2" data-anchor-id="flang"><span class="header-section-number">C.2.2</span> flang</h3>
-<p>The name <code>flang</code> has been used for two projects: this is about the sub-project of LLVM which builds a Fortran compiler and runtime libraries. The compiler is currently named <code>flang-new</code> but has been announced to be renamed to <code>flang</code> when more nearly complete (and at some earlier point in its development was known as <code>f18</code>).</p>
+<p>The name <code>flang</code> has been used for two projects: this is about the sub-project of LLVM which builds a Fortran compiler and runtime libraries. The compiler is currently named <code>flang-new</code> but has been announced to be renamed to <code>flang</code> when more nearly complete.</p>
 <p>The version in LLVM 16 and later was able to build R on <code>x86_64</code> Linux with</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>FC<span class="ot">=</span><span class="er">/</span>path<span class="sc">/</span>to<span class="sc">/</span>flang<span class="sc">-</span>new</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>with the matching <code>clang</code> used as the C compiler, and the build passed <code>make check-all</code>. There is also support for <code>aarch64</code> and <code>ppc64le</code> Linux, but these have not been tested with R.</p>

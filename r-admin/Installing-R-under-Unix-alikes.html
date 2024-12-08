@@ -652,7 +652,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="lto-with-llvm" class="level3 subsubsection" data-number="2.7.7">
 <h3 class="subsubsection anchored" data-number="2.7.7" data-anchor-id="lto-with-llvm"><span class="header-section-number">2.7.7</span> LTO with LLVM</h3>
-<p>LLVM supports another type of LTO called ‘Thin LTO’ as well as a similar implementation to GCC, sometimes called ‘Full LTO’. (See <a href="https://clang.llvm.org/docs/ThinLTO.html" class="uri">https://clang.llvm.org/docs/ThinLTO.html</a>.) Currently the LLVM compilers relevant to R are <code>clang</code> and <code>flang</code> for which this can be selected by setting macro <code>LTO=-flto=thin</code>. LLVM has</p>
+<p>LLVM supports another type of LTO called ‘Thin LTO’ as well as a similar implementation to GCC, sometimes called ‘Full LTO’. (See <a href="https://clang.llvm.org/docs/ThinLTO.html" class="uri">https://clang.llvm.org/docs/ThinLTO.html</a>.) Currently the LLVM compilers relevant to R are <code>clang</code> and <code>flang-new</code> for which this can be selected by setting macro <code>LTO=-flto=thin</code>. LLVM has</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>AR<span class="ot">=</span>llvm<span class="sc">-</span>ar</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>RANLIB<span class="ot">=</span>llvm<span class="sc">-</span>ranlib</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>(but macOS does not, and these are not needed there). Where the linker supports a parallel backend for Thin LTO this can be specified <em>via</em> the macro <code>LTO_LD</code>: see the URL above for per-linker settings and further linking optimizations.)</p>
@@ -662,7 +662,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>LTO_LD<span class="ot">=</span><span class="sc">-</span>Wl,<span class="sc">-</span>mllvm,<span class="sc">-</span>threads<span class="ot">=</span><span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>to use Thin LTO with 4 threads for C/C++ code, but skip LTO for Fortran code compiled with <code>gfortran</code>.</p>
 <p>It is said to be particularly beneficial to use <code>-O3</code> for <code>clang</code> in conjunction with LTO.</p>
-<p>It seems that <code>flang</code> may support LTO, but with no documentation as yet.</p>
+<p>It seems that <code>flang-new</code> may in future support LTO.</p>
 <p>The 2020s versions of Intel’s C/C++ compilers are based on LLVM and as such support LLVM-style LTO, both ‘full’ and ‘thin’. This might use something like</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>LTO<span class="ot">=</span><span class="sc">-</span>flto<span class="ot">=</span>thin <span class="sc">-</span>flto<span class="sc">-</span>jobs<span class="ot">=</span><span class="dv">8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
