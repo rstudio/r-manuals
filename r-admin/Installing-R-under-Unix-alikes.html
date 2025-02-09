@@ -446,7 +446,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 <dt><code class="code">lm</code></dt>
 <dd>
-<p>Using the <em>Latin Modern</em> fonts. These are not often installed as part of a TeX distribution, but can obtained from <a href="https://www.ctan.org/tex-archive/fonts/ps-type1/lm/" class="uref">https://www.ctan.org/tex-archive/fonts/ps-type1/lm/</a> and mirrors. This uses fonts rather similar to Computer Modern, but is not so good on-screen as <code class="code">times</code>.</p>
+<p>Using the <em>Latin Modern</em> (<em>aka</em> <strong>lmodern</strong>) fonts, usually installed even in basic TeX distributions. This uses fonts rather similar to Computer Modern, but is not so good on-screen as <code class="code">times</code> and produces larger PDF files.</p>
 </dd>
 </dl>
 <p>The default can be overridden by setting the environment variable <span id="index-R_005fRD4PDF" class="index-entry-id"></span> <code class="env">R_RD4PDF</code>. (On Unix-alikes, this will be picked up at install time and stored in <samp class="file">etc/Renviron</samp>, but can still be overridden when the manuals are built, using <code class="command">make -e</code>.) The usual<a href="#FOOT7" id="DOCF7" class="footnote"><sup>7</sup></a> default value for <code class="env">R_RD4PDF</code> is <samp class="samp">times,inconsolata,hyper</samp>‘: omit <samp class="samp">inconsolata</samp>’ if you do not have LaTeX package <strong>inconsolata</strong> installed. <samp class="samp">hyper</samp>’ is always enabled (with a fallback if LaTeX package <strong>hyperref</strong> is not installed).</p>

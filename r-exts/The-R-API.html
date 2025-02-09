@@ -1190,7 +1190,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </blockquote>
 <p>For compatibility with S this file used to define the constant <code class="code">PI</code> this is defunct and should be replaced by <code class="code">M_PI</code>. Header <samp class="file">Constants.h</samp> includes either C header <samp class="file">float.h</samp> or C++ header <samp class="file">cfloat</samp>, which provide constants such as <code class="code">DBL_MAX</code>.</p>
-<p>Further, the included header <samp class="file">R_ext/Boolean.h</samp> has enumeration constants <code class="code">TRUE</code> and <code class="code">FALSE</code> of type <code class="code">Rboolean</code> in order to provide a way of using “logical” variables in C consistently. This can conflict with other software: for example it conflicts with the headers in IJG’s <code class="code">jpeg-9</code> (but not earlier versions).</p>
+<p>Further, the included header <samp class="file">R_ext/Boolean.h</samp> has enumeration constants <code class="code">TRUE</code> and <code class="code">FALSE</code> of type <code class="code">Rboolean</code> in order to provide a way of using “logical” variables in C consistently. This can conflict with other software: for example it conflicts with the headers in IJG’s <code class="code">jpeg-9</code> (but not earlier versions). <code class="code">Rboolean</code> cannot represent <code class="code">NA</code> and hence cannot be used for elements of R logical vectors.</p>
 </section>
 </section>
 <section id="optimization" class="level2 section" data-number="6.8">
