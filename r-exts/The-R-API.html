@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.40">
+<meta name="generator" content="quarto-1.6.41">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,7 +71,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-48ffa3e5b9d089919c6712c39e5b00f2.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-662286aeea2a25cf73d1e015279113ed.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -479,6 +479,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span id="index-Rf_005ferror" class="index-entry-id"></span> <span id="index-Rf_005ferror-1" class="index-entry-id"></span> <span id="index-Rf_005fwarning" class="index-entry-id"></span> <span id="index-Rf_005fwarning-1" class="index-entry-id"></span> <span id="index-Rf_005ferrorcall" class="index-entry-id"></span> <span id="index-Rf_005ferrorcall-1" class="index-entry-id"></span></p>
 <p>These have the same call sequences as calls to <code class="code">printf</code>, but in the simplest case can be called with a single character string argument giving the error message. (Don’t do this if the string contains <samp class="samp">%</samp>’ or might otherwise be interpreted as a format.)</p>
 <p>These are defined in header <samp class="file">R_ext/Error.h</samp> included by <samp class="file">R.h</samp>. <strong>NB</strong>: when <code class="code">R_NO_REMAP</code> is defined (as is done for C++ code), <code class="code">Rf_error</code> etc must be used.</p>
+<p>Header <samp class="file">R_ext/Error.h</samp> defines a macro <code class="code">NORET</code> intended to be used only from C code (C++ code can use the <code class="code">[[noreturn]]</code> attribute). This covers various ways to signal to the compiler that the function never returns. Because the usages of those ways differ by C standard, it should always be used at the beginning of a function declaration, including before <code class="code">static</code> and attributes such as <code class="code">attribute_hidden</code>.</p>
 <section id="error-signaling-from-fortran" class="level3 subsection" data-number="6.2.1">
 <h3 class="subsection anchored" data-number="6.2.1" data-anchor-id="error-signaling-from-fortran"><span class="header-section-number">6.2.1</span> Error signaling from Fortran <a href="#error-signaling-from-fortran-1" class="copiable-link">¶</a></h3>
 <p>There are two interface function provided to call <code class="code">Rf_error</code> and <code class="code">Rf_warning</code> from Fortran code, in each case with a simple character string argument. They are defined as</p>

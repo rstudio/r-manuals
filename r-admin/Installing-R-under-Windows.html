@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.40">
+<meta name="generator" content="quarto-1.6.41">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,7 +71,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-48ffa3e5b9d089919c6712c39e5b00f2.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-662286aeea2a25cf73d1e015279113ed.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -351,13 +351,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="subsection anchored" data-number="3.1.1" data-anchor-id="the-windows-toolset"><span class="header-section-number">3.1.1</span> The Windows toolset <a href="#the-windows-toolset-1" class="copiable-link">¶</a></h3>
 <p>The binary distribution of R is currently built with tools from <a href="https://CRAN.R-project.org/bin/windows/Rtools/rtools44/rtools.html" class="uref">Rtools44 for Windows</a>. See <a href="https://CRAN.R-project.org/bin/windows/base/howto-.html" class="uref">Building {No value for ‘RWTVERSION’} and packages on Windows</a> for more details on how to use it.</p>
 <p>The toolset includes compilers (currently GCC version 13.2.0 with selected additional patches) and runtime libraries from <a href="http://mingw-w64.org/" class="uref">the ‘MinGW-w64’ project</a> and a number of pre-compiled static libraries and headers used by R and R packages, compiled by <a href="https://mxe.cc/" class="uref">‘MXE’</a> (M cross environment, with updates maintained by Tomas Kalibera). The toolset also includes build tools from the <a href="https://www.msys2.org/" class="uref">the ‘MSYS2’ project</a>. Additional build tools packaged by ‘MSYS2’ may be installed via a package manager (<samp class="samp">pacman</samp>’).</p>
-<p>There is also an experimental variant of Rtools44 with support for 64-bit ARM CPUs (aarch64) via LLVM 17 toolchain using <code class="command">clang</code>/<code class="command">flang-new</code> compilers, <code class="command">lld</code> linker, and libc++.</p>
+<p>There is also an experimental variant of Rtools44 with support for 64-bit ARM CPUs (aarch64) via LLVM 17 toolchain using <code class="command">clang</code>/<code class="command">flang</code> compilers, <code class="command">lld</code> linker, and libc++.</p>
 <p>The toolsets used for 64-bit Windows from 2008 to 2022 were based on MinGW-w64. The assistance of Yu Gong at a crucial step in porting R to MinGW-w64 is gratefully acknowledged, as well as help from Kai Tietz, the lead developer of the MinGW-w64 project and from Martin Storsjo.</p>
 </section>
 <section id="latex" class="level3 subsection" data-number="3.1.2">
 <h3 class="subsection anchored" data-number="3.1.2" data-anchor-id="latex"><span class="header-section-number">3.1.2</span> LaTeX <a href="#latex" class="copiable-link">¶</a></h3>
 <p>Both building R and checking packages need a distribution of LaTeX installed, with the directory containing <code class="command">pdflatex</code> on the path.</p>
-<p>The <samp class="samp">MiKTeX</samp>’ (<a href="https://miktex.org/" class="uref">https://miktex.org/</a>) distribution of LaTeX is that used on CRAN. This can be set up to install extra packages ‘on the fly’ (without asking), which is the simplest way to use it. The ‘basic’ version of <samp class="samp">MiKTeX</samp>’ will need to add some packages.<a href="#FOOT19" id="DOCF19" class="footnote"><sup>19</sup></a> In any case ensure that the <strong>inconsolata</strong> package is installed—you can check with the <samp class="samp">MiKTeX</samp>’ Package Manager.</p>
+<p>The <samp class="samp">MiKTeX</samp>’ (<a href="https://miktex.org/" class="uref">https://miktex.org/</a>) distribution of LaTeX is that used on CRAN. This can be set up to install extra packages ‘on the fly’ (without asking), which is the simplest way to use it. The ‘basic’ version of <samp class="samp">MiKTeX</samp>’ will need to add some packages.<a href="#FOOT21" id="DOCF21" class="footnote"><sup>21</sup></a> In any case ensure that the <strong>inconsolata</strong> package is installed—you can check with the <samp class="samp">MiKTeX</samp>’ Package Manager.</p>
 <p>It is also possible to use the TeX Live distribution from <a href="https://www.tug.org/texlive/" class="uref">https://www.tug.org/texlive/</a>. (The CRAN package <a href="https://CRAN.R-project.org/package=tinytex" class="url"><strong>tinytex</strong></a> can install and manage a subset of TeX Live.)</p>
 </section>
 </section>

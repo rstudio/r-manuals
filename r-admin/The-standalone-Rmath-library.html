@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.40">
+<meta name="generator" content="quarto-1.6.41">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,7 +71,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-48ffa3e5b9d089919c6712c39e5b00f2.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-662286aeea2a25cf73d1e015279113ed.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -333,7 +333,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Next: <a href="Essential-and-useful-other-programs-under-a-Unix-alike.html#essential-and-useful-other-programs-under-a-unix-alike" accesskey="n" rel="next">Essential and useful other programs under a Unix-alike</a>, Previous: <a href="Choosing-between-32_002d-and-64_002dbit-builds.html" accesskey="p" rel="prev">Choosing between 32- and 64-bit builds</a>, Up: <a href="index.html" accesskey="u" rel="up">R Installation and Administration</a> &nbsp; [<a href="index.html#sec_contents" rel="contents" title="Table of contents">Contents</a>][<a href="Function-and-variable-index.html" rel="index" title="Index">Index</a>]</p>
-<p>The routines supporting the distribution and special<a href="#FOOT39" id="DOCF39" class="footnote"><sup>39</sup></a> functions in R and a few others are declared in C header file <samp class="file">Rmath.h</samp>. These can be compiled into a standalone library for linking to other applications. (Note that they are not a separate library when R is built, and the standalone version differs in several ways.)</p>
+<p>The routines supporting the distribution and special<a href="#FOOT41" id="DOCF41" class="footnote"><sup>41</sup></a> functions in R and a few others are declared in C header file <samp class="file">Rmath.h</samp>. These can be compiled into a standalone library for linking to other applications. (Note that they are not a separate library when R is built, and the standalone version differs in several ways.)</p>
 <p>The makefiles and other sources needed are in directory <samp class="file">src/nmath/standalone</samp>, so the following instructions assume that is the current working directory (in the build directory tree on a Unix-alike if that is separate from the sources).</p>
 <p><samp class="file">Rmath.h</samp> contains <samp class="samp">R_VERSION_STRING</samp>’, which is a character string containing the current R version, for example <code class="code">"4.4.0"</code>.</p>
 <p>There is full access to R’s handling of <code class="code">NaN</code>, <code class="code">Inf</code> and <code class="code">-Inf</code> via special versions of the macros and functions</p>
@@ -376,7 +376,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="windows" class="level2 section" data-number="9.2">
 <h2 class="section anchored" data-number="9.2" data-anchor-id="windows"><span class="header-section-number">9.2</span> Windows <a href="#windows-1" class="copiable-link">¶</a></h2>
-<p>You need to set up<a href="#FOOT40" id="DOCF40" class="footnote"><sup>40</sup></a> almost all the tools to make R and then run (in a Unix-like shell)</p>
+<p>You need to set up<a href="#FOOT42" id="DOCF42" class="footnote"><sup>42</sup></a> almost all the tools to make R and then run (in a Unix-like shell)</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(cd ..<span class="sc">/</span>..<span class="sc">/</span>gnuwin32; make MkRules)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>(cd ..<span class="sc">/</span>..<span class="sc">/</span>include; make <span class="sc">-</span>f Makefile.win config.h Rconfig.h Rmath.h)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>make <span class="sc">-</span>f Makefile.win</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
