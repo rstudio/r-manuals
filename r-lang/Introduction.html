@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.41">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -37,10 +37,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-48ffa3e5b9d089919c6712c39e5b00f2.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-662286aeea2a25cf73d1e015279113ed.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c6c1acd46ae7b8ee8bdb417a336ad8b7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -219,33 +219,22 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Function-and-Variable-Index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Function and Variable Index </span></a><a href="#function-and-variable-index-1" class="copiable-link">¶</a>
+  <a href="./References.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References </span></a><a href="#references-1" class="copiable-link">¶</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Concept-Index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Concept Index </span></a><a href="#concept-index-1" class="copiable-link">¶</a>
+  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Function and variable index </span></a><a href="#function-and-variable-index-1" class="copiable-link">¶</a>
   </div>
 </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./References.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">References </span></span></a><a href="#references-1" class="copiable-link">¶</a>
+  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Concept index </span></a><a href="#concept-index-1" class="copiable-link">¶</a>
   </div>
 </li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -276,7 +265,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Next: <a href="Objects.html#objects" accesskey="n" rel="next">Objects</a>, Previous: <a href="index.html" accesskey="p" rel="prev">R Language Definition</a>, Up: <a href="index.html" accesskey="u" rel="up">R Language Definition</a> &nbsp; [<a href="index.html#sec_contents" rel="contents" title="Table of contents">Contents</a>][<a href="Function-and-Variable-Index.html" rel="index" title="Index">Index</a>]</p>
+<p>Next: <a href="Objects.html#objects" accesskey="n" rel="next">Objects</a>, Previous: <a href="index.html" accesskey="p" rel="prev">R Language Definition</a>, Up: <a href="index.html" accesskey="u" rel="up">R Language Definition</a> &nbsp; [<a href="index.html#sec_contents" rel="contents" title="Table of contents">Contents</a>][<a href="Function-and-variable-index.html" rel="index" title="Index">Index</a>]</p>
 <p>R is a system for statistical computation and graphics. It provides, among other things, a programming language, high level graphics, interfaces to other languages and debugging facilities. This manual details and defines the R language.</p>
 <p>The R language is a dialect of S which was designed in the 1980s and has been in widespread use in the statistical community since. Its principal designer, John M. Chambers, was awarded the 1998 ACM Software Systems Award for S.</p>
 <p>The language syntax has a superficial similarity with C, but the semantics are of the FPL (functional programming language) variety with stronger affinities with Lisp and APL. In particular, it allows “computing on the language”, which in turn makes it possible to write functions that take expressions as input, something that is often useful for statistical modeling and graphics.</p>
@@ -285,7 +274,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Although much of the text will equally apply to S, there are also some substantial differences, and in order not to confuse the issue we shall concentrate on describing R.</p>
 <p>The design of the language contains a number of fine points and common pitfalls which may surprise the user. Most of these are due to consistency considerations at a deeper level, as we shall explain. There are also a number of useful shortcuts and idioms, which allow the user to express quite complicated operations succinctly. Many of these become natural once one is familiar with the underlying concepts. In some cases, there are multiple ways of performing a task, but some of the techniques will rely on the language implementation, and others work at a higher level of abstraction. In such cases we shall indicate the preferred usage.</p>
 <p>Some familiarity with R is assumed. This is not an introduction to R but rather a programmers’ reference manual. Other manuals provide complementary information: in particular <a href="https://cran.r-project.org/doc/manuals/R-intro.html#Top" data-manual="R-intro">An Introduction to R</a> provides an introduction to R and <a href="https://cran.r-project.org/doc/manuals/R-exts.html#System-and-foreign-language-interfaces" data-manual="R-exts">System and foreign language interfaces</a> in Writing R Extensions details how to extend R using compiled code.</p>
-<p>Next: <a href="Objects.html#objects" accesskey="n" rel="next">Objects</a>, Previous: <a href="index.html" accesskey="p" rel="prev">R Language Definition</a>, Up: <a href="index.html" accesskey="u" rel="up">R Language Definition</a> &nbsp; [<a href="index.html#sec_contents" rel="contents" title="Table of contents">Contents</a>][<a href="Function-and-Variable-Index.html" rel="index" title="Index">Index</a>]</p>
+<p>Next: <a href="Objects.html#objects" accesskey="n" rel="next">Objects</a>, Previous: <a href="index.html" accesskey="p" rel="prev">R Language Definition</a>, Up: <a href="index.html" accesskey="u" rel="up">R Language Definition</a> &nbsp; [<a href="index.html#sec_contents" rel="contents" title="Table of contents">Contents</a>][<a href="Function-and-variable-index.html" rel="index" title="Index">Index</a>]</p>
 
 
 

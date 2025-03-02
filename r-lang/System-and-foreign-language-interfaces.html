@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.41">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -37,10 +37,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-48ffa3e5b9d089919c6712c39e5b00f2.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-662286aeea2a25cf73d1e015279113ed.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c6c1acd46ae7b8ee8bdb417a336ad8b7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -219,33 +219,22 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Function-and-Variable-Index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Function and Variable Index </span></a><a href="#function-and-variable-index-1" class="copiable-link">¶</a>
+  <a href="./References.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References </span></a><a href="#references-1" class="copiable-link">¶</a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Concept-Index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Concept Index </span></a><a href="#concept-index-1" class="copiable-link">¶</a>
+  <a href="./Function-and-variable-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Function and variable index </span></a><a href="#function-and-variable-index-1" class="copiable-link">¶</a>
   </div>
 </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./References.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">References </span></span></a><a href="#references-1" class="copiable-link">¶</a>
+  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Concept index </span></a><a href="#concept-index-1" class="copiable-link">¶</a>
   </div>
 </li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -284,7 +273,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Next: <a href="Exception-handling.html#exception-handling" accesskey="n" rel="next">Exception handling</a>, Previous: <a href="Computing-on-the-language.html#computing-on-the-language" accesskey="p" rel="prev">Computing on the language</a>, Up: <a href="index.html" accesskey="u" rel="up">R Language Definition</a> &nbsp; [<a href="index.html#sec_contents" rel="contents" title="Table of contents">Contents</a>][<a href="Function-and-Variable-Index.html" rel="index" title="Index">Index</a>]</p>
+<p>Next: <a href="Exception-handling.html#exception-handling" accesskey="n" rel="next">Exception handling</a>, Previous: <a href="Computing-on-the-language.html#computing-on-the-language" accesskey="p" rel="prev">Computing on the language</a>, Up: <a href="index.html" accesskey="u" rel="up">R Language Definition</a> &nbsp; [<a href="index.html#sec_contents" rel="contents" title="Table of contents">Contents</a>][<a href="Function-and-variable-index.html" rel="index" title="Index">Index</a>]</p>
 <section id="operating-system-access" class="level2 section" data-number="7.1">
 <h2 class="section anchored" data-number="7.1" data-anchor-id="operating-system-access"><span class="header-section-number">7.1</span> Operating system access <a href="#operating-system-access-1" class="copiable-link">¶</a></h2>
 <p>Access to the operating system shell is via the R function <code class="code">system</code>. <span id="index-system" class="index-entry-id"></span> The details will differ by platform (see the on-line help), and about all that can safely be assumed is that the first argument will be a string <code class="code">command</code> that will be passed for execution (not necessarily by a shell) and the second argument will be <code class="code">internal</code> which if true will collect the output of the command into an R character vector.</p>
@@ -410,7 +399,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="section anchored" data-number="7.3" data-anchor-id="internal-and-.primitive"><span class="header-section-number">7.3</span> .Internal and .Primitive <a href="#g_t.internal-and-.primitive-1" class="copiable-link">¶</a></h2>
 <p><span id="index-_002eInternal-1" class="index-entry-id"></span> <span id="index-_002ePrimitive-1" class="index-entry-id"></span></p>
 <p>The <code class="code">.Internal</code> and <code class="code">.Primitive</code> interfaces are used to call <strong>C</strong> code compiled into R at build time. See <a href="https://cran.r-project.org/doc/manuals/R-ints.html#g_t_002eInternal-vs-_002ePrimitive" data-manual="R-ints">.Internal vs .Primitive</a> in R Internals.</p>
-<p>Next: <a href="Exception-handling.html#exception-handling" accesskey="n" rel="next">Exception handling</a>, Previous: <a href="Computing-on-the-language.html#computing-on-the-language" accesskey="p" rel="prev">Computing on the language</a>, Up: <a href="index.html" accesskey="u" rel="up">R Language Definition</a> &nbsp; [<a href="index.html#sec_contents" rel="contents" title="Table of contents">Contents</a>][<a href="Function-and-Variable-Index.html" rel="index" title="Index">Index</a>]</p>
+<p>Next: <a href="Exception-handling.html#exception-handling" accesskey="n" rel="next">Exception handling</a>, Previous: <a href="Computing-on-the-language.html#computing-on-the-language" accesskey="p" rel="prev">Computing on the language</a>, Up: <a href="index.html" accesskey="u" rel="up">R Language Definition</a> &nbsp; [<a href="index.html#sec_contents" rel="contents" title="Table of contents">Contents</a>][<a href="Function-and-variable-index.html" rel="index" title="Index">Index</a>]</p>
 
 
 </section>

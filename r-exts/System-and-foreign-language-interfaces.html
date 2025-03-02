@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.41">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,10 +71,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-48ffa3e5b9d089919c6712c39e5b00f2.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-662286aeea2a25cf73d1e015279113ed.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c6c1acd46ae7b8ee8bdb417a336ad8b7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -253,12 +253,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Concept index </span></a><a href="#concept-index-1" class="copiable-link">¶</a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./API-index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">API index </span></a><a href="#api-index-1" class="copiable-link">¶</a>
   </div>
@@ -279,6 +273,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./Embedding-API-index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Embedding API index </span></a><a href="#embedding-api-index-1" class="copiable-link">¶</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Concept-index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Concept index </span></a><a href="#concept-index-1" class="copiable-link">¶</a>
   </div>
 </li>
     </ul>
@@ -1336,7 +1336,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Suppose we wanted to pass a single logical argument <code class="code">ignore_quotes</code>: we could use</p>
 <div class="sourceCode" id="cb80"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> ign <span class="op">=</span> Rf_asLogical<span class="op">(</span>ignore_quotes<span class="op">);</span></span>
 <span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>ign <span class="op">==</span> NA_LOGICAL<span class="op">)</span> Rf_error<span class="op">(</span><span class="st">"'ignore_quotes' must be TRUE or FALSE"</span><span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>which will do any coercion needed (at least from a vector argument), and return <code class="code">NA_LOGICAL</code> if the value passed was <code class="code">NA</code> or coercion failed. There are also <code class="code">Rf_asInteger</code>, <code class="code">Rf_asReal</code> and <code class="code">Rf_asComplex</code>. The function <code class="code">Rf_asChar</code> returns a <code class="code">CHARSXP</code>. All of these functions ignore any elements of an input vector after the first. <span id="index-Rf_005fasInteger" class="index-entry-id"></span> <span id="index-Rf_005fasInteger-1" class="index-entry-id"></span> <span id="index-Rf_005fasLogical" class="index-entry-id"></span> <span id="index-Rf_005fasLogical-1" class="index-entry-id"></span> <span id="index-Rf_005fasReal" class="index-entry-id"></span> <span id="index-Rf_005fasReal-1" class="index-entry-id"></span> <span id="index-Rf_005fasComplex" class="index-entry-id"></span> <span id="index-Rf_005fasComplex-1" class="index-entry-id"></span> <span id="index-Rf_005fasChar" class="index-entry-id"></span> <span id="index-Rf_005fasChar-1" class="index-entry-id"></span> The function <code class="code">Rf_asCharacterFactor</code> converts a factor to a character vector.</p>
+<p>which will do any coercion needed (at least from a vector argument), and return <code class="code">NA_LOGICAL</code> if the value passed was <code class="code">NA</code> or coercion failed. There are also <code class="code">Rf_asInteger</code>, <code class="code">Rf_asReal</code> and <code class="code">Rf_asComplex</code>. The function <code class="code">Rf_asChar</code> returns a <code class="code">CHARSXP</code>. All of these functions ignore any elements of an input vector after the first.</p>
+<p><code class="code">Rf_aaRboolean</code> is a stricter version of <code class="code">Rf_asLogical</code> introduced in R&nbsp;4.5.0. It returns type <code class="code">Rboolean</code> and gives an error for an input of length other than one, and for coercion failure. <code class="code">Rf_asBool</code> is a variant returning the C99/C23/C++ type <code class="code">bool</code>.</p>
+<p><span id="index-Rf_005fasInteger" class="index-entry-id"></span> <span id="index-Rf_005fasInteger-1" class="index-entry-id"></span> <span id="index-Rf_005fasLogical" class="index-entry-id"></span> <span id="index-Rf_005fasLogical-1" class="index-entry-id"></span> <span id="index-Rf_005fasReal" class="index-entry-id"></span> <span id="index-Rf_005fasReal-1" class="index-entry-id"></span> <span id="index-Rf_005fasComplex" class="index-entry-id"></span> <span id="index-Rf_005fasComplex-1" class="index-entry-id"></span> <span id="index-Rf_005fasChar" class="index-entry-id"></span> <span id="index-Rf_005fasChar-1" class="index-entry-id"></span> <span id="index-Rf_005fasRboolean" class="index-entry-id"></span> <span id="index-Rf_005fasRboolean-1" class="index-entry-id"></span> <span id="index-Rf_005fasBbool" class="index-entry-id"></span> <span id="index-Rf_005fasBbool-1" class="index-entry-id"></span></p>
+<p>The function <code class="code">Rf_asCharacterFactor</code> converts a factor to a character vector. <span id="index-Rf_005fasCharacterFactor" class="index-entry-id"></span></p>
 <p>To return a length-one real vector we can use</p>
 <div class="sourceCode" id="cb81"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>    <span class="dt">double</span> x<span class="op">;</span></span>
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a></span>
