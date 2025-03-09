@@ -1191,7 +1191,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </blockquote>
 <p>For compatibility with S this file used to define the constant <code class="code">PI</code> this is defunct and should be replaced by <code class="code">M_PI</code>. Header <samp class="file">Constants.h</samp> includes either C header <samp class="file">float.h</samp> or C++ header <samp class="file">cfloat</samp>, which provide constants such as <code class="code">DBL_MAX</code>.</p>
-<p>Further, the included header <samp class="file">R_ext/Boolean.h</samp> has enumeration constants <code class="code">TRUE</code> and <code class="code">FALSE</code> of type <code class="code">Rboolean</code> in order to provide a way of using “logical” variables in C consistently. This can conflict with other software: for example it conflicts with the headers in IJG’s <code class="code">jpeg-9</code> (but not earlier versions). <code class="code">Rboolean</code> cannot represent <code class="code">NA</code> and hence cannot be used for elements of R logical vectors.</p>
+<p>The included header <samp class="file">R_ext/Boolean.h</samp> has enumeration constants <code class="code">TRUE</code> and <code class="code">FALSE</code> of type <code class="code">Rboolean</code> in order to provide a way of using “logical” variables in C consistently. This can conflict with other software: for example it conflicts with the headers in IJG’s <code class="code">jpeg-9</code> (but not earlier versions). <code class="code">Rboolean</code> cannot represent <code class="code">NA</code> and hence cannot be used for elements of R logical vectors.</p>
+<p>Type <code class="code">Rboolean</code> is being phased out: as from R&nbsp;4.5.0 the header also makes available the type <code class="code">bool</code> and values <code class="code">true</code> and <code class="code">false</code>. These are reserved words in C23 and C++11 and available <em>via</em> header <samp class="file">stdbool.h</samp> as from C99. (<code class="code">bool</code> is not a drop-in replacement for <code class="code">Rboolean</code> as it is usually stored in a byte and <code class="code">Raoolean</code> in an <code class="code">int</code>, hence 4 bytes.)</p>
 </section>
 </section>
 <section id="optimization" class="level2 section" data-number="6.8">
@@ -1707,11 +1708,11 @@ There is also an `F77_CALL(interv)()`{.code} version of
 <p>: Use <code class="code">R_ExternalPtrProtected</code>, <code class="code">R_ExternalPtrTag</code>, and <code class="code">R_ExternalPtrAddr</code>.</p>
 <p><code class="code">OBJECT</code><br>
 <code class="code">IS_S4_OBJECT</code></p>
-<p>: Use <code class="code">isObject</code> and <code class="code">isS4</code>.</p>
+<p>: Use <code class="code">Rf_isObject</code> and <code class="code">Rf_isS4</code>.</p>
 <dl>
 <dt><code class="code">GetOption</code></dt>
 <dd>
-<p>Use <code class="code">GetOption1</code>.</p>
+<p>Use <code class="code">Rf_GetOption1</code>.</p>
 </dd>
 <dt><code class="code">R_lsInternal</code></dt>
 <dd>
@@ -1728,7 +1729,7 @@ There is also an `F77_CALL(interv)()`{.code} version of
 <dl>
 <dt><code class="code">isFrame</code></dt>
 <dd>
-<p>Use <code class="code">isDataFrame</code>, added in R 4.5.0.</p>
+<p>Use <code class="code">Rf_isDataFrame</code>, added in R 4.5.0.</p>
 </dd>
 </dl>
 <p><code class="code">BODY</code><br>
@@ -1742,7 +1743,7 @@ There is also an `F77_CALL(interv)()`{.code} version of
 </dd>
 <dt><code class="code">IS_ASCII</code></dt>
 <dd>
-<p>Use <code class="code">charIsASCII</code>, added in R 4.5.0.</p>
+<p>Use <code class="code">Rf_charIsASCII</code>, added in R 4.5.0.</p>
 </dd>
 <dt><code class="code">IS_UTF8</code></dt>
 <dd>
@@ -1763,12 +1764,12 @@ There is also an `F77_CALL(interv)()`{.code} version of
 <dl>
 <dt><code class="code">ATTRIB</code></dt>
 <dd>
-<p>Use <code class="code">getAttrib</code> for individual attributes. To test whether there are any attributes use <code class="code">ANY_ATTRIB</code>, added in R 4.5.0.</p>
+<p>Use <code class="code">Rf_getAttrib</code> for individual attributes. To test whether there are any attributes use <code class="code">ANY_ATTRIB</code>, added in R 4.5.0.</p>
 </dd>
 </dl>
 <p><code class="code">SET_ATTRIB</code><br>
 <code class="code">SET_OBJECT</code></p>
-<p>: Use <code class="code">setAttrib</code> for individual attributes, <code class="code">DUPLICATE_ATTRIB</code> or <code class="code">SHALLOW_DUPLICATE_ATTRIB</code> for copying attributes from one object to another. Use <code class="code">CLEAR_ATTRIB</code> for removing all attributes, added in R 4.5.0.</p>
+<p>: Use <code class="code">Rf_setAttrib</code> for individual attributes, <code class="code">DUPLICATE_ATTRIB</code> or <code class="code">SHALLOW_DUPLICATE_ATTRIB</code> for copying attributes from one object to another. Use <code class="code">CLEAR_ATTRIB</code> for removing all attributes, added in R 4.5.0.</p>
 <dl>
 <dt><code class="code">R_GetCurrentEnv</code></dt>
 <dd>
@@ -1808,9 +1809,9 @@ There is also an `F77_CALL(interv)()`{.code} version of
 <section id="querying-charsxp-encoding" class="level3 subsection" data-number="6.21.5">
 <h3 class="subsection anchored" data-number="6.21.5" data-anchor-id="querying-charsxp-encoding"><span class="header-section-number">6.21.5</span> Querying <code class="code">CHARSXP</code> encoding <a href="#querying-charsxp-encoding-1" class="copiable-link">¶</a></h3>
 <p>A number of packages query encoding bits set on <code class="code">CHARSXP</code> objects via macros <code class="code">IS_ASCII</code> and <code class="code">IS_UTF8</code>, some packages also via <code class="code">IS_BYTES</code> and <code class="code">IS_LATIN1</code>. These macros are not part of the API and packages have been copying their definition and directly accessing the bits in memory. The structure of the object header is, however, internal to R and may have to change in the future.</p>
-<p><code class="code">IS_ASCII</code> can be replaced by <code class="code">charIsASCII</code>, added in R 4.5.0. It can also be replaced by code that checks individual characters (bytes).</p>
+<p><code class="code">IS_ASCII</code> can be replaced by <code class="code">Rf_charIsASCII</code>, added in R 4.5.0. It can also be replaced by code that checks individual characters (bytes).</p>
 <p>Information provided by the other macros is available via function <code class="code">Rf_getCharCE</code>, which has been part of the API since R 2.7.0. Before switching to <code class="code">Rf_getCharCE</code>, packages are, however, advised to check whether the encoding information is really needed and whether it is used correctly.</p>
-<p>Most code should be able to work with complete <code class="code">CHARSXP</code>s and never look at the individual bytes. When access to characters and bytes (of strings other than <code class="code">CE_BYTES</code>) is needed, one would use <code class="code">Rf_translateChar</code> or <code class="code">RftranslateCharUTF8</code>. These functions internally already check the encoding and whether the string is ASCII and only translate when needed, which should be rarely since R &gt;= 4.2.0 (UTF-8 is used as native encoding on most systems running R).</p>
+<p>Most code should be able to work with complete <code class="code">CHARSXP</code>s and never look at the individual bytes. When access to characters and bytes (of strings other than <code class="code">CE_BYTES</code>) is needed, one would use <code class="code">Rf_translateChar</code> or <code class="code">Rf_translateCharUTF8</code>. These functions internally already check the encoding and whether the string is ASCII and only translate when needed, which should be rarely since R &gt;= 4.2.0 (UTF-8 is used as native encoding on most systems running R).</p>
 <p>Several packages use the encoding information to find out whether an internal string representation visible via <code class="code">CHAR</code> is UTF-8 or latin1. R 4.5.0 provides functions <code class="code">Rf_charIsUTF8</code> and <code class="code">Rf_charIsLatin1</code> for this purpose, which are safer against future changes and handle also native strings when running in the corresponding locale. Note that both will be true for ASCII strings.</p>
 <p>A pattern used in several packages is</p>
 <div class="sourceCode" id="cb91"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span> <span class="op">*</span>asutf8<span class="op">(</span>SEXP c<span class="op">)</span></span>
@@ -1825,7 +1826,7 @@ There is also an `F77_CALL(interv)()`{.code} version of
 <span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> Rf_translateCharUTF8<span class="op">(</span>s<span class="op">);</span> <span class="co">// compliant</span></span>
 <span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>as the encoding flags are already checked in <code class="code">translateCharUTF8</code>. Also note the non-compliant check does not handle native encoding.</p>
+<p>as the encoding flags are already checked in <code class="code">Rf_translateCharUTF8</code>. Also note the non-compliant check does not handle native encoding.</p>
 </section>
 <section id="working-with-attributes" class="level3 subsection" data-number="6.21.6">
 <h3 class="subsection anchored" data-number="6.21.6" data-anchor-id="working-with-attributes"><span class="header-section-number">6.21.6</span> Working with attributes <a href="#working-with-attributes-1" class="copiable-link">¶</a></h3>
