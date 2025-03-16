@@ -435,7 +435,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="using-make" class="level2 section" data-number="B.5">
 <h2 class="section anchored" data-number="B.5" data-anchor-id="using-make"><span class="header-section-number">B.5</span> Using make <a href="#using-make-1" class="copiable-link">¶</a></h2>
 <p>To build in a separate directory you need a <code class="command">make</code> that supports the <code class="code">VPATH</code> variable, for example GNU <code class="command">make</code> and <code class="command">dmake</code>.</p>
-<p>If you want to use a <code class="command">make</code> by another name, for example if your GNU <code class="command">make</code> is called <samp class="samp">gmake</samp>’, you need to set the variable <code class="code">MAKE</code> at configure time, for example</p>
+<p>If you want to use a <code class="command">make</code> by another name, for example <code class="command">bmake</code> (a port of NetBSD make) on Linux or if your GNU <code class="command">make</code> is called <samp class="samp">gmake</samp>’, you need to set the variable <code class="code">MAKE</code> at configure time, for example</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>.<span class="sc">/</span>configure MAKE<span class="ot">=</span>gmake</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="using-fortran" class="level2 section" data-number="B.6">
