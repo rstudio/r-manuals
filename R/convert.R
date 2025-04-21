@@ -131,6 +131,7 @@ regex_replace <- function(x) {
     gsub("…", "...", .) %>%
     # remove named sections
     gsub("(^#+ .*?) {#.*? \\.(.*)}$", "\\1", ., perl = TRUE) %>%
+    gsub("\\[¶\\]\\(.*?\\)\\{\\.copiable-link\\}", "", ., perl = TRUE) %>%
 
     # remember to remove this line and deal with it using Lua filters.
     gsub("^:::.*$", "", .)
