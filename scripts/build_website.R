@@ -64,12 +64,10 @@ purrr::walk(manuals, process_manual, .quicktest = FALSE)
 
 build_books(manuals = manuals, all_manuals = all_manuals)
 
-
 # Build website --------------
 #
 # Builds the main website with a shared navbar with all the books
 # Final output is in `website/_site`
-
 
 build_main_website(all_manuals = all_manuals)
 
