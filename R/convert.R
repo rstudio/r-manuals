@@ -15,19 +15,17 @@ make_lua_filter <- function(filter) {
 #' @importFrom rmarkdown pandoc_convert
 #'
 convert_html_to_md <- function(input_file, verbose = FALSE) {
-
   input_file <- normalizePath(input_file)
   output_file <- gsub("\\.html$", ".md", input_file)
 
   temp_html <- tempfile(fileext = ".html")
   temp_md <- tempfile(fileext = ".md")
 
-
   lua_filters <- make_lua_filter("filter.lua")
 
   if (basename(input_file) == "index.html") {
-    book_title  <- extract_title_from_index(input_file)
-    meta_data   <- glue::glue("--metadata=book_title:\"{book_title}\"")
+    book_title <- extract_title_from_index(input_file)
+    meta_data <- glue::glue("--metadata=book_title:\"{book_title}\"")
     lua_filters <- c(lua_filters, make_lua_filter("index.lua"))
   } else {
     meta_data = character()
@@ -38,33 +36,30 @@ convert_html_to_md <- function(input_file, verbose = FALSE) {
     gsub("^<span .*?></span>", "", .) %>%
     write_lines(temp_html)
 
-    pandoc_convert(
-      temp_html,
-      output = output_file,
-      from = "html",
-      to = "markdown+definition_lists",
-      options = c(
-        meta_data,
-        lua_filters,
-        "--shift-heading-level-by=-1"
-        ),
-      verbose = verbose
-    )
+  pandoc_convert(
+    temp_html,
+    output = output_file,
+    from = "html",
+    to = "markdown+definition_lists",
+    options = c(
+      meta_data,
+      lua_filters,
+      "--shift-heading-level-by=-1"
+    ),
+    verbose = verbose
+  )
 
-    # 
+  #
 
+  # Remove Table of Contents heading from index.md
+  if (basename(input_file) == "index.html") {
+    read_lines(output_file) %>%
+      sub("^Table of Contents \\{.*\\}$", "", .) %>%
+      write_lines(output_file)
+  }
 
-    # Remove Table of Contents heading from index.md
-    if (basename(input_file) == "index.html") {
-      read_lines(output_file) %>%
-        sub("^Table of Contents \\{.*\\}$", "", .) %>%
-        write_lines(output_file)
-    }
-
-    invisible()
-
+  invisible()
 }
-
 
 
 #' Convert all html files in a directory to markdown
@@ -108,37 +103,37 @@ convert_to_md <- function(path = "temp", verbose = FALSE) {
 
 regex_replace <- function(x) {
   x %>%
-      # remove empty hyperlinks [](...)
-      gsub("^\\[\\]\\{.*?\\}$", "", .)  %>%
-      # remove {.sample}
-      gsub("`{.variable}`", "", ., fixed = TRUE) %>%
-      gsub("{.variable}", "", ., fixed = TRUE) %>%
-      gsub("`{.sample}`", "", ., fixed = TRUE) %>%
-      gsub("{.sample}", "", ., fixed = TRUE) %>%
-      # fix footnote cross-references
-      gsub("\\[\\^(\\d+)\\^\\]\\(#FOOT\\d+\\)\\{#DOCF\\d+\\}", "[^\\1]", .) %>%
-      gsub("\\[\\^(\\d+)\\^\\]\\(#FOOT\\d+\\)\\{#DOCF\\d+\\}", "[^\\1]", .) %>%
-      gsub("\\[\\((\\d+)\\)\\]\\(#DOCF\\d+\\)\\{#FOOT\\d+\\}", "[^\\1]", .) %>%
-      gsub("\\[\\((\\d+)\\)\\]\\(#DOCF\\d+\\)\\{#FOOT\\d+\\}", "[^\\1]", .) %>%
-      # Fix function definition lists
-      gsub("^(Function: .*)\\\\$", "\\1\n:    \n", .) %>%
-      gsub("^(`.*`)\\\\$", "\\1\n:    \n", .) %>%
-      # Fix indented codeblocks by adding a newline in front of them
-      gsub("(^\\s{4}``` [c|R]$)", "\n\\1", .) %>%
-      gsub("(^\\s{8}``` [c|R]$)", "\n\\1", .) %>%
-      # remove quote around backticks
-      gsub("('`|`')", "`", .) %>%
-      # insert missing colon in footnote references
-      gsub("^(\\[\\^\\d+\\])$", "\\1:", .) %>%
-      # replace double backtick `` occurrences
-      gsub(r"{(?<!`)``(?!`)}", "", ., perl = TRUE) %>%
-      # replace ellipsis
-      gsub("…", "...", .) %>%
-      # remove named sections
-      gsub("(^#+ .*?) {#.*? \\.(.*)}$", "\\1", ., perl = TRUE) %>%
+    # remove empty hyperlinks [](...)
+    gsub("^\\[\\]\\{.*?\\}$", "", .) %>%
+    # remove {.sample}
+    gsub("`{.variable}`", "", ., fixed = TRUE) %>%
+    gsub("{.variable}", "", ., fixed = TRUE) %>%
+    gsub("`{.sample}`", "", ., fixed = TRUE) %>%
+    gsub("{.sample}", "", ., fixed = TRUE) %>%
+    # fix footnote cross-references
+    gsub("\\[\\^(\\d+)\\^\\]\\(#FOOT\\d+\\)\\{#DOCF\\d+\\}", "[^\\1]", .) %>%
+    gsub("\\[\\^(\\d+)\\^\\]\\(#FOOT\\d+\\)\\{#DOCF\\d+\\}", "[^\\1]", .) %>%
+    gsub("\\[\\((\\d+)\\)\\]\\(#DOCF\\d+\\)\\{#FOOT\\d+\\}", "[^\\1]", .) %>%
+    gsub("\\[\\((\\d+)\\)\\]\\(#DOCF\\d+\\)\\{#FOOT\\d+\\}", "[^\\1]", .) %>%
+    # Fix function definition lists
+    gsub("^(Function: .*)\\\\$", "\\1\n:    \n", .) %>%
+    gsub("^(`.*`)\\\\$", "\\1\n:    \n", .) %>%
+    # Fix indented codeblocks by adding a newline in front of them
+    gsub("(^\\s{4}``` [c|R]$)", "\n\\1", .) %>%
+    gsub("(^\\s{8}``` [c|R]$)", "\n\\1", .) %>%
+    # remove quote around backticks
+    gsub("('`|`')", "`", .) %>%
+    # insert missing colon in footnote references
+    gsub("^(\\[\\^\\d+\\])$", "\\1:", .) %>%
+    # replace double backtick `` occurrences
+    gsub(r"{(?<!`)``(?!`)}", "", ., perl = TRUE) %>%
+    # replace ellipsis
+    gsub("…", "...", .) %>%
+    # remove named sections
+    gsub("(^#+ .*?) {#.*? \\.(.*)}$", "\\1", ., perl = TRUE) %>%
 
-      # remember to remove this line and deal with it using Lua filters.
-      gsub("^:::.*$", "", .)
+    # remember to remove this line and deal with it using Lua filters.
+    gsub("^:::.*$", "", .)
 }
 
 regex_replace_md <- function(path = "temp", verbose = TRUE) {
@@ -151,7 +146,7 @@ regex_replace_md <- function(path = "temp", verbose = TRUE) {
   for (filename in file_list) {
     filename %>%
       read_lines() %>%
-      regex_replace() %>% 
+      regex_replace() %>%
       readr::write_lines(file = filename)
   }
   invisible()

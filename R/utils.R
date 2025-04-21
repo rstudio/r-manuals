@@ -13,5 +13,3 @@ extract_title_from_index <- function(filename) {
 in_testthat <- function(code) {
   withr::with_dir(here::here("tests/testthat/"), code)
 }
-
-

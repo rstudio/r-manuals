@@ -1,8 +1,11 @@
 already_downloaded <- function(file) {
   fs::file_exists(file) &&
-    difftime(Sys.time(), fs::file_info(file)$modification_time, units = "hours") < 1
-
-
+    difftime(
+      Sys.time(),
+      fs::file_info(file)$modification_time,
+      units = "hours"
+    ) <
+      1
 }
 
 #' Download manual files from a given URL
@@ -18,11 +21,12 @@ already_downloaded <- function(file) {
 #' @noRd
 #'
 download_manual_file <- function(
-  filename, destdir = ".",
-  base_url = "https://raw.githubusercontent.com/wch/r-source/trunk")
-{
+  filename,
+  destdir = ".",
+  base_url = "https://raw.githubusercontent.com/wch/r-source/trunk"
+) {
   output_file <- glue::glue("{destdir}/{filename}")
-  if (already_downloaded(output_file)) return (invisible())
+  if (already_downloaded(output_file)) return(invisible())
 
   base_url <- paste0(base_url, "/doc/manual")
   download.file(
@@ -33,12 +37,13 @@ download_manual_file <- function(
 }
 
 download_manual_images <- function(
-    filename, destdir = ".",
-    base_url = "https://raw.githubusercontent.com/wch/r-source/trunk")
-{
+  filename,
+  destdir = ".",
+  base_url = "https://raw.githubusercontent.com/wch/r-source/trunk"
+) {
   output_file <- glue::glue("{destdir}/images/{filename}")
 
-  if (already_downloaded(output_file)) return (invisible())
+  if (already_downloaded(output_file)) return(invisible())
 
   # base_url <- paste0(base_url, "/doc/manual/images")
   download.file(
@@ -56,9 +61,7 @@ download_manual_images <- function(
 create_version_file <- function(
   destdir = "data",
   base_url = "https://raw.githubusercontent.com/wch/r-source/trunk"
-  )
-{
-
+) {
   output_file <- glue::glue("{destdir}/version.texi")
   if (already_downloaded(output_file)) return(invisible())
 
@@ -69,9 +72,15 @@ create_version_file <- function(
     quiet = TRUE
   )
 
-  version <- read_lines(glue::glue("{destdir}/VERSION")) %>% gsub("\\([^ ]*\\).*", "\\1", .)
-  rwversion <- paste0("R-", R.version$major, ".", R.version$minor,
-                      tolower(R.version$status))
+  version <- read_lines(glue::glue("{destdir}/VERSION")) %>%
+    gsub("\\([^ ]*\\).*", "\\1", .)
+  rwversion <- paste0(
+    "R-",
+    R.version$major,
+    ".",
+    R.version$minor,
+    tolower(R.version$status)
+  )
   version_template <- str_c(
     "@set VERSION {version}\n",
     "@set VERSIONno {version}\n",
@@ -80,7 +89,6 @@ create_version_file <- function(
   )
   glue::glue(version_template, version = version, rwversion = rwversion) %>%
     write_lines(path = output_file)
-
 }
 
 
@@ -107,7 +115,6 @@ download_manuals <- function(
   cli::cli_progress_step("Downloading {.file {needed}}")
   download_manual_file(needed, destdir = destdir, base_url = base_url)
 
-
   image_names <-
     readr::read_lines(glue::glue("{destdir}/{manual}")) %>%
     stringr::str_match("@image\\{images/(.*?),.*\\}") %>%
@@ -122,21 +129,19 @@ download_manuals <- function(
   # download VERSION file and create version.texi
   cli::cli_progress_step("Creating {.file version.texi}")
   create_version_file(base_url = base_url, destdir = destdir)
-
 }
 
 
 #' Pre-process the texi files.
 #'
 #' At the moment the only pre-processing is to remove `@group` statements.
-#' In PDF format this ensures line breaks don't occur in the middle of code blocks, 
+#' In PDF format this ensures line breaks don't occur in the middle of code blocks,
 #' but in HTML this causes multiple `pre` statements.
 #'
 #' @inheritParams download_manuals
 pre_process_manuals <- function(
-    destdir = "data"
+  destdir = "data"
 ) {
-
   cli::cli_progress_step("Pre-processing .texi files")
   fs::dir_ls(destdir, glob = "*.texi") %>%
     purrr::walk(function(x) {
@@ -144,9 +149,8 @@ pre_process_manuals <- function(
       content <- x %>%
         read_lines()
       group <- grep("^@(end )?group$", content)
-      if(length(group) == 0) return(invisible(FALSE))
+      if (length(group) == 0) return(invisible(FALSE))
       write_lines(content[-group], path = filename)
       invisible(TRUE)
     })
 }
-

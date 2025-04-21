@@ -22,15 +22,16 @@
 #'
 #' @return NULL.
 #' @export
-process_manual <- function(manual = "R-exts.texi",
-                           folder = tolower(sub(".texi", "", manual)),
-                           manuals_folder = "manuals",
-                           .quicktest = FALSE,
-                           .make_info = !.quicktest,
-                           .download = !.quicktest,
-                           verbose = TRUE) {
+process_manual <- function(
+  manual = "R-exts.texi",
+  folder = tolower(sub(".texi", "", manual)),
+  manuals_folder = "manuals",
+  .quicktest = FALSE,
+  .make_info = !.quicktest,
+  .download = !.quicktest,
+  verbose = TRUE
+) {
   cli::cli_h2("Processing {manual}")
-
 
   data_folder <- glue::glue("{manuals_folder}/{folder}/data")
   prep_folder <- glue::glue("{manuals_folder}/{folder}/prep")
@@ -46,7 +47,6 @@ process_manual <- function(manual = "R-exts.texi",
     download_manuals(manual = manual, destdir = data_folder)
   }
 
-
   # Compile the .texi to HTML
   if (.make_info) {
     # pre-process texi
@@ -57,14 +57,14 @@ process_manual <- function(manual = "R-exts.texi",
     fs::dir_create(prep_folder)
     make_info(
       manual,
-      input_dir = data_folder, output_dir = prep_folder,
+      input_dir = data_folder,
+      output_dir = prep_folder,
       verbose = verbose
     )
 
     # Rename files containing "_002d" to "-"
     fs::dir_ls(prep_folder, glob = "*_002d*") %>%
       fs::file_move(new_path = gsub("_002d", "-", .))
-
   } else {
     fs::dir_create(prep_folder)
   }
@@ -81,7 +81,7 @@ process_manual <- function(manual = "R-exts.texi",
   md_files <- fs::dir_ls(prep_folder, glob = "*.md")
   if (.quicktest) {
     n_max <- min(length(md_files), 9)
-    if (n_max > 0 ) {
+    if (n_max > 0) {
       md_files[1:n_max] %>%
         fs::file_copy(book_folder, overwrite = TRUE)
     }
@@ -99,7 +99,6 @@ process_manual <- function(manual = "R-exts.texi",
       overwrite = TRUE
     )
   }
-
 
   # replace regular expressions
   regex_replace_md(path = book_folder)
