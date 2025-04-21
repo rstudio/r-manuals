@@ -32,5 +32,6 @@ Imports:
     readr,
     stringr,
     pkgload,
-    here
+    here,
+    yaml
 Config/testthat/edition: 3
