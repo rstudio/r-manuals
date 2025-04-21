@@ -31,6 +31,6 @@ Imports:
     xml2,
     readr,
     stringr,
-    pkgload
+    pkgload,
+    here
 Config/testthat/edition: 3
-Config/renv/profiles/dev/dependencies: devtools, tidyverse, quarto, rmarkdown, knitr, here
