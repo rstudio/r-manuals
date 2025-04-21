@@ -23,7 +23,7 @@ already_downloaded <- function(file) {
 download_manual_file <- function(
   filename,
   destdir = ".",
-  base_url = "https://raw.githubusercontent.com/wch/r-source/trunk"
+  base_url = "https://raw.githubusercontent.com/wch/r-source/refs/heads/trunk"
 ) {
   output_file <- glue::glue("{destdir}/{filename}")
   if (already_downloaded(output_file)) return(invisible())
@@ -39,7 +39,7 @@ download_manual_file <- function(
 download_manual_images <- function(
   filename,
   destdir = ".",
-  base_url = "https://raw.githubusercontent.com/wch/r-source/trunk"
+  base_url = "https://raw.githubusercontent.com/wch/r-source/refs/heads/trunk"
 ) {
   output_file <- glue::glue("{destdir}/images/{filename}")
 
@@ -60,7 +60,7 @@ download_manual_images <- function(
 #' @noRd
 create_version_file <- function(
   destdir = "data",
-  base_url = "https://raw.githubusercontent.com/wch/r-source/trunk"
+  base_url = "https://raw.githubusercontent.com/wch/r-source/refs/heads/trunk"
 ) {
   output_file <- glue::glue("{destdir}/version.texi")
   if (already_downloaded(output_file)) return(invisible())
@@ -105,7 +105,7 @@ create_version_file <- function(
 download_manuals <- function(
   manual = "R-exts.texi",
   destdir = "data",
-  base_url = "https://raw.githubusercontent.com/wch/r-source/trunk"
+  base_url = "https://raw.githubusercontent.com/wch/r-source/refs/heads/trunk"
 ) {
   # download original texinfo file
   fs::dir_create(destdir)
