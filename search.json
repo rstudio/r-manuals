@@ -1,16 +1,16 @@
 [
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About this website",
-    "section": "",
-    "text": "Original R Manuals can be found at https://cran.r-project.org/manuals.html. The manuals in this website are built automatically from the originals using Quarto. You can find the scripts that do the conversion at https://github.com/rstudio/r-manuals."
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "The R Manuals",
     "section": "",
     "text": "This is a restyled version of the R manuals, originally provided by the R Development Core team.\n\n\n\n\nAn Introduction to R ¶\nBased on the former 'Notes on R', gives an introduction to the language and how to use R for doing statistical analysis and graphics.\n\n\nR Data Import/Export ¶\nDescribes the import and export facilities available either in R itself or via packages which are available from CRAN.\n\n\nR Installation and Administration ¶\nA guide to installation and administration for R\n\n\nWriting R Extensions ¶\nCovers how to create your own packages, write R help files, and the foreign language (C, C++, Fortran, ...) interfaces.\n\n\nR Language Definition ¶\nDocuments the language per se. That is, the objects that it works on, and the details of the expression evaluation process, which are useful to know when programming R functions.\n\n\nR Internals ¶\nA guide to the internal structures of R and coding standards for the core team working on R itself.\n\n\n\n\n\nThe primary aim of this site is to provide a re-styled and searchable version of the manuals, but we try very hard to keep the actual content as close to the original as possible. The r-styling consists mainly of:\n\nSplitting chapters into separate pages\nAdd code formatting\n\nOriginal R Manuals can be found at https://cran.r-project.org/manuals.html. The manuals in this website are built automatically from the originals using Quarto. Code can be found at https://github.com/rstudio/r-manuals.\nThe original license from the R Core development team explicitly allows modified versions of the original manual, under these terms:\n\nPermission is granted to make and distribute verbatim copies of this manual provided the copyright notice and this permission notice are preserved on all copies. Permission is granted to copy and distribute modified versions of this manual under the conditions for verbatim copying, provided that the entire resulting derived work is distributed under the terms of a permission notice identical to this one."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About this website",
+    "section": "",
+    "text": "Original R Manuals can be found at https://cran.r-project.org/manuals.html. The manuals in this website are built automatically from the originals using Quarto. You can find the scripts that do the conversion at https://github.com/rstudio/r-manuals."
   }
 ]
