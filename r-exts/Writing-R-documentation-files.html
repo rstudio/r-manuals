@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-71b9b407b0bc936145885efc1a7dc5e9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-01798d342d11202f5232215bf76f1956.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -445,7 +445,8 @@ depending on the named arguments specified, use section
 ``` latex
 \details{
   Typical usages are
-\preformatted{abline(a, b, ...)
+\preformatted{
+abline(a, b, ...)
 ......
 }
 ```
@@ -757,7 +758,7 @@ pre-defined list of keywords.</code></pre>
 <p>Each of the above commands takes LaTeX-like input, so other macros may be used within <var class="var">text</var>.</p>
 <p>The following logical markup commands are available for indicating specific kinds of text. Except as noted, these take ‘verbatim’ text input, and so other macros may not be used within them. Some characters will need to be escaped (see <a href="#insertions" class="pxref">Insertions</a>).</p>
 <p>: Indicate text that is a literal example of a piece of an R program, e.g., a fragment of R code or the name of an R object. Text is entered in R-like syntax, and displayed using <code class="code">typewriter</code> font where possible. Macros <code class="code">\var</code> and <code class="code">\link</code> are interpreted within <var class="var">text</var>.</p>
-<p>: Indicate text that is a literal example of a piece of a program. Text is displayed using <code class="code">typewriter</code> font where possible. Formatting, e.g.&nbsp;line breaks, is preserved. (Note that this includes a line break after the initial {, so typically text should start on the same line as the command.)</p>
+<p>: Indicate text that is a literal example of a piece of a program. Text is displayed using <code class="code">typewriter</code> font where possible. Formatting, e.g.&nbsp;line breaks, is preserved. Displayed in a separate paragraph.</p>
 <pre><code>Due to limitations in LaTeX as of this writing, this macro may not
 be nested within other markup macros other than `\dQuote`{.code} and
 `\sQuote`{.code}, as errors or bad formatting may result.</code></pre>
