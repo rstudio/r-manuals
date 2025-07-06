@@ -466,11 +466,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <samp class="option">--silent</samp><br>
 <samp class="option">-q</samp></p>
 <p>: Do not print out the initial copyright and welcome messages.</p>
+<p><samp class="option">--no-echo</samp><br>
+<samp class="option">-s</samp></p>
+<p>: Make R run as quietly as possible. This option is intended to support programs which use R to compute results for them. It implies <samp class="option">--quiet</samp> and <samp class="option">--no-save</samp>.</p>
 <dl>
-<dt><samp class="option">--no-echo</samp></dt>
-<dd>
-<p>Make R run as quietly as possible. This option is intended to support programs which use R to compute results for them. It implies <samp class="option">--quiet</samp> and <samp class="option">--no-save</samp>.</p>
-</dd>
 <dt><samp class="option">--interactive</samp></dt>
 <dd>
 <p>(UNIX only) Assert that R really is being run interactively even if input has been redirected: use if input is from a FIFO or pipe and fed from an interactive program. (The default is to deduce that R is being run interactively if and only if <samp class="file">stdin</samp> is connected to a terminal or <code class="code">pty</code>.) Using <samp class="option">-e</samp>, <samp class="option">-f</samp> or <samp class="option">--file</samp> asserts non-interactive use even if <samp class="option">--interactive</samp> is given.</p>
