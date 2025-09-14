@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./Installing-R-under-Windows.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c762d530328b84888f35e55f6455881a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6ee2a366d093f1a40032a3c585720d59.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -115,6 +116,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: R Installation and Administration ¶</span>
     </a>
@@ -185,6 +188,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -357,24 +364,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>Ensure that the console is completely visible (or at least the activity indicator at the top right corner is visible).</p></li>
 <li><p>In a Terminal, run</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>defaults write org.R<span class="sc">-</span>project.R NSAppSleepDisabled <span class="sc">-</span>bool YES</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>defaults write org.R<span class="sc">-</span>project.R NSAppSleepDisabled <span class="sc">-</span>bool YES</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>(see <a href="https://developer.apple.com/library/archive/releasenotes/MacOSX/WhatsNewInOSX/Articles/MacOSX10_9.html" class="uref">https://developer.apple.com/library/archive/releasenotes/MacOSX/WhatsNewInOSX/Articles/MacOSX10_9.html</a>).</p></li>
 </ul>
 <p>Using the <code class="code">X11</code> graphics device or the X11-based versions of <code class="code">View()</code> and <code class="code">edit()</code> for data frames and matrices (the latter are the default for command-line R but not <span class="small">R.APP</span>) requires <a href="https://www.xquartz.org/" class="uref">XQuartz</a> to be installed.</p>
 <p>Under some rather nebulous circumstances messages have been seen from <code class="code">fontconfig</code> about missing/unreadable configuration files when using cairo-based devices, especially <code class="code">X11(type = "cairo")</code>. With XQuartz installed there are two <code class="code">fontconfig</code> areas from different versions and it can help to set</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>setenv FONTCONFIG_PATH <span class="sc">/</span>opt<span class="sc">/</span>X11<span class="sc">/</span>lib<span class="sc">/</span>X11<span class="sc">/</span>fontconfig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>setenv FONTCONFIG_PATH <span class="sc">/</span>opt<span class="sc">/</span>X11<span class="sc">/</span>lib<span class="sc">/</span>X11<span class="sc">/</span>fontconfig</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Another symptom has been that italic/oblique fonts are replaced by upright ones.</p>
 </section>
 <section id="uninstalling-under-macos" class="level2 section" data-number="4.2">
 <h2 class="section anchored" data-number="4.2" data-anchor-id="uninstalling-under-macos"><span class="header-section-number">4.2</span> Uninstalling under macOS</h2>
 <p>R for macOS consists of two parts: the GUI (<span class="small">R.APP</span>) and the R framework. Un-installation is as simple as removing those folders (e.g. by dragging them onto the Bin<a href="#FOOT24" id="DOCF24" class="footnote"><sup>24</sup></a>). The typical installation will install the GUI into the <samp class="file">/Applications/R.app</samp> folder and the R framework into the <samp class="file">/Library/Frameworks/R.framework</samp> folder. The links to <samp class="file">R</samp> and <samp class="file">Rscript</samp> in <samp class="file">/usr/local/bin</samp> should also be removed.</p>
 <p>If you want to get rid of R more completely using a Terminal, simply run:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> rm <span class="at">-Rf</span> /Library/Frameworks/R.framework /Applications/R.app <span class="dt">\</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>   /usr/local/bin/R /usr/local/bin/Rscript</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> rm <span class="at">-Rf</span> /Library/Frameworks/R.framework /Applications/R.app <span class="dt">\</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>   /usr/local/bin/R /usr/local/bin/Rscript</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The installation consists of up to four Apple packages:<a href="#FOOT25" id="DOCF25" class="footnote"><sup>25</sup></a> for the ‘Apple Silicon’ build, <code class="code">org.R-project.arm64.R.fw.pkg</code>, <code class="code">org.R-project.arm64.R.GUI.pkg</code>, <code class="code">org.r-project.arm64.tcltk</code> and <code class="code">org.r-project.arm64.texinfo</code>. You can use <code class="code">sudo pkgutil --forget</code> if you want the Apple Installer to forget about the package without deleting its files (useful for the R framework when installing multiple R versions in parallel), or after you have deleted the files. <strong>NB:</strong> the package names are case-sensitive and the R domain is named inconsistently.</p>
 <p>Uninstalling the Tcl/Tk and Texinfo components (which are installed under <samp class="file">/opt/R/arm64</samp> on a <samp class="samp">arm64</samp>’ build and <samp class="file">/opt/R/x86_64</samp> for an <samp class="samp">x86_64</samp>’ one) is not as simple. You can list the files they installed in a Terminal by e.g.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pkgutil <span class="sc">--</span>files org.r<span class="sc">-</span>project.arm64.tcltk</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>pkgutil <span class="sc">--</span>files org.r<span class="sc">-</span>project.arm64.texinfo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pkgutil <span class="sc">--</span>files org.r<span class="sc">-</span>project.arm64.tcltk</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>pkgutil <span class="sc">--</span>files org.r<span class="sc">-</span>project.arm64.texinfo</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>(For the ’Intel build, replace <code class="code">arm64</code> by <code class="code">x86_64</code>.) These are paths relative to <samp class="file">/</samp>, the root of the file system.</p>
 <p>If you are not compiling R nor installing packages from source you could remove all of <samp class="file">/opt/R/arm64</samp> or <samp class="file">/opt/R/x86_64</samp>.</p>
 </section>
@@ -437,13 +444,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

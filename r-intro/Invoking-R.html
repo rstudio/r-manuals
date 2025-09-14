@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./A-sample-session.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c762d530328b84888f35e55f6455881a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6ee2a366d093f1a40032a3c585720d59.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -115,6 +116,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: An Introduction to R ¶</span>
     </a>
@@ -185,6 +188,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -374,7 +381,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="invoking-r-from-the-command-line" class="level2 appendixsec" data-number="B.1">
 <h2 class="appendixsec anchored" data-number="B.1" data-anchor-id="invoking-r-from-the-command-line"><span class="header-section-number">B.1</span> Invoking R from the command line</h2>
 <p>When working at a command line on UNIX or Windows, the command <samp class="samp">R</samp>’ can be used both for starting the main R program in the form</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>R [options] [<span class="sc">&lt;</span>infile] [<span class="sc">&gt;</span>outfile],</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>R [options] [<span class="sc">&lt;</span>infile] [<span class="sc">&gt;</span>outfile],</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>or, via the <code class="code">R CMD</code> interface, as a wrapper to various R tools (e.g., for processing files in R documentation format or manipulating add-on packages) which are not intended to be called “directly”.</p>
 <p>At the Windows command-line, <code class="command">Rterm.exe</code> is preferred to <code class="command">R</code>.</p>
 <p>You need to ensure that either the environment variable <code class="env">TMPDIR</code> is unset or it points to a valid place to create temporary files and directories.</p>
@@ -502,7 +509,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dl>
 <p>Note that input and output can be redirected in the usual way (using <samp class="samp">&lt;</samp>’ and <samp class="samp">&gt;</samp>’), but the line length limit of 4095 bytes still applies. Warning and error messages are sent to the error channel (<code class="code">stderr</code>).</p>
 <p>The command <code class="code">R CMD</code> allows the invocation of various tools which are useful in conjunction with R, but not intended to be called “directly”. The general form is</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> CMD command args</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> CMD command args</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>where <var class="var">command</var> is the name of the tool and <var class="var">args</var> the arguments passed on to it.</p>
 <p>Currently, the following tools are available.</p>
 <dl>
@@ -585,10 +592,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 </dl>
 <p>Use</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> CMD command <span class="at">--help</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> CMD command <span class="at">--help</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>to obtain usage information for each of the tools accessible via the <code class="code">R CMD</code> interface.</p>
 <p>In addition, you can use options <samp class="option">--arch=</samp>, <samp class="option">--no-environ</samp>, <samp class="option">--no-init-file</samp>, <samp class="option">--no-site-file</samp> and <samp class="option">--vanilla</samp> between <code class="command">R</code> and <code class="command">CMD</code>: these affect any R processes run by the tools. (Here <samp class="option">--vanilla</samp> is equivalent to <samp class="option">--no-environ --no-site-file --no-init-file</samp>.) However, note that <code class="command">R CMD</code> does not of itself use any R startup files (in particular, neither user nor site <samp class="file">Renviron</samp> files), and all of the R processes run by these tools (except <code class="command">BATCH</code>) use <samp class="option">--no-restore</samp>. Most use <samp class="option">--vanilla</samp> and so invoke no R startup files: the current exceptions are <code class="command">INSTALL</code>, <code class="command">REMOVE</code>, <code class="command">Sweave</code> and <code class="command">SHLIB</code> (which uses <samp class="option">--no-site-file --no-init-file</samp>).</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> CMD cmd args</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> CMD cmd args</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>for any other executable <var class="var">cmd</var> on the path or given by an absolute filepath: this is useful to have the same environment as R or the specific commands run under, for example to run <code class="command">ldd</code> or <code class="command">pdflatex</code>. Under Windows <var class="var">cmd</var> can be an executable or a batch file, or if it has extension <code class="code">.sh</code> or <code class="code">.pl</code> the appropriate interpreter (if available) is called to run it.</p>
 </section>
 <section id="invoking-r-under-windows" class="level2 appendixsec" data-number="B.2">
@@ -610,7 +617,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 </dl>
 <p>Under Windows with <code class="code">R CMD</code> you may also specify your own <samp class="file">.bat</samp>, <samp class="file">.exe</samp>, <samp class="file">.sh</samp> or <samp class="file">.pl</samp> file. It will be run under the appropriate interpreter (Perl for <samp class="file">.pl</samp>) with several environment variables set appropriately, including <code class="env">R_HOME</code>, <code class="env">R_OSTYPE</code>, <code class="env">PATH</code>, <code class="env">BSTINPUTS</code> and <code class="env">TEXINPUTS</code>. For example, if you already have <samp class="file">latex.exe</samp> on your path, then</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> CMD latex.exe mydoc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> CMD latex.exe mydoc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>will run LaTeX on <samp class="file">mydoc.tex</samp>, with the path to R’s <samp class="file">share/texmf</samp> macros appended to <code class="env">TEXINPUTS</code>. (With the MiKTeX build of LaTeX, using <code class="command">R CMD texify mydoc</code> is often more convenient.)</p>
 </section>
 <section id="invoking-r-under-macos" class="level2 appendixsec" data-number="B.3">
@@ -622,36 +629,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="appendixsec anchored" data-number="B.4" data-anchor-id="scripting-with-r"><span class="header-section-number">B.4</span> Scripting with R</h2>
 <p>If you just want to run a file <samp class="file">foo.R</samp> of R commands, the recommended way is to use <code class="command">R CMD BATCH foo.R</code>. If you want to run this in the background or as a batch job use OS-specific facilities to do so: for example in most shells on Unix-alike OSes <code class="command">R CMD BATCH foo.R &amp;</code> runs a background job.</p>
 <p>You can pass parameters to scripts via additional arguments on the command line: for example (where the exact quoting needed will depend on the shell in use)</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> CMD BATCH <span class="st">"--args arg1 arg2"</span> foo.R <span class="kw">&amp;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> CMD BATCH <span class="st">"--args arg1 arg2"</span> foo.R <span class="kw">&amp;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>will pass arguments to a script which can be retrieved as a character vector by</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>args <span class="ot">&lt;-</span> <span class="fu">commandArgs</span>(<span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>args <span class="ot">&lt;-</span> <span class="fu">commandArgs</span>(<span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This is made simpler by the alternative front-end <code class="command">Rscript</code>, which can be invoked by</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Rscript foo.R arg1 arg2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Rscript foo.R arg1 arg2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>and this can also be used to write executable script files like (at least on Unix-alikes, and in some Windows shells)</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#! /path/to/Rscript</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#! /path/to/Rscript</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>args <span class="ot">&lt;-</span> <span class="fu">commandArgs</span>(<span class="cn">TRUE</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span>(<span class="at">status=</span><span class="sc">&lt;</span>exit status code<span class="sc">&gt;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span>(<span class="at">status=</span><span class="sc">&lt;</span>exit status code<span class="sc">&gt;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If this is entered into a text file <samp class="file">runfoo</samp> and this is made executable (by <code class="command">chmod 755 runfoo</code>), it can be invoked for different arguments by</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>runfoo arg1 arg2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>runfoo arg1 arg2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For further options see <code class="command">help("Rscript")</code>. This writes R output to <samp class="file">stdout</samp> and <samp class="file">stderr</samp>, and this can be redirected in the usual way for the shell running the command.</p>
 <p>If you do not wish to hardcode the path to <code class="command">Rscript</code> but have it in your path (which is normally the case for an installed R except on Windows, but e.g.&nbsp;macOS users may need to add <samp class="file">/usr/local/bin</samp> to their path), use</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#! /usr/bin/env Rscript</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#! /usr/bin/env Rscript</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>At least in Bourne and bash shells, the <code class="code">#!</code> mechanism does <strong>not</strong> allow extra arguments like <code class="code">#! /usr/bin/env Rscript --vanilla</code>.</p>
 <p>One thing to consider is what <code class="code">stdin()</code> refers to. It is commonplace to write R scripts with segments like</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>chem <span class="ot">&lt;-</span> <span class="fu">scan</span>(<span class="at">n=</span><span class="dv">24</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>chem <span class="ot">&lt;-</span> <span class="fu">scan</span>(<span class="at">n=</span><span class="dv">24</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fl">2.90</span> <span class="fl">3.10</span> <span class="fl">3.40</span> <span class="fl">3.40</span> <span class="fl">3.70</span> <span class="fl">3.70</span> <span class="fl">2.80</span> <span class="fl">2.50</span> <span class="fl">2.40</span> <span class="fl">2.40</span> <span class="fl">2.70</span> <span class="fl">2.20</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fl">5.28</span> <span class="fl">3.37</span> <span class="fl">3.03</span> <span class="fl">3.03</span> <span class="fl">28.95</span> <span class="fl">3.77</span> <span class="fl">3.40</span> <span class="fl">2.20</span> <span class="fl">3.50</span> <span class="fl">3.60</span> <span class="fl">3.70</span> <span class="fl">3.70</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fl">5.28</span> <span class="fl">3.37</span> <span class="fl">3.03</span> <span class="fl">3.03</span> <span class="fl">28.95</span> <span class="fl">3.77</span> <span class="fl">3.40</span> <span class="fl">2.20</span> <span class="fl">3.50</span> <span class="fl">3.60</span> <span class="fl">3.70</span> <span class="fl">3.70</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>and <code class="code">stdin()</code> refers to the script file to allow such traditional usage. If you want to refer to the process’s <samp class="file">stdin</samp>, use <code class="code">"stdin"</code> as a <code class="code">file</code> connection, e.g. <code class="code">scan("stdin", ...)</code>.</p>
 <p>Another way to write executable script files (suggested by François Pinard) is to use a <em>here document</em> like</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/sh</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/sh</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[environment</span> variables can be set here]</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> <span class="at">--no-echo</span> [other options] <span class="op">&lt;&lt;EOF</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="st">   R program goes here...</span></span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="op">EOF</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>but here <code class="code">stdin()</code> refers to the program source and <code class="code">"stdin"</code> will not be usable.</p>
 <p>Short scripts can be passed to <code class="command">Rscript</code> on the command-line <em>via</em> the <samp class="option">-e</samp> flag. (Empty scripts are not accepted.)</p>
 <p>Note that on a Unix-alike the input filename (such as <samp class="file">foo.R</samp>) should not contain spaces nor shell metacharacters.</p>
@@ -712,13 +719,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

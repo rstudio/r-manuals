@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./Essential-and-useful-other-programs-under-a-Unix-alike.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c762d530328b84888f35e55f6455881a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6ee2a366d093f1a40032a3c585720d59.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -115,6 +116,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: R Installation and Administration ¶</span>
     </a>
@@ -185,6 +188,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -350,7 +357,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="configuration-options" class="level2 section" data-number="B.1">
 <h2 class="section anchored" data-number="B.1" data-anchor-id="configuration-options"><span class="header-section-number">B.1</span> Configuration options</h2>
 <p><code class="command">configure</code> has many options: running</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>.<span class="sc">/</span>configure <span class="sc">--</span>help</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>.<span class="sc">/</span>configure <span class="sc">--</span>help</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>will give a list. Probably the most important ones not covered elsewhere are (defaults in brackets)</p>
 <dl>
 <dt><samp class="option">--with-x</samp></dt>
@@ -396,13 +403,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="internationalization-support" class="level2 section" data-number="B.2">
 <h2 class="section anchored" data-number="B.2" data-anchor-id="internationalization-support"><span class="header-section-number">B.2</span> Internationalization support</h2>
 <p>Translation of messages is supported via GNU <code class="code">gettext</code> unless disabled by the configure option <samp class="option">--disable-nls</samp>. The <code class="code">configure</code> report will show <code class="code">NLS</code> as one of the ‘Additional capabilities’ if support has been compiled in, and running in an English locale (but not the <code class="code">C</code> locale) will include</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>  Natural language support but running <span class="cf">in</span> an English locale</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>  Natural language support but running <span class="cf">in</span> an English locale</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>in the greeting on starting R.</p>
 </section>
 <section id="configuration-variables" class="level2 section" data-number="B.3">
 <h2 class="section anchored" data-number="B.3" data-anchor-id="configuration-variables"><span class="header-section-number">B.3</span> Configuration variables</h2>
 <p>If you need or want to set certain configure variables to something other than their default, you can do that by either editing the file <samp class="file">config.site</samp> (which documents many of the variables you might want to set: others can be seen in file <samp class="file">etc/Renviron.in</samp>) or on the command line as</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>.<span class="sc">/</span>configure VAR<span class="ot">=</span>value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>.<span class="sc">/</span>configure VAR<span class="ot">=</span>value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If you are building in a directory different from the sources, there can be copies of <samp class="file">config.site</samp> in the source and the build directories, and both will be read (in that order). In addition, if there is a file <samp class="file">~/.R/config</samp>, it is read between the <samp class="file">config.site</samp> files in the source and the build directories.</p>
 <p>There is also a general <code class="command">autoconf</code> mechanism for <samp class="file">config.site</samp> files, which are read before any of those mentioned in the previous paragraph. This looks first at a file specified by the <span id="index-CONFIG_005fSITE" class="index-entry-id"></span> environment variable <code class="env">CONFIG_SITE</code>, and if not is set at files such as <samp class="file">/usr/local/share/config.site</samp> and <samp class="file">/usr/local/etc/config.site</samp> in the area (exemplified by <samp class="file">/usr/local</samp>) where R would be installed.</p>
 <p>These variables are <em>precious</em>, implying that they do not have to be exported to the environment, are kept in the cache even if not specified on the command line, checked for consistency between two configure runs (provided that caching is used), and are kept during automatic reconfiguration as if having been passed as command line arguments, even if no cache is used.</p>
@@ -438,7 +445,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="section anchored" data-number="B.5" data-anchor-id="using-make"><span class="header-section-number">B.5</span> Using make</h2>
 <p>To build in a separate directory you need a <code class="command">make</code> that supports the <code class="code">VPATH</code> variable, for example GNU <code class="command">make</code> and <code class="command">dmake</code>.</p>
 <p>If you want to use a <code class="command">make</code> by another name, for example <code class="command">bmake</code> (a port of NetBSD make) on Linux or if your GNU <code class="command">make</code> is called <samp class="samp">gmake</samp>’, you need to set the variable <code class="code">MAKE</code> at configure time, for example</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>.<span class="sc">/</span>configure MAKE<span class="ot">=</span>gmake</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>.<span class="sc">/</span>configure MAKE<span class="ot">=</span>gmake</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="using-fortran" class="level2 section" data-number="B.6">
 <h2 class="section anchored" data-number="B.6" data-anchor-id="using-fortran"><span class="header-section-number">B.6</span> Using Fortran</h2>
@@ -595,13 +602,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

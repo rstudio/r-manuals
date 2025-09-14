@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./Importing-from-other-statistical-systems.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c762d530328b84888f35e55f6455881a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6ee2a366d093f1a40032a3c585720d59.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -115,6 +116,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: R Data Import/Export ¶</span>
     </a>
@@ -185,6 +188,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -347,14 +354,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The more comprehensive R interfaces generate SQL behind the scenes for common operations, but direct use of SQL is needed for complex operations in all. Conventionally SQL is written in upper case, but many users will find it more convenient to use lower case in the R interface functions.</p>
 <p>A relational DBMS stores data as a database of <em>tables</em> (or <em>relations</em>) which are rather similar to R data frames, in that they are made up of <em>columns</em> or <em>fields</em> of one type (numeric, character, date, currency, …) and <em>rows</em> or <em>records</em> containing the observations for one entity.</p>
 <p>SQL ‘queries’ are quite general operations on a relational database. The classical query is a SELECT statement of the type</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>SELECT State, Murder FROM USArrests WHERE Rape <span class="sc">&gt;</span> <span class="dv">30</span> ORDER BY Murder</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>SELECT State, Murder FROM USArrests WHERE Rape <span class="sc">&gt;</span> <span class="dv">30</span> ORDER BY Murder</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>SELECT t.sch, c.meanses, t.sex, t.achieve</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  FROM student as t, school as c WHERE t.sch <span class="ot">=</span> c.id</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>SELECT sex, <span class="fu">COUNT</span>(<span class="sc">*</span>) FROM student GROUP BY sex</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>SELECT sch, <span class="fu">AVG</span>(sestat) FROM student GROUP BY sch LIMIT <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>SELECT sch, <span class="fu">AVG</span>(sestat) FROM student GROUP BY sch LIMIT <span class="dv">10</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The first of these selects two columns from the R data frame <code class="code">USArrests</code> that has been copied across to a database table, subsets on a third column and asks the results be sorted. The second performs a database <em>join</em> on two tables <code class="code">student</code> and <code class="code">school</code> and returns four columns. The third and fourth queries do some cross-tabulation and return counts or averages. (The five aggregation functions are COUNT(*) and SUM, MAX, MIN and AVG, each applied to a single column.)</p>
 <p>SELECT queries use FROM to select the table, WHERE to specify a condition for inclusion (or more than one condition separated by AND or OR), and ORDER BY to sort the result. Unlike data frames, rows in RDBMS tables are best thought of as unordered, and without an ORDER BY statement the ordering is indeterminate. You can sort (in lexicographical order) on more than one column by separating them by commas. Placing DESC after an ORDER BY puts the sort in descending order.</p>
 <p>SELECT DISTINCT queries will only return one copy of each distinct row in the selected table.</p>
@@ -424,7 +431,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Function <code class="code">fetch</code> is used to retrieve some or all of the rows in the query result, as a list. The function <code class="code">dbHasCompleted</code> indicates if all the rows have been fetched, and <code class="code">dbGetRowCount</code> returns the number of rows in the result.</p>
 <p><span id="index-dbReadTable" class="index-entry-id"></span> <span id="index-dbWriteTable" class="index-entry-id"></span> <span id="index-dbExistsTable" class="index-entry-id"></span></p>
 <p>These are convenient interfaces to read/write/test/delete tables in the database. <code class="code">dbReadTable</code> and <code class="code">dbWriteTable</code> copy to and from an R data frame, mapping the row names of the data frame to the field <code class="code">row_names</code> in the <code class="code">MySQL</code> table.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> library<span class="op">(</span>RMySQL<span class="op">)</span> # will load DBI as well</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> library<span class="op">(</span>RMySQL<span class="op">)</span> # will load DBI as well</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#</span><span class="er"># open a connection to a MySQL database</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> con <span class="op">&lt;-</span> dbConnect<span class="op">(</span>dbDriver<span class="op">(</span><span class="st">"MySQL"</span><span class="op">),</span> dbname <span class="op">=</span> <span class="st">"test"</span><span class="op">)</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#</span><span class="er"># list the tables in the database</span></span>
@@ -456,7 +463,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span>     Nevada   <span class="fl">12.2</span></span>
 <span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span>    Florida   <span class="fl">15.4</span></span>
 <span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> dbRemoveTable<span class="op">(</span>con<span class="op">,</span> <span class="st">"arrests"</span><span class="op">)</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> dbDisconnect<span class="op">(</span>con<span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> dbDisconnect<span class="op">(</span>con<span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="package-rodbc" class="level3 subsection" data-number="4.3.2">
 <h3 class="subsection anchored" data-number="4.3.2" data-anchor-id="package-rodbc"><span class="header-section-number">4.3.2</span> Package <strong>RODBC</strong></h3>
@@ -474,7 +481,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><span id="index-odbcQuery" class="index-entry-id"></span> <span id="index-sqlGetResults" class="index-entry-id"></span> <span id="index-sqlFetchMore" class="index-entry-id"></span></p>
 <p>An SQL query can be sent to the database by a call to <code class="code">sqlQuery</code>. This returns the result in an R data frame. (<code class="code">sqlCopy</code> sends a query to the database and saves the result as a table in the database.) A finer level of control is attained by first calling <code class="code">odbcQuery</code> and then <code class="code">sqlGetResults</code> to fetch the results. The latter can be used within a loop to retrieve a limited number of rows at a time, as can function <code class="code">sqlFetchMore</code>.</p>
 <p>Here is an example using PostgreSQL, for which the ODBC driver maps column and data frame names to lower case. We use a database <code class="code">testdb</code> we created earlier, and had the DSN (data source name) set up in <samp class="file">~/.odbc.ini</samp> under <code class="code">unixODBC</code>. Exactly the same code worked using MyODBC to access a MySQL database under Linux or Windows (where MySQL also maps names to lowercase). Under Windows, DSNs are set up in the ODBC applet in the Control Panel (‘Data Sources (ODBC)’ in the ‘Administrative Tools’ section).</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> library<span class="op">(</span>RODBC<span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> library<span class="op">(</span>RODBC<span class="op">)</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#</span><span class="er"># tell it to map names to l/case</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> channel <span class="op">&lt;-</span> odbcConnect<span class="op">(</span><span class="st">"testdb"</span><span class="op">,</span> uid<span class="op">=</span><span class="st">"ripley"</span><span class="op">,</span> <span class="cf">case</span><span class="op">=</span><span class="st">"tolower"</span><span class="op">)</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="pp">#</span><span class="er"># load a data frame into the database</span></span>
@@ -506,9 +513,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="pp">#</span><span class="er"># remove the table</span></span>
 <span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> sqlDrop<span class="op">(</span>channel<span class="op">,</span> <span class="st">"USArrests"</span><span class="op">)</span></span>
 <span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="pp">#</span><span class="er"># close the connection</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> odbcClose<span class="op">(</span>channel<span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> odbcClose<span class="op">(</span>channel<span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>As a simple example of using ODBC under Windows with a Excel spreadsheet, we can read from a spreadsheet by</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> library<span class="op">(</span>RODBC<span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> library<span class="op">(</span>RODBC<span class="op">)</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> channel <span class="op">&lt;-</span> odbcConnectExcel<span class="op">(</span><span class="st">"bdr.xls"</span><span class="op">)</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#</span><span class="er"># list the spreadsheets</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> sqlTables<span class="op">(</span>channel<span class="op">)</span></span>
@@ -519,7 +526,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> C<span class="op">:</span>\\bdr            NA Sheet1$Print_Area        TABLE      NA</span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="pp">#</span><span class="er"># retrieve the contents of sheet 1, by either of</span></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> sh1 <span class="op">&lt;-</span> sqlFetch<span class="op">(</span>channel<span class="op">,</span> <span class="st">"Sheet1"</span><span class="op">)</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> sh1 <span class="op">&lt;-</span> sqlQuery<span class="op">(</span>channel<span class="op">,</span> <span class="st">"select * from [Sheet1$]"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> sh1 <span class="op">&lt;-</span> sqlQuery<span class="op">(</span>channel<span class="op">,</span> <span class="st">"select * from [Sheet1$]"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Notice that the specification of the table is different from the name returned by <code class="code">sqlTables</code>: <code class="code">sqlFetch</code> is able to map the differences.</p>
 </section>
 
@@ -577,13 +584,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

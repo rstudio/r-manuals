@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./Statistical-models-in-R.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c762d530328b84888f35e55f6455881a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6ee2a366d093f1a40032a3c585720d59.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -115,6 +116,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: An Introduction to R ¶</span>
     </a>
@@ -185,6 +188,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -437,12 +444,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="displaying-multivariate-data" class="level3 subsection" data-number="12.1.2">
 <h3 class="subsection anchored" data-number="12.1.2" data-anchor-id="displaying-multivariate-data"><span class="header-section-number">12.1.2</span> Displaying multivariate data</h3>
 <p>R provides two very useful functions for representing multivariate data. If <code class="code">X</code> is a numeric matrix or data frame, the command</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">pairs</span>(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">pairs</span>(X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>produces a pairwise scatterplot matrix of the variables defined by the columns of <code class="code">X</code>, that is, every column of <code class="code">X</code> is plotted against every other column of <code class="code">X</code> and the resulting <em>n(n-1)</em> plots are arranged in a matrix with plot scales constant over the rows and columns of the matrix.</p>
 <p>When three or four variables are involved a <em>coplot</em> may be more enlightening. If <code class="code">a</code> and <code class="code">b</code> are numeric vectors and <code class="code">c</code> is a numeric vector or factor object (all of the same length), then the command</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">coplot</span>(a <span class="sc">~</span> b <span class="sc">|</span> c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">coplot</span>(a <span class="sc">~</span> b <span class="sc">|</span> c)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>produces a number of scatterplots of <code class="code">a</code> against <code class="code">b</code> for given values of <code class="code">c</code>. If <code class="code">c</code> is a factor, this simply means that <code class="code">a</code> is plotted against <code class="code">b</code> for every level of <code class="code">c</code>. When <code class="code">c</code> is numeric, it is divided into a number of <em>conditioning intervals</em> and for each interval <code class="code">a</code> is plotted against <code class="code">b</code> for values of <code class="code">c</code> within the interval. The number and position of intervals can be controlled with <code class="code">given.values=</code> argument to <code class="code">coplot()</code>—the function <code class="code">co.intervals()</code> is useful for selecting intervals. You can also use two <em>given</em> variables with a command like</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">coplot</span>(a <span class="sc">~</span> b <span class="sc">|</span> c <span class="sc">+</span> d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">coplot</span>(a <span class="sc">~</span> b <span class="sc">|</span> c <span class="sc">+</span> d)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>which produces scatterplots of <code class="code">a</code> against <code class="code">b</code> for every joint conditioning interval of <code class="code">c</code> and <code class="code">d</code>.</p>
 <p>The <code class="code">coplot()</code> and <code class="code">pairs()</code> function both take an argument <code class="code">panel=</code> which can be used to customize the type of plot which appears in each panel. The default is <code class="code">points()</code> to produce a scatterplot but by supplying some other low-level graphics function of two vectors <code class="code">x</code> and <code class="code">y</code> as the value of <code class="code">panel=</code> you can produce any type of plot you wish. An example panel function useful for coplots is <code class="code">panel.smooth()</code>.</p>
 </section>
@@ -584,11 +591,11 @@ the points.</code></pre>
 <section id="mathematical-annotation" class="level3 subsection" data-number="12.2.1">
 <h3 class="subsection anchored" data-number="12.2.1" data-anchor-id="mathematical-annotation"><span class="header-section-number">12.2.1</span> Mathematical annotation</h3>
 <p>In some cases, it is useful to add mathematical symbols and formulae to a plot. This can be achieved in R by specifying an <em>expression</em> rather than a character string in any one of <code class="code">text</code>, <code class="code">mtext</code>, <code class="code">axis</code>, or <code class="code">title</code>. For example, the following code draws the formula for the Binomial probability function:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">text</span>(x, y, <span class="fu">expression</span>(<span class="fu">paste</span>(<span class="fu">bgroup</span>(<span class="st">"("</span>, <span class="fu">atop</span>(n, x), <span class="st">")"</span>), p<span class="sc">^</span>x, q<span class="sc">^</span>{n<span class="sc">-</span>x})))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">text</span>(x, y, <span class="fu">expression</span>(<span class="fu">paste</span>(<span class="fu">bgroup</span>(<span class="st">"("</span>, <span class="fu">atop</span>(n, x), <span class="st">")"</span>), p<span class="sc">^</span>x, q<span class="sc">^</span>{n<span class="sc">-</span>x})))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>More information, including a full listing of the features available can obtained from within R using the commands:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">help</span>(plotmath)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">help</span>(plotmath)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">example</span>(plotmath)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">demo</span>(plotmath)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">demo</span>(plotmath)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="hershey-vector-fonts" class="level3 subsection" data-number="12.2.2">
 <h3 class="subsection anchored" data-number="12.2.2" data-anchor-id="hershey-vector-fonts"><span class="header-section-number">12.2.2</span> Hershey vector fonts</h3>
@@ -599,10 +606,10 @@ the points.</code></pre>
 <li>Hershey fonts provide Cyrillic and Japanese (Kana and Kanji) characters.</li>
 </ul>
 <p>More information, including tables of Hershey characters can be obtained from within R using the commands:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">help</span>(Hershey)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">help</span>(Hershey)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">demo</span>(Hershey)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">help</span>(Japanese)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">demo</span>(Japanese)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">demo</span>(Japanese)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="interacting-with-graphics" class="level2 section" data-number="12.3">
@@ -610,12 +617,12 @@ the points.</code></pre>
 <p>R also provides functions which allow users to extract or add information to a plot using a mouse. The simplest of these is the <code class="code">locator()</code> function:</p>
 <p>: Waits for the user to select locations on the current plot using the left mouse button. This continues until <code class="code">n</code> (default 512) points have been selected, or another mouse button is pressed. The <code class="code">type</code> argument allows for plotting at the selected points and has the same effect as for high-level graphics commands; the default is no plotting. <code class="code">locator()</code> returns the locations of the points selected as a list with two components <code class="code">x</code> and <code class="code">y</code>.</p>
 <p><code class="code">locator()</code> is usually called with no arguments. It is particularly useful for interactively selecting positions for graphic elements such as legends or labels when it is difficult to calculate in advance where the graphic should be placed. For example, to place some informative text near an outlying point, the command</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">text</span>(<span class="fu">locator</span>(<span class="dv">1</span>), <span class="st">"Outlier"</span>, <span class="at">adj=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">text</span>(<span class="fu">locator</span>(<span class="dv">1</span>), <span class="st">"Outlier"</span>, <span class="at">adj=</span><span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>may be useful. (<code class="code">locator()</code> will be ignored if the current device, such as <code class="code">postscript</code> does not support interactive pointing.)</p>
 <p>: Allow the user to highlight any of the points defined by <code class="code">x</code> and <code class="code">y</code> (using the left mouse button) by plotting the corresponding component of <code class="code">labels</code> nearby (or the index number of the point if <code class="code">labels</code> is absent). Returns the indices of the selected points when another button is pressed.</p>
 <p>Sometimes we want to identify particular <em>points</em> on a plot, rather than their positions. For example, we may wish the user to select some observation of interest from a graphical display and then manipulate that observation in some way. Given a number of <em>(x, y)</em> coordinates in two numeric vectors <code class="code">x</code> and <code class="code">y</code>, we could use the <code class="code">identify()</code> function as follows:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">plot</span>(x, y)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">identify</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">plot</span>(x, y)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">identify</span>(x, y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The <code class="code">identify()</code> functions performs no plotting itself, but simply allows the user to move the mouse pointer and click the left mouse button near a point. If there is a point near the mouse pointer it will be marked with its index number (that is, its position in the <code class="code">x</code>/<code class="code">y</code> vectors) plotted nearby. Alternatively, you could use some informative string (such as a case name) as a highlight by using the <code class="code">labels</code> argument to <code class="code">identify()</code>, or disable marking altogether with the <code class="code">plot = FALSE</code> argument. When the process is terminated (see above), <code class="code">identify()</code> returns the indices of the selected points; you can use these indices to extract the selected points from the original vectors <code class="code">x</code> and <code class="code">y</code>.</p>
 </section>
 <section id="using-graphics-parameters" class="level2 section" data-number="12.4">
@@ -642,18 +649,18 @@ the points.</code></pre>
 </dl>
 <p>Setting graphics parameters with the <code class="code">par()</code> function changes the value of the parameters <em>permanently</em>, in the sense that all future calls to graphics functions (on the current device) will be affected by the new value. You can think of setting graphics parameters in this way as setting “default” values for the parameters, which will be used by all graphics functions unless an alternative value is given.</p>
 <p>Note that calls to <code class="code">par()</code> <em>always</em> affect the global values of graphics parameters, even when <code class="code">par()</code> is called from within a function. This is often undesirable behavior—usually we want to set some graphics parameters, do some plotting, and then restore the original values so as not to affect the user’s R session. You can restore the initial values by saving the result of <code class="code">par()</code> when making changes, and restoring the initial values when plotting is complete.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> oldpar <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">col=</span><span class="dv">4</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> oldpar <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">col=</span><span class="dv">4</span>, <span class="at">lty=</span><span class="dv">2</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  ... plotting commands ...</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">par</span>(oldpar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">par</span>(oldpar)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To save and restore <em>all</em> settable<a href="#FOOT24" id="DOCF24" class="footnote"><sup>24</sup></a> graphical parameters use</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> oldpar <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">no.readonly=</span><span class="cn">TRUE</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> oldpar <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">no.readonly=</span><span class="cn">TRUE</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  ... plotting commands ...</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">par</span>(oldpar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">par</span>(oldpar)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="temporary-changes-arguments-to-graphics-functions" class="level3 subsection" data-number="12.4.2">
 <h3 class="subsection anchored" data-number="12.4.2" data-anchor-id="temporary-changes-arguments-to-graphics-functions"><span class="header-section-number">12.4.2</span> Temporary changes: Arguments to graphics functions</h3>
 <p>Graphics parameters may also be passed to (almost) any graphics function as named arguments. This has the same effect as passing the arguments to the <code class="code">par()</code> function, except that the changes only last for the duration of the function call. For example:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">plot</span>(x, y, <span class="at">pch=</span><span class="st">"+"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">plot</span>(x, y, <span class="at">pch=</span><span class="st">"+"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>produces a scatterplot using a plus sign as the plotting character, without changing the default plotting character for future plots.</p>
 <p>Unfortunately, this is not implemented entirely consistently and it is sometimes necessary to set and reset graphics parameters using <code class="code">par()</code>.</p>
 </section>
@@ -680,7 +687,7 @@ the points.</code></pre>
 <dt><code class="code">pch=4</code></dt>
 <dd>
 <p>When <code class="code">pch</code> is given as an integer between 0 and 25 inclusive, a specialized plotting symbol is produced. To see what the symbols are, use the command</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">legend</span>(<span class="fu">locator</span>(<span class="dv">1</span>), <span class="fu">as.character</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">25</span>), <span class="at">pch =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">legend</span>(<span class="fu">locator</span>(<span class="dv">1</span>), <span class="fu">as.character</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">25</span>), <span class="at">pch =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">25</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Those from 21 to 25 may appear to duplicate earlier symbols, but can be coloured in different ways: see the help on <code class="code">points</code> and its examples.</p>
 <p>In addition, <code class="code">pch</code> can be a character or a number in the range <code class="code">32:255</code> representing a character in the current font.</p>
 </dd>
@@ -820,7 +827,7 @@ rows or columns, the reduction factor is 0.66.</code></pre>
 <h2 class="section anchored" data-number="12.6" data-anchor-id="device-drivers"><span class="header-section-number">12.6</span> Device drivers</h2>
 <p>R can generate graphics (of varying levels of quality) on almost any type of display or printing device. Before this can begin, however, R needs to be informed what type of device it is dealing with. This is done by starting a <em>device driver</em>. The purpose of a device driver is to convert graphical instructions from R (“draw a line,” for example) into a form that the particular device can understand.</p>
 <p>Device drivers are started by calling a device driver function. There is one such function for every device driver: type <code class="code">help(Devices)</code> for a list of them all. For example, issuing the command</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">postscript</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">postscript</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>causes all future graphics output to be sent to the printer in PostScript format. Some commonly-used device drivers are:</p>
 <p>: For use with the X11 window system on Unix-alikes</p>
 <p>: For use on Windows</p>
@@ -830,16 +837,16 @@ rows or columns, the reduction factor is 0.66.</code></pre>
 <p>: Produces a bitmap PNG file. (Not always available: see its help page.)</p>
 <p>: Produces a bitmap JPEG file, best used for <code class="code">image</code> plots. (Not always available: see its help page.)</p>
 <p>When you have finished with a device, be sure to terminate the device driver by issuing the command</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">dev.off</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">dev.off</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This ensures that the device finishes cleanly; for example in the case of hardcopy devices this ensures that every page is completed and has been sent to the printer. (This will happen automatically at the normal end of a session.)</p>
 <section id="postscript-diagrams-for-typeset-documents" class="level3 subsection" data-number="12.6.1">
 <h3 class="subsection anchored" data-number="12.6.1" data-anchor-id="postscript-diagrams-for-typeset-documents"><span class="header-section-number">12.6.1</span> PostScript diagrams for typeset documents</h3>
 <p>By passing the <code class="code">file</code> argument to the <code class="code">postscript()</code> device driver function, you may store the graphics in PostScript format in a file of your choice. The plot will be in landscape orientation unless the <code class="code">horizontal=FALSE</code> argument is given, and you can control the size of the graphic with the <code class="code">width</code> and <code class="code">height</code> arguments (the plot will be scaled as appropriate to fit these dimensions.) For example, the command</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> postscript<span class="op">(</span><span class="st">"file.ps"</span><span class="op">,</span> horizontal<span class="op">=</span>FALSE<span class="op">,</span> height<span class="op">=</span><span class="dv">5</span><span class="op">,</span> pointsize<span class="op">=</span><span class="dv">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> postscript<span class="op">(</span><span class="st">"file.ps"</span><span class="op">,</span> horizontal<span class="op">=</span>FALSE<span class="op">,</span> height<span class="op">=</span><span class="dv">5</span><span class="op">,</span> pointsize<span class="op">=</span><span class="dv">10</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>will produce a file containing PostScript code for a figure five inches high, perhaps for inclusion in a document. It is important to note that if the file named in the command already exists, it will be overwritten. This is the case even if the file was only created earlier in the same R session.</p>
 <p>Many usages of PostScript output will be to incorporate the figure in another document. This works best when <em>encapsulated</em> PostScript is produced: R always produces conformant output, but only marks the output as such when the <code class="code">onefile=FALSE</code> argument is supplied. This unusual notation stems from S-compatibility: it really means that the output will be a single page (which is part of the EPSF specification). Thus to produce a plot for inclusion use something like</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> postscript<span class="op">(</span><span class="st">"plot1.eps"</span><span class="op">,</span> horizontal<span class="op">=</span>FALSE<span class="op">,</span> onefile<span class="op">=</span>FALSE<span class="op">,</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>             height<span class="op">=</span><span class="dv">8</span><span class="op">,</span> width<span class="op">=</span><span class="dv">6</span><span class="op">,</span> pointsize<span class="op">=</span><span class="dv">10</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> postscript<span class="op">(</span><span class="st">"plot1.eps"</span><span class="op">,</span> horizontal<span class="op">=</span>FALSE<span class="op">,</span> onefile<span class="op">=</span>FALSE<span class="op">,</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>             height<span class="op">=</span><span class="dv">8</span><span class="op">,</span> width<span class="op">=</span><span class="dv">6</span><span class="op">,</span> pointsize<span class="op">=</span><span class="dv">10</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="multiple-graphics-devices" class="level3 subsection" data-number="12.6.2">
 <h3 class="subsection anchored" data-number="12.6.2" data-anchor-id="multiple-graphics-devices"><span class="header-section-number">12.6.2</span> Multiple graphics devices</h3>
@@ -949,13 +956,14 @@ rows or columns, the reduction factor is 0.66.</code></pre>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./Image-files.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c762d530328b84888f35e55f6455881a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6ee2a366d093f1a40032a3c585720d59.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -115,6 +116,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: R Data Import/Export ¶</span>
     </a>
@@ -185,6 +188,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -344,7 +351,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The current behaviour is equivalent, but what actually happens is that when the <code class="code">file</code> argument is a character string, a file connection is opened (for writing or appending) and closed again at the end of the function call. If we want to repeatedly write to the same file, it is more efficient to explicitly declare and open the connection, and pass the connection object to each call to an output function. This also makes it possible to write to pipes, which was implemented earlier in a limited way via the syntax <code class="code">file = "|cmd"</code> (which can still be used).</p>
 <p>There is a function <code class="code">writeLines</code> to write complete text lines to a connection.</p>
 <p>Some simple examples are</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>zz <span class="op">&lt;-</span> file<span class="op">(</span><span class="st">"ex.data"</span><span class="op">,</span> <span class="st">"w"</span><span class="op">)</span>  # open an output file connection</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>zz <span class="op">&lt;-</span> file<span class="op">(</span><span class="st">"ex.data"</span><span class="op">,</span> <span class="st">"w"</span><span class="op">)</span>  # open an output file connection</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>cat<span class="op">(</span><span class="st">"TITLE extra line"</span><span class="op">,</span> <span class="st">"2 3 5 7"</span><span class="op">,</span> <span class="st">""</span><span class="op">,</span> <span class="st">"11 13 17"</span><span class="op">,</span> </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    file <span class="op">=</span> zz<span class="op">,</span> sep <span class="op">=</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span><span class="op">)</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>cat<span class="op">(</span><span class="st">"One more line</span><span class="sc">\n</span><span class="st">"</span><span class="op">,</span> file <span class="op">=</span> zz<span class="op">)</span></span>
@@ -366,7 +373,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>close<span class="op">(</span>zz<span class="op">)</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="pp">#</span><span class="er"># now `ex.lm.out' contains the output for further processing.</span></span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="pp">#</span><span class="er"># Look at it by, e.g.,</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>cat<span class="op">(</span>ex<span class="op">.</span>lm<span class="op">.</span>out<span class="op">,</span> sep <span class="op">=</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>cat<span class="op">(</span>ex<span class="op">.</span>lm<span class="op">.</span>out<span class="op">,</span> sep <span class="op">=</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="input-from-connections" class="level2 section" data-number="7.3">
 <h2 class="section anchored" data-number="7.3" data-anchor-id="input-from-connections"><span class="header-section-number">7.3</span> Input from connections</h2>
@@ -374,7 +381,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The basic functions to read from connections are <code class="code">scan</code> and <code class="code">readLines</code>. These take a character string argument and open a file connection for the duration of the function call, but explicitly opening a file connection allows a file to be read sequentially in different formats.</p>
 <p>Other functions that call <code class="code">scan</code> can also make use of connections, in particular <code class="code">read.table</code>.</p>
 <p>Some simple examples are</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## read in file created in last examples</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## read in file created in last examples</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">readLines</span>(<span class="st">"ex.data"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unlink</span>(<span class="st">"ex.data"</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -387,14 +394,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="dv">357</span>, <span class="dv">497</span>, <span class="dv">493</span>, <span class="dv">550</span>, <span class="dv">549</span>, <span class="dv">467</span>, <span class="dv">575</span>, <span class="dv">578</span>, <span class="dv">342</span>,</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="dv">446</span>, <span class="dv">547</span>, <span class="dv">534</span>, <span class="dv">495</span>, <span class="dv">979</span>, <span class="dv">479</span></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Then read this by</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">scan</span>(<span class="fu">pipe</span>(<span class="st">"sed -e s/,$// data"</span>), <span class="at">sep=</span><span class="st">","</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">scan</span>(<span class="fu">pipe</span>(<span class="st">"sed -e s/,$// data"</span>), <span class="at">sep=</span><span class="st">","</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For convenience, if the <code class="code">file</code> argument specifies a FTP, HTTP or HTTPS URL, the URL is opened for reading via <code class="code">url</code>. Specifying files via <samp class="samp">file://foo.bar</samp>’ is also allowed.</p>
 <section id="pushback" class="level3 subsection" data-number="7.3.1">
 <h3 class="subsection anchored" data-number="7.3.1" data-anchor-id="pushback"><span class="header-section-number">7.3.1</span> Pushback</h3>
 <p>C programmers may be familiar with the <code class="code">ungetc</code> function to push back a character onto a text input stream. R connections have the same idea in a more powerful way, in that an (essentially) arbitrary number of lines of text can be pushed back onto a connection via a call to <code class="code">pushBack</code>.</p>
 <p>Pushbacks operate as a stack, so a read request first uses each line from the most recently pushbacked text, then those from earlier pushbacks and finally reads from the connection itself. Once a pushbacked line is read completely, it is cleared. The number of pending lines pushed back can be found via a call to <code class="code">pushBackLength</code>.</p>
 <p>A simple example will show the idea.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> zz <span class="ot">&lt;-</span> <span class="fu">textConnection</span>(LETTERS)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> zz <span class="ot">&lt;-</span> <span class="fu">textConnection</span>(LETTERS)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">readLines</span>(zz, <span class="dv">2</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"A"</span> <span class="st">"B"</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">scan</span>(zz, <span class="st">""</span>, <span class="dv">4</span>)</span>
@@ -404,7 +411,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">scan</span>(zz, <span class="st">""</span>, <span class="dv">4</span>)</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>Read <span class="dv">4</span> items</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"aa"</span> <span class="st">"bb"</span> <span class="st">"G"</span>  <span class="st">"H"</span> </span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">close</span>(zz)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">close</span>(zz)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Pushback is only available for connections opened for input in text mode.</p>
 </section>
 </section>
@@ -419,8 +426,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="section anchored" data-number="7.5" data-anchor-id="binary-connections"><span class="header-section-number">7.5</span> Binary connections</h2>
 <p><span id="index-Binary-files-1" class="index-entry-id"></span> <span id="index-readBin" class="index-entry-id"></span> <span id="index-writeBin" class="index-entry-id"></span></p>
 <p>Functions <code class="code">readBin</code> and <code class="code">writeBin</code> read to and write from binary connections. A connection is opened in binary mode by appending <code class="code">"b"</code> to the mode specification, that is using mode <code class="code">"rb"</code> for reading, and mode <code class="code">"wb"</code> or <code class="code">"ab"</code> (where appropriate) for writing. The functions have arguments</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">readBin</span>(con, what, <span class="at">n =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="cn">NA</span>, <span class="at">endian =</span> .Platform<span class="sc">$</span>endian) </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">writeBin</span>(object, con, <span class="at">size =</span> <span class="cn">NA</span>, <span class="at">endian =</span> .Platform<span class="sc">$</span>endian) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">readBin</span>(con, what, <span class="at">n =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="cn">NA</span>, <span class="at">endian =</span> .Platform<span class="sc">$</span>endian) </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">writeBin</span>(object, con, <span class="at">size =</span> <span class="cn">NA</span>, <span class="at">endian =</span> .Platform<span class="sc">$</span>endian) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In each case <code class="code">con</code> is a connection which will be opened if necessary for the duration of the call, and if a character string is given it is assumed to specify a file name.</p>
 <p>It is slightly simpler to describe writing, so we will do that first. <code class="code">object</code> should be an atomic vector object, that is a vector of mode <code class="code">numeric</code>, <code class="code">integer</code>, <code class="code">logical</code>, <code class="code">character</code>, <code class="code">complex</code> or <code class="code">raw</code>, without attributes. By default this is written to the file as a stream of bytes exactly as it is represented in memory.</p>
 <p><code class="code">readBin</code> reads a stream of bytes from the file and interprets them as a vector of mode given by <code class="code">what</code>. This can be either an object of the appropriate mode (e.g.&nbsp;<code class="code">what=integer()</code>) or a character string describing the mode (one of the five given in the previous paragraph or <code class="code">"double"</code> or <code class="code">"int"</code>). Argument <code class="code">n</code> specifies the maximum number of vector elements to read from the connection: if fewer are available a shorter vector will be returned. Argument <code class="code">signed</code> allows 1-byte and 2-byte integers to be read as signed (the default) or unsigned integers.</p>
@@ -491,13 +498,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./Creating-R-packages.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c762d530328b84888f35e55f6455881a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6ee2a366d093f1a40032a3c585720d59.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -115,6 +116,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: Writing R Extensions ¶</span>
     </a>
@@ -185,6 +188,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -357,7 +364,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><div class="sourceCode" id="cb1"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">% File src/library/base/man/load.Rd</span></span>
+<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">% File src/library/base/man/load.Rd</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\name</span>{load}</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\alias</span>{load}</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">\title</span>{Reload Saved Datasets}</span>
@@ -387,7 +394,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>## restore the saved values to the current environment</span>
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>load("all.RData")</span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fu">\keyword</span>{file}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></td>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fu">\keyword</span>{file}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
 </tbody>
 </table>
@@ -670,7 +677,7 @@ pre-defined list of keywords.</code></pre>
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><div class="sourceCode" id="cb10"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\name</span>{rivers}</span>
+<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\name</span>{rivers}</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\docType</span>{data}</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\alias</span>{rivers}</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">\title</span>{Lengths of Major North American Rivers}</span>
@@ -686,7 +693,7 @@ pre-defined list of keywords.</code></pre>
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  McNeil, D. R. (1977) <span class="fu">\emph</span>{Interactive Data Analysis}.</span>
 <span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  New York: Wiley.</span>
 <span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="fu">\keyword</span>{datasets}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></td>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="fu">\keyword</span>{datasets}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
 </tbody>
 </table>
@@ -710,11 +717,11 @@ pre-defined list of keywords.</code></pre>
 <section id="documenting-s4-classes-and-methods" class="level3 subsection" data-number="2.1.3">
 <h3 class="subsection anchored" data-number="2.1.3" data-anchor-id="documenting-s4-classes-and-methods"><span class="header-section-number">2.1.3</span> Documenting S4 classes and methods</h3>
 <p>There are special ways to use the <samp class="samp">?</samp>’ operator, namely <samp class="samp">class?</samp><var class="var">topic</var>’ and <samp class="samp">methods?</samp><var class="var">topic</var>’, to access documentation for S4 classes and methods, respectively. This mechanism depends on conventions for the topic names used in <code class="code">\alias</code> entries. The topic names for S4 classes and methods respectively are of the form</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>class<span class="sc">-</span>class</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>generic,signature_list<span class="sc">-</span>method</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>class<span class="sc">-</span>class</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>generic,signature_list<span class="sc">-</span>method</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>where <var class="var">signature_list</var> contains the names of the classes in the signature of the method (without quotes) separated by <samp class="samp">,</samp>’ (without whitespace), with <samp class="samp">ANY</samp>’ used for arguments without an explicit specification. E.g., <samp class="samp">genericFunction-class</samp>’ is the topic name for documentation for the S4 class <code class="code">"genericFunction"</code>, and <samp class="samp">coerce,ANY,NULL-method</samp>’ is the topic name for documentation for the S4 method for <code class="code">coerce</code> for signature <code class="code">c("ANY", "NULL")</code>.</p>
 <p>Skeletons of documentation for S4 classes and methods can be generated by using the functions <code class="code">promptClass()</code> and <code class="code">promptMethods()</code> from package <strong>methods</strong>. If it is necessary or desired to provide an explicit function declaration (in a <code class="code">\usage</code> section) for an S4 method (e.g., if it has “surprising arguments” to be mentioned explicitly), one can use the special markup</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\S</span>4method{generic}{signature_list}(argument_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\S</span>4method{generic}{signature_list}(argument_list)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>(e.g., <samp class="samp">\S4method{coerce}{ANY,NULL}(from, to)</samp>’).</p>
 <p>To make full use of the potential of the on-line documentation system, all user-visible S4 classes and methods in a package should at least have a suitable <code class="code">\alias</code> entry in one of the package’s <samp class="file">Rd</samp> files. If a package has methods for a function defined originally somewhere else, and does not change the underlying default method for the function, the package is responsible for documenting the methods it creates, but not for the function itself or the default method.</p>
 <p>An S4 replacement method is documented in the same way as an S3 one: see the description of <code class="code">\method</code> in <a href="#documenting-functions" class="ref">Documenting functions</a>.</p>
@@ -731,9 +738,9 @@ pre-defined list of keywords.</code></pre>
 <h2 class="section anchored" data-number="2.2" data-anchor-id="sectioning"><span class="header-section-number">2.2</span> Sectioning</h2>
 <p>To begin a new paragraph or leave a blank line in an example, just insert an empty line (as in (La)TeX). To break a line, use <code class="code">\cr</code>.</p>
 <p>In addition to the predefined sections (such as <code class="code">\description{}</code>, <code class="code">\value{}</code>, etc.), you can “define” arbitrary ones by <code class="code">\section{</code><var class="var">section_title</var><code class="code">}{...}</code>. <span id="index-_005csection" class="index-entry-id"></span> For example</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\section</span>{Warning}{</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\section</span>{Warning}{</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  You must not call this function unless ...</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For consistency with the pre-assigned sections, the section name (the first argument to <code class="code">\section</code>) should be capitalized (but not all upper case) and not end in a period. Whitespace between the first and second braced expressions is not allowed. Markup (e.g.&nbsp;<code class="code">\code</code>) within the section title may cause problems with the latex conversion (depending on the version of macro packages such as <samp class="samp">hyperref</samp>’) and so should be avoided.</p>
 <p>The <code class="code">\subsection</code> macro takes arguments in the same format as <code class="code">\section</code>, but is used within a section, so it may be used to nest subsections within sections or other subsections. There is no predefined limit on the nesting level, but formatting is not designed for more than 3 levels (i.e.&nbsp;subsections within subsections within sections).</p>
 <p>Note that additional named sections are always inserted at a fixed position in the output (before <code class="code">\note</code>, <code class="code">\seealso</code> and the examples), no matter where they appear in the input (but in the same order amongst themselves as in the input).</p>
@@ -790,24 +797,24 @@ correctly in versions of R before 3.1.3 and are best avoided---use
 <p><span id="index-_005citemize" class="index-entry-id"></span> <span id="index-_005cenumerate" class="index-entry-id"></span></p>
 <p>The <code class="code">\itemize</code> and <code class="code">\enumerate</code> commands take a single argument, within which there may be one or more <code class="code">\item</code> commands. The text following each <code class="code">\item</code> is formatted as one or more paragraphs, suitably indented and with the first paragraph marked with a bullet point (<code class="code">\itemize</code>) or a number (<code class="code">\enumerate</code>).</p>
 <p>Note that unlike argument lists, <code class="code">\item</code> in these formats is followed by a space and the text (not enclosed in braces). For example</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\enumerate</span>{</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\enumerate</span>{</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\item</span> A database consists of one or more records, each with one or</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    more named fields.</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\item</span> Regular lines start with a non-whitespace character.</span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\item</span> Records are separated by one or more empty lines.</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code class="code">\itemize</code> and <code class="code">\enumerate</code> commands may be nested.</p>
 <p>The <code class="code">\describe</code> command is similar to <code class="code">\itemize</code> but allows initial labels to be specified. Each <code class="code">\item</code> takes two arguments, the label and the body of the item, in exactly the same way as an argument or value <code class="code">\item</code>. <code class="code">\describe</code> commands are mapped to <code class="code">&lt;DL&gt;</code> lists in HTML and <code class="code">\description</code> lists in LaTeX.</p>
 <p>Using these without any <code class="code">\item</code>s may cause problems with some conversions and makes little sense.</p>
 <p>The <code class="code">\tabular</code> command takes two arguments. The first gives for each of the columns the required alignment (<samp class="samp">l</samp>’ for left-justification, <samp class="samp">r</samp>’ for right-justification or <samp class="samp">c</samp>’ for centring.) The second argument consists of an arbitrary number of lines separated by <code class="code">\cr</code>, and with fields separated by <code class="code">\tab</code>. For example:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\tabular</span>{rlll}{</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\tabular</span>{rlll}{</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    [,1] <span class="fu">\tab</span> Ozone   <span class="fu">\tab</span> numeric <span class="fu">\tab</span> Ozone (ppb)<span class="fu">\cr</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    [,2] <span class="fu">\tab</span> Solar.R <span class="fu">\tab</span> numeric <span class="fu">\tab</span> Solar R (lang)<span class="fu">\cr</span></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    [,3] <span class="fu">\tab</span> Wind    <span class="fu">\tab</span> numeric <span class="fu">\tab</span> Wind (mph)<span class="fu">\cr</span></span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    [,4] <span class="fu">\tab</span> Temp    <span class="fu">\tab</span> numeric <span class="fu">\tab</span> Temperature (degrees F)<span class="fu">\cr</span></span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    [,5] <span class="fu">\tab</span> Month   <span class="fu">\tab</span> numeric <span class="fu">\tab</span> Month (1--12)<span class="fu">\cr</span></span>
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    [,6] <span class="fu">\tab</span> Day     <span class="fu">\tab</span> numeric <span class="fu">\tab</span> Day of month (1--31)</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>There must be the same number of fields on each line as there are alignments in the first argument, and they must be non-empty (but can contain only spaces). (There is no whitespace between <code class="code">\tabular</code> and the first argument, nor between the two arguments.)</p>
 </section>
 <section id="cross-references" class="level2 section" data-number="2.5">
@@ -825,9 +832,9 @@ correctly in versions of R before 3.1.3 and are best avoided---use
 <p>Mathematical formulae should be set beautifully for printed documentation and in KaTeX/MathJax-enhanced HTML help (as from R 4.2.0) yet we still want something useful for plain-text (and legacy HTML) help. To this end, the two commands <code class="code">\eqn{</code><var class="var">latex</var><code class="code">}{</code><var class="var">ascii</var><code class="code">}</code> and <code class="code">\deqn{</code><var class="var">latex</var><code class="code">}{</code><var class="var">ascii</var><code class="code">}</code> are used. Whereas <code class="code">\eqn</code> is used for “inline” formulae (corresponding to TeX’s <code class="code">$...$</code>), <code class="code">\deqn</code> gives “displayed equations” (as in LaTeX’s <code class="code">displaymath</code> environment, or TeX’s <code class="code">$$...$$</code>). Both arguments are treated as ‘verbatim’ text.</p>
 <p>Both commands can also be used as <code class="code">\eqn{</code><var class="var">latexascii</var><code class="code">}</code> (only <em>one</em> argument) which then is used for both <var class="var">latex</var> and <var class="var">ascii</var>. No whitespace is allowed between command and the first argument, nor between the first and second arguments.</p>
 <p>The following example is from <samp class="file">Poisson.Rd</samp>:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\deqn</span>{p(x) = <span class="fu">\frac</span>{<span class="fu">\lambda</span>^x e^{-<span class="fu">\lambda</span>}}{x!}}{</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\deqn</span>{p(x) = <span class="fu">\frac</span>{<span class="fu">\lambda</span>^x e^{-<span class="fu">\lambda</span>}}{x!}}{</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>        p(x) = <span class="fu">\lambda</span>^x exp(-<span class="fu">\lambda</span>)/x!}</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  for <span class="fu">\eqn</span>{x = 0, 1, 2, <span class="fu">\ldots</span>} .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  for <span class="fu">\eqn</span>{x = 0, 1, 2, <span class="fu">\ldots</span>} .</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In plain-text help we get</p>
 <blockquote class="blockquote">
 <table class="caption-top table">
@@ -836,9 +843,9 @@ correctly in versions of R before 3.1.3 and are best avoided---use
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">p</span>(x) <span class="ot">=</span> lambda<span class="sc">^</span>x <span class="fu">exp</span>(<span class="sc">-</span>lambda)<span class="sc">/</span>x<span class="sc">!</span></span>
+<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">p</span>(x) <span class="ot">=</span> lambda<span class="sc">^</span>x <span class="fu">exp</span>(<span class="sc">-</span>lambda)<span class="sc">/</span>x<span class="sc">!</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="ot">=</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, ... .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></td>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="ot">=</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, ... .</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
 </tbody>
 </table>
@@ -851,8 +858,8 @@ correctly in versions of R before 3.1.3 and are best avoided---use
 <p>To include figures in help pages, use the <code class="code">\figure</code> markup. There are three forms.</p>
 <p>The two commonly used simple forms are <code class="code">\figure{</code><var class="var">filename</var><code class="code">}</code> and <code class="code">\figure{</code><var class="var">filename</var><code class="code">}{</code><var class="var">alternate text</var><code class="code">}</code>. This will include a copy of the figure in either HTML or LaTeX output. In text output, the alternate text will be displayed instead. (When the second argument is omitted, the filename will be used.) Both the filename and the alternate text will be parsed verbatim, and should not include special characters that are significant in HTML or LaTeX.</p>
 <p>The expert form is <code class="code">\figure{</code><var class="var">filename</var><code class="code">}{options:</code><var class="var">string</var><code class="code">}</code>. (The word <samp class="samp">options:</samp>’ must be typed exactly as shown and followed by at least one space.) In this form, the <var class="var">string</var> is copied into the HTML <code class="code">img</code> tag as attributes following the <code class="code">src</code> attribute, or into the second argument of the <code class="code">\Figure</code> macro in LaTeX, which by default is used as options to an <code class="code">\includegraphics</code> call. As it is unlikely that any single string would suffice for both display modes, the expert form would normally be wrapped in conditionals. It is up to the author to make sure that legal HTML/LaTeX is used. For example, to include a logo in both HTML (using the simple form) and LaTeX (using the expert form), the following could be used:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\if</span>{html}{<span class="fu">\figure</span>{Rlogo.svg}{options: width=100 alt="R logo"}}</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\if</span>{latex}{<span class="fu">\figure</span>{Rlogo.pdf}{options: width=0.5in}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\if</span>{html}{<span class="fu">\figure</span>{Rlogo.svg}{options: width=100 alt="R logo"}}</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\if</span>{latex}{<span class="fu">\figure</span>{Rlogo.pdf}{options: width=0.5in}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The files containing the figures should be stored in the directory <samp class="file">man/figures</samp>. Files with extensions <samp class="file">.jpg</samp>, <samp class="file">.jpeg</samp>, <samp class="file">.pdf</samp>, <samp class="file">.png</samp> and <samp class="file">.svg</samp> from that directory will be copied to the <samp class="file">help/figures</samp> directory at install time. (Figures in PDF format will not display in most HTML browsers, but might be the best choice in reference manuals.) Specify the filename relative to <samp class="file">man/figures</samp> in the <code class="code">\figure</code> directive.</p>
 </section>
 <section id="insertions" class="level2 section" data-number="2.8">
@@ -868,9 +875,9 @@ correctly in versions of R before 3.1.3 and are best avoided---use
 <h2 class="section anchored" data-number="2.9" data-anchor-id="indices"><span class="header-section-number">2.9</span> Indices</h2>
 <p>The <code class="code">\alias</code> command (see <a href="#documenting-functions" class="pxref">Documenting functions</a>) is used to specify the “topics” documented, which should include <em>all</em> R objects in a package such as functions and variables, data sets, and S4 classes and methods (see <a href="#documenting-s4-classes-and-methods" class="pxref">Documenting S4 classes and methods</a>). The on-line help system searches the index data base consisting of all alias topics.</p>
 <p>In addition, it is possible to provide “concept index entries” using <code class="code">\concept</code>, which can be used for <code class="code">help.search()</code> lookups. E.g., file <samp class="file">cor.test.Rd</samp> in the standard package <strong>stats</strong> contains</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\concept</span>{Kendall correlation coefficient}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\concept</span>{Kendall correlation coefficient}</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\concept</span>{Pearson correlation coefficient}</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\concept</span>{Spearman correlation coefficient}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\concept</span>{Spearman correlation coefficient}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>so that e.g.&nbsp;<kbd><kbd>??Spearman</kbd></kbd> will succeed in finding the help page for the test for association between paired samples using Spearman’s rho.</p>
 <p>(Note that <code class="code">help.search()</code> only uses “sections” of documentation objects with no additional markup.)</p>
 <p>Each <code class="code">\concept</code> entry should give a <em>single</em> index term (word or phrase), and not use any Rd markup.</p>
@@ -879,13 +886,13 @@ correctly in versions of R before 3.1.3 and are best avoided---use
 <section id="platform-specific-documentation" class="level2 section" data-number="2.10">
 <h2 class="section anchored" data-number="2.10" data-anchor-id="platform-specific-documentation"><span class="header-section-number">2.10</span> Platform-specific documentation</h2>
 <p>Sometimes the documentation needs to differ by platform. Currently two OS-specific options are available, <samp class="samp">unix</samp>’ and <samp class="samp">windows</samp>’, and lines in the help source file can be enclosed in</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifdef OS</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifdef OS</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>   <span class="op">...</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>or</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifndef OS</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#ifndef OS</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>   <span class="op">...</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>for OS-specific inclusion or exclusion. Such blocks should not be nested, and should be entirely within a block (that, is between the opening and closing brace of a section or item), or at top-level contain one or more complete sections.</p>
 <p>If the differences between platforms are extensive or the R objects documented are only relevant to one platform, platform-specific <samp class="file">Rd</samp> files can be put in a <samp class="file">unix</samp> or <samp class="file">windows</samp> subdirectory.</p>
 </section>
@@ -895,7 +902,7 @@ correctly in versions of R before 3.1.3 and are best avoided---use
 <p>Occasionally the best content for one output format is different from the best content for another. For this situation, the <code class="code">\if{</code><var class="var">format</var><code class="code">}{</code><var class="var">text</var><code class="code">}</code> or <code class="code">\ifelse{</code><var class="var">format</var><code class="code">}{</code><var class="var">text</var><code class="code">}{</code><var class="var">alternate</var><code class="code">}</code> markup is used. Here <var class="var">format</var> is a comma separated list of formats in which the <var class="var">text</var> should be rendered. The <var class="var">alternate</var> will be rendered if the format does not match. Both <var class="var">text</var> and <var class="var">alternate</var> may be any sequence of text and markup.</p>
 <p>Currently the following formats are recognized: <code class="code">example</code>, <code class="code">html</code>, <code class="code">latex</code> and <code class="code">text</code>. These select output for the corresponding targets. (Note that <code class="code">example</code> refers to extracted example code rather than the displayed example in some other format.) Also accepted are <code class="code">TRUE</code> (matching all formats) and <code class="code">FALSE</code> (matching no formats). These could be the output of the <code class="code">\Sexpr</code> macro (see <a href="#dynamic-pages" class="pxref">Dynamic pages</a>).</p>
 <p>The <code class="code">\out{</code><var class="var">literal</var><code class="code">}</code> macro would usually be used within the <var class="var">text</var> part of <code class="code">\if{</code><var class="var">format</var><code class="code">}{</code><var class="var">text</var><code class="code">}</code>. It causes the renderer to output the literal text exactly, with no attempt to escape special characters. For example, use the following to output the markup necessary to display the Greek letter in LaTeX or HTML, and the text string <code class="code">alpha</code> in other formats:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\ifelse</span>{latex}{<span class="fu">\out</span>{<span class="ss">$</span><span class="sc">\alpha</span><span class="ss">$</span>}}{<span class="fu">\ifelse</span>{html}{<span class="fu">\out</span>{&amp;alpha;}}{alpha}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\ifelse</span>{latex}{<span class="fu">\out</span>{<span class="ss">$</span><span class="sc">\alpha</span><span class="ss">$</span>}}{<span class="fu">\ifelse</span>{html}{<span class="fu">\out</span>{&amp;alpha;}}{alpha}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="dynamic-pages" class="level2 section" data-number="2.12">
 <h2 class="section anchored" data-number="2.12" data-anchor-id="dynamic-pages"><span class="header-section-number">2.12</span> Dynamic pages</h2>
@@ -935,11 +942,11 @@ correctly in versions of R before 3.1.3 and are best avoided---use
 <p>They each take two arguments which are parsed verbatim. The first is the name of the new macro including the initial backslash, and the second is the macro definition. As in LaTeX, <code class="code">\newcommand</code> requires that the new macro not have been previously defined, whereas <code class="code">\renewcommand</code> allows existing macros (including all built-in ones) to be replaced. (This test is disabled by default, but may be enabled by setting the environment variable <code class="env">_R_WARN_DUPLICATE_RD_MACROS_</code> to a true value.)</p>
 <p>Also as in LaTeX, the new macro may be defined to take arguments, and numeric placeholders such as <code class="code">#1</code> are used in the macro definition. However, unlike LaTeX, the number of arguments is determined automatically from the highest placeholder number seen in the macro definition. For example, a macro definition containing <code class="code">#1</code> and <code class="code">#3</code> (but no other placeholders) will define a three argument macro (whose second argument will be ignored). As in LaTeX, at most 9 arguments may be defined. If the <code class="code">#</code> character is followed by a non-digit it will have no special significance. All arguments to user-defined macros will be parsed as verbatim text, and simple text-substitution will be used to replace the place-holders, after which the replacement text will be parsed.</p>
 <p>A number of macros are defined in the file <samp class="file">share/Rd/macros/system.Rd</samp> of the R source or home directory, and these will normally be available in all <samp class="file">.Rd</samp> files. For example, that file contains the definition</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>\newcommand{\PR}{\Sexpr[results=rd]{tools:::Rd_expr_PR(#1)}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>\newcommand{\PR}{\Sexpr[results=rd]{tools:::Rd_expr_PR(#1)}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>which defines <code class="code">\PR</code> to be a single argument macro; then code (typically used in the <samp class="file">NEWS.Rd</samp> file) like</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\PR</span>{1234}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\PR</span>{1234}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>will expand to</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>\Sexpr[results=rd]{tools:::Rd_expr_PR(1234)}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>\Sexpr[results=rd]{tools:::Rd_expr_PR(1234)}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>when parsed.</p>
 <p>Some macros that might be of general use are:</p>
 <p>: A package on CRAN</p>
@@ -955,9 +962,9 @@ correctly in versions of R before 3.1.3 and are best avoided---use
 <p>For convenience, encoding names <samp class="samp">latin1</samp>’ and <samp class="samp">latin2</samp>’ are always recognized: these and <samp class="samp">UTF-8</samp>’ are likely to work fairly widely. However, this does not mean that all characters in UTF-8 will be recognized, and the coverage of non-Latin characters<a href="#FOOT126" id="DOCF126" class="footnote"><sup>126</sup></a> is fairly low. Using LaTeX <code class="code">inputenx</code> (see <code class="code">?Rd2pdf</code> in R) will give greater coverage of UTF-8.</p>
 <p>The <code class="code">\enc</code> command (see <a href="#insertions" class="pxref">Insertions</a>) can be used to provide transliterations which will be used in conversions that do not support the declared encoding.</p>
 <p>The LaTeX conversion converts the file to UTF-8 from the declared encoding, and includes a</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\inputencoding</span>{utf8}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\inputencoding</span>{utf8}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>command, and this needs to be matched by a suitable invocation of the <code class="command">\usepackage{inputenc}</code> command. The R utility <code class="command">R CMD Rd2pdf</code> looks at the converted code and includes the encodings used: it might for example use</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>[utf8]{<span class="ex">inputenc</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>[utf8]{<span class="ex">inputenc</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>(Use of <code class="code">utf8</code> as an encoding requires LaTeX dated 2003/12/01 or later. Also, the use of Cyrillic characters in <samp class="samp">UTF-8</samp>’ appears to also need <samp class="samp">\usepackage[T2A]{fontenc}</samp>’, and <code class="command">R CMD Rd2pdf</code> includes this conditionally on the file <samp class="file">t2aenc.def</samp> being present and environment variable <code class="env">_R_CYRILLIC_TEX_</code> being set.)</p>
 <p>Note that this mechanism works best with Latin letters: the coverage of UTF-8 in LaTeX is quite low.</p>
 </section>
@@ -968,23 +975,23 @@ correctly in versions of R before 3.1.3 and are best avoided---use
 <p>A <var class="var">keyspec</var> is either a simple <var class="var">key</var> or of the form <var class="var">pkg</var><code class="code">::</code><var class="var">key</var>. In the former case, <var class="var">key</var> is taken as the key of a bibentry in R’s system bibentry data base (available via the currently unexported <code class="code">tools:::R_bibentries()</code> with sources in the <samp class="file">.R</samp> files in the <samp class="file">share/bibentries</samp> directory of the R sources). In the latter case, <var class="var">key</var> is looked up in the bibentry data base of package <var class="var">pkg</var>, made available in the packages sources either as <samp class="file">inst/REFERENCES.R</samp> in R format (an R code file encoded in UTF-8 with calls to <code class="code">bibentry()</code>, as for the <samp class="file">inst/CITATION</samp> file) or as <samp class="file">inst/REFERENCES.bib</samp> in BibTeX format (this needs <a href="https://CRAN.R-project.org/package=bibtex" class="url"><strong>bibtex</strong></a> to be installed).</p>
 <p>References (usually in the <code class="code">\references</code> section) are obtained via <code class="code">\bibshow</code>, which takes a comma-separated <var class="var">keyspec</var> list as argument. The special keyspec <samp class="samp">*</samp>’ indicates the list of “all references cited so far”, using an empty keyspec list clears that list.</p>
 <p>Finally, <code class="code">\bibinfo</code> allows to modify bibentries. Using</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>\bibinfo{keyspec}{field}{value}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>\bibinfo{keyspec}{field}{value}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>will set the <var class="var">field</var> of the bibentry corresponding to <var class="var">keyspec</var> to <var class="var">value</var>. This can be used in particular to “annotate” the bibentry, by adding <samp class="samp">note</samp>‘, <samp class="samp">footer</samp>’ or <samp class="samp">header</samp>’ fields.</p>
 <p>For example,</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>\bibcitet{R<span class="sc">:</span>Becker<span class="sc">+</span>Chambers<span class="sc">+</span>Wilks<span class="sc">:</span><span class="dv">1988</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>\bibcitet{R<span class="sc">:</span>Becker<span class="sc">+</span>Chambers<span class="sc">+</span>Wilks<span class="sc">:</span><span class="dv">1988</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>gives a textual citation of the “<em>Blue Book</em>” (‘Becker, Chambers, and Wilks (1988)’ when first encountered),</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>\bibcitep{e.g.\\\\\\,<span class="sc">|</span>R<span class="sc">:</span>Chambers<span class="sc">+</span>Hastie<span class="sc">:</span><span class="dv">1992</span><span class="sc">|</span>page <span class="dv">123</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>\bibcitep{e.g.\\\\\\,<span class="sc">|</span>R<span class="sc">:</span>Chambers<span class="sc">+</span>Hastie<span class="sc">:</span><span class="dv">1992</span><span class="sc">|</span>page <span class="dv">123</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>gives a parenthetical citation of a page in the “<em>White Book</em>” (‘(e.g., Chambers and Hastie 1992, page 123)’ when first encountered). An Rd file having cited the above two and also wanting to include the “<em>Green Book</em>” in its references could use</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>\references{</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>\references{</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  \bibshow{<span class="sc">*</span>, R<span class="sc">:</span>Chambers<span class="sc">:</span><span class="dv">1998</span>}</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If one wanted to highlight a particular page range for the last reference, one could use one of</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>\bibinfo{R<span class="sc">:</span>Chambers<span class="sc">:</span><span class="dv">1998</span>}{note}{Pages <span class="dv">23</span><span class="sc">--</span><span class="dv">45</span>}</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>\bibinfo{R<span class="sc">:</span>Chambers<span class="sc">:</span><span class="dv">1998</span>}{footer}{Pages <span class="dv">23</span><span class="sc">--</span><span class="fl">45.</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>\bibinfo{R<span class="sc">:</span>Chambers<span class="sc">:</span><span class="dv">1998</span>}{note}{Pages <span class="dv">23</span><span class="sc">--</span><span class="dv">45</span>}</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>\bibinfo{R<span class="sc">:</span>Chambers<span class="sc">:</span><span class="dv">1998</span>}{footer}{Pages <span class="dv">23</span><span class="sc">--</span><span class="fl">45.</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>before the <code class="code">\bibshow</code> (the note will be added in-line, the footer on a new line).</p>
 <p>The <code class="code">\bibinfo</code> mechanism can also be employed to disambiguate citations for bibentries which are different but have the same author-year citation, which is typically done by adding a letter suffix to the year (e.g., ‘Eddy (1973a)’ and ‘Eddy (1973b)’). Getting the ‘a’ automatically is not possible with the current implementation (this would need to have all keyspecs used in the Rd file before generating the citations). In HTML output, one can disambiguate by simply following the hyperlinks to the references. One can fully disambiguate by manually adding the suffixes to the year fields, e.g.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>\bibinfo{R<span class="sc">:</span>Eddy<span class="sc">:</span><span class="dv">1977</span>a}{year}{<span class="dv">1977</span>a}</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>\bibinfo{R<span class="sc">:</span>Eddy<span class="sc">:</span><span class="dv">1977</span>b}{year}{<span class="dv">1977</span>b}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>\bibinfo{R<span class="sc">:</span>Eddy<span class="sc">:</span><span class="dv">1977</span>a}{year}{<span class="dv">1977</span>a}</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>\bibinfo{R<span class="sc">:</span>Eddy<span class="sc">:</span><span class="dv">1977</span>b}{year}{<span class="dv">1977</span>b}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>(see file <samp class="file">src/library/grDevices/man/chull.Rd</samp> in the R sources).</p>
 </section>
 <section id="processing-documentation-files" class="level2 section" data-number="2.16">
@@ -1059,13 +1066,14 @@ correctly in versions of R before 3.1.3 and are best avoided---use
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

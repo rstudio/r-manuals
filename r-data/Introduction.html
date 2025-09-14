@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./Acknowledgements.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c762d530328b84888f35e55f6455881a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6ee2a366d093f1a40032a3c585720d59.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -115,6 +116,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: R Data Import/Export ¶</span>
     </a>
@@ -185,6 +188,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -332,12 +339,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="encodings" class="level3 subsection" data-number="1.1.1">
 <h3 class="subsection anchored" data-number="1.1.1" data-anchor-id="encodings"><span class="header-section-number">1.1.1</span> Encodings</h3>
 <p>Unless the file to be imported from is entirely in ASCII, it is usually necessary to know how it was encoded. For text files, a good way to find out something about its structure is the <code class="command">file</code> command-line tool (for Windows, included in <code class="code">Rtools</code>). This reports something like</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>text<span class="op">.</span>Rd<span class="op">:</span> UTF<span class="op">-</span><span class="dv">8</span> Unicode English text</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>text<span class="op">.</span>Rd<span class="op">:</span> UTF<span class="op">-</span><span class="dv">8</span> Unicode English text</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>text2<span class="op">.</span>dat<span class="op">:</span> ISO<span class="op">-</span><span class="dv">8859</span> English text</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>text3<span class="op">.</span>dat<span class="op">:</span> Little<span class="op">-</span>endian UTF<span class="op">-</span><span class="dv">16</span> Unicode English character data<span class="op">,</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>   with CRLF line terminators</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>intro<span class="op">.</span>dat<span class="op">:</span> UTF<span class="op">-</span><span class="dv">8</span> Unicode text</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>intro<span class="op">.</span>dat<span class="op">:</span> UTF<span class="op">-</span><span class="dv">8</span> Unicode <span class="op">(</span>with BOM<span class="op">)</span> text</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>intro<span class="op">.</span>dat<span class="op">:</span> UTF<span class="op">-</span><span class="dv">8</span> Unicode <span class="op">(</span>with BOM<span class="op">)</span> text</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Modern Unix-alike systems, including macOS, are likely to produce UTF-8 files. Windows may produce what it calls ‘Unicode’ files (<code class="code">UCS-2LE</code> or just possibly <code class="code">UTF-16LE</code><a href="#FOOT1" id="DOCF1" class="footnote"><sup>1</sup></a>). Otherwise most files will be in a 8-bit encoding unless from a Chinese/Japanese/Korean locale (which have a wide range of encodings in common use). It is not possible to automatically detect with certainty which 8-bit encoding (although guesses may be possible and <code class="command">file</code> may guess as it did in the example above), so you may simply have to ask the originator for some clues (e.g.&nbsp;‘Russian on Windows’).</p>
 <p>‘BOMs’ (Byte Order Marks, <a href="https://en.wikipedia.org/wiki/Byte_order_mark" class="uref">https://en.wikipedia.org/wiki/Byte_order_mark</a>) cause problems for Unicode files. In the Unix world BOMs are rarely used, whereas in the Windows world they almost always are for UCS-2/UTF-16 files, and often are for UTF-8 files. The <code class="command">file</code> utility will not even recognize UCS-2 files without a BOM, but many other utilities will refuse to read files with a BOM and the IANA standards for <code class="code">UTF-16LE</code> and <code class="code">UTF-16BE</code> prohibit it. We have too often been reduced to looking at the file with the command-line utility <code class="command">od</code> or a hex editor to work out its encoding.</p>
 <p>Note that <code class="code">utf8</code> is not a valid encoding name (<code class="code">UTF-8</code> is), and <code class="code">macintosh</code> is the most portable name for what is sometimes called ‘Mac Roman’ encoding.</p>
@@ -355,9 +362,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Most of the conversions of real/complex numbers done by these functions is to full precision, but those by <code class="code">write</code> are governed by the current setting of <code class="code">options(digits)</code>. For more control, use <code class="code">format</code> on a data frame, possibly column-by-column.</p></li>
 <li><p><strong>Header line</strong></p>
 <p>R prefers the header line to have no entry for the row names, so the file looks like</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>                dist    climb   time</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>                dist    climb   time</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Greenmantle     <span class="fl">2.5</span>     <span class="dv">650</span>     <span class="fl">16.083</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>   ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>   ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Some other systems require a (possibly empty) entry for the row names, which is what <code class="code">write.table</code> will provide if argument <code class="code">col.names = NA</code> is specified. Excel is one such system.</p></li>
 <li><p><strong>Separator</strong> <span id="index-CSV-files" class="index-entry-id"></span> <span id="index-comma-separated-values" class="index-entry-id"></span> <span id="index-write_002ecsv" class="index-entry-id"></span> <span id="index-write_002ecsv2" class="index-entry-id"></span></p>
 <p>A common field separator to use in the file is a comma, as that is unlikely to appear in any of the fields in English-speaking countries. Such files are known as CSV (comma separated values) files, and wrapper function <code class="code">write.csv</code> provides appropriate defaults. In some locales the comma is used as the decimal point (set this in <code class="code">write.table</code> by <code class="code">dec = ","</code>) and there CSV files use the semicolon as the field separator: use <code class="code">write.csv2</code> for appropriate defaults. There is an IETF standard for CSV files (which mandates commas and CRLF line endings, for which use <code class="code">eol = "\r\n"</code>), RFC4180 (see <a href="https://www.rfc-editor.org/rfc/rfc4180" class="uref">https://www.rfc-editor.org/rfc/rfc4180</a>), but what is more important in practice is that the file is readable by the application it is targeted at.</p>
@@ -367,7 +374,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><strong>Quoting strings</strong> <span id="index-Quoting-strings" class="index-entry-id"></span></p>
 <p>By default strings are quoted (including the row and column names). Argument <code class="code">quote</code> controls if character and factor variables are quoted: some programs, for example <strong>Mondrian</strong> (<a href="https://en.wikipedia.org/wiki/Mondrian_(software)" class="uref">https://en.wikipedia.org/wiki/Mondrian_(software)</a>), do not accept quoted strings.</p>
 <p>Some care is needed if the strings contain embedded quotes. Three useful forms are</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">a =</span> <span class="fu">I</span>(<span class="st">"a </span><span class="sc">\"</span><span class="st"> quote"</span>))</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">a =</span> <span class="fu">I</span>(<span class="st">"a </span><span class="sc">\"</span><span class="st"> quote"</span>))</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">write.table</span>(df)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">"a"</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="st">"1"</span> <span class="st">"a </span><span class="sc">\"</span><span class="st"> quote"</span></span>
@@ -376,7 +383,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="st">"1"</span> <span class="st">"a "" quote"</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">write.table</span>(df, <span class="at">quote =</span> <span class="cn">FALSE</span>, <span class="at">sep =</span> <span class="st">","</span>)</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>a</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>,a <span class="st">" quote</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>,a <span class="st">" quote</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The second is the form of escape commonly used by spreadsheets.</p></li>
 <li><p><strong>Encodings</strong> <span id="index-Encodings-1" class="index-entry-id"></span></p>
 <p>Text files do not contain metadata on their encodings, so for non-ASCII data the file needs to be targetted to the application intended to read it. All of these functions can write to a <em>connection</em> which allows an encoding to be specified for the file, and <code class="code">write.table</code> has a <code class="code">fileEncoding</code> argument to make this easier.</p>
@@ -391,7 +398,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>When reading data from text files, it is the responsibility of the user to know and to specify the conventions used to create that file, e.g. the comment character, whether a header line is present, the value separator, the representation for missing values (and so on) described in <a href="#export-to-text-files" class="ref">Export to text files</a>. A markup language which can be used to describe not only content but also the structure of the content can make a file self-describing, so that one need not provide these details to the software reading the data.</p>
 <p>The eXtensible Markup Language – more commonly known simply as XML – can be used to provide such structure, not only for standard datasets but also more complex data structures. XML is becoming extremely popular and is emerging as a standard for general data markup and exchange. It is being used by different communities to describe geographical data such as maps, graphical displays, mathematics and so on.</p>
 <p>XML provides a way to specify the file’s encoding, e.g.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span>?xml version<span class="ot">=</span><span class="st">"1.0"</span> encoding<span class="ot">=</span><span class="st">"UTF-8"</span>?<span class="sc">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span>?xml version<span class="ot">=</span><span class="st">"1.0"</span> encoding<span class="ot">=</span><span class="st">"UTF-8"</span>?<span class="sc">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>although it does not require it.</p>
 <p>The <a href="https://CRAN.R-project.org/package=XML" class="url"><strong>XML</strong></a> package provides general facilities for reading and writing XML documents within R. Package <a href="https://CRAN.R-project.org/package=StatDataML" class="url"><strong>StatDataML</strong></a> on CRAN is one example building on <a href="https://CRAN.R-project.org/package=XML" class="url"><strong>XML</strong></a>. Another interface to the <strong>libxml2</strong> C library is provided by package <a href="https://CRAN.R-project.org/package=xml2" class="url"><strong>xml2</strong></a>.</p>
 <p>YAML is another system for structuring text data, with emphasis on human-readability: it is supported by package <a href="https://CRAN.R-project.org/package=yaml" class="url"><strong>yaml</strong></a>.</p>
@@ -450,13 +457,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

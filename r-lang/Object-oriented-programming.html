@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./Functions.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c762d530328b84888f35e55f6455881a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6ee2a366d093f1a40032a3c585720d59.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -115,6 +116,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: R Language Definition ¶</span>
     </a>
@@ -185,6 +188,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -327,9 +334,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Rather than having a full-fledged <span id="index-object_002doriented-1" class="index-entry-id"></span> object-oriented system R has a class system and a mechanism for dispatching based on the class of an object. The dispatch mechanism for interpreted code relies on four special objects that are stored in the evaluation frame. These special objects are <code class="code">.Generic</code>, <code class="code">.Class</code>, <code class="code">.Method</code> and <code class="code">.Group</code>. There is a separate dispatch mechanism used for internal functions and types that will be discussed elsewhere.</p>
 <p>The class system is facilitated through the <code class="code">class</code> attribute. This attribute is a character vector of class names. So to create an object of class <code class="code">"foo"</code> one simply attaches a class attribute with the string <samp class="samp">"foo"</samp>’ in it. Thus, virtually anything can be turned in to an object of class <code class="code">"foo"</code>.</p>
 <p>The object system makes use of <span id="index-function_002c-generic-1" class="index-entry-id"></span> <em>generic functions</em> via two dispatching functions, <code class="code">UseMethod</code> and <code class="code">NextMethod</code>. The typical use of the object system is to begin by calling a generic function. This is typically a very simple function and consists of a single line of code. The system function <code class="code">mean</code> is just such a function,</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> mean</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> mean</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span> (x, ...)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">UseMethod</span>(<span class="st">"mean"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">UseMethod</span>(<span class="st">"mean"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>When <code class="code">mean</code> is called it can have any number of arguments but its first argument is special and the class of that first argument is used to determine which method should be called. The variable <code class="code">.Class</code> is set to the class attribute of <code class="code">x</code>, <code class="code">.Generic</code> is set to the string <code class="code">"mean"</code> and a search is made for the correct method to invoke. The class attributes of any other arguments to <code class="code">mean</code> are ignored.</p>
 <p>Suppose that <code class="code">x</code> had a class attribute that contained <code class="code">"foo"</code> and <code class="code">"bar"</code>, in that order. Then R would first search for a function called <code class="code">mean.foo</code> and if it did not find one it would then search for a function <code class="code">mean.bar</code> and if that search was also unsuccessful then a final search for <code class="code">mean.default</code> would be made. If the last search is unsuccessful R reports an error. It is a good idea to always write a default method. Note that the functions <code class="code">mean.foo</code> etc. are referred to, in this context, as methods.</p>
 <p><code class="code">NextMethod</code> provides another mechanism for dispatching. A <span id="index-function-24" class="index-entry-id"></span> function may have a call to <code class="code">NextMethod</code> anywhere in it. The determination of which method should then be invoked is based primarily on the current values of <code class="code">.Class</code> and <code class="code">.Generic</code>. This is somewhat problematic since the method is really an ordinary function and users may call it directly. If they do so then there will be no values for <code class="code">.Generic</code> or <code class="code">.Class</code>.</p>
@@ -338,11 +345,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Methods themselves employ <code class="code">NextMethod</code> to provide a form of inheritance. Commonly a specific method performs a few operations to set up the data and then it calls the next appropriate method through a call to <code class="code">NextMethod</code>.</p>
 <p>Consider the following simple example. A point in two-dimensional Euclidean space can be specified by its Cartesian (x-y) or polar (r-theta) coordinates. Hence, to store information about the location of the point, we could define two classes, <code class="code">"xypoint"</code> and <code class="code">"rthetapoint"</code>. All the ‘xypoint’ data structures are lists with an x-component and a y-component. All ‘rthetapoint’ objects are lists with an r-component and a theta-component.</p>
 <p>Now, suppose we want to get the x-position from either type of object. This can easily be achieved through <span id="index-function_002c-generic-3" class="index-entry-id"></span> generic functions. We define the generic function <code class="code">xpos</code> as follows.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>xpos <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ...)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">UseMethod</span>(<span class="st">"xpos"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>xpos <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ...)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">UseMethod</span>(<span class="st">"xpos"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now we can define methods:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>xpos<span class="op">.</span>xypoint <span class="op">&lt;-</span> function<span class="op">(</span>x<span class="op">)</span> x$x</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>xpos<span class="op">.</span>rthetapoint <span class="op">&lt;-</span> function<span class="op">(</span>x<span class="op">)</span> x$r <span class="op">*</span> cos<span class="op">(</span>x$theta<span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>xpos<span class="op">.</span>xypoint <span class="op">&lt;-</span> function<span class="op">(</span>x<span class="op">)</span> x$x</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>xpos<span class="op">.</span>rthetapoint <span class="op">&lt;-</span> function<span class="op">(</span>x<span class="op">)</span> x$r <span class="op">*</span> cos<span class="op">(</span>x$theta<span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The user simply calls the function <code class="code">xpos</code> with either representation as the argument. The internal dispatching method finds the class of the object and calls the appropriate methods.</p>
 <p>It is pretty easy to add other representations. One need not write a new generic function only the methods. This makes it easy to add to existing systems since the user is only responsible for dealing with the new representation and not with any of the existing representations.</p>
 <p>The bulk of the uses of this methodology are to provide specialized printing for objects of different types; there are about 40 methods for <code class="code">print</code>.</p>
@@ -469,13 +476,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

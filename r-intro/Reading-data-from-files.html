@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.34">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -69,14 +69,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./Lists-and-data-frames.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-c8ad9e5dbd60b7b70b38521ab19b7da4.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c762d530328b84888f35e55f6455881a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6ee2a366d093f1a40032a3c585720d59.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -115,6 +116,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: An Introduction to R ¶</span>
     </a>
@@ -185,6 +188,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -394,7 +401,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Input file form with names and row labels<span class="sc">:</span></span>
+<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Input file form with names and row labels<span class="sc">:</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>     Price    Floor     Area   Rooms     Age  Cent.heat</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dv">01</span>   <span class="fl">52.00</span>    <span class="fl">111.0</span>      <span class="dv">830</span>     <span class="dv">5</span>       <span class="fl">6.2</span>      no</span>
@@ -402,14 +409,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="dv">03</span>   <span class="fl">57.50</span>    <span class="fl">101.0</span>     <span class="dv">1000</span>     <span class="dv">5</span>       <span class="fl">4.2</span>      no</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="dv">04</span>   <span class="fl">57.50</span>    <span class="fl">131.0</span>      <span class="dv">690</span>     <span class="dv">6</span>       <span class="fl">8.8</span>      no</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="dv">05</span>   <span class="fl">59.75</span>     <span class="fl">93.0</span>      <span class="dv">900</span>     <span class="dv">5</span>       <span class="fl">1.9</span>     yes</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></td>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
 </tbody>
 </table>
 </blockquote>
 <p>By default numeric items (except row labels) are read as numeric variables and non-numeric variables, such as <code class="code">Cent.heat</code> in the example, as character variables. This can be changed if necessary.</p>
 <p>The function <code class="code">read.table()</code> can then be used to read the data frame directly</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> HousePrice <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"houses.data"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> HousePrice <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"houses.data"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Often you will want to omit including the row labels directly and use the default labels. In this case the file may omit the row label column as in the following.</p>
 <blockquote class="blockquote">
 <table class="caption-top table">
@@ -418,7 +425,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Input file form without row labels<span class="sc">:</span></span>
+<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Input file form without row labels<span class="sc">:</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Price    Floor     Area   Rooms     Age  Cent.heat</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fl">52.00</span>    <span class="fl">111.0</span>      <span class="dv">830</span>     <span class="dv">5</span>       <span class="fl">6.2</span>      no</span>
@@ -426,43 +433,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fl">57.50</span>    <span class="fl">101.0</span>     <span class="dv">1000</span>     <span class="dv">5</span>       <span class="fl">4.2</span>      no</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fl">57.50</span>    <span class="fl">131.0</span>      <span class="dv">690</span>     <span class="dv">6</span>       <span class="fl">8.8</span>      no</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fl">59.75</span>     <span class="fl">93.0</span>      <span class="dv">900</span>     <span class="dv">5</span>       <span class="fl">1.9</span>     yes</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></td>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
 </tbody>
 </table>
 </blockquote>
 <p>The data frame may then be read as</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> HousePrice <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"houses.data"</span>, <span class="at">header=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> HousePrice <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">"houses.data"</span>, <span class="at">header=</span><span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>where the <code class="code">header=TRUE</code> option specifies that the first line is a line of headings, and hence, by implication from the form of the file, that no explicit row labels are given.</p>
 </section>
 <section id="the-scan-function" class="level2 section" data-number="7.2">
 <h2 class="section anchored" data-number="7.2" data-anchor-id="the-scan-function"><span class="header-section-number">7.2</span> The <code class="code">scan()</code> function</h2>
 <p>Suppose the data vectors are of equal length and are to be read in parallel. Further suppose that there are three vectors, the first of mode character and the remaining two of mode numeric, and the file is <samp class="file">input.dat</samp>. The first step is to use <code class="code">scan()</code> to read in the three vectors as a list, as follows</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> inp <span class="ot">&lt;-</span> <span class="fu">scan</span>(<span class="st">"input.dat"</span>, <span class="fu">list</span>(<span class="st">""</span>,<span class="dv">0</span>,<span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> inp <span class="ot">&lt;-</span> <span class="fu">scan</span>(<span class="st">"input.dat"</span>, <span class="fu">list</span>(<span class="st">""</span>,<span class="dv">0</span>,<span class="dv">0</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The second argument is a dummy list structure that establishes the mode of the three vectors to be read. The result, held in <code class="code">inp</code>, is a list whose components are the three vectors read in. To separate the data items into three separate vectors, use assignments like</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> label <span class="ot">&lt;-</span> inp[[<span class="dv">1</span>]]; x <span class="ot">&lt;-</span> inp[[<span class="dv">2</span>]]; y <span class="ot">&lt;-</span> inp[[<span class="dv">3</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> label <span class="ot">&lt;-</span> inp[[<span class="dv">1</span>]]; x <span class="ot">&lt;-</span> inp[[<span class="dv">2</span>]]; y <span class="ot">&lt;-</span> inp[[<span class="dv">3</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>More conveniently, the dummy list can have named components, in which case the names can be used to access the vectors read in. For example</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> inp <span class="ot">&lt;-</span> <span class="fu">scan</span>(<span class="st">"input.dat"</span>, <span class="fu">list</span>(<span class="at">id=</span><span class="st">""</span>, <span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span><span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> inp <span class="ot">&lt;-</span> <span class="fu">scan</span>(<span class="st">"input.dat"</span>, <span class="fu">list</span>(<span class="at">id=</span><span class="st">""</span>, <span class="at">x=</span><span class="dv">0</span>, <span class="at">y=</span><span class="dv">0</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If you wish to access the variables separately they may either be re-assigned to variables in the working frame:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> label <span class="ot">&lt;-</span> inp<span class="sc">$</span>id; x <span class="ot">&lt;-</span> inp<span class="sc">$</span>x; y <span class="ot">&lt;-</span> inp<span class="sc">$</span>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> label <span class="ot">&lt;-</span> inp<span class="sc">$</span>id; x <span class="ot">&lt;-</span> inp<span class="sc">$</span>x; y <span class="ot">&lt;-</span> inp<span class="sc">$</span>y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>or the list may be attached at position&nbsp;2 of the search path (see <a href="Lists-and-data-frames.html#attaching-arbitrary-lists" class="pxref">Attaching arbitrary lists</a>).</p>
 <p>If the second argument is a single value and not a list, a single vector is read in, all components of which must be of the same mode as the dummy value.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> X <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">scan</span>(<span class="st">"light.dat"</span>, <span class="dv">0</span>), <span class="at">ncol=</span><span class="dv">5</span>, <span class="at">byrow=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> X <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">scan</span>(<span class="st">"light.dat"</span>, <span class="dv">0</span>), <span class="at">ncol=</span><span class="dv">5</span>, <span class="at">byrow=</span><span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>There are more elaborate input facilities available and these are detailed in the manuals.</p>
 </section>
 <section id="accessing-builtin-datasets" class="level2 section" data-number="7.3">
 <h2 class="section anchored" data-number="7.3" data-anchor-id="accessing-builtin-datasets"><span class="header-section-number">7.3</span> Accessing builtin datasets</h2>
 <p><span id="index-Accessing-builtin-datasets" class="index-entry-id"></span> <span id="index-data" class="index-entry-id"></span></p>
 <p>Around 100 datasets are supplied with R (in package <strong>datasets</strong>), and others are available in packages (including the recommended packages supplied with R). To see the list of datasets currently available use</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>All the datasets supplied with R are available directly by name. However, many packages still use the obsolete convention in which <code class="code">data</code> was also used to load datasets into R, for example</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(infert)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(infert)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>and this can still be used with the standard packages (as in this example). In most cases this will load an R object of the same name. However, in a few cases it loads several objects, so see the on-line help for the object to see what to expect.</p>
 <section id="loading-data-from-other-r-packages" class="level3 subsection" data-number="7.3.1">
 <h3 class="subsection anchored" data-number="7.3.1" data-anchor-id="loading-data-from-other-r-packages"><span class="header-section-number">7.3.1</span> Loading data from other R packages</h3>
 <p>To access data from a particular package, use the <code class="code">package</code> argument, for example</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="at">package=</span><span class="st">"rpart"</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Puromycin, <span class="at">package=</span><span class="st">"datasets"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="at">package=</span><span class="st">"rpart"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Puromycin, <span class="at">package=</span><span class="st">"datasets"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If a package has been attached by <code class="code">library</code>, its datasets are automatically included in the search.</p>
 <p>User-contributed packages can be a rich source of datasets.</p>
 </section>
@@ -470,10 +477,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="editing-data" class="level2 section" data-number="7.4">
 <h2 class="section anchored" data-number="7.4" data-anchor-id="editing-data"><span class="header-section-number">7.4</span> Editing data</h2>
 <p>When invoked on a data frame or matrix, <code class="code">edit</code> brings up a separate spreadsheet-like environment for editing. This is useful for making small changes once a data set has been read. The command</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> xnew <span class="ot">&lt;-</span> <span class="fu">edit</span>(xold)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> xnew <span class="ot">&lt;-</span> <span class="fu">edit</span>(xold)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>will allow you to edit your data set <code class="code">xold</code>, and on completion the changed object is assigned to <code class="code">xnew</code>. If you want to alter the original dataset <code class="code">xold</code>, the simplest way is to use <code class="code">fix(xold)</code>, which is equivalent to <code class="code">xold &lt;- edit(xold)</code>.</p>
 <p>Use</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> xnew <span class="ot">&lt;-</span> <span class="fu">edit</span>(<span class="fu">data.frame</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> xnew <span class="ot">&lt;-</span> <span class="fu">edit</span>(<span class="fu">data.frame</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>to enter new data via the spreadsheet interface.</p>
 
 </section>
@@ -530,13 +537,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
