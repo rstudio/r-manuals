@@ -536,14 +536,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> hist<span class="op">(</span>eruptions<span class="op">,</span> seq<span class="op">(</span><span class="fl">1.6</span><span class="op">,</span> <span class="fl">5.2</span><span class="op">,</span> <span class="fl">0.2</span><span class="op">),</span> prob<span class="op">=</span>TRUE<span class="op">)</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> lines<span class="op">(</span>density<span class="op">(</span>eruptions<span class="op">,</span> bw<span class="op">=</span><span class="fl">0.1</span><span class="op">))</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> rug<span class="op">(</span>eruptions<span class="op">)</span> # show the actual data points</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><span id="index-density" class="index-entry-id"></span> <span id="index-Density-estimation" class="index-entry-id"></span></p>
-<p>More elegant density plots can be made by <code class="code">density</code>, and we added a line produced by <code class="code">density</code> in this example. The bandwidth <code class="code">bw</code> was chosen by trial-and-error as the default gives too much smoothing (it usually does for “interesting” densities). (Better automated methods of bandwidth choice are available, and in this example <code class="code">bw = "SJ"</code> gives a good result.)</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/hist.png" class="image img-fluid figure-img"></p>
 <figcaption>images/hist</figcaption>
 </figure>
 </div>
+<p><span id="index-density" class="index-entry-id"></span> <span id="index-Density-estimation" class="index-entry-id"></span></p>
+<p>More elegant density plots can be made by <code class="code">density</code>, and we added a line produced by <code class="code">density</code> in this example. The bandwidth <code class="code">bw</code> was chosen by trial-and-error as the default gives too much smoothing (it usually does for “interesting” densities). (Better automated methods of bandwidth choice are available, and in this example <code class="code">bw = "SJ"</code> gives a good result.)</p>
 <p>We can plot the empirical cumulative distribution function by using the function <code class="code">ecdf</code>. <span id="index-ecdf" class="index-entry-id"></span></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> plot<span class="op">(</span>ecdf<span class="op">(</span>eruptions<span class="op">),</span> <span class="cf">do</span><span class="op">.</span>points<span class="op">=</span>FALSE<span class="op">,</span> verticals<span class="op">=</span>TRUE<span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This distribution is obviously far from any standard distribution. How about the right-hand mode, say eruptions of longer than 3 minutes? Let us fit a normal distribution and overlay the fitted CDF.</p>
@@ -560,13 +560,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Quantile-quantile (Q-Q) plots can help us examine this more carefully. <span id="index-Quantile_002dquantile-plots" class="index-entry-id"></span> <span id="index-qqnorm" class="index-entry-id"></span> <span id="index-qqline" class="index-entry-id"></span></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">pty=</span><span class="st">"s"</span>)       <span class="co"># arrange for a square figure region</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(long); <span class="fu">qqline</span>(long)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>which shows a reasonable fit but a shorter right tail than one would expect from a normal distribution. Let us compare this with some simulated data from a <em>t</em> distribution</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/QQ.png" class="image img-fluid figure-img"></p>
 <figcaption>images/QQ</figcaption>
 </figure>
 </div>
+<p>This shows a reasonable fit but a shorter right tail than one would expect from a normal distribution. Let us compare this with some simulated data from a <em>t</em> distribution</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rt</span>(<span class="dv">250</span>, <span class="at">df =</span> <span class="dv">5</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(x); <span class="fu">qqline</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>which will usually (if it is a random sample) show longer tails than expected for a normal. We can make a Q-Q plot against the generating distribution by</p>
@@ -605,14 +605,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fl">80.02</span> <span class="fl">79.94</span> <span class="fl">79.98</span> <span class="fl">79.97</span> <span class="fl">79.97</span> <span class="fl">80.03</span> <span class="fl">79.95</span> <span class="fl">79.97</span></span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(A, B)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>which indicates that the first group tends to give higher results than the second.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/ice.png" class="image img-fluid figure-img"></p>
 <figcaption>images/ice</figcaption>
 </figure>
 </div>
-<p>To test for the equality of the means of the two examples, we can use an <em>unpaired</em> <em>t</em>-test by <span id="index-Student_0027s-t-test" class="index-entry-id"></span></p>
+<p>The plot indicates that the first group tends to give higher results than the second. To test for the equality of the means of the two examples, we can use an <em>unpaired</em> <em>t</em>-test by <span id="index-Student_0027s-t-test" class="index-entry-id"></span> <span id="index-t_002etest" class="index-entry-id"></span></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> t<span class="op">.</span>test<span class="op">(</span>A<span class="op">,</span> B<span class="op">)</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>         Welch Two Sample t<span class="op">-</span>test</span>
