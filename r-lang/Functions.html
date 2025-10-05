@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Functions – R Manuals :: R Language Definition ¶</title>
+<title>4&nbsp; Functions – R Manuals :: The R Language Definition ¶</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-82008e9dbfd88832a5d43b4f2d59409b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -119,7 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
     </a>
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">R Manuals :: R Language Definition ¶</span>
+    <span class="navbar-title">R Manuals :: The R Language Definition ¶</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -155,7 +155,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
         <li>
     <a class="dropdown-item" href="./../r-lang/index.html">
- <span class="dropdown-text">R Language Definition ¶</span></a>
+ <span class="dropdown-text">The R Language Definition ¶</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./../r-ints/index.html">
@@ -197,7 +197,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Top (R Language Definition)</span></a>
+ <span class="menu-text">Top (The R Language Definition)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -326,7 +326,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Next: <a href="Object-oriented-programming.html#object-oriented-programming" accesskey="n" rel="next">Object-oriented programming</a>, Previous: <a href="Evaluation-of-expressions.html#evaluation-of-expressions" accesskey="p" rel="prev">Evaluation of expressions</a>, Up: <a href="index.html" accesskey="u" rel="up">R Language Definition</a> &nbsp; [<a href="index.html#sec_contents" rel="contents" title="Table of contents">Contents</a>][<a href="Function-and-variable-index.html" rel="index" title="Index">Index</a>]</p>
+<p>Next: <a href="Object-oriented-programming.html#object-oriented-programming" accesskey="n" rel="next">Object-oriented programming</a>, Previous: <a href="Evaluation-of-expressions.html#evaluation-of-expressions" accesskey="p" rel="prev">Evaluation of expressions</a>, Up: <a href="index.html" accesskey="u" rel="up">The R Language Definition</a> &nbsp; [<a href="index.html#sec_contents" rel="contents" title="Table of contents">Contents</a>][<a href="Function-and-variable-index.html" rel="index" title="Index">Index</a>]</p>
 <section id="writing-functions" class="level2 section" data-number="4.1">
 <h2 class="section anchored" data-number="4.1" data-anchor-id="writing-functions"><span class="header-section-number">4.1</span> Writing functions</h2>
 <p>While R can be very useful as a data analysis tool most users very quickly find themselves wanting to write their own <span id="index-function-11" class="index-entry-id"></span> functions. This is one of the real advantages of R. Users can program it and they can, if they want to, change the system level functions to functions that they find more appropriate.</p>
@@ -408,7 +408,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>A rather interesting question is what happens when <code class="code">h</code> is evaluated. When a function body is evaluated there is no problem determining values for local variables or for bound variables. Scoping rules determine how the language will find values for the unbound variables.</p>
 <p>When <code class="code">h(3)</code> is evaluated we see that its body is that of <code class="code">g</code>. Within that body <code class="code">x</code> is bound to the formal argument and <code class="code">y</code> is unbound. In a language with <span id="index-scope-4" class="index-entry-id"></span> lexical scope <code class="code">x</code> will be associated with the value 3 and <code class="code">y</code> with the value 10 local to <code class="code">f</code> so <code class="code">h(3)</code> should return the value 13. In R this is indeed what happens.</p>
 <p>In S, because of the different scoping rules one will get an error indicating that <code class="code">y</code> is not found, unless there is a variable <code class="code">y</code> in your workspace in which case its value will be used.</p>
-<p>Next: <a href="Object-oriented-programming.html#object-oriented-programming" accesskey="n" rel="next">Object-oriented programming</a>, Previous: <a href="Evaluation-of-expressions.html#evaluation-of-expressions" accesskey="p" rel="prev">Evaluation of expressions</a>, Up: <a href="index.html" accesskey="u" rel="up">R Language Definition</a> &nbsp; [<a href="index.html#sec_contents" rel="contents" title="Table of contents">Contents</a>][<a href="Function-and-variable-index.html" rel="index" title="Index">Index</a>]</p>
+<p>Next: <a href="Object-oriented-programming.html#object-oriented-programming" accesskey="n" rel="next">Object-oriented programming</a>, Previous: <a href="Evaluation-of-expressions.html#evaluation-of-expressions" accesskey="p" rel="prev">Evaluation of expressions</a>, Up: <a href="index.html" accesskey="u" rel="up">The R Language Definition</a> &nbsp; [<a href="index.html#sec_contents" rel="contents" title="Table of contents">Contents</a>][<a href="Function-and-variable-index.html" rel="index" title="Index">Index</a>]</p>
 
 
 </section>

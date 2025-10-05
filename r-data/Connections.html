@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-82008e9dbfd88832a5d43b4f2d59409b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -155,7 +155,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
         <li>
     <a class="dropdown-item" href="./../r-lang/index.html">
- <span class="dropdown-text">R Language Definition ¶</span></a>
+ <span class="dropdown-text">The R Language Definition ¶</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./../r-ints/index.html">
@@ -431,7 +431,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In each case <code class="code">con</code> is a connection which will be opened if necessary for the duration of the call, and if a character string is given it is assumed to specify a file name.</p>
 <p>It is slightly simpler to describe writing, so we will do that first. <code class="code">object</code> should be an atomic vector object, that is a vector of mode <code class="code">numeric</code>, <code class="code">integer</code>, <code class="code">logical</code>, <code class="code">character</code>, <code class="code">complex</code> or <code class="code">raw</code>, without attributes. By default this is written to the file as a stream of bytes exactly as it is represented in memory.</p>
 <p><code class="code">readBin</code> reads a stream of bytes from the file and interprets them as a vector of mode given by <code class="code">what</code>. This can be either an object of the appropriate mode (e.g.&nbsp;<code class="code">what=integer()</code>) or a character string describing the mode (one of the five given in the previous paragraph or <code class="code">"double"</code> or <code class="code">"int"</code>). Argument <code class="code">n</code> specifies the maximum number of vector elements to read from the connection: if fewer are available a shorter vector will be returned. Argument <code class="code">signed</code> allows 1-byte and 2-byte integers to be read as signed (the default) or unsigned integers.</p>
-<p>The remaining two arguments are used to write or read data for interchange with another program or another platform. By default binary data is transferred directly from memory to the connection or <em>vice versa</em>. This will not suffice if the data are to be transferred to a machine with a different architecture, but between almost all R platforms the only change needed is that of byte-order. Common PCs (<samp class="samp">ix86</samp>‘-based and <samp class="samp">x86_64</samp>’-based machines), Compaq Alpha and Vaxen are <em>little-endian</em>, whereas Sun Sparc, mc680x0 series, IBM R6000, SGI and most others are <em>big-endian</em>. (Network byte-order (as used by XDR, eXternal Data Representation) is big-endian.) To transfer to or from other programs we may need to do more, for example to read 16-bit integers or write single-precision real numbers. This can be done using the <code class="code">size</code> argument, which (usually) allows sizes 1, 2, 4, 8 for integers and logicals, and sizes 4, 8 and perhaps 12 or 16 for reals. Transferring at different sizes can lose precision, and should not be attempted for vectors containing <code class="code">NA</code>’s.</p>
+<p>The remaining two arguments are used to write or read data for interchange with another program or another platform. By default binary data is transferred directly from memory to the connection or <em>vice versa</em>. This will not suffice if the data are to be transferred to a machine with a different architecture, but between almost all R platforms the only change needed is that of byte-order. Common PCs (<samp class="samp">ix86</samp>‘-based and <samp class="samp">x86_64</samp>’-based machines), Compaq Alpha and Vaxen are <em>little-endian</em>, whereas Sun Sparc, mc680x0 series, IBM R6000, SGI and most others are <em>big-endian</em>. (Network byte-order (as used by XDR, eXternal Data Representation) is big-endian.) To transfer to or from other programs we may need to do more, for example to read 16-bit integers or write single-precision real numbers. This can be done using the <code class="code">size</code> argument, which (usually) allows sizes 1, 2, 4, 8 for integers and logicals, and sizes 4, 8 and perhaps 12 or 16 for reals. Transferring at different sizes can lose precision, and should not be attempted for vectors containing <code class="code">NA</code>s.</p>
 <p>Character strings are read and written in C format, that is as a string of bytes terminated by a zero byte. Functions <code class="code">readChar</code> and <code class="code">writeChar</code> provide greater flexibility.</p>
 <section id="special-values" class="level3 subsection" data-number="7.5.1">
 <h3 class="subsection anchored" data-number="7.5.1" data-anchor-id="special-values"><span class="header-section-number">7.5.1</span> Special values</h3>

@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; Objects – R Manuals :: R Language Definition ¶</title>
+<title>2&nbsp; Objects – R Manuals :: The R Language Definition ¶</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-82008e9dbfd88832a5d43b4f2d59409b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -119,7 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
     </a>
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">R Manuals :: R Language Definition ¶</span>
+    <span class="navbar-title">R Manuals :: The R Language Definition ¶</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -155,7 +155,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
         <li>
     <a class="dropdown-item" href="./../r-lang/index.html">
- <span class="dropdown-text">R Language Definition ¶</span></a>
+ <span class="dropdown-text">The R Language Definition ¶</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./../r-ints/index.html">
@@ -197,7 +197,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Top (R Language Definition)</span></a>
+ <span class="menu-text">Top (The R Language Definition)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -344,7 +344,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Next: <a href="Evaluation-of-expressions.html#evaluation-of-expressions" accesskey="n" rel="next">Evaluation of expressions</a>, Previous: <a href="Introduction.html" accesskey="p" rel="prev">Introduction</a>, Up: <a href="index.html" accesskey="u" rel="up">R Language Definition</a> &nbsp; [<a href="index.html#sec_contents" rel="contents" title="Table of contents">Contents</a>][<a href="Function-and-variable-index.html" rel="index" title="Index">Index</a>]</p>
+<p>Next: <a href="Evaluation-of-expressions.html#evaluation-of-expressions" accesskey="n" rel="next">Evaluation of expressions</a>, Previous: <a href="Introduction.html" accesskey="p" rel="prev">Introduction</a>, Up: <a href="index.html" accesskey="u" rel="up">The R Language Definition</a> &nbsp; [<a href="index.html#sec_contents" rel="contents" title="Table of contents">Contents</a>][<a href="Function-and-variable-index.html" rel="index" title="Index">Index</a>]</p>
 <p>In every computer language <span id="index-variable" class="index-entry-id"></span> variables provide a means of accessing the data stored in memory. R does not provide direct access to the computer’s memory but rather provides a number of specialized data structures we will refer to as <span id="index-object" class="index-entry-id"></span> objects. These objects are referred to through symbols or variables. In R, however, the symbols are themselves objects and can be manipulated in the same way as any other object. This is different from many other languages and has wide ranging effects.</p>
 <p>In this chapter we provide preliminary descriptions of the various data structures provided in R. More detailed discussions of many of them will be found in the subsequent chapters. The R specific function <code class="code">typeof</code> <span id="index-typeof" class="index-entry-id"></span> <span id="index-type" class="index-entry-id"></span> returns the <em>type</em> of an R object. Note that in the C code underlying R, all objects are pointers to a structure with typedef <code class="code">SEXPREC</code>; the different R data types are represented in C by <code class="code">SEXPTYPE</code>, which determines how the information in the various parts of the structure is used.</p>
 <p>The following table describes the possible values returned by <code class="code">typeof</code> and what they are.</p>

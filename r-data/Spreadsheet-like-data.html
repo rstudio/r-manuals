@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-82008e9dbfd88832a5d43b4f2d59409b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -155,7 +155,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
         <li>
     <a class="dropdown-item" href="./../r-lang/index.html">
- <span class="dropdown-text">R Language Definition ¶</span></a>
+ <span class="dropdown-text">The R Language Definition ¶</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./../r-ints/index.html">
@@ -330,13 +330,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Beware that <code class="code">read.table</code> is an inefficient way to read in very large numerical matrices: see <code class="code">scan</code> below.</p>
 <p>Some of the issues to consider are:</p>
 <ol type="1">
-<li><p><strong>Encoding</strong></p>
-<p>If the file contains non-ASCII character fields, ensure that it is read in the correct encoding. This is mainly an issue for reading Latin-1 files in a UTF-8 locale, which can be done by something like</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.table</span>(<span class="st">"file.dat"</span>, <span class="at">fileEncoding=</span><span class="st">"latin1"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Note that this will work in any locale which can represent Latin-1 strings, but not many Greek/Russian/Chinese/Japanese … locales.</p></li>
 <li><p><strong>Header line</strong></p>
 <p>We recommend that you specify the <code class="code">header</code> argument explicitly, Conventionally the header line has entries only for the columns and not for the row labels, so is one field shorter than the remaining lines. (If R sees this, it sets <code class="code">header = TRUE</code>.) If presented with a file that has a (possibly empty) header field for the row labels, read it in by something like</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.table</span>(<span class="st">"file.dat"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.table</span>(<span class="st">"file.dat"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">row.names =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Column names can be given explicitly via the <code class="code">col.names</code>; explicit names override the header line (if present).</p></li>
 <li><p><strong>Separator</strong></p>
 <p>Normally looking at the file will determine the field separator to be used, but with white-space separated files there may be a choice between the default <code class="code">sep = ""</code> which uses any white space (spaces, tabs or newlines) as a separator, <code class="code">sep = " "</code> and <code class="code">sep = "\t"</code>. Note that the choice of separator affects the input of quoted strings.</p>
@@ -345,9 +341,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>By default character strings can be quoted by either <samp class="samp">"</samp>’ or {.sample .samp}’, and in each case all the characters up to a matching quote are taken as part of the character string. The set of valid quoting characters (which might be none) is controlled by the <code class="code">quote</code> argument. For <code class="code">sep = "\n"</code> the default is changed to <code class="code">quote = ""</code>.</p>
 <p>If no separator character is specified, quotes can be escaped within quoted strings by immediately preceding them by <samp class="samp">\</samp>’, C-style.</p>
 <p>If a separator character is specified, quotes can be escaped within quoted strings by doubling them as is conventional in spreadsheets. For example</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="st">'One string isn''t two'</span>,<span class="st">"one more"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="st">'One string isn''t two'</span>,<span class="st">"one more"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>can be read by</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.table</span>(<span class="st">"testfile"</span>, <span class="at">sep =</span> <span class="st">","</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.table</span>(<span class="st">"testfile"</span>, <span class="at">sep =</span> <span class="st">","</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This does not work with the default separator.</p></li>
 <li><p><strong>Missing values</strong> <span id="index-Missing-values-1" class="index-entry-id"></span></p>
 <p>By default the file is assumed to contain the character string <code class="code">NA</code> to represent missing values, but this can be changed by the argument <code class="code">na.strings</code>, which is a vector of one or more character representations of missing values.</p>
@@ -370,7 +366,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Many OSes have conventions for using backslash as an escape character in text files, but Windows does not (and uses backslash in path names). It is optional in R whether such conventions are applied to data files.</p>
 <p>Both <code class="code">read.table</code> and <code class="code">scan</code> have a logical argument <code class="code">allowEscapes</code>. This is false by default, and backslashes are then only interpreted as (under circumstances described above) escaping quotes. If this set to be true, C-style escapes are interpreted, namely the control characters <code class="code">\a, \b, \f, \n, \r, \t, \v</code> and octal and hexadecimal representations like <code class="code">\040</code> and <code class="code">\0x2A</code>. Any other escaped character is treated as itself, including backslash. Note that Unicode escapes such as <code class="code">\u</code><var class="var">xxxx</var> are never interpreted.</p></li>
 <li><p><strong>Encoding</strong></p>
-<p>This can be specified by the <code class="code">fileEncoding</code> argument, for example</p>
+<p>If the file contains non-ASCII character fields, ensure that it is read in the correct encoding. This is mainly an issue for reading legacy Latin-1 files in a UTF-8 locale, which can be done by something like</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.table</span>(<span class="st">"file.dat"</span>, <span class="at">fileEncoding =</span> <span class="st">"latin1"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Note that this will work in any locale which can represent Latin-1 strings, but not many Greek/Russian/Chinese/Japanese … locales.</p>
+<p>Other examples for the <code class="code">fileEncoding</code> argument include:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fileEncoding <span class="ot">=</span> <span class="st">"UCS-2LE"</span>    <span class="co"># Windows 'Unicode' files</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>fileEncoding <span class="ot">=</span> <span class="st">"UTF-8"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If you know (correctly) the file’s encoding this will almost always work. However, we know of one exception, UTF-8 files with a BOM. Some people claim that UTF-8 files should never have a BOM, but some software (apparently including Excel:mac) uses them, and many Unix-alike OSes do not accept them. So faced with a file which <code class="command">file</code> reports as</p>
