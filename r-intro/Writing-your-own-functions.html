@@ -637,8 +637,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">UseMethod</span>(<span class="st">"coef"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The presence of <code class="code">UseMethod</code> indicates this is a generic function. To see what methods are available we can use <code class="code">methods()</code></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">methods</span>(coef)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] coef.aov<span class="sc">*</span>     coef.Arima<span class="sc">*</span>   coef.default<span class="sc">*</span> coef.listof<span class="sc">*</span>  coef.maov<span class="sc">*</span>   </span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">6</span>] coef.nls<span class="sc">*</span>    </span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] coef.aov<span class="sc">*</span>     coef.Arima<span class="sc">*</span>   coef.default<span class="sc">*</span> coef.listof<span class="sc">*</span>  coef.maov<span class="sc">*</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">6</span>] coef.nls<span class="sc">*</span></span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>see <span class="st">'?methods'</span> <span class="cf">for</span> accessing help and source code</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In this example there are six methods, none of which can be seen by typing its name (as indicated by the asterisk). We can read these by either of</p>
 <p><span id="index-getAnywhere" class="index-entry-id"></span> <span id="index-getS3method" class="index-entry-id"></span></p>
@@ -652,7 +652,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span> (object, <span class="at">complete =</span> <span class="cn">FALSE</span>, ...)</span>
 <span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>{</span>
 <span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    cf <span class="ot">&lt;-</span> object<span class="sc">$</span>coefficients</span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (complete) </span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (complete)</span>
 <span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>        cf</span>
 <span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> cf[<span class="sc">!</span><span class="fu">is.na</span>(cf)]</span>
 <span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>}</span>
@@ -661,7 +661,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span> (object, <span class="at">complete =</span> <span class="cn">FALSE</span>, ...)</span>
 <span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>{</span>
 <span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>    cf <span class="ot">&lt;-</span> object<span class="sc">$</span>coefficients</span>
-<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (complete) </span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (complete)</span>
 <span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>        cf</span>
 <span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> cf[<span class="sc">!</span><span class="fu">is.na</span>(cf)]</span>
 <span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>

@@ -472,7 +472,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><samp class="option">--quiet</samp><br>
 <samp class="option">--silent</samp><br>
 <samp class="option">-q</samp></p>
-<p>: Do not print out the initial copyright and welcome messages.</p>
+<p>: Do not print out the initial copyright and welcome messages. Additionally set <code class="code">options("quiet")</code> or equivalently, <code class="code">getOption("quiet")</code>, to <code class="code">TRUE</code> which other R functions may use to be more quiet than usually.</p>
 <p><samp class="option">--no-echo</samp><br>
 <samp class="option">-s</samp></p>
 <p>: Make R run as quietly as possible. This option is intended to support programs which use R to compute results for them. It implies <samp class="option">--quiet</samp> and <samp class="option">--no-save</samp>.</p>
