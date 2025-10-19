@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-82008e9dbfd88832a5d43b4f2d59409b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-25f4c34e66cfb503e975eb0eb1085972.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -497,6 +497,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>subroutine <span class="fu">rexit</span>(message)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>subroutine <span class="fu">rwarn</span>(message)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Messages of more than 255 characters are truncated, with a warning.</p>
+<p>The subroutine <code class="code">xerbla</code> is also available for compatibility with BLAS and LAPACK, but is not intended for use in packages.</p>
 </section>
 </section>
 <section id="random-number-generation" class="level2 section" data-number="6.3">
@@ -1243,6 +1244,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>           <span class="dt">int</span> tmax<span class="op">,</span> <span class="dt">double</span> temp<span class="op">,</span> <span class="dt">int</span> trace<span class="op">,</span> <span class="dt">void</span> <span class="op">*</span>ex<span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ul>
 <p>Many of the arguments are common to the various methods. <code class="code">n</code> is the number of parameters, <code class="code">x</code> or <code class="code">xin</code> is the starting parameters on entry and <code class="code">x</code> the final parameters on exit, with final value returned in <code class="code">Fmin</code>. Most of the other parameters can be found from the help page for <code class="code">optim</code>: see the source code <samp class="file">src/appl/lbfgsb.c</samp> for the values of <code class="code">nbd</code>, which specifies which bounds are to be used.</p>
+<p>The function <code class="code">optif9</code> is included in the experimental API for use by the <strong>nlme</strong> package. It is subject to change and not intended for use by other packages. <span id="index-optif9" class="index-entry-id"></span></p>
 </section>
 <section id="integration" class="level2 section" data-number="6.9">
 <h2 class="section anchored" data-number="6.9" data-anchor-id="integration"><span class="header-section-number">6.9</span> Integration</h2>

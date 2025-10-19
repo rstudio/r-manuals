@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-82008e9dbfd88832a5d43b4f2d59409b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-25f4c34e66cfb503e975eb0eb1085972.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -1638,7 +1638,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">LCONS</span>(R_NilValue, <span class="fu">Rf_allocList</span>(<span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>At this point <code class="code">CAR(a)</code> is the R object to be printed, the current attribute. There are three steps: the call is constructed as a pairlist of length 3, the list is filled in, and the expression represented by the pairlist is evaluated.</p>
 <p>A pairlist is quite distinct from a generic vector list, the only user-visible form of list in R. A pairlist is a linked list (with <code class="code">CDR(t)</code> computing the next entry), with items (accessed by <code class="code">CAR(t)</code>) and names or tags (set by <code class="code">SET_TAG</code>). In this call there are to be three items, a symbol (pointing to the function to be called) and two argument values, the first unnamed and the second named. Setting the type to <code class="code">LANGSXP</code> makes this a call which can be evaluated.</p>
-<p>Customarily, the evaluation environment is passed from the calling R code (see <code class="code">rho</code> above). In special cases it is possible that the C code may need to obtain the current evaluation environment which can be done via <code class="code">R_GetCurrentEnv()</code> function.</p>
+<p>Customarily, the evaluation environment is passed from the calling R code (see <code class="code">rho</code> above). In special cases it is possible that the C code may need to obtain the current evaluation environment which can be done via <code class="code">R_GetCurrentEnv()</code> function. This function is experimental and may be changed or removed in the future.</p>
 <section id="zero-finding" class="level3 subsection" data-number="5.11.1">
 <h3 class="subsection anchored" data-number="5.11.1" data-anchor-id="zero-finding"><span class="header-section-number">5.11.1</span> Zero-finding</h3>
 <p>In this section we re-work the example of Becker, Chambers &amp; Wilks (1988, pp.~205–10) on finding a zero of a univariate function. The R code and an example are</p>
