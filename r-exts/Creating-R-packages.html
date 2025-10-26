@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-25f4c34e66cfb503e975eb0eb1085972.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-82008e9dbfd88832a5d43b4f2d59409b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -1993,7 +1993,7 @@ order).</code></pre>
 <p>If you do want to use an integer format, be aware that <code class="code">R_xlen_t</code> is implemented by the <code class="code">int</code>, <code class="code">long</code> or <code class="code">long long</code> type on current platforms and even on 64-bit ones need not be the same type as <code class="code">int64_t</code>. So the values will need to be cast to the type assumed by the format (and <code class="code">%lld</code> was not supported on Windows until R&nbsp;4.2.0).</p></li>
 <li><p>Variadic macros in C or C++ only portably allow a non-zero number of arguments, although some compilers have allowed zero, often with a warning. The latter was standardized in C++20 using the <code class="code">__VA_OPT__</code> macro. C23 allows zero arguments in a similar way.</p></li>
 </ul>
-<p>Some additional information for C++ is available at <a href="https://journal.r-project.org/archive/2011-2/RJournal_2011-2_Plummer.pdf" class="uref">https://journal.r-project.org/archive/2011-2/RJournal_2011-2_Plummer.pdf</a> by Martyn Plummer.</p>
+<p>Some additional information for C++ is available at <a href="https://journal.R-project.org/articles/RJ-2011-020/RJ-2011-020.pdf" class="uref">https://journal.R-project.org/articles/RJ-2011-020/RJ-2011-020.pdf</a> by Martyn Plummer.</p>
 <p>Several OSes have or currently do provide multiple C++ runtimes — Solaris did and the LLVM <code class="command">clang</code> compiler has a native C++ runtime library <code class="code">libc++</code> but is also used with GCC’s <code class="code">libstdc++</code> (by default on Debian/Ubuntu/Fedora). This makes it unsafe to assume that OS libraries with a C++ interface are compatible with the C++ compiler specified by R. Many of these system libraries also have C interfaces which should be used in preference to their C++ interface. Otherwise it is essential that a package checks compatibility in its <code class="command">configure</code> script, including that C++ code using the library can both be linked <em>and loaded</em>.</p>
 </section>
 <section id="common-symbols" class="level3 subsubsection" data-number="1.6.5">
