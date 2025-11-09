@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>12&nbsp; Current and future directions – R Manuals :: R Internals ¶</title>
+<title>13&nbsp; Current and future directions – R Manuals :: R Internals ¶</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -143,7 +143,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Current-and-future-directions.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Current and future directions</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Current-and-future-directions.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Current and future directions</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -227,14 +227,20 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./Building-the-source-distribution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Building the source distribution</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./Use-of-TeX-dialects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Use of TeX dialects</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Use of TeX dialects</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Current-and-future-directions.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Current and future directions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Current and future directions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -259,11 +265,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#long-vectors" id="toc-long-vectors" class="nav-link active" data-scroll-target="#long-vectors"><span class="header-section-number">12.1</span> Long vectors</a></li>
-  <li><a href="#bit-types" id="toc-bit-types" class="nav-link" data-scroll-target="#bit-types"><span class="header-section-number">12.2</span> 64-bit types</a></li>
-  <li><a href="#large-matrices" id="toc-large-matrices" class="nav-link" data-scroll-target="#large-matrices"><span class="header-section-number">12.3</span> Large matrices</a>
+  <li><a href="#long-vectors" id="toc-long-vectors" class="nav-link active" data-scroll-target="#long-vectors"><span class="header-section-number">13.1</span> Long vectors</a></li>
+  <li><a href="#bit-types" id="toc-bit-types" class="nav-link" data-scroll-target="#bit-types"><span class="header-section-number">13.2</span> 64-bit types</a></li>
+  <li><a href="#large-matrices" id="toc-large-matrices" class="nav-link" data-scroll-target="#large-matrices"><span class="header-section-number">13.3</span> Large matrices</a>
   <ul class="collapse">
-  <li><a href="#footnotes" id="toc-footnotes" class="nav-link" data-scroll-target="#footnotes"><span class="header-section-number">12.3.1</span> Footnotes</a></li>
+  <li><a href="#footnotes" id="toc-footnotes" class="nav-link" data-scroll-target="#footnotes"><span class="header-section-number">13.3.1</span> Footnotes</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -273,7 +279,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Current and future directions</span></h1>
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Current and future directions</span></h1>
 </div>
 
 
@@ -292,8 +298,8 @@ ul.task-list li input[type="checkbox"] {
 
 <p>Next: <a href="Function-and-variable-index.html" accesskey="n" rel="next">Function and variable index</a>, Previous: <a href="Use-of-TeX-dialects.html" accesskey="p" rel="prev">Use of TeX dialects</a>, Up: <a href="index.html" accesskey="u" rel="up">R Internals</a> &nbsp; [<a href="index.html#sec_contents" rel="contents" title="Table of contents">Contents</a>][<a href="Function-and-variable-index.html" rel="index" title="Index">Index</a>]</p>
 <p>This chapter is for notes about possible in-progress and future changes to R: there is no commitment to release such changes, let alone to a timescale.</p>
-<section id="long-vectors" class="level2 section" data-number="12.1">
-<h2 class="section anchored" data-number="12.1" data-anchor-id="long-vectors"><span class="header-section-number">12.1</span> Long vectors</h2>
+<section id="long-vectors" class="level2 section" data-number="13.1">
+<h2 class="section anchored" data-number="13.1" data-anchor-id="long-vectors"><span class="header-section-number">13.1</span> Long vectors</h2>
 <p>Vectors in R 2.x.y were limited to a length of 2^31 - 1 elements (about 2 billion), as the length is stored in the <code class="code">SEXPREC</code> as a C <code class="code">int</code>, and that type is used extensively to record lengths and element numbers, including in packages.</p>
 <p>Note that longer vectors are effectively impossible under 32-bit platforms because of their address limit, so this section applies only on 64-bit platforms. The internals are unchanged on a 32-bit build of R.</p>
 <p>A single object with 2^31 or more elements will take up at least 8GB of memory if integer or logical and 16GB if numeric or character, so routine use of such objects is still some way off.</p>
@@ -307,8 +313,8 @@ ul.task-list li input[type="checkbox"] {
 <li>The R function <code class="code">length</code> returns a double value if the length exceeds 2^31-1. Code calling <code class="code">as.integer(length(x))</code> before passing to <code class="code">.C</code>/<code class="code">.Fortran</code> should checks for an <code class="code">NA</code> result.</li>
 </ul>
 </section>
-<section id="bit-types" class="level2 section" data-number="12.2">
-<h2 class="section anchored" data-number="12.2" data-anchor-id="bit-types"><span class="header-section-number">12.2</span> 64-bit types</h2>
+<section id="bit-types" class="level2 section" data-number="13.2">
+<h2 class="section anchored" data-number="13.2" data-anchor-id="bit-types"><span class="header-section-number">13.2</span> 64-bit types</h2>
 <p>There is also some desire to be able to store larger integers in R, although the possibility of storing these as <code class="code">double</code> is often overlooked (and e.g.&nbsp;file pointers as returned by <code class="code">seek</code> are already stored as <code class="code">double</code>).</p>
 <p>Different routes have been proposed:</p>
 <ul>
@@ -321,8 +327,8 @@ ul.task-list li input[type="checkbox"] {
 <p>The remaining interfaces will need to cope with the changed <code class="code">VECTOR_SEXPREC</code> types. It seems likely that in most cases lengths are accessed by the <code class="code">length</code> and <code class="code">LENGTH</code> functions<a href="#FOOT26" id="DOCF26" class="footnote"><sup>26</sup></a> The current approach is to keep these returning 32-bit lengths and introduce ‘long’ versions <code class="code">xlength</code> and <code class="code">XLENGTH</code> which return <code class="code">R_xlen_t</code> values.</p>
 <p>See also <a href="https://homepage.cs.uiowa.edu/~luke/talks/useR10.pdf" class="uref">https://homepage.cs.uiowa.edu/~luke/talks/useR10.pdf</a>.</p>
 </section>
-<section id="large-matrices" class="level2 section" data-number="12.3">
-<h2 class="section anchored" data-number="12.3" data-anchor-id="large-matrices"><span class="header-section-number">12.3</span> Large matrices</h2>
+<section id="large-matrices" class="level2 section" data-number="13.3">
+<h2 class="section anchored" data-number="13.3" data-anchor-id="large-matrices"><span class="header-section-number">13.3</span> Large matrices</h2>
 <p>Matrices are stored as vectors and so were also limited to 2^31-1 elements. Now longer vectors are allowed on 64-bit platforms, matrices with more elements are supported provided that each of the dimensions is no more than 2^31-1. However, not all applications can be supported.</p>
 <p>The main problem is linear algebra done by Fortran code compiled with 32-bit <code class="code">INTEGER</code>. Although not guaranteed, it seems that all the compilers currently used with R on a 64-bit platform allow matrices each of whose dimensions is less than 2^31 but with 2^31 or more elements and index them correctly, and a substantial part of the support software (such as BLAS and LAPACK) also work.</p>
 <p>There are exceptions: for example some complex LAPACK auxiliary routines do use a single <code class="code">INTEGER</code> index and hence overflow silently and segfault or give incorrect results. One example seen was <code class="code">svd()</code> on a complex matrix.</p>
@@ -742,7 +748,7 @@ ul.task-list li input[type="checkbox"] {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./Use-of-TeX-dialects.html" class="pagination-link" aria-label="Use of TeX dialects">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Use of TeX dialects</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Use of TeX dialects</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

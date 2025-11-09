@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R Manuals :: R Internals ¶</title>
+<title>11&nbsp; Building the source distribution – R Manuals :: R Internals ¶</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,7 +65,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./R-Internal-Structures.html" rel="next">
+<link href="./Use-of-TeX-dialects.html" rel="next">
+<link href="./Testing-R-code.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -142,7 +178,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Top (R Internals)</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Building-the-source-distribution.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Building the source distribution</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -160,7 +196,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Top (R Internals)</span></a>
   </div>
 </li>
@@ -226,7 +262,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Building-the-source-distribution.html" class="sidebar-item-text sidebar-link">
+  <a href="./Building-the-source-distribution.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Building the source distribution</span></span></a>
   </div>
 </li>
@@ -259,21 +295,15 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#top-r-internals" id="toc-top-r-internals" class="nav-link active" data-scroll-target="#top-r-internals">Top (R Internals)</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">R Manuals :: R Internals ¶</h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Building the source distribution</span></h1>
 </div>
 
 
@@ -290,22 +320,47 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="top-r-internals" class="level1 unnumbered">
-<h1 class="unnumbered">Top (R Internals)</h1>
-<p>Next: <a href="R-Internal-Structures.html#r-internal-structures" accesskey="n" rel="next">R Internal Structures</a> &nbsp; [<a href="#sec_contents" rel="contents" title="Table of contents">Contents</a>][<a href="Function-and-variable-index.html" rel="index" title="Index">Index</a>]</p>
-<p>R Internals</p>
-<p>This is a guide to the internal structures of R and coding standards for the core team working on R itself.</p>
-<p>This manual is for R, version 4.6.0 Under development.</p>
-<p>Copyright © 1999–2025 R Core Team</p>
-<blockquote class="blockquote">
-<p>Permission is granted to make and distribute verbatim copies of this manual provided the copyright notice and this permission notice are preserved on all copies.</p>
-<p>Permission is granted to copy and distribute modified versions of this manual under the conditions for verbatim copying, provided that the entire resulting derived work is distributed under the terms of a permission notice identical to this one.</p>
-<p>Permission is granted to copy and distribute translations of this manual into another language, under the above conditions for modified versions, except that this permission notice may be stated in a translation approved by the R Core Team.</p>
-</blockquote>
-<p>Next: <a href="R-Internal-Structures.html#r-internal-structures" accesskey="n" rel="next">R Internal Structures</a> &nbsp; [<a href="#sec_contents" rel="contents" title="Table of contents">Contents</a>][<a href="Function-and-variable-index.html" rel="index" title="Index">Index</a>]</p>
+<p>Next: <a href="Use-of-TeX-dialects.html" accesskey="n" rel="next">Use of TeX dialects</a>, Previous: <a href="Testing-R-code.html" accesskey="p" rel="prev">Testing R code</a>, Up: <a href="index.html" accesskey="u" rel="up">R Internals</a> &nbsp; [<a href="index.html#sec_contents" rel="contents" title="Table of contents">Contents</a>][<a href="Function-and-variable-index.html" rel="index" title="Index">Index</a>]</p>
+<p>The primary distribtution of the R sources is as a tarball of an SVN checkout of the source tree with some (text, HTML, PDF) documentation pre-built.</p>
+<p>This is prepared by running <code class="command">make dist</code> at the top level of an R build directory, after <code class="command">make all</code> and appropriate checks have been run. This creates a <code class="command">gzip</code>-compressed tarball named something like</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>R_2025<span class="dv">-11-04</span>_r88984.tar.gz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>which can be re-named and re-compressed as desired. (<code class="command">xz</code>-compressied tarballs are also offered for the release and snapshot distributions; they are around 25% smaller.)</p>
+<p>This can be done on macOS, but features of its file system can lead to unwanted files and headers being included. So for safety use</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> dist TAR=<span class="st">'/usr/bin/tar --no-xattrs --no-mac-metadata'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If adding files to the R sources it is impoertant to check that they are included in the tarabll distoibution. To do so use something like</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> dist</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xf</span> R-devel_<span class="pp">*</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span> <span class="at">-r</span> R-devel SVN_SRCDIR</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> R-devel</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Some differences are to be expected such as</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Only in SVN_SRCDIR<span class="op">:</span> <span class="op">.</span>svn</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>Only in R<span class="op">-</span>devel<span class="op">:</span> SVN<span class="op">-</span>REVISION</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>Only in R<span class="op">-</span>devel<span class="op">/</span>doc<span class="op">:</span> FAQ</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>Only in R<span class="op">-</span>devel<span class="op">/</span>doc<span class="op">:</span> NEWS</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>Only in R<span class="op">-</span>devel<span class="op">/</span>doc<span class="op">:</span> NEWS<span class="op">.</span>pdf</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>Only in R<span class="op">-</span>devel<span class="op">/</span>doc<span class="op">:</span> RESOURCES</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>Only in R<span class="op">-</span>devel<span class="op">/</span>doc<span class="op">/</span>html<span class="op">:</span> NEWS<span class="op">.</span>html</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>Only in R<span class="op">-</span>devel<span class="op">/</span>doc<span class="op">/</span>html<span class="op">:</span> R<span class="op">-</span>admin<span class="op">.</span>html</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>Only in R<span class="op">-</span>devel<span class="op">/</span>doc<span class="op">/</span>html<span class="op">:</span> resources<span class="op">.</span>html</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>Only in R<span class="op">-</span>devel<span class="op">/</span>src<span class="op">/</span>library<span class="op">/</span>grid<span class="op">/</span>inst<span class="op">/</span>doc<span class="op">:</span> displaylist<span class="op">.</span>pdf</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>Only in R<span class="op">-</span>devel<span class="op">/</span>src<span class="op">/</span>library<span class="op">/</span>grid<span class="op">/</span>inst<span class="op">/</span>doc<span class="op">:</span> frame<span class="op">.</span>pdf</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>Only in R<span class="op">-</span>devel<span class="op">/</span>src<span class="op">/</span>library<span class="op">/</span>grid<span class="op">/</span>inst<span class="op">/</span>doc<span class="op">:</span> grid<span class="op">.</span>pdf</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>Only in R<span class="op">-</span>devel<span class="op">/</span>src<span class="op">/</span>library<span class="op">/</span>grid<span class="op">/</span>inst<span class="op">/</span>doc<span class="op">:</span> grobs<span class="op">.</span>pdf</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>Only in R<span class="op">-</span>devel<span class="op">/</span>src<span class="op">/</span>library<span class="op">/</span>grid<span class="op">/</span>inst<span class="op">/</span>doc<span class="op">:</span> interactive<span class="op">.</span>pdf</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>Only in R<span class="op">-</span>devel<span class="op">/</span>src<span class="op">/</span>library<span class="op">/</span>grid<span class="op">/</span>inst<span class="op">/</span>doc<span class="op">:</span> locndimn<span class="op">.</span>pdf</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>Only in R<span class="op">-</span>devel<span class="op">/</span>src<span class="op">/</span>library<span class="op">/</span>grid<span class="op">/</span>inst<span class="op">/</span>doc<span class="op">:</span> moveline<span class="op">.</span>pdf</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>Only in R<span class="op">-</span>devel<span class="op">/</span>src<span class="op">/</span>library<span class="op">/</span>grid<span class="op">/</span>inst<span class="op">/</span>doc<span class="op">:</span> nonfinite<span class="op">.</span>pdf</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>Only in R<span class="op">-</span>devel<span class="op">/</span>src<span class="op">/</span>library<span class="op">/</span>grid<span class="op">/</span>inst<span class="op">/</span>doc<span class="op">:</span> plotexample<span class="op">.</span>pdf</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>Only in R<span class="op">-</span>devel<span class="op">/</span>src<span class="op">/</span>library<span class="op">/</span>grid<span class="op">/</span>inst<span class="op">/</span>doc<span class="op">:</span> rotated<span class="op">.</span>pdf</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>Only in R<span class="op">-</span>devel<span class="op">/</span>src<span class="op">/</span>library<span class="op">/</span>grid<span class="op">/</span>inst<span class="op">/</span>doc<span class="op">:</span> saveload<span class="op">.</span>pdf</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>Only in R<span class="op">-</span>devel<span class="op">/</span>src<span class="op">/</span>library<span class="op">/</span>grid<span class="op">/</span>inst<span class="op">/</span>doc<span class="op">:</span> sharing<span class="op">.</span>pdf</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>Only in R<span class="op">-</span>devel<span class="op">/</span>src<span class="op">/</span>library<span class="op">/</span>grid<span class="op">/</span>inst<span class="op">/</span>doc<span class="op">:</span> viewports<span class="op">.</span>pdf</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>Only in R<span class="op">-</span>devel<span class="op">/</span>src<span class="op">/</span>library<span class="op">/</span>parallel<span class="op">:</span> inst</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>Only in R<span class="op">-</span>devel<span class="op">/</span>src<span class="op">/</span>library<span class="op">/</span>stats<span class="op">:</span> inst</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>Only in R<span class="op">-</span>devel<span class="op">/</span>src<span class="op">/</span>library<span class="op">/</span>utils<span class="op">/</span>inst<span class="op">:</span> doc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Next: <a href="Use-of-TeX-dialects.html" accesskey="n" rel="next">Use of TeX dialects</a>, Previous: <a href="Testing-R-code.html" accesskey="p" rel="prev">Testing R code</a>, Up: <a href="index.html" accesskey="u" rel="up">R Internals</a> &nbsp; [<a href="index.html#sec_contents" rel="contents" title="Table of contents">Contents</a>][<a href="Function-and-variable-index.html" rel="index" title="Index">Index</a>]</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -717,10 +772,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./Testing-R-code.html" class="pagination-link" aria-label="Testing R code">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Testing R code</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./R-Internal-Structures.html" class="pagination-link" aria-label="R Internal Structures">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R Internal Structures</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./Use-of-TeX-dialects.html" class="pagination-link" aria-label="Use of TeX dialects">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Use of TeX dialects</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

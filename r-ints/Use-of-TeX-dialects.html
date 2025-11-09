@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>11&nbsp; Use of TeX dialects – R Manuals :: R Internals ¶</title>
+<title>12&nbsp; Use of TeX dialects – R Manuals :: R Internals ¶</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./Current-and-future-directions.html" rel="next">
-<link href="./Testing-R-code.html" rel="prev">
+<link href="./Building-the-source-distribution.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -143,7 +143,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Use-of-TeX-dialects.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Use of TeX dialects</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Use-of-TeX-dialects.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Use of TeX dialects</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -227,14 +227,20 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./Building-the-source-distribution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Building the source distribution</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./Use-of-TeX-dialects.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Use of TeX dialects</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Use of TeX dialects</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Current-and-future-directions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Current and future directions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Current and future directions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -259,7 +265,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#footnotes" id="toc-footnotes" class="nav-link active" data-scroll-target="#footnotes"><span class="header-section-number">11.0.1</span> Footnotes</a></li>
+  <li><a href="#footnotes" id="toc-footnotes" class="nav-link active" data-scroll-target="#footnotes"><span class="header-section-number">12.0.1</span> Footnotes</a></li>
   </ul>
 </nav>
     </div>
@@ -268,7 +274,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Use of TeX dialects</span></h1>
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Use of TeX dialects</span></h1>
 </div>
 
 
@@ -285,13 +291,13 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Next: <a href="Current-and-future-directions.html#current-and-future-directions" accesskey="n" rel="next">Current and future directions</a>, Previous: <a href="Testing-R-code.html" accesskey="p" rel="prev">Testing R code</a>, Up: <a href="index.html" accesskey="u" rel="up">R Internals</a> &nbsp; [<a href="index.html#sec_contents" rel="contents" title="Table of contents">Contents</a>][<a href="Function-and-variable-index.html" rel="index" title="Index">Index</a>]</p>
+<p>Next: <a href="Current-and-future-directions.html#current-and-future-directions" accesskey="n" rel="next">Current and future directions</a>, Previous: <a href="Building-the-source-distribution.html" accesskey="p" rel="prev">Building the source distribution</a>, Up: <a href="index.html" accesskey="u" rel="up">R Internals</a> &nbsp; [<a href="index.html#sec_contents" rel="contents" title="Table of contents">Contents</a>][<a href="Function-and-variable-index.html" rel="index" title="Index">Index</a>]</p>
 <p>Various dialects of TeX are used for different purposes in R. The policy is that manuals be written in <samp class="samp">texinfo</samp>’, and for convenience the main and Windows FAQs are also. This has the advantage that it is easy to produce HTML and plain text versions as well as typeset manuals.</p>
 <p>LaTeX is not used directly, but rather as an intermediate format for typeset help documents and for vignettes.</p>
 <p>Care needs to be taken about the assumptions made about the R user’s system: it may not have either <samp class="samp">texinfo</samp>’ or a TeX system installed. We have attempted to abstract out the cross-platform differences, and almost all the setting of typeset documents is done by <code class="code">tools::texi2dvi</code>. This is used for offline printing of help documents, preparing vignettes and for package manuals via <code class="command">R CMD Rd2pdf</code>. It is not currently used for the R manuals created in directory <samp class="file">doc/manual</samp>.</p>
 <p><code class="code">tools::texi2dvi</code> makes use of a system command <code class="command">texi2dvi</code> where available. On a Unix-alike this is usually part of <samp class="samp">texinfo</samp>’, whereas on Windows if it exists at all it would be an executable, part of MiKTeX. If none is available, the R code runs a sequence of <code class="command">(pdf)latex</code>, <code class="command">bibtex</code> and <code class="command">makeindex</code> commands.</p>
 <p>This process has been rather vulnerable to the versions of the external software used: particular issues have been <code class="command">texi2dvi</code> and <samp class="file">texinfo.tex</samp> updates, mismatches between the two<a href="#FOOT25" id="DOCF25" class="footnote"><sup>25</sup></a>, versions of the LaTeX package <samp class="samp">hyperref</samp>’ and quirks in index production. The licenses used for LaTeX and latterly <samp class="samp">texinfo</samp>’ prohibit us from including ‘known good’ versions in the R distribution.</p>
-<p>On a Unix-alike <code class="command">configure</code> looks for the executables for TeX and friends and if found records the absolute paths in the system <samp class="file">Renviron</samp> file. This used to record <samp class="samp">false</samp>’ if no command was found, but it nowadays records the name for looking up on the path at run time. The latter can be important for binary distributions: one does not want to be tied to, for example, TeX Live 2007.</p>
+<p>On a Unix-alike <code class="command">configure</code> looks for the executables for TeX and friends and if found records the absolute paths in the system <samp class="file">Renviron</samp> file. This used to record <samp class="samp">false</samp>’ if no command was found, but it nowadays records the name for looking up on the path at run time. The latter can be important for binary distributions: one does not want to be tied to, for example, TeX Live 2024.</p>
 
 
 </main> <!-- /main -->
@@ -704,13 +710,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./Testing-R-code.html" class="pagination-link" aria-label="Testing R code">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Testing R code</span></span>
+      <a href="./Building-the-source-distribution.html" class="pagination-link" aria-label="Building the source distribution">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Building the source distribution</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./Current-and-future-directions.html" class="pagination-link" aria-label="Current and future directions">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Current and future directions</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Current and future directions</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
