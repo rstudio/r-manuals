@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-82008e9dbfd88832a5d43b4f2d59409b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -116,8 +116,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">R Manuals :: Writing R Extensions ¶</span>
     </a>
@@ -188,10 +186,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
-      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -1982,7 +1976,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="category-def">Function:</span><code class="def-type">R_xlen_t</code> <strong>RAW_GET_REGION</strong> <code class="def-code-arguments">(SEXP</code><var class="var">sx</var><code class="def-code-arguments">, R_xlen_t</code><var class="var">i</var><code class="def-code-arguments">, R_xlen_t</code><var class="var">n</var><code class="def-code-arguments">, Rbyte *</code><var class="var">buf</var><code class="def-code-arguments">)</code></p>
 <p>: These functions copy a contiguous set of up to <code class="code">n</code> elements starting with element <code class="code">i</code> into a buffer <code class="code">buf</code>. The return value is the actual number of elements copied, which may be less than <code class="code">n</code>.</p>
 <p>Macros in <samp class="file">R_ext/Itermacros.h</samp> may help in implementing an iteration strategy.</p>
-<p>Some functions useful in implementing new alternate representation classes, beyond those defined in <samp class="file">R_ext/Altrep.h</samp>, include <code class="code">ALTREP</code>, <code class="code">ALTREP_CLASS</code>, <code class="code">R_altrep_data1</code>, <code class="code">R_set_altrep_data1</code>, <code class="code">R_altrep_data2</code>, and <code class="code">R_set_altrep_data2</code>. <span id="index-ALTREP" class="index-entry-id"></span> <span id="index-ALTREP-1" class="index-entry-id"></span> <span id="index-ALTREP_005fCLASS" class="index-entry-id"></span> <span id="index-ALTREP_005fCLASS-1" class="index-entry-id"></span></p>
+<p>Some functions useful in implementing new alternate representation classes, beyond those defined in <samp class="file">R_ext/Altrep.h</samp>, include <code class="code">ALTREP</code>, <code class="code">ALTREP_CLASS</code>, <code class="code">R_altrep_data1</code>, <code class="code">R_set_altrep_data1</code>, <code class="code">R_altrep_data2</code>, <code class="code">R_set_altrep_data2</code>, and <code class="code">DATAPTR_RW</code>. <span id="index-ALTREP" class="index-entry-id"></span> <span id="index-ALTREP-1" class="index-entry-id"></span> <span id="index-ALTREP_005fCLASS" class="index-entry-id"></span> <span id="index-ALTREP_005fCLASS-1" class="index-entry-id"></span> <span id="index-R_005faltrep_005fdata1" class="index-entry-id"></span></p>
+<p><span id="index-DATAPTR_005fRW" class="index-entry-id"></span> <span id="index-DATAPTR_005fRW-1" class="index-entry-id"></span> <span id="index-R_005fext_002fAltrep_002eh" class="index-entry-id"></span></p>
 <p>For some objects it may be possible to very efficiently determine whether the object is sorted or contains no <code class="code">NA</code> values. These functions can be used to query this information:</p>
 <p><span class="category-def">Function:</span><code class="def-type">int</code> <strong>LOGICAL_NO_NA</strong> <code class="def-code-arguments">(SEXP</code><var class="var">x</var><code class="def-code-arguments">)</code><br>
 <span class="category-def">Function:</span><code class="def-type">int</code> <strong>INTEGER_NO_NA</strong> <code class="def-code-arguments">(SEXP</code><var class="var">x</var><code class="def-code-arguments">)</code><br>
