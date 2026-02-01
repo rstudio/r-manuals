@@ -988,6 +988,7 @@ correctly in versions of R before 3.1.3 and are best avoided---use
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>\bibinfo{R<span class="sc">:</span>Eddy<span class="sc">:</span><span class="dv">1977</span>a}{year}{<span class="dv">1977</span>a}</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>\bibinfo{R<span class="sc">:</span>Eddy<span class="sc">:</span><span class="dv">1977</span>b}{year}{<span class="dv">1977</span>b}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>(see file <samp class="file">src/library/grDevices/man/chull.Rd</samp> in the R sources).</p>
+<p>As these macros are evaluated at build stage, packages using these and built with R &gt;= 4.6.0 can be used without problems for R &lt; 4.6.0. (However, checking such packages with R &lt; 4.6.0 will warn that these macros are unknown.)</p>
 </section>
 <section id="processing-documentation-files" class="level2 section" data-number="2.16">
 <h2 class="section anchored" data-number="2.16" data-anchor-id="processing-documentation-files"><span class="header-section-number">2.16</span> Processing documentation files</h2>
