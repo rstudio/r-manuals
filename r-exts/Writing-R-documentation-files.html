@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>2&nbsp; Writing R documentation files – R Manuals :: Writing R Extensions ¶</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -69,15 +72,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./Creating-R-packages.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-d6e0bae99c1d41ca38d2304592818a0d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-1337b39216e3f355cb1a3d4071a52f71.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -698,9 +700,13 @@ pre-defined list of keywords.</code></pre>
 <dd>
 <p>Indicates the “type” of the documentation object. Always <samp class="samp">data</samp>’ for data sets, and <samp class="samp">package</samp>’ for <var class="var">pkg</var><samp class="file">-package.Rd</samp> overview files. Documentation for S4 methods and classes uses <samp class="samp">methods</samp>’ (from <code class="code">promptMethods()</code>) and <samp class="samp">class</samp>’ (from <code class="code">promptClass()</code>).</p>
 </dd>
+<dd>
+<p>A description of the format of the data set (as a vector, matrix, data frame, time series, …). For matrices and data frames this should give a description of each column, preferably as a list or table. See <a href="#lists-and-tables" class="xref">Lists and tables</a>, for more information.</p>
+</dd>
+<dd>
+<p>Details of the original source (a reference or URL, see <a href="Creating-R-packages.html#specifying-urls" class="pxref">Specifying URLs</a>). In addition, section <code class="code">\references</code> could give secondary sources and usages.</p>
+</dd>
 </dl>
-<p>: A description of the format of the data set (as a vector, matrix, data frame, time series, …). For matrices and data frames this should give a description of each column, preferably as a list or table. See <a href="#lists-and-tables" class="xref">Lists and tables</a>, for more information.</p>
-<p>: Details of the original source (a reference or URL, see <a href="Creating-R-packages.html#specifying-urls" class="pxref">Specifying URLs</a>). In addition, section <code class="code">\references</code> could give secondary sources and usages.</p>
 <p>Note also that when documenting data set <var class="var">bar</var>,</p>
 <ul>
 <li>The <code class="code">\usage</code> entry is always <var class="var">bar</var> or (for packages which do not use lazy-loading of data) <code class="code">data(</code><var class="var">bar</var><code class="code">)</code>. (In particular, only document a <em>single</em> data object per <samp class="file">Rd</samp> file.)</li>
@@ -748,10 +754,12 @@ pre-defined list of keywords.</code></pre>
 <dd>
 <p>Emphasize <var class="var">text</var> using <em>italic</em> and <strong>bold</strong> font if possible; <code class="code">\strong</code> is regarded as stronger (more emphatic).</p>
 </dd>
-</dl>
-<p>: Set <var class="var">text</var> in <strong>bold</strong> font where possible.</p>
-<p>: <span id="index-_005csQuote" class="index-entry-id"></span></p>
-<dl>
+<dd>
+<p>Set <var class="var">text</var> in <strong>bold</strong> font where possible.</p>
+</dd>
+<dd>
+<p><span id="index-_005csQuote" class="index-entry-id"></span></p>
+</dd>
 <dt><code class="code">\dQuote{</code><var class="var">text</var><code class="code">}</code></dt>
 <dd>
 <p>Portably single or double quote <var class="var">text</var> (without hard-wiring the characters used for quotation marks).</p>
@@ -908,7 +916,8 @@ correctly in versions of R before 3.1.3 and are best avoided---use
 <p>The options follow the same format as in Sweave, but different options are supported. Currently the allowed options and their defaults are:</p>
 <ul>
 <li><p><code class="code">eval=TRUE</code> Whether the R code should be evaluated.</p></li>
-<li><p><code class="code">echo=FALSE</code> Whether the R code should be echoed. If <code class="code">TRUE</code> <em>and</em> <code class="code">results=verbatim</code>, a display will be given in a preformatted block. For example, <code class="code">\Sexpr[echo=TRUE,results=verbatim]{ x &lt;- 1 }</code> will be displayed as <code>r     &gt; x &lt;- 1</code></p></li>
+<li><p><code class="code">echo=FALSE</code> Whether the R code should be echoed. If <code class="code">TRUE</code> <em>and</em> <code class="code">results=verbatim</code>, a display will be given in a preformatted block. For example, <code class="code">\Sexpr[echo=TRUE,results=verbatim]{ x &lt;- 1 }</code> will be displayed as</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> x <span class="ot">&lt;-</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p><code class="code">keep.source=TRUE</code> Whether to keep the author’s formatting when displaying the code, or throw it away and use a deparsed version.</p></li>
 <li><p><code class="code">results=text</code> How should the results be displayed? The possibilities are:</p>
 <ul>
@@ -938,11 +947,11 @@ correctly in versions of R before 3.1.3 and are best avoided---use
 <p>They each take two arguments which are parsed verbatim. The first is the name of the new macro including the initial backslash, and the second is the macro definition. As in LaTeX, <code class="code">\newcommand</code> requires that the new macro not have been previously defined, whereas <code class="code">\renewcommand</code> allows existing macros (including all built-in ones) to be replaced. (This test is disabled by default, but may be enabled by setting the environment variable <code class="env">_R_WARN_DUPLICATE_RD_MACROS_</code> to a true value.)</p>
 <p>Also as in LaTeX, the new macro may be defined to take arguments, and numeric placeholders such as <code class="code">#1</code> are used in the macro definition. However, unlike LaTeX, the number of arguments is determined automatically from the highest placeholder number seen in the macro definition. For example, a macro definition containing <code class="code">#1</code> and <code class="code">#3</code> (but no other placeholders) will define a three argument macro (whose second argument will be ignored). At most 4 arguments may be defined. If the <code class="code">#</code> character is followed by a non-digit it will have no special significance. All arguments to user-defined macros will be parsed as verbatim text, and simple text-substitution will be used to replace the place-holders, after which the replacement text will be parsed.</p>
 <p>A number of macros are defined in the file <samp class="file">share/Rd/macros/system.Rd</samp> of the R source or home directory, and these will normally be available in all <samp class="file">.Rd</samp> files. For example, that file contains the definition</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>\newcommand{\PR}{\Sexpr[results=rd]{tools:::Rd_expr_PR(#1)}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>\newcommand{\PR}{\Sexpr[results=rd]{tools:::Rd_expr_PR(#1)}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>which defines <code class="code">\PR</code> to be a single argument macro; then code (typically used in the <samp class="file">NEWS.Rd</samp> file) like</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\PR</span>{1234}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\PR</span>{1234}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>will expand to</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>\Sexpr[results=rd]{tools:::Rd_expr_PR(1234)}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>\Sexpr[results=rd]{tools:::Rd_expr_PR(1234)}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>when parsed.</p>
 <p>Some macros that might be of general use are:</p>
 <p>: A package on CRAN</p>
@@ -958,9 +967,9 @@ correctly in versions of R before 3.1.3 and are best avoided---use
 <p>For convenience, encoding names <samp class="samp">latin1</samp>’ and <samp class="samp">latin2</samp>’ are always recognized: these and <samp class="samp">UTF-8</samp>’ are likely to work fairly widely. However, this does not mean that all characters in UTF-8 will be recognized, and the coverage of non-Latin characters<a href="#FOOT123" id="DOCF123" class="footnote"><sup>123</sup></a> is fairly low. Using LaTeX <code class="code">inputenx</code> (see <code class="code">?Rd2pdf</code> in R) will give greater coverage of UTF-8.</p>
 <p>The <code class="code">\enc</code> command (see <a href="#insertions" class="pxref">Insertions</a>) can be used to provide transliterations which will be used in conversions that do not support the declared encoding.</p>
 <p>The LaTeX conversion converts the file to UTF-8 from the declared encoding, and includes a</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\inputencoding</span>{utf8}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\inputencoding</span>{utf8}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>command, and this needs to be matched by a suitable invocation of the <code class="command">\usepackage{inputenc}</code> command. The R utility <code class="command">R CMD Rd2pdf</code> looks at the converted code and includes the encodings used: it might for example use</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>[utf8]{<span class="ex">inputenc</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>[utf8]{<span class="ex">inputenc</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>(Use of <code class="code">utf8</code> as an encoding requires LaTeX dated 2003/12/01 or later. Also, the use of Cyrillic characters in <samp class="samp">UTF-8</samp>’ appears to also need <samp class="samp">\usepackage[T2A]{fontenc}</samp>’, and <code class="command">R CMD Rd2pdf</code> includes this conditionally on the file <samp class="file">t2aenc.def</samp> being present and environment variable <code class="env">_R_CYRILLIC_TEX_</code> being set.)</p>
 <p>Note that this mechanism works best with Latin letters: the coverage of UTF-8 in LaTeX is quite low.</p>
 </section>
@@ -971,23 +980,23 @@ correctly in versions of R before 3.1.3 and are best avoided---use
 <p>A <var class="var">keyspec</var> is either a simple <var class="var">key</var> or of the form <var class="var">pkg</var><code class="code">::</code><var class="var">key</var>. In the former case, <var class="var">key</var> is taken as the key of a bibentry in R’s system bibentry data base (available via the currently unexported <code class="code">tools:::R_bibentries()</code> with sources in the <samp class="file">.R</samp> files in the <samp class="file">share/bibentries</samp> directory of the R sources). In the latter case, <var class="var">key</var> is looked up in the bibentry data base of package <var class="var">pkg</var>, made available in the packages sources either as <samp class="file">inst/REFERENCES.R</samp> in R format (an R code file encoded in UTF-8 with calls to <code class="code">bibentry()</code>, as for the <samp class="file">inst/CITATION</samp> file) or as <samp class="file">inst/REFERENCES.bib</samp> in BibTeX format (this needs <a href="https://CRAN.R-project.org/package=bibtex" class="url"><strong>bibtex</strong></a> to be installed).</p>
 <p>References (usually in the <code class="code">\references</code> section) are obtained via <code class="code">\bibshow</code>, which takes a comma-separated <var class="var">keyspec</var> list as argument. The special keyspec <samp class="samp">*</samp>’ indicates the list of “all references cited so far”, using an empty keyspec list clears that list.</p>
 <p>Finally, <code class="code">\bibinfo</code> allows to modify bibentries. Using</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>\bibinfo{keyspec}{field}{value}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>\bibinfo{keyspec}{field}{value}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>will set the <var class="var">field</var> of the bibentry corresponding to <var class="var">keyspec</var> to <var class="var">value</var>. This can be used in particular to “annotate” the bibentry, by adding <samp class="samp">note</samp>‘, <samp class="samp">footer</samp>’ or <samp class="samp">header</samp>’ fields.</p>
 <p>For example,</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>\bibcitet{R<span class="sc">:</span>Becker<span class="sc">+</span>Chambers<span class="sc">+</span>Wilks<span class="sc">:</span><span class="dv">1988</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>\bibcitet{R<span class="sc">:</span>Becker<span class="sc">+</span>Chambers<span class="sc">+</span>Wilks<span class="sc">:</span><span class="dv">1988</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>gives a textual citation of the “<em>Blue Book</em>” (‘Becker, Chambers, and Wilks (1988)’ when first encountered),</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>\bibcitep{e.g.\,<span class="sc">|</span>R<span class="sc">:</span>Chambers<span class="sc">+</span>Hastie<span class="sc">:</span><span class="dv">1992</span><span class="sc">|</span>page <span class="dv">123</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>\bibcitep{e.g.\,<span class="sc">|</span>R<span class="sc">:</span>Chambers<span class="sc">+</span>Hastie<span class="sc">:</span><span class="dv">1992</span><span class="sc">|</span>page <span class="dv">123</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>gives a parenthetical citation of a page in the “<em>White Book</em>” (‘(e.g., Chambers and Hastie 1992, page 123)’ when first encountered). An Rd file having cited the above two and also wanting to include the “<em>Green Book</em>” in its references could use</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>\references{</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  \bibshow{<span class="sc">*</span>, R<span class="sc">:</span>Chambers<span class="sc">:</span><span class="dv">1998</span>}</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>\references{</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  \bibshow{<span class="sc">*</span>, R<span class="sc">:</span>Chambers<span class="sc">:</span><span class="dv">1998</span>}</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If one wanted to highlight a particular page range for the last reference, one could use one of</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>\bibinfo{R<span class="sc">:</span>Chambers<span class="sc">:</span><span class="dv">1998</span>}{note}{Pages <span class="dv">23</span><span class="sc">--</span><span class="dv">45</span>}</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>\bibinfo{R<span class="sc">:</span>Chambers<span class="sc">:</span><span class="dv">1998</span>}{footer}{Pages <span class="dv">23</span><span class="sc">--</span><span class="fl">45.</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>\bibinfo{R<span class="sc">:</span>Chambers<span class="sc">:</span><span class="dv">1998</span>}{note}{Pages <span class="dv">23</span><span class="sc">--</span><span class="dv">45</span>}</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>\bibinfo{R<span class="sc">:</span>Chambers<span class="sc">:</span><span class="dv">1998</span>}{footer}{Pages <span class="dv">23</span><span class="sc">--</span><span class="fl">45.</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>before the <code class="code">\bibshow</code> (the note will be added in-line, the footer on a new line).</p>
 <p>The <code class="code">\bibinfo</code> mechanism can also be employed to disambiguate citations for bibentries which are different but have the same author-year citation, which is typically done by adding a letter suffix to the year (e.g., ‘Eddy (1973a)’ and ‘Eddy (1973b)’). Getting the ‘a’ automatically is not possible with the current implementation (this would need to have all keyspecs used in the Rd file before generating the citations). In HTML output, one can disambiguate by simply following the hyperlinks to the references. One can fully disambiguate by manually adding the suffixes to the year fields, e.g.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>\bibinfo{R<span class="sc">:</span>Eddy<span class="sc">:</span><span class="dv">1977</span>a}{year}{<span class="dv">1977</span>a}</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>\bibinfo{R<span class="sc">:</span>Eddy<span class="sc">:</span><span class="dv">1977</span>b}{year}{<span class="dv">1977</span>b}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>\bibinfo{R<span class="sc">:</span>Eddy<span class="sc">:</span><span class="dv">1977</span>a}{year}{<span class="dv">1977</span>a}</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>\bibinfo{R<span class="sc">:</span>Eddy<span class="sc">:</span><span class="dv">1977</span>b}{year}{<span class="dv">1977</span>b}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>(see file <samp class="file">src/library/grDevices/man/chull.Rd</samp> in the R sources).</p>
 <p>As these macros are evaluated at build stage, packages using these and built with R &gt;= 4.6.0 can be used without problems for R &lt; 4.6.0. (However, checking such packages with R &lt; 4.6.0 will warn that these macros are unknown.)</p>
 </section>
