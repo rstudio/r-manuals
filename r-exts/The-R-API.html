@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1337b39216e3f355cb1a3d4071a52f71.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-df6c903f96a25ec289183bc37f4b9ca5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -341,17 +341,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#controlling-visibility" id="toc-controlling-visibility" class="nav-link" data-scroll-target="#controlling-visibility"><span class="header-section-number">6.19</span> Controlling visibility</a></li>
   <li><a href="#using-these-functions-in-your-own-c-code" id="toc-using-these-functions-in-your-own-c-code" class="nav-link" data-scroll-target="#using-these-functions-in-your-own-c-code"><span class="header-section-number">6.20</span> Using these functions in your own C code</a></li>
   <li><a href="#organization-of-header-files" id="toc-organization-of-header-files" class="nav-link" data-scroll-target="#organization-of-header-files"><span class="header-section-number">6.21</span> Organization of header files</a></li>
-  <li><a href="#moving-into-c-api-compliance" id="toc-moving-into-c-api-compliance" class="nav-link" data-scroll-target="#moving-into-c-api-compliance"><span class="header-section-number">6.22</span> Moving into C API compliance</a>
+  <li><a href="#hash-tables" id="toc-hash-tables" class="nav-link" data-scroll-target="#hash-tables"><span class="header-section-number">6.22</span> Hash tables</a></li>
+  <li><a href="#moving-into-c-api-compliance" id="toc-moving-into-c-api-compliance" class="nav-link" data-scroll-target="#moving-into-c-api-compliance"><span class="header-section-number">6.23</span> Moving into C API compliance</a>
   <ul class="collapse">
-  <li><a href="#some-api-replacements-for-non-api-entry-points" id="toc-some-api-replacements-for-non-api-entry-points" class="nav-link" data-scroll-target="#some-api-replacements-for-non-api-entry-points"><span class="header-section-number">6.22.1</span> Some API replacements for non-API entry points</a></li>
-  <li><a href="#creating-environments" id="toc-creating-environments" class="nav-link" data-scroll-target="#creating-environments"><span class="header-section-number">6.22.2</span> Creating environments</a></li>
-  <li><a href="#creating-call-expressions" id="toc-creating-call-expressions" class="nav-link" data-scroll-target="#creating-call-expressions"><span class="header-section-number">6.22.3</span> Creating call expressions</a></li>
-  <li><a href="#creating-closures" id="toc-creating-closures" class="nav-link" data-scroll-target="#creating-closures"><span class="header-section-number">6.22.4</span> Creating closures</a></li>
-  <li><a href="#querying-charsxp-encoding" id="toc-querying-charsxp-encoding" class="nav-link" data-scroll-target="#querying-charsxp-encoding"><span class="header-section-number">6.22.5</span> Querying <code class="code">CHARSXP</code> encoding</a></li>
-  <li><a href="#working-with-attributes" id="toc-working-with-attributes" class="nav-link" data-scroll-target="#working-with-attributes"><span class="header-section-number">6.22.6</span> Working with attributes</a></li>
-  <li><a href="#working-with-variable-bindings" id="toc-working-with-variable-bindings" class="nav-link" data-scroll-target="#working-with-variable-bindings"><span class="header-section-number">6.22.7</span> Working with variable bindings</a></li>
-  <li><a href="#some-backports" id="toc-some-backports" class="nav-link" data-scroll-target="#some-backports"><span class="header-section-number">6.22.8</span> Some backports</a></li>
-  <li><a href="#footnotes" id="toc-footnotes" class="nav-link" data-scroll-target="#footnotes"><span class="header-section-number">6.22.9</span> Footnotes</a></li>
+  <li><a href="#some-api-replacements-for-non-api-entry-points" id="toc-some-api-replacements-for-non-api-entry-points" class="nav-link" data-scroll-target="#some-api-replacements-for-non-api-entry-points"><span class="header-section-number">6.23.1</span> Some API replacements for non-API entry points</a></li>
+  <li><a href="#creating-environments" id="toc-creating-environments" class="nav-link" data-scroll-target="#creating-environments"><span class="header-section-number">6.23.2</span> Creating environments</a></li>
+  <li><a href="#creating-call-expressions" id="toc-creating-call-expressions" class="nav-link" data-scroll-target="#creating-call-expressions"><span class="header-section-number">6.23.3</span> Creating call expressions</a></li>
+  <li><a href="#creating-closures" id="toc-creating-closures" class="nav-link" data-scroll-target="#creating-closures"><span class="header-section-number">6.23.4</span> Creating closures</a></li>
+  <li><a href="#querying-charsxp-encoding" id="toc-querying-charsxp-encoding" class="nav-link" data-scroll-target="#querying-charsxp-encoding"><span class="header-section-number">6.23.5</span> Querying <code class="code">CHARSXP</code> encoding</a></li>
+  <li><a href="#working-with-attributes" id="toc-working-with-attributes" class="nav-link" data-scroll-target="#working-with-attributes"><span class="header-section-number">6.23.6</span> Working with attributes</a></li>
+  <li><a href="#working-with-variable-bindings" id="toc-working-with-variable-bindings" class="nav-link" data-scroll-target="#working-with-variable-bindings"><span class="header-section-number">6.23.7</span> Working with variable bindings</a></li>
+  <li><a href="#some-backports" id="toc-some-backports" class="nav-link" data-scroll-target="#some-backports"><span class="header-section-number">6.23.8</span> Some backports</a></li>
+  <li><a href="#footnotes" id="toc-footnotes" class="nav-link" data-scroll-target="#footnotes"><span class="header-section-number">6.23.9</span> Footnotes</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -1627,38 +1628,42 @@ There is also an `F77_CALL(interv)()`{.code} version of
 <td style="text-align: left;">C definitions for BLAS routines</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;"><samp class="file">R_ext/Callbacks.h</samp></td>
+<td style="text-align: left;">C (and R function) top-level task handlers</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;"><samp class="file">R_ext/GetX11Image.h</samp></td>
 <td style="text-align: left;">X11Image interface used by package <strong>trkplot</strong></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><samp class="file">R_ext/Lapack.h</samp></td>
 <td style="text-align: left;">C definitions for some LAPACK routines</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><samp class="file">R_ext/Linpack.h</samp></td>
 <td style="text-align: left;">C definitions for some LINPACK routines, not all of which are included in R</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><samp class="file">R_ext/Parse.h</samp></td>
 <td style="text-align: left;">a small part of R’s parse interface: not part of the stable API.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><samp class="file">R_ext/RStartup.h</samp></td>
 <td style="text-align: left;">for add-on front-ends</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><samp class="file">R_ext/Rdynload.h</samp></td>
 <td style="text-align: left;">needed to register compiled code in packages</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><samp class="file">R_ext/Riconv.h</samp></td>
 <td style="text-align: left;">interface to <code class="code">iconv</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><samp class="file">R_ext/Visibility.h</samp></td>
 <td style="text-align: left;">definitions controlling visibility</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><samp class="file">R_ext/eventloop.h</samp></td>
 <td style="text-align: left;">for add-on front-ends and for packages that need to share in the R event loops (not Windows)</td>
 </tr>
@@ -1723,12 +1728,17 @@ There is also an `F77_CALL(interv)()`{.code} version of
 <p>The graphics systems are exposed in headers <samp class="file">R_ext/GraphicsEngine.h</samp>, <samp class="file">R_ext/GraphicsDevice.h</samp> (which it includes) and <samp class="file">R_ext/QuartzDevice.h</samp>. Facilities for defining custom connection implementations are provided in <samp class="file">R_ext/Connections.h</samp>, but make sure you consult the file before use.</p>
 <p>Let us re-iterate the advice to include in C++ code system headers before the R header files, especially <samp class="file">Rinternals.h</samp> (included by <samp class="file">Rdefines.h</samp>) and <samp class="file">Rmath.h</samp>, which redefine names which may be used in system headers, or (preferably and the default since R 4.5.0) to define <code class="code">R_NO_REMAP</code>.</p>
 </section>
-<section id="moving-into-c-api-compliance" class="level2 section" data-number="6.22">
-<h2 class="section anchored" data-number="6.22" data-anchor-id="moving-into-c-api-compliance"><span class="header-section-number">6.22</span> Moving into C API compliance</h2>
+<section id="hash-tables" class="level2 section" data-number="6.22">
+<h2 class="section anchored" data-number="6.22" data-anchor-id="hash-tables"><span class="header-section-number">6.22</span> Hash tables</h2>
+<p>An implementation of hash tables is available that is accessible from the R and C level. The C interface is experimental and may change. It is currently declared in <samp class="file">Rinternals.h</samp>.</p>
+<p><span id="index-R_005fisHashtable-1" class="index-entry-id"></span> <span id="index-R_005fmkhashtab" class="index-entry-id"></span> <span id="index-R_005fmkhashtab-1" class="index-entry-id"></span> <span id="index-R_005fgethash" class="index-entry-id"></span> <span id="index-R_005fgethash-1" class="index-entry-id"></span> <span id="index-R_005fsethash" class="index-entry-id"></span> <span id="index-R_005fsethash-1" class="index-entry-id"></span> <span id="index-R_005fremhash" class="index-entry-id"></span> <span id="index-R_005fremhash-1" class="index-entry-id"></span> <span id="index-R_005fnumhash" class="index-entry-id"></span> <span id="index-R_005fnumhash-1" class="index-entry-id"></span> <span id="index-R_005ftyphash" class="index-entry-id"></span> <span id="index-R_005ftyphash-1" class="index-entry-id"></span> <span id="index-R_005fmaphash" class="index-entry-id"></span> <span id="index-R_005fmaphash-1" class="index-entry-id"></span> <span id="index-R_005fmaphashC" class="index-entry-id"></span> <span id="index-R_005fmaphashC-1" class="index-entry-id"></span> <span id="index-R_005fclrhash" class="index-entry-id"></span></p>
+</section>
+<section id="moving-into-c-api-compliance" class="level2 section" data-number="6.23">
+<h2 class="section anchored" data-number="6.23" data-anchor-id="moving-into-c-api-compliance"><span class="header-section-number">6.23</span> Moving into C API compliance</h2>
 <p>Work is in progress to clarify and tighten the C API for extending R code. This will help make package C code more robust, and will facilitate maintaining and improving the R source code without impacting package space. In the process a number of entry points intended for internal use will be removed from installed header files or hidden, and others will be replaced by more robust versions better suited for use in package C code. This section describes how packages can move from using non-API entry points to using ones available and supported in the API.</p>
 <p><strong>Work in progress:</strong> This section is a work in progress and will be adjusted as changes are made to the API.</p>
-<section id="some-api-replacements-for-non-api-entry-points" class="level3 subsection" data-number="6.22.1">
-<h3 class="subsection anchored" data-number="6.22.1" data-anchor-id="some-api-replacements-for-non-api-entry-points"><span class="header-section-number">6.22.1</span> Some API replacements for non-API entry points</h3>
+<section id="some-api-replacements-for-non-api-entry-points" class="level3 subsection" data-number="6.23.1">
+<h3 class="subsection anchored" data-number="6.23.1" data-anchor-id="some-api-replacements-for-non-api-entry-points"><span class="header-section-number">6.23.1</span> Some API replacements for non-API entry points</h3>
 <p>Some non-API entry points intended for internal use have long had entry points in the API that can be used instead. In other cases new entry point have been added that are more appropriate for use in packages; typically these include more extensive error checking on arguments.</p>
 <p>This table lists some non-API functions used in packages and the API functions that should be used instead:</p>
 <p><code class="code">EXTPTR_PROT</code><br>
@@ -1822,16 +1832,16 @@ There is also an `F77_CALL(interv)()`{.code} version of
 <p>: Use the binding access API added in R 4.6.0. See <a href="#working-with-variable-bindings" class="xref">Working with variable bindings</a>.</p>
 <p>For recently added entry points packages that need to be compiled under older versions that do not yet contain these entry points can use back-ported versions defined conditionally. See <a href="#some-backports" class="xref">Some backports</a>.</p>
 </section>
-<section id="creating-environments" class="level3 subsection" data-number="6.22.2">
-<h3 class="subsection anchored" data-number="6.22.2" data-anchor-id="creating-environments"><span class="header-section-number">6.22.2</span> Creating environments</h3>
+<section id="creating-environments" class="level3 subsection" data-number="6.23.2">
+<h3 class="subsection anchored" data-number="6.23.2" data-anchor-id="creating-environments"><span class="header-section-number">6.23.2</span> Creating environments</h3>
 <p>An idiom appearing in a number of packages is to create an environment as</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb82"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>SEXP env <span class="op">=</span> Rf_allocSExp<span class="op">(</span>ENVSXP<span class="op">);</span></span>
 <span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>SET_ENCLOS<span class="op">(</span>env<span class="op">,</span> parent<span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The function <code class="code">Rf_allocSExp</code> and mutation functions like <code class="code">SET_ENCLOS</code>, <code class="code">SET_FRAME</code>, and <code class="code">SET_HASHTAB</code> are not part of the API as they expose internal structure that might need to change in the future. A proper constructor function should be used instead. The constructor function for environments is <code class="code">R_NewEnv</code>, so the new environment should be created as</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb83"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>SEXP env <span class="op">=</span> R_NewEnv<span class="op">(</span>parent<span class="op">,</span> FALSE<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="creating-call-expressions" class="level3 subsection" data-number="6.22.3">
-<h3 class="subsection anchored" data-number="6.22.3" data-anchor-id="creating-call-expressions"><span class="header-section-number">6.22.3</span> Creating call expressions</h3>
+<section id="creating-call-expressions" class="level3 subsection" data-number="6.23.3">
+<h3 class="subsection anchored" data-number="6.23.3" data-anchor-id="creating-call-expressions"><span class="header-section-number">6.23.3</span> Creating call expressions</h3>
 <p>Another idiom used in some packages is to create a call expression with space for two arguments as</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb84"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>SEXP expr <span class="op">=</span> Rf_allocList<span class="op">(</span><span class="dv">3</span><span class="op">);</span></span>
 <span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>SET_TYPEOF<span class="op">(</span>expr<span class="op">,</span> <span class="st">"LANGSXP"</span><span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1840,8 +1850,8 @@ There is also an `F77_CALL(interv)()`{.code} version of
 <p>R 4.4.1 added the constructor <code class="code">Rf_allocLang</code>, so the expression can be created as</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb86"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>SEXP env <span class="op">=</span> Rf_allocLang<span class="op">(</span><span class="dv">3</span><span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="creating-closures" class="level3 subsection" data-number="6.22.4">
-<h3 class="subsection anchored" data-number="6.22.4" data-anchor-id="creating-closures"><span class="header-section-number">6.22.4</span> Creating closures</h3>
+<section id="creating-closures" class="level3 subsection" data-number="6.23.4">
+<h3 class="subsection anchored" data-number="6.23.4" data-anchor-id="creating-closures"><span class="header-section-number">6.23.4</span> Creating closures</h3>
 <p>Yet another common idiom is to create a new closure as</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb87"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>SEXP fun <span class="op">=</span> Rf_allocSExp<span class="op">(</span>CLOSXP<span class="op">);</span></span>
 <span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>SET_FORMALS<span class="op">(</span>fun<span class="op">,</span> formals<span class="op">);</span></span>
@@ -1850,8 +1860,8 @@ There is also an `F77_CALL(interv)()`{.code} version of
 <p>R 4.5.0 adds the constructor <code class="code">R_mkClosure</code>; this can be used as</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb88"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>SEXP fun <span class="op">=</span> R_mkClosure<span class="op">(</span>formals<span class="op">,</span> body<span class="op">,</span> env<span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="querying-charsxp-encoding" class="level3 subsection" data-number="6.22.5">
-<h3 class="subsection anchored" data-number="6.22.5" data-anchor-id="querying-charsxp-encoding"><span class="header-section-number">6.22.5</span> Querying <code class="code">CHARSXP</code> encoding</h3>
+<section id="querying-charsxp-encoding" class="level3 subsection" data-number="6.23.5">
+<h3 class="subsection anchored" data-number="6.23.5" data-anchor-id="querying-charsxp-encoding"><span class="header-section-number">6.23.5</span> Querying <code class="code">CHARSXP</code> encoding</h3>
 <p>A number of packages query encoding bits set on <code class="code">CHARSXP</code> objects via macros <code class="code">IS_ASCII</code> and <code class="code">IS_UTF8</code>, some packages also via <code class="code">IS_BYTES</code> and <code class="code">IS_LATIN1</code>. These macros are not part of the API and packages have been copying their definition and directly accessing the bits in memory. The structure of the object header is, however, internal to R and may have to change in the future.</p>
 <p><code class="code">IS_ASCII</code> can be replaced by <code class="code">Rf_charIsASCII</code>, added in R 4.5.0. It can also be replaced by code that checks individual characters (bytes).</p>
 <p>Information provided by the other macros is available via function <code class="code">Rf_getCharCE</code>, which has been part of the API since R 2.7.0. Before switching to <code class="code">Rf_getCharCE</code>, packages are, however, advised to check whether the encoding information is really needed and whether it is used correctly.</p>
@@ -1872,8 +1882,8 @@ There is also an `F77_CALL(interv)()`{.code} version of
 <span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>as the encoding flags are already checked in <code class="code">Rf_translateCharUTF8</code>. Also note the non-compliant check does not handle native encoding.</p>
 </section>
-<section id="working-with-attributes" class="level3 subsection" data-number="6.22.6">
-<h3 class="subsection anchored" data-number="6.22.6" data-anchor-id="working-with-attributes"><span class="header-section-number">6.22.6</span> Working with attributes</h3>
+<section id="working-with-attributes" class="level3 subsection" data-number="6.23.6">
+<h3 class="subsection anchored" data-number="6.23.6" data-anchor-id="working-with-attributes"><span class="header-section-number">6.23.6</span> Working with attributes</h3>
 <p>The current implementation (R 4.5.0) represents attributes internally as a linked list. It may be useful to change this at some point, so external code should not rely on this representation. The low-level functions <code class="code">ATTRIB</code> and <code class="code">SET_ATTRIB</code> reveal this representation and are therefore not part of the API. Individual attributes can be accessed and set with <code class="code">Rf_getAttrib</code> and <code class="code">Rf_setAttrib</code>. Attributes can be copied from one object to another with <code class="code">DUPLICATE_ATTRIB</code> and <code class="code">SHALLOW_DUPLICATE_ATTRIB</code>. The <code class="code">CLEAR_ATTRIB</code> function added in R 4.5.0 can be used to remove all attributes. These functions ensure can that certain consistency requirements are maintained, such as setting the object bit according to whether a class attribute is present.</p>
 <p>The function <code class="code">R_getAttributes</code> returns the same result as the R function <code class="code">attributes</code>. <span id="index-R_005fgetAttributes" class="index-entry-id"></span> <span id="index-R_005fgetAttributes-1" class="index-entry-id"></span> <code class="code">R_getAttribCount</code> returns the number of attributes and <code class="code">R_getAttribNames</code> returns the names of an object’s attributes. <code class="code">R_hasAttrib</code> can be used to query whether an attribute is present. <span id="index-R_005fgetAttribCount" class="index-entry-id"></span></p>
 <p><span id="index-R_005fhasAttrib" class="index-entry-id"></span> <span id="index-R_005fhasAttrib-1" class="index-entry-id"></span> The functions <code class="code">R_nrow</code> and <code class="code">R_ncol</code> return the number of rows or columns in a standard matrix or data frame. They may be extended to handle non-standard cases by dispatching to <code class="code">dim</code>. <span id="index-R_005fnrow" class="index-entry-id"></span> <span id="index-R_005fnrow-1" class="index-entry-id"></span> <span id="index-R_005fncol" class="index-entry-id"></span> <span id="index-R_005fncol-1" class="index-entry-id"></span></p>
@@ -1883,8 +1893,8 @@ There is also an `F77_CALL(interv)()`{.code} version of
 <p>The function <code class="code">FUN</code> should return a C <code class="code">NULL</code> if it wants the iteration to continue. If <code class="code">FUN</code> returns a non-<code class="code">NULL</code> value, then the iteration stops and that value is returned as the result of the <code class="code">R_mapAttrib</code> call. <code class="code">R_mapAttrib</code> is highly experimental. It should only be used if absolutely necessary as both the interface and the semantics may change at short notice.</p>
 <p>Some additional functions may be added for working with attributes.</p>
 </section>
-<section id="working-with-variable-bindings" class="level3 subsection" data-number="6.22.7">
-<h3 class="subsection anchored" data-number="6.22.7" data-anchor-id="working-with-variable-bindings"><span class="header-section-number">6.22.7</span> Working with variable bindings</h3>
+<section id="working-with-variable-bindings" class="level3 subsection" data-number="6.23.7">
+<h3 class="subsection anchored" data-number="6.23.7" data-anchor-id="working-with-variable-bindings"><span class="header-section-number">6.23.7</span> Working with variable bindings</h3>
 <p>The internal functions <code class="code">Rf_findVar</code> and <code class="code">Rf_findVarInFrame</code> have been used in a number of packages but are too low level to be part of the API. For most uses the functions <code class="code">R_getVar</code> and <code class="code">R_getVarEx</code> added in R 4.5.0 will be sufficient. These are analogous to the R functions <code class="code">get</code> and <code class="code">get0</code>.</p>
 <p>In rare cases package R or C code may want to obtain more detailed information on a binding, such as whether the binding is delayed or not. An experimental C API has been added in R 4.6.0. An R level API may be added as well.</p>
 <p>The type of a binding for a symbol in an environment can be obtained with</p>
@@ -1901,105 +1911,109 @@ There is also an `F77_CALL(interv)()`{.code} version of
 <p>A vector of the symbols for which an environment has bindings is returned by</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb95"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>SEXP R_envSymbols<span class="op">(</span>SEXP env<span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span id="index-R_005fenvSymbols" class="index-entry-id"></span> <span id="index-R_005fenvSymbols-1" class="index-entry-id"></span></p>
-<p>Whether a proper <code class="code">...</code> binding exists can be determined with</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb96"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>Rboolean R_DotsExist<span class="op">(</span>SEXP env<span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The environment containing a <code class="code">...</code> binding can be found by walking parent environments with</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb96"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>SEXP R_findDotsEnv<span class="op">(</span>SEXP env<span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This returns the first environment in the chain starting from <var class="var">env</var> that contains a proper <code class="code">...</code> binding, or <code class="code">R_EmptyEnv</code> if none is found.</p>
+<p>Whether a proper <code class="code">...</code> binding exists in a given frame can be determined with</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb97"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>Rboolean R_DotsExist<span class="op">(</span>SEXP env<span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span id="index-R_005fDotsExist" class="index-entry-id"></span> <span id="index-R_005fDotsExist-1" class="index-entry-id"></span></p>
 <p>Length and names of a <code class="code">...</code> binding are returned by</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb97"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> R_DotsLength<span class="op">(</span>SEXP env<span class="op">);</span></span>
-<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>SEXP R_DotsNames<span class="op">(</span>SEXP env<span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb98"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> R_DotsLength<span class="op">(</span>SEXP env<span class="op">);</span></span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>SEXP R_DotsNames<span class="op">(</span>SEXP env<span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span id="index-R_005fDotsLength" class="index-entry-id"></span> <span id="index-R_005fDotsLength-1" class="index-entry-id"></span> <span id="index-R_005fDotsNames" class="index-entry-id"></span></p>
 <p>These correspond to the R functions <code class="code">...length</code> and <code class="code">...names</code>.</p>
 <p>The type of an individual <code class="code">...</code> element can be obtained with</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb98"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>R_DotType_t R_GetDotType<span class="op">(</span><span class="dt">int</span> i<span class="op">,</span> SEXP env<span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb99"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>R_DotType_t R_GetDotType<span class="op">(</span><span class="dt">int</span> i<span class="op">,</span> SEXP env<span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span id="index-R_005fGetDotType" class="index-entry-id"></span> <span id="index-R_005fGetDotType-1" class="index-entry-id"></span></p>
 <p>The returned value is an <code class="code">enum</code> with possible values <code class="code">R_DotTypeValue</code>, <code class="code">R_DotTypeMissing</code>, <code class="code">R_DotTypeDelayed</code>, and <code class="code">R_DotTypeForced</code>.</p>
 <p>Individual <code class="code">...</code> elements can be examined using</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb99"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>SEXP R_DotsElt<span class="op">(</span><span class="dt">int</span> i<span class="op">,</span> SEXP env<span class="op">);</span></span>
-<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>SEXP R_DotForcedExpression<span class="op">(</span><span class="dt">int</span> i<span class="op">,</span> SEXP env<span class="op">);</span></span>
-<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a>SEXP R_DotDelayedExpression<span class="op">(</span><span class="dt">int</span> i<span class="op">,</span> SEXP env<span class="op">);</span></span>
-<span id="cb99-4"><a href="#cb99-4" aria-hidden="true" tabindex="-1"></a>SEXP R_DotDelayedEnvironment<span class="op">(</span><span class="dt">int</span> i<span class="op">,</span> SEXP env<span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb100"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>SEXP R_DotsElt<span class="op">(</span><span class="dt">int</span> i<span class="op">,</span> SEXP env<span class="op">);</span></span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>SEXP R_DotForcedExpression<span class="op">(</span><span class="dt">int</span> i<span class="op">,</span> SEXP env<span class="op">);</span></span>
+<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>SEXP R_DotDelayedExpression<span class="op">(</span><span class="dt">int</span> i<span class="op">,</span> SEXP env<span class="op">);</span></span>
+<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a>SEXP R_DotDelayedEnvironment<span class="op">(</span><span class="dt">int</span> i<span class="op">,</span> SEXP env<span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span id="index-R_005fDotsElt" class="index-entry-id"></span> <span id="index-R_005fDotsElt-1" class="index-entry-id"></span> <span id="index-R_005fDotDelayedExpression" class="index-entry-id"></span></p>
 <p><code class="code">R_DotsElt</code> corresponds to the R function <code class="code">...elt</code>.</p>
+<p>Note that all these functions look up <code class="code">...</code> only in the specified <var class="var">env</var> frame and do not search parent environments. The R functions <code class="code">...length</code>, <code class="code">...names</code>, and <code class="code">...elt</code> do walk parent environments (using <code class="code">R_findDotsEnv</code> internally). If you need inherited lookup from C code, call <code class="code">R_findDotsEnv</code> first and pass the result to the accessor functions.</p>
 </section>
-<section id="some-backports" class="level3 subsection" data-number="6.22.8">
-<h3 class="subsection anchored" data-number="6.22.8" data-anchor-id="some-backports"><span class="header-section-number">6.22.8</span> Some backports</h3>
+<section id="some-backports" class="level3 subsection" data-number="6.23.8">
+<h3 class="subsection anchored" data-number="6.23.8" data-anchor-id="some-backports"><span class="header-section-number">6.23.8</span> Some backports</h3>
 <p>This section lists backports of recently added definitions that can be used in packages that need to be compiled under older versions of R that do not yet contain these entry points.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb100"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#if R_VERSION &lt; R_Version(4, 4, 1)</span></span>
-<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define allocLang </span>Rf_allocLang</span>
-<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a>SEXP Rf_allocLang<span class="op">(</span><span class="dt">int</span> n<span class="op">)</span></span>
-<span id="cb100-5"><a href="#cb100-5" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb100-6"><a href="#cb100-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>n <span class="op">&gt;</span> <span class="dv">0</span><span class="op">)</span></span>
-<span id="cb100-7"><a href="#cb100-7" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> LCONS<span class="op">(</span>R_NilValue<span class="op">,</span> Rf_allocList<span class="op">(</span>n <span class="op">-</span> <span class="dv">1</span><span class="op">));</span></span>
-<span id="cb100-8"><a href="#cb100-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
-<span id="cb100-9"><a href="#cb100-9" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> R_NilValue<span class="op">;</span></span>
-<span id="cb100-10"><a href="#cb100-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb100-11"><a href="#cb100-11" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span>
-<span id="cb100-12"><a href="#cb100-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb100-13"><a href="#cb100-13" aria-hidden="true" tabindex="-1"></a><span class="pp">#if R_VERSION &lt; R_Version(4, 5, 0)</span></span>
-<span id="cb100-14"><a href="#cb100-14" aria-hidden="true" tabindex="-1"></a><span class="pp"># define Rf_isDataFrame</span><span class="op">(</span><span class="pp">x</span><span class="op">)</span><span class="pp"> </span>Rf_isFrame<span class="op">(</span><span class="pp">x</span><span class="op">)</span></span>
-<span id="cb100-15"><a href="#cb100-15" aria-hidden="true" tabindex="-1"></a><span class="pp"># define R_ClosureFormals</span><span class="op">(</span><span class="pp">x</span><span class="op">)</span><span class="pp"> FORMALS</span><span class="op">(</span><span class="pp">x</span><span class="op">)</span></span>
-<span id="cb100-16"><a href="#cb100-16" aria-hidden="true" tabindex="-1"></a><span class="pp"># define R_ClosureEnv</span><span class="op">(</span><span class="pp">x</span><span class="op">)</span><span class="pp"> CLOENV</span><span class="op">(</span><span class="pp">x</span><span class="op">)</span></span>
-<span id="cb100-17"><a href="#cb100-17" aria-hidden="true" tabindex="-1"></a><span class="pp"># define R_ParentEnv</span><span class="op">(</span><span class="pp">x</span><span class="op">)</span><span class="pp"> ENCLOS</span><span class="op">(</span><span class="pp">x</span><span class="op">)</span></span>
-<span id="cb100-18"><a href="#cb100-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb100-19"><a href="#cb100-19" aria-hidden="true" tabindex="-1"></a>SEXP R_mkClosure<span class="op">(</span>SEXP formals<span class="op">,</span> SEXP body<span class="op">,</span> SEXP env<span class="op">)</span></span>
-<span id="cb100-20"><a href="#cb100-20" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb100-21"><a href="#cb100-21" aria-hidden="true" tabindex="-1"></a>    SEXP fun <span class="op">=</span> Rf_allocSExp<span class="op">(</span>CLOSXP<span class="op">);</span></span>
-<span id="cb100-22"><a href="#cb100-22" aria-hidden="true" tabindex="-1"></a>    SET_FORMALS<span class="op">(</span>fun<span class="op">,</span> formals<span class="op">);</span></span>
-<span id="cb100-23"><a href="#cb100-23" aria-hidden="true" tabindex="-1"></a>    SET_BODY<span class="op">(</span>fun<span class="op">,</span> body<span class="op">);</span></span>
-<span id="cb100-24"><a href="#cb100-24" aria-hidden="true" tabindex="-1"></a>    SET_CLOENV<span class="op">(</span>fun<span class="op">,</span> env<span class="op">);</span></span>
-<span id="cb100-25"><a href="#cb100-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fun<span class="op">;</span></span>
-<span id="cb100-26"><a href="#cb100-26" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb100-27"><a href="#cb100-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb100-28"><a href="#cb100-28" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> CLEAR_ATTRIB<span class="op">(</span>SEXP x<span class="op">)</span></span>
-<span id="cb100-29"><a href="#cb100-29" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb100-30"><a href="#cb100-30" aria-hidden="true" tabindex="-1"></a>    SET_ATTRIB<span class="op">(</span>x<span class="op">,</span> R_NilValue<span class="op">);</span></span>
-<span id="cb100-31"><a href="#cb100-31" aria-hidden="true" tabindex="-1"></a>    SET_OBJECT<span class="op">(</span>x<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
-<span id="cb100-32"><a href="#cb100-32" aria-hidden="true" tabindex="-1"></a>    UNSET_S4_OBJECT<span class="op">(</span>x<span class="op">);</span></span>
-<span id="cb100-33"><a href="#cb100-33" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb100-34"><a href="#cb100-34" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span>
-<span id="cb100-35"><a href="#cb100-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb100-36"><a href="#cb100-36" aria-hidden="true" tabindex="-1"></a><span class="pp">#if R_VERSION &lt; R_Version(4, 6, 0)</span></span>
-<span id="cb100-37"><a href="#cb100-37" aria-hidden="true" tabindex="-1"></a><span class="pp"># define DATAPTR_RW</span><span class="op">(</span><span class="pp">x</span><span class="op">)</span><span class="pp"> DATAPTR</span><span class="op">(</span><span class="pp">x</span><span class="op">)</span></span>
-<span id="cb100-38"><a href="#cb100-38" aria-hidden="true" tabindex="-1"></a><span class="pp"># define R_class</span><span class="op">(</span><span class="pp">x</span><span class="op">)</span><span class="pp"> </span>R_data_class<span class="op">(</span><span class="pp">x</span><span class="op">,</span><span class="pp"> FALSE</span><span class="op">)</span></span>
-<span id="cb100-39"><a href="#cb100-39" aria-hidden="true" tabindex="-1"></a><span class="pp"># define R_resizeVector</span><span class="op">(</span><span class="pp">x</span><span class="op">,</span><span class="pp"> newlen</span><span class="op">)</span><span class="pp"> SETLENGTH</span><span class="op">(</span><span class="pp">x</span><span class="op">,</span><span class="pp"> newlen</span><span class="op">)</span></span>
-<span id="cb100-40"><a href="#cb100-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb100-41"><a href="#cb100-41" aria-hidden="true" tabindex="-1"></a>SEXP R_allocResizableVector<span class="op">(</span>SEXPTYPE type<span class="op">,</span> R_xlen_t maxlen<span class="op">)</span></span>
-<span id="cb100-42"><a href="#cb100-42" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb100-43"><a href="#cb100-43" aria-hidden="true" tabindex="-1"></a>    SEXP ret <span class="op">=</span> Rf_allocVector<span class="op">(</span>type<span class="op">,</span> maxlen<span class="op">);</span></span>
-<span id="cb100-44"><a href="#cb100-44" aria-hidden="true" tabindex="-1"></a>    SET_TRUELENGTH<span class="op">(</span>ret<span class="op">,</span> maxlen<span class="op">);</span></span>
-<span id="cb100-45"><a href="#cb100-45" aria-hidden="true" tabindex="-1"></a>    SET_GROWABLE_BIT<span class="op">(</span>ret<span class="op">);</span></span>
-<span id="cb100-46"><a href="#cb100-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ret<span class="op">;</span></span>
-<span id="cb100-47"><a href="#cb100-47" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb100-48"><a href="#cb100-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb100-49"><a href="#cb100-49" aria-hidden="true" tabindex="-1"></a>SEXP R_duplicateAsResizable<span class="op">(</span>SEXP x<span class="op">)</span></span>
-<span id="cb100-50"><a href="#cb100-50" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb100-51"><a href="#cb100-51" aria-hidden="true" tabindex="-1"></a>    SEXP ret <span class="op">=</span> Rf_duplicate<span class="op">(</span>x<span class="op">);</span></span>
-<span id="cb100-52"><a href="#cb100-52" aria-hidden="true" tabindex="-1"></a>    SET_TRUELENGTH<span class="op">(</span>ret<span class="op">,</span> Rf_xlength<span class="op">(</span>x<span class="op">));</span></span>
-<span id="cb100-53"><a href="#cb100-53" aria-hidden="true" tabindex="-1"></a>    SET_GROWABLE_BIT<span class="op">(</span>ret<span class="op">);</span></span>
-<span id="cb100-54"><a href="#cb100-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ret<span class="op">;</span></span>
-<span id="cb100-55"><a href="#cb100-55" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb100-56"><a href="#cb100-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb100-57"><a href="#cb100-57" aria-hidden="true" tabindex="-1"></a>SEXP R_mapAttrib<span class="op">(</span>SEXP x<span class="op">,</span> SEXP <span class="op">(*</span>FUN<span class="op">)(</span>SEXP<span class="op">,</span> SEXP<span class="op">,</span> <span class="dt">void</span> <span class="op">*),</span> <span class="dt">void</span> <span class="op">*</span>data<span class="op">)</span></span>
-<span id="cb100-58"><a href="#cb100-58" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb100-59"><a href="#cb100-59" aria-hidden="true" tabindex="-1"></a>    PROTECT_INDEX api<span class="op">;</span></span>
-<span id="cb100-60"><a href="#cb100-60" aria-hidden="true" tabindex="-1"></a>    SEXP a <span class="op">=</span> ATTRIB<span class="op">(</span>x<span class="op">);</span></span>
-<span id="cb100-61"><a href="#cb100-61" aria-hidden="true" tabindex="-1"></a>    SEXP val <span class="op">=</span> NULL<span class="op">;</span></span>
-<span id="cb100-62"><a href="#cb100-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb100-63"><a href="#cb100-63" aria-hidden="true" tabindex="-1"></a>    PROTECT_WITH_INDEX<span class="op">(</span>a<span class="op">,</span> <span class="op">&amp;</span>api<span class="op">);</span></span>
-<span id="cb100-64"><a href="#cb100-64" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>a <span class="op">!=</span> R_NilValue<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb100-65"><a href="#cb100-65" aria-hidden="true" tabindex="-1"></a>    SEXP tag <span class="op">=</span> PROTECT<span class="op">(</span>TAG<span class="op">(</span>a<span class="op">));</span></span>
-<span id="cb100-66"><a href="#cb100-66" aria-hidden="true" tabindex="-1"></a>    SEXP attr <span class="op">=</span> PROTECT<span class="op">(</span>CAR<span class="op">(</span>a<span class="op">));</span></span>
-<span id="cb100-67"><a href="#cb100-67" aria-hidden="true" tabindex="-1"></a>    val <span class="op">=</span> FUN<span class="op">(</span>tag<span class="op">,</span> attr<span class="op">,</span> data<span class="op">);</span></span>
-<span id="cb100-68"><a href="#cb100-68" aria-hidden="true" tabindex="-1"></a>    UNPROTECT<span class="op">(</span><span class="dv">2</span><span class="op">);</span> <span class="co">/* tag, attr */</span></span>
-<span id="cb100-69"><a href="#cb100-69" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>val <span class="op">!=</span> NULL<span class="op">)</span></span>
-<span id="cb100-70"><a href="#cb100-70" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span><span class="op">;</span></span>
-<span id="cb100-71"><a href="#cb100-71" aria-hidden="true" tabindex="-1"></a>    REPROTECT<span class="op">(</span>a <span class="op">=</span> CDR<span class="op">(</span>a<span class="op">),</span> api<span class="op">);</span></span>
-<span id="cb100-72"><a href="#cb100-72" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb100-73"><a href="#cb100-73" aria-hidden="true" tabindex="-1"></a>    UNPROTECT<span class="op">(</span><span class="dv">1</span><span class="op">);</span> <span class="co">/* a */</span></span>
-<span id="cb100-74"><a href="#cb100-74" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> val<span class="op">;</span></span>
-<span id="cb100-75"><a href="#cb100-75" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb100-76"><a href="#cb100-76" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb101"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#if R_VERSION &lt; R_Version(4, 4, 1)</span></span>
+<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define allocLang </span>Rf_allocLang</span>
+<span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-4"><a href="#cb101-4" aria-hidden="true" tabindex="-1"></a>SEXP Rf_allocLang<span class="op">(</span><span class="dt">int</span> n<span class="op">)</span></span>
+<span id="cb101-5"><a href="#cb101-5" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb101-6"><a href="#cb101-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>n <span class="op">&gt;</span> <span class="dv">0</span><span class="op">)</span></span>
+<span id="cb101-7"><a href="#cb101-7" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> LCONS<span class="op">(</span>R_NilValue<span class="op">,</span> Rf_allocList<span class="op">(</span>n <span class="op">-</span> <span class="dv">1</span><span class="op">));</span></span>
+<span id="cb101-8"><a href="#cb101-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb101-9"><a href="#cb101-9" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> R_NilValue<span class="op">;</span></span>
+<span id="cb101-10"><a href="#cb101-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb101-11"><a href="#cb101-11" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span>
+<span id="cb101-12"><a href="#cb101-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-13"><a href="#cb101-13" aria-hidden="true" tabindex="-1"></a><span class="pp">#if R_VERSION &lt; R_Version(4, 5, 0)</span></span>
+<span id="cb101-14"><a href="#cb101-14" aria-hidden="true" tabindex="-1"></a><span class="pp"># define Rf_isDataFrame</span><span class="op">(</span><span class="pp">x</span><span class="op">)</span><span class="pp"> </span>Rf_isFrame<span class="op">(</span><span class="pp">x</span><span class="op">)</span></span>
+<span id="cb101-15"><a href="#cb101-15" aria-hidden="true" tabindex="-1"></a><span class="pp"># define R_ClosureFormals</span><span class="op">(</span><span class="pp">x</span><span class="op">)</span><span class="pp"> FORMALS</span><span class="op">(</span><span class="pp">x</span><span class="op">)</span></span>
+<span id="cb101-16"><a href="#cb101-16" aria-hidden="true" tabindex="-1"></a><span class="pp"># define R_ClosureEnv</span><span class="op">(</span><span class="pp">x</span><span class="op">)</span><span class="pp"> CLOENV</span><span class="op">(</span><span class="pp">x</span><span class="op">)</span></span>
+<span id="cb101-17"><a href="#cb101-17" aria-hidden="true" tabindex="-1"></a><span class="pp"># define R_ParentEnv</span><span class="op">(</span><span class="pp">x</span><span class="op">)</span><span class="pp"> ENCLOS</span><span class="op">(</span><span class="pp">x</span><span class="op">)</span></span>
+<span id="cb101-18"><a href="#cb101-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-19"><a href="#cb101-19" aria-hidden="true" tabindex="-1"></a>SEXP R_mkClosure<span class="op">(</span>SEXP formals<span class="op">,</span> SEXP body<span class="op">,</span> SEXP env<span class="op">)</span></span>
+<span id="cb101-20"><a href="#cb101-20" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb101-21"><a href="#cb101-21" aria-hidden="true" tabindex="-1"></a>    SEXP fun <span class="op">=</span> Rf_allocSExp<span class="op">(</span>CLOSXP<span class="op">);</span></span>
+<span id="cb101-22"><a href="#cb101-22" aria-hidden="true" tabindex="-1"></a>    SET_FORMALS<span class="op">(</span>fun<span class="op">,</span> formals<span class="op">);</span></span>
+<span id="cb101-23"><a href="#cb101-23" aria-hidden="true" tabindex="-1"></a>    SET_BODY<span class="op">(</span>fun<span class="op">,</span> body<span class="op">);</span></span>
+<span id="cb101-24"><a href="#cb101-24" aria-hidden="true" tabindex="-1"></a>    SET_CLOENV<span class="op">(</span>fun<span class="op">,</span> env<span class="op">);</span></span>
+<span id="cb101-25"><a href="#cb101-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fun<span class="op">;</span></span>
+<span id="cb101-26"><a href="#cb101-26" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb101-27"><a href="#cb101-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-28"><a href="#cb101-28" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> CLEAR_ATTRIB<span class="op">(</span>SEXP x<span class="op">)</span></span>
+<span id="cb101-29"><a href="#cb101-29" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb101-30"><a href="#cb101-30" aria-hidden="true" tabindex="-1"></a>    SET_ATTRIB<span class="op">(</span>x<span class="op">,</span> R_NilValue<span class="op">);</span></span>
+<span id="cb101-31"><a href="#cb101-31" aria-hidden="true" tabindex="-1"></a>    SET_OBJECT<span class="op">(</span>x<span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb101-32"><a href="#cb101-32" aria-hidden="true" tabindex="-1"></a>    UNSET_S4_OBJECT<span class="op">(</span>x<span class="op">);</span></span>
+<span id="cb101-33"><a href="#cb101-33" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb101-34"><a href="#cb101-34" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span>
+<span id="cb101-35"><a href="#cb101-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-36"><a href="#cb101-36" aria-hidden="true" tabindex="-1"></a><span class="pp">#if R_VERSION &lt; R_Version(4, 6, 0)</span></span>
+<span id="cb101-37"><a href="#cb101-37" aria-hidden="true" tabindex="-1"></a><span class="pp"># define DATAPTR_RW</span><span class="op">(</span><span class="pp">x</span><span class="op">)</span><span class="pp"> DATAPTR</span><span class="op">(</span><span class="pp">x</span><span class="op">)</span></span>
+<span id="cb101-38"><a href="#cb101-38" aria-hidden="true" tabindex="-1"></a><span class="pp"># define R_class</span><span class="op">(</span><span class="pp">x</span><span class="op">)</span><span class="pp"> </span>R_data_class<span class="op">(</span><span class="pp">x</span><span class="op">,</span><span class="pp"> FALSE</span><span class="op">)</span></span>
+<span id="cb101-39"><a href="#cb101-39" aria-hidden="true" tabindex="-1"></a><span class="pp"># define R_resizeVector</span><span class="op">(</span><span class="pp">x</span><span class="op">,</span><span class="pp"> newlen</span><span class="op">)</span><span class="pp"> SETLENGTH</span><span class="op">(</span><span class="pp">x</span><span class="op">,</span><span class="pp"> newlen</span><span class="op">)</span></span>
+<span id="cb101-40"><a href="#cb101-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-41"><a href="#cb101-41" aria-hidden="true" tabindex="-1"></a>SEXP R_allocResizableVector<span class="op">(</span>SEXPTYPE type<span class="op">,</span> R_xlen_t maxlen<span class="op">)</span></span>
+<span id="cb101-42"><a href="#cb101-42" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb101-43"><a href="#cb101-43" aria-hidden="true" tabindex="-1"></a>    SEXP ret <span class="op">=</span> Rf_allocVector<span class="op">(</span>type<span class="op">,</span> maxlen<span class="op">);</span></span>
+<span id="cb101-44"><a href="#cb101-44" aria-hidden="true" tabindex="-1"></a>    SET_TRUELENGTH<span class="op">(</span>ret<span class="op">,</span> maxlen<span class="op">);</span></span>
+<span id="cb101-45"><a href="#cb101-45" aria-hidden="true" tabindex="-1"></a>    SET_GROWABLE_BIT<span class="op">(</span>ret<span class="op">);</span></span>
+<span id="cb101-46"><a href="#cb101-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ret<span class="op">;</span></span>
+<span id="cb101-47"><a href="#cb101-47" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb101-48"><a href="#cb101-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-49"><a href="#cb101-49" aria-hidden="true" tabindex="-1"></a>SEXP R_duplicateAsResizable<span class="op">(</span>SEXP x<span class="op">)</span></span>
+<span id="cb101-50"><a href="#cb101-50" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb101-51"><a href="#cb101-51" aria-hidden="true" tabindex="-1"></a>    SEXP ret <span class="op">=</span> Rf_duplicate<span class="op">(</span>x<span class="op">);</span></span>
+<span id="cb101-52"><a href="#cb101-52" aria-hidden="true" tabindex="-1"></a>    SET_TRUELENGTH<span class="op">(</span>ret<span class="op">,</span> Rf_xlength<span class="op">(</span>x<span class="op">));</span></span>
+<span id="cb101-53"><a href="#cb101-53" aria-hidden="true" tabindex="-1"></a>    SET_GROWABLE_BIT<span class="op">(</span>ret<span class="op">);</span></span>
+<span id="cb101-54"><a href="#cb101-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ret<span class="op">;</span></span>
+<span id="cb101-55"><a href="#cb101-55" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb101-56"><a href="#cb101-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-57"><a href="#cb101-57" aria-hidden="true" tabindex="-1"></a>SEXP R_mapAttrib<span class="op">(</span>SEXP x<span class="op">,</span> SEXP <span class="op">(*</span>FUN<span class="op">)(</span>SEXP<span class="op">,</span> SEXP<span class="op">,</span> <span class="dt">void</span> <span class="op">*),</span> <span class="dt">void</span> <span class="op">*</span>data<span class="op">)</span></span>
+<span id="cb101-58"><a href="#cb101-58" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb101-59"><a href="#cb101-59" aria-hidden="true" tabindex="-1"></a>    PROTECT_INDEX api<span class="op">;</span></span>
+<span id="cb101-60"><a href="#cb101-60" aria-hidden="true" tabindex="-1"></a>    SEXP a <span class="op">=</span> ATTRIB<span class="op">(</span>x<span class="op">);</span></span>
+<span id="cb101-61"><a href="#cb101-61" aria-hidden="true" tabindex="-1"></a>    SEXP val <span class="op">=</span> NULL<span class="op">;</span></span>
+<span id="cb101-62"><a href="#cb101-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-63"><a href="#cb101-63" aria-hidden="true" tabindex="-1"></a>    PROTECT_WITH_INDEX<span class="op">(</span>a<span class="op">,</span> <span class="op">&amp;</span>api<span class="op">);</span></span>
+<span id="cb101-64"><a href="#cb101-64" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>a <span class="op">!=</span> R_NilValue<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb101-65"><a href="#cb101-65" aria-hidden="true" tabindex="-1"></a>    SEXP tag <span class="op">=</span> PROTECT<span class="op">(</span>TAG<span class="op">(</span>a<span class="op">));</span></span>
+<span id="cb101-66"><a href="#cb101-66" aria-hidden="true" tabindex="-1"></a>    SEXP attr <span class="op">=</span> PROTECT<span class="op">(</span>CAR<span class="op">(</span>a<span class="op">));</span></span>
+<span id="cb101-67"><a href="#cb101-67" aria-hidden="true" tabindex="-1"></a>    val <span class="op">=</span> FUN<span class="op">(</span>tag<span class="op">,</span> attr<span class="op">,</span> data<span class="op">);</span></span>
+<span id="cb101-68"><a href="#cb101-68" aria-hidden="true" tabindex="-1"></a>    UNPROTECT<span class="op">(</span><span class="dv">2</span><span class="op">);</span> <span class="co">/* tag, attr */</span></span>
+<span id="cb101-69"><a href="#cb101-69" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>val <span class="op">!=</span> NULL<span class="op">)</span></span>
+<span id="cb101-70"><a href="#cb101-70" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb101-71"><a href="#cb101-71" aria-hidden="true" tabindex="-1"></a>    REPROTECT<span class="op">(</span>a <span class="op">=</span> CDR<span class="op">(</span>a<span class="op">),</span> api<span class="op">);</span></span>
+<span id="cb101-72"><a href="#cb101-72" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb101-73"><a href="#cb101-73" aria-hidden="true" tabindex="-1"></a>    UNPROTECT<span class="op">(</span><span class="dv">1</span><span class="op">);</span> <span class="co">/* a */</span></span>
+<span id="cb101-74"><a href="#cb101-74" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> val<span class="op">;</span></span>
+<span id="cb101-75"><a href="#cb101-75" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb101-76"><a href="#cb101-76" aria-hidden="true" tabindex="-1"></a><span class="pp">#endif</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 
 </section>

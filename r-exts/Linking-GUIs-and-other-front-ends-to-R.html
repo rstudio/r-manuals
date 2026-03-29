@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1337b39216e3f355cb1a3d4071a52f71.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-df6c903f96a25ec289183bc37f4b9ca5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -309,7 +309,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#using-dcom" id="toc-using-dcom" class="nav-link" data-scroll-target="#using-dcom"><span class="header-section-number">8.2.1</span> Using (D)COM</a></li>
   <li><a href="#calling-r.dll-directly" id="toc-calling-r.dll-directly" class="nav-link" data-scroll-target="#calling-r.dll-directly"><span class="header-section-number">8.2.2</span> Calling <samp class="file">R.dll</samp> directly</a></li>
   <li><a href="#finding-r_home" id="toc-finding-r_home" class="nav-link" data-scroll-target="#finding-r_home"><span class="header-section-number">8.2.3</span> Finding R_HOME</a></li>
-  <li><a href="#footnotes" id="toc-footnotes" class="nav-link" data-scroll-target="#footnotes"><span class="header-section-number">8.2.4</span> Footnotes</a></li>
+  </ul></li>
+  <li><a href="#task-callbacks" id="toc-task-callbacks" class="nav-link" data-scroll-target="#task-callbacks"><span class="header-section-number">8.3</span> Task callbacks</a>
+  <ul class="collapse">
+  <li><a href="#footnotes" id="toc-footnotes" class="nav-link" data-scroll-target="#footnotes"><span class="header-section-number">8.3.1</span> Footnotes</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -665,7 +668,7 @@ history mechanism is present, as a user may be calling
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="dt">uintptr_t</span> R_CStackStart<span class="op">;</span> <span class="co">/* Initial stack address */</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Note that <code class="code">uintptr_t</code> is an optional C99 type for which a substitute is defined in R, so your code needs to define <code class="code">HAVE_UINTPTR_T</code> appropriately. To do so, test if the type is defined in C header <samp class="file">stdint.h</samp> or C++ header <samp class="file">cstdint</samp> and if so include the header and define <code class="code">HAVE_UINTPTR_T</code> before including <samp class="file">Rinterface.h</samp>. (For C code one can simply include <samp class="file">Rconfig.h</samp>, possibly <em>via</em> <samp class="file">R.h</samp>, and for C++11 code <samp class="file">Rinterface.h</samp> will include the header <samp class="file">cstdint</samp>.)</p>
 <p>These will be set<a href="#FOOT177" id="DOCF177" class="footnote"><sup>177</sup></a> when <code class="code">Rf_initialize_R</code> is called, to values appropriate to the main thread. Stack-checking can be disabled by setting <code class="code">R_CStackLimit = (uintptr_t)-1</code> immediately after <code class="code">Rf_initialize_R</code> is called, but it is better to if possible set appropriate values. (What these are and how to determine them are OS-specific, and the stack size limit may differ for secondary threads. If you have a choice of stack size, at least 10Mb is recommended.)</p>
-<p>You may also want to consider how signals are handled: R sets signal handlers for several signals, including <code class="code">SIGINT</code>, <code class="code">SIGSEGV</code>, <code class="code">SIGPIPE</code>, <code class="code">SIGUSR1</code> and <code class="code">SIGUSR2</code>, but these can all be suppressed by setting the variable <code class="code">R_SignalHandlers</code> (declared in <samp class="file">Rinterface.h</samp>) to <code class="code">0</code>.</p>
+<p>You may also want to consider how signals are handled: R sets signal handlers for several signals, including <code class="code">SIGINT</code>, <code class="code">SIGSEGV</code>, <code class="code">SIGPIPE</code>, <code class="code">SIGUSR1</code> and <code class="code">SIGUSR2</code>, but these can all be suppressed by setting the variable <code class="code">R_SignalHandlers</code> (declared in <samp class="file">Rinterface.h</samp>) to <code class="code">0</code>. <span id="index-R_005fSignalHandlers" class="index-entry-id"></span></p>
 <p>Note that these variables must not be changed by an R <strong>package</strong>: a package should not call R internals which makes use of the stack-checking mechanism on a secondary thread.</p>
 </section>
 </section>
@@ -831,6 +834,10 @@ history mechanism is present, as a user may be calling
 <li>If key <code class="code">InstallPath</code> exists then this is <code class="code">R_HOME</code> (recorded using backslashes). If it does not, look for version-specific keys like <code class="code">2.11.0 alpha</code>, pick the latest (which is of itself a complicated algorithm as <code class="code">2.11.0 patched &gt; 2.11.0 &gt; 2.11.0 alpha &gt; 2.8.1</code>) and use its value for <code class="code">InstallPath</code>.</li>
 </ul>
 </section>
+</section>
+<section id="task-callbacks" class="level2 section" data-number="8.3">
+<h2 class="section anchored" data-number="8.3" data-anchor-id="task-callbacks"><span class="header-section-number">8.3</span> Task callbacks</h2>
+<p>The file <samp class="file">R_ext/Callbacks.h</samp> defines an API for working with task callbacks from the C level. This corresponds to the R level interface provided by <code class="code">addTaskCallback()</code> and <code class="code">removeTaskCallback()</code>. The C interface is likely to be most useful in embedded contexts. <span id="index-R_005fext_002fCallbacks_002eh" class="index-entry-id"></span></p>
 
 </section>
 
