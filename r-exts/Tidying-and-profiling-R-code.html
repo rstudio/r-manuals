@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.36">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -76,10 +76,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-df6c903f96a25ec289183bc37f4b9ca5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c6d0646a9ead07a9d07dac1f9cce7a51.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -360,8 +360,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="profiling-r-code-for-speed" class="level2 section" data-number="3.2">
 <h2 class="section anchored" data-number="3.2" data-anchor-id="profiling-r-code-for-speed"><span class="header-section-number">3.2</span> Profiling R code for speed</h2>
-<p>It is possible to profile R code on Windows and most<a href="#FOOT124" id="DOCF124" class="footnote"><sup>124</sup></a> Unix-alike versions of R.</p>
-<p>The command <code class="command">Rprof</code> is used to control profiling, and its help page can be consulted for full details. Profiling works by recording at fixed intervals<a href="#FOOT125" id="DOCF125" class="footnote"><sup>125</sup></a> (by default every 20 msecs) which line in which R function is being used, and recording the results in a file (default <samp class="file">Rprof.out</samp> in the working directory). Then the function <code class="code">summaryRprof</code> or the command-line utility <code class="code">R CMD Rprof</code><var class="var">Rprof.out</var> can be used to summarize the activity.</p>
+<p>It is possible to profile R code on Windows and most<a href="#FOOT125" id="DOCF125" class="footnote"><sup>125</sup></a> Unix-alike versions of R.</p>
+<p>The command <code class="command">Rprof</code> is used to control profiling, and its help page can be consulted for full details. Profiling works by recording at fixed intervals<a href="#FOOT126" id="DOCF126" class="footnote"><sup>126</sup></a> (by default every 20 msecs) which line in which R function is being used, and recording the results in a file (default <samp class="file">Rprof.out</samp> in the working directory). Then the function <code class="code">summaryRprof</code> or the command-line utility <code class="code">R CMD Rprof</code><var class="var">Rprof.out</var> can be used to summarize the activity.</p>
 <p>As an example, consider the following code (from Venables &amp; Ripley, 2002, pp.&nbsp;225–6).</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS); <span class="fu">library</span>(boot)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>storm.fm <span class="ot">&lt;-</span> <span class="fu">nls</span>(Time <span class="sc">~</span> b<span class="sc">*</span>Viscosity<span class="sc">/</span>(Wt <span class="sc">-</span> c), stormer,</span>
