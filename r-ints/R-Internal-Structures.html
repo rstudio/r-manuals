@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -76,10 +76,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c6d0646a9ead07a9d07dac1f9cce7a51.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ab260483c5796bfec43a6aa875aaccf2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -687,7 +687,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="section anchored" data-number="1.2" data-anchor-id="environments-and-variable-lookup"><span class="header-section-number">1.2</span> Environments and variable lookup</h2>
 <p><span id="index-environment" class="index-entry-id"></span> <span id="index-variable-lookup" class="index-entry-id"></span></p>
 <p>What users think of as ‘variables’ are symbols which are bound to objects in ‘environments’. The word ‘environment’ is used ambiguously in R to mean <em>either</em> the frame of an <code class="code">ENVSXP</code> (a pairlist of symbol-value pairs) <em>or</em> an <code class="code">ENVSXP</code>, a frame plus an enclosure.</p>
-<p>There are additional places that ‘variables’ can be looked up, called ‘user databases’ in comments in the code. These seem undocumented in the R sources, but apparently refer to the <strong>RObjectTable</strong> package formerly available at <a href="https://www.omegahat.net/RObjectTables/" class="uref">https://www.omegahat.net/RObjectTables/</a>.</p>
+<p>There are additional places that ‘variables’ can be looked up, called ‘user databases’ in comments in the code. These seem undocumented in the R sources, but apparently refer to the <strong>RObjectTable</strong> package formerly available from Omegahat.</p>
 <p>The base environment is special. There is an <code class="code">ENVSXP</code> environment with enclosure the empty environment <code class="code">R_EmptyEnv</code>, but the frame of that environment is not used. Rather its bindings are part of the global symbol table, being those symbols in the global symbol table whose values are not <code class="code">R_UnboundValue</code>. When R is started the internal functions are installed (by C code) in the symbol table, with primitive functions having values and <code class="code">.Internal</code> functions having what would be their values in the field accessed by the <code class="code">INTERNAL</code> macro. Then <code class="code">.Platform</code> and <code class="code">.Machine</code> are computed and the base package is loaded into the base environment followed by the system profile.</p>
 <p>The frames of environments (and the symbol table) are normally hashed for faster access (including insertion and deletion).</p>
 <p>By default R maintains a (hashed) global cache of ‘variables’ (that is symbols and their bindings) which have been found, and this refers only to environments which have been marked to participate, which consists of the global environment (aka the user workspace), the base environment plus environments<a href="#FOOT4" id="DOCF4" class="footnote"><sup>4</sup></a> which have been <code class="code">attach</code>ed.&nbsp;When an environment is either <code class="code">attach</code>ed or <code class="code">detach</code>ed, the names of its symbols are flushed from the cache. The cache is used whenever searching for variables from the global environment (possibly as part of a recursive search).</p>

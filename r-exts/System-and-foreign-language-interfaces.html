@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -76,10 +76,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c6d0646a9ead07a9d07dac1f9cce7a51.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ab260483c5796bfec43a6aa875aaccf2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -1048,7 +1048,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>    SEXP ab<span class="op">;</span></span>
 <span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>      <span class="op">....</span></span>
-<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>    ab <span class="op">=</span> PROTECT<span class="op">(</span>RF_allocVector<span class="op">(</span>REALSXP<span class="op">,</span> <span class="dv">2</span><span class="op">));</span></span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>    ab <span class="op">=</span> PROTECT<span class="op">(</span>Rf_allocVector<span class="op">(</span>REALSXP<span class="op">,</span> <span class="dv">2</span><span class="op">));</span></span>
 <span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>    REAL<span class="op">(</span>ab<span class="op">)[</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> <span class="fl">123.45</span><span class="op">;</span></span>
 <span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a>    REAL<span class="op">(</span>ab<span class="op">)[</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> <span class="fl">67.89</span><span class="op">;</span></span>
 <span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a>    UNPROTECT<span class="op">(</span><span class="dv">1</span><span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1661,7 +1661,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Function <code class="code">Rf_lang2</code> creates an executable pairlist of two elements, but this will only be clear to those with a knowledge of a LISP-like language.</p>
 <p>As a more comprehensive example of constructing an R call in C code and evaluating, consider the following fragment. Similar code appears in the definition of <code class="code">do_docall</code> in <samp class="file">src/main/coerce.c</samp>.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb108"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>    SEXP s<span class="op">,</span> t<span class="op">;</span></span>
-<span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> s <span class="op">=</span> PROTECT<span class="op">(</span>RF_allocLang<span class="op">(</span><span class="dv">3</span><span class="op">));</span></span>
+<span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> s <span class="op">=</span> PROTECT<span class="op">(</span>Rf_allocLang<span class="op">(</span><span class="dv">3</span><span class="op">));</span></span>
 <span id="cb108-3"><a href="#cb108-3" aria-hidden="true" tabindex="-1"></a>    SETCAR<span class="op">(</span>t<span class="op">,</span> Rf_install<span class="op">(</span><span class="st">"print"</span><span class="op">));</span> t <span class="op">=</span> CDR<span class="op">(</span>t<span class="op">);</span></span>
 <span id="cb108-4"><a href="#cb108-4" aria-hidden="true" tabindex="-1"></a>    SETCAR<span class="op">(</span>t<span class="op">,</span>  CAR<span class="op">(</span>a<span class="op">));</span> t <span class="op">=</span> CDR<span class="op">(</span>t<span class="op">);</span></span>
 <span id="cb108-5"><a href="#cb108-5" aria-hidden="true" tabindex="-1"></a>    SETCAR<span class="op">(</span>t<span class="op">,</span> Rf_ScalarInteger<span class="op">(</span>digits<span class="op">));</span></span>

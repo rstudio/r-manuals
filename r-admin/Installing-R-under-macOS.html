@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -76,10 +76,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c6d0646a9ead07a9d07dac1f9cce7a51.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ab260483c5796bfec43a6aa875aaccf2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -339,7 +339,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Next: <a href="Running-R.html" accesskey="n" rel="next">Running R</a>, Previous: <a href="Installing-R-under-Windows.html#installing-r-under-windows" accesskey="p" rel="prev">Installing R under Windows</a>, Up: <a href="index.html" accesskey="u" rel="up">R Installation and Administration</a> &nbsp; [<a href="index.html#sec_contents" rel="contents" title="Table of contents">Contents</a>][<a href="Function-and-variable-index.html" rel="index" title="Index">Index</a>]</p>
-<p>[The rest of this paragraph is only relevant after release.] The front page of a CRAN site has a link ‘Download R for (Mac) OS X’ which takes you to a new page. Two files are offered for download, <samp class="file">R-4.7.0 Under development-arm64.pkg</samp> (for macOS 14 or later, Sonoma, Sequoia, Tahoe, …) and <samp class="file">R-4.7.0 Under development-x86_64.pkg</samp> (for macOS 11 or later, Big Sur, Monterey, Ventura, Sonoma, Sequoia, Tahoe, …).</p>
+<p>[The rest of this paragraph is only relevant after release.] The front page of a CRAN site has a link ‘Download R for (Mac) OS X’ which takes you to a new page. Two files are offered for download, <samp class="file">R-4.7.0 Under development-arm64.pkg</samp> (for macOS 14 or later, Sonoma, Sequoia, Tahoe, …) and <samp class="file">R-4.7.0 Under development-x86_64.pkg</samp> (for macOS 11–26, Big Sur, Monterey, Ventura, Sonoma, Sequoia, Tahoe).</p>
 <p>The first is for ‘Apple Silicon’ (<em>aka</em> ‘M1’, ‘M2’, …) Macs, the second for older Macs with an <samp class="samp">x86_64</samp>’ (Intel) CPU.</p>
 <p>It is important that if you use a binary installer package that your OS is fully updated: look at ‘Software Update’ in ‘System Preferences’ to be sure.</p>
 <p>To install, just double-click on the icon of the file you downloaded. At the ‘Installation Type’ stage, note the option to ‘Customize’. This currently shows four components: everyone will need the ‘R Framework’ component: the remaining components are optional. (The ‘Tcl/Tk’ component is needed to use package <strong>tcltk</strong>. The ‘Texinfo’ component is only needed by those installing source packages or R from its sources.)</p>
@@ -383,7 +383,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="multiple-versions" class="level2 section" data-number="4.3">
 <h2 class="section anchored" data-number="4.3" data-anchor-id="multiple-versions"><span class="header-section-number">4.3</span> Multiple versions</h2>
-<p>The installer will remove any previous version<a href="#FOOT26" id="DOCF26" class="footnote"><sup>26</sup></a> of the R framework which it finds installed. This can be avoided by using <code class="command">pkgutil --forget</code> (see the previous section). However, note that different versions are installed under <samp class="file">/Library/Frameworks/R.framework/Versions</samp> as <samp class="file">4.6-arm64</samp> (or <samp class="file">4.6-x86_64</samp>), <samp class="file">4.5-arm64</samp> and so on, so it is not possible to have different <samp class="samp">4.x.y</samp>’ versions installed for the same <samp class="samp">x</samp>’ and CPU type.</p>
+<p>The installer will remove any previous version<a href="#FOOT26" id="DOCF26" class="footnote"><sup>26</sup></a> of the R framework which it finds installed. This can be avoided by using <code class="command">pkgutil --forget</code> (see the previous section). However, note that different versions are installed under <samp class="file">/Library/Frameworks/R.framework/Versions</samp> as <samp class="file">4.6</samp> (or <samp class="file">4.6-x86_64</samp>), <samp class="file">4.5-arm64</samp> and so on, so it is not possible to have different <samp class="samp">4.x.y</samp>’ versions installed for the same <samp class="samp">x</samp>’ and CPU type.</p>
 <p><span class="small">R.APP</span> will always run the ‘current’ version of R, that is the last installed version.</p>
 
 </section>

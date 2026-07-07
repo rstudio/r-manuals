@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -76,10 +76,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c6d0646a9ead07a9d07dac1f9cce7a51.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ab260483c5796bfec43a6aa875aaccf2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -405,9 +405,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <dd>
 <p>Entry points which are documented in this manual and declared in an installed header file. These can be used in distributed packages and ideally will only be changed after deprecation. See <a href="API-index.html" class="xref">API index</a>.</p>
 </dd>
-<dt><em>public</em></dt>
+<dt><em>experimental</em></dt>
 <dd>
-<p>Entry points declared in an installed header file that are exported on all R platforms but are not documented and subject to change without notice. Do not use these in distributed code. Their declarations will eventually be moved out of installed header files.</p>
+<p>Entry points declared in an installed header file that are part of an experimental API, such as <samp class="file">R_ext/Altrep.h</samp>. These are subject to change, so package authors wishing to use these should be prepared to adapt. See <a href="Experimental-API-index.html" class="xref">Experimental API index</a>. <span id="index-R_005fext_002fAltrep_002eh-1" class="index-entry-id"></span></p>
+</dd>
+<dt><em>embedding</em></dt>
+<dd>
+<p>Entry points intended primarily for embedding and creating new front-ends. It is not clear that this needs to be a separate category, but it may be useful to keep it separate for now. See <a href="Embedding-API-index.html" class="xref">Embedding API index</a>.</p>
 </dd>
 <dt><em>private</em></dt>
 <dd>
@@ -417,15 +421,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <dd>
 <p>Entry points that are where possible (Windows and some modern Unix-alike compilers/loaders when using R as a shared library) not exported.</p>
 </dd>
-<dt><em>experimental</em></dt>
-<dd>
-<p>Entry points declared in an installed header file that are part of an experimental API, such as <samp class="file">R_ext/Altrep.h</samp>. These are subject to change, so package authors wishing to use these should be prepared to adapt. See <a href="Experimental-API-index.html" class="xref">Experimental API index</a>.</p>
-</dd>
-<dt><em>embedding</em></dt>
-<dd>
-<p>Entry points intended primarily for embedding and creating new front-ends. It is not clear that this needs to be a separate category but it may be useful to keep it separate for now. See <a href="Embedding-API-index.html" class="xref">Embedding API index</a>.</p>
-</dd>
 </dl>
+<p>As of R 4.6.0 there should no longer be any entry points or variables declared in installed header files that are not part of one of the API groups.</p>
 <p>If you would like to use an entry point or variable that is not identified as part of the API in this document, or is currently hidden, you can make a request for it to be made available. Entry points or variables not identified as in the API may be changed or removed with no notice as part of efforts to improve aspects of R.</p>
 <p><strong>Work in progress:</strong> Currently Entry points in the API are identified in the source for this document with <code class="code">@apifun</code>, <code class="code">@eapifun</code>, and <code class="code">@embfun</code> entries. Similarly, <code class="code">@apivar</code>, <code class="code">@eapivar</code>, and <code class="code">@embvar</code> identify variables, and <code class="code">@apihdr</code>, <code class="code">@eapihdr</code>, and <code class="code">@embhdr</code> identify headers in the API. <code class="code">@forfun</code> identifies entry points to be called as Fortran subroutines. This could be used for programmatic extraction, but the specific format is work in progress and even the way this document is produced is subject to change.</p>
 <section id="memory-allocation" class="level2 section" data-number="6.1">
@@ -921,7 +918,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>(If remapping is suppressed, the Normal distribution names are <code class="code">Rf_dnorm4</code>, <code class="code">Rf_pnorm5</code> and <code class="code">Rf_qnorm5</code>.)</p>
 <p>Additionally, a <em>multivariate</em> RNG for the multinomial distribution is</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> Rf_rmultinom<span class="op">(</span><span class="dt">int</span> n<span class="op">,</span> <span class="dt">double</span><span class="op">*</span> prob<span class="op">,</span> <span class="dt">int</span> K<span class="op">,</span> <span class="dt">int</span><span class="op">*</span> rN<span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>where <code class="code">K = length(prob)</code>, sum(prob[.]) == 1 and <code class="code">rN</code> must point to a length-<code class="code">K</code> integer vector n1 n2 .. nK where each entry nj=<code class="code">rN[j]</code> is “filled” by a random binomial from Bin(n; prob[j]), constrained to sum(rN[.]) == n.&nbsp;<span id="index-rmultinom" class="index-entry-id"></span> <span id="index-rmultinom-1" class="index-entry-id"></span></p>
+<p>where <code class="code">K = length(prob)</code>, sum(prob[.]) == 1 and <code class="code">rN</code> must point to a length-<code class="code">K</code> integer vector n1 n2 .. nK where each entry nj=<code class="code">rN[j]</code> is “filled” by a random binomial from Bin(n; prob[j]), constrained to sum(rN[.]) == n.&nbsp;<span id="index-Rf_005frmultinom" class="index-entry-id"></span> <span id="index-Rf_005frmultinom-1" class="index-entry-id"></span></p>
 <p>After calls to <code class="code">dwilcox</code>, <code class="code">pwilcox</code> or <code class="code">qwilcox</code> the function <code class="code">wilcox_free()</code> should be called, and similarly <code class="code">signrank_free()</code> for the signed rank functions. <span id="index-wilcox_005ffree" class="index-entry-id"></span> <span id="index-wilcox_005ffree-1" class="index-entry-id"></span> <span id="index-signrank_005ffree" class="index-entry-id"></span> <span id="index-signrank_005ffree-1" class="index-entry-id"></span> Since <code class="code">wilcox_free()</code> and <code class="code">signrank_free()</code> were only added to <samp class="file">Rmath.h</samp> in R&nbsp; 4.2.0, their use requires something like</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"Rmath.h"</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">"Rversion.h"</span></span>
@@ -938,39 +935,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="mathematical-functions" class="level3 subsection" data-number="6.7.2">
 <h3 class="subsection anchored" data-number="6.7.2" data-anchor-id="mathematical-functions"><span class="header-section-number">6.7.2</span> Mathematical functions</h3>
-<p><span id="index-Gamma-function" class="index-entry-id"></span> <span id="index-Polygamma-functions" class="index-entry-id"></span> <span id="index-gammafn" class="index-entry-id"></span> <span id="index-gammafn-1" class="index-entry-id"></span> <span id="index-lgammafn" class="index-entry-id"></span></p>
-<p><span id="index-trigamma-1" class="index-entry-id"></span> <span id="index-tetragamma" class="index-entry-id"></span> <span id="index-tetragamma-1" class="index-entry-id"></span> <span id="index-pentagamma" class="index-entry-id"></span> <span id="index-pentagamma-1" class="index-entry-id"></span> <span id="index-psigamma" class="index-entry-id"></span></p>
-<p><span class="category-def">Function:</span><code class="def-type">double</code> <strong>gammafn</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">)</code><br>
-<span class="category-def">Function:</span><code class="def-type">double</code> <strong>lgammafn</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">)</code><br>
-<span class="category-def">Function:</span><code class="def-type">double</code> <strong>digamma</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">)</code><br>
-<span class="category-def">Function:</span><code class="def-type">double</code> <strong>trigamma</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">)</code><br>
-<span class="category-def">Function:</span><code class="def-type">double</code> <strong>tetragamma</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">)</code><br>
-<span class="category-def">Function:</span><code class="def-type">double</code> <strong>pentagamma</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">)</code><br>
-<span class="category-def">Function:</span><code class="def-type">double</code> <strong>psigamma</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">, double</code><var class="var">deriv</var><code class="def-code-arguments">)</code><br>
-<span class="category-def">Function:</span><code class="def-type">void</code> <strong>dpsifn</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">, int</code><var class="var">n</var><code class="def-code-arguments">, int</code><var class="var">kode</var><code class="def-code-arguments">, int</code><var class="var">m</var><code class="def-code-arguments">, double*</code><var class="var">ans</var><code class="def-code-arguments">, int*</code><var class="var">nz</var><code class="def-code-arguments">, int*</code><var class="var">ierr</var><code class="def-code-arguments">)</code></p>
-<p>: The Gamma function, the natural logarithm of its absolute value and first four derivatives and the n-th derivative of Psi, the digamma function, which is the derivative of <code class="code">lgammafn</code>. In other words, <code class="code">digamma(x)</code> is the same as <code class="code">psigamma(x,0)</code>, <code class="code">trigamma(x) == psigamma(x,1)</code>, etc. The underlying workhorse, <code class="code">dpsifn()</code>, is useful, e.g., when several derivatives of log Gamma=<code class="code">lgammafn</code> are desired. It computes and returns in <code class="code">ans[]</code> the length-<var class="var">m</var> sequence (-1)^(k+1) / gamma(k+1) * psi(k;x) for k = n ... n+m-1, where psi(k;x) is the k-th derivative of Psi(x), i.e., <code class="code">psigamma(x,k)</code>. For more details, see the comments in <samp class="file">src/nmath/polygamma.c</samp>.</p>
-<p><span class="category-def">Function:</span><code class="def-type">double</code> <strong>beta</strong> <code class="def-code-arguments">(double</code><var class="var">a</var><code class="def-code-arguments">, double</code><var class="var">b</var><code class="def-code-arguments">)</code><br>
-<span class="category-def">Function:</span><code class="def-type">double</code> <strong>lbeta</strong> <code class="def-code-arguments">(double</code><var class="var">a</var><code class="def-code-arguments">, double</code><var class="var">b</var><code class="def-code-arguments">)</code></p>
+<p><span id="index-Gamma-function" class="index-entry-id"></span> <span id="index-Polygamma-functions" class="index-entry-id"></span> <span id="index-Rf_005fgammafn" class="index-entry-id"></span> <span id="index-Rf_005fgammafn-1" class="index-entry-id"></span> <span id="index-Rf_005flgammafn" class="index-entry-id"></span> <span id="index-Rf_005flgammafn-1" class="index-entry-id"></span> <span id="index-Rf_005fdigamma" class="index-entry-id"></span> <span id="index-Rf_005fdigamma-1" class="index-entry-id"></span> <span id="index-Rf_005ftrigamma" class="index-entry-id"></span> <span id="index-Rf_005ftrigamma-1" class="index-entry-id"></span> <span id="index-Rf_005ftetragamma" class="index-entry-id"></span> <span id="index-Rf_005ftetragamma-1" class="index-entry-id"></span></p>
+<p><span id="index-Rf_005fpentagamma-1" class="index-entry-id"></span> <span id="index-Rf_005fpsigamma" class="index-entry-id"></span> <span id="index-Rf_005fpsigamma-1" class="index-entry-id"></span> <span id="index-Rf_005fdpsifn" class="index-entry-id"></span> <span id="index-Rf_005fdpsifn-1" class="index-entry-id"></span></p>
+<p><span class="category-def">Function:</span><code class="def-type">double</code> <strong>Rf_gammafn</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">)</code><br>
+<span class="category-def">Function:</span><code class="def-type">double</code> <strong>Rf_lgammafn</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">)</code><br>
+<span class="category-def">Function:</span><code class="def-type">double</code> <strong>Rf_digamma</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">)</code><br>
+<span class="category-def">Function:</span><code class="def-type">double</code> <strong>Rf_trigamma</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">)</code><br>
+<span class="category-def">Function:</span><code class="def-type">double</code> <strong>Rf_tetragamma</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">)</code><br>
+<span class="category-def">Function:</span><code class="def-type">double</code> <strong>Rf_pentagamma</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">)</code><br>
+<span class="category-def">Function:</span><code class="def-type">double</code> <strong>Rf_psigamma</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">, double</code><var class="var">deriv</var><code class="def-code-arguments">)</code><br>
+<span class="category-def">Function:</span><code class="def-type">void</code> <strong>Rf_dpsifn</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">, int</code><var class="var">n</var><code class="def-code-arguments">, int</code><var class="var">kode</var><code class="def-code-arguments">, int</code><var class="var">m</var><code class="def-code-arguments">, double*</code><var class="var">ans</var><code class="def-code-arguments">, int*</code><var class="var">nz</var><code class="def-code-arguments">, int*</code><var class="var">ierr</var><code class="def-code-arguments">)</code></p>
+<p>: The Gamma function, the natural logarithm of its absolute value and first four derivatives and the n-th derivative of Psi, the digamma function, which is the derivative of <code class="code">Rf_lgammafn</code>. In other words, <code class="code">Rf_digamma(x)</code> is the same as <code class="code">Rf_psigamma(x,0)</code>, <code class="code">Rf_trigamma(x) == Rf_psigamma(x,1)</code>, etc. The underlying workhorse, <code class="code">Rf_dpsifn()</code>, is useful, e.g., when several derivatives of log Gamma=<code class="code">Rf_lgammafn</code> are desired. It computes and returns in <code class="code">ans[]</code> the length-<var class="var">m</var> sequence (-1)^(k+1) / Gamma(k+1) * psi(k;x) for k = n ... n+m-1, where psi(k;x) is the k-th derivative of Psi(x), i.e., <code class="code">Rf_psigamma(x,k)</code>. For more details, see the comments in <samp class="file">src/nmath/polygamma.c</samp>.</p>
+<p><span id="index-Beta-function" class="index-entry-id"></span> <span id="index-Rf_005fbeta" class="index-entry-id"></span> <span id="index-Rf_005fbeta-1" class="index-entry-id"></span> <span id="index-Rf_005flbeta" class="index-entry-id"></span> <span id="index-Rf_005flbeta-1" class="index-entry-id"></span></p>
+<p><span class="category-def">Function:</span><code class="def-type">double</code> <strong>Rf_beta</strong> <code class="def-code-arguments">(double</code><var class="var">a</var><code class="def-code-arguments">, double</code><var class="var">b</var><code class="def-code-arguments">)</code><br>
+<span class="category-def">Function:</span><code class="def-type">double</code> <strong>Rf_lbeta</strong> <code class="def-code-arguments">(double</code><var class="var">a</var><code class="def-code-arguments">, double</code><var class="var">b</var><code class="def-code-arguments">)</code></p>
 <p>: The (complete) Beta function and its natural logarithm.</p>
-<p><span class="category-def">Function:</span><code class="def-type">double</code> <strong>choose</strong> <code class="def-code-arguments">(double</code><var class="var">n</var><code class="def-code-arguments">, double</code><var class="var">k</var><code class="def-code-arguments">)</code><br>
-<span class="category-def">Function:</span><code class="def-type">double</code> <strong>lchoose</strong> <code class="def-code-arguments">(double</code><var class="var">n</var><code class="def-code-arguments">, double</code><var class="var">k</var><code class="def-code-arguments">)</code></p>
+<p><span id="index-Rf_005fchoose" class="index-entry-id"></span> <span id="index-Rf_005fchoose-1" class="index-entry-id"></span> <span id="index-Rf_005flchoose" class="index-entry-id"></span></p>
+<p><span class="category-def">Function:</span><code class="def-type">double</code> <strong>Rf_choose</strong> <code class="def-code-arguments">(double</code><var class="var">n</var><code class="def-code-arguments">, double</code><var class="var">k</var><code class="def-code-arguments">)</code><br>
+<span class="category-def">Function:</span><code class="def-type">double</code> <strong>Rf_lchoose</strong> <code class="def-code-arguments">(double</code><var class="var">n</var><code class="def-code-arguments">, double</code><var class="var">k</var><code class="def-code-arguments">)</code></p>
 <p>: The number of combinations of <var class="var">k</var> items chosen from <var class="var">n</var> and the natural logarithm of its absolute value, generalized to arbitrary real <var class="var">n</var>. <var class="var">k</var> is rounded to the nearest integer (with a warning if needed).</p>
-<p><span id="index-Bessel-functions" class="index-entry-id"></span> <span id="index-bessel_005fi" class="index-entry-id"></span> <span id="index-bessel_005fi-1" class="index-entry-id"></span> <span id="index-bessel_005fj" class="index-entry-id"></span> <span id="index-bessel_005fj-1" class="index-entry-id"></span> <span id="index-bessel_005fk" class="index-entry-id"></span> <span id="index-bessel_005fk-1" class="index-entry-id"></span> <span id="index-bessel_005fy" class="index-entry-id"></span> <span id="index-bessel_005fy-1" class="index-entry-id"></span></p>
-<p><span class="category-def">Function:</span><code class="def-type">double</code> <strong>bessel_i</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">, double</code><var class="var">nu</var><code class="def-code-arguments">, double</code><var class="var">expo</var><code class="def-code-arguments">)</code><br>
-<span class="category-def">Function:</span><code class="def-type">double</code> <strong>bessel_j</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">, double</code><var class="var">nu</var><code class="def-code-arguments">)</code><br>
-<span class="category-def">Function:</span><code class="def-type">double</code> <strong>bessel_k</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">, double</code><var class="var">nu</var><code class="def-code-arguments">, double</code><var class="var">expo</var><code class="def-code-arguments">)</code><br>
-<span class="category-def">Function:</span><code class="def-type">double</code> <strong>bessel_y</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">, double</code><var class="var">nu</var><code class="def-code-arguments">)</code></p>
-<p>: Bessel functions of types I, J, K and Y with index <var class="var">nu</var>. For <code class="code">bessel_i</code> and <code class="code">bessel_k</code> there is the option to return exp(-<var class="var">x</var>)&nbsp;I(<var class="var">x</var>;&nbsp;<var class="var">nu</var>) or exp(<var class="var">x</var>)&nbsp;K(<var class="var">x</var>;&nbsp;<var class="var">nu</var>) if <var class="var">expo</var> is 2. (Use <var class="var">expo</var><code class="code">== 1</code> for unscaled values.)</p>
+<p><span class="category-def">Function:</span><code class="def-type">double</code> <strong>Rf_bessel_i</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">, double</code><var class="var">nu</var><code class="def-code-arguments">, double</code><var class="var">expo</var><code class="def-code-arguments">)</code><br>
+<span class="category-def">Function:</span><code class="def-type">double</code> <strong>Rf_bessel_j</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">, double</code><var class="var">nu</var><code class="def-code-arguments">)</code><br>
+<span class="category-def">Function:</span><code class="def-type">double</code> <strong>Rf_bessel_k</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">, double</code><var class="var">nu</var><code class="def-code-arguments">, double</code><var class="var">expo</var><code class="def-code-arguments">)</code><br>
+<span class="category-def">Function:</span><code class="def-type">double</code> <strong>Rf_bessel_y</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">, double</code><var class="var">nu</var><code class="def-code-arguments">)</code></p>
+<p>: Bessel functions of types I, J, K and Y with index <var class="var">nu</var>. For <code class="code">Rf_bessel_i</code> and <code class="code">Rf_bessel_k</code> there is the option to return exp(-<var class="var">x</var>)&nbsp;I(<var class="var">x</var>;&nbsp;<var class="var">nu</var>) or exp(<var class="var">x</var>)&nbsp;K(<var class="var">x</var>;&nbsp;<var class="var">nu</var>) if <var class="var">expo</var> is 2. (Use <var class="var">expo</var><code class="code">== 1</code> for unscaled values.)</p>
 </section>
 <section id="numerical-utilities" class="level3 subsection" data-number="6.7.3">
 <h3 class="subsection anchored" data-number="6.7.3" data-anchor-id="numerical-utilities"><span class="header-section-number">6.7.3</span> Numerical Utilities</h3>
 <p>There are a few other numerical utility functions available as entry points.</p>
-<p><span id="index-R_005fpow" class="index-entry-id"></span> <span id="index-R_005fpow-1" class="index-entry-id"></span> <span id="index-R_005fpow_005fdi" class="index-entry-id"></span> <span id="index-R_005fpow_005fdi-1" class="index-entry-id"></span> <span id="index-pow1p" class="index-entry-id"></span> <span id="index-pow1p-1" class="index-entry-id"></span></p>
+<p><span id="index-R_005fpow" class="index-entry-id"></span> <span id="index-R_005fpow-1" class="index-entry-id"></span> <span id="index-R_005fpow_005fdi" class="index-entry-id"></span> <span id="index-R_005fpow_005fdi-1" class="index-entry-id"></span> <span id="index-Rf_005fpow1p" class="index-entry-id"></span> <span id="index-Rf_005fpow1p-1" class="index-entry-id"></span></p>
 <p><span class="category-def">Function:</span><code class="def-type">double</code> <strong>R_pow</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">, double</code><var class="var">y</var><code class="def-code-arguments">)</code><br>
 <span class="category-def">Function:</span><code class="def-type">double</code> <strong>R_pow_di</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">, int</code><var class="var">i</var><code class="def-code-arguments">)</code><br>
-<span class="category-def">Function:</span><code class="def-type">double</code> <strong>pow1p</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">, double</code><var class="var">y</var><code class="def-code-arguments">)</code></p>
+<span class="category-def">Function:</span><code class="def-type">double</code> <strong>Rf_pow1p</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">, double</code><var class="var">y</var><code class="def-code-arguments">)</code></p>
 <p>: <code class="code">R_pow(</code><var class="var">x</var><code class="code">,</code><var class="var">y</var><code class="code">)</code> and <code class="code">R_pow_di(</code><var class="var">x</var><code class="code">,</code><var class="var">i</var><code class="code">)</code> compute <var class="var">x</var><code class="code">^</code><var class="var">y</var> and <var class="var">x</var><code class="code">^</code><var class="var">i</var>, respectively using <code class="code">R_FINITE</code> checks and returning the proper result (the same as R) for the cases where <var class="var">x</var>, <var class="var">y</var> or <var class="var">i</var> are 0 or missing or infinite or <code class="code">NaN</code>.</p>
-<pre><code>`pow1p(`{.code}`x`{.variable .var}`, `{.code}`y`{.variable
+<pre><code>`Rf_pow1p(`{.code}`x`{.variable .var}`, `{.code}`y`{.variable
 .var}`)`{.code} computes `(1 + `{.code}`x`{.variable
 .var}`)^`{.code}`y`{.variable .var}, accurately even for small
 `x`{.variable .var}, i.e., \|x\| \&lt;\&lt; 1.</code></pre>
@@ -980,21 +978,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Computes <code class="code">log(1 +</code><var class="var">x</var><code class="code">)</code> (<em>log 1 <strong>p</strong>lus x</em>), accurately even for small <var class="var">x</var>, i.e., |x| &lt;&lt; 1.</p>
 <p>This should be provided by your platform, in which case it is not included in <samp class="file">Rmath.h</samp>, but is (probably) in <samp class="file">math.h</samp> which <samp class="file">Rmath.h</samp> includes (except under C++, so it may not be declared for C++98).</p>
 </dd>
-<dt><span class="category-def">Function:</span><code class="def-type">double</code> <strong>log1pmx</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">)</code></dt>
+</dl>
+<p><span id="index-Rf_005flog1pmx" class="index-entry-id"></span> <span id="index-Rf_005flog1pmx-1" class="index-entry-id"></span></p>
+<dl>
+<dt><span class="category-def">Function:</span><code class="def-type">double</code> <strong>Rf_log1pmx</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">)</code></dt>
 <dd>
 <p>Computes <code class="code">log(1 +</code><var class="var">x</var><code class="code">) -</code><var class="var">x</var> (<em>log 1 <strong>p</strong>lus x <strong>m</strong>inus <strong>x</strong></em>), accurately even for small <var class="var">x</var>, i.e., |x| &lt;&lt; 1.</p>
 </dd>
 </dl>
-<p><span id="index-log1pexp" class="index-entry-id"></span> <span id="index-log1pexp-1" class="index-entry-id"></span></p>
+<p><span id="index-Rf_005flog1pexp" class="index-entry-id"></span> <span id="index-Rf_005flog1pexp-1" class="index-entry-id"></span></p>
 <dl>
-<dt><span class="category-def">Function:</span><code class="def-type">double</code> <strong>log1pexp</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">)</code></dt>
+<dt><span class="category-def">Function:</span><code class="def-type">double</code> <strong>Rf_log1pexp</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">)</code></dt>
 <dd>
 <p>Computes <code class="code">log(1 + exp(</code><var class="var">x</var><code class="code">))</code> (<em>log 1 <strong>p</strong>lus <strong>exp</strong></em>), accurately, notably for large <var class="var">x</var>, e.g., x &gt; 720.</p>
 </dd>
 </dl>
-<p><span id="index-log1mexp" class="index-entry-id"></span> <span id="index-log1mexp-1" class="index-entry-id"></span></p>
+<p><span id="index-Rf_005flog1mexp" class="index-entry-id"></span> <span id="index-Rf_005flog1mexp-1" class="index-entry-id"></span></p>
 <dl>
-<dt><span class="category-def">Function:</span><code class="def-type">double</code> <strong>log1mexp</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">)</code></dt>
+<dt><span class="category-def">Function:</span><code class="def-type">double</code> <strong>Rf_log1mexp</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">)</code></dt>
 <dd>
 <p>Computes <code class="code">log(1 - exp(</code><var class="var">-x</var><code class="code">))</code> (<em>log 1 <strong>m</strong>inus <strong>exp</strong></em>), accurately, carefully for two regions of <var class="var">x</var>, optimally cutting off at log 2 (= 0.693147..), using <code class="code">((-x) &gt; -M_LN2 ? log(-expm1(-x)) : log1p(-exp(-x)))</code>.</p>
 </dd>
@@ -1004,9 +1005,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This should be provided by your platform, in which case it is not included in <samp class="file">Rmath.h</samp>, but is (probably) in <samp class="file">math.h</samp> which <samp class="file">Rmath.h</samp> includes (except under C++, so it may not be declared for C++98).</p>
 </dd>
 </dl>
-<p><span id="index-lgamma1p" class="index-entry-id"></span> <span id="index-lgamma1p-1" class="index-entry-id"></span></p>
+<p><span id="index-Rf_005flgamma1p" class="index-entry-id"></span> <span id="index-Rf_005flgamma1p-1" class="index-entry-id"></span></p>
 <dl>
-<dt><span class="category-def">Function:</span><code class="def-type">double</code> <strong>lgamma1p</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">)</code></dt>
+<dt><span class="category-def">Function:</span><code class="def-type">double</code> <strong>Rf_lgamma1p</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">)</code></dt>
 <dd>
 <p>Computes <code class="code">log(gamma(</code><var class="var">x</var><code class="code">+ 1))</code> (<em>log(gamma(1 <strong>p</strong>lus x))</em>), accurately even for small <var class="var">x</var>, i.e., 0 &lt; x &lt; 0.5.</p>
 </dd>
@@ -1031,38 +1032,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Computes <code class="code">tan(pi * x)</code> accurately for integer <var class="var">x</var> with possibly platform dependent behavior for half (and quarter) integers. This might be provided by your platform, in which case it is not included in <samp class="file">Rmath.h</samp>, but is in <samp class="file">math.h</samp> which <samp class="file">Rmath.h</samp> includes (but see the comments for <code class="code">cospi</code>).</p>
 </dd>
 </dl>
-<p><span id="index-logspace_005fadd" class="index-entry-id"></span> <span id="index-logspace_005fadd-1" class="index-entry-id"></span> <span id="index-logspace_005fsub" class="index-entry-id"></span> <span id="index-logspace_005fsub-1" class="index-entry-id"></span> <span id="index-logspace_005fsum" class="index-entry-id"></span> <span id="index-logspace_005fsum-1" class="index-entry-id"></span></p>
-<p><span class="category-def">Function:</span><code class="def-type">double</code> <strong>logspace_add</strong> <code class="def-code-arguments">(double</code><var class="var">logx</var><code class="def-code-arguments">, double</code><var class="var">logy</var><code class="def-code-arguments">)</code><br>
-<span class="category-def">Function:</span><code class="def-type">double</code> <strong>logspace_sub</strong> <code class="def-code-arguments">(double</code><var class="var">logx</var><code class="def-code-arguments">, double</code><var class="var">logy</var><code class="def-code-arguments">)</code><br>
-<span class="category-def">Function:</span><code class="def-type">double</code> <strong>logspace_sum</strong> <code class="def-code-arguments">(const double*</code><var class="var">logx</var><code class="def-code-arguments">, int</code><var class="var">n</var><code class="def-code-arguments">)</code></p>
+<p><span class="category-def">Function:</span><code class="def-type">double</code> <strong>Rf_logspace_add</strong> <code class="def-code-arguments">(double</code><var class="var">logx</var><code class="def-code-arguments">, double</code><var class="var">logy</var><code class="def-code-arguments">)</code><br>
+<span class="category-def">Function:</span><code class="def-type">double</code> <strong>Rf_logspace_sub</strong> <code class="def-code-arguments">(double</code><var class="var">logx</var><code class="def-code-arguments">, double</code><var class="var">logy</var><code class="def-code-arguments">)</code><br>
+<span class="category-def">Function:</span><code class="def-type">double</code> <strong>Rf_logspace_sum</strong> <code class="def-code-arguments">(const double*</code><var class="var">logx</var><code class="def-code-arguments">, int</code><var class="var">n</var><code class="def-code-arguments">)</code></p>
 <p>: Compute the log of a sum or difference from logs of terms, i.e., “x + y” as <code class="code">log (exp(</code><var class="var">logx</var><code class="code">) + exp(</code><var class="var">logy</var><code class="code">))</code> and “x - y” as <code class="code">log (exp(</code><var class="var">logx</var><code class="code">) - exp(</code><var class="var">logy</var><code class="code">))</code>, and “sum_i x[i]” as <code class="code">log (sum[i = 1:</code><var class="var">n</var><code class="code">exp(</code><var class="var">logx</var><code class="code">[i])] )</code> without causing unnecessary overflows or throwing away too much accuracy.</p>
-<p><span class="category-def">Function:</span><code class="def-type">int</code> <strong>imax2</strong> <code class="def-code-arguments">(int</code><var class="var">x</var><code class="def-code-arguments">, int</code><var class="var">y</var><code class="def-code-arguments">)</code><br>
-<span class="category-def">Function:</span><code class="def-type">int</code> <strong>imin2</strong> <code class="def-code-arguments">(int</code><var class="var">x</var><code class="def-code-arguments">, int</code><var class="var">y</var><code class="def-code-arguments">)</code><br>
-<span class="category-def">Function:</span><code class="def-type">double</code> <strong>fmax2</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">, double</code><var class="var">y</var><code class="def-code-arguments">)</code><br>
-<span class="category-def">Function:</span><code class="def-type">double</code> <strong>fmin2</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">, double</code><var class="var">y</var><code class="def-code-arguments">)</code></p>
+<p><span id="index-Rf_005fimax2" class="index-entry-id"></span> <span id="index-Rf_005fimax2-1" class="index-entry-id"></span> <span id="index-Rf_005fimin2" class="index-entry-id"></span> <span id="index-Rf_005fimin2-1" class="index-entry-id"></span> <span id="index-Rf_005ffmax2" class="index-entry-id"></span> <span id="index-Rf_005ffmax2-1" class="index-entry-id"></span> <span id="index-Rf_005ffmin2" class="index-entry-id"></span> <span id="index-Rf_005ffmin2-1" class="index-entry-id"></span></p>
+<p><span class="category-def">Function:</span><code class="def-type">int</code> <strong>Rf_imax2</strong> <code class="def-code-arguments">(int</code><var class="var">x</var><code class="def-code-arguments">, int</code><var class="var">y</var><code class="def-code-arguments">)</code><br>
+<span class="category-def">Function:</span><code class="def-type">int</code> <strong>Rf_imin2</strong> <code class="def-code-arguments">(int</code><var class="var">x</var><code class="def-code-arguments">, int</code><var class="var">y</var><code class="def-code-arguments">)</code><br>
+<span class="category-def">Function:</span><code class="def-type">double</code> <strong>Rf_fmax2</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">, double</code><var class="var">y</var><code class="def-code-arguments">)</code><br>
+<span class="category-def">Function:</span><code class="def-type">double</code> <strong>Rf_fmin2</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">, double</code><var class="var">y</var><code class="def-code-arguments">)</code></p>
 <p>: Return the larger (<code class="code">max</code>) or smaller (<code class="code">min</code>) of two integer or double numbers, respectively. Note that <code class="code">fmax2</code> and <code class="code">fmin2</code> differ from C99/C++11’s <code class="code">fmax</code> and <code class="code">fmin</code> when one of the arguments is a <code class="code">NaN</code>: these versions return <code class="code">NaN</code>.</p>
 <!-- -->
 <dl>
-<dt><span class="category-def">Function:</span><code class="def-type">double</code> <strong>sign</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">)</code></dt>
+<dt><span class="category-def">Function:</span><code class="def-type">double</code> <strong>Rf_sign</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">)</code></dt>
 <dd>
-<p><span id="index-sign" class="index-entry-id"></span> <span id="index-sign-2" class="index-entry-id"></span></p>
+<p><span id="index-Rf_005fsign" class="index-entry-id"></span> <span id="index-Rf_005fsign-2" class="index-entry-id"></span></p>
 <p>Compute the <em>signum</em> function, where sign(<var class="var">x</var>) is 1, 0, or <em>-1</em>, when <var class="var">x</var> is positive, 0, or negative, respectively, and <code class="code">NaN</code> if <code class="code">x</code> is a <code class="code">NaN</code>.</p>
 </dd>
-<dt><span class="category-def">Function:</span><code class="def-type">double</code> <strong>fsign</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">, double</code><var class="var">y</var><code class="def-code-arguments">)</code></dt>
+</dl>
+<p><span id="index-Rf_005ffsign" class="index-entry-id"></span> <span id="index-Rf_005ffsign-1" class="index-entry-id"></span></p>
+<dl>
+<dt><span class="category-def">Function:</span><code class="def-type">double</code> <strong>Rf_fsign</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">, double</code><var class="var">y</var><code class="def-code-arguments">)</code></dt>
 <dd>
 <p>Performs “transfer of sign” and is defined as |x| * sign(y).</p>
 </dd>
-<dt><span class="category-def">Function:</span><code class="def-type">double</code> <strong>fprec</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">, double</code><var class="var">digits</var><code class="def-code-arguments">)</code></dt>
+</dl>
+<p><span id="index-Rf_005ffprec" class="index-entry-id"></span> <span id="index-Rf_005ffprec-1" class="index-entry-id"></span></p>
+<dl>
+<dt><span class="category-def">Function:</span><code class="def-type">double</code> <strong>Rf_fprec</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">, double</code><var class="var">digits</var><code class="def-code-arguments">)</code></dt>
 <dd>
 <p>Returns the value of <var class="var">x</var> rounded to <var class="var">digits</var> <em>significant</em> decimal digits.</p>
 <p>This is the function used by R’s <code class="code">signif()</code>.</p>
 </dd>
-<dt><span class="category-def">Function:</span><code class="def-type">double</code> <strong>fround</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">, double</code><var class="var">digits</var><code class="def-code-arguments">)</code></dt>
+</dl>
+<p><span id="index-Rf_005ffround" class="index-entry-id"></span> <span id="index-Rf_005ffround-1" class="index-entry-id"></span></p>
+<dl>
+<dt><span class="category-def">Function:</span><code class="def-type">double</code> <strong>Rf_fround</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">, double</code><var class="var">digits</var><code class="def-code-arguments">)</code></dt>
 <dd>
 <p>Returns the value of <var class="var">x</var> rounded to <var class="var">digits</var> decimal digits (after the decimal point).</p>
 <p>This is the function used by R’s <code class="code">round()</code>. (Note that C99/C++11 provide a <code class="code">round</code> function but C++98 need not.)</p>
 </dd>
-<dt><span class="category-def">Function:</span><code class="def-type">double</code> <strong>ftrunc</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">)</code></dt>
+</dl>
+<p><span id="index-Rf_005fftrunc" class="index-entry-id"></span> <span id="index-Rf_005fftrunc-1" class="index-entry-id"></span></p>
+<dl>
+<dt><span class="category-def">Function:</span><code class="def-type">double</code> <strong>Rf_ftrunc</strong> <code class="def-code-arguments">(double</code><var class="var">x</var><code class="def-code-arguments">)</code></dt>
 <dd>
 <p>Returns the value of <var class="var">x</var> truncated (to an integer value) towards zero.</p>
 </dd>
@@ -1374,15 +1387,12 @@ There is also an `F77_CALL(interv)()`{.code} version of
 <dd>
 <p>Expand a path name <var class="var">fn</var> by replacing a leading tilde by the user’s home directory (if defined). The precise meaning is platform-specific; it will usually be taken from the environment variable <code class="env">HOME</code> if this is defined.</p>
 </dd>
-</dl>
-<p><span id="index-acopy_005fstring" class="index-entry-id"></span> <span id="index-acopy_005fstring-1" class="index-entry-id"></span></p>
-<dl>
-<dt><span class="category-def">Function:</span><code class="def-type">const char *</code> <strong>acopy_string</strong> <code class="def-code-arguments">(const char *</code><var class="var">in</var><code class="def-code-arguments">)</code></dt>
+<dt><span class="category-def">Function:</span><code class="def-type">const char *</code> <strong>Rf_acopy_string</strong> <code class="def-code-arguments">(const char *</code><var class="var">in</var><code class="def-code-arguments">)</code></dt>
 <dd>
 <p>Return a copy of a string using memory from <code class="code">R_alloc</code>.</p>
 </dd>
 </dl>
-<p>For historical reasons there are Fortran interfaces to functions <code class="code">D1MACH</code> and <code class="code">I1MACH</code>. These can be called from C code as e.g.&nbsp;<code class="code">F77_CALL(d1mach)(4)</code>. Note that these are emulations of the original functions by Fox, Hall and Schryer on Netlib at <a href="https://netlib.org/slatec/src/" class="uref">https://netlib.org/slatec/src/</a> for IEC&nbsp;60559 arithmetic (required by R). <span id="index-d1mach" class="index-entry-id"></span> <span id="index-d1mach-1" class="index-entry-id"></span> <span id="index-i1mach" class="index-entry-id"></span> <span id="index-i1mach-1" class="index-entry-id"></span></p>
+<p>For historical reasons there are Fortran interfaces to functions <code class="code">D1MACH</code> and <code class="code">I1MACH</code>. These can be called from C code as e.g.&nbsp;<code class="code">F77_CALL(d1mach)(4)</code>. Note that these are emulations of the original functions by Fox, Hall and Schryer on Netlib at <a href="https://netlib.org/slatec/src/" class="uref">https://netlib.org/slatec/src/</a> for IEC&nbsp;60559 arithmetic (required by R). <span id="index-d1mach-1" class="index-entry-id"></span> <span id="index-d1mach" class="index-entry-id"></span> <span id="index-i1mach-1" class="index-entry-id"></span> <span id="index-i1mach" class="index-entry-id"></span></p>
 </section>
 <section id="linear-algebra" class="level2 section" data-number="6.11">
 <h2 class="section anchored" data-number="6.11" data-anchor-id="linear-algebra"><span class="header-section-number">6.11</span> Linear algebra</h2>
