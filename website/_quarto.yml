@@ -2,6 +2,7 @@ project:
   type: website
 website:
   title: R Manuals
+  site-url: https://rstudio.github.io/r-manuals/
   navbar:
     background: primary
     right:
