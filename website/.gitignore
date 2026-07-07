@@ -1,3 +1,5 @@
 /.quarto/
 _site
 custom.scss
+
+**/*.quarto_ipynb
