@@ -102,39 +102,54 @@ convert_to_md <- function(path = "temp", verbose = FALSE) {
 
 
 regex_replace <- function(x) {
-  x %>%
-    # remove empty hyperlinks [](...)
-    gsub("^\\[\\]\\{.*?\\}$", "", .) %>%
-    # remove {.sample}
-    gsub("`{.variable}`", "", ., fixed = TRUE) %>%
-    gsub("{.variable}", "", ., fixed = TRUE) %>%
-    gsub("`{.sample}`", "", ., fixed = TRUE) %>%
-    gsub("{.sample}", "", ., fixed = TRUE) %>%
-    # fix footnote cross-references
-    gsub("\\[\\^(\\d+)\\^\\]\\(#FOOT\\d+\\)\\{#DOCF\\d+\\}", "[^\\1]", .) %>%
-    gsub("\\[\\^(\\d+)\\^\\]\\(#FOOT\\d+\\)\\{#DOCF\\d+\\}", "[^\\1]", .) %>%
-    gsub("\\[\\((\\d+)\\)\\]\\(#DOCF\\d+\\)\\{#FOOT\\d+\\}", "[^\\1]", .) %>%
-    gsub("\\[\\((\\d+)\\)\\]\\(#DOCF\\d+\\)\\{#FOOT\\d+\\}", "[^\\1]", .) %>%
-    # Fix function definition lists
-    gsub("^(Function: .*)\\\\$", "\\1\n:    \n", .) %>%
-    gsub("^(`.*`)\\\\$", "\\1\n:    \n", .) %>%
-    # Fix indented codeblocks by adding a newline in front of them
-    gsub("(^\\s{4}``` [c|R]$)", "\n\\1", .) %>%
-    gsub("(^\\s{8}``` [c|R]$)", "\n\\1", .) %>%
-    # remove quote around backticks
-    gsub("('`|`')", "`", .) %>%
-    # insert missing colon in footnote references
-    gsub("^(\\[\\^\\d+\\])$", "\\1:", .) %>%
-    # replace double backtick `` occurrences
-    gsub(r"{(?<!`)``(?!`)}", "", ., perl = TRUE) %>%
-    # replace ellipsis
-    gsub("…", "...", .) %>%
-    # remove named sections
-    gsub("(^#+ .*?) {#.*? \\.(.*)}$", "\\1", ., perl = TRUE) %>%
-    gsub("\\[¶\\]\\(.*?\\)\\{\\.copiable-link\\}", "", ., perl = TRUE) %>%
+  # Multibyte characters are built with intToUtf8() rather than written as
+  # literals, so the patterns survive package loading in a non-UTF-8 locale
+  # (raw UTF-8 source literals get transcoded to "<U+XXXX>" escape text there).
+  ellipsis <- intToUtf8(0x2026) # …
+  pilcrow  <- intToUtf8(0x00b6) # ¶
 
+  # Ordered substitution rules applied to each line. Each rule is
+  # list(pattern, replacement) plus an optional fixed = / perl = / useBytes =
+  # flag. useBytes = TRUE makes multibyte patterns match regardless of locale.
+  rules <- list(
+    # remove empty hyperlinks [](...)
+    list("^\\[\\]\\{.*?\\}$", ""),
+    # remove {.variable}/{.sample} markers, with or without surrounding backticks
+    list("`?\\{\\.(variable|sample)\\}`?", "", perl = TRUE),
+    # fix footnote cross-references
+    list("\\[\\^(\\d+)\\^\\]\\(#FOOT\\d+\\)\\{#DOCF\\d+\\}", "[^\\1]"),
+    list("\\[\\((\\d+)\\)\\]\\(#DOCF\\d+\\)\\{#FOOT\\d+\\}", "[^\\1]"),
+    # fix function definition lists
+    list("^(Function: .*)\\\\$", "\\1\n:    \n"),
+    list("^(`.*`)\\\\$", "\\1\n:    \n"),
+    # fix indented codeblocks by adding a newline in front of them (4- or 8-space indent)
+    list("(^\\s{4}(?:\\s{4})?``` [cR]$)", "\n\\1"),
+    # remove quote around backticks
+    list("('`|`')", "`"),
+    # insert missing colon in footnote references
+    list("^(\\[\\^\\d+\\])$", "\\1:"),
+    # remove double backtick `` occurrences
+    list(r"{(?<!`)``(?!`)}", "", perl = TRUE),
+    # replace ellipsis (…); useBytes keeps this locale-independent
+    list(ellipsis, "...", useBytes = TRUE),
+    # remove named sections
+    list("(^#+ .*?) {#.*? \\.(.*)}$", "\\1", perl = TRUE),
+    # remove copiable-link pilcrow (¶) anchors, regardless of locale
+    list(paste0("\\[", pilcrow, "\\]\\(.*?\\)\\{\\.copiable-link\\}"), "",
+         perl = TRUE, useBytes = TRUE),
     # remember to remove this line and deal with it using Lua filters.
-    gsub("^:::.*$", "", .)
+    list("^:::.*$", "")
+  )
+
+  for (rule in rules) {
+    x <- gsub(
+      rule[[1]], rule[[2]], x,
+      fixed    = isTRUE(rule$fixed),
+      perl     = isTRUE(rule$perl),
+      useBytes = isTRUE(rule$useBytes)
+    )
+  }
+  x
 }
 
 regex_replace_md <- function(path = "temp", verbose = TRUE) {

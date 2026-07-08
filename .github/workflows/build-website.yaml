@@ -43,6 +43,9 @@ jobs:
 
       - uses: r-lib/actions/setup-renv@v2
 
+      - name: Run tests 🧪
+        run: Rscript -e 'testthat::test_local(stop_on_failure = TRUE)'
+
       - name: Build site 🔧
         run: Rscript scripts/build_website.R
 
