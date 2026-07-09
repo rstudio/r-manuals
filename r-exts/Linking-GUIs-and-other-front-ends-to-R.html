@@ -614,7 +614,7 @@ history mechanism is present, as a user may be calling
 <span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>    R_RunExitFinalizers<span class="op">();</span></span>
-<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* clean up after the editor e.g. Rf_CleanEd() */</span></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>    <span class="co">/* clean up after the editor e.g. CleanEd() */</span></span>
 <span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>    R_CleanTempDir<span class="op">();</span></span>
 <span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a></span>
@@ -626,7 +626,7 @@ history mechanism is present, as a user may be calling
 <span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </dd>
 </dl>
-<p><span id="index-Rf_005fCleanEd" class="index-entry-id"></span> <span id="index-Rf_005fCleanEd-1" class="index-entry-id"></span> <span id="index-R_005fCleanUp" class="index-entry-id"></span> <span id="index-R_005fCleanUp-2" class="index-entry-id"></span> <span id="index-fpu_005fsetup" class="index-entry-id"></span> <span id="index-fpu_005fsetup-1" class="index-entry-id"></span></p>
+<p><span id="index-Rf_005fKillAllDevices-1" class="index-entry-id"></span> <span id="index-CleanEd" class="index-entry-id"></span> <span id="index-CleanEd-1" class="index-entry-id"></span> <span id="index-R_005fCleanUp" class="index-entry-id"></span> <span id="index-R_005fCleanUp-2" class="index-entry-id"></span> <span id="index-fpu_005fsetup" class="index-entry-id"></span></p>
 <p>These callbacks should never be changed in a running R session (and hence cannot be called from an extension package).</p>
 <p><span class="category-def">Function:</span><code class="def-type">SEXP</code> <strong>R_dataentry</strong> <code class="def-code-arguments">(SEXP, SEXP, SEXP, SEXP);</code><br>
 <span class="category-def">Function:</span><code class="def-type">SEXP</code> <strong>R_dataviewer</strong> <code class="def-code-arguments">(SEXP, SEXP, SEXP, SEXP);</code><br>
