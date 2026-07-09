@@ -4,7 +4,7 @@
 \alias{build_main_website}
 \title{Build main website with all books.}
 \usage{
-build_main_website(manuals_folder = "manuals")
+build_main_website(manuals_folder = "manuals", all_manuals)
 }
 \arguments{
 \item{manuals_folder}{Defaults to "manuals"}

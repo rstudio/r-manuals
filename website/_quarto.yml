@@ -11,17 +11,17 @@ website:
     - text: Manuals
       menu:
       - href: r-intro/index.html
-        text: An Introduction to R ¶
+        text: An Introduction to R
       - href: r-data/index.html
-        text: R Data Import/Export ¶
+        text: R Data Import/Export
       - href: r-admin/index.html
-        text: R Installation and Administration ¶
+        text: R Installation and Administration
       - href: r-exts/index.html
-        text: Writing R Extensions ¶
+        text: Writing R Extensions
       - href: r-lang/index.html
-        text: The R Language Definition ¶
+        text: The R Language Definition
       - href: r-ints/index.html
-        text: R Internals ¶
+        text: R Internals
     - href: about.qmd
       text: About
 format:

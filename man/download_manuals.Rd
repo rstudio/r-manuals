@@ -7,7 +7,7 @@
 download_manuals(
   manual = "R-exts.texi",
   destdir = "data",
-  base_url = "https://raw.githubusercontent.com/wch/r-source/trunk"
+  base_url = "https://raw.githubusercontent.com/wch/r-source/refs/heads/trunk"
 )
 }
 \arguments{

@@ -17,7 +17,6 @@ VignetteBuilder:
     rmarkdown
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
 Imports: 
     brio,
     magrittr,
@@ -35,3 +34,4 @@ Imports:
     here,
     yaml
 Config/testthat/edition: 3
+Config/roxygen2/version: 8.0.0

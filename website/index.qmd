@@ -19,12 +19,8 @@ pkgload::load_all(here::here())
 
 ```{r}
 
-extract_title_from_index <- function(filename) {
-    xml2::read_html(filename) %>%
-    xml_find_all("//h1") %>%
-    xml_text() %>%
-    .[1]
-}
+# extract_title_from_index() comes from the loaded rmanuals package (see the
+# setup chunk above); it strips the copiable-link pilcrow from the <h1>.
 
 manual_info = c(
   `r-intro` = "Based on the former 'Notes on R', gives an introduction to the language and how to use R for doing statistical analysis and graphics.",

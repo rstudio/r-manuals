@@ -11,7 +11,8 @@ build_books(manuals_folder = "manuals", manuals, all_manuals, verbose = TRUE)
 
 \item{manuals}{Vector of manuals to build, e.g. \code{"R-intro.texi"}}
 
-\item{all_manuals}{Vector of all manuals, e.g. \code{c("R-intro.texi", "R-data.texi")}}
+\item{all_manuals}{Vector of all manuals, e.g.
+\code{c("R-intro.texi", "R-data.texi")}}
 }
 \description{
 Build books.
