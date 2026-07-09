@@ -4,18 +4,17 @@
 \alias{download_manuals}
 \title{Download manuals}
 \usage{
-download_manuals(
-  manual = "R-exts.texi",
-  destdir = "data",
-  base_url = "https://raw.githubusercontent.com/wch/r-source/refs/heads/trunk"
-)
+download_manuals(manual = "R-exts.texi", destdir = "data", r_ref = NULL)
 }
 \arguments{
 \item{manual}{Filename of manual to download. This should be the \code{.texi} file, e.g. \code{R-exts.texi}}
 
 \item{destdir}{Destination directory}
 
-\item{base_url}{Base URL}
+\item{r_ref}{Ref in the wch/r-source mirror to download from. \code{NULL} (the
+default) resolves to the latest released version of R via
+\code{\link[=latest_r_release_ref]{latest_r_release_ref()}}. Use \code{"trunk"} for R-devel, a release branch like
+\code{"R-4-6-branch"}, or an exact tag like \code{"tags/R-4-6-1"}.}
 }
 \value{
 downloads the file

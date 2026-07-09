@@ -18,6 +18,10 @@
 #' @param .quicktest If TRUE, removes some of the HTML files after `makeinfo`
 #'   step, for faster quarto rendering on partial site
 #'
+#' @param r_ref Ref in the wch/r-source mirror to build from. `NULL` (the
+#'   default) resolves to the latest released version of R. Use `"trunk"` for
+#'   R-devel, a release branch (`"R-4-6-branch"`), or a tag (`"tags/R-4-6-1"`).
+#'
 #' @param verbose If TRUE, prints progress messages
 #'
 #' @return NULL.
@@ -29,6 +33,7 @@ process_manual <- function(
   .quicktest = FALSE,
   .make_info = !.quicktest,
   .download = !.quicktest,
+  r_ref = NULL,
   verbose = TRUE
 ) {
   cli::cli_h2("Processing {manual}")
@@ -44,7 +49,7 @@ process_manual <- function(
     length(fs::dir_ls(data_folder)) == 0
 
   if (downloads_empty || .download) {
-    download_manuals(manual = manual, destdir = data_folder)
+    download_manuals(manual = manual, destdir = data_folder, r_ref = r_ref)
   }
 
   # Compile the .texi to HTML

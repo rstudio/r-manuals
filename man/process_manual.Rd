@@ -11,6 +11,7 @@ process_manual(
   .quicktest = FALSE,
   .make_info = !.quicktest,
   .download = !.quicktest,
+  r_ref = NULL,
   verbose = TRUE
 )
 }
@@ -29,6 +30,10 @@ step, for faster quarto rendering on partial site}
 \item{.make_info}{If TRUE, convert \code{.texi} to \code{.html}}
 
 \item{.download}{If TRUE, download the manual files}
+
+\item{r_ref}{Ref in the wch/r-source mirror to build from. \code{NULL} (the
+default) resolves to the latest released version of R. Use \code{"trunk"} for
+R-devel, a release branch (\code{"R-4-6-branch"}), or a tag (\code{"tags/R-4-6-1"}).}
 
 \item{verbose}{If TRUE, prints progress messages}
 }

@@ -12,10 +12,60 @@ on:
 name: Build Site
 
 jobs:
+  # Cheap pre-flight: on the weekly cron, skip the (expensive) build+deploy when
+  # nothing that affects the output has changed since the last deploy. The
+  # "fingerprint" combines this repo's commit with the latest released R tag in
+  # the wch/r-source mirror (tags are immutable, so a matching fingerprint means
+  # byte-identical output). Manual runs (workflow_dispatch) and pushes always
+  # build; the fingerprint is stored on the gh-pages branch by the build job.
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      should_build: ${{ steps.decide.outputs.should_build }}
+      fingerprint: ${{ steps.decide.outputs.fingerprint }}
+    steps:
+      - name: Decide whether a build is needed
+        id: decide
+        env:
+          EVENT: ${{ github.event_name }}
+          REPO: ${{ github.repository }}
+          SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+
+          # Latest released R = highest tags/R-x-y-z in the wch/r-source mirror.
+          refs=$(git ls-remote https://github.com/wch/r-source 'refs/heads/tags/R-*' \
+            | grep -E 'refs/heads/tags/R-[0-9]+-[0-9]+-[0-9]+$')
+          latest=$(printf '%s\n' "$refs" \
+            | sed -E 's#^([0-9a-f]+)\t.*/(R-[0-9]+-[0-9]+-[0-9]+)$#\2\t\1#' \
+            | awk -F'\t' '{v=$1; gsub("R-","",v); gsub("-",".",v); print v"\t"$0}' \
+            | sort -V | tail -1)
+          upstream_tag=$(printf '%s' "$latest" | cut -f2)
+          upstream_sha=$(printf '%s' "$latest" | cut -f3)
+
+          fingerprint="repo:${SHA} r:${upstream_tag}@${upstream_sha}"
+          echo "Current fingerprint:  $fingerprint"
+          echo "fingerprint=$fingerprint" >> "$GITHUB_OUTPUT"
+
+          prev=$(curl -sfL "https://raw.githubusercontent.com/${REPO}/gh-pages/build-fingerprint.txt" || true)
+          echo "Previous fingerprint: ${prev:-<none>}"
+
+          if [ "$EVENT" = "schedule" ] && [ "$fingerprint" = "$prev" ]; then
+            echo "No repo or upstream-R changes since last build — skipping."
+            echo "should_build=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "should_build=true" >> "$GITHUB_OUTPUT"
+          fi
+
   build-website:
+    needs: check
+    if: needs.check.outputs.should_build == 'true'
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      # CI publishes the latest *released* R manuals. R_MANUALS_REF is left unset
+      # so the build auto-detects the newest release tag; set it to e.g. "trunk"
+      # to build R-devel instead.
     steps:
       - uses: actions/checkout@v4
 
@@ -49,10 +99,13 @@ jobs:
       - name: Build site 🔧
         run: Rscript scripts/build_website.R
 
+      - name: Record build fingerprint
+        if: github.event_name != 'pull_request'
+        run: echo "${{ needs.check.outputs.fingerprint }}" > website/_site/build-fingerprint.txt
+
       - name: Deploy 🚀
         if: github.event_name != 'pull_request'
         uses: JamesIves/github-pages-deploy-action@4.1.7
         with:
           branch: gh-pages # The branch the action should deploy to.
           folder: website/_site # The folder the action should deploy.
-

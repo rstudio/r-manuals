@@ -58,7 +58,17 @@ manuals <- c(
   NULL
 )
 
-purrr::walk(manuals, process_manual, .quicktest = FALSE)
+# Which version of R to build the manuals for.
+# Set the R_MANUALS_REF environment variable to override the default:
+#   - unset / ""      -> latest released version of R (default)
+#   - "trunk"         -> R-devel ("Under development")
+#   - "R-4-6-branch"  -> latest patched 4.6.x
+#   - "tags/R-4-6-1"  -> exact 4.6.1 release
+r_ref <- Sys.getenv("R_MANUALS_REF", unset = "")
+if (!nzchar(r_ref)) r_ref <- latest_r_release_ref()
+cli::cli_alert_info("Building manuals for R ref: {.val {r_ref}}")
+
+purrr::walk(manuals, process_manual, .quicktest = FALSE, r_ref = r_ref)
 
 # Build books
 
