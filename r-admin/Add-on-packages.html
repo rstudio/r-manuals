@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Add-on packages – R Manuals :: R Installation and Administration</title>
+<title>6&nbsp; Add-on packages – R v4.6.1 Manuals :: R Installation and Administration</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -119,7 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">R Manuals :: R Installation and Administration</span>
+    <span class="navbar-title">R v4.6.1 Manuals :: R Installation and Administration</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -403,7 +403,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>What <code class="code">install.packages</code> does by default is different on Unix-alikes (except macOS) and Windows. On Unix-alikes it consults the list of available <em>source</em> packages on CRAN (or other repositories), downloads the latest version of the package sources, and installs them (via <code class="code">R CMD INSTALL</code>). On <samp class="samp">x86_64</samp>’ Windows it looks (by default) first at the list of <em>binary</em> versions of packages available for your version of R and downloads the latest versions (if any). If no binary version is available or the source version is newer, it will install the source versions of packages without compiled C/C++/Fortran code, and offer to do so for those with, if <code class="command">make</code> is available (and this can be tuned by option <code class="code">"install.packages.compile.from.source"</code>).</p>
 <p>[At present binary packages are not distributed for <samp class="samp">aarch64</samp>’ Windows, so most of this subsection only applies to <samp class="samp">x86_64</samp>’.]</p>
 <p>On Windows <code class="code">install.packages</code> can also install a binary package from a local <samp class="file">zip</samp> file (or the URL of such a file) by setting argument <code class="code">repos</code> to <code class="code">NULL</code>. <code class="code">Rgui.exe</code> has a menu <code class="code">Packages</code> with a GUI interface to <code class="code">install.packages</code>, <code class="code">update.packages</code> and <code class="code">library</code>.</p>
-<p><code class="command">R CMD INSTALL</code> works in Windows to install source packages. No additional tools are needed if the package does not contain compiled code, and <code class="code">install.packages(type="source")</code> will work for such packages. Those with compiled code need the tools (see <a href="Installing-R-under-Windows.html#the-windows-toolset" class="ref">The Windows toolset</a>). The tools are found automatically by R when installed by the toolset installer. See <a href="https://cran.r-project.org/bin/windows/base/howto-.html" class="uref">Building {No value for ‘RWTVERSION’} and packages on Windows</a> for more details.</p>
+<p><code class="command">R CMD INSTALL</code> works in Windows to install source packages. No additional tools are needed if the package does not contain compiled code, and <code class="code">install.packages(type="source")</code> will work for such packages. Those with compiled code need the tools (see <a href="Installing-R-under-Windows.html#the-windows-toolset" class="ref">The Windows toolset</a>). The tools are found automatically by R when installed by the toolset installer. See <a href="https://cran.r-project.org/bin/windows/base/howto-R-4.6.html" class="uref">Building R-4.6 and packages on Windows</a> for more details.</p>
 <p>Occasional permission problems after unpacking source packages have been seen on some systems: these have been circumvented by setting the environment variable <code class="env">R_INSTALL_TAR</code> to <samp class="samp">tar.exe</samp>’. <span id="index-R_005fINSTALL_005fTAR" class="index-entry-id"></span></p>
 <p>If you have only a source package that is known to work with current R and just want a binary Windows build of it, you could make use of the building service offered at <a href="https://win-builder.r-project.org/" class="uref">https://win-builder.r-project.org/</a>.</p>
 <p>If you have a package without compiled code and no Windows-specific help, you can zip up an installation on another OS and install from that zip file on Windows. However, such a package can be installed from the sources on Windows without any additional tools.</p>
