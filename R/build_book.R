@@ -133,10 +133,18 @@ update_quarto_yaml <- function(x, index, all_manuals, verbose = FALSE) {
 
   yaml$book$chapters <- glue_values$chapters
 
-  yaml$book$title <- glue::glue(
-    "R Manuals :: {title}",
-    title = glue_values$title
+  version_label <- extract_version_label(
+    glue::glue("manuals/{manual}/data/version.texi", manual = manual)
   )
+  yaml$book$title <- if (is.na(version_label)) {
+    glue::glue("R Manuals :: {title}", title = glue_values$title)
+  } else {
+    glue::glue(
+      "R {version} Manuals :: {title}",
+      version = version_label,
+      title = glue_values$title
+    )
+  }
 
   yaml::write_yaml(yaml, yaml_file)
   xfun::gsub_file(yaml_file, "\\syes\\s*$", " true")

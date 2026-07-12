@@ -45,6 +45,24 @@ build_main_website <- function(manuals_folder = "manuals", all_manuals) {
   xfun::gsub_file("website/_quarto.yml", "\\syes\\s*$", " true")
   xfun::gsub_file("website/_quarto.yml", "\\sno\\s*$", " false")
 
+  # Inject the R version into the landing-page title so it matches the
+  # per-manual headings (e.g. "The R v4.6.1 Manuals"). All manuals share one R
+  # ref, so any manual's version.texi will do. Quarto does not reliably evaluate
+  # inline R in a page's YAML title, so we rewrite index.qmd here at build time
+  # (mirroring the _quarto.yml rewriting above). The regex also matches a
+  # previously injected version, so repeated builds stay idempotent.
+  version_label <- fs::path(manuals_folder, manuals, "data", "version.texi") %>%
+    purrr::detect(fs::file_exists) %>%
+    extract_version_label()
+  if (length(version_label) == 1 && !is.na(version_label)) {
+    cli::cli_progress_step("Setting landing-page title to R {version_label}")
+    xfun::gsub_file(
+      "website/index.qmd",
+      '^title: "The R.*Manuals"',
+      glue::glue('title: "The R {version_label} Manuals"')
+    )
+  }
+
   cli::cli_progress_step("Running quarto to build website")
   res <- quarto::quarto_render("website", as_job = FALSE, quiet = FALSE)
 

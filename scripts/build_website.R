@@ -65,7 +65,9 @@ manuals <- c(
 #   - "R-4-6-branch"  -> latest patched 4.6.x
 #   - "tags/R-4-6-1"  -> exact 4.6.1 release
 r_ref <- Sys.getenv("R_MANUALS_REF", unset = "")
-if (!nzchar(r_ref)) r_ref <- latest_r_release_ref()
+if (!nzchar(r_ref)) {
+  r_ref <- latest_r_release_ref()
+}
 cli::cli_alert_info("Building manuals for R ref: {.val {r_ref}}")
 
 purrr::walk(manuals, process_manual, .quicktest = FALSE, r_ref = r_ref)

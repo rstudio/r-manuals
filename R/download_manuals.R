@@ -141,13 +141,24 @@ create_version_file <- function(
   # happens to be running this build.
   version_number <- sub("^([0-9.]+).*", "\\1", version_raw)
   rwversion <- paste0("R-", version_number)
+  # RWTVERSION is RWVERSION with its final dot-component stripped (as upstream's
+  # doc/manual/Makefile does), e.g. "R-4.6.1" -> "R-4.6". It feeds the Windows
+  # "howto-<RWTVERSION>.html" links in R-admin; without it makeinfo warns
+  # "undefined flag: RWTVERSION".
+  rwtversion <- sub("\\.[^.]*$", "", rwversion)
   version_template <- str_c(
     "@set VERSION {version}\n",
     "@set VERSIONno {version}\n",
-    "@set RWVERSION {rwversion}",
+    "@set RWVERSION {rwversion}\n",
+    "@set RWTVERSION {rwtversion}",
     collapse = "\n"
   )
-  glue::glue(version_template, version = version, rwversion = rwversion) %>%
+  glue::glue(
+    version_template,
+    version = version,
+    rwversion = rwversion,
+    rwtversion = rwtversion
+  ) %>%
     write_lines(path = output_file)
 }
 

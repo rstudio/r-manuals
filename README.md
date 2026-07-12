@@ -4,6 +4,7 @@
 # r-manuals
 
 <!-- badges: start -->
+
 <!-- badges: end -->
 
 This project translates the [official R
@@ -25,8 +26,11 @@ Background information
 
 - Every hour the R source code (at SVN) gets copied to github, into the
   repo <https://github.com/wch/r-source>.
-- The manuals are in the folder
-  <https://github.com/wch/r-source/tree/trunk/doc/manual>
+- The manuals are in the folder `doc/manual`, on `trunk` for R-devel
+  (<https://github.com/wch/r-source/tree/trunk/doc/manual>) and on a
+  release branch/tag for released versions of R. By default this project
+  builds the latest release — see [Building the
+  manuals](#building-the-manuals).
 - Each manual is in file of format `texinfo`, the “GNU documentation
   format” (<https://www.gnu.org/software/texinfo/>)
 - Since it is possible to render a `texinfo` document to HTML
@@ -36,6 +40,26 @@ Background information
 ## Building the manuals
 
 The build script is in the file `scripts/build_website.R`.
+
+By default the build tracks the **latest released** version of R. Set
+the `R_MANUALS_REF` environment variable to build a different version:
+
+``` sh
+# Latest released R (the default)
+Rscript scripts/build_website.R
+
+# R-devel (renders "Under development")
+R_MANUALS_REF=trunk Rscript scripts/build_website.R
+
+# A specific release series or exact release
+R_MANUALS_REF=R-4-6-branch  Rscript scripts/build_website.R   # latest patched 4.6.x
+R_MANUALS_REF=tags/R-4-6-1  Rscript scripts/build_website.R   # exact 4.6.1 release
+```
+
+The ref refers to a branch or tag in the
+[`wch/r-source`](https://github.com/wch/r-source) mirror. When
+`R_MANUALS_REF` is unset, the build detects the newest release tag
+automatically.
 
 ## In more detail
 
